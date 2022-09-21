@@ -1,0 +1,146 @@
+.admin__page {
+    display: flex;
+    justify-content: center;
+    background: url("../../images/mainBg.png") no-repeat center / cover;
+}
+
+.admin__wrap {
+    min-height: calc(100vh - 80px);
+    width: 1200px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0;
+    box-shadow: 0 0 15px 3px #323232;
+    row-gap: 15px;
+}
+
+.admin__title {
+    display: flex;
+    font-size: 30px;
+    font-weight: 500;
+    justify-content: center;
+    border-bottom: 3px solid;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.tests__wrap {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.tests__block,
+.tests__header {
+    width: 100%;
+    border-bottom: 2px solid black;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    text-decoration: none;
+    color: black;
+    transition: all .2s linear;
+    column-gap: 5px;
+}
+
+.tests__block:hover {
+    background-color: #CDC9C9;
+    transition: all .2s linear;
+}
+
+
+.tests__header {
+    background-color: #000;
+    color: white;
+}
+
+.test__name {
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.test__difficult {
+    width: 20%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1200px) {
+    .admin__wrap {
+        width: 90%;
+    }
+
+    .tests__wrap {
+        margin-top: 20px;
+    }
+
+    .test__name {
+        width: 50%;
+    }
+
+    .test__difficult {
+        width: 25%;
+    }
+}
+
+@media (max-width: 767px) {
+    .tests__wrap {
+        margin-top: 10px;
+    }
+
+    .tests__block,
+    .tests__header {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    .tests__block,
+    .tests__header {
+        font-size: 14px;
+    }
+
+    .admin__title{
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 455px) {
+    .admin__wrap,
+    .tests__wrap {
+        width: 95%;
+    }
+
+    .admin__title{
+        font-size: 20px;
+    }
+
+    .tests__block,
+    .tests__header {
+        font-size: 12px;
+        padding: 0 10px;
+        height: 30px;
+    }
+}
+
+
+@media (max-width: 350px) {
+    .test__name {
+        width: 40%;
+    }
+
+    .test__difficult {
+        width: 30%;
+    }
+}

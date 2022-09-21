@@ -1,0 +1,123 @@
+.tech__dropdown {
+    height: 40px;
+    border: 2px solid black;
+    width: 320px;
+    position: relative;
+    padding: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.drop__header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.tech__drop_text {
+    width: 70%;
+}
+
+.tech__drop_arrow,
+.tech__drop_arrow_side {
+    height: 100%;
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech__drop_arrow img,
+.tech__drop_arrow_side img {
+    transition: all .1s linear;
+    width: 60%;
+}
+
+.tech__drop_arrow img {
+    transition: all .1s linear;
+    transform: rotate(90deg);
+}
+
+
+.placeholder {
+    color: grey;
+    overflow: hidden;
+}
+
+.dropdown__menu {
+    position: absolute;
+    top: 38px;
+    left: -2px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-bottom: none;
+    border-top: none;
+    z-index: 3;
+    background-color: #fff;
+}
+
+
+.tech__block {
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid #323232;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 16px;
+    transition: all .1s linear;
+}
+
+.tech__block:hover {
+    background-color: #CDC9C9;
+    transition: all .1s linear;
+}
+
+.drop__hide {
+    display: none;
+}
+
+@media (max-width: 1841px) {
+    .tech__dropdown,
+    .tech__block,
+    .dropdown__menu{
+        width: 350px;
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .tech__dropdown,
+    .tech__block,
+    .dropdown__menu{
+        width: 300px;
+        font-size: 14px;
+    }
+    .tech__block {
+        width: 298px;
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .tech__dropdown,
+    .tech__block,
+    .dropdown__menu{
+        width: 250px;
+        font-size: 14px;
+    }
+    .tech__block {
+        width: 248px;
+    }
+
+}

@@ -1,0 +1,255 @@
+.user__page {
+    display: flex;
+    justify-content: center;
+    background: url("../../images/mainBg.png") no-repeat center / cover;
+}
+
+.user__wrap {
+    min-height: calc(100vh - 80px);
+    width: 768px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0;
+    box-shadow: 0 0 15px 3px #323232;
+    row-gap: 15px;
+}
+
+.user__avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.user__username {
+    font-size: 28px;
+}
+
+.user__email {
+    font-size: 20px;
+}
+
+.logout__btn {
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 30px;
+    background-color: #000;
+    transform-style: preserve-3d;
+    color: #FFFFFF;
+    border-radius: 50px;
+    transition: all .2s linear;
+    position: relative;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+
+.logout__btn::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #00DBDE;
+    border-radius: 100px;
+    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
+    position: absolute;
+    transform: translateZ(-1px);
+    top: 0;
+    left: 0;
+    transition: all .2s linear;
+}
+
+.logout__btn:hover::before {
+    transition: all .2s linear;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    top: -6px;
+    left: -6px;
+}
+
+.user__rating {
+    font-size: 20px;
+}
+
+.results__title {
+    display: flex;
+    font-size: 24px;
+    justify-content: center;
+    border-bottom: 3px solid;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.results__wrap {
+    font-size: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results__block,
+.results__header {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.pagination__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.arrow__left,
+.arrow__right {
+    height: 30px;
+    cursor: pointer;
+}
+
+.pagination__title {
+    margin-top: 20px;
+    font-size: 28px;
+}
+
+.arrow__right {
+    transform: rotate(-180deg);
+}
+
+.results__header {
+    background-color: #000;
+    color: white;
+}
+
+.result__testName {
+    width: 70%;
+}
+
+.results__result {
+    width: 30%;
+}
+
+.user__data_block {
+    width: 80%;
+    background-color: #000;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding: 0 20px;
+    height: 40px;
+}
+
+.user__db_content {
+    width: 50%;
+
+}
+
+.update__username_form {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+.update__username__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 20px;
+}
+
+.update__username__button{
+    height: 40px;
+    padding: 0 10px;
+    font-size: 20px;
+    background-color: #000;
+    color: white;
+}
+
+.approve__time{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: crimson;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+
+@media (max-width: 767px) {
+    .user__wrap {
+        width: 90%;
+    }
+
+    .results__block,
+    .results__header,
+    .user__data_block,
+    .update__username__input,
+    .update__username__button{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    .results__block,
+    .results__header,
+    .user__data_block,
+    .update__username__input,
+    .update__username__button {
+        font-size: 14px;
+    }
+
+    .results__wrap,
+    .user__data_block,
+    .update__username_form{
+        width: 90%;
+    }
+}
+
+@media (max-width: 500px) {
+    .results__block,
+    .results__header,
+    .user__data_block {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    .results__wrap,
+    .user__data_block,
+    .update__username_form{
+        width: 95%;
+    }
+
+    .user__db_content {
+        width: 35%;
+    }
+
+    .user__db_content:nth-child(2n) {
+        width: 65px;
+    }
+
+}
+
+@media (max-width: 400px){
+    .update__username__input {
+        width: 70%;
+    }
+}

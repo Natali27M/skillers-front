@@ -1,0 +1,213 @@
+.exBlock {
+    width: 100%;
+    padding: 30px 50px;
+    background-color: #F1F1F1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.create__ex_form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #CDC9C9;
+}
+
+.create__ex_input {
+    font-size: 16px;
+    padding: 10px;
+    height: 100px;
+    width: 70%;
+    border: 1px solid black;
+    outline: none;
+}
+
+.create__ex_btn,
+.del__ex_btn,
+.save__var_btn,
+.add__var_btn,
+.del__ex_btn {
+    height: 40px;
+    font-size: 16px;
+    background-color: #000;
+    color: white;
+    padding: 0 15px;
+    cursor: pointer;
+    border: none;
+}
+
+.del__ex_btn {
+    background-color: crimson;
+}
+
+.del__var_btn {
+    height: 30px;
+    font-size: 14px;
+    padding: 0 10px;
+    background-color: crimson;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.del__ex_btn_wrap {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.variant__form {
+    width: 100%;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.var__input {
+    height: 35px;
+    font-size: 16px;
+    padding: 0 10px;
+    flex-grow: 1;
+    outline: none;
+
+}
+
+.var__checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+.save__var_btn {
+    height: 35px;
+    font-size: 14px;
+
+}
+
+.variants__wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.ex__description {
+    width: 100%;
+    height: fit-content;
+    font-size: 22px;
+    font-weight: 500;
+    padding-bottom: 20px;
+    overflow: hidden;
+    border-bottom: 1px solid #CDC9C9;
+    white-space: pre-wrap;
+}
+
+
+
+.add__var_btn {
+    background-color: limegreen;
+    width: fit-content;
+}
+
+.is__correct {
+    font-size: 16px;
+}
+
+.complete__variant {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CDC9C9;
+    white-space: pre-wrap;
+
+}
+
+.variant__name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.variant__left {
+
+}
+
+.variant__correct {
+    color: limegreen;
+}
+
+.variant__incorrect {
+    color: crimson;
+}
+
+@media (max-width: 1200px) {
+    .variant__form {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .exBlock {
+        padding: 20px;
+    }
+
+    .ex__description{
+        font-size: 18px;
+    }
+
+    .complete__variant {
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 815px) {
+    .create__ex_btn,
+    .del__ex_btn,
+    .save__var_btn,
+    .add__var_btn,
+    .del__ex_btn,
+    .exBlock,
+    .create__ex_input {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .create__ex_form {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+    }
+
+    .exBlock{
+        align-items: center;
+    }
+
+    .create__ex_input {
+        width: 100%;
+    }
+
+    .del__ex_btn_wrap{
+        justify-content: center;
+    }
+
+    .ex__description{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .ex__description{
+        font-size: 14px;
+    }
+}

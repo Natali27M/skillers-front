@@ -1,0 +1,139 @@
+.test__page {
+    min-height: calc(100vh - 80px);
+    padding: 40px 50px;
+}
+
+.test__page_title {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 500;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+
+.tests__wrap {
+    width: 100%;
+    min-height: 60vh;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.test__pag_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination__block {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    font-size: 40px;
+}
+
+.arrow__left,
+.arrow__right {
+    height: 25px;
+    cursor: pointer;
+}
+
+.arrow__right {
+    transform: rotate(180deg);
+}
+
+.pagination__wrap {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+}
+
+.pagination__number,
+.pagination__number_active {
+    width: 35px;
+    height: 35px;
+    font-size: 26px;
+    color: #8D8D8D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.pagination__number_active {
+    color: black;
+}
+
+.pagination__container {
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
+}
+
+.search__form_wrap {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.search__input {
+    height: 46px;
+    width: 350px;
+    border: 3px solid black;
+    outline: none;
+    border-radius: 23px;
+    font-size: 16px;
+    padding: 0 15px;
+}
+
+@media (max-width: 767px) {
+    .test__page_title {
+        font-size: 30px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .search__input{
+        height: 38px;
+        width: 300px;
+    }
+
+    .tests__wrap {
+        row-gap: 15px;
+    }
+
+    .test__page {
+        min-height: calc(100vh - 120px);
+    }
+}
+
+@media (max-width: 500px) {
+    .search__form_wrap{
+        justify-content: center;
+    }
+
+    .search__input{
+        height: 30px;
+        width: 250px;
+        border-width: 2px;
+    }
+
+
+    .test__page {
+        padding: 30px 20px;
+    }
+}

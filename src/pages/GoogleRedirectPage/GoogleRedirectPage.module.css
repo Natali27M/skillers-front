@@ -1,0 +1,9 @@
+.google__redirect_page {
+    height: calc(100vh - 80px);
+    background: url("../../images/mainBg.png") no-repeat center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 5vw;
+}

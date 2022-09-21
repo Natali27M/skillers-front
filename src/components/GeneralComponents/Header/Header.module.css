@@ -1,0 +1,251 @@
+.main__header {
+    width: 100%;
+    height: 80px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    color: #FFFFFF;
+    position: relative;
+    z-index: 3;
+    transform-style: preserve-3d;
+    transform: translateZ(2px);
+}
+
+.header__logo {
+    height: 35px;
+}
+
+.switch_btn_en,
+.switch_btn_uk {
+    width: 80px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 6px;
+    transition: 400ms ease-in-out;
+}
+
+.switch_btn_ball_en {
+    width: 30px;
+    height: 30px;
+    background-image: url("../../../images/header/Flag_of_the_United_Kingdom.svg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    transform: translate(39px);
+    transition: all 400ms ease-in-out;
+}
+
+.switch_btn_ball_uk {
+    width: 30px;
+    height: 30px;
+    background-image: url("../../../images/header/Flag_of_Ukraine.svg");
+    background-size: cover;
+    border-radius: 50%;
+    transition: all 400ms ease-in-out;
+}
+
+.switch_btn_name_en {
+    transform: translate(-22px);
+}
+
+.switch_btn_name_uk {
+    transform: translate(10px);
+}
+
+.switch_btn_name_en,
+.switch_btn_name_uk {
+    transition: all 400ms ease-in-out;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.header__left {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+
+.header__link {
+    font-size: 24px;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.user__block {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.user__block img {
+    height: 30px;
+}
+
+.burger__menu_open,
+.burger__menu_close{
+    border-top: 3px solid;
+    border-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    position: absolute;
+    width: 100%;
+    background-color: #000000;
+    min-height: 100px;
+    top: 60px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 30px;
+    row-gap: 10px;
+    transition: all .2s linear;
+    transform-style: preserve-3d;
+    transform: translateZ(-1px);
+
+}
+
+.burger__menu_close {
+    top: -250px;
+    transition: all .2s linear;
+}
+
+.burger__btn{
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+    .main__header {
+        height: 70px;
+    }
+
+    .header__logo {
+        height: 30px;
+    }
+
+    .user__block img {
+        height: 25px;
+    }
+
+    .header__link {
+        font-size: 18px;
+    }
+
+    .switch_btn_en,
+    .switch_btn_uk,
+    .switch_btn {
+        height: 30px;
+        width: 70px;
+        padding: 4px;
+    }
+
+    .switch_btn_ball_en,
+    .switch_btn_ball_uk {
+        width: 23px;
+        height: 23px;
+    }
+
+    .switch_btn_name {
+        transform: translate(5px);
+        font-size: 8px;
+    }
+
+    .dark_switch_btn_name {
+        transform: translate(-14px);
+        font-size: 8px;
+    }
+
+    .switch_btn_name_en {
+        transform: translate(-13px);
+    }
+
+    .switch_btn_name_en,
+    .switch_btn_name_uk {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .burger__btn{
+        display: block;
+    }
+
+
+    .header__left {
+        column-gap: 15px;
+        display: none;
+    }
+
+    .main__header {
+        height: 60px;
+    }
+
+    .header__logo {
+        height: 20px;
+    }
+
+    .header__link {
+        font-size: 14px;
+    }
+
+    .user__block img {
+        height: 18px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+    .main__header {
+        padding: 0 20px;
+    }
+
+
+    .header__logo {
+        height: 14px;
+    }
+
+    .switch_btn_en,
+    .switch_btn_uk,
+    .switch_btn,
+    .dark_switch_btn {
+        height: 30px;
+        width: 60px;
+        padding: 4px;
+    }
+
+    .switch_btn_name {
+        transform: translate(4px);
+        font-size: 7px;
+    }
+
+    .dark_switch_btn_name {
+        transform: translate(-17px);
+        font-size: 7px;
+    }
+
+    .dark_switch_btn_ball {
+        transform: translate(28px);
+    }
+
+    .switch_btn_name_en {
+        transform: translate(-18px);
+    }
+
+    .switch_btn_name_uk {
+        transform: translate(6px);
+    }
+
+    .switch_btn_ball_en {
+        transform: translate(28px);
+    }
+}

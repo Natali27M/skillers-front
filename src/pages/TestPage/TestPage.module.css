@@ -1,0 +1,146 @@
+.test__page {
+    min-height: calc(100vh - 160px);
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.test__page_title {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.exercises__wrap {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.result__block {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.check__wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.check__btn {
+    margin-top: 30px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 24px;
+    background-color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    width: fit-content;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.check__btn::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #00DBDE;
+    border-radius: 100px;
+    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
+    position: absolute;
+    transform: translateZ(-1px);
+    top: 0;
+    left: 0;
+    transition: all .2s linear;
+}
+
+.check__btn:hover::before {
+    transition: all .2s linear;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    top: -6px;
+    left: -6px;
+}
+
+.result__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+}
+
+.approve__block {
+    margin-top: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+}
+
+.approve__btn,
+.delete__btn {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: limegreen;
+}
+
+.delete__btn {
+    background-color: crimson;
+}
+
+
+
+@media (max-width: 767px) {
+    .test__page_title {
+        font-size: 30px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .exercises__wrap {
+        row-gap: 15px;
+    }
+
+    .test__page {
+        min-height: calc(100vh - 120px);
+        padding: 30px 20px;
+        align-items: center;
+    }
+
+    .result__block {
+        margin-top: 30px;
+        font-size: 20px;
+    }
+
+    .check__btn {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+    .test__page {
+        padding: 15px 10px;
+    }
+
+    .result__wrap {
+        flex-direction: column;
+    }
+}
