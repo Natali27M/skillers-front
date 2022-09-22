@@ -50,7 +50,7 @@ const TestPage = () => {
     }, [timeToPush]);
 
     useEffect(() => {
-        if (result && user && oneTest?.isApproved) {
+        if (result && user && oneTest?.attributes?.isApproved) {
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
             if (userAchievement) {
