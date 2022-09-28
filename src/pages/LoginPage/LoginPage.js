@@ -8,6 +8,7 @@ import css from '../RegisterPage/RegisterPage.module.css';
 import logo from '../../images/header/SKILLERS.svg';
 import googleLogo from '../../images/google.svg'
 import {clearError, login} from '../../store';
+import baseURL from '../../config/urls';
 
 const LoginPage = () => {
     const {user, jwt, error} = useSelector(state => state['userReducers']);
@@ -81,7 +82,7 @@ const LoginPage = () => {
                     <button className={css.registration__btn}>{EN ? 'SIGN IN' : 'УВІЙТИ'}</button>
                 </form>
                 <div className={css.google__login__btn} onClick={() =>
-                    (window.location = 'http://localhost:1337/api/connect/google')
+                    (window.location = `${baseURL}/api/connect/google`)
                 }>
                     <img src={googleLogo} alt="google"/> Google login
                 </div>

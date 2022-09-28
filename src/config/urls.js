@@ -1,4 +1,6 @@
-const baseURL = 'http://localhost:1337';
+// const baseURL = 'http://localhost:1337';
+
+const baseURL = 'https://static.125.137.235.167.clients.your-server.de';
 
 export default baseURL;
 
