@@ -15,7 +15,7 @@ const UserPage = () => {
 
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {user, jwt, error, roles} = useSelector(state => state['userReducers']);
+    const {user, jwt, error, roles, updateError} = useSelector(state => state['userReducers']);
 
     const {userResults} = useSelector(state => state['resultReducers']);
 
@@ -33,14 +33,20 @@ const UserPage = () => {
         if (user) {
             const id = user.id;
             dispatch(getUserAchievement(id));
-            dispatch(getUserResults({userId: id, pageNum: pageNumber}));
             dispatch(getUserRoles(id));
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            const id = user.id;
+            dispatch(getUserResults({userId: id, pageNum: pageNumber}));
         }
     }, [user, pageNumber]);
 
-    useEffect(()=> {
-        dispatch(getTestsForApprove(1))
-    }, [pathname])
+    useEffect(() => {
+        dispatch(getTestsForApprove(1));
+    }, [pathname]);
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
@@ -72,6 +78,14 @@ const UserPage = () => {
                     />
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>
+                {updateError &&
+                    <div className={css.error}>
+                        {EN ? 'Username change error. Perhaps a User with such a nickname already exists.'
+                            :
+                            'Помилка зміни юзернейму. Можливо Користувач з таким нікнеймом вже існує.'}
+                    </div>
+                }
+
 
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Email' : 'Email'}</div>
@@ -106,15 +120,19 @@ const UserPage = () => {
                              alt="arrow"/>
                     </div>
                 </div>}
-                <div className={css.logout__btn} onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
-                <Link to={'/createTest'} className={css.logout__btn}>{EN ? 'Create test' : 'Створити тест'}</Link>
-                {roles?.includes('admin') &&
-                    <Link to={'/admin'} className={css.logout__btn}>
-                        {EN ? 'Admin panel' : 'Адмін панель'}
-                        {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
-                    </Link>
+                <div className={css.buttons__wrap}>
+                    <Link to={'/'} className={css.logout__btn}>{EN ? 'To main' : 'На головну'}</Link>
+                    <Link to={'/createTest'} className={css.logout__btn}>{EN ? 'Create test' : 'Створити тест'}</Link>
+                    <div className={css.logout__btn} onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
+                    {roles?.includes('admin') &&
+                        <Link to={'/admin'} className={css.logout__btn}>
+                            {EN ? 'Admin panel' : 'Адмін панель'}
+                            {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
+                        </Link>
 
-                }
+                    }
+                </div>
+
             </div>
 
         </div>

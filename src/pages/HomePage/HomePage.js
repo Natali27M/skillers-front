@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import css from './HomePage.module.css';
 import logo from '../../images/header/SKILLERS.svg';
-import {LeaderBord, TechList} from '../../components';
+import {FeedbackForm, LeaderBord, TechList} from '../../components';
 import {Link} from 'react-router-dom';
 import {getLeaderBord} from '../../store/slices/achievments.slice';
 
@@ -12,9 +12,7 @@ const HomePage = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getLeaderBord());
-    }, []);
+
 
     return (
         <>
@@ -30,6 +28,7 @@ const HomePage = () => {
             </div>
             <TechList/>
             <LeaderBord/>
+            {/*<FeedbackForm/>*/}
         </>
     );
 };

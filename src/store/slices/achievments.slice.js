@@ -4,9 +4,20 @@ import {achievementsServices} from '../../services';
 
 export const getLeaderBord = createAsyncThunk(
     'achievementsSlice/getLeaderBord',
-    async (_, {rejectWithValue}) => {
+    async (pageNumber, {rejectWithValue}) => {
         try {
-            return await achievementsServices.getLeaderBord();
+            return await achievementsServices.getLeaderBord(pageNumber);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getLeaderBordByQuery = createAsyncThunk(
+    'achievementsSlice/getLeaderBord',
+    async ({pageNumber, query}, {rejectWithValue}) => {
+        try {
+            return await achievementsServices.getLeaderBordByQuery(pageNumber, query);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -70,6 +81,19 @@ const achievementsSlice = createSlice({
         },
 
         [getLeaderBord.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getLeaderBordByQuery.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.leaderBord = action.payload;
+        },
+
+        [getLeaderBordByQuery.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getLeaderBordByQuery.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         },

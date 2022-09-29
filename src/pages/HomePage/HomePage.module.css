@@ -2,7 +2,7 @@
     width: 100%;
     min-height: calc(100vh - 80px);
     padding: 50px 15px;
-    background: url("../../images/mainBg.png") no-repeat center / cover;
+    background: url("../../images/mainBg.png") no-repeat center, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
     display: flex;
     flex-direction: column;
     align-items: center;

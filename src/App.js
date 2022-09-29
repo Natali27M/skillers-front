@@ -17,7 +17,7 @@ import {Layout} from './components';
 import {
     clear,
     clearCreateTest,
-    getLanguage,
+    getLanguage, getUserResultsAll,
     getUserRoles,
     setJwtFromLocalStorage,
     setUserFromLocalStorage
@@ -28,6 +28,8 @@ import {getUserResults} from './store';
 
 function App() {
     const {user, jwt} = useSelector(state => state['userReducers']);
+
+    const {isTestCompleted} = useSelector(state => state['resultReducers']);
 
     const {timeToClear} = useSelector(state => state['createTestsReducers']);
 
@@ -53,9 +55,16 @@ function App() {
             const id = user.id;
             dispatch(getUserAchievement(id));
             dispatch(getUserResults({userId: id, pageNum: 1}));
-            dispatch(getUserRoles(id))
+            dispatch(getUserRoles(id));
+
         }
     }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getUserResultsAll(user.id));
+        }
+    }, [user, isTestCompleted]);
 
     return (
         <Routes>

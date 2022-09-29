@@ -48,11 +48,10 @@ export const updateUser = createAsyncThunk(
     'userSlice/updateUser',
     async ({data, userId}, {rejectWithValue}) => {
         try {
-            const userData = await userServices.updateUser(data, userId);
-            let oldUser = JSON.parse(localStorage.getItem('user'));
-            oldUser.username = userData.username
-            localStorage.setItem('user', JSON.stringify(oldUser));
-            return oldUser;
+            /* let oldUser = JSON.parse(localStorage.getItem('user'));
+             oldUser.username = userData.username
+             localStorage.setItem('user', JSON.stringify(oldUser));*/
+            return await userServices.updateUser(data, userId);
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -78,6 +77,7 @@ export const googleAuth = createAsyncThunk(
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
+        updateError: null,
         error: null,
         status: null,
         user: null,
@@ -139,15 +139,18 @@ const userSlice = createSlice({
         [updateUser.pending]: (state) => {
             state.status = 'pending';
             state.error = null;
-            state.user = null;
         },
         [updateUser.rejected]: (state, action) => {
             state.status = 'rejected';
-            state.error = action;
+            state.updateError = action;
         },
         [updateUser.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.user = action.payload;
+            state.updateError = null;
+            let oldUser = JSON.parse(localStorage.getItem('user'));
+            oldUser.username = action.payload.username
+            localStorage.setItem('user', JSON.stringify(oldUser));
         },
         [googleAuth.pending]: (state) => {
             state.status = 'pending';

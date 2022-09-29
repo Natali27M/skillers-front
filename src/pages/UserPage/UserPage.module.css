@@ -34,7 +34,10 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    padding: 15px 30px;
+    padding: 15px 0;
+    width: 150px;
+    display: flex;
+    justify-content: center;
     background-color: #000;
     transform-style: preserve-3d;
     color: #FFFFFF;
@@ -45,6 +48,14 @@
     text-decoration: none;
 }
 
+.buttons__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
 
 .logout__btn::before {
     content: '';
@@ -192,6 +203,11 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+}
+
+.error {
+    color: crimson;
+    font-size: 14px;
 }
 
 

@@ -115,7 +115,7 @@ const TestPage = () => {
             }
             {!!exercises.length && status !== 'pending' &&
                 <div className={css.exercises__wrap}>
-                    {exercises.map(exercise => <ExerciseBlock key={exercise.id} exercise={exercise}/>)}
+                    {exercises.map(exercise => <ExerciseBlock exNumber={exercises.indexOf(exercise) +1} key={exercise.id} exercise={exercise}/>)}
                 </div>
             }
 

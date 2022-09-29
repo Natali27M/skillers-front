@@ -2,7 +2,8 @@
     width: 100%;
     padding: 30px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     transition: all .2s linear;
     color: black;
     row-gap: 15px;
@@ -26,12 +27,22 @@
 
 .test__left {
     display: flex;
-    align-items: center;
-    column-gap: 150px;
+    flex-direction: column;
+    row-gap: 15px;
 }
 
 .test__rating {
     font-size: 18px;
+}
+
+.test__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.complete{
+    height: 40px;
 }
 
 @media (max-width: 767px) {
@@ -46,6 +57,10 @@
 
     .test__rating {
         font-size: 16px;
+    }
+
+    .complete{
+        height: 30px;
     }
 }
 
@@ -68,7 +83,9 @@
 }
 
 @media (max-width: 500px) {
-
+    .complete{
+        height: 20px;
+    }
 }
 
 @media (max-width: 350px) {

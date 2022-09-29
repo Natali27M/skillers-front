@@ -9,6 +9,7 @@ import nodejs from '../../../images/techList/nodejs.svg'
 import csharp from '../../../images/techList/csharp.svg'
 import cplusplus from '../../../images/techList/cplusplus.svg'
 import html5 from '../../../images/techList/html5.svg'
+import other from '../../../images/techList/other.svg'
 
 
 const TechList = () => {
@@ -38,6 +39,9 @@ const TechList = () => {
                 </Link>
                 <Link className={css.tech__block} to={'/test-list/8'}>
                     <img className={css.tech__img} src={html5} alt="html5"/>
+                </Link>
+                <Link className={css.tech__block} to={'/test-list/9'}>
+                    <img className={css.tech__img} src={other} alt="other"/>
                 </Link>
             </div>
         </div>

@@ -13,6 +13,17 @@ export const getUserResults = createAsyncThunk(
     }
 );
 
+export const getUserResultsAll = createAsyncThunk(
+    'resultsSlice/getUserResultsAll',
+    async (userId, {rejectWithValue}) => {
+        try {
+            return await resultsServices.getUserResultAll(userId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 export const getUserByTestResults = createAsyncThunk(
     'resultsSlice/getUserByTestResults',
     async ({userId, testId}, {rejectWithValue}) => {
@@ -44,6 +55,7 @@ const resultsSlice = createSlice({
         error: null,
         userResults: [],
         userByTestResult: null,
+        userResultsAll: [],
         isTestCompleted: false
     },
 
@@ -63,9 +75,14 @@ const resultsSlice = createSlice({
             state.userResults = action.payload;
         },
 
-        /*[getUserResults.pending]: (state) => {
+        [getUserResultsAll.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.userResultsAll = action.payload;
+        },
+
+        [getUserResults.pending]: (state) => {
             state.status = 'pending';
-        },*/
+        },
 
         [getUserResults.rejected]: (state, action) => {
             state.status = 'rejected';

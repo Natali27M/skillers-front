@@ -49,7 +49,7 @@ const Header = () => {
                 </div>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
-                    </div> : (EN ? 'Login' : 'Увійти')}
+                    </div> : <div className={css.login__btn}>{EN ? 'Login' : 'Увійти'}</div> }
                 </Link>
             </div>
             <div className={css.burger__btn}  onClick={() => setOpen(!open)}>

@@ -121,6 +121,13 @@
     display: none;
 }
 
+.login__btn{
+    text-align: center;
+    width: 70px;
+}
+
+
+
 
 @media (max-width: 900px) {
     .main__header {
@@ -173,6 +180,8 @@
     }
 
 }
+
+
 
 @media (max-width: 767px) {
     .burger__btn{
