@@ -1,7 +1,7 @@
 .home__page {
     width: 100%;
     min-height: calc(100vh - 80px);
-    padding: 50px 0;
+    padding: 50px 15px;
     background: url("../../images/mainBg.png") no-repeat center / cover;
     display: flex;
     flex-direction: column;
@@ -12,17 +12,17 @@
 }
 
 .home__logo {
-    width: 950px;
+    width: 500px;
 }
 
 .home__welcome {
-    font-size: 38px;
+    font-size: 20px;
     font-weight: 500;
 }
 
 .home__description {
     width: 900px;
-    font-size: 55px;
+    font-size: 35px;
     text-align: center;
 }
 
@@ -34,7 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 35px;
+    font-size: 20px;
     color: #FFFFFF;
     transition: all .2s linear;
     cursor: pointer;
@@ -51,21 +51,18 @@
 
 @media (max-width: 1200px) {
     .home__logo{
-        width: 800px;
+        width: 400px;
     }
 
     .home__description {
-        width: 800px;
-        font-size: 45px;
+        width: 90%;
+        font-size: 30px;
     }
 
-    .register__btn {
-        font-size: 32px;
-    }
 }
 
 @media (max-width: 900px) {
-    .home__logo{
+  /*  .home__logo{
         width: 700px;
     }
 
@@ -76,34 +73,31 @@
 
     .register__btn {
         font-size: 25px;
-    }
+    }*/
 }
 
 
 @media (max-width: 767px) {
     .home__logo {
-        width: 90%;
+        width: 60%;
     }
 
     .home__description {
-        font-size: 35px;
+        font-size: 27px;
         width: fit-content;
     }
 
-    .register__btn {
-        font-size: 25px;
-    }
 }
 
-@media (max-width: 600px) {
-     .home__description {
-        font-size: 30px;
-    }
-}
+
 
 @media (max-width: 500px) {
     .home__description {
         font-size: 26px;
+    }
+
+    .home__logo{
+        width: 80%;
     }
 
     .register__btn {

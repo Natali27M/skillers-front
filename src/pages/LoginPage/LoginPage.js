@@ -46,7 +46,7 @@ const LoginPage = () => {
                         className={css.register__input}
                     />
 
-                    {errors.email &&
+                    {errors.identifier &&
                         <div className={css.error}>
                             {EN ? 'Wrong email' : 'Помилка пошти'}
                         </div>

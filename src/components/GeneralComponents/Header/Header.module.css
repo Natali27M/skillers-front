@@ -14,7 +14,7 @@
 }
 
 .header__logo {
-    height: 35px;
+    height: 25px;
 }
 
 .switch_btn_en,
@@ -73,7 +73,7 @@
 }
 
 .header__link {
-    font-size: 24px;
+    font-size: 18px;
     color: #FFFFFF;
     text-decoration: none;
     cursor: pointer;
@@ -87,7 +87,7 @@
 }
 
 .user__block img {
-    height: 30px;
+    height: 25px;
 }
 
 .burger__menu_open,
@@ -128,15 +128,15 @@
     }
 
     .header__logo {
-        height: 30px;
-    }
-
-    .user__block img {
         height: 25px;
     }
 
+    .user__block img {
+        height: 20px;
+    }
+
     .header__link {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .switch_btn_en,

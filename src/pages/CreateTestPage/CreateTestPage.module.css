@@ -30,10 +30,10 @@
 
 .test__input,
 .difficult__input {
-    width: 350px;
+    width: 250px;
     padding: 0 20px;
-    font-size: 20px;
-    height: 40px;
+    font-size: 14px;
+    height: 30px;
     border: 2px solid black;
     outline: none;
     position: relative;
@@ -56,13 +56,13 @@
 .input__error,
 .difficult__error {
     text-align: center;
-    width: 350px;
+    width: 250px;
     font-size: 14px;
     color: crimson;
 }
 
 .difficult__error {
-    width: 170px;
+    width: 120px;
 }
 
 .input__wrap {
@@ -70,11 +70,11 @@
 }
 
 .testCreate__btn {
-    height: 40px;
+    height: 30px;
     background-color: #000;
     color: white;
     padding: 0 15px;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .addEx__btn_wrap {
-    margin-top: 40px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -114,7 +114,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    height: 40px;
+    height: 30px;
     padding: 0 20px;
 }
 

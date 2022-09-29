@@ -6,19 +6,18 @@
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    font-size: 22px;
+    font-size: 16px;
 }
 
 .variants__wrap {
     padding: 10px 0;
-    font-size: 20px;
+    font-size: 14px;
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
 }
 
 .exercise__description {
-    font-size: 26px;
+    font-size: 16px;
     font-weight: 600;
     padding-bottom: 15px;
     border-bottom: 2px solid #CDC9C9;
@@ -57,8 +56,8 @@
 }
 
 .check__arrow_block {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
