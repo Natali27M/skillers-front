@@ -60,11 +60,12 @@ function App() {
         }
     }, [user]);
 
+
     useEffect(() => {
-        if (user) {
+        if (user && pathname.includes('test-list')) {
             dispatch(getUserResultsAll(user.id));
         }
-    }, [user, isTestCompleted]);
+    }, [user, isTestCompleted, pathname]);
 
     return (
         <Routes>
