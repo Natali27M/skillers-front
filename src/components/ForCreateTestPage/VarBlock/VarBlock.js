@@ -36,7 +36,7 @@ const VarBlock = ({exTempId, varTempId}) => {
                         <div className={variant.correct ?
                             css.variant__correct : css.variant__incorrect}
                         >
-                            {variant.correct ? (EN ? 'Correct' : 'Правильне') : (EN ? 'Incorrect' : 'Неравильне')}
+                            {variant.correct ? (EN ? 'Correct' : 'Правильне') : (EN ? 'Incorrect' : 'Не правильне')}
                         </div>
                     </div>
                     <button className={css.del__var_btn} onClick={() => delVariant()}>

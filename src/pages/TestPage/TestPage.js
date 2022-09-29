@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {approveTest, deleteTest, getOneTest} from '../../store/slices/testPage.slice';
 import {checkResults, clear, clearResults, getExercises, makeTimeToPush, setTestComplete} from '../../store';
 import {ExerciseBlock} from '../../components';
-import {createUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
+import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
 
 const TestPage = () => {
@@ -53,6 +53,7 @@ const TestPage = () => {
         if (result && user && oneTest?.attributes?.isApproved) {
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
+            dispatch(getUserAchievement(user.id))
             if (userAchievement) {
                 dispatch(updateUserAchievement({
                     achId: userAchievement.id,
