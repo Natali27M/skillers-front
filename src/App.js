@@ -8,7 +8,7 @@ import {
     CreateTestPage,
     GoogleRedirectPage,
     HomePage,
-    LoginPage, PolicyPage,
+    LoginPage, NotFoundPage, PolicyPage,
     RegisterPage,
     TestListPage,
     TestPage,
@@ -82,6 +82,7 @@ function App() {
                 <Route path={'/admin'} element={<AdminPage/>}/>
                 <Route path={'/policy'} element={<PolicyPage/>}/>
                 <Route path={'/forgot-password'} element={<AdminPage/>}/>
+                <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
     );

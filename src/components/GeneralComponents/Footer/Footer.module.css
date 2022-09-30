@@ -4,9 +4,16 @@
     background-color: #000;
     color: white;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 40px;
 }
+
+.privacy__link{
+    text-decoration: none;
+    color: white;
+}
+
 
 
 @media (max-width: 900px) {
@@ -19,5 +26,6 @@
     .main__footer {
         height: 60px;
         font-size: 14px;
+        padding: 0 20px;
     }
 }
