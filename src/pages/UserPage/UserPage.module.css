@@ -46,6 +46,7 @@
     position: relative;
     margin-top: 15px;
     text-decoration: none;
+    border: none;
 }
 
 .buttons__wrap {
@@ -73,10 +74,10 @@
 
 .logout__btn:hover::before {
     transition: all .2s linear;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    top: -5px;
-    left: -5px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    top: -6px;
+    left: -6px;
 }
 
 .user__rating {
@@ -186,6 +187,8 @@
     padding: 0 10px;
     font-size: 14px;
     background-color: #000;
+    border: none;
+    cursor: pointer;
     color: white;
 }
 

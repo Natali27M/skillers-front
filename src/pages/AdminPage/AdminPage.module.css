@@ -13,7 +13,7 @@
     flex-direction: column;
     padding: 40px 0;
     box-shadow: 0 0 15px 3px #323232;
-    row-gap: 15px;
+    row-gap: 30px;
 }
 
 .admin__title {
@@ -28,16 +28,18 @@
     border-image-slice: 1;
 }
 
-.tests__wrap {
+.tests__wrap,
+.feedback__wrap {
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
 }
 
 .tests__block,
-.tests__header {
+.tests__header,
+.feedback__block,
+.feedback__header {
     width: 100%;
     border-bottom: 2px solid black;
     height: 40px;
@@ -51,22 +53,63 @@
     column-gap: 5px;
 }
 
+.feedback__block {
+    height: fit-content;
+    align-items: flex-start;
+}
+
 .tests__block:hover {
     background-color: #CDC9C9;
     transition: all .2s linear;
 }
 
 
-.tests__header {
+.tests__header,
+.feedback__header {
     background-color: #000;
     color: white;
 }
 
-.test__name {
+.feedback__name {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    width: 28%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.delete__feedback {
+    flex-grow: 1;
+    min-width: 3%;
+    height: 100%;
+    /*background-color: red;*/
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete__feedback img {
+    width: 80%;
+}
+
+.feedback__message {
+    width: 40%;
+    padding: 10px 0;
+}
+
+.test__name,
+.feedback__header_message{
     width: 60%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.feedback__header_message{
+    width: 40%;
 }
 
 .test__difficult {
@@ -75,6 +118,35 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.pagination__wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.pagination__block {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    column-gap: 10px;
+}
+
+.arrow__left,
+.arrow__right {
+    height: 25px;
+    cursor: pointer;
+}
+
+.arrow__right {
+    transform: rotate(180deg);
+}
+
+.search__user_form {
+    width: 70%;
+}
+
 
 @media (max-width: 1200px) {
     .admin__wrap {
@@ -103,6 +175,15 @@
     .tests__header {
         font-size: 16px;
     }
+
+    .feedback__block,
+    .feedback__header{
+        font-size: 12px;
+    }
+
+    .feedback__name{
+        height: 30px;
+    }
 }
 
 @media (max-width: 550px) {
@@ -111,7 +192,7 @@
         font-size: 14px;
     }
 
-    .admin__title{
+    .admin__title {
         font-size: 24px;
     }
 }
@@ -122,15 +203,21 @@
         width: 95%;
     }
 
-    .admin__title{
+    .admin__title {
         font-size: 20px;
     }
 
     .tests__block,
-    .tests__header {
+    .tests__header,
+    .feedback__header{
         font-size: 12px;
         padding: 0 10px;
         height: 30px;
+    }
+
+    .feedback__block {
+        font-size: 8px;
+        padding: 0 10px;
     }
 }
 

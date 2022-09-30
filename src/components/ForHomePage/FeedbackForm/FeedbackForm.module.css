@@ -1,0 +1,135 @@
+.feedback__form_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 0;
+}
+
+.feedback__title {
+    font-weight: 500;
+    font-size: 34px;
+    border-bottom: 4px solid;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+
+.feedback__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    justify-content: center;
+    width: 400px;
+}
+
+.feedback__input,
+.feedback__input_error {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    outline: none;
+    padding: 0 10px;
+    background-color: #F1F1F1;
+}
+
+.feedback__input_error {
+    border-color: crimson;
+}
+
+.feedback__textarea,
+.feedback__textarea_error {
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    background-color: #F1F1F1;
+}
+
+.feedback__textarea_error,
+.feedback__input_error {
+    border-color: crimson;
+}
+
+.feedback__modal,
+.feedback__modal_open {
+    position: fixed;
+    bottom: -200px;
+    right: 50px;
+    padding: 30px;
+    background-color: #F1F1F1;
+    box-shadow: 0 0 10px rgba(27, 29, 46, 0.75);
+    border: 2px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    transition: all .4s linear;
+}
+
+.feedback__modal_open {
+    bottom: 100px;
+}
+
+.modal__cross {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1000px) {
+    .feedback__form_wrap {
+        padding: 30px 0;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .feedback__title {
+        font-size: 28px;
+    }
+
+    .feedback__modal,
+    .feedback__modal_open {
+        right: auto;
+    }
+
+    .feedback__modal_open {
+        bottom: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .feedback__input,
+    .feedback__input_error {
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .feedback__textarea,
+    .feedback__textarea_error {
+        font-size: 12px;
+        height: 70px;
+    }
+
+    .feedback__form {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    .feedback__form {
+        width: 80%;
+    }
+}

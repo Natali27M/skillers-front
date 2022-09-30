@@ -95,15 +95,15 @@
     cursor: pointer;
 }
 
-.arrow__right{
+.arrow__right {
     transform: rotate(180deg);
 }
 
-.search__user_form{
+.search__user_form {
     width: 70%;
 }
 
-.search__user_input{
+.search__user_input {
     height: 40px;
     padding: 0 15px;
     font-size: 16px;
@@ -113,6 +113,7 @@
 }
 
 
+
 @media (max-width: 1000px) {
     .leader__bord_wrap {
         padding: 30px 0;
@@ -120,7 +121,7 @@
     }
 
     .leader__wrap,
-    .search__user_form{
+    .search__user_form {
         width: 85%;
     }
 }
@@ -139,7 +140,7 @@
 
 @media (max-width: 600px) {
     .leader__wrap,
-    .search__user_form{
+    .search__user_form {
         width: 95%;
     }
 
@@ -152,12 +153,12 @@
         width: 20%;
     }
 
-    .pagination__block{
+    .pagination__block {
         font-size: 20px;
     }
 
     .arrow__left,
-    .arrow__right{
+    .arrow__right {
         height: 15px;
     }
 }
@@ -170,7 +171,7 @@
         padding: 0 10px;
     }
 
-    .search__user_input{
+    .search__user_input {
         height: 30px;
         padding: 0 5px;
         font-size: 12px;

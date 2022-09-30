@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 
 import css from './AdminPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {getUserRoles} from '../../store';
+import {deleteFeedback, getFeedback, getUserRoles} from '../../store';
 import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
+import cross from '../../images/cross-red.svg';
+import arrow from '../../images/arrow.svg';
 
 
 const AdminPage = () => {
@@ -15,17 +17,31 @@ const AdminPage = () => {
 
     const {testsForApprove} = useSelector(state => state['testsReducers']);
 
+    const {feedbackPage, isDelete} = useSelector(state => state['feedbackReducers']);
+
     const dispatch = useDispatch();
 
-    const [pageNumber, setPageNumber] = useState(1);
+    const [testsPageNumber, setTestsPageNumber] = useState(1);
+    const [feedbackPageNumber, setFeedbackPageNumber] = useState(1);
 
-    useEffect(()=> {
-        dispatch(getTestsForApprove(pageNumber))
-    }, [pageNumber])
+    useEffect(() => {
+        dispatch(getTestsForApprove(testsPageNumber));
+    }, [testsPageNumber]);
+
+    useEffect(() => {
+        dispatch(getFeedback(feedbackPageNumber));
+
+    }, [feedbackPageNumber, isDelete] );
+
+
+    const makeDeleteFeedback = (id) => {
+        dispatch(deleteFeedback(id))
+    };
 
     if (!(roles?.includes('admin'))) {
         return <Navigate to={'/user'} replace/>;
     }
+
 
     return (
         <div className={css.admin__page}>
@@ -36,16 +52,16 @@ const AdminPage = () => {
                 <div className={css.tests__wrap}>
                     <div className={css.tests__header}>
                         <div className={css.test__name}>
-                            {EN ? "Name" : 'Назва'}
+                            {EN ? 'Name' : 'Назва'}
                         </div>
                         <div className={css.test__difficult}>
-                            {EN ? "Difficult" : 'Складність'}
+                            {EN ? 'Difficult' : 'Складність'}
                         </div>
                         <div className={css.test__difficult}>
-                            {EN ? "Tech id" : 'ІД технології'}
+                            {EN ? 'Tech id' : 'ІД технології'}
                         </div>
                     </div>
-                    {testsForApprove?.map(test =>
+                    {testsForApprove?.data?.map(test =>
                         <Link to={`/test/${test.id}`} className={css.tests__block} key={test.id}>
                             <div className={css.test__name}>
                                 {test?.attributes?.name}
@@ -58,6 +74,59 @@ const AdminPage = () => {
                             </div>
                         </Link>
                     )}
+                    {testsForApprove?.data?.length === 0 &&
+                        <div>{EN ? 'no tests for approve' : 'немає тестів для підтвердження'}</div>
+                    }
+                    <div className={css.pagination__wrap}>
+                        <div className={css.pagination__block}>
+                            <img src={arrow} alt="arrow" className={css.arrow__left}
+                                 onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}/>
+                            <div>{testsPageNumber} / {testsForApprove?.meta?.pagination?.pageCount}</div>
+                            <img src={arrow} alt="arrow" className={css.arrow__right}
+                                 onClick={() => testsPageNumber < testsForApprove.meta?.pagination?.pageCount && setTestsPageNumber(testsPageNumber + 1)}/>
+                        </div>
+                    </div>
+                </div>
+                <div className={css.admin__title}>
+                    {EN ? 'Feedback' : 'Відгуки'}
+                </div>
+                <div className={css.feedback__wrap}>
+                    <div className={css.feedback__header}>
+                        <div className={css.feedback__header_message}>
+                            {EN ? 'Message' : 'Повідомлення'}
+                        </div>
+                        <div className={css.feedback__name}>
+                            {EN ? 'Name' : 'Ім\'я'}
+                        </div>
+                        <div className={css.feedback__name}>
+                            Email
+                        </div>
+                    </div>
+                    {feedbackPage?.data && feedbackPage?.data?.map(feedback =>
+                        <div key={feedback.id} className={css.feedback__block}>
+                            <div className={css.feedback__message}>
+                                {feedback?.attributes.message}
+                            </div>
+                            <div className={css.feedback__name}>
+                                {feedback?.attributes.userName}
+                            </div>
+                            <div className={css.feedback__name}>
+                                {feedback?.attributes.email}
+                            </div>
+                            <div className={css.delete__feedback} onClick={() => makeDeleteFeedback(feedback?.id)}>
+                                <img src={cross} alt="cross"/>
+                            </div>
+                        </div>
+                    )}
+                    <div className={css.pagination__wrap}>
+                        <div className={css.pagination__block}>
+                            <img src={arrow} alt="arrow" className={css.arrow__left}
+                                 onClick={() => feedbackPageNumber > 1 && setFeedbackPageNumber(feedbackPageNumber - 1)}/>
+                            <div>{feedbackPageNumber} / {feedbackPage?.meta?.pagination?.pageCount}</div>
+                            <img src={arrow} alt="arrow" className={css.arrow__right}
+                                 onClick={() => feedbackPageNumber < feedbackPage.meta?.pagination?.pageCount && setFeedbackPageNumber(feedbackPageNumber + 1)}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

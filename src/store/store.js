@@ -8,6 +8,7 @@ import userReducers from './slices/user.slice';
 import achievementsReducers from './slices/achievments.slice';
 import resultReducers from './slices/results.slice';
 import createTestsReducers from './slices/createTest.slice';
+import feedbackReducers from './slices/feedback.slice';
 
 
 const store = configureStore({
@@ -18,7 +19,8 @@ const store = configureStore({
         userReducers,
         achievementsReducers,
         resultReducers,
-        createTestsReducers
+        createTestsReducers,
+        feedbackReducers
     }
 });
 

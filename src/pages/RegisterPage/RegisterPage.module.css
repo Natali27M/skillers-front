@@ -124,6 +124,14 @@
     border-radius: 0;
 }
 
+.policy__link{
+    width: 360px;
+    text-align: center;
+    color: #8D8D8D;
+    text-decoration: none;
+    height: 50px;
+}
+
 
 @media (max-width: 1200px) {
     .home__description {
@@ -181,6 +189,11 @@
         height: 40px;
     }
 
+    .policy__link {
+        width: 70%;
+        font-size: 16px;
+    }
+
     .register__form {
         row-gap: 10px;
         width: 100%;
@@ -193,7 +206,8 @@
 }
 
 @media (max-width: 400px) {
-    .register__input {
+    .register__input,
+    .policy__link{
         width: 90%;
         padding: 0 10px;
     }

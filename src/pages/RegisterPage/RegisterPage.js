@@ -6,8 +6,9 @@ import logo from '../../images/header/SKILLERS.svg';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {UserValidator} from '../../validation';
 import {clearError, registration} from '../../store';
-import {Navigate} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import googleLogo from '../../images/google.svg';
+import baseURL from '../../config/urls';
 
 
 const RegisterPage = () => {
@@ -127,10 +128,16 @@ const RegisterPage = () => {
                                 'Користувач з таким емейлом або нікнеймом вже зареєстрований'
                             }
                         </div>}
+                    <Link to={'/policy'} className={css.policy__link}>
+                        {EN ? 'By registering, you consent to the processing of your personal data. View privacy policy'
+                            :
+                            'Реєструючись, ви даєте згоду на обробку ваших персональних даних. Переглянути політику конфіденційності'
+                        }
+                    </Link>
                     <button className={css.registration__btn}>{EN ? 'SIGN UP' : 'ЗАРЕЄСТРУВАТИСЯ'}</button>
                 </form>
                 <div className={css.google__login__btn} onClick={() =>
-                    (window.location = 'http://localhost:1337/api/connect/google')
+                    (window.location = `${baseURL}/api/connect/google`)
                 }>
                     <img src={googleLogo} alt="google"/> Google login
                 </div>

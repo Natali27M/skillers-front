@@ -1,5 +1,7 @@
 // const baseURL = 'http://localhost:1337';
 
+const frontendURL = ''
+
 const baseURL = 'https://static.125.137.235.167.clients.your-server.de';
 
 export default baseURL;
@@ -23,5 +25,7 @@ export const urls = {
     googleCallback: 'api/auth/google/callback?',
 
     testResults: '/api/test-results',
-    testResultsByUser: '/api/test-results?filters[userId][$eq]='
+    testResultsByUser: '/api/test-results?filters[userId][$eq]=',
+
+    feedback:'/api/feedbacks'
 };

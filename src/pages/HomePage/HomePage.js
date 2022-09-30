@@ -1,18 +1,13 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
 import logo from '../../images/header/SKILLERS.svg';
 import {FeedbackForm, LeaderBord, TechList} from '../../components';
 import {Link} from 'react-router-dom';
-import {getLeaderBord} from '../../store/slices/achievments.slice';
 
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    const {user, jwt} = useSelector(state => state['userReducers']);
-
-    const dispatch = useDispatch();
-
-
+    const {user} = useSelector(state => state['userReducers']);
 
     return (
         <>
@@ -28,7 +23,7 @@ const HomePage = () => {
             </div>
             <TechList/>
             <LeaderBord/>
-            {/*<FeedbackForm/>*/}
+            <FeedbackForm/>
         </>
     );
 };
