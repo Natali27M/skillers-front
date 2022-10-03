@@ -27,5 +27,7 @@ export const urls = {
     testResults: '/api/test-results',
     testResultsByUser: '/api/test-results?filters[userId][$eq]=',
 
-    feedback:'/api/feedbacks'
+    feedback:'/api/feedbacks',
+
+    rates: 'api/rates'
 };

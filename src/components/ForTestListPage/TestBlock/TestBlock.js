@@ -3,6 +3,7 @@ import css from './TestBlock.module.css';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import completed from '../../../images/testComplete.svg';
+import star_rating from '../../../images/star-rating.svg'
 
 const TestBlock = (test) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -34,7 +35,11 @@ const TestBlock = (test) => {
                     <div className={css.test__left}>
                         <div className={css.test__name}>{currentTest.name}</div>
                         <div
-                            className={css.test__rating}>{EN ? 'Difficult:' : 'Складність:'} {currentTest.difficult}/10
+                            className={css.test__difficult}>{EN ? 'Difficult:' : 'Складність:'} {currentTest?.difficult}/10
+                        </div>
+                        <div className={css.test__rating}>
+                            <img src={star_rating} alt="star"/>
+                            <div> {currentTest?.avgMark || 0} </div>
                         </div>
                     </div>
                     {testCompleted &&

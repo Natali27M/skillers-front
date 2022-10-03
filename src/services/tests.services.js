@@ -22,5 +22,17 @@ export const testsServices = {
     deleteTest: (testId) => axiosServices.delete(`${urls.tests}/${testId}`, {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
-    getTechnologyName: (techId) => axiosServices.get(`${urls.techNames}/${techId}`).then(value => value.data.data.attributes.name)
+    updateTest: (testId, updateObj) => axiosServices.put(`${urls.tests}/${testId}`, {data: {...updateObj}}, {
+        headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
+    }).then(value => value.data),
+    getTechnologyName: (techId) => axiosServices.get(`${urls.techNames}/${techId}`).then(value => value.data.data.attributes.name),
+    getUserRateByTest: (userId, testId) => axiosServices.get(`${urls.rates}?filters[userId][$eq]=${userId}&filters[testId][$eq]=${testId}`)
+        .then(value => value.data),
+    createUserRate: (userId, testId, rate) => axiosServices.post(urls.rates, {
+        data: {
+            userId,
+            testId,
+            rate
+        }
+    }).then(value => value.data)
 };

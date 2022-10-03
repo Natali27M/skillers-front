@@ -81,6 +81,40 @@ export const deleteTest = createAsyncThunk(
     }
 );
 
+export const rateTest = createAsyncThunk(
+    'testSlice/rateTest',
+    async ({testId, testObj}, {rejectWithValue}) => {
+        try {
+            return await testsServices.updateTest(testId, testObj);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+
+export const getRateOfTest = createAsyncThunk(
+    'testSlice/getRateOfTest',
+    async ({testId, userId}, {rejectWithValue}) => {
+        try {
+            return await testsServices.getUserRateByTest(userId, testId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const createRateOfTest = createAsyncThunk(
+    'testSlice/createRateOfTest',
+    async ({testId, userId, rate}, {rejectWithValue}) => {
+        try {
+            return await testsServices.createUserRate(userId, testId, rate);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 
 const testSlice = createSlice({
     name: 'testSlice',
@@ -89,6 +123,7 @@ const testSlice = createSlice({
         error: null,
         tests: [],
         testsForApprove: [],
+        userTestRate: {},
         technology: '',
         oneTest: {}
     },
@@ -140,6 +175,24 @@ const testSlice = createSlice({
         [getOneTest.pending]: (state) => {
             state.status = 'pending';
             state.oneTest = {};
+        },
+
+        [getRateOfTest.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.userTestRate = action.payload?.data[0];
+        },
+
+        [getRateOfTest.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [createRateOfTest.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.userTestRate = action.payload?.data;
+        },
+
+        [createRateOfTest.pending]: (state) => {
+            state.status = 'pending';
         },
 
         [approveTest.fulfilled]: (state) => {

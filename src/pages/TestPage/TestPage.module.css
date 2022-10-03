@@ -8,6 +8,9 @@
 .test__page_title {
     width: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 32px;
     font-weight: 500;
     padding-bottom: 25px;
@@ -15,6 +18,14 @@
     border-bottom: 4px solid;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
+}
+
+.title__rating {
+    font-size: 22px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
 }
 
 .exercises__wrap {
@@ -26,7 +37,6 @@
 }
 
 .result__block {
-    margin-top: 30px;
     font-size: 30px;
 }
 
@@ -49,7 +59,20 @@
     width: fit-content;
     position: relative;
     transform-style: preserve-3d;
+    border: none;
 }
+
+.result__left > .check__btn {
+    margin: 0;
+}
+
+
+.result__left {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
 
 .check__btn::before {
     content: '';
@@ -76,8 +99,17 @@
 .result__wrap {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    height: fit-content;
     column-gap: 30px;
+    margin-top: 30px;
+}
+
+.completed__header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .approve__block {
@@ -106,6 +138,36 @@
     background-color: crimson;
 }
 
+.rating__wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.user__mark {
+    width: 20px;
+}
+
+.rate__btn {
+    height: 30px;
+    padding: 0 15px;
+    background-color: black;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+
+@media (max-width: 1000px) {
+    .completed__header {
+        width: 100%;
+        row-gap: 10px;
+        flex-direction: column;
+        text-align: center;
+    }
+}
 
 
 @media (max-width: 767px) {
@@ -126,12 +188,23 @@
     }
 
     .result__block {
-        margin-top: 30px;
         font-size: 20px;
+    }
+
+    .result__wrap {
+        flex-direction: column;
+        row-gap: 10px;
     }
 
     .check__btn {
         font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .test__page_title {
+        flex-direction: column;
+        row-gap: 5px;
     }
 }
 
@@ -140,7 +213,8 @@
         padding: 15px 10px;
     }
 
-    .result__wrap {
+    .result__left {
         flex-direction: column;
+        row-gap: 5px;
     }
 }

@@ -3,6 +3,7 @@ import css from './ExerciseBlock.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {pushResults} from '../../../store';
 
+
 const ExerciseBlock = (exercise, exNumber) => {
     const {timeToPush, checked} = useSelector(state => state['exercisesReducers']);
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
@@ -27,7 +28,8 @@ const ExerciseBlock = (exercise, exNumber) => {
     return (
         <div className={css.exercise__block}>
             <div className={css.exercise__description}>
-                {exercise.exNumber}.    {currentExercise?.description}
+                {exercise.exNumber}.
+                {currentExercise?.description}
             </div>
             <div className={css.variants__wrap}>
                 {

@@ -90,6 +90,12 @@
     justify-content: flex-start;
 }
 
+.search__form {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
 .search__input {
     height: 46px;
     width: 350px;
@@ -128,7 +134,7 @@
 
     .search__input{
         height: 30px;
-        width: 250px;
+        width: 80%;
         border-width: 2px;
     }
 

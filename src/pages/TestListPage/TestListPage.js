@@ -60,7 +60,7 @@ const TestListPage = () => {
         <div className={css.test__page}>
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
             <div className={css.search__form_wrap}>
-                <form>
+                <form className={css.search__form}>
                     <input
                         type="text"
                         className={css.search__input}

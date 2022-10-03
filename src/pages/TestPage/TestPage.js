@@ -2,16 +2,31 @@ import React, {useEffect, useState} from 'react';
 import {Link, useLocation, useParams, Navigate} from 'react-router-dom';
 import css from './TestPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {approveTest, deleteTest, getOneTest} from '../../store/slices/testPage.slice';
+import ReactStarsRating from 'react-awesome-stars-rating';
+import {
+    approveTest,
+    createRateOfTest,
+    deleteTest,
+    getOneTest,
+    getRateOfTest,
+    rateTest
+} from '../../store/slices/testPage.slice';
 import {checkResults, clear, clearResults, getExercises, makeTimeToPush, setTestComplete} from '../../store';
 import {ExerciseBlock} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
+import star__rating from '../../images/star-rating.svg';
 
 const TestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    const {oneTest} = useSelector(state => state['testsReducers']);
-    const {exercises, result, timeToPush, checked, status} = useSelector(state => state['exercisesReducers']);
+    const {oneTest, userTestRate} = useSelector(state => state['testsReducers']);
+    const {
+        exercises,
+        result,
+        timeToPush,
+        checked,
+        status
+    } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
@@ -21,16 +36,23 @@ const TestPage = () => {
     const dispatch = useDispatch();
     const {pathname} = useLocation();
 
+    const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
+
     useEffect(() => {
-        dispatch(getOneTest({testId}));
         dispatch(getExercises({testId}));
     }, []);
 
+
+    useEffect(() => {
+        dispatch(getOneTest({testId}));
+    }, [timeToUpdateTest]);
+
     useEffect(() => {
         if (user) {
-            dispatch(getUserByTestResults({userId: user.id, testId}));
+            dispatch(getUserByTestResults({userId: user?.id, testId}));
+            dispatch(getRateOfTest({testId, userId: user?.id}));
         }
-    }, [user]);
+    }, [user, timeToUpdateTest]);
 
     useEffect(() => {
         if (userByTestResult?.length > 0) {
@@ -53,7 +75,7 @@ const TestPage = () => {
         if (result && user && oneTest?.attributes?.isApproved) {
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
-            dispatch(getUserAchievement(user.id))
+            dispatch(getUserAchievement(user.id));
             if (userAchievement) {
                 dispatch(updateUserAchievement({
                     achId: userAchievement.id,
@@ -78,11 +100,41 @@ const TestPage = () => {
 
     const [approveCompleted, setApproveCompleted] = useState(false);
 
+    const [rateValue, setRateValue] = useState(0);
+
+    const onChange = (value) => {
+        setRateValue(value);
+    };
+
+    const ReactStarsExample = ({value}) => {
+        return <ReactStarsRating onChange={onChange} value={rateValue ? rateValue : value}/>;
+    };
+
+    const makeRate = () => {
+        const newMarkCount = +oneTest?.attributes?.markCount + 1;
+
+        const newAllMarks = +oneTest?.attributes?.allMarks + +rateValue;
+
+        const newAvgMark = (newAllMarks / newMarkCount).toFixed(1);
+
+        const testObj = {
+            markCount: newMarkCount,
+            allMarks: newAllMarks,
+            avgMark: +newAvgMark
+        };
+
+        dispatch(rateTest({testId: oneTest?.id, testObj}));
+
+        dispatch(createRateOfTest({userId: user?.id, testId: oneTest?.id, rate: +rateValue}));
+
+        setTimeout(() => {
+            setTimeToUpdateTest(!timeToUpdateTest);
+        }, 500);
+    };
 
     if (approveCompleted) {
         return <Navigate to={'/'} replace/>;
     }
-
 
     const approve = () => {
         dispatch(approveTest(oneTest?.id));
@@ -101,21 +153,45 @@ const TestPage = () => {
         }
     }
 
-
     return (
         <div className={css.test__page}>
-            <div className={css.test__page_title}>{oneTest.attributes?.name}</div>
-            {isTestCompleted &&
-                <div className={css.result__block}>
-                    {EN ? 'You have already passed this test, your result: ' : 'Ви вже пройшли цей тест, ваш результат: '}
-                    {userByTestResult[0].attributes.correctAnswer}
-                    /
-                    {userByTestResult[0].attributes.allExercises}
+            <div className={css.test__page_title}>
+                <div>{oneTest?.attributes?.name}</div>
+                <div className={css.title__rating}>
+                    <div>{EN ? 'Rating' : 'Рейтинг'}: {oneTest?.attributes?.avgMark || 0}</div>
+                    <img src={star__rating} alt="star"/>
                 </div>
+            </div>
+            {isTestCompleted &&
+                <div className={css.completed__header}>
+                    <div className={css.result__block}>
+                        {EN ? 'You have already passed this test, your result: ' : 'Ви вже пройшли цей тест, ваш результат: '}
+                        {userByTestResult[0]?.attributes?.correctAnswer}
+                        /
+                        {userByTestResult[0]?.attributes?.allExercises}
+                    </div>
+                    {userTestRate ?
+                        <div className={css.rating__wrap}>
+                            {EN ? 'Your rate:' : 'Ваша оцінка:'} {userTestRate?.attributes?.rate}
+                        </div>
+                        :
+                        <div className={css.rating__wrap}>
+                            <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
+                            <ReactStarsExample/>
+                            <div className={css.user__mark}>
+                                {rateValue}
+                            </div>
+                            <button className={css.rate__btn} onClick={() => makeRate()}>
+                                {EN ? 'Rate' : 'Оцінити'}
+                            </button>
+                        </div>}
+                </div>
+
             }
-            {!!exercises.length && status !== 'pending' &&
+            {!!exercises?.length && status !== 'pending' &&
                 <div className={css.exercises__wrap}>
-                    {exercises.map(exercise => <ExerciseBlock exNumber={exercises.indexOf(exercise) +1} key={exercise.id} exercise={exercise}/>)}
+                    {exercises.map(exercise => <ExerciseBlock exNumber={exercises.indexOf(exercise) + 1}
+                                                              key={exercise.id} exercise={exercise}/>)}
                 </div>
             }
 
@@ -125,13 +201,35 @@ const TestPage = () => {
             </div>}
             {result &&
                 <div className={css.result__wrap}>
-                    <div className={css.result__block}>
-                        {EN ? 'Your result:' : 'Ваш результат:'} {result.correct} {EN ? 'from' : 'з'} {result.allExercises}
+                    <div className={css.result__left}>
+                        <div className={css.result__block}>
+                            {EN ? 'Your result:' : 'Ваш результат:'} {result?.correct} {EN ? 'from' : 'з'} {result?.allExercises}
+                        </div>
+                        <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
                     </div>
-                    <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
+                    {user &&
+                        <>
+                            {userTestRate ?
+                                <div className={css.rating__wrap}>
+                                    {EN ? 'Your rate:' : 'Ваша оцінка:'} {userTestRate?.attributes?.rate}
+                                </div>
+                                :
+                                <div className={css.rating__wrap}>
+                                    <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
+                                    <ReactStarsExample/>
+                                    <div className={css.user__mark}>
+                                        {rateValue}
+                                    </div>
+                                    <button className={css.rate__btn} onClick={() => makeRate()}>
+                                        {EN ? 'Rate' : 'Оцінити'}
+                                    </button>
+                                </div>
+                            }
+                        </>
+                    }
+
                 </div>
             }
-
 
             {(!oneTest?.attributes?.isApproved) && (roles?.includes('admin')) &&
                 <div className={css.approve__block}>
