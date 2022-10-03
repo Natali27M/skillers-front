@@ -138,11 +138,14 @@
     background-color: crimson;
 }
 
-.rating__wrap {
+.rating__wrap,
+.rate__mark{
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
+
+
 
 .user__mark {
     width: 20px;
@@ -211,6 +214,11 @@
 @media (max-width: 500px) {
     .test__page {
         padding: 15px 10px;
+    }
+
+    .rating__wrap{
+        flex-direction: column;
+        row-gap: 3px;
     }
 
     .result__left {

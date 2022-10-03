@@ -177,10 +177,13 @@ const TestPage = () => {
                         :
                         <div className={css.rating__wrap}>
                             <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
-                            <ReactStarsExample/>
-                            <div className={css.user__mark}>
-                                {rateValue}
+                            <div className={css.rate__mark}>
+                                <ReactStarsExample/>
+                                <div className={css.user__mark}>
+                                    {rateValue}
+                                </div>
                             </div>
+
                             <button className={css.rate__btn} onClick={() => makeRate()}>
                                 {EN ? 'Rate' : 'Оцінити'}
                             </button>
