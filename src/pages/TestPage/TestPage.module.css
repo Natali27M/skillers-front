@@ -160,7 +160,7 @@
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     .completed__header {
         width: 100%;
         row-gap: 10px;
