@@ -2,7 +2,7 @@
 
 const frontendURL = ''
 
-const baseURL = 'https://static.125.137.235.167.clients.your-server.de';
+const baseURL = 'http://api.skillstron.com/';
 
 export default baseURL;
 
