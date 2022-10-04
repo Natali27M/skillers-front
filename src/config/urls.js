@@ -1,8 +1,6 @@
 // const baseURL = 'http://localhost:1337';
 
-const frontendURL = ''
-
-const baseURL = 'http://api.skillstron.com/';
+const baseURL = 'https://api.skillstron.com';
 
 export default baseURL;
 
