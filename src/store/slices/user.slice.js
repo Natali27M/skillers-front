@@ -103,6 +103,7 @@ const userSlice = createSlice({
         clearError: (state) => {
             state.error = null;
         }
+
     }, extraReducers: {
         [registration.pending]: (state) => {
             state.status = 'pending';

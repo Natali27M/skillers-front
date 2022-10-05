@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {docco, monokai, atomOneDark} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import css from './ExerciseBlock.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {pushResults} from '../../../store';
@@ -24,17 +26,24 @@ const ExerciseBlock = (exercise, exNumber) => {
     }, [timeToPush]);
 
 
-
     return (
         <div className={css.exercise__block}>
             <div className={css.exercise__description}>
                 {exercise.exNumber}.
                 {currentExercise?.description}
             </div>
+            {currentExercise?.code &&
+                <div className={css.code__snippet}>
+                    <SyntaxHighlighter language="java" style={atomOneDark}>
+                        {currentExercise?.code}
+                    </SyntaxHighlighter>
+                </div>
+            }
+
             <div className={css.variants__wrap}>
                 {
                     currentVariants?.map(variant =>
-                        <div onClick={() =>  !checked && !isTestCompleted && setCVariant(variant)}
+                        <div onClick={() => !checked && !isTestCompleted && setCVariant(variant)}
                              key={variant.id}
                              className={checked || isTestCompleted ? (variant.attributes.correct ? (cVariant === variant ? css.correct__chosen_answer : css.correct__answer) : (cVariant === variant ? css.incorrect__chosen_answer : css.simple__variant)) : cVariant === variant ? css.chosen__variant : css.simple__variant}>
                             <div className={css.check__arrow_block}>{(cVariant === variant) && '✓'}</div>

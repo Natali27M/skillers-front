@@ -67,13 +67,20 @@
 }
 
 .leader__rating {
-    width: 30%;
+    width: 20%;
+}
+
+.leader__rank {
+    width: 10%;
+    display: flex;
+    align-items: center;
 }
 
 
 .pedestal__img {
     height: 90%;
 }
+
 
 
 .pagination__wrap {
@@ -136,6 +143,10 @@
         font-size: 20px;
         height: 40px;
     }
+
+    .rank__img {
+        height: 30px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -166,7 +177,7 @@
 @media (max-width: 439px) {
     .leader__block,
     .leader__header {
-        font-size: 12px;
+        font-size: 10px;
         height: 30px;
         padding: 0 10px;
     }
@@ -180,5 +191,9 @@
     .leader__bord_wrap {
         padding: 30px 0;
         row-gap: 10px;
+    }
+
+    .rank__img {
+        height: 20px;
     }
 }

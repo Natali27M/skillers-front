@@ -8,4 +8,5 @@ export * from './RegisterPage/RegisterPage';
 export * from './TestListPage/TestListPage';
 export * from './TestPage/TestPage';
 export * from './PolicyPage/PolicyPage';
+export * from './RankPage/RankPage';
 export * from './UserPage/UserPage';

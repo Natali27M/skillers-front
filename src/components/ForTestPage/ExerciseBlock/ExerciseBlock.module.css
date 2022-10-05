@@ -9,6 +9,13 @@
     font-size: 16px;
 }
 
+.code__snippet{
+    user-select: none;
+    font-weight: 400;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 14px;
+}
+
 .variants__wrap {
     padding: 10px 0;
     font-size: 14px;

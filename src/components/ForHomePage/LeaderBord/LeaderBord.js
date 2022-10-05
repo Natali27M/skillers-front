@@ -4,6 +4,7 @@ import css from './LeaderBord.module.css';
 import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
+import {LeaderBlock} from '../LeaderBlock/LeaderBlock';
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -23,12 +24,12 @@ const LeaderBord = () => {
     const handleChange = (e) => {
         const data = e.target.value;
         setPageNumber(1);
-        if(data === ''){
-            dispatch(getLeaderBord(pageNumber))
-            setIsQuery(false)
+        if (data === '') {
+            dispatch(getLeaderBord(pageNumber));
+            setIsQuery(false);
         } else {
-            dispatch(getLeaderBordByQuery({query: data, pageNumber}))
-            setIsQuery(true)
+            dispatch(getLeaderBordByQuery({query: data, pageNumber}));
+            setIsQuery(true);
         }
     };
 
@@ -52,21 +53,21 @@ const LeaderBord = () => {
                     </div>
                     <div className={css.leader__name}> {EN ? 'User' : 'Користувач'}</div>
                     <div className={css.leader__rating}> {EN ? 'Rating' : 'Рейтинг'}</div>
+                    <div className={css.leader__rank}> {EN ? 'Rank' : 'Звання'}</div>
                 </div>
                 {!!leaderBord?.data?.length && leaderBord?.data?.map(leader =>
-                    <div className={css.leader__block} key={leader.id}>
-                        <div
-                            className={css.position}>{!isQuery && leaderBord?.data?.indexOf(leader) + 1 + 5 * (pageNumber - 1)}</div>
-                        <div className={css.leader__name}> {leader.attributes.userName}</div>
-                        <div className={css.leader__rating}>{leader.attributes.rating}</div>
-                    </div>
+                    <LeaderBlock key={leader?.id} leader={leader}
+                                 position={!isQuery && leaderBord?.data?.indexOf(leader) + 1 + 15 * (pageNumber - 1)}
+                    />
                 )}
             </div>
             <div className={css.pagination__wrap}>
                 <div className={css.pagination__block}>
-                    <img src={arrow} alt="arrow" className={css.arrow__left} onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}/>
+                    <img src={arrow} alt="arrow" className={css.arrow__left}
+                         onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}/>
                     <div>{pageNumber} / {leaderBord?.meta?.pagination?.pageCount}</div>
-                    <img src={arrow} alt="arrow" className={css.arrow__right} onClick={() => pageNumber < leaderBord.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}/>
+                    <img src={arrow} alt="arrow" className={css.arrow__right}
+                         onClick={() => pageNumber < leaderBord.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}/>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ import {
     CreateTestPage,
     GoogleRedirectPage,
     HomePage,
-    LoginPage, NotFoundPage, PolicyPage,
+    LoginPage, NotFoundPage, PolicyPage, RankPage,
     RegisterPage,
     TestListPage,
     TestPage,
@@ -23,7 +23,7 @@ import {
     setJwtFromLocalStorage,
     setUserFromLocalStorage
 } from './store';
-import {getUserAchievement} from './store/slices/achievments.slice';
+import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {getUserResults} from './store';
 
 
@@ -33,6 +33,8 @@ function App() {
     const {isTestCompleted} = useSelector(state => state['resultReducers']);
 
     const {timeToClear} = useSelector(state => state['createTestsReducers']);
+
+    const {userAchievement, userTitle} = useSelector(state => state['achievementsReducers']);
 
     const dispatch = useDispatch();
 
@@ -57,9 +59,14 @@ function App() {
             dispatch(getUserAchievement(id));
             dispatch(getUserResults({userId: id, pageNum: 1}));
             dispatch(getUserRoles(id));
-
         }
     }, [user]);
+
+    useEffect(() => {
+        if (userAchievement) {
+            dispatch(setUserRank());
+        }
+    }, [userAchievement]);
 
 
     useEffect(() => {
@@ -81,6 +88,7 @@ function App() {
                 <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
                 <Route path={'/admin'} element={<AdminPage/>}/>
                 <Route path={'/policy'} element={<PolicyPage/>}/>
+                <Route path={'/rank'} element={<RankPage/>}/>
                 <Route path={'/forgot-password'} element={<AdminPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>

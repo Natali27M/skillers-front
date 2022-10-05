@@ -59,16 +59,31 @@ export const createUserAchievement = createAsyncThunk(
 );
 
 
-
-
-
 const achievementsSlice = createSlice({
     name: 'achievementsSlice',
     initialState: {
         status: null,
         error: null,
+        userRank: null,
         leaderBord: [],
         userAchievement: null
+    },
+    reducers: {
+        setUserRank: (state) => {
+            const rating = state?.userAchievement?.attributes?.rating;
+
+            if (rating < 20) {
+                state.userRank = 'Lamer';
+            } else if (rating >= 20 && rating < 50) {
+                state.userRank = 'Trainee';
+            } else if (rating >= 50 && rating < 100) {
+                state.userRank = 'Junior';
+            } else if (rating >= 100 && rating < 200) {
+                state.userRank = 'Middle';
+            } else if (rating >= 200) {
+                state.userRank = 'Senior';
+            }
+        }
     },
     extraReducers: {
         [getLeaderBord.fulfilled]: (state, action) => {
@@ -141,6 +156,9 @@ const achievementsSlice = createSlice({
         }
     },
 });
+
+
+export const {setUserRank} = achievementsSlice.actions;
 
 const achievementsReducers = achievementsSlice.reducer;
 
