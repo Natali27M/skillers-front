@@ -27,7 +27,7 @@
 }
 
 
-.tech__block::before{
+.tech__block::before {
     content: '';
     width: 100%;
     height: 100%;
@@ -64,7 +64,7 @@
         padding: 30px;
     }
 
-    .tech__title{
+    .tech__title {
         font-size: 28px;
     }
 }
@@ -75,22 +75,33 @@
     }
 }
 
+@media (max-width: 520px) {
+    .carousel__btn {
+        display: block;
+    }
+}
+
 @media (max-width: 500px) {
     .tech__wrap {
         padding: 30px 0;
     }
 
-    .tech__block{
+    .tech__block {
         height: 80px;
         width: 80px;
     }
 }
 
 
+@media (max-width: 340px) {
+    .carousel__btn {
+        display: none;
+    }
+}
+
 @media (max-width: 320px) {
-
-
     .tech__wrap {
         padding: 30px 10px;
     }
 }
+

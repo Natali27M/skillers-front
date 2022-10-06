@@ -34,7 +34,7 @@ const TechList = () => {
                     style: {
                         width: "100%",
                         justifyContent: "center",
-                        columnGap: "30px",
+                        columnGap: "10px",
                         userSelect: "text"
                     }
                 }}
@@ -50,6 +50,7 @@ const TechList = () => {
                         fontSize: '20px',
                         height: 30,
                         lineHeight: 1,
+                        userSelect: 'none',
                         textAlign: 'center',
                         width: 30,
                     },
@@ -58,6 +59,7 @@ const TechList = () => {
                 backwardBtnProps={{
                     className: css.carousel__btn,
                     style: {
+                        userSelect: 'none',
                         alignSelf: 'center',
                         background: 'black',
                         border: 'none',
@@ -87,6 +89,12 @@ const TechList = () => {
                         itemsToShow: 1,
                         itemsToScroll: 1,
                         maxWidth: 520,
+                    },
+                    {
+                        style: {
+                          columnGap: "10px"
+                        },
+                        maxWidth: 380,
                     }
                 ]}
                 speed={400}

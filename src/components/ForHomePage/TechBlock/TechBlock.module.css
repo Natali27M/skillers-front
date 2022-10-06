@@ -168,7 +168,7 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 340px) {
     .for__slider_wrap{
         width: 100vw;
         display: flex;
