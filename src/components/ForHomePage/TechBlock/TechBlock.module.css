@@ -170,9 +170,8 @@
 
 @media (max-width: 500px) {
     .for__slider_wrap{
-        width: 95vw;
+        width: 100vw;
         display: flex;
         justify-content: center;
-
     }
 }
