@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import css from './ExBlock.module.css';
 import {useDispatch, useSelector} from 'react-redux';
+import css from './ExBlock.module.css';
 import {createVariant, deleteExerciseFromArray, pushExercise} from '../../../store';
 import {useForm} from 'react-hook-form';
 import {VarBlock} from '../VarBlock/VarBlock';
+import {CodeSnippet} from '../../GeneralComponents';
 
 const ExBlock = ({tempId, testTempId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -22,9 +23,9 @@ const ExBlock = ({tempId, testTempId}) => {
     const [myVariants, setMyVariants] = useState([]);
 
     useEffect(() => {
-        if(tempVariantArray.length) {
-            const myArray = tempVariantArray.filter(variant => variant.exTempId === tempId)
-            setMyVariants(myArray)
+        if (tempVariantArray.length) {
+            const myArray = tempVariantArray.filter(variant => variant.exTempId === tempId);
+            setMyVariants(myArray);
         }
     }, [tempVariantArray]);
 
@@ -43,17 +44,34 @@ const ExBlock = ({tempId, testTempId}) => {
     return (
         <div className={css.exBlock}>
             {exercise ?
-                <p className={css.ex__description}>
-                    {exercise.description}
-                </p> :
+                <div className={css.ex__data_wrap}>
+                    <p className={css.ex__description}>
+                        {exercise?.description}
+                    </p>
+                    {exercise?.code &&
+                        <div className={css.code__snippet}>
+                            <CodeSnippet data={exercise?.code}/>
+                        </div>
+                    }
+                </div>
+                :
                 <form className={css.create__ex_form} onSubmit={handleSubmit(saveExercise)}>
-                    <textarea
-                        placeholder={EN ? 'Enter the task' : 'Введіть умову завдання'}
-                        {...register('description')}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className={css.create__ex_input}
-                    />
+                    <div className={css.textarea__wrap}>
+                        <textarea
+                            placeholder={EN ? 'Enter the task' : 'Введіть умову завдання'}
+                            {...register('description')}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            className={css.create__ex_input}
+                        />
+                        <textarea
+                            placeholder={EN ? 'Enter the code (optionally)' : 'Введіть код для завдання (за потреби)'}
+                            {...register('code')}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            className={css.create__ex_input}
+                        />
+                    </div>
                     <button className={css.create__ex_btn}>
                         {exercise ? (EN ? 'Save' : 'Зберегти') : (EN ? 'Continue' : 'Продовжити')}
                     </button>

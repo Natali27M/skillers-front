@@ -34,5 +34,8 @@ export const testsServices = {
             testId,
             rate
         }
-    }).then(value => value.data)
+    }).then(value => value.data),
+    getTopTestsByTech: (techId) => axiosServices
+        .get(`${urls.tests}?filters[techId][$eq]=${techId}&pagination[page]=1&pagination[pageSize]=3&sort=avgMark:desc&sort=allMarks:desc`)
+        .then(value => value.data.data)
 };

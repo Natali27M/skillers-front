@@ -1,0 +1,29 @@
+.back__btn{
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    color: #FFFFFF;
+    background-color: #000000;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+}
+
+.arrow__img{
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .back__btn {
+        font-size: 12px;
+        padding: 7px 10px;
+        column-gap: 7px;
+    }
+    .arrow__img{
+        height: 10px;
+    }
+}

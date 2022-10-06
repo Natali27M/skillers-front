@@ -8,7 +8,6 @@ const languageSlice = createSlice({
     reducers: {
         getLanguage: (state) => {
             const language = JSON.parse(localStorage.getItem('language'));
-            console.log(language);
             if (language !== null) {
                 state.EN = language;
             } else {

@@ -71,6 +71,7 @@
     color: #FFFFFF;
     border-radius: 50px;
     transition: all .2s linear;
+    border: none;
     position: relative;
     transform-style: preserve-3d;
 }

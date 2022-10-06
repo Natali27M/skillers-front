@@ -7,13 +7,32 @@
     row-gap: 15px;
 }
 
+.ex__data_wrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 15px;
+}
+
+.code__snippet{
+    font-size: 12px;
+}
+
 .create__ex_form {
     width: 100%;
     display: flex;
     align-items: center;
+    /*flex-direction: column;*/
     justify-content: space-between;
     padding-bottom: 20px;
     border-bottom: 1px solid #CDC9C9;
+}
+
+.textarea__wrap {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    row-gap: 15px;
 }
 
 .create__ex_input {
@@ -180,6 +199,10 @@
     .create__ex_input {
         font-size: 14px;
     }
+    .code__snippet{
+        font-size: 10px;
+    }
+
 }
 
 @media (max-width: 767px) {

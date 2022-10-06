@@ -14,10 +14,16 @@
     font-size: 32px;
     font-weight: 500;
     padding-bottom: 25px;
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/
     border-bottom: 4px solid;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
+}
+
+.back__btn_wrap{
+    width: 100%;
+    display: flex;
+    padding: 20px 0;
 }
 
 .title__rating {
@@ -38,6 +44,7 @@
 
 .result__block {
     font-size: 30px;
+    margin-top: 10px;
 }
 
 .check__wrap {
@@ -202,6 +209,10 @@
     .check__btn {
         font-size: 18px;
     }
+
+    .back__btn_wrap{
+        padding: 10px 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -224,5 +235,9 @@
     .result__left {
         flex-direction: column;
         row-gap: 5px;
+    }
+
+    .back__btn_wrap{
+        padding: 0;
     }
 }

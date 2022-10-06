@@ -65,7 +65,7 @@ const CreateTestPage = () => {
     useEffect(() => {
         if (testId) {
             exercises.map(ex => {
-                dispatch(sendExercise({data: {testId, description: ex.description}, tempId: ex.exTempId}));
+                dispatch(sendExercise({data: {testId, description: ex.description, code: ex.code}, tempId: ex.exTempId}));
             });
         }
     }, [testId]);
@@ -101,10 +101,14 @@ const CreateTestPage = () => {
             isApproved: false
         }));
         setTimeout(() => {
+            if (exercises.length === 0) {
+                setIsComplete(true);
+            }
+            if(variants.length === 0) {
+                setIsComplete(true)
+            }
         }, 100);
-        if (exercises.length === 0) {
-            setIsComplete(true);
-        }
+
     };
 
     if (isComplete && testId) {

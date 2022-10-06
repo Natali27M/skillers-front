@@ -3,7 +3,7 @@ import css from './TestListPage.module.css';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTechnology, getTests, getTestsByQuery} from '../../store/slices/testPage.slice';
-import {TestBlock} from '../../components';
+import {BackButton, TestBlock} from '../../components';
 import arrowSide from '../../images/arrow.svg';
 import arrowSideGrey from '../../images/arrow-grey.svg';
 import doubleArrowSide from '../../images/dobleArrow.svg';
@@ -60,6 +60,7 @@ const TestListPage = () => {
         <div className={css.test__page}>
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
             <div className={css.search__form_wrap}>
+                <BackButton/>
                 <form className={css.search__form}>
                     <input
                         type="text"

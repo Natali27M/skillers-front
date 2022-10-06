@@ -19,6 +19,7 @@
 .variants__wrap {
     padding: 10px 0;
     font-size: 14px;
+    row-gap: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -36,7 +37,7 @@
 .correct__chosen_answer,
 .incorrect__chosen_answer,
 .correct__answer {
-    padding: 10px;
+    padding: 0 10px;
     color: #323232;
     cursor: pointer;
     width: 100%;
@@ -87,30 +88,35 @@
         border-width: 1px;
     }
 
-    .exercise__description{
-        font-size: 20px;
+    .exercise__description,
+    .code__snippet{
+        font-size: 12px;
     }
 
     .exercise__block {
         padding: 10px;
+        row-gap: 15px;
         font-size: 18px;
     }
 
     .variants__wrap {
         padding: 0;
-        font-size: 14px;
+        font-size: 10px;
     }
+
+    .check__arrow_block{
+        width: 15px;
+        height: 15px;
+        font-size: 16px;
+    }
+
 }
 
 @media (max-width: 500px) {
-    .check__arrow_block{
-        width: 20px;
-        height: 20px;
-        font-size: 16px;
-    }
 
-    .exercise__description{
-        font-size: 16px;
+    .exercise__description,
+    .code__snippet{
+        font-size: 10px;
     }
 
     .exercise__block {
@@ -119,6 +125,14 @@
     }
 
     .variants__wrap {
-        font-size: 10px;
+        font-size: 8px;
+        row-gap: 10px;
     }
+
+    .check__arrow_block{
+        width: 12px;
+        height: 12px;
+        font-size: 14px;
+    }
+
 }

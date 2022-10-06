@@ -87,7 +87,8 @@
     width: 100%;
     margin-bottom: 30px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search__form {
@@ -128,14 +129,20 @@
 }
 
 @media (max-width: 500px) {
-    .search__form_wrap{
-        justify-content: center;
+    .search__form {
+        justify-content: flex-start;
     }
 
-    .search__input{
+      .search__input{
         height: 30px;
         width: 80%;
         border-width: 2px;
+    }
+
+    .search__form_wrap{
+        flex-direction: column-reverse;
+        row-gap: 10px;
+        align-items: flex-start;
     }
 
 

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import {docco, monokai, atomOneDark} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import css from './ExerciseBlock.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {pushResults} from '../../../store';
+import {CodeSnippet} from '../../GeneralComponents';
 
 
-const ExerciseBlock = (exercise, exNumber) => {
+const ExerciseBlock = (exercise) => {
     const {timeToPush, checked} = useSelector(state => state['exercisesReducers']);
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
@@ -34,9 +33,7 @@ const ExerciseBlock = (exercise, exNumber) => {
             </div>
             {currentExercise?.code &&
                 <div className={css.code__snippet}>
-                    <SyntaxHighlighter language="java" style={atomOneDark}>
-                        {currentExercise?.code}
-                    </SyntaxHighlighter>
+                    <CodeSnippet data={currentExercise?.code}/>
                 </div>
             }
 

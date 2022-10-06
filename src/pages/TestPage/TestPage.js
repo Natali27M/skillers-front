@@ -12,7 +12,7 @@ import {
     rateTest
 } from '../../store/slices/testPage.slice';
 import {checkResults, clear, clearResults, getExercises, makeTimeToPush, setTestComplete} from '../../store';
-import {ExerciseBlock} from '../../components';
+import {BackButton, ExerciseBlock} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
@@ -161,6 +161,9 @@ const TestPage = () => {
                     <div>{EN ? 'Rating' : 'Рейтинг'}: {oneTest?.attributes?.avgMark || 0}</div>
                     <img src={star__rating} alt="star"/>
                 </div>
+            </div>
+            <div className={css.back__btn_wrap}>
+                <BackButton/>
             </div>
             {isTestCompleted &&
                 <div className={css.completed__header}>
