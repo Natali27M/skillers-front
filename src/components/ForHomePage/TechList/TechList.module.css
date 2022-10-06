@@ -77,7 +77,7 @@
 
 @media (max-width: 500px) {
     .tech__wrap {
-        padding: 30px 20px;
+        padding: 30px 0;
     }
 
     .tech__block{
