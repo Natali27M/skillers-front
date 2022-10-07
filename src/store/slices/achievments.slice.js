@@ -72,6 +72,10 @@ const achievementsSlice = createSlice({
         setUserRank: (state) => {
             const rating = state?.userAchievement?.attributes?.rating;
 
+            if(!rating) {
+                state.userRank = 'Lamer';
+            }
+
             if (rating < 20) {
                 state.userRank = 'Lamer';
             } else if (rating >= 20 && rating < 50) {

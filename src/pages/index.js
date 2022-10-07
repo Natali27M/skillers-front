@@ -7,6 +7,7 @@ export * from './NotFoundPage/NotFoundPage';
 export * from './RegisterPage/RegisterPage';
 export * from './TestListPage/TestListPage';
 export * from './TestPage/TestPage';
+export * from './ForUserPage/ForUserPage';
 export * from './PolicyPage/PolicyPage';
 export * from './RankPage/RankPage';
 export * from './UserPage/UserPage';

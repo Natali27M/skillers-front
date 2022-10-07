@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {
     AdminPage,
-    CreateTestPage,
+    CreateTestPage, ForUserPage,
     GoogleRedirectPage,
     HomePage,
     LoginPage, NotFoundPage, PolicyPage, RankPage,
@@ -63,9 +63,9 @@ function App() {
     }, [user]);
 
     useEffect(() => {
-        if (userAchievement) {
-            dispatch(setUserRank());
-        }
+
+        dispatch(setUserRank());
+
     }, [userAchievement]);
 
 
@@ -90,6 +90,7 @@ function App() {
                 <Route path={'/policy'} element={<PolicyPage/>}/>
                 <Route path={'/rank'} element={<RankPage/>}/>
                 <Route path={'/forgot-password'} element={<AdminPage/>}/>
+                <Route path={'/for-users'} element={<ForUserPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

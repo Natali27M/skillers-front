@@ -17,7 +17,7 @@ const RankPage = () => {
         <div className={css.rank__page}>
             <div className={css.rank__wrap}>
                 <div className={css.rank__title}>
-                    {EN ? 'SkillsTron ranks' : 'Звання SkillsTron'}
+                    {EN ? 'SKILLIANT ranks' : 'Звання SKILLIANT'}
                 </div>
                 <div className={css.rank__block}>
                     <img src={Lamer} alt="lamer" className={css.rank__img}/>

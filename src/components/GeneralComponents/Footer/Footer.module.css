@@ -9,11 +9,10 @@
     padding: 0 40px;
 }
 
-.privacy__link{
+.privacy__link {
     text-decoration: none;
     color: white;
 }
-
 
 
 @media (max-width: 900px) {
@@ -27,5 +26,11 @@
         height: 60px;
         font-size: 14px;
         padding: 0 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .main__footer {
+        font-size: 12px;
     }
 }
