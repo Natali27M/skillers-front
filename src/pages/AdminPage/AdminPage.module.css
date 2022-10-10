@@ -1,12 +1,13 @@
 .admin__page {
     display: flex;
     justify-content: center;
-    background: url("../../images/mainBg.png") no-repeat center / cover;
+    position: relative;
 }
 
 .admin__wrap {
     min-height: calc(100vh - 80px);
     width: 1200px;
+    z-index: 2;
     background-color: #fff;
     display: flex;
     align-items: center;

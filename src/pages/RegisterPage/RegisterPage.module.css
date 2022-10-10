@@ -60,7 +60,7 @@
     font-size: 20px;
 }
 
-.registration__btn,
+
 .google__login__btn {
     margin-top: 30px;
     font-size: 20px;
@@ -76,8 +76,6 @@
     transform-style: preserve-3d;
 }
 
-
-.registration__btn::before,
 .google__login__btn::before{
     content: '';
     width: 100%;
@@ -92,7 +90,6 @@
     transition: all .2s linear;
 }
 
-.registration__btn:hover::before,
 .google__login__btn:hover::before {
     transition: all .2s linear;
     width: calc(100% + 16px);

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import css from './FeedbackForm.module.css';
+import rootCSS from '../../../styles/root.module.css'
 import {useDispatch, useSelector} from 'react-redux';
-import userCSS from '../../../pages/UserPage/UserPage.module.css';
 import {useForm} from 'react-hook-form';
 import cross from '../../../images/cross.svg';
 import {createFeedback} from '../../../store';
@@ -30,7 +30,7 @@ const FeedbackForm = () => {
 
     return (
         <div className={css.feedback__form_wrap}>
-            <div className={css.feedback__title}>
+            <div className={rootCSS.default__title_34}>
                 {EN ? 'Feedback' : 'Зворотній зв\'язок'}
             </div>
             <form className={css.feedback__form} onSubmit={handleSubmit(makeFeedback)}>
@@ -52,7 +52,7 @@ const FeedbackForm = () => {
                     placeholder={EN ? 'Message' : 'Відгук'}
                     {...register('message')}
                 />
-                <button className={userCSS.logout__btn}>
+                <button className={rootCSS.default__button}>
                     {EN ? 'Send' : 'Надіслати'}
                 </button>
             </form>

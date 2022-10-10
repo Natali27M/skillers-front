@@ -1,4 +1,5 @@
 import React from 'react';
+import rootCSS from '../../styles/root.module.css'
 import css from './DonationPage.module.css'
 import logo from '../../images/header/SKILLERS.svg'
 import {useSelector} from 'react-redux';
@@ -16,7 +17,7 @@ const DonationPage = () => {
                 </div>
             </div>
             <div className={css.donation__content}>
-                <div className={css.donation__title}>
+                <div className={rootCSS.default__title_34}>
                     {EN ? 'Support the project financially' : 'Підтримайте проект фінансово'}
                 </div>
                 <div className={css.donation__subtitle}>
@@ -28,7 +29,7 @@ const DonationPage = () => {
                         'Ми будемо дуже раді вашій фінансовій підтримці проекту. Кожен ваш донат ' +
                         'піде на збільшення бази тестів, покращення функціоналу та дизайну'}
                 </div>
-                <a className={css.donation__btn} href="#">
+                <a className={rootCSS.default__button} href="#">
                     {EN ? 'DONATE' : 'ДОНАТИТИ'}
                 </a>
             </div>

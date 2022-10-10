@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
+import rootCSS from '../../styles/root.module.css'
 import css from './RegisterPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import logo from '../../images/header/SKILLERS.svg';
@@ -134,7 +135,7 @@ const RegisterPage = () => {
                             'Реєструючись, ви даєте згоду на обробку ваших персональних даних. Переглянути політику конфіденційності'
                         }
                     </Link>
-                    <button className={css.registration__btn}>{EN ? 'SIGN UP' : 'ЗАРЕЄСТРУВАТИСЯ'}</button>
+                    <button className={rootCSS.default__button}>{EN ? 'SIGN UP' : 'ЗАРЕЄСТРУВАТИСЯ '}</button>
                 </form>
                 <div className={css.google__login__btn} onClick={() =>
                     (window.location = `${baseURL}/api/connect/google`)

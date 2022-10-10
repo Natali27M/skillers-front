@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, Navigate, useLocation} from 'react-router-dom';
+
 import css from './UserPage.module.css';
+import rootCSS from '../../styles/root.module.css'
 import avatar from '../../images/avatar.jpg';
 import arrow from '../../images/arrow.svg';
 import Lamer from '../../images/rank_little/Lamer.png';
@@ -64,9 +66,10 @@ const UserPage = () => {
 
     return (
         <div className={css.user__page}>
+            <div className={rootCSS.root__background}></div>
             <div className={css.user__wrap}>
                 <img src={avatar} className={css.user__avatar} alt={user.username}/>
-                <div className={css.results__title}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Information' : 'Інформація'}
                 </div>
                 <div className={css.user__data_block}>
@@ -116,7 +119,7 @@ const UserPage = () => {
                     </div>
                 </div>
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
-                    <div className={css.results__title}>
+                    <div className={rootCSS.default__title_24}>
                         {EN ? 'My results' : 'Мої досягнення'}
                     </div>
                     <div className={css.results__header}>
@@ -141,11 +144,11 @@ const UserPage = () => {
                     </div>
                 </div>}
                 <div className={css.buttons__wrap}>
-                    <Link to={'/'} className={css.logout__btn}>{EN ? 'To main' : 'На головну'}</Link>
-                    <Link to={'/createTest'} className={css.logout__btn}>{EN ? 'Create test' : 'Створити тест'}</Link>
-                    <div className={css.logout__btn} onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
+                    <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
+                    <Link to={'/createTest'} className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>
+                    <div className={rootCSS.default__button} onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
                     {roles?.includes('admin') &&
-                        <Link to={'/admin'} className={css.logout__btn}>
+                        <Link to={'/admin'} className={rootCSS.default__button}>
                             {EN ? 'Admin panel' : 'Адмін панель'}
                             {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
                         </Link>

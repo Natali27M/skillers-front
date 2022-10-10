@@ -1,0 +1,70 @@
+.default__button {
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 20px;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    transform-style: preserve-3d;
+    color: #FFFFFF;
+    border-radius: 50px;
+    transition: all .2s linear;
+    position: relative;
+    text-decoration: none;
+    border: none;
+}
+
+.default__button::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #00DBDE;
+    border-radius: 100px;
+    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
+    position: absolute;
+    transform: translateZ(-1px);
+    top: 0;
+    left: 0;
+    transition: all .2s linear;
+}
+
+.default__button:hover::before {
+    transition: all .2s linear;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    top: -6px;
+    left: -6px;
+}
+
+
+.default__title_34,
+.default__title_24 {
+    font-weight: 500;
+    border-bottom: 4px solid;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.default__title_34 {
+    font-size: 34px;
+}
+
+.default__title_24 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.root__background {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: url("../images/mainBg.png") no-repeat center / cover;
+}

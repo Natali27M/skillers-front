@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+
 import css from './LeaderBord.module.css';
+import rootCSS from '../../../styles/root.module.css'
 import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
@@ -35,7 +37,7 @@ const LeaderBord = () => {
 
     return (
         <div className={css.leader__bord_wrap}>
-            <div className={css.leader__title}>
+            <div className={rootCSS.default__title_34}>
                 {EN ? 'Leader board' : 'Фаворити'}
             </div>
             <form className={css.search__user_form}>

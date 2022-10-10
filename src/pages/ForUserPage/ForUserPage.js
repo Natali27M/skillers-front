@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import css from './ForUserPage.module.css';
+import rootCSS from '../../styles/root.module.css'
 import resume from '../../images/useful_links/resume.io.png';
 import djini from '../../images/useful_links/djini.png';
 import dou from '../../images/useful_links/dou.png';
@@ -16,19 +17,20 @@ const ForUserPage = () => {
 
     return (
         <div className={css.forUser__page}>
+            <div className={rootCSS.root__background}></div>
             <div className={css.forUser__wrap}>
                 <div className={css.forUser__title}>
                     {EN ? 'For users' : 'Користувачам'}
                 </div>
-                <div className={css.forUser__subtitle}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Support the project' : 'Підтримати проект'}
                 </div>
                 <div className={css.toMain__btn_wrap}>
-                    <Link to={'/donation'} className={css.toMain__btn}>
+                    <Link to={'/donation'} className={rootCSS.default__button}>
                         {EN ? 'Support' : 'Підтримати'}
                     </Link>
                 </div>
-                <div className={css.forUser__subtitle}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Useful links' : 'Корисні посилання'}
                 </div>
                 <div className={css.links__wrap}>
@@ -57,7 +59,7 @@ const ForUserPage = () => {
                         </div>
                     </a>
                 </div>
-                <div className={css.forUser__subtitle}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Recommended courses ' : 'Рекомендовані курси'}
                 </div>
                 <div className={css.courses__wrap}>
@@ -97,7 +99,7 @@ const ForUserPage = () => {
                     </a>
                 </div>
                 <div className={css.toMain__btn_wrap}>
-                    <Link to={'/'} className={css.toMain__btn}>
+                    <Link to={'/'} className={rootCSS.default__button}>
                         {EN ? 'To main' : 'На головну'}
                     </Link>
                 </div>

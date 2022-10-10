@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
+import rootCSS from '../../styles/root.module.css'
 import css from './AdminPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {deleteFeedback, getFeedback, getUserRoles} from '../../store';
@@ -45,6 +46,7 @@ const AdminPage = () => {
 
     return (
         <div className={css.admin__page}>
+            <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
                 <div className={css.admin__title}>
                     {EN ? 'Tests for approve' : 'Тести для затвердження'}

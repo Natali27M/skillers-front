@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import css from './TechList.module.css';
 import {useSelector} from 'react-redux';
 import ReactSimplyCarousel from 'react-simply-carousel';
 
-
+import css from './TechList.module.css';
+import rootCSS from '../../../styles/root.module.css'
 import java from '../../../images/techList/java.svg';
 import python from '../../../images/techList/python.svg';
 import nodejs from '../../../images/techList/nodejs.svg';
@@ -22,7 +22,7 @@ const TechList = () => {
 
     return (
         <div className={css.tech__wrap}>
-            <h4 className={css.tech__title}>
+            <h4 className={rootCSS.default__title_34}>
                 {EN ? 'Choose technology' : 'Виберіть технологію'}
             </h4>
             <ReactSimplyCarousel

@@ -5,6 +5,7 @@ import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {LoginValidator} from '../../validation';
 import {Link, Navigate} from 'react-router-dom';
 import css from '../RegisterPage/RegisterPage.module.css';
+import rootCSS from '../../styles/root.module.css'
 import logo from '../../images/header/SKILLERS.svg';
 import googleLogo from '../../images/google.svg'
 import {clearError, login} from '../../store';
@@ -79,7 +80,7 @@ const LoginPage = () => {
                                 'Не правильний емейл або пароль'
                             }
                         </div>}
-                    <button className={css.registration__btn}>{EN ? 'SIGN IN' : 'УВІЙТИ'}</button>
+                    <button className={rootCSS.default__button}>{EN ? 'SIGN IN' : 'УВІЙТИ'}</button>
                 </form>
                 <div className={css.google__login__btn} onClick={() =>
                     (window.location = `${baseURL}/api/connect/google`)

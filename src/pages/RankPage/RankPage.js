@@ -1,6 +1,7 @@
 import React from 'react';
 
 import css from './RankPage.module.css';
+import rootCSS from '../../styles/root.module.css';
 import Lamer from '../../images/rank_big/Lamer.png';
 import Trainee from '../../images/rank_big/Trainee.png';
 import Junior from '../../images/rank_big/Junior.png';
@@ -15,8 +16,9 @@ const RankPage = () => {
 
     return (
         <div className={css.rank__page}>
+            <div className={rootCSS.root__background}></div>
             <div className={css.rank__wrap}>
-                <div className={css.rank__title}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'SKILLIANT ranks' : 'Звання SKILLIANT'}
                 </div>
                 <div className={css.rank__block}>
@@ -89,10 +91,8 @@ const RankPage = () => {
                         </div>
                     </div>
                 </div>
-                <Link to={'/'}>
-                    <button className={css.to__main_link}>
-                        {EN ? 'To main' : 'На головну'}
-                    </button>
+                <Link to={'/'} className={rootCSS.default__button}>
+                    {EN ? 'To main' : 'На головну'}
                 </Link>
             </div>
         </div>
