@@ -25,6 +25,7 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {getUserResults} from './store';
+import {DonationPage} from './pages/DonationPage/DonationPage';
 
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
                 <Route path={'/rank'} element={<RankPage/>}/>
                 <Route path={'/forgot-password'} element={<AdminPage/>}/>
                 <Route path={'/for-users'} element={<ForUserPage/>}/>
+                <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

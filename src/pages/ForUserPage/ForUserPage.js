@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import css from './ForUserPage.module.css';
 import resume from '../../images/useful_links/resume.io.png';
@@ -17,7 +18,15 @@ const ForUserPage = () => {
         <div className={css.forUser__page}>
             <div className={css.forUser__wrap}>
                 <div className={css.forUser__title}>
-                    {EN ? 'For users' : 'Користувачам'}
+                    {EN ? 'Support' : 'Підтримати'}
+                </div>
+                <div className={css.forUser__subtitle}>
+                    {EN ? 'Support the project' : 'Підтримати проект'}
+                </div>
+                <div className={css.toMain__btn_wrap}>
+                    <Link to={'/donation'} className={css.toMain__btn}>
+                        {EN ? 'To main' : 'На головну'}
+                    </Link>
                 </div>
                 <div className={css.forUser__subtitle}>
                     {EN ? 'Useful links' : 'Корисні посилання'}
@@ -49,7 +58,7 @@ const ForUserPage = () => {
                     </a>
                 </div>
                 <div className={css.forUser__subtitle}>
-                    {EN ? 'Courses from the author of SKILLIANT ' : 'Курси від автора SKILLIANT'}
+                    {EN ? 'Recommended courses ' : 'Рекомендовані курси'}
                 </div>
                 <div className={css.courses__wrap}>
                     <a href={'https://www.udemy.com/course/software-project-management-max'}
@@ -73,7 +82,7 @@ const ForUserPage = () => {
                        className={css.course__block} target="_blank">
                         <img src={tm} alt="tm"/>
                         <div className={css.course__title}>
-                            Text Mining. {EN ?  'Fundamentals and applied problems' : 'Основи та прикладні задачі'}
+                            Text Mining. {EN ? 'Fundamentals and applied problems' : 'Основи та прикладні задачі'}
                         </div>
                         {EN ? <div className={css.course__description}>
                                 The course of text analysis and text classification, different approaches and variations of
@@ -87,6 +96,12 @@ const ForUserPage = () => {
                             </div>}
                     </a>
                 </div>
+                <div className={css.toMain__btn_wrap}>
+                    <Link to={'/'} className={css.toMain__btn}>
+                        {EN ? 'To main' : 'На головну'}
+                    </Link>
+                </div>
+
             </div>
         </div>
     );

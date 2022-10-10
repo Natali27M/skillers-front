@@ -85,7 +85,7 @@ const RankPage = () => {
                             {EN ? 'User rating from 200 and above' : 'Рейтинг користувача від 200 і вище'}
                         </div>
                         <div className={css.rank__block_content}>
-                            {EN ? 'Bill Gates, is that you?' : 'Білл Гейтс, це ти?'}
+                            {EN ? 'Linus Torvalds, is that you?' : 'Лінус Торвальдс, це ти?'}
                         </div>
                     </div>
                 </div>

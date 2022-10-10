@@ -78,6 +78,10 @@
 
 
 @media (max-width: 767px) {
+    .home__page {
+        min-height: calc(100vh - 60px);
+    }
+
     .home__logo {
         width: 60%;
     }
