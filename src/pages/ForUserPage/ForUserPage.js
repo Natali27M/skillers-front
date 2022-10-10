@@ -18,14 +18,14 @@ const ForUserPage = () => {
         <div className={css.forUser__page}>
             <div className={css.forUser__wrap}>
                 <div className={css.forUser__title}>
-                    {EN ? 'Support' : 'Підтримати'}
+                    {EN ? 'For users' : 'Користувачам'}
                 </div>
                 <div className={css.forUser__subtitle}>
                     {EN ? 'Support the project' : 'Підтримати проект'}
                 </div>
                 <div className={css.toMain__btn_wrap}>
                     <Link to={'/donation'} className={css.toMain__btn}>
-                        {EN ? 'To main' : 'На головну'}
+                        {EN ? 'Support' : 'Підтримати'}
                     </Link>
                 </div>
                 <div className={css.forUser__subtitle}>
