@@ -68,3 +68,16 @@
     z-index: -1;
     background: url("../images/mainBg.png") no-repeat center / cover;
 }
+
+@media (max-width: 767px) {
+    .default__title_34 {
+        font-size: 28px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .default__title_34 {
+        font-size: 28px;
+    }
+}
