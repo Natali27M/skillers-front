@@ -3,9 +3,9 @@ import {testsServices} from '../../services';
 
 export const getTests = createAsyncThunk(
     'testSlice/getTests',
-    async ({techId, pageNum}, {rejectWithValue}) => {
+    async ({techId, pageNum, sortParams, order}, {rejectWithValue}) => {
         try {
-            return await testsServices.getTestsPaginated(techId, pageNum);
+            return await testsServices.getTestsPaginated(techId, pageNum, sortParams, order);
         } catch (e) {
             rejectWithValue(e);
         }

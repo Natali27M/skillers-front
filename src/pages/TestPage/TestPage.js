@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation, useParams, Navigate} from 'react-router-dom';
+import {Link, useLocation, useParams, Navigate, useNavigate} from 'react-router-dom';
 import css from './TestPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
@@ -16,6 +16,7 @@ import {BackButton, ExerciseBlock} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
+import ScrollToTop from '../../RootFunctions/scrollUp';
 
 const TestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -25,6 +26,7 @@ const TestPage = () => {
         result,
         timeToPush,
         checked,
+        testFailed,
         status
     } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
@@ -35,6 +37,7 @@ const TestPage = () => {
     const {testId} = useParams();
     const dispatch = useDispatch();
     const {pathname} = useLocation();
+    const navigate = useNavigate();
 
     const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
 
@@ -97,6 +100,14 @@ const TestPage = () => {
             ));
         }
     }, [result]);
+
+    useEffect(() => {
+        if (testFailed) {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        }
+    }, [testFailed]);
 
     const [approveCompleted, setApproveCompleted] = useState(false);
 
@@ -165,6 +176,19 @@ const TestPage = () => {
             <div className={css.back__btn_wrap}>
                 <BackButton/>
             </div>
+            {testFailed &&
+                <div className={css.failed__test}>
+                    <div>
+                        {EN ? '' +
+                        'Test failed, you scored less than 80%'
+                        :
+                        'Тест провалено, ви набрали менше 80% балів'}
+                    </div>
+                    <button onClick={() => navigate(0)} className={css.try__again_btn}>
+                        {EN ? 'Try again' : 'Спробувати ще раз'}
+                    </button>
+                </div>
+            }
             {isTestCompleted &&
                 <div className={css.completed__header}>
                     <div className={css.result__block}>

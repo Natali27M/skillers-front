@@ -10,9 +10,9 @@ import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 const TechDropdown = () => {
     const {technology, techNames} = useSelector(state => state['createTestsReducers']);
 
-    const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
-
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
     const {width} = useWindowDimensions();
 

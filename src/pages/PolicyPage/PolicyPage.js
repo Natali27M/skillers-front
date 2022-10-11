@@ -76,14 +76,6 @@ const PolicyPage = () => {
 
                     <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
 
-                    <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
-
-                    <p>Under the CCPA, among other rights, California consumers have the right to:</p>
-                    <p>Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.</p>
-                    <p>Request that a business delete any personal data about the consumer that a business has collected.</p>
-                    <p>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</p>
-                    <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
-
                     <h2>GDPR Data Protection Rights</h2>
 
                     <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>

@@ -20,6 +20,7 @@ const exercisesSlice = createSlice({
         error: null,
         exercises: [],
         variants: [],
+        testFailed: false,
         result: null,
         timeToPush: false,
         checked: false
@@ -42,9 +43,13 @@ const exercisesSlice = createSlice({
                     correct++;
                 }
             }
-            state.timeToPush = false;
+            if (correct / allExercises < 0.8) {
+                state.testFailed = true;
+            } else {
+                state.result = {correct, allExercises};
+            }
             state.checked = true;
-            state.result = {correct, allExercises};
+            state.timeToPush = false;
             state.variants = [];
         },
 
@@ -53,6 +58,7 @@ const exercisesSlice = createSlice({
             state.result = null;
             state.timeToPush = false;
             state.checked = false;
+            state.testFailed = false;
         }
     },
 

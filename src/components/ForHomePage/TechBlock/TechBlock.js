@@ -42,10 +42,12 @@ const TechBlock = ({img, name, techId}) => {
                             <div className={css.mini__test_difficult}>
                                 {EN ? 'Difficult:' : 'Складність:'} {test?.attributes?.difficult}/10
                             </div>
-                            <div className={css.test__rating}>
-                                <img src={star} alt="star" className={css.start__img}/>
-                                <div>{test?.attributes?.avgMark || 0}</div>
-                            </div>
+                            {test?.attributes?.avgMark &&
+                                <div className={css.test__rating}>
+                                    <img src={star} alt="star" className={css.start__img}/>
+                                    <div>{test?.attributes?.avgMark || 0}</div>
+                                </div>
+                            }
                         </div>
                     </Link>
                 )}
