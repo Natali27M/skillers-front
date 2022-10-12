@@ -27,7 +27,7 @@ const ForUserPage = () => {
                 </div>
                 <div className={css.toMain__btn_wrap}>
                     <Link to={'/donation'} className={rootCSS.default__button}>
-                        {EN ? 'Support' : 'Підтримати'}
+                        {EN ? 'Donate' : 'Донатити'}
                     </Link>
                 </div>
                 <div className={rootCSS.default__title_24}>

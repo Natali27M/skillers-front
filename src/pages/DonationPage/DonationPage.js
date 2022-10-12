@@ -29,7 +29,7 @@ const DonationPage = () => {
                         'Ми будемо дуже раді вашій фінансовій підтримці проекту. Кожен ваш донат ' +
                         'піде на збільшення бази тестів, покращення функціоналу та дизайну'}
                 </div>
-                <a className={rootCSS.default__button} href="#">
+                <a className={rootCSS.default__button} target={'_blank'} href="https://www.patreon.com/user?u=30852980">
                     {EN ? 'DONATE' : 'ДОНАТИТИ'}
                 </a>
             </div>
