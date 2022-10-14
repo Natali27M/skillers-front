@@ -51,6 +51,9 @@ const Header = () => {
                 <Link className={css.header__link} to={'/for-users'}>
                     {EN ? 'For users' : 'Користувачам'}
                 </Link>
+                <Link className={css.header__link} to={'/compiler'}>
+                    {EN ? 'Compiler' : 'Компілятор'}
+                </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : <div className={css.login__btn}>{EN ? 'Login' : 'Увійти'}</div> }
@@ -74,6 +77,9 @@ const Header = () => {
                 </div>
                 <Link className={css.header__link} to={'/for-users'}>
                     {EN ? 'For users' : 'Користувачам'}
+                </Link>
+                <Link className={css.header__link} to={'/compiler'}>
+                    {EN ? 'Compiler' : 'Компілятор'}
                 </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
