@@ -1,4 +1,5 @@
 export * from './AdminPage/AdminPage';
+export * from './CompilerPage/CompilerPage'
 export * from './CreateTestPage/CreateTestPage';
 export * from './GoogleRedirectPage/GoogleRedirectPage';
 export * from './HomePage/HomePage';

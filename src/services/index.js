@@ -1,5 +1,6 @@
 export * from './achievements.services';
 export * from './exercises.services';
+export * from './compileServices'
 export * from './tech.services';
 export * from './feedbackService';
 export * from './tests.services';

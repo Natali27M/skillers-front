@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 
 import {
-    AdminPage,
+    AdminPage, CompilerPage,
     CreateTestPage, ForUserPage,
     GoogleRedirectPage,
     HomePage,
@@ -93,6 +93,7 @@ function App() {
                 <Route path={'/forgot-password'} element={<AdminPage/>}/>
                 <Route path={'/for-users'} element={<ForUserPage/>}/>
                 <Route path={'/donation'} element={<DonationPage/>}/>
+                <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
