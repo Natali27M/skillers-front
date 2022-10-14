@@ -11,7 +11,6 @@ const Banner = () => {
             <img src={banner} alt='banner' />
             <div className={css.banner__text}>
              {EN ? 'Help' :'Допоможіть' } <br/> {EN ? 'Ukrainian' :'Українській' } <br/> {EN ? 'army' :'армії'}
-                
             </div>
         </a>
     );
