@@ -72,7 +72,7 @@ const achievementsSlice = createSlice({
         setUserRank: (state) => {
             const rating = state?.userAchievement?.attributes?.rating;
 
-            if(!rating) {
+            if (!rating) {
                 state.userRank = 'Lamer';
             }
 
@@ -87,6 +87,9 @@ const achievementsSlice = createSlice({
             } else if (rating >= 200) {
                 state.userRank = 'Senior';
             }
+        },
+        setLeaderBordClear: (state) => {
+            state.leaderBord = [];
         }
     },
     extraReducers: {
@@ -162,7 +165,7 @@ const achievementsSlice = createSlice({
 });
 
 
-export const {setUserRank} = achievementsSlice.actions;
+export const {setUserRank, setLeaderBordClear} = achievementsSlice.actions;
 
 const achievementsReducers = achievementsSlice.reducer;
 

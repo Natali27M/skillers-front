@@ -9,7 +9,7 @@ export const testsServices = {
     getTestsByQueryPaginated: (query, pageNum) => axiosServices.get(
         `${urls.tests}?filters[name][$contains]=${query}&filters[isApproved][$eq]=true&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=createdAt:desc`
     ).then(value => value.data),
-    gstTestsForApprove: (pageNum) => axiosServices.get(
+    getTestsForApprove: (pageNum) => axiosServices.get(
         `${urls.tests}?filters[isApproved][$eq]=false&pagination[page]=${pageNum}&pagination[pageSize]=10`
     ).then(value => value.data),
     getOneTest: (testId) => axiosServices.get(`${urls.tests}/${testId}`).then(value => value.data.data),

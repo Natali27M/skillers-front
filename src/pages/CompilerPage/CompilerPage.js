@@ -91,7 +91,7 @@ const CompilerPage = () => {
             }).then(result => makeOutput(result));
         } else {
             compileServices.ownCompile({
-                ...obj,
+                input: obj.stdin,
                 source: code,
                 lang: 'CPP'
             }).then(result => makeOutput(result));
