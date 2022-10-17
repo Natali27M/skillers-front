@@ -11,4 +11,5 @@ export * from './TestPage/TestPage';
 export * from './ForUserPage/ForUserPage';
 export * from './PolicyPage/PolicyPage';
 export * from './RankPage/RankPage';
+export * from './RecruiterPage/RecruiterPage'
 export * from './UserPage/UserPage';

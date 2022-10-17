@@ -153,6 +153,7 @@ const UserPage = () => {
                             {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
                         </Link>
                     }
+                    <Link to={'/recruiter'} className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}</Link>
                 </div>
             </div>
         </div>

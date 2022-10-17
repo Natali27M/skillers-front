@@ -8,7 +8,7 @@ import {
     CreateTestPage, ForUserPage,
     GoogleRedirectPage,
     HomePage,
-    LoginPage, NotFoundPage, PolicyPage, RankPage,
+    LoginPage, NotFoundPage, PolicyPage, RankPage, RecruiterPage,
     RegisterPage,
     TestListPage,
     TestPage,
@@ -94,6 +94,7 @@ function App() {
                 <Route path={'/for-users'} element={<ForUserPage/>}/>
                 <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
+                <Route path={'/recruiter'} element={<RecruiterPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
