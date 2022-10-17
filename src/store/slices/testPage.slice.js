@@ -28,7 +28,7 @@ export const getTestsForApprove = createAsyncThunk(
     'testSlice/getTestsForApprove',
     async (pageNum, {rejectWithValue}) => {
         try {
-            return await testsServices.gstTestsForApprove(pageNum);
+            return await testsServices.getTestsForApprove(pageNum);
         } catch (e) {
             rejectWithValue(e);
         }

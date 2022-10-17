@@ -10,6 +10,7 @@ import {LeaderBlock} from '../LeaderBlock/LeaderBlock';
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
+
     const {leaderBord} = useSelector(state => state['achievementsReducers']);
 
     const dispatch = useDispatch();
@@ -21,7 +22,6 @@ const LeaderBord = () => {
     useEffect(() => {
         dispatch(getLeaderBord(pageNumber));
     }, [pageNumber]);
-
 
     const handleChange = (e) => {
         const data = e.target.value;

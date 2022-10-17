@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Link, Navigate, useLocation} from 'react-router-dom';
 
 import css from './UserPage.module.css';
-import rootCSS from '../../styles/root.module.css'
+import rootCSS from '../../styles/root.module.css';
 import avatar from '../../images/avatar.jpg';
 import arrow from '../../images/arrow.svg';
 import Lamer from '../../images/rank_little/Lamer.png';
@@ -55,6 +55,8 @@ const UserPage = () => {
     useEffect(() => {
         dispatch(getTestsForApprove(1));
     }, [pathname]);
+
+
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
@@ -145,13 +147,21 @@ const UserPage = () => {
                 </div>}
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
-                    <Link to={'/createTest'} className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>
-                    <div className={rootCSS.default__button} onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
+                    <Link to={'/createTest'}
+                          className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>
+                    <div className={rootCSS.default__button}
+                         onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
                     {roles?.includes('admin') &&
-                        <Link to={'/admin'} className={rootCSS.default__button}>
-                            {EN ? 'Admin panel' : 'Адмін панель'}
-                            {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
-                        </Link>
+                        <>
+                            <Link to={'/admin'} className={rootCSS.default__button}>
+                                {EN ? 'Admin panel' : 'Адмін панель'}
+                                {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
+                            </Link>
+                            <Link to={'/recruiter'}
+                                  className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
+                            </Link>
+                        </>
+
                     }
                 </div>
             </div>

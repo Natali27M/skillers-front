@@ -9,5 +9,6 @@ export const userServices = {
     updateUser: (data, id) => axiosServices.put(`${urls.user}/${id}`, data, {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
+    getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
     getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data)
 };
