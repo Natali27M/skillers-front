@@ -80,6 +80,7 @@
     font-weight: 500;
 }
 
+
 .user__block {
     display: flex;
     align-items: center;
@@ -91,7 +92,7 @@
 }
 
 .burger__menu_open,
-.burger__menu_close{
+.burger__menu_close {
     border-top: 3px solid;
     border-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
@@ -117,16 +118,9 @@
     transition: all .2s linear;
 }
 
-.burger__btn{
+.burger__btn {
     display: none;
 }
-
-.login__btn{
-    text-align: center;
-    width: 70px;
-}
-
-
 
 
 @media (max-width: 900px) {
@@ -182,9 +176,8 @@
 }
 
 
-
 @media (max-width: 767px) {
-    .burger__btn{
+    .burger__btn {
         display: block;
     }
 

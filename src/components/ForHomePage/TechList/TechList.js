@@ -6,7 +6,7 @@ import css from './TechList.module.css';
 import rootCSS from '../../../styles/root.module.css'
 import java from '../../../images/techList/java.svg';
 import python from '../../../images/techList/python.svg';
-import nodejs from '../../../images/techList/nodejs.svg';
+import js from '../../../images/techList/javascript.svg';
 import csharp from '../../../images/techList/csharp.svg';
 import cplusplus from '../../../images/techList/cplusplus.svg';
 import html5 from '../../../images/techList/html5.svg';
@@ -102,7 +102,7 @@ const TechList = () => {
             >
                 <TechBlock img={java} name={"Java"} techId={3}/>
                 <TechBlock img={python} name={"Python"} techId={4}/>
-                <TechBlock img={nodejs} name={"NodeJS"} techId={5}/>
+                <TechBlock img={js} name={"JavaScript"} techId={5}/>
                 <TechBlock img={csharp} name={"C#"} techId={6}/>
                 <TechBlock img={cplusplus} name={"C++"} techId={7}/>
                 <TechBlock img={html5} name={"HTML"} techId={8}/>

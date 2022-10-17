@@ -5,7 +5,7 @@ import userIcon from '../../../images/header/user.svg';
 import {Link, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {switchLanguage} from '../../../store';
-import { Turn as Hamburger } from 'hamburger-react'
+import {Turn as Hamburger} from 'hamburger-react';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 
 
@@ -14,7 +14,7 @@ const Header = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const dispatch = useDispatch();
 
-    const {pathname} = useLocation()
+    const {pathname} = useLocation();
 
     const {width} = useWindowDimensions();
 
@@ -22,11 +22,9 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
 
-
-
     useEffect(() => {
         setOpen(false);
-    }, [width, pathname])
+    }, [width, pathname]);
 
 
     return (
@@ -36,6 +34,18 @@ const Header = () => {
             </Link>
 
             <div className={css.header__left}>
+
+
+                <Link className={css.header__link} to={'/for-users'}>
+                    {EN ? 'For users' : 'Користувачам'}
+                </Link>
+                <Link className={css.header__link} to={'/compiler'}>
+                    {EN ? 'Compiler' : 'Компілятор'}
+                </Link>
+                <Link className={css.header__link} to={user ? '/user' : '/login'}>{
+                    user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
+                    </div> : EN ? 'Login' : 'Увійти'}
+                </Link>
                 <div>
                     <button onClick={() => dispatch(switchLanguage())}
                             className={EN ? css.switch_btn_en : css.switch_btn_uk}>
@@ -47,19 +57,8 @@ const Header = () => {
                         </div>
                     </button>
                 </div>
-
-                <Link className={css.header__link} to={'/for-users'}>
-                    {EN ? 'For users' : 'Користувачам'}
-                </Link>
-                <Link className={css.header__link} to={'/compiler'}>
-                    {EN ? 'Compiler' : 'Компілятор'}
-                </Link>
-                <Link className={css.header__link} to={user ? '/user' : '/login'}>{
-                    user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
-                    </div> : <div className={css.login__btn}>{EN ? 'Login' : 'Увійти'}</div> }
-                </Link>
             </div>
-            <div className={css.burger__btn}  onClick={() => setOpen(!open)}>
+            <div className={css.burger__btn} onClick={() => setOpen(!open)}>
                 <Hamburger toggled={open}/>
             </div>
 
