@@ -8,9 +8,36 @@
   text-decoration: none;
   padding: 0 130px;
 }
+
 .banner__text {
   font-weight: 700;
   font-size: 48px;
   color: white;
   text-align: right;
+}
+
+.banner img {
+  height: 85%;
+}
+
+@media (max-width: 1000px) {
+  .banner {
+    padding: 30px 20px;
+  }
+  .banner__text {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    padding: 30px 20px;
+    height: 100px;
+  }
+  .banner__text {
+    font-size: 20px;
+  }
+  .banner img {
+    height: 150%;
+  }
 }
