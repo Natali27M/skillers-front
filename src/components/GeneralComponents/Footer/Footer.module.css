@@ -12,6 +12,15 @@
 .privacy__link {
     text-decoration: none;
     color: white;
+    cursor: pointer;
+}
+
+.email__btn{
+    color: white;
+    cursor: pointer;
+    width: 150px;
+    text-align: right;
+
 }
 
 
@@ -26,6 +35,20 @@
         height: 60px;
         font-size: 14px;
         padding: 0 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main__footer {
+        flex-direction: column-reverse;
+        align-items: center;
+        height: fit-content;
+        padding: 10px 0;
+        row-gap: 10px;
+    }
+
+    .email__btn{
+        width: fit-content;
     }
 }
 

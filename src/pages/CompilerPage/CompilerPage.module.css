@@ -188,6 +188,19 @@
     font-weight: 600;
 }
 
+.compiler__wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+
+.compiler__title {
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 40px;
+}
+
 @media (max-width: 1200px) {
     .compiler__textarea,
     .compiler__input,
@@ -220,5 +233,13 @@
     .compiler__container {
         flex-direction: column-reverse;
         row-gap: 20px;
+    }
+
+    .compiler__wrap{
+        row-gap: 20px;
+    }
+
+    .compiler__title {
+        font-size: 30px;
     }
 }
