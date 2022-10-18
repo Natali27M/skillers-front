@@ -109,7 +109,6 @@ const TechList = () => {
                 <TechBlock img={html5} name={"HTML"} techId={8}/>
                 <TechBlock img={other} name={"Other"} techId={9}/>
                 <TechBlock img={project_manager} name={"Management"} techId={10}/>
-
             </ReactSimplyCarousel>
 
 
