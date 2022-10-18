@@ -65,6 +65,14 @@ const UserBlock = ({userId}) => {
                             {rating}
                         </div>
                     </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            {EN ? 'Search:' : 'У пошуку:'}
+                        </div>
+                        <div className={css.user__info_element}>
+                            {user?.openForHiring ? (EN ? 'Yes' : 'Так') : (EN ? 'No' : 'Ні')}
+                        </div>
+                    </div>
                 </div>
                 <div className={css.user__results_wrap}>
                     <div className={css.user__info_title}>{EN ? 'Results' : 'Результати'}</div>

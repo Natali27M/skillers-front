@@ -11,6 +11,7 @@ import Trainee from '../../images/rank_little/Trainee.png';
 import Junior from '../../images/rank_little/Junior.png';
 import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
+import hiringImg from '../../images/hiring.svg';
 
 import {getUserResults, getUserRoles, logout, updateUser} from '../../store';
 
@@ -37,11 +38,15 @@ const UserPage = () => {
 
     const [pageNumber, setPageNumber] = useState(1);
 
+    const [hiring, setHiring] = useState(false);
+
+
     useEffect(() => {
         if (user) {
             const id = user.id;
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
+            setHiring(user?.openForHiring);
         }
     }, [user]);
 
@@ -57,13 +62,18 @@ const UserPage = () => {
     }, [pathname]);
 
 
-
     if (!user) {
         return <Navigate to={'/login'} replace/>;
     }
 
     const updateUserFunction = (obj) => {
         dispatch(updateUser({data: {username: obj.user}, userId: user.id}));
+    };
+
+    const changeHiring = (hiringType) => {
+        if (!!user?.openForHiring !== !!hiring) {
+            dispatch(updateUser({data: {openForHiring: hiringType}, userId: user.id}));
+        }
     };
 
     return (
@@ -118,6 +128,22 @@ const UserPage = () => {
                             />
                         </Link>
                         {userRank || '-'}
+                    </div>
+                </div>
+                <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>{EN ? 'Search job' : 'У пошуку роботи'}</div>
+                    <div className={css.user__db_content}>
+                        <div className={css.hiring__wrap}>
+                            <div className={css.hiring__check} onClick={() => setHiring(!hiring)}>
+                                {hiring && <img src={hiringImg} alt="hiring"/>}
+                            </div>
+                            <button
+                                className={!!user?.openForHiring === !!hiring ? css.hiring__btn : css.hiring__btn_active}
+                                onClick={() => changeHiring(hiring)}
+                            >
+                                {EN ? 'Change' : 'Змінити'}
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
