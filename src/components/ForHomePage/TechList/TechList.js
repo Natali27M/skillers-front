@@ -11,6 +11,7 @@ import csharp from '../../../images/techList/csharp.svg';
 import cplusplus from '../../../images/techList/cplusplus.svg';
 import html5 from '../../../images/techList/html5.svg';
 import other from '../../../images/techList/other.svg';
+import project_manager from '../../../images/techList/project-manager.svg';
 import {TechBlock} from '../TechBlock/TechBlock';
 
 
@@ -107,6 +108,7 @@ const TechList = () => {
                 <TechBlock img={cplusplus} name={"C++"} techId={7}/>
                 <TechBlock img={html5} name={"HTML"} techId={8}/>
                 <TechBlock img={other} name={"Other"} techId={9}/>
+                <TechBlock img={project_manager} name={"Management"} techId={10}/>
 
             </ReactSimplyCarousel>
 
