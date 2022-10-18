@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
 import logo from '../../images/header/SKILLERS.svg';
-import {FeedbackForm, LeaderBord, TechList} from '../../components';
+import {FeedbackForm, LeaderBord, TechList, Banner} from '../../components';
 import {Link} from 'react-router-dom';
 
 
@@ -27,6 +27,7 @@ const HomePage = () => {
             </div>
             <TechList/>
             <LeaderBord/>
+            <Banner/>
             <FeedbackForm/>
         </>
     );
