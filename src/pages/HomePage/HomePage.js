@@ -5,6 +5,7 @@ import logo from '../../images/header/SKILLERS.svg';
 import {FeedbackForm, LeaderBord, TechList} from '../../components';
 import {Link} from 'react-router-dom';
 
+
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
@@ -12,7 +13,10 @@ const HomePage = () => {
     return (
         <>
             <div className={css.home__page}>
-                <img className={css.home__logo} src={logo} alt="logo"/>
+                {/*<img className={css.home__logo} src={logo} alt="logo"/>*/}
+                <h1 className={css.main__title}>
+                    SKILLIANT
+                </h1>
                 <div className={css.home__description}>
                     {EN ? 'Platform for testing your IT skills' :
                         'Платформа для перевірки твоїх IT навичок'}

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import css from './Footer.module.css';
 
 
+
 const Footer = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
