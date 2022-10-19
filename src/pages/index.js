@@ -13,3 +13,4 @@ export * from './PolicyPage/PolicyPage';
 export * from './RankPage/RankPage';
 export * from './RecruiterPage/RecruiterPage'
 export * from './UserPage/UserPage';
+export * from './FeedbackFormPage/FeedbackFormPage'

@@ -22,9 +22,17 @@ const Footer = () => {
 
     return (
         <div className={css.main__footer}>
-            <div>{EN ? 'All rights reserved 2022' : 'Всі права захищено'}</div>
+            <div>
+                {EN ? 'All rights reserved 2022' : 'Всі права захищено'}
+            </div>
+            <Link to={'/feedback'}
+                className={css.feedback__link}>
+                {EN ? 'Feedback' : "Зворотній зв'язок"}
+            </Link>
             <Link to={'/policy'}
-                  className={css.privacy__link}>{EN ? 'Privacy policy' : 'Політика конфіденційності'}</Link>
+                className={css.privacy__link}>
+                {EN ? 'Privacy policy' : 'Політика конфіденційності'}
+            </Link>
             <div onClick={() => emailCopy()} className={css.email__btn}>
                 {emailCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано') : 'support@skilliant.net'}
             </div>
