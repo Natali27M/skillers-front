@@ -151,6 +151,8 @@ const userSlice = createSlice({
             state.updateError = null;
             let oldUser = JSON.parse(localStorage.getItem('user'));
             oldUser.username = action.payload.username
+            oldUser.openForHiring = action.payload.openForHiring
+            oldUser.linkedin = action.payload.linkedin
             localStorage.setItem('user', JSON.stringify(oldUser));
         },
         [googleAuth.pending]: (state) => {
