@@ -98,7 +98,8 @@ const CreateTestPage = () => {
             name: tempTest.name,
             difficult: tempTest.difficult,
             techId: tempTest.techId,
-            isApproved: false
+            isApproved: false,
+            authorId: user?.id
         }));
         setTimeout(() => {
             if (exercises.length === 0) {
