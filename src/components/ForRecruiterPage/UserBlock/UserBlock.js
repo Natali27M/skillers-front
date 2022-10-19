@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import css from './UserBlock.module.css';
 import rootCSS from '../../../styles/root.module.css';
+import userCSS from '../../../pages/UserPage/UserPage.module.css';
 import {achievementsServices, userServices} from '../../../services';
 import {useSelector} from 'react-redux';
 import {resultsServices} from '../../../services/results.services';
@@ -19,11 +20,26 @@ const UserBlock = ({userId}) => {
 
     const [emailCopyTime, setEmailCopyTime] = useState(false);
 
+    const [linkedName, setLinkedName] = useState('');
+
     useEffect(() => {
         userServices.getUserById(userId).then(value => setUser(value));
         achievementsServices.searchUserAchievement(userId).then(value => setRating(value?.attributes?.rating));
         setPageNumber(1);
     }, [userId]);
+
+    useEffect(() => {
+        if (user?.linkedin) {
+            const result = [];
+            const nameWithNumber = user?.linkedin.split('/')[4];
+            nameWithNumber.split('-').slice(0, 2).forEach(element => {
+                let array = element.split('');
+                array[0] = array[0].toUpperCase();
+                result.push(array.join(''));
+            });
+            setLinkedName(result.join(' '));
+        }
+    }, [user]);
 
     useEffect(() => {
         resultsServices.getUserResult(userId, pageNumber).then(value => setResult(value));
@@ -71,6 +87,17 @@ const UserBlock = ({userId}) => {
                         </div>
                         <div className={css.user__info_element}>
                             {user?.openForHiring ? (EN ? 'Yes' : 'Так') : (EN ? 'No' : 'Ні')}
+                        </div>
+                    </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            Linkedin
+                        </div>
+                        <div className={css.user__info_element}>
+                            {user?.linkedin ? <a href={user?.linkedin} target="_blank" className={userCSS.linked__btn}>
+                                {linkedName}
+                            </a> : (EN ? 'none' : 'немає')
+                            }
                         </div>
                     </div>
                 </div>

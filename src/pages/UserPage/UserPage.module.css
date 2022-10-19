@@ -107,6 +107,7 @@
 
 .user__data_block {
     width: 80%;
+    overflow: hidden;
     background-color: #000;
     color: white;
     display: flex;
@@ -204,6 +205,28 @@
     background-color: #8d8d8d;
 }
 
+.linked__btn{
+    min-width: 115px;
+    width: fit-content;
+    height: 20px;
+    display: flex;
+    padding: 0 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #0073B1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
 
 @media (max-width: 767px) {
     .user__wrap {
@@ -263,4 +286,19 @@
     .update__username__input {
         width: 70%;
     }
+    .hiring__btn,
+    .hiring__btn_active {
+        padding: 0 5px;
+        font-size: 12px;
+    }
+
+    .hiring__wrap {
+        column-gap: 10px;
+    }
+
+    .linked__btn{
+        font-size: 12px;
+        min-width: 100px;
+    }
+
 }

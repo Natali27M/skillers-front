@@ -40,6 +40,10 @@ const UserPage = () => {
 
     const [hiring, setHiring] = useState(false);
 
+    const [linkedOpen, setLinkedOpen] = useState(false);
+
+    const [linkedName, setLinkedName] = useState('');
+
 
     useEffect(() => {
         if (user) {
@@ -47,6 +51,16 @@ const UserPage = () => {
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
             setHiring(user?.openForHiring);
+            if (user?.linkedin) {
+                const result = [];
+                const nameWithNumber = user?.linkedin.split('/')[4];
+                nameWithNumber.split('-').slice(0, 2).forEach(element => {
+                    let array = element.split('');
+                    array[0] = array[0].toUpperCase();
+                    result.push(array.join(''));
+                });
+                setLinkedName(result.join(' '));
+            }
         }
     }, [user]);
 
@@ -74,6 +88,11 @@ const UserPage = () => {
         if (!!user?.openForHiring !== !!hiring) {
             dispatch(updateUser({data: {openForHiring: hiringType}, userId: user.id}));
         }
+    };
+
+    const changeLinked = (obj) => {
+        dispatch(updateUser({data: {linkedin: obj.linkedin}, userId: user.id}));
+        setLinkedOpen(false);
     };
 
     return (
@@ -146,6 +165,41 @@ const UserPage = () => {
                         </div>
                     </div>
                 </div>
+                <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>Linkedin</div>
+                    <div className={css.user__db_content}>
+                        {
+                            user?.linkedin ?
+                                <div className={css.hiring__wrap}>
+                                    <a href={user?.linkedin} target="_blank" className={css.linked__btn}>
+                                        {linkedName}
+                                    </a>
+                                    <button
+                                        className={css.hiring__btn_active}
+                                        onClick={() => setLinkedOpen(!linkedOpen)}
+                                    >
+                                        {EN ? 'Change' : 'Змінити'}
+                                    </button>
+                                </div>
+                                :
+                                <button onClick={() => setLinkedOpen(!linkedOpen)}
+                                        className={linkedOpen ? css.hiring__btn : css.hiring__btn_active}>
+                                    {EN ? 'Add' : 'Додати'}
+                                </button>
+                        }
+                    </div>
+                </div>
+                {linkedOpen && <form className={css.update__username_form} onSubmit={handleSubmit(changeLinked)}>
+                    <input
+                        type="text"
+                        placeholder="Linkedin URL"
+                        {...register('linkedin')}
+                        autoComplete="off"
+                        defaultValue={user?.linkedin}
+                        className={css.update__username__input}
+                    />
+                    <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
+                </form>}
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
                     <div className={rootCSS.default__title_24}>
                         {EN ? 'My results' : 'Мої досягнення'}
