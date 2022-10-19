@@ -16,6 +16,7 @@ import {
     sendVariant
 } from '../../store';
 import {Navigate} from 'react-router-dom';
+import lock from '../../images/lock.svg';
 
 
 const CreateTestPage = () => {
@@ -65,7 +66,10 @@ const CreateTestPage = () => {
     useEffect(() => {
         if (testId) {
             exercises.map(ex => {
-                dispatch(sendExercise({data: {testId, description: ex.description, code: ex.code}, tempId: ex.exTempId}));
+                dispatch(sendExercise({
+                    data: {testId, description: ex.description, code: ex.code},
+                    tempId: ex.exTempId
+                }));
             });
         }
     }, [testId]);
@@ -99,14 +103,15 @@ const CreateTestPage = () => {
             difficult: tempTest.difficult,
             techId: tempTest.techId,
             isApproved: false,
-            authorId: user?.id
+            authorId: user?.id,
+            isPrivate: tempTest?.isPrivate ? true : null
         }));
         setTimeout(() => {
             if (exercises.length === 0) {
                 setIsComplete(true);
             }
-            if(variants.length === 0) {
-                setIsComplete(true)
+            if (variants.length === 0) {
+                setIsComplete(true);
             }
         }, 100);
 
@@ -130,6 +135,10 @@ const CreateTestPage = () => {
                         <div className={css.test__header}>
                             <div className={css.test__name}>{tempTest?.name}</div>
                             <div className={css.test__name}>{technology?.attributes.name}</div>
+                            {!!tempTest.isPrivate && <div className={css.private__wrap}>
+                                <img className={css.private__img} src={lock} alt="lock"/>
+                                <div>{EN ? 'Private test' : 'Приватний тест'}</div>
+                            </div>}
                             <div
                                 className={css.test__difficult}>{EN ? 'Difficult' : 'Складність'} {tempTest?.difficult}
                             </div>
@@ -186,6 +195,22 @@ const CreateTestPage = () => {
                                 autoCorrect="off"
                                 className={css.difficult__input}
                             />
+                            {errors.difficult &&
+                                <div className={css.difficult__error}>
+                                    {EN ? 'Set an integer value between 1 and 10'
+                                        : 'Встановіть ціле значення від 1 до 10'}
+                                </div>
+                            }
+                        </div>
+                        <div className={css.input__wrap}>
+                            <label className={css.private__label}>
+                                <div>{EN ? 'Private' : 'Приватний'}</div>
+                                <input
+                                    className={css.private__check}
+                                    type="checkbox"
+                                    {...register('isPrivate')}
+                                />
+                            </label>
                             {errors.difficult &&
                                 <div className={css.difficult__error}>
                                     {EN ? 'Set an integer value between 1 and 10'

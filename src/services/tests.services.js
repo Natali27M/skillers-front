@@ -4,10 +4,13 @@ import {urls} from '../config';
 
 export const testsServices = {
     getTestsPaginated: (techId, pageNum, sortParams, order) => axiosServices.get(
-        `${urls.tests}?filters[techId][$eq]=${techId}&filters[isApproved][$eq]=true&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=${sortParams}:${order}`
+        `${urls.tests}?filters[techId][$eq]=${techId}&filters[isPrivate][$null]=true&filters[isApproved][$eq]=true&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=${sortParams}:${order}`
     ).then(value => value.data),
     getTestsByQueryPaginated: (query, pageNum) => axiosServices.get(
-        `${urls.tests}?filters[name][$contains]=${query}&filters[isApproved][$eq]=true&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=createdAt:desc`
+        `${urls.tests}?filters[name][$contains]=${query}&filters[isPrivate][$null]=true&filters[isApproved][$eq]=true&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=createdAt:desc`
+    ).then(value => value.data),
+    getTestsByUserPaginated: (authorId, pageNum) => axiosServices.get(
+        `${urls.tests}?filters[authorId][$eq]=${authorId}&pagination[page]=${pageNum}&pagination[pageSize]=15&sort=createdAt:desc`
     ).then(value => value.data),
     getTestsForApprove: (pageNum) => axiosServices.get(
         `${urls.tests}?filters[isApproved][$eq]=false&pagination[page]=${pageNum}&pagination[pageSize]=10`
@@ -36,6 +39,6 @@ export const testsServices = {
         }
     }).then(value => value.data),
     getTopTestsByTech: (techId) => axiosServices
-        .get(`${urls.tests}?filters[techId][$eq]=${techId}&pagination[page]=1&pagination[pageSize]=5&sort=avgMark:desc&sort=allMarks:desc`)
+        .get(`${urls.tests}?filters[techId][$eq]=${techId}&filters[isPrivate][$null]=true&pagination[page]=1&pagination[pageSize]=5&sort=avgMark:desc&sort=allMarks:desc`)
         .then(value => value.data.data)
 };

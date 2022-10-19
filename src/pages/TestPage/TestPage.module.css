@@ -187,6 +187,17 @@
     font-size: 16px;
 }
 
+.private__wrap {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.private__img{
+    height: 20px;
+}
 
 @media (max-width: 1200px) {
     .completed__header {
@@ -235,7 +246,7 @@
 
 @media (max-width: 600px) {
     .test__page_title,
-    .failed__test{
+    .failed__test {
         flex-direction: column;
         row-gap: 5px;
     }
@@ -246,7 +257,7 @@
         margin: 10px 0;
     }
 
-    .try__again_btn{
+    .try__again_btn {
         font-size: 14px;
     }
 }

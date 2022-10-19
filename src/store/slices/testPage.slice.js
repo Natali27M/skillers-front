@@ -13,10 +13,20 @@ export const getTests = createAsyncThunk(
 );
 
 export const getTestsByQuery = createAsyncThunk(
-    'testSlice/getTests',
+    'testSlice/getTestsByQuery',
     async ({query, pageNum}, {rejectWithValue}) => {
         try {
             return await testsServices.getTestsByQueryPaginated(query, pageNum);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+export const getTestsByUser = createAsyncThunk(
+    'testSlice/getTestsByUser',
+    async ({authorId, pageNum}, {rejectWithValue}) => {
+        try {
+            return await testsServices.getTestsByUserPaginated(authorId, pageNum);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -122,6 +132,7 @@ const testSlice = createSlice({
         status: null,
         error: null,
         tests: [],
+        testsByUser: [],
         testsForApprove: [],
         userTestRate: {},
         technology: '',
@@ -145,6 +156,15 @@ const testSlice = createSlice({
         },
 
         [getTestsByQuery.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getTestsByUser.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.testsByUser = action.payload;
+        },
+
+        [getTestsByUser.pending]: (state) => {
             state.status = 'pending';
         },
 

@@ -9,5 +9,7 @@ export const TestNameValidator = Joi.object({
     difficult:
         Joi.number()
             .min(1)
-            .max(10)
+            .max(10),
+    isPrivate:
+        Joi.boolean()
 });
