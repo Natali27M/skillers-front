@@ -12,7 +12,8 @@ import {
     RegisterPage,
     TestListPage,
     TestPage,
-    UserPage
+    UserPage,
+    FeedbackFormPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -26,6 +27,7 @@ import {
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {getUserResults} from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
+
 
 
 function App() {
@@ -95,7 +97,9 @@ function App() {
                 <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                <Route path={'*'} element={<NotFoundPage/>}/>
+                <Route path={'/feedback'} element={<FeedbackFormPage />} />
+                <Route path={'*'} element={<NotFoundPage />} />
+
             </Route>
         </Routes>
     );

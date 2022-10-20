@@ -28,7 +28,7 @@ const HomePage = () => {
             <TechList/>
             <LeaderBord/>
             <Banner/>
-            <FeedbackForm/>
+            {/* <FeedbackForm/> */}
         </>
     );
 };
