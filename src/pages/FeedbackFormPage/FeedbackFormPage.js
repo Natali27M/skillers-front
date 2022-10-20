@@ -29,38 +29,42 @@ const FeedbackFormPage = () => {
 
 
     return (
-        <div className={css.feedback__form_wrap}>
-            <div className={rootCSS.default__title_34}>
-                {EN ? 'Feedback' : 'Зворотній зв\'язок'}
-            </div>
-            <form className={css.feedback__form} onSubmit={handleSubmit(makeFeedback)}>
-                <input
-                    type="text"
-                    className={errors.userName ? css.feedback__input_error : css.feedback__input}
-                    placeholder={EN ? 'Name' : 'Ім\'я'}
-                    {...register('userName')}
-                />
-                <input
-                    type="text"
-                    className={errors.email ? css.feedback__input_error : css.feedback__input}
-                    placeholder="Email"
+        <div className={css.feedback__form_page}>
+            <div className={css.feedback__form__bg}></div>
+            <div className={css.feedback__form_wrap}>
+                <div className={rootCSS.default__title_34}>
+                    {EN ? 'Feedback' : 'Зворотній зв\'язок'}
+                </div>
+                <form className={css.feedback__form} onSubmit={handleSubmit(makeFeedback)}>
+                    <input
+                        type="text"
+                        className={errors.userName ? css.feedback__input_error : css.feedback__input}
+                        placeholder={EN ? 'Name' : 'Ім\'я'}
+                        {...register('userName')}
+                    />
+                    <input
+                        type="text"
+                        className={errors.email ? css.feedback__input_error : css.feedback__input}
+                        placeholder="Email"
 
-                    {...register('email')}
-                />
-                <textarea
-                    className={errors.message ? css.feedback__textarea_error : css.feedback__textarea}
-                    placeholder={EN ? 'Message' : 'Відгук'}
-                    {...register('message')}
-                />
-                <button className={rootCSS.default__button}>
-                    {EN ? 'Send' : 'Надіслати'}
-                </button>
-            </form>
-            <div className={modalOpen ? css.feedback__modal_open : css.feedback__modal}>
-                {EN ? 'Thank you for your feedback' : 'Дякуємо за ваш відгук'}
-                <img className={css.modal__cross} src={cross} alt="cross" onClick={() => setModalOpen(false)}/>
+                        {...register('email')}
+                    />
+                    <textarea
+                        className={errors.message ? css.feedback__textarea_error : css.feedback__textarea}
+                        placeholder={EN ? 'Message' : 'Відгук'}
+                        {...register('message')}
+                    />
+                    <button className={rootCSS.default__button}>
+                        {EN ? 'Send' : 'Надіслати'}
+                    </button>
+                </form>
+                <div className={modalOpen ? css.feedback__modal_open : css.feedback__modal}>
+                    {EN ? 'Thank you for your feedback' : 'Дякуємо за ваш відгук'}
+                    <img className={css.modal__cross} src={cross} alt="cross" onClick={() => setModalOpen(false)}/>
+                </div>
             </div>
         </div>
+        
     );
 };
 
