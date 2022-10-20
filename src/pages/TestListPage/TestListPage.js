@@ -31,7 +31,7 @@ const TestListPage = () => {
 
     const [currenPage, setCurrentPage] = useState(1);
 
-    const [sortParams, setSortParams] = useState('createdAt');
+    const [sortParams, setSortParams] = useState('avgMark');
 
     const [dropOpen, setDropOpen] = useState(false);
 

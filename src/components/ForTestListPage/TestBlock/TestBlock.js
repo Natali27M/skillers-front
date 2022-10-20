@@ -37,10 +37,10 @@ const TestBlock = (test) => {
                         <div
                             className={css.test__difficult}>{EN ? 'Difficult:' : 'Складність:'} {currentTest?.difficult}/10
                         </div>
-                        <div className={css.test__rating}>
+                        {currentTest?.avgMark > 0 && <div className={css.test__rating}>
                             <img src={star_rating} alt="star"/>
                             <div> {currentTest?.avgMark || 0} </div>
-                        </div>
+                        </div>}
                     </div>
                     {testCompleted &&
                         <img src={completed} alt={completed} className={css.complete}/>

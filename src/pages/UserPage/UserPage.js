@@ -17,7 +17,7 @@ import {getUserResults, getUserRoles, logout, updateUser} from '../../store';
 
 import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
-import {getTestsForApprove} from '../../store/slices/testPage.slice';
+import {getTestsByQuery, getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -30,13 +30,15 @@ const UserPage = () => {
 
     const {userAchievement, userRank} = useSelector(state => state['achievementsReducers']);
 
-    const {testsForApprove} = useSelector(state => state['testsReducers']);
+    const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
     const {pathname} = useLocation();
 
     const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(1);
+
+    const [testsPageNumber, setTestsPageNumber] = useState(1);
 
     const [hiring, setHiring] = useState(false);
 
@@ -51,6 +53,7 @@ const UserPage = () => {
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
             setHiring(user?.openForHiring);
+            dispatch(getTestsByUser({pageNum: testsPageNumber, authorId: id}));
             if (user?.linkedin) {
                 const result = [];
                 const nameWithNumber = user?.linkedin.split('/')[4];
@@ -215,7 +218,6 @@ const UserPage = () => {
                                 className={css.results__result}>{result.attributes.correctAnswer}/{result.attributes.allExercises}</div>
                         </div>
                     )}
-                    <div className={css.pagination__title}>{EN ? 'Page' : 'Сторінка'}</div>
                     <div className={css.pagination__block}>
                         <img className={css.arrow__left} onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}
                              src={arrow} alt="arrow"/>
@@ -225,6 +227,31 @@ const UserPage = () => {
                              alt="arrow"/>
                     </div>
                 </div>}
+                {!!testsByUser?.data?.length &&
+                    <div className={css.results__wrap}>
+                        <div className={rootCSS.default__title_24}>
+                            {EN ? 'My tests' : 'Мої тести'}
+                        </div>
+                        <div className={css.results__header}>
+                            <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
+                            <div className={css.results__result}>{EN ? 'Tech ID' : 'ID технології'}</div>
+                        </div>
+                        {testsByUser?.data?.map(test =>
+                            <Link to={`/test/${test.id}`} key={test.id} className={css.results__block}>
+                                <div className={css.result__testName}>{test.attributes.name}</div>
+                                <div className={css.results__result}>{test.attributes.techId}</div>
+                            </Link>
+                        )}
+                        <div className={css.pagination__block}>
+                            <img className={css.arrow__left} onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}
+                                 src={arrow} alt="arrow"/>
+                            <div>{testsPageNumber}/{testsByUser.meta.pagination.pageCount}</div>
+                            <img className={css.arrow__right} src={arrow}
+                                 onClick={() => testsPageNumber < testsByUser.meta?.pagination?.pageCount && setTestsPageNumber(testsPageNumber + 1)}
+                                 alt="arrow"/>
+                        </div>
+                    </div>
+                }
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
                     <Link to={'/createTest'}
@@ -235,7 +262,7 @@ const UserPage = () => {
                         <>
                             <Link to={'/admin'} className={rootCSS.default__button}>
                                 {EN ? 'Admin panel' : 'Адмін панель'}
-                                {!!testsForApprove?.length && <div className={css.approve__time}>!</div>}
+                                {!!testsForApprove?.data?.length && <div className={css.approve__time}>!</div>}
                             </Link>
                             <Link to={'/recruiter'}
                                   className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}

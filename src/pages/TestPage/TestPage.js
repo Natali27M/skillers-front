@@ -16,7 +16,7 @@ import {BackButton, ExerciseBlock} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
-import ScrollToTop from '../../RootFunctions/scrollUp';
+import lock from '../../images/lock.svg';
 
 const TestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -79,16 +79,18 @@ const TestPage = () => {
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
             dispatch(getUserAchievement(user.id));
-            if (userAchievement) {
-                dispatch(updateUserAchievement({
-                    achId: userAchievement.id,
-                    data: {
-                        rating: +userAchievement?.attributes?.rating + (+rating),
-                        userName: user.username
-                    }
-                }));
-            } else {
-                dispatch(createUserAchievement({userName: user.username, userId: user.id, rating}));
+            if (!oneTest?.attributes?.isPrivate) {
+                if (userAchievement) {
+                    dispatch(updateUserAchievement({
+                        achId: userAchievement.id,
+                        data: {
+                            rating: (+userAchievement?.attributes?.rating + (+rating)).toFixed(1),
+                            userName: user.username
+                        }
+                    }));
+                } else {
+                    dispatch(createUserAchievement({userName: user.username, userId: user.id, rating: rating.toFixed(1)}));
+                }
             }
             dispatch(createUserResult({
                     testName: oneTest.attributes.name,
@@ -144,7 +146,7 @@ const TestPage = () => {
     };
 
     if (approveCompleted) {
-        return <Navigate to={'/'} replace/>;
+        return <Navigate to={'/user'} replace/>
     }
 
     const approve = () => {
@@ -158,11 +160,11 @@ const TestPage = () => {
 
     };
 
-    if (oneTest?.attributes) {
-        if (!(oneTest?.attributes?.isApproved) && !(roles?.includes('admin'))) {
-            return <Navigate to={'/'} replace/>;
-        }
-    }
+    /*   if (oneTest?.attributes) {
+           if (!(oneTest?.attributes?.isApproved) && !(roles?.includes('admin'))) {
+               return <Navigate to={'/'} replace/>;
+           }
+       }*/
 
     return (
         <div className={css.test__page}>
@@ -176,13 +178,17 @@ const TestPage = () => {
             <div className={css.back__btn_wrap}>
                 <BackButton/>
             </div>
+            {!!oneTest?.attributes?.isPrivate && <div className={css.private__wrap}>
+                <img className={css.private__img} src={lock} alt="lock"/>
+                <div>{EN ? 'Private test' : 'Приватний тест'}</div>
+            </div>}
             {testFailed &&
                 <div className={css.failed__test}>
                     <div>
                         {EN ? '' +
-                        'Test failed, you scored less than 80%'
-                        :
-                        'Тест провалено, ви набрали менше 80% балів'}
+                            'Test failed, you scored less than 80%'
+                            :
+                            'Тест провалено, ви набрали менше 80% балів'}
                     </div>
                     <button onClick={() => navigate(0)} className={css.try__again_btn}>
                         {EN ? 'Try again' : 'Спробувати ще раз'}

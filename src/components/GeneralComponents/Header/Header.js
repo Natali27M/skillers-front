@@ -7,11 +7,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {switchLanguage} from '../../../store';
 import {Turn as Hamburger} from 'hamburger-react';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
+import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 
 
 const Header = () => {
     const {user, jwt} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
+
     const dispatch = useDispatch();
 
     const {pathname} = useLocation();
@@ -21,6 +25,13 @@ const Header = () => {
 
     const [open, setOpen] = useState(false);
 
+
+    useEffect(() => {
+        if (!isComponentVisible) {
+            setOpen(false);
+            setIsComponentVisible(true);
+        }
+    }, [isComponentVisible]);
 
     useEffect(() => {
         setOpen(false);
@@ -42,6 +53,9 @@ const Header = () => {
                 <Link className={css.header__link} to={'/compiler'}>
                     {EN ? 'Compiler' : 'Компілятор'}
                 </Link>
+                <Link className={css.header__link} to={'/createTest'}>
+                    {EN ? 'Create test' : 'Створити тест'}
+                </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : EN ? 'Login' : 'Увійти'}
@@ -62,7 +76,7 @@ const Header = () => {
                 <Hamburger toggled={open}/>
             </div>
 
-            <div className={open ? css.burger__menu_open : css.burger__menu_close}>
+            <div ref={ref} className={open ? css.burger__menu_open : css.burger__menu_close}>
                 <div>
                     <button onClick={() => dispatch(switchLanguage())}
                             className={EN ? css.switch_btn_en : css.switch_btn_uk}>
@@ -79,6 +93,9 @@ const Header = () => {
                 </Link>
                 <Link className={css.header__link} to={'/compiler'}>
                     {EN ? 'Compiler' : 'Компілятор'}
+                </Link>
+                <Link className={css.header__link} to={'/createTest'}>
+                    {EN ? 'Create test' : 'Створити тест'}
                 </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
