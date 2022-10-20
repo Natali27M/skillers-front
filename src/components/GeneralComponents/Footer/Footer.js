@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <Link to={'/feedback'}
                 className={css.feedback__link}>
-                {EN ? 'Feedback' : "Зворотній зв'язок"}
+                {EN ? 'Feedback' : "Зворотний зв'язок"}
             </Link>
             <Link to={'/policy'}
                 className={css.privacy__link}>

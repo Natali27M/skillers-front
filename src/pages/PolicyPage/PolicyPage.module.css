@@ -1,88 +1,89 @@
 .policy__page {
-  width: 100%;
-  min-height: calc(100vh - 80px);
-  position: relative;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .policy {
-  width: 100%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1,
 h2 {
-  text-align: center;
-  width: 100%;
+    text-align: center;
+    width: 100%;
 }
 
 ul {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .policy__bg {
-  width: 100%;
-  min-height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background: url("../../images/mainBg.png") no-repeat center / cover;
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: url("../../images/mainBg.png") no-repeat center / cover;
 }
 
 .policy__wrap {
-  width: 70%;
-  background-color: #fff;
-  z-index: 2;
-  min-height: calc(100vh - 80px);
-  box-shadow: 0 0 15px 3px #323232;
-  font-size: 20px;
-  display: flex;
-  padding: 50px;
-  flex-direction: column;
-  text-align: center;
+    width: 70%;
+    background-color: #fff;
+    z-index: 2;
+    min-height: calc(100vh - 80px);
+    box-shadow: 0 0 15px 3px #323232;
+    font-size: 20px;
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+    text-align: center;
 }
 
 .policy__title {
-  width: 100%;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 20px;
-  font-size: 28px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 28px;
 }
 
 @media (max-width: 1000px) {
-  .policy__wrap {
-    width: 90%;
-    font-size: 16px;
-  }
+    .policy__wrap {
+        width: 90%;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 767px) {
-  ul {
-    margin-left: 20px;
-  }
+    ul {
+        margin-left: 20px;
+    }
 
-  h1 {
-    font-size: 26px;
-  }
-  h2 {
-    font-size: 22px;
-  }
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 500px) {
-  .policy__wrap {
-    width: 90%;
-    font-size: 12px;
-    padding: 20px 10px;
-  }
+    .policy__wrap {
+        width: 90%;
+        font-size: 12px;
+        padding: 20px 10px;
+    }
 
-  .policy__title {
-    font-size: 16px;
-  }
+    .policy__title {
+        font-size: 16px;
+    }
 }
