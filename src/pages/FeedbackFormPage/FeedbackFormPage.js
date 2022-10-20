@@ -33,7 +33,7 @@ const FeedbackFormPage = () => {
             <div className={css.feedback__form__bg}></div>
             <div className={css.feedback__form_wrap}>
                 <div className={rootCSS.default__title_34}>
-                    {EN ? 'Feedback' : 'Зворотній зв\'язок'}
+                    {EN ? 'Feedback' : 'Зворотний зв\'язок'}
                 </div>
                 <form className={css.feedback__form} onSubmit={handleSubmit(makeFeedback)}>
                     <input
