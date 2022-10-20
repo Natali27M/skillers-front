@@ -146,7 +146,7 @@ const TestPage = () => {
     };
 
     if (approveCompleted) {
-        navigate(0);
+        return <Navigate to={'/user'} replace/>
     }
 
     const approve = () => {
