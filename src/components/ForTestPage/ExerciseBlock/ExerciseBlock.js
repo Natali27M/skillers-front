@@ -6,7 +6,7 @@ import {CodeSnippet} from '../../GeneralComponents';
 
 
 const ExerciseBlock = (exercise) => {
-    const {timeToPush, checked, result} = useSelector(state => state['exercisesReducers']);
+    const {timeToPush, checked, result, variants} = useSelector(state => state['exercisesReducers']);
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
     const dispatch = useDispatch();
@@ -19,6 +19,18 @@ const ExerciseBlock = (exercise) => {
     const [cVariant, setCVariant] = useState({});
 
     useEffect(() => {
+        if (result) {
+            for (const targetVariant of currentVariants) {
+                const chosen = variants.find(element => element.id === targetVariant.id);
+
+                if (chosen) {
+                    setCVariant(targetVariant);
+                }
+            }
+        }
+    }, [result]);
+
+    useEffect(() => {
         if (timeToPush && cVariant !== {}) {
             dispatch(pushResults(cVariant));
         }
@@ -28,8 +40,7 @@ const ExerciseBlock = (exercise) => {
     return (
         <div className={css.exercise__block}>
             <div className={css.exercise__description}>
-                {exercise.exNumber}.
-                {currentExercise?.description}
+                {exercise.exNumber}. {currentExercise?.description}
             </div>
             {currentExercise?.code &&
                 <div className={css.code__snippet}>
@@ -44,23 +55,23 @@ const ExerciseBlock = (exercise) => {
                              key={variant.id}
                              className={(checked && result) || isTestCompleted ?
                                  (variant.attributes.correct ?
-                                     (cVariant === variant ?
-                                         css.correct__chosen_answer
+                                         (cVariant === variant ?
+                                                 css.correct__chosen_answer
+                                                 :
+                                                 css.correct__answer
+                                         )
                                          :
-                                         css.correct__answer
-                                     )
-                                     :
-                                     (cVariant === variant ?
-                                         css.incorrect__chosen_answer
-                                         :
-                                         css.simple__variant)
+                                         (cVariant === variant ?
+                                             css.incorrect__chosen_answer
+                                             :
+                                             css.simple__variant)
                                  )
                                  :
                                  cVariant === variant ?
                                      css.chosen__variant
                                      :
                                      css.simple__variant
-                        }>
+                             }>
                             <div className={css.check__arrow_block}>{(cVariant === variant) && '✓'}</div>
                             <p className={css.variant__text}>{variant.attributes.text}</p>
                         </div>

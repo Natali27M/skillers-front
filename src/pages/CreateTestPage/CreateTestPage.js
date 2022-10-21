@@ -104,7 +104,9 @@ const CreateTestPage = () => {
             techId: tempTest.techId,
             isApproved: false,
             authorId: user?.id,
-            isPrivate: tempTest?.isPrivate ? true : null
+            isPrivate: tempTest?.isPrivate ? true : null,
+            correctPercent: tempTest?.correctPercent
+
         }));
         setTimeout(() => {
             if (exercises.length === 0) {
@@ -141,6 +143,9 @@ const CreateTestPage = () => {
                             </div>}
                             <div
                                 className={css.test__difficult}>{EN ? 'Difficult' : 'Складність'} {tempTest?.difficult}
+                            </div>
+                            <div className={css.test__difficult}>
+                                {EN ? 'Min. result, %: ' : 'Мін. результат, %: '} {tempTest?.correctPercent}
                             </div>
                         </div>
                         {!!tempArray?.length && <div className={css.ex__wrap}>
@@ -203,6 +208,23 @@ const CreateTestPage = () => {
                             }
                         </div>
                         <div className={css.input__wrap}>
+                            <input
+                                type="number"
+                                placeholder={EN ? 'Min. result, %' : 'Мін. результат, %'}
+                                {...register('correctPercent')}
+                                min="10" max="100"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                className={css.difficult__input}
+                            />
+                            {errors.difficult &&
+                                <div className={css.difficult__error}>
+                                    {EN ? 'Set an integer value between 10 and 100'
+                                        : 'Встановіть ціле значення від 10 до 100'}
+                                </div>
+                            }
+                        </div>
+                        <div className={css.input__wrap}>
                             <label className={css.private__label}>
                                 <div>{EN ? 'Private' : 'Приватний'}</div>
                                 <input
@@ -211,12 +233,6 @@ const CreateTestPage = () => {
                                     {...register('isPrivate')}
                                 />
                             </label>
-                            {errors.difficult &&
-                                <div className={css.difficult__error}>
-                                    {EN ? 'Set an integer value between 1 and 10'
-                                        : 'Встановіть ціле значення від 1 до 10'}
-                                </div>
-                            }
                         </div>
                         <button className={css.testCreate__btn}>{EN ? 'Continue' : 'Продовжити'}</button>
                     </form>

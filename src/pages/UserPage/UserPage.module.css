@@ -44,7 +44,7 @@
     font-size: 14px;
 }
 
-.user__rank_img{
+.user__rank_img {
     height: 30px;
 }
 
@@ -141,7 +141,7 @@
     font-size: 14px;
 }
 
-.update__username__button{
+.update__username__button {
     height: 30px;
     padding: 0 10px;
     font-size: 14px;
@@ -151,7 +151,7 @@
     color: white;
 }
 
-.approve__time{
+.approve__time {
     position: absolute;
     top: 0;
     right: 0;
@@ -172,7 +172,7 @@
     font-size: 14px;
 }
 
-.hiring__wrap{
+.hiring__wrap {
     width: 100%;
     height: 100%;
     display: flex;
@@ -180,7 +180,7 @@
     column-gap: 20px;
 }
 
-.hiring__check{
+.hiring__check {
     width: 20px;
     min-width: 20px;
     height: 20px;
@@ -194,7 +194,7 @@
 }
 
 .hiring__btn,
-.hiring__btn_active{
+.hiring__btn_active {
     height: 20px;
     padding: 0 10px;
     background-color: #fff;
@@ -203,12 +203,12 @@
     cursor: pointer;
 }
 
-.hiring__btn{
+.hiring__btn {
     cursor: initial;
     background-color: #8d8d8d;
 }
 
-.linked__btn{
+.linked__btn {
     min-width: 115px;
     width: fit-content;
     height: 20px;
@@ -229,7 +229,13 @@
     white-space: nowrap;
 }
 
-
+.rank__wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
 
 @media (max-width: 767px) {
     .user__wrap {
@@ -240,7 +246,7 @@
     .results__header,
     .user__data_block,
     .update__username__input,
-    .update__username__button{
+    .update__username__button {
         font-size: 14px;
     }
 }
@@ -256,7 +262,7 @@
 
     .results__wrap,
     .user__data_block,
-    .update__username_form{
+    .update__username_form {
         width: 90%;
     }
 }
@@ -271,7 +277,7 @@
 
     .results__wrap,
     .user__data_block,
-    .update__username_form{
+    .update__username_form {
         width: 95%;
     }
 
@@ -285,10 +291,11 @@
 
 }
 
-@media (max-width: 400px){
+@media (max-width: 400px) {
     .update__username__input {
         width: 70%;
     }
+
     .hiring__btn,
     .hiring__btn_active {
         padding: 0 5px;
@@ -299,7 +306,7 @@
         column-gap: 10px;
     }
 
-    .linked__btn{
+    .linked__btn {
         font-size: 12px;
         min-width: 100px;
     }
