@@ -11,7 +11,14 @@ import {
     getRateOfTest,
     rateTest
 } from '../../store/slices/testPage.slice';
-import {checkResults, clear, clearResults, getExercises, makeTimeToPush, setTestComplete} from '../../store';
+import {
+    checkProxyResults,
+    clear,
+    clearResults,
+    getProxyExercises,
+    makeTimeToPush,
+    setTestComplete
+} from '../../store';
 import {BackButton, ExerciseBlock} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
@@ -27,7 +34,8 @@ const TestPage = () => {
         timeToPush,
         checked,
         testFailed,
-        status
+        status,
+        variants
     } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
@@ -42,9 +50,8 @@ const TestPage = () => {
     const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
 
     useEffect(() => {
-        dispatch(getExercises({testId}));
-    }, []);
-
+        dispatch(getProxyExercises({testId}));
+    }, [testId]);
 
     useEffect(() => {
         dispatch(getOneTest({testId}));
@@ -69,13 +76,18 @@ const TestPage = () => {
     }, [pathname]);
 
     useEffect(() => {
-        if (timeToPush) {
-            dispatch(checkResults());
+        if (timeToPush && !!variants.length) {
+            dispatch(checkProxyResults({
+                variants,
+                testId: oneTest.id,
+                percent: oneTest?.attributes?.correctPercent || 80,
+                userId: user.id
+            }));
         }
-    }, [timeToPush]);
+    }, [timeToPush, variants.length]);
 
     useEffect(() => {
-        if (result && user && oneTest?.attributes?.isApproved) {
+        if (result && user) {
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
             dispatch(getUserAchievement(user.id));
@@ -89,13 +101,18 @@ const TestPage = () => {
                         }
                     }));
                 } else {
-                    dispatch(createUserAchievement({userName: user.username, userId: user.id, rating: rating.toFixed(1)}));
+                    dispatch(createUserAchievement({
+                        userName: user.username,
+                        userId: user.id,
+                        rating: rating.toFixed(1)
+                    }));
                 }
             }
             dispatch(createUserResult({
                     testName: oneTest.attributes.name,
                     testId: oneTest.id,
                     userId: user.id,
+                    techId: oneTest.attributes.techId,
                     correctAnswer: result.correct,
                     allExercises: result.allExercises
                 }
@@ -146,7 +163,7 @@ const TestPage = () => {
     };
 
     if (approveCompleted) {
-        return <Navigate to={'/user'} replace/>
+        return <Navigate to={'/user'} replace/>;
     }
 
     const approve = () => {
@@ -160,12 +177,6 @@ const TestPage = () => {
 
     };
 
-    /*   if (oneTest?.attributes) {
-           if (!(oneTest?.attributes?.isApproved) && !(roles?.includes('admin'))) {
-               return <Navigate to={'/'} replace/>;
-           }
-       }*/
-
     return (
         <div className={css.test__page}>
             <div className={css.test__page_title}>
@@ -178,17 +189,21 @@ const TestPage = () => {
             <div className={css.back__btn_wrap}>
                 <BackButton/>
             </div>
-            {!!oneTest?.attributes?.isPrivate && <div className={css.private__wrap}>
-                <img className={css.private__img} src={lock} alt="lock"/>
-                <div>{EN ? 'Private test' : 'Приватний тест'}</div>
-            </div>}
+            <div className={css.test__info_wrap}>
+                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || 80}</div>
+                {!!oneTest?.attributes?.isPrivate && <div className={css.private__wrap}>
+                    <img className={css.private__img} src={lock} alt="lock"/>
+                    <div>{EN ? 'Private test' : 'Приватний тест'}</div>
+                </div>}
+            </div>
+
             {testFailed &&
                 <div className={css.failed__test}>
                     <div>
                         {EN ? '' +
-                            'Test failed, you scored less than 80%'
+                            `Test failed, you scored less than ${oneTest?.attributes?.correctPercent || 80}%`
                             :
-                            'Тест провалено, ви набрали менше 80% балів'}
+                            `Тест провалено, ви набрали менше ${oneTest?.attributes?.correctPercent || 80}% балів`}
                     </div>
                     <button onClick={() => navigate(0)} className={css.try__again_btn}>
                         {EN ? 'Try again' : 'Спробувати ще раз'}

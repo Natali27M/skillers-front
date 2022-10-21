@@ -140,7 +140,7 @@ const UserPage = () => {
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Rank' : 'Звання'}</div>
                     <div className={css.user__db_content}>
-                        <Link to={'/rank'}>
+                        <Link className={css.rank__wrap} to={'/rank'}>
                             <img
                                 src={userRank === 'Lamer' ? Lamer : userRank === 'Trainee' ? Trainee
                                     :
@@ -148,8 +148,8 @@ const UserPage = () => {
                                 alt="trainee"
                                 className={css.user__rank_img}
                             />
+                            <div>{userRank || '-'}</div>
                         </Link>
-                        {userRank || '-'}
                     </div>
                 </div>
                 <div className={css.user__data_block}>
@@ -243,7 +243,8 @@ const UserPage = () => {
                             </Link>
                         )}
                         <div className={css.pagination__block}>
-                            <img className={css.arrow__left} onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}
+                            <img className={css.arrow__left}
+                                 onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}
                                  src={arrow} alt="arrow"/>
                             <div>{testsPageNumber}/{testsByUser.meta.pagination.pageCount}</div>
                             <img className={css.arrow__right} src={arrow}

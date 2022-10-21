@@ -20,8 +20,7 @@ const TestBlock = (test) => {
         let currentResult = [];
         if (userResultsAll?.data?.length) {
             currentResult = userResultsAll?.data?.filter(element => element?.attributes?.testId === testId);
-
-            if (currentResult.length) {
+            if (currentResult?.length) {
                 setTestCompleted(true);
             }
         }

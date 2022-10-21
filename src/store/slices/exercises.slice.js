@@ -1,17 +1,41 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {exercisesServices} from '../../services';
+import {exercisesProxyServices, exercisesServices} from '../../services';
 
 export const getExercises = createAsyncThunk(
-    'exercisesSlice/getTests',
+    'exercisesSlice/getExercises',
     async ({testId}, {rejectWithValue}) => {
         try {
             return await exercisesServices.getTestExercises(testId);
+            // return await exercisesProxyServices.getTestExercises(testId);
         } catch (e) {
             rejectWithValue(e);
         }
     }
 );
 
+export const getProxyExercises = createAsyncThunk(
+    'exercisesSlice/getProxyExercises',
+    async ({testId}, {rejectWithValue}) => {
+        try {
+            // return await exercisesServices.getTestExercises(testId);
+            return await exercisesProxyServices.getTestExercises(testId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+
+export const checkProxyResults = createAsyncThunk(
+    'exercisesSlice/checkProxyResults',
+    async (data, {rejectWithValue}) => {
+        try {
+            return await exercisesProxyServices.checkExercises(data);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
 
 const exercisesSlice = createSlice({
     name: 'exercisesSlice',
@@ -36,7 +60,7 @@ const exercisesSlice = createSlice({
         },
 
         checkResults: (state) => {
-            const allExercises = state.exercises.length;
+            /*const allExercises = state.exercises.length;
             let correct = 0;
             for (const variant of state.variants) {
                 if (variant?.attributes?.correct) {
@@ -50,7 +74,7 @@ const exercisesSlice = createSlice({
             }
             state.checked = true;
             state.timeToPush = false;
-            state.variants = [];
+            state.variants = [];*/
         },
 
         clear: (state) => {
@@ -63,12 +87,34 @@ const exercisesSlice = createSlice({
     },
 
     extraReducers: {
+        [checkProxyResults.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            const allExercises = state.exercises.length;
+
+            const correct = action.payload.result;
+
+            if (action?.payload?.failed) {
+                state.testFailed = true;
+            } else {
+                state.exercises = action.payload.apiExercises.data;
+                state.result = {correct, allExercises};
+            }
+
+            state.checked = true;
+            state.timeToPush = false;
+        },
+
         [getExercises.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.exercises = action.payload;
         },
 
-        [getExercises.pending]: (state) => {
+        [getProxyExercises.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.exercises = action.payload;
+        },
+
+        [getProxyExercises.pending]: (state) => {
             state.status = 'pending';
             state.exercises = [];
             state.variants = [];

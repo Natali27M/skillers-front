@@ -62,6 +62,9 @@ const AdminPage = () => {
                         <div className={css.test__difficult}>
                             {EN ? 'Tech id' : 'ІД технології'}
                         </div>
+                        <div className={css.test__difficult}>
+                            {EN ? 'User id' : 'ІД користувача'}
+                        </div>
                     </div>
                     {testsForApprove?.data?.map(test =>
                         <Link to={`/test/${test.id}`} className={css.tests__block} key={test.id}>
@@ -73,6 +76,9 @@ const AdminPage = () => {
                             </div>
                             <div className={css.test__difficult}>
                                 {test?.attributes?.techId}
+                            </div>
+                            <div className={css.test__difficult}>
+                                {test?.attributes?.authorId}
                             </div>
                         </Link>
                     )}
