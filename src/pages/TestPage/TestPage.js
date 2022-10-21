@@ -270,7 +270,7 @@ const TestPage = () => {
                 isTestCompleted && hrUserId &&
                 <div className={css.completed__header}>
                     <div className={css.result__block}>
-                        {EN ? `${userForHr?.username} User result: ` : `Результат користувача ${userForHr?.username}: `}
+                        {EN ? `User ${userForHr?.username} result: ` : `Результат користувача ${userForHr?.username}: `}
                         {userByTestResult[0]?.attributes?.correctAnswer}
                         /
                         {userByTestResult[0]?.attributes?.allExercises}
