@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {exercisesProxyServices, exercisesServices} from '../../services';
+import {resultsServices} from '../../services/results.services';
 
 export const getExercises = createAsyncThunk(
     'exercisesSlice/getExercises',
@@ -37,6 +38,19 @@ export const checkProxyResults = createAsyncThunk(
     }
 );
 
+
+export const getFullTestResult = createAsyncThunk(
+    'resultsSlice/getFullTestResult',
+    async ({userId, testId}, {rejectWithValue}) => {
+        try {
+            return await resultsServices.getFullTestResults(userId, testId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+
 const exercisesSlice = createSlice({
     name: 'exercisesSlice',
     initialState: {
@@ -44,6 +58,7 @@ const exercisesSlice = createSlice({
         error: null,
         exercises: [],
         variants: [],
+        resultVariants: [],
         testFailed: false,
         result: null,
         timeToPush: false,
@@ -57,24 +72,6 @@ const exercisesSlice = createSlice({
 
         makeTimeToPush: (state) => {
             state.timeToPush = true;
-        },
-
-        checkResults: (state) => {
-            /*const allExercises = state.exercises.length;
-            let correct = 0;
-            for (const variant of state.variants) {
-                if (variant?.attributes?.correct) {
-                    correct++;
-                }
-            }
-            if (correct / allExercises < 0.8) {
-                state.testFailed = true;
-            } else {
-                state.result = {correct, allExercises};
-            }
-            state.checked = true;
-            state.timeToPush = false;
-            state.variants = [];*/
         },
 
         clear: (state) => {
@@ -108,6 +105,13 @@ const exercisesSlice = createSlice({
             state.status = 'fulfilled';
             state.exercises = action.payload;
         },
+
+        [getFullTestResult.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.resultVariants = action.payload?.data[0]?.attributes?.result
+        },
+
+
 
         [getProxyExercises.fulfilled]: (state, action) => {
             state.status = 'fulfilled';

@@ -14,7 +14,7 @@ import {
 import {
     checkProxyResults,
     clear,
-    clearResults,
+    clearResults, getFullTestResult,
     getProxyExercises,
     makeTimeToPush,
     setTestComplete
@@ -24,6 +24,7 @@ import {createUserAchievement, getUserAchievement, updateUserAchievement} from '
 import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
 import lock from '../../images/lock.svg';
+import {userServices} from '../../services';
 
 const TestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -42,12 +43,31 @@ const TestPage = () => {
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
-    const {testId} = useParams();
+    const paramsData = useParams();
+
+    const hrUserId = paramsData?.testId?.split('-')[1];
+
+    const testId = paramsData?.testId?.split('-')[0];
+
     const dispatch = useDispatch();
     const {pathname} = useLocation();
     const navigate = useNavigate();
 
     const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
+
+    const [userForHr, setUserForHr] = useState({});
+
+    useEffect(() => {
+        if (hrUserId) {
+            userServices.getUserById(hrUserId).then(value => setUserForHr(value));
+        }
+    }, [hrUserId]);
+
+    useEffect(() => {
+        if (isTestCompleted || hrUserId) {
+            dispatch(getFullTestResult({userId: hrUserId ? hrUserId : user?.id, testId}));
+        }
+    }, [isTestCompleted, hrUserId]);
 
     useEffect(() => {
         dispatch(getProxyExercises({testId}));
@@ -59,8 +79,8 @@ const TestPage = () => {
 
     useEffect(() => {
         if (user) {
-            dispatch(getUserByTestResults({userId: user?.id, testId}));
-            dispatch(getRateOfTest({testId, userId: user?.id}));
+            dispatch(getUserByTestResults({userId: hrUserId ? hrUserId : user?.id, testId}));
+            dispatch(getRateOfTest({testId, userId: hrUserId ? hrUserId : user?.id}));
         }
     }, [user, timeToUpdateTest]);
 
@@ -162,6 +182,12 @@ const TestPage = () => {
         }, 500);
     };
 
+
+    if (!(roles?.includes('admin')) && hrUserId) {
+        return <Navigate to={`/test/${testId}`} replace/>;
+    }
+
+
     if (approveCompleted) {
         return <Navigate to={'/user'} replace/>;
     }
@@ -176,6 +202,7 @@ const TestPage = () => {
         setApproveCompleted(true);
 
     };
+
 
     return (
         <div className={css.test__page}>
@@ -210,7 +237,7 @@ const TestPage = () => {
                     </button>
                 </div>
             }
-            {isTestCompleted &&
+            {isTestCompleted && !hrUserId &&
                 <div className={css.completed__header}>
                     <div className={css.result__block}>
                         {EN ? 'You have already passed this test, your result: ' : 'Ви вже пройшли цей тест, ваш результат: '}
@@ -235,9 +262,20 @@ const TestPage = () => {
                             <button className={css.rate__btn} onClick={() => makeRate()}>
                                 {EN ? 'Rate' : 'Оцінити'}
                             </button>
-                        </div>}
+                        </div>
+                    }
                 </div>
-
+            }
+            {
+                isTestCompleted && hrUserId &&
+                <div className={css.completed__header}>
+                    <div className={css.result__block}>
+                        {EN ? `${userForHr?.username} User result: ` : `Результат користувача ${userForHr?.username}: `}
+                        {userByTestResult[0]?.attributes?.correctAnswer}
+                        /
+                        {userByTestResult[0]?.attributes?.allExercises}
+                    </div>
+                </div>
             }
             {!!exercises?.length && status !== 'pending' &&
                 <div className={css.exercises__wrap}>
@@ -246,7 +284,7 @@ const TestPage = () => {
                 </div>
             }
 
-            {!checked && status !== 'pending' && !isTestCompleted && <div className={css.check__wrap}>
+            {!checked && !hrUserId && status !== 'pending' && !isTestCompleted && <div className={css.check__wrap}>
                 <button className={css.check__btn}
                         onClick={() => dispatch(makeTimeToPush())}>{EN ? 'CHECK' : 'ПЕРЕВІРИТИ'}</button>
             </div>}

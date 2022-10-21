@@ -35,7 +35,6 @@ export const getUserByTestResults = createAsyncThunk(
     }
 );
 
-
 export const createUserResult = createAsyncThunk(
     'resultsSlice/createUserResult',
     async (data, {rejectWithValue}) => {

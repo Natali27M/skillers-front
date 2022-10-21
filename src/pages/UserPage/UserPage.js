@@ -205,7 +205,7 @@ const UserPage = () => {
                 </form>}
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
                     <div className={rootCSS.default__title_24}>
-                        {EN ? 'My results' : 'Мої досягнення'}
+                        {EN ? 'My results' : 'Мої результати'}
                     </div>
                     <div className={css.results__header}>
                         <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
