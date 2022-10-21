@@ -6,6 +6,7 @@ import {achievementsServices, userServices} from '../../../services';
 import {useSelector} from 'react-redux';
 import {resultsServices} from '../../../services/results.services';
 import arrow from '../../../images/arrow.svg';
+import {Link} from 'react-router-dom';
 
 const UserBlock = ({userId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -113,14 +114,14 @@ const UserBlock = ({userId}) => {
                             </div>
                         </div>
                         {result?.data?.map(result =>
-                            <div key={result?.id} className={css.result__block}>
+                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`} key={result?.id} className={css.result__block}>
                                 <div className={css.result__test}>
                                     {result?.attributes?.testName}
                                 </div>
                                 <div className={css.result__number}>
                                     {result.attributes.correctAnswer}/{result.attributes.allExercises}
                                 </div>
-                            </div>
+                            </Link>
                         )}
                     </div>
                     <div className={css.pagination__block}>

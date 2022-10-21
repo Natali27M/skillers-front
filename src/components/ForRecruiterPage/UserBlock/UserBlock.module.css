@@ -89,6 +89,8 @@
     padding: 0 10px;
     height: 30px;
     border-bottom: 2px solid black;
+    color: black;
+    text-decoration: none;
 }
 
 .result__header {
@@ -128,15 +130,16 @@
         font-size: 14px;
     }
 
-    .user__info_block{
+    .user__info_block {
         font-size: 14px;
     }
 
-    .user__block{
+    .user__block {
         padding: 0;
         border: none;
     }
 }
+
 @media (max-width: 450px) {
     .result__test {
         width: 80%;
