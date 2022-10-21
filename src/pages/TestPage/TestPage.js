@@ -184,7 +184,7 @@ const TestPage = () => {
 
 
     if (!(roles?.includes('admin')) && hrUserId) {
-        return <Navigate to={`/test/${testId}`} replace/>;
+        return <Navigate to={`/user`} replace/>;
     }
 
 
