@@ -53,6 +53,8 @@ const TestPage = () => {
     const {pathname} = useLocation();
     const navigate = useNavigate();
 
+    const defaultPercent = 51;
+
     const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
 
     const [userForHr, setUserForHr] = useState({});
@@ -100,8 +102,8 @@ const TestPage = () => {
             dispatch(checkProxyResults({
                 variants,
                 testId: oneTest.id,
-                percent: oneTest?.attributes?.correctPercent || 80,
-                userId: user.id
+                percent: oneTest?.attributes?.correctPercent || defaultPercent,
+                userId: user?.id || null
             }));
         }
     }, [timeToPush, variants.length]);
@@ -124,7 +126,7 @@ const TestPage = () => {
                     dispatch(createUserAchievement({
                         userName: user.username,
                         userId: user.id,
-                        rating: rating.toFixed(1)
+                        rating: rating
                     }));
                 }
             }
@@ -217,7 +219,7 @@ const TestPage = () => {
                 <BackButton/>
             </div>
             <div className={css.test__info_wrap}>
-                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || 80}</div>
+                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || defaultPercent}</div>
                 {!!oneTest?.attributes?.isPrivate && <div className={css.private__wrap}>
                     <img className={css.private__img} src={lock} alt="lock"/>
                     <div>{EN ? 'Private test' : 'Приватний тест'}</div>
@@ -228,9 +230,9 @@ const TestPage = () => {
                 <div className={css.failed__test}>
                     <div>
                         {EN ? '' +
-                            `Test failed, you scored less than ${oneTest?.attributes?.correctPercent || 80}%`
+                            `Test failed, you scored less than ${oneTest?.attributes?.correctPercent || defaultPercent}%`
                             :
-                            `Тест провалено, ви набрали менше ${oneTest?.attributes?.correctPercent || 80}% балів`}
+                            `Тест провалено, ви набрали менше ${oneTest?.attributes?.correctPercent || defaultPercent}% балів`}
                     </div>
                     <button onClick={() => navigate(0)} className={css.try__again_btn}>
                         {EN ? 'Try again' : 'Спробувати ще раз'}
