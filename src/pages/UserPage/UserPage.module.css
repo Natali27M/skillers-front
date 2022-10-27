@@ -248,6 +248,7 @@
 }
 
 .show__result_btn {
+    border-radius: 3px;
     width: 75px;
     background-color: #000000;
     color: white;
