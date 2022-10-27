@@ -27,7 +27,7 @@ const HomePage = () => {
             </div>
             <TechList/>
             <LeaderBord/>
-            <Banner/>
+            {/*<Banner/>*/}
         </>
     );
 };

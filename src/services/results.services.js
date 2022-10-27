@@ -7,6 +7,8 @@ export const resultsServices = {
     getUserResultAll: (userId) => axiosServices.get(`${urls.testResultsByUser}${userId}&pagination[pageSize]=30&pagination[page]=1`).then(value => value.data),
     getUserByTestResult: (userId, testId) => axiosServices.get(`${urls.testResultsByUser}${userId}&filters[testId][$eq]=${testId}`)
         .then(value => value.data.data),
+    geAllTestResults: (testId, pageNumber) => axiosServices.get(`${urls.testResults}?filters[testId][$eq]=${testId}&pagination[pageSize]=20&pagination[page]=${pageNumber}`)
+        .then(value => value.data),
     createResult: (data) => axiosServices.post(urls.testResults, {data}).then(value => value.data),
     getFullTestResults: (userId, testId) => axiosServices.get(`${urls.fullTestResults}?filters[userId][$eq]=${userId}&filters[testId][$eq]=${testId}`).then(value => value.data)
 };

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
+import save_life_en from '../../../images/header/save-life-en.png';
+import save_life_ukr from '../../../images/header/save-life-ukr.png';
 import {Link, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {switchLanguage} from '../../../store';
@@ -11,7 +13,7 @@ import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 
 
 const Header = () => {
-    const {user, jwt} = useSelector(state => state['userReducers']);
+    const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
@@ -40,9 +42,15 @@ const Header = () => {
 
     return (
         <div className={css.main__header}>
-            <Link to={'/'}>
-                <img className={css.header__logo} src={logo} alt="logo"/>
-            </Link>
+            <div className={css.header__right}>
+                <Link to={'/'}>
+                    <img className={css.header__logo} src={logo} alt="logo"/>
+                </Link>
+                <a className={css.save__life_link} href="https://savelife.in.ua/" target="_blank">
+                    <img className={css.save__life_link} src={EN ? save_life_en : save_life_ukr} alt="save_life"/>
+                </a>
+            </div>
+
 
             <div className={css.header__left}>
 

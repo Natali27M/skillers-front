@@ -13,6 +13,17 @@ export const getUserResults = createAsyncThunk(
     }
 );
 
+export const getResultsByTest = createAsyncThunk(
+    'resultsSlice/getResultsByTest',
+    async ({testId, pageNum}, {rejectWithValue}) => {
+        try {
+            return await resultsServices.geAllTestResults(testId, pageNum);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 export const getUserResultsAll = createAsyncThunk(
     'resultsSlice/getUserResultsAll',
     async (userId, {rejectWithValue}) => {
@@ -53,6 +64,7 @@ const resultsSlice = createSlice({
         status: null,
         error: null,
         userResults: [],
+        resultsByTest: [],
         userByTestResult: null,
         userResultsAll: [],
         isTestCompleted: false
@@ -64,7 +76,7 @@ const resultsSlice = createSlice({
         },
         clearResults: (state) => {
             state.isTestCompleted = false;
-            state.userByTestResult = null
+            state.userByTestResult = null;
         }
     },
 
@@ -72,6 +84,11 @@ const resultsSlice = createSlice({
         [getUserResults.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.userResults = action.payload;
+        },
+
+        [getResultsByTest.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.resultsByTest = action.payload;
         },
 
         [getUserResultsAll.fulfilled]: (state, action) => {
@@ -115,7 +132,7 @@ const resultsSlice = createSlice({
     }
 });
 
-export const {setTestComplete, clearResults} = resultsSlice.actions
+export const {setTestComplete, clearResults} = resultsSlice.actions;
 
 const resultReducers = resultsSlice.reducer;
 

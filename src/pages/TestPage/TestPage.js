@@ -185,9 +185,9 @@ const TestPage = () => {
     };
 
 
-    if (!(roles?.includes('admin')) && hrUserId) {
+/*    if ((!(roles?.includes('admin')) && oneTest?.attributes?.authorId !== user?.id) && hrUserId) {
         return <Navigate to={`/user`} replace/>;
-    }
+    }*/
 
 
     if (approveCompleted) {
