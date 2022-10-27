@@ -19,7 +19,7 @@ import {
     makeTimeToPush,
     setTestComplete
 } from '../../store';
-import {BackButton, ExerciseBlock} from '../../components';
+import {BackButton, ExerciseBlock, SignUpModal} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
 import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
@@ -58,6 +58,8 @@ const TestPage = () => {
     const [timeToUpdateTest, setTimeToUpdateTest] = useState(false);
 
     const [userForHr, setUserForHr] = useState({});
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         if (hrUserId) {
@@ -139,7 +141,10 @@ const TestPage = () => {
                     allExercises: result.allExercises
                 }
             ));
+        } else if (result && !user) {
+            setModalOpen(true);
         }
+
     }, [result]);
 
     useEffect(() => {
@@ -185,9 +190,9 @@ const TestPage = () => {
     };
 
 
-/*    if ((!(roles?.includes('admin')) && oneTest?.attributes?.authorId !== user?.id) && hrUserId) {
-        return <Navigate to={`/user`} replace/>;
-    }*/
+    /*    if ((!(roles?.includes('admin')) && oneTest?.attributes?.authorId !== user?.id) && hrUserId) {
+            return <Navigate to={`/user`} replace/>;
+        }*/
 
 
     if (approveCompleted) {
@@ -208,6 +213,7 @@ const TestPage = () => {
 
     return (
         <div className={css.test__page}>
+            {modalOpen && <SignUpModal setModalOpen={setModalOpen} type="test"/>}
             <div className={css.test__page_title}>
                 <div>{oneTest?.attributes?.name}</div>
                 <div className={css.title__rating}>
