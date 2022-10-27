@@ -99,9 +99,19 @@
     color: white;
 }
 
+.results__block > .result__testName {
+    color: black;
+}
+
+.fill {
+    min-width: 75px;
+}
+
 .result__testName {
+    text-decoration: none;
     width: 70%;
 }
+
 
 .results__result {
     width: 30%;
@@ -235,6 +245,17 @@
     column-gap: 10px;
     color: #FFFFFF;
     text-decoration: none;
+}
+
+.show__result_btn {
+    width: 75px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 3px;
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
 }
 
 @media (max-width: 767px) {

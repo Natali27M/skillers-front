@@ -111,7 +111,6 @@ const TechList = () => {
                 <TechBlock img={project_manager} name={"Management"} techId={10}/>
             </ReactSimplyCarousel>
 
-
         </div>
     );
 };

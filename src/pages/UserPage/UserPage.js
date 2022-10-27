@@ -13,7 +13,7 @@ import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
-import {getUserResults, getUserRoles, logout, updateUser} from '../../store';
+import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from '../../store';
 
 import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
@@ -26,7 +26,7 @@ const UserPage = () => {
 
     const {user, roles, updateError} = useSelector(state => state['userReducers']);
 
-    const {userResults} = useSelector(state => state['resultReducers']);
+    const {userResults, resultsByTest} = useSelector(state => state['resultReducers']);
 
     const {userAchievement, userRank} = useSelector(state => state['achievementsReducers']);
 
@@ -38,6 +38,8 @@ const UserPage = () => {
 
     const [pageNumber, setPageNumber] = useState(1);
 
+    const [resultsPageNumber, setResultsPageNumber] = useState(1);
+
     const [testsPageNumber, setTestsPageNumber] = useState(1);
 
     const [hiring, setHiring] = useState(false);
@@ -46,6 +48,8 @@ const UserPage = () => {
 
     const [linkedName, setLinkedName] = useState('');
 
+    const [testForResults, setTestForResults] = useState(null);
+
 
     useEffect(() => {
         if (user) {
@@ -53,7 +57,6 @@ const UserPage = () => {
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
             setHiring(user?.openForHiring);
-            dispatch(getTestsByUser({pageNum: testsPageNumber, authorId: id}));
             if (user?.linkedin) {
                 const result = [];
                 const nameWithNumber = user?.linkedin.split('/')[4];
@@ -70,9 +73,22 @@ const UserPage = () => {
     useEffect(() => {
         if (user) {
             const id = user.id;
+            dispatch(getTestsByUser({pageNum: testsPageNumber, authorId: id}));
+        }
+    }, [user, testsPageNumber]);
+
+    useEffect(() => {
+        if (user) {
+            const id = user.id;
             dispatch(getUserResults({userId: id, pageNum: pageNumber}));
         }
     }, [user, pageNumber]);
+
+    useEffect(() => {
+        if (testForResults) {
+            dispatch(getResultsByTest({pageNum: resultsPageNumber, testId: testForResults?.id}));
+        }
+    }, [user, testForResults, resultsPageNumber]);
 
     useEffect(() => {
         dispatch(getTestsForApprove(1));
@@ -235,12 +251,17 @@ const UserPage = () => {
                         <div className={css.results__header}>
                             <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
                             <div className={css.results__result}>{EN ? 'Tech ID' : 'ID технології'}</div>
+                            <div className={css.fill}></div>
                         </div>
                         {testsByUser?.data?.map(test =>
-                            <Link to={`/test/${test.id}`} key={test.id} className={css.results__block}>
-                                <div className={css.result__testName}>{test.attributes.name}</div>
+                            <div key={test.id} className={css.results__block}>
+                                <Link to={`/test/${test.id}`}
+                                      className={css.result__testName}>{test.attributes.name}</Link>
                                 <div className={css.results__result}>{test.attributes.techId}</div>
-                            </Link>
+                                <button onClick={() => setTestForResults(test)} className={css.show__result_btn}>
+                                    {EN ? 'Results' : 'Результати'}
+                                </button>
+                            </div>
                         )}
                         <div className={css.pagination__block}>
                             <img className={css.arrow__left}
@@ -251,6 +272,35 @@ const UserPage = () => {
                                  onClick={() => testsPageNumber < testsByUser.meta?.pagination?.pageCount && setTestsPageNumber(testsPageNumber + 1)}
                                  alt="arrow"/>
                         </div>
+                    </div>
+                }
+                {testForResults &&
+                    <div className={css.results__wrap}>
+                        <div className={rootCSS.default__title_24}>
+                            {EN ? `Results of ${testForResults.attributes.name}`
+                                : `Результати ${testForResults.attributes.name}`
+                            }
+                        </div>
+                        <div className={css.results__header}>
+                            <div className={css.result__testName}>{EN ? 'User ID' : 'ID Користувача'}</div>
+                            <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
+                        </div>
+                        {resultsByTest?.data?.map(result =>
+                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`} key={result.id}
+                                  className={css.results__block}>
+                                <div className={css.result__testName}>{result?.attributes?.userId}</div>
+                                <div className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
+                            </Link>
+                        )}
+                        {!!resultsByTest?.data?.length ? <div className={css.pagination__block}>
+                            <img className={css.arrow__left}
+                                 onClick={() => resultsPageNumber > 1 && setResultsPageNumber(resultsPageNumber - 1)}
+                                 src={arrow} alt="arrow"/>
+                            <div>{resultsPageNumber}/{resultsByTest?.meta?.pagination?.pageCount}</div>
+                            <img className={css.arrow__right} src={arrow}
+                                 onClick={() => resultsPageNumber < resultsByTest?.meta?.pagination?.pageCount && setTestsPageNumber(resultsPageNumber + 1)}
+                                 alt="arrow"/>
+                        </div> : <div>{EN ? 'No results' : 'Немає результатів'}</div>}
                     </div>
                 }
                 <div className={css.buttons__wrap}>
