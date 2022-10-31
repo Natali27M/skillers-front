@@ -23,7 +23,7 @@ const TechList = () => {
 
     return (
         <div className={css.tech__wrap}>
-            <h4 className={rootCSS.default__title_34}>
+            <h4 className={rootCSS.default__title_24}>
                 {EN ? 'Choose your quiz' : 'Виберіть тест'}
             </h4>
             <ReactSimplyCarousel
@@ -36,7 +36,7 @@ const TechList = () => {
                         width: "100%",
                         justifyContent: "center",
                         columnGap: "10px",
-                        userSelect: "text"
+                        userSelect: "text",
                     }
                 }}
                 forwardBtnProps={{
