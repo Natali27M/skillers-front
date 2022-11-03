@@ -33,7 +33,16 @@ export const deleteFeedback = createAsyncThunk(
         }
     }
 );
-
+export const updateIsApproved = createAsyncThunk(
+    'feedbackSlice/updateIsApproved',
+    async (id, {rejectWithValue}) => {
+        try {
+            return feedbackService.updateIsApproved(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
 
 const feedbackSlice = createSlice({
     name: 'feedbackSlice',
@@ -41,6 +50,7 @@ const feedbackSlice = createSlice({
         status: null,
         error: null,
         isDelete: false,
+        isConfirmed: false,
         feedbackPage: {}
     },
     extraReducers: {
@@ -74,6 +84,17 @@ const feedbackSlice = createSlice({
             state.status = 'fulfilled';
             state.isDelete = !state.isDelete;
         },
+        [updateIsApproved.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [updateIsApproved.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [updateIsApproved.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.isConfirmed = !state.isConfirmed;
+        }
     }
 });
 

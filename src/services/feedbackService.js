@@ -12,5 +12,8 @@ export const feedbackService = {
     getFeedbackPaginated: (pageNumber) => axiosServices
         .get(`${urls.feedback}?pagination[page]=${pageNumber}&pagination[pageSize]=15&sort=createdAt:desc`, {
             headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
-        }).then(value => value.data)
+        }).then(value => value.data),
+    updateIsApproved: (id) => axiosServices.put(`${urls.feedback}/${id}`, {data: {isApproved: true}}, {
+        headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
+    }).then(value => value.data)
 };

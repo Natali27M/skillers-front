@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import rootCSS from '../../styles/root.module.css'
 import css from './AdminPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteFeedback, getFeedback, getUserRoles} from '../../store';
+import {deleteFeedback, getFeedback, updateIsApproved} from '../../store';
 import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
@@ -18,7 +18,7 @@ const AdminPage = () => {
 
     const {testsForApprove} = useSelector(state => state['testsReducers']);
 
-    const {feedbackPage, isDelete} = useSelector(state => state['feedbackReducers']);
+    const {feedbackPage, isDelete, isConfirmed } = useSelector(state => state['feedbackReducers']);
 
     const dispatch = useDispatch();
 
@@ -32,12 +32,16 @@ const AdminPage = () => {
     useEffect(() => {
         dispatch(getFeedback(feedbackPageNumber));
 
-    }, [feedbackPageNumber, isDelete] );
+    }, [feedbackPageNumber, isDelete, isConfirmed]);
 
 
     const makeDeleteFeedback = (id) => {
         dispatch(deleteFeedback(id))
     };
+
+    const approve = (id) => {
+        dispatch(updateIsApproved(id))
+    }
 
     if (!(roles?.includes('admin'))) {
         return <Navigate to={'/user'} replace/>;
@@ -123,6 +127,9 @@ const AdminPage = () => {
                             </div>
                             <div className={css.delete__feedback} onClick={() => makeDeleteFeedback(feedback?.id)}>
                                 <img src={cross} alt="cross"/>
+                            </div>
+                            <div>
+                                <button onClick={() =>approve(feedback?.id)}>Approve</button>
                             </div>
                         </div>
                     )}
