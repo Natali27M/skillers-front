@@ -4,30 +4,36 @@ import {useDispatch, useSelector} from 'react-redux';
 
 
 import {
-    AdminPage, CompilerPage,
-    CreateTestPage, ForUserPage,
+    AdminPage,
+    CompilerPage,
+    CreateTestPage,
+    FeedbackFormPage,
+    ForUserPage,
     GoogleRedirectPage,
     HomePage,
-    LoginPage, NotFoundPage, PolicyPage, RankPage, RecruiterPage,
+    LoginPage,
+    NotFoundPage,
+    PolicyPage,
+    RankPage,
+    RecruiterPage,
     RegisterPage,
     TestListPage,
     TestPage,
-    UserPage,
-    FeedbackFormPage
+    UserPage
 } from './pages';
 import {Layout} from './components';
 import {
     clear,
     clearCreateTest,
-    getLanguage, getUserResultsAll,
+    getLanguage,
+    getUserResults,
+    getUserResultsAll,
     getUserRoles,
     setJwtFromLocalStorage,
     setUserFromLocalStorage
 } from './store';
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
-import {getUserResults} from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-
 
 
 function App() {
@@ -97,9 +103,8 @@ function App() {
                 <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                <Route path={'/feedback'} element={<FeedbackFormPage />} />
-                <Route path={'*'} element={<NotFoundPage />} />
-
+                <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
     );
