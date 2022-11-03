@@ -69,46 +69,9 @@
     background: url("../images/mainBg.png") no-repeat center / cover;
 }
 
-@media (max-width: 1200px) {
-    .default__title_24 {
-        display: flex;
-    }
-}
-
-@media (max-width: 1025px) {
-    .default__title_24 {
-        display: none;
-    }
-}
-
-@media (max-width: 1023px) {
-    /*.default__title_34 {*/
-    /*    font-size: 28px;*/
-    /*}*/
-
-    .default__title_24 {
-        display: flex;
-    }
-}
-
 @media (max-width: 767px) {
     .default__title_34 {
         font-size: 28px;
-    }
-    .default__title_24 {
-        display: flex;
-    }
-}
-
-@media (max-width: 541px) {
-    .default__title_24 {
-        display: none;
-    }
-}
-
-@media (max-width: 539px) {
-    .default__title_24 {
-        display: flex;
     }
 }
 
@@ -118,22 +81,3 @@
         font-size: 28px;
     }
 }
-
-@media (max-width: 376px) {
-    .default__title_24 {
-        display: none;
-    }
-}
-
-@media (max-width: 361px) {
-    .default__title_24 {
-        display: flex;
-    }
-}
-
-@media (max-width: 281px) {
-    .default__title_24 {
-        display: none;
-    }
-}
-
