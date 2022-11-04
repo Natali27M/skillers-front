@@ -192,7 +192,18 @@
         width: 100vw;
         display: flex;
         justify-content: center;
-        /*padding: 20px 0;*/
     }
 }
+
+@media (max-width: 280px) {
+    .for__slider_wrap{
+        width: 80vw;
+        padding: 20px 0;
+    }
+
+    .tech__block_title {
+        font-size: 16px;
+    }
+}
+
 
