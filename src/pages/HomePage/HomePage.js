@@ -19,7 +19,7 @@ const HomePage = () => {
                         <h1 className={css.main__title_loginUser}>
                             SKILLIANT
                         </h1>
-                        <div className={css.home__description}>
+                        <div className={css.home__description_loginUser}>
                             {EN ? 'Platform for testing your IT skills' :
                                 'Платформа для перевірки твоїх IT навичок'}
                         </div>

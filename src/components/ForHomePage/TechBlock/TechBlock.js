@@ -27,7 +27,7 @@ const TechBlock = ({img, name, techId}) => {
     return (
         <>
             {user ?
-                <div className={css.for__slider_wrap}>
+                <div className={css.for__slider_wrap_loginUser}>
                     <div className={css.tech__block_wrap}>
                         <Link className={css.tech__block_loginUser} to={`/test-list/${techId}`}>
 

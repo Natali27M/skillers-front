@@ -1,4 +1,5 @@
-.for__slider_wrap {
+.for__slider_wrap,
+.for__slider_wrap_loginUser {
     padding: 20px 30px;
 }
 
@@ -128,7 +129,8 @@
 }
 
 @media (max-width: 1500px) {
-    .for__slider_wrap {
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
         padding: 20px 15px;
     }
 }
@@ -188,7 +190,8 @@
 
 
 @media (max-width: 340px) {
-    .for__slider_wrap{
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
         width: 100vw;
         display: flex;
         justify-content: center;
@@ -196,7 +199,8 @@
 }
 
 @media (max-width: 280px) {
-    .for__slider_wrap{
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
         width: 80vw;
         padding: 20px 0;
     }
