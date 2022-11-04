@@ -15,5 +15,8 @@ export const feedbackService = {
         }).then(value => value.data),
     updateIsApproved: (id) => axiosServices.put(`${urls.feedback}/${id}`, {data: {isApproved: true}}, {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
-    }).then(value => value.data)
+    }).then(value => value.data),
+    getFeedbackPaginatedConfirmed: () => axiosServices
+        .get(`${urls.feedback}?filters[isApproved][$eq]=true&pagination[pageSize]=4&sort=createdAt:desc`)
+        .then(value => value.data),
 };

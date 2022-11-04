@@ -1,0 +1,34 @@
+.feedback__block {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    padding: 20px 10px;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    row-gap: 10px;
+}
+
+.feedback__title {
+    display: flex;
+    font-size: 30px;
+    font-weight: 500;
+    width: auto;
+    justify-content: center;
+    border-bottom: 3px solid;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+.feedback__text {
+    height: 100%;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 200;
+    font-size: 14px;
+}
+
