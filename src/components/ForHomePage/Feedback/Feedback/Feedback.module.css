@@ -21,6 +21,7 @@
     padding: 0 10px;
     margin-bottom: 20px;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
 }
 
 .feedback__text {
