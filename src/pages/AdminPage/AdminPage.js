@@ -14,11 +14,11 @@ const AdminPage = () => {
 
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {user, roles} = useSelector(state => state['userReducers']);
+    const {roles} = useSelector(state => state['userReducers']);
 
     const {testsForApprove} = useSelector(state => state['testsReducers']);
 
-    const {feedbackPage, isDelete, isConfirmed } = useSelector(state => state['feedbackReducers']);
+    const {feedbackPage, isDelete, isConfirmed} = useSelector(state => state['feedbackReducers']);
 
     const dispatch = useDispatch();
 
@@ -122,14 +122,19 @@ const AdminPage = () => {
                             <div className={css.feedback__name}>
                                 {feedback?.attributes.userName}
                             </div>
-                            <div className={css.feedback__name}>
+                            <div className={css.feedback__email}>
                                 {feedback?.attributes.email}
                             </div>
                             <div className={css.delete__feedback} onClick={() => makeDeleteFeedback(feedback?.id)}>
                                 <img src={cross} alt="cross"/>
                             </div>
-                            <div>
-                                <button onClick={() =>approve(feedback?.id)}>Approve</button>
+                            <div className={css.approve__feedback}>
+                                {
+                                    feedback?.attributes.isApproved ?
+                                        <span>{EN ? "Approved" : "Підтверджено"}</span> :
+                                        <button
+                                            onClick={() => approve(feedback?.id)}>{EN ? "Approve" : "Підтвердити"}</button>
+                                }
                             </div>
                         </div>
                     )}

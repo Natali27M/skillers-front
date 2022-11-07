@@ -58,9 +58,34 @@
 
 .feedbacks__block {
     display: flex;
-    /*align-items: center;*/
     width: 100%;
     justify-content: space-between;
     flex-direction: row;
     row-gap: 40px;
+}
+
+@media (max-width: 1200px) {
+    .feedbacks__block {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 921px) {
+    .feedbacks__block {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 769px) {
+    .feedbacks__block {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 455px) {
+    .feedbacks__block {
+        align-items: center;
+        flex-direction: column;
+    }
 }
