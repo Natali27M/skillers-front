@@ -27,7 +27,7 @@ const TechList = () => {
         <>
             {user ?
                 <div className={css.tech__wrap_loginUser}>
-                    <h4 className={rootCSS.default__title_24}>
+                    <h4 className={rootCSS.default__title_24_loginUser}>
                         {EN ? 'Choose your quiz' : 'Виберіть тест'}
                     </h4>
                     <ReactSimplyCarousel

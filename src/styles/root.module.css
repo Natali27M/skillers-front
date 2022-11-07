@@ -40,7 +40,8 @@
 
 
 .default__title_34,
-.default__title_24 {
+.default__title_24,
+.default__title_24_loginUser {
     font-weight: 500;
     border-bottom: 4px solid;
     padding-bottom: 10px;
@@ -54,9 +55,14 @@
     font-size: 34px;
 }
 
-.default__title_24 {
+.default__title_24,
+.default__title_24_loginUser {
     font-size: 24px;
     margin-bottom: 10px;
+}
+
+.default__title_24_loginUser {
+    color: white;
 }
 
 .root__background {
