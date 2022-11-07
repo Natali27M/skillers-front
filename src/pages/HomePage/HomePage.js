@@ -2,13 +2,15 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
 import logo from '../../images/header/SKILLERS.svg';
-import {LeaderBord, TechList, Banner} from '../../components';
+import {LeaderBord, TechList, Banner, SignUpModal,PresentForUser} from '../../components';
 import {Link} from 'react-router-dom';
 
 
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
+
+    const present = JSON.parse(localStorage.getItem('present'));
 
     return (
         <>
@@ -25,6 +27,9 @@ const HomePage = () => {
                     {user ? (EN ? 'To my profile' : 'На мій профіль') : (EN ? 'Register now' : 'Зареєструватися')}
                 </Link>
             </div>
+
+            {!present && <PresentForUser/>}
+
             <TechList/>
             <LeaderBord/>
             {/*<Banner/>*/}
