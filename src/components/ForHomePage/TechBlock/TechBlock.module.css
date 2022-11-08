@@ -1,4 +1,5 @@
-.for__slider_wrap {
+.for__slider_wrap,
+.for__slider_wrap_loginUser {
     padding: 20px 30px;
 }
 
@@ -13,7 +14,8 @@
     padding-bottom: 10px;
 }
 
-.tech__block {
+.tech__block,
+.tech__block_loginUser {
     width: 270px;
     height: 80px;
     display: flex;
@@ -30,25 +32,34 @@
     box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
 }
 
-.teck__block_content {
+.teck__block_content,
+.teck__block_content_loginUser {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     color: black;
+    width: 70%;
 }
 
-.tech__block_title {
+.tech__block_title,
+.tech__block_title_loginUser {
     font-family: 'Aldrich', sans-serif;
     font-size: 24px;
 }
 
-.all__tests_block {
+.all__tests_block,
+.all__tests_block_loginUser {
     display: flex;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 10px;
     font-size: 16px;
 }
 
+.arrow_test {
+   display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
 
 .tech__img {
     height: 100%;
@@ -102,46 +113,75 @@
     height: 15px;
 }
 
+.number__tests_icon {
+    width: 12px;
+}
+
+.number__tests_box {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.number__tests {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media (max-width: 1600px) {
     .tech__block,
+    .tech__block_loginUser,
     .tech__block_wrap {
         width: 250px;
     }
 }
 
 @media (max-width: 1500px) {
-    .for__slider_wrap {
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
         padding: 20px 15px;
     }
 }
 
 @media (max-width: 1300px) {
     .tech__block,
+    .tech__block_loginUser,
     .tech__block_wrap {
         width: 240px;
+    }
+
+    .tech__block_title,
+    .tech__block_title_loginUser {
+        font-size: 23px;
     }
 }
 
 @media (max-width: 767px) {
     .tech__block,
+    .tech__block_loginUser,
     .tech__block_wrap {
         width: 200px;
     }
 
-    .tech__block {
+    .tech__block,
+    .tech__block_loginUser {
         height: 60px;
+        padding: 5px 10px;
     }
 
-    .tech__block_title {
-        font-size: 20px;
+    .tech__block_title,
+    .tech__block_title_loginUser {
+        font-size: 18px;
     }
 
-    .all__tests_block {
+    .all__tests_block,
+    .all__tests_block_loginUser {
         font-size: 12px;
     }
 
-    .all__tests_block img {
+    .arrow {
         height: 10px;
     }
 
@@ -165,13 +205,33 @@
         height: 10px;
     }
 
+    .number__tests_icon {
+        width: 10px;
+    }
+
 }
 
 
 @media (max-width: 340px) {
-    .for__slider_wrap{
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
         width: 100vw;
         display: flex;
         justify-content: center;
     }
 }
+
+@media (max-width: 280px) {
+    .for__slider_wrap,
+    .for__slider_wrap_loginUser {
+        width: 80vw;
+        padding: 20px 0;
+    }
+
+    .tech__block_title,
+    .tech__block_title_loginUser {
+        font-size: 16px;
+    }
+}
+
+

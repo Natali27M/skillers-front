@@ -11,6 +11,18 @@
     color: white;
 }
 
+.home__page_loginUser {
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding: 0 15px;
+    background: url("../../images/mainBg.png") no-repeat center, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #2f2f2f;
+}
+
 .home__logo {
     width: 500px;
 }
@@ -20,10 +32,15 @@
     font-weight: 500;
 }
 
-.home__description {
+.home__description,
+.home__description_loginUser {
     width: 900px;
     font-size: 35px;
     text-align: center;
+}
+
+.home__description_loginUser {
+    color: white;
 }
 
 .register__btn {
@@ -42,11 +59,22 @@
     text-transform: uppercase;
 }
 
-
-.main__title{
+.main__title,
+.main__title_loginUser {
     font-family: 'Aldrich', sans-serif;
     font-size: 100px;
     font-weight: 400;
+}
+
+.main__title_loginUser {
+    color: white;
+}
+
+.block_loginUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /*
@@ -57,61 +85,128 @@
 */
 
 @media (max-width: 1200px) {
+    .home__page_loginUser {
+        height: calc(100vh - 60px);
+    }
+
+    .home__page {
+        min-height: calc(100vh - 60px);
+    }
+
     .home__logo{
         width: 400px;
     }
 
-    .home__description {
+    .home__description,
+    .home__description_loginUser {
         width: 90%;
         font-size: 30px;
     }
 
-    .main__title{
+    .main__title,
+    .main__title_loginUser {
         font-size: 80px;
     }
 
 }
 
+@media (max-width: 1025px) {
+    .home__description_loginUser {
+        display: none;
+    }
+
+    .main__title_loginUser {
+        font-size: 60px;
+    }
+
+    .block_loginUser {
+        row-gap: 0;
+    }
+}
+
+@media (max-width: 1023px) {
+    .home__page_loginUser {
+        height: calc(100vh - 60px);
+    }
+
+    .home__logo{
+        width: 400px;
+    }
+
+    .home__description_loginUser {
+        display: flex;
+        width: 90%;
+        font-size: 30px;
+    }
+
+    .main__title_loginUser {
+        font-size: 80px;
+    }
+    .block_loginUser {
+        row-gap: 10px;
+    }
+
+    /*.home__page_loginUser {*/
+    /*    height: calc(100vh - 70px);*/
+    /*}*/
+}
+
 @media (max-width: 900px) {
-  /*  .home__logo{
-        width: 700px;
+    .block_loginUser {
+        row-gap: 10px;
     }
 
-    .home__description {
-        width: 700px;
-        font-size: 45px;
+    .home__page_loginUser {
+        height: calc(100vh - 70px);
     }
 
-    .register__btn {
-        font-size: 25px;
-    }*/
+    /*  .home__logo{
+          width: 700px;
+      }
+
+      .home__description {
+          width: 700px;
+          font-size: 45px;
+      }
+
+      .register__btn {
+          font-size: 25px;
+      }*/
 }
 
 
 @media (max-width: 767px) {
     .home__page {
-        min-height: calc(100vh - 60px);
+        min-height: calc(100vh - 60px)
+    }
+    .home__page_loginUser {
+        height: calc(100vh - 60px);
     }
 
     .home__logo {
         width: 60%;
     }
 
-    .home__description {
+    .home__description,
+    .home__description_loginUser {
         font-size: 27px;
         width: fit-content;
     }
 
-    .main__title{
+    .main__title,
+    .main__title_loginUser {
         font-size: 70px;
+    }
+
+    .block_loginUser {
+        row-gap: 0;
     }
 
 }
 
-
-
 @media (max-width: 500px) {
-    .home__description {
+    .home__description,
+    .home__description_loginUser {
         font-size: 26px;
     }
 
@@ -124,19 +219,44 @@
         font-size: 20px;
     }
 
-    .main__title{
+    .main__title,
+    .main__title_loginUser {
         font-size: 65px;
     }
 }
 
+@media (max-width: 376px) {
+    .home__description_loginUser {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 374px) {
+    .home__description_loginUser {
+        font-size: 27px;
+    }
+}
+
 @media (max-width: 370px) {
-    .main__title{
+    .main__title,
+    .main__title_loginUser {
         font-size: 55px;
     }
 }
 
 @media (max-width: 320px) {
-    .main__title{
+    .main__title,
+    .main__title_loginUser {
         font-size: 45px;
+    }
+
+    .home__description_loginUser {
+        display: flex;
+    }
+}
+
+@media (max-width: 281px) {
+    .home__description_loginUser {
+        display: none;
     }
 }
