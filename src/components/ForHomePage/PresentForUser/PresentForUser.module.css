@@ -39,6 +39,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 .present__text {
@@ -61,7 +62,7 @@
     border-image-slice: 1;
 }
 
-span {
+.span {
     border-bottom: 4px solid;
     width: auto;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);

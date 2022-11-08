@@ -7,7 +7,7 @@
 }
 
 .overlay {
-    width: 62%;
+    width: 55%;
     background: url("../../../images/whiteOverlayForPresent.png") no-repeat center right 100%;
     display: flex;
     align-items: center;
@@ -28,6 +28,19 @@
 
 .name {
     font-size: 55px;
+}
+
+.span, .name {
+    border-bottom: 4px solid;
+    width: auto;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+@media (max-width: 1440px) {
+    .overlay {
+        width: 60%;
+    }
 }
 
 @media (max-width: 1220px) {

@@ -24,9 +24,11 @@ const PresentForUser = () => {
                     </h2>
 
                     <p className={css.fontSize36}>
-                        {EN ? <div>Skilliant pays <span>$100</span> for the first <br/> <span>10</span> users on the leaderboard</div>
+                        {EN ? <div>Skilliant pays <span className={css.span}>$100</span> for the first <br/>
+                                <span className={css.span}>10</span> users on the leaderboard</div>
                             :
-                            <div>Skilliant платить <span>$100</span> для перших <br/> <span>10</span> користувачів у таблиці лідерів</div>}
+                            <div>Skilliant платить <span className={css.span}>$100</span> для перших <br/>
+                                <span className={css.span}>10</span> користувачів у таблиці лідерів</div>}
                     </p>
 
                     <p className={css.fontSize30}>
