@@ -32,25 +32,34 @@
     box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
 }
 
-.teck__block_content {
+.teck__block_content,
+.teck__block_content_loginUser {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     color: black;
+    width: 70%;
 }
 
-.tech__block_title {
+.tech__block_title,
+.tech__block_title_loginUser {
     font-family: 'Aldrich', sans-serif;
     font-size: 24px;
 }
 
-.all__tests_block {
+.all__tests_block,
+.all__tests_block_loginUser {
     display: flex;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 10px;
     font-size: 16px;
 }
 
+.arrow_test {
+   display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
 
 .tech__img {
     height: 100%;
@@ -104,16 +113,17 @@
     height: 15px;
 }
 
-.numberTestsIcon {
+.number__tests_icon {
     width: 20px;
-    margin-right: 10px;
 }
 
-.numberTestsBox {
+.number__tests_box {
     display: flex;
+    align-items: center;
+    column-gap: 5px;
 }
 
-.numberTests {
+.number__tests {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,6 +151,11 @@
     .tech__block_wrap {
         width: 240px;
     }
+
+    .tech__block_title,
+    .tech__block_title_loginUser {
+        font-size: 23px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -150,19 +165,23 @@
         width: 200px;
     }
 
-    /*.tech__block {*/
-    /*    height: 60px;*/
-    /*}*/
-
-    .tech__block_title {
-        font-size: 20px;
+    .tech__block,
+    .tech__block_loginUser {
+        height: 60px;
+        padding: 5px 10px;
     }
 
-    /*.all__tests_block {*/
-    /*    font-size: 12px;*/
-    /*}*/
+    .tech__block_title,
+    .tech__block_title_loginUser {
+        font-size: 18px;
+    }
 
-    .all__tests_block img {
+    .all__tests_block,
+    .all__tests_block_loginUser {
+        font-size: 12px;
+    }
+
+    .arrow {
         height: 10px;
     }
 
@@ -186,6 +205,10 @@
         height: 10px;
     }
 
+    .number__tests_icon {
+        width: 12px;
+    }
+
 }
 
 
@@ -205,7 +228,8 @@
         padding: 20px 0;
     }
 
-    .tech__block_title {
+    .tech__block_title,
+    .tech__block_title_loginUser {
         font-size: 16px;
     }
 }

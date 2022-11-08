@@ -33,19 +33,23 @@ const TechBlock = ({img, name, techId}) => {
 
                             <img className={css.tech__img} src={img} alt="java"/>
 
-                            <div className={css.teck__block_content}>
-                                <div className={css.tech__block_title}>
+                            <div className={css.teck__block_content_loginUser}>
+                                <div className={css.tech__block_title_loginUser}>
                                     {name}
                                 </div>
 
-                                <div className={css.all__tests_block}>
-                                    <div>{EN ? 'All tests' : 'Всі тести'}</div>
-                                    <img src={arrow} alt="arrow"/>
-                                </div>
+                                <div className={css.all__tests_block_loginUser}>
 
-                                <div className={css.numberTestsBox}>
-                                    <img className={css.numberTestsIcon} src={numberTests} alt="numberTests"/>
-                                    {pagination && <div className={css.numberTests}>{pagination?.total}</div>}
+                                    <div className={css.number__tests_box}>
+                                        <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
+                                        {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
+                                    </div>
+
+                                    <div className={css.arrow_test}>
+                                        <div>{EN ? 'All tests' : 'Всі тести'}</div>
+                                        <img  className={css.arrow} src={arrow} alt="arrow"/>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -87,13 +91,22 @@ const TechBlock = ({img, name, techId}) => {
                                 </div>
 
                                 <div className={css.all__tests_block}>
-                                    <div>{EN ? 'All tests' : 'Всі тести'}</div>
-                                    <img src={arrow} alt="arrow"/>
-                                </div>
+                                    <div className={css.number__tests_box}>
+                                        <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
+                                        {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
+                                    </div>
 
-                                <div className={css.numberTestsBox}>
-                                    <img className={css.numberTestsIcon} src={numberTests} alt="numberTests"/>
-                                    {pagination && <div className={css.numberTests}>{pagination?.total}</div>}
+                                    <div className={css.arrow_test}>
+                                        <div>{EN ? 'All tests' : 'Всі тести'}</div>
+                                        <img className={css.arrow} src={arrow} alt="arrow"/>
+                                    </div>
+                                {/*    <div>{EN ? 'All tests' : 'Всі тести'}</div>*/}
+                                {/*    <img src={arrow} alt="arrow"/>*/}
+                                {/*</div>*/}
+
+                                {/*<div className={css.numberTestsBox}>*/}
+                                {/*    <img className={css.numberTestsIcon} src={numberTests} alt="numberTests"/>*/}
+                                {/*    {pagination && <div className={css.numberTests}>{pagination?.total}</div>}*/}
                                 </div>
 
                             </div>
