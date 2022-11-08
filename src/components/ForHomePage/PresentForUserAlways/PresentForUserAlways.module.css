@@ -7,13 +7,11 @@
 }
 
 .overlay {
-    width: 55%;
+    width: 62%;
     background: url("../../../images/whiteOverlayForPresent.png") no-repeat center right 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    /*justify-content: flex-end;*/
-    /*padding-right: 50px;*/
 }
 
 .text {
@@ -24,35 +22,12 @@
 }
 
 .text h2 {
-    font-size: 30px;
+    font-size: 35px;
     text-align: right;
 }
 
 .name {
-    font-size: 50px;
-}
-
-@media (max-width: 1440px) {
-    /*.overlay {*/
-    /*    width: 50%;*/
-    /*}*/
-    .name {
-        font-size: 45px;
-    }
-}
-
-@media (max-width: 1330px) {
-    /*.text {*/
-    /*    width: 80%;*/
-    /*}*/
-
-    .name {
-        font-size: 45px;
-    }
-
-    /*.overlay {*/
-    /*    padding-right: 30px;*/
-    /*}*/
+    font-size: 55px;
 }
 
 @media (max-width: 1220px) {
@@ -63,32 +38,12 @@
     .name {
         font-size: 40px;
     }
-
     .overlay {
-        width: 60%;
-        /*padding-right: 25px;*/
+        width: 68%;
     }
 }
 
-@media (max-width: 1070px) {
-    .text h2{
-        font-size: 27px;
-    }
-    .presentBox {
-        height: 160px;
-    }
-
-    .name {
-        font-size: 35px;
-    }
-
-    .overlay {
-        width: 65%;
-        /*padding-right: 40px;*/
-    }
-}
-
-@media (max-width: 950px) {
+@media (max-width: 992px) {
     .text h2{
         font-size: 25px;
     }
@@ -101,25 +56,14 @@
     }
 
     .overlay {
-        width: 65%;
-    }
-}
-
-@media (max-width: 850px) {
-    .overlay {
         width: 70%;
     }
-
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .presentBox {
         height: 100px;
     }
-
-    /*.overlay {*/
-    /*  padding-right: 30px;*/
-    /*}*/
 
     .text h2 {
         font-size: 21px;
@@ -130,32 +74,40 @@
     }
 
     .overlay {
-        width: 75%;
+        width: 82%;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 576px) {
     .overlay {
-        width: 80%;
-    }
-}
-
-@media (max-width: 550px) {
-    .overlay {
-      width: 85%;
-      /*padding-right: 20px;*/
+      width: 90%;
     }
 
     .text h2 {
         font-size: 18px;
     }
 
+    .name {
+        font-size: 22px;
+    }
+
 }
 
-@media (max-width: 470px) {
+@media (max-width: 500px) {
     .overlay {
-        width: 90%;
-        /*padding-right: 10px;*/
+        justify-content: flex-end;
+        padding-right: 10px;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .presentBox {
+        height: 80px;
+    }
+
+    .overlay {
+        width: 100%;
     }
 
     .text h2 {
@@ -168,39 +120,11 @@
 
 }
 
-@media (max-width: 380px) {
-    .presentBox {
-        height: 80px;
-    }
-    .overlay {
-        width: 95%;
-        /*padding-right: 5px;*/
-    }
-
-    .text h2 {
-        font-size: 14px;
-    }
-
+@media (max-width: 360px) {
     .name {
-        font-size: 17px;
+        font-size: 18px;
     }
 
 }
 
-@media (max-width: 290px) {
-    .presentBox {
-        height: 80px;
-    }
-    .overlay {
-        width: 100%;
-    }
 
-    .text h2 {
-        font-size: 12px;
-    }
-
-    .name {
-        font-size: 15px;
-    }
-
-}
