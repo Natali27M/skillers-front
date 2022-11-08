@@ -93,7 +93,7 @@
 }
 
 .delete__feedback {
-    flex-grow: 2;
+    flex-grow: 1;
     min-width: 3%;
     height: 100%;
     cursor: pointer;
@@ -120,13 +120,13 @@
     font-size: 14px;
 }
 
-.approve__feedback span {
-    font-size: 15px;
-}
+/*.approve__feedback span {*/
+/*    font-size: 15px;*/
+/*}*/
 
 
 .delete__feedback img {
-    width: 80%;
+    width: 30%;
 }
 
 .feedback__message {
@@ -181,8 +181,59 @@
     width: 70%;
 }
 
+.approve__feedback div {
+    position: relative;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.feedback__hover {
+    display: none;
+}
+
+
+.feedbackGrey {
+    background-image: url("../../images/check-grey.svg");
+}
+
+.feedbackGrey:hover .feedback__hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 12px;
+    width: 150px;
+    height: 50px;
+    right: -110px;
+}
+
+.feedbackGrey:hover .feedback__hover span {
+    font-size: 10px;
+}
+
+.feedbackDone {
+    background-image: url("../../images/check-green.svg");
+}
+
+.feedbackDone:hover .feedback__hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    right: -110px;
+    font-size: 10px;
+}
+
 
 @media (max-width: 1200px) {
+    .delete__feedback img {
+        width: 40%;
+    }
     .admin__wrap {
         width: 90%;
     }
@@ -199,12 +250,55 @@
         width: 25%;
     }
 
-
-    .approve__feedback button {
-        padding: 3px 3px;
-        font-size: 10px;
+    .approve__feedback span {
+        font-size: 14px;
     }
 
+    .feedback__email {
+        font-size: 14px;
+    }
+
+    .approve__feedback div {
+        height: 30px;
+        width: 30px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .approve__feedback span {
+        font-size: 12px;
+    }
+
+    .feedback__email {
+        font-size: 12px;
+    }
+
+    .approve__feedback div {
+        height: 27px;
+        width: 27px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
+}
+
+@media (max-width: 920px) {
+    .delete__feedback img {
+        width: 50%;
+    }
     .approve__feedback span {
         font-size: 10px;
     }
@@ -212,9 +306,25 @@
     .feedback__email {
         font-size: 10px;
     }
+
+    .approve__feedback div {
+        height: 24px;
+        width: 24px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
 }
 
 @media (max-width: 767px) {
+    .delete__feedback img {
+        width: 60%;
+    }
     .tests__wrap {
         margin-top: 10px;
     }
@@ -232,7 +342,31 @@
     .feedback__name {
         height: 30px;
     }
+
+    .feedback__email {
+        font-size: 8px;
+    }
+
+    .approve__feedback div {
+        height: 18px;
+        width: 18px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
 }
+
+@media (max-width: 620px) {
+    .feedback__email {
+        font-size: 8px;
+    }
+}
+
 
 @media (max-width: 550px) {
     .tests__block,
@@ -244,17 +378,21 @@
         font-size: 24px;
     }
 
-    .approve__feedback button {
-        padding: 1px 1px;
-        font-size: 9px;
-    }
-
-    .approve__feedback span {
-        font-size: 9px;
-    }
-
     .feedback__email {
-        font-size: 9px;
+        font-size: 8px;
+    }
+
+    .approve__feedback div {
+        height: 15px;
+        width: 15px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }
 
@@ -281,17 +419,21 @@
         padding: 0 10px;
     }
 
-    .approve__feedback button {
-        padding: 1px 1px;
-        font-size: 8px;
-    }
-
-    .approve__feedback span {
-        font-size: 8px;
-    }
-
     .feedback__email {
         font-size: 5px;
+    }
+
+    .approve__feedback div {
+        height: 10px;
+        width: 10px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }
 
@@ -303,5 +445,18 @@
 
     .test__difficult {
         width: 30%;
+    }
+
+    .approve__feedback div {
+        height: 10px;
+        width: 10px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }

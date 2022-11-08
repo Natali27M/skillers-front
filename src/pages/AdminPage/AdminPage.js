@@ -39,8 +39,8 @@ const AdminPage = () => {
         dispatch(deleteFeedback(id))
     };
 
-    const approve = (id) => {
-        dispatch(updateIsApproved(id))
+    const approve = (id, booleanValue) => {
+        dispatch(updateIsApproved({id, booleanValue}))
     }
 
     if (!(roles?.includes('admin'))) {
@@ -131,9 +131,18 @@ const AdminPage = () => {
                             <div className={css.approve__feedback}>
                                 {
                                     feedback?.attributes.isApproved ?
-                                        <span>{EN ? "Approved" : "Підтверджено"}</span> :
-                                        <button
-                                            onClick={() => approve(feedback?.id)}>{EN ? "Approve" : "Підтвердити"}</button>
+                                        <div className={css.feedbackGrey} onClick={() => approve(feedback?.id, false)}>
+                                            <div className={css.feedback__hover}>
+                                                {EN ?
+                                                    <span>cancel <br/> confirmation</span> :
+                                                    <span>відмінити <br/> підтвердження</span>}
+                                            </div>
+                                        </div> :
+                                        <div className={css.feedbackDone} onClick={() => approve(feedback?.id, true)}>
+                                            <div className={css.feedback__hover}>
+                                                {EN ? "approve" : "підтвердити"}
+                                            </div>
+                                        </div>
                                 }
                             </div>
                         </div>

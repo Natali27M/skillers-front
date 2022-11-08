@@ -65,6 +65,13 @@
     }
 }
 
+@media (max-width: 600px) {
+    .feedback__block {
+        width: 230px;
+        height: 230px;
+    }
+}
+
 @media (max-width: 455px) {
     .feedback__block {
         width: 200px;

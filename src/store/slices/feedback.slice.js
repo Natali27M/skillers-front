@@ -36,9 +36,10 @@ export const deleteFeedback = createAsyncThunk(
 );
 export const updateIsApproved = createAsyncThunk(
     'feedbackSlice/updateIsApproved',
-    async (id, {rejectWithValue}) => {
+    async (obj, {rejectWithValue}) => {
         try {
-            return feedbackService.updateIsApproved(id);
+            const {id, booleanValue} = obj;
+            return feedbackService.updateIsApproved(id, booleanValue);
         } catch (e) {
             rejectWithValue(e);
         }

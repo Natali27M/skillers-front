@@ -13,7 +13,7 @@ export const feedbackService = {
         .get(`${urls.feedback}?pagination[page]=${pageNumber}&pagination[pageSize]=15&sort=createdAt:desc`, {
             headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
         }).then(value => value.data),
-    updateIsApproved: (id) => axiosServices.put(`${urls.feedback}/${id}`, {data: {isApproved: true}}, {
+    updateIsApproved: (id, booleanValue) => axiosServices.put(`${urls.feedback}/${id}`, {data: {isApproved: booleanValue}}, {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
     getFeedbackPaginatedConfirmed: () => axiosServices
