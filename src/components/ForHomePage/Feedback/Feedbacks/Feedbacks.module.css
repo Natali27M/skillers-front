@@ -3,6 +3,7 @@
     padding: 70px 0;
     background-color: #ffffff;
     display: flex;
+    column-gap: 30px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -15,7 +16,6 @@
     align-items: center;
     flex-direction: column;
     row-gap: 50px;
-    /*height: 800px;*/
     margin: 50px 0;
 }
 
@@ -67,6 +67,14 @@
 @media (max-width: 769px) {
     .feedbacks__block {
         flex-wrap: wrap;
+    }
+
+    .rating__bord_wrap {
+        padding: 0;
+    }
+
+    .rating__wrap {
+        row-gap: 20px;
     }
 }
 

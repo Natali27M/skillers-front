@@ -7,9 +7,9 @@ const Feedback = ({feedback}) => {
 
     const text = (text) => {
         const newText = text.slice(0, 260);
-        const arrayOf = newText.split(" ");
-        return arrayOf.slice(1, arrayOf.length - 1).join(" ")
-    }
+        const arrayOf = newText.split(' ');
+        return `${arrayOf.slice(1, arrayOf.length - 1).join(' ')}...`;
+    };
 
     return (
         <div className={css.feedback__block}>
@@ -19,7 +19,12 @@ const Feedback = ({feedback}) => {
             </div>
 
             <div className={css.feedback__text}>
-                {text(feedback?.attributes.message)}
+                {feedback.attributes?.message.length >= 260
+                    ?
+                    text(feedback?.attributes.message)
+                    :
+                    feedback?.attributes?.message
+                }
             </div>
         </div>
     );
