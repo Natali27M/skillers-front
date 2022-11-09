@@ -54,6 +54,7 @@ const HomePage = () => {
             <Feedbacks/>
             {/*<Banner/>*/}
         </>
+
     );
 };
 
