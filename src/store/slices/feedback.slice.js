@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+
 import {feedbackService} from '../../services';
 
 export const createFeedback = createAsyncThunk(
@@ -33,7 +34,28 @@ export const deleteFeedback = createAsyncThunk(
         }
     }
 );
+export const updateIsApproved = createAsyncThunk(
+    'feedbackSlice/updateIsApproved',
+    async (obj, {rejectWithValue}) => {
+        try {
+            const {id, booleanValue} = obj;
+            return feedbackService.updateIsApproved(id, booleanValue);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
 
+export const getFeedbackPaginatedConfirmed = createAsyncThunk(
+    'feedbackSlice/getFeedbackPaginatedConfirmed',
+    async (_, {rejectWithValue}) => {
+        try {
+            return feedbackService.getFeedbackPaginatedConfirmed();
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+)
 
 const feedbackSlice = createSlice({
     name: 'feedbackSlice',
@@ -41,7 +63,9 @@ const feedbackSlice = createSlice({
         status: null,
         error: null,
         isDelete: false,
-        feedbackPage: {}
+        isConfirmed: false,
+        feedbackPage: {},
+        confirmedFeedbackPage: {}
     },
     extraReducers: {
         [createFeedback.pending]: (state) => {
@@ -70,10 +94,32 @@ const feedbackSlice = createSlice({
             state.status = 'rejected';
             state.error = action.payload;
         },
-        [deleteFeedback.fulfilled]: (state, action) => {
+        [deleteFeedback.fulfilled]: (state) => {
             state.status = 'fulfilled';
             state.isDelete = !state.isDelete;
         },
+        [updateIsApproved.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [updateIsApproved.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [updateIsApproved.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isConfirmed = !state.isConfirmed;
+        },
+        [getFeedbackPaginatedConfirmed.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getFeedbackPaginatedConfirmed.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getFeedbackPaginatedConfirmed.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.confirmedFeedbackPage = action.payload;
+        }
     }
 });
 

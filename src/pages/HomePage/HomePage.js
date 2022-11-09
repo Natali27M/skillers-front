@@ -1,7 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
+
 import css from './HomePage.module.css';
-import {LeaderBord, TechList} from '../../components';
+import {LeaderBord, TechList, Feedbacks} from '../../components';
 import {Link} from 'react-router-dom';
 
 
@@ -9,6 +10,7 @@ const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {user} = useSelector(state => state['userReducers']);
+
 
     return (
         <>
@@ -49,10 +51,12 @@ const HomePage = () => {
                 </div>
             }
             <LeaderBord/>
+            <Feedbacks/>
             {/*<Banner/>*/}
         </>
     );
 };
 
 export {HomePage};
+
 

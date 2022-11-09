@@ -75,41 +75,74 @@
     height: 40px;
     display: flex;
     align-items: center;
-    width: 28%;
+    width: 24%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.feedback__email {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    width: 24%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 18px;
 }
 
 .delete__feedback {
     flex-grow: 1;
     min-width: 3%;
     height: 100%;
-    /*background-color: red;*/
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.approve__feedback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3%;
+    height: 100%;
+}
+
+.approve__feedback button {
+    background-color: #0ec717;
+    border: 1px solid rgba(6, 61, 16, 0.56);
+    border-radius: 10px;
+    padding: 5px 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/*.approve__feedback span {*/
+/*    font-size: 15px;*/
+/*}*/
+
+
 .delete__feedback img {
-    width: 80%;
+    width: 30%;
 }
 
 .feedback__message {
     width: 40%;
-    padding: 10px 0;
+    padding: 10px 20px 10px 0;
 }
 
 .test__name,
-.feedback__header_message{
+.feedback__header_message {
     width: 40%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.feedback__header_message{
+.feedback__header_message {
     width: 40%;
 }
 
@@ -148,8 +181,59 @@
     width: 70%;
 }
 
+.approve__feedback div {
+    position: relative;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.feedback__hover {
+    display: none;
+}
+
+
+.feedbackGrey {
+    background-image: url("../../images/check-grey.svg");
+}
+
+.feedbackGrey:hover .feedback__hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 12px;
+    width: 150px;
+    height: 50px;
+    right: -110px;
+}
+
+.feedbackGrey:hover .feedback__hover span {
+    font-size: 10px;
+}
+
+.feedbackDone {
+    background-image: url("../../images/check-green.svg");
+}
+
+.feedbackDone:hover .feedback__hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    right: -110px;
+    font-size: 10px;
+}
+
 
 @media (max-width: 1200px) {
+    .delete__feedback img {
+        width: 40%;
+    }
     .admin__wrap {
         width: 90%;
     }
@@ -165,9 +249,82 @@
     .test__difficult {
         width: 25%;
     }
+
+    .approve__feedback span {
+        font-size: 14px;
+    }
+
+    .feedback__email {
+        font-size: 14px;
+    }
+
+    .approve__feedback div {
+        height: 30px;
+        width: 30px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .approve__feedback span {
+        font-size: 12px;
+    }
+
+    .feedback__email {
+        font-size: 12px;
+    }
+
+    .approve__feedback div {
+        height: 27px;
+        width: 27px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
+}
+
+@media (max-width: 920px) {
+    .delete__feedback img {
+        width: 50%;
+    }
+    .approve__feedback span {
+        font-size: 10px;
+    }
+
+    .feedback__email {
+        font-size: 10px;
+    }
+
+    .approve__feedback div {
+        height: 24px;
+        width: 24px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
 }
 
 @media (max-width: 767px) {
+    .delete__feedback img {
+        width: 60%;
+    }
     .tests__wrap {
         margin-top: 10px;
     }
@@ -178,14 +335,38 @@
     }
 
     .feedback__block,
-    .feedback__header{
+    .feedback__header {
         font-size: 12px;
     }
 
-    .feedback__name{
+    .feedback__name {
         height: 30px;
     }
+
+    .feedback__email {
+        font-size: 8px;
+    }
+
+    .approve__feedback div {
+        height: 18px;
+        width: 18px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
+    }
 }
+
+@media (max-width: 620px) {
+    .feedback__email {
+        font-size: 8px;
+    }
+}
+
 
 @media (max-width: 550px) {
     .tests__block,
@@ -195,6 +376,23 @@
 
     .admin__title {
         font-size: 24px;
+    }
+
+    .feedback__email {
+        font-size: 8px;
+    }
+
+    .approve__feedback div {
+        height: 15px;
+        width: 15px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }
 
@@ -210,7 +408,7 @@
 
     .tests__block,
     .tests__header,
-    .feedback__header{
+    .feedback__header {
         font-size: 12px;
         padding: 0 10px;
         height: 30px;
@@ -219,6 +417,23 @@
     .feedback__block {
         font-size: 8px;
         padding: 0 10px;
+    }
+
+    .feedback__email {
+        font-size: 5px;
+    }
+
+    .approve__feedback div {
+        height: 10px;
+        width: 10px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }
 
@@ -230,5 +445,18 @@
 
     .test__difficult {
         width: 30%;
+    }
+
+    .approve__feedback div {
+        height: 10px;
+        width: 10px;
+    }
+
+    .feedbackDone:hover .feedback__hover {
+        display: none;
+    }
+
+    .feedbackGrey:hover .feedback__hover {
+        display: none;
     }
 }

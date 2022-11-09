@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import rootCSS from '../../styles/root.module.css'
 import css from './AdminPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteFeedback, getFeedback, getUserRoles} from '../../store';
+import {deleteFeedback, getFeedback, updateIsApproved} from '../../store';
 import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
@@ -14,11 +14,11 @@ const AdminPage = () => {
 
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {user, roles} = useSelector(state => state['userReducers']);
+    const {roles} = useSelector(state => state['userReducers']);
 
     const {testsForApprove} = useSelector(state => state['testsReducers']);
 
-    const {feedbackPage, isDelete} = useSelector(state => state['feedbackReducers']);
+    const {feedbackPage, isDelete, isConfirmed} = useSelector(state => state['feedbackReducers']);
 
     const dispatch = useDispatch();
 
@@ -32,12 +32,16 @@ const AdminPage = () => {
     useEffect(() => {
         dispatch(getFeedback(feedbackPageNumber));
 
-    }, [feedbackPageNumber, isDelete] );
+    }, [feedbackPageNumber, isDelete, isConfirmed]);
 
 
     const makeDeleteFeedback = (id) => {
         dispatch(deleteFeedback(id))
     };
+
+    const approve = (id, booleanValue) => {
+        dispatch(updateIsApproved({id, booleanValue}))
+    }
 
     if (!(roles?.includes('admin'))) {
         return <Navigate to={'/user'} replace/>;
@@ -118,11 +122,28 @@ const AdminPage = () => {
                             <div className={css.feedback__name}>
                                 {feedback?.attributes.userName}
                             </div>
-                            <div className={css.feedback__name}>
+                            <div className={css.feedback__email}>
                                 {feedback?.attributes.email}
                             </div>
                             <div className={css.delete__feedback} onClick={() => makeDeleteFeedback(feedback?.id)}>
                                 <img src={cross} alt="cross"/>
+                            </div>
+                            <div className={css.approve__feedback}>
+                                {
+                                    feedback?.attributes.isApproved ?
+                                        <div className={css.feedbackGrey} onClick={() => approve(feedback?.id, false)}>
+                                            <div className={css.feedback__hover}>
+                                                {EN ?
+                                                    <span>cancel <br/> confirmation</span> :
+                                                    <span>відмінити <br/> підтвердження</span>}
+                                            </div>
+                                        </div> :
+                                        <div className={css.feedbackDone} onClick={() => approve(feedback?.id, true)}>
+                                            <div className={css.feedback__hover}>
+                                                {EN ? "approve" : "підтвердити"}
+                                            </div>
+                                        </div>
+                                }
                             </div>
                         </div>
                     )}
