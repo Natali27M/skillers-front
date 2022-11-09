@@ -6,7 +6,9 @@ import css from './Feedback.module.css';
 const Feedback = ({feedback}) => {
 
     const text = (text) => {
-        return text.slice(0, 260);
+        const newText = text.slice(0, 260);
+        const arrayOf = newText.split(" ");
+        return arrayOf.slice(1, arrayOf.length - 1).join(" ")
     }
 
     return (
