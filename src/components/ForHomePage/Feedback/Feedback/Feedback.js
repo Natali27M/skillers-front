@@ -5,6 +5,10 @@ import css from './Feedback.module.css';
 
 const Feedback = ({feedback}) => {
 
+    const text = (text) => {
+        return text.slice(0, 260);
+    }
+
     return (
         <div className={css.feedback__block}>
 
@@ -13,7 +17,7 @@ const Feedback = ({feedback}) => {
             </div>
 
             <div className={css.feedback__text}>
-                {feedback?.attributes.message}
+                {text(feedback?.attributes.message)}
             </div>
         </div>
     );
