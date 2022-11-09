@@ -12,9 +12,8 @@ import {testsServices} from '../../../services';
 const TechBlock = ({img, name, techId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {user} = useSelector(state => state['userReducers']);
-
     const [tests, setTests] = useState([]);
+    // const tests = [];
     const [numberTestsByCategory, setNumberTestsByCategory] = useState([]);
     const {pagination} = numberTestsByCategory;
 
@@ -26,93 +25,51 @@ const TechBlock = ({img, name, techId}) => {
 
     return (
         <>
-            {user ?
-                <div className={css.for__slider_wrap_loginUser}>
-                    <div className={css.tech__block_wrap}>
-                        <Link className={css.tech__block_loginUser} to={`/test-list/${techId}`}>
-
-                            <img className={css.tech__img} src={img} alt="java"/>
-
-                            <div className={css.teck__block_content_loginUser}>
-                                <div className={css.tech__block_title_loginUser}>
-                                    {name}
-                                </div>
-
-                                <div className={css.all__tests_block_loginUser}>
-
-                                    <div className={css.number__tests_box}>
-                                        <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
-                                        {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
-                                    </div>
-
-                                    <div className={css.arrow_test}>
-                                        <div>{EN ? 'All tests' : 'Всі тести'}</div>
-                                        <img  className={css.arrow} src={arrow} alt="arrow"/>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </Link>
-                        {tests?.map(test =>
-                            <Link to={`test/${test?.id}`} key={test.id} className={css.mini__test_block}>
-                                <div className={css.mini__test_name}>
-                                    {test?.attributes?.name}
-                                </div>
-                                <div className={css.mini__test_bottom}>
-                                    <div className={css.mini__test_difficult}>
-                                        {EN ? 'Difficult:' : 'Складність:'} {test?.attributes?.difficult}/10
-                                    </div>
-                                    {test?.attributes?.avgMark > 0 &&
-                                        <div className={css.test__rating}>
-                                            <img src={star} alt="star" className={css.start__img}/>
-                                            <div>{test?.attributes?.avgMark || 0}</div>
-                                        </div>
-                                    }
-                                </div>
-                            </Link>
-                        )}
-                    </div>
-
-                </div>
-
-                :
-
                 <div className={css.for__slider_wrap}>
                     <div className={css.tech__block_wrap}>
-                        <Link className={css.tech__block} to={`/test-list/${techId}`}>
-
-                            <img className={css.tech__img} src={img} alt="java"/>
-
-                            <div className={css.teck__block_content}>
-                                <div className={css.tech__block_title}>
-                                    {name}
+                        {!tests.length ?
+                            <Link className={css.tech__block} to={`/test-list/${techId}`}>
+                                <div className={css.tech__img_loading}></div>
+                                <div className={css.teck__block_content_loading}>
+                                    <div className={css.tech__block_title_loading}></div>
+                                    <div className={css.all__tests_block_loading}></div>
                                 </div>
+                            </Link>
+                            :
+                            <Link className={css.tech__block} to={`/test-list/${techId}`}>
+                                <img className={css.tech__img} src={img} alt="java"/>
 
-                                <div className={css.all__tests_block}>
-                                    <div className={css.number__tests_box}>
-                                        <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
-                                        {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
+                                <div className={css.teck__block_content}>
+                                    <div className={css.tech__block_title}>
+                                        {name}
                                     </div>
 
-                                    <div className={css.arrow_test}>
-                                        <div>{EN ? 'All tests' : 'Всі тести'}</div>
-                                        <img className={css.arrow} src={arrow} alt="arrow"/>
-                                    </div>
-                                {/*    <div>{EN ? 'All tests' : 'Всі тести'}</div>*/}
-                                {/*    <img src={arrow} alt="arrow"/>*/}
-                                {/*</div>*/}
+                                    <div className={css.all__tests_block}>
+                                        <div className={css.number__tests_box}>
+                                            <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
+                                            {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
+                                        </div>
 
-                                {/*<div className={css.numberTestsBox}>*/}
-                                {/*    <img className={css.numberTestsIcon} src={numberTests} alt="numberTests"/>*/}
-                                {/*    {pagination && <div className={css.numberTests}>{pagination?.total}</div>}*/}
+                                        <div className={css.arrow_test}>
+                                            <div>{EN ? 'All tests' : 'Всі тести'}</div>
+                                            <img className={css.arrow} src={arrow} alt="arrow"/>
+                                        </div>
+                                    </div>
+
                                 </div>
 
+                            </Link>
+                        }
+                        {!tests.length?
+                            <div className={css.test_block_loading}>
+                                <div className={css.mini__test_block_loading}></div>
+                                <div className={css.mini__test_block_loading}></div>
+                                <div className={css.mini__test_block_loading}></div>
+                                <div className={css.mini__test_block_loading}></div>
+                                <div className={css.mini__test_block_loading}></div>
                             </div>
-
-                        </Link>
-                        {tests?.map(test =>
+                            :
+                            tests.map(test =>
                             <Link to={`test/${test?.id}`} key={test.id} className={css.mini__test_block}>
                                 <div className={css.mini__test_name}>
                                     {test?.attributes?.name}
@@ -131,9 +88,7 @@ const TechBlock = ({img, name, techId}) => {
                             </Link>
                         )}
                     </div>
-
                 </div>
-            }
         </>
     );
 };

@@ -1,24 +1,21 @@
-.home__page {
+.home__page,
+.home__page_loginUser {
     width: 100%;
     min-height: calc(100vh - 80px);
-    padding: 50px 15px;
     background: url("../../images/mainBg.png") no-repeat center, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.home__page {
+    padding: 50px 15px;
     justify-content: center;
     row-gap: 45px;
     color: white;
 }
 
 .home__page_loginUser {
-    width: 100%;
-    height: calc(100vh - 80px);
     padding: 0 15px;
-    background: url("../../images/mainBg.png") no-repeat center, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
     color: #2f2f2f;
 }
@@ -97,8 +94,7 @@
         width: 400px;
     }
 
-    .home__description,
-    .home__description_loginUser {
+    .home__description {
         width: 90%;
         font-size: 30px;
     }
@@ -111,10 +107,6 @@
 }
 
 @media (max-width: 1025px) {
-    .home__description_loginUser {
-        display: none;
-    }
-
     .main__title_loginUser {
         font-size: 60px;
     }
@@ -135,7 +127,7 @@
 
     .home__description_loginUser {
         display: flex;
-        width: 90%;
+        width: 100%;
         font-size: 30px;
     }
 
@@ -146,9 +138,6 @@
         row-gap: 10px;
     }
 
-    /*.home__page_loginUser {*/
-    /*    height: calc(100vh - 70px);*/
-    /*}*/
 }
 
 @media (max-width: 900px) {
@@ -187,10 +176,15 @@
         width: 60%;
     }
 
-    .home__description,
-    .home__description_loginUser {
+    .home__description {
         font-size: 27px;
         width: fit-content;
+    }
+
+    .home__description_loginUser {
+        font-size: 27px;
+        width: 80%;
+        /*width: fit-content;*/
     }
 
     .main__title,
@@ -249,14 +243,5 @@
     .main__title_loginUser {
         font-size: 45px;
     }
-
-    .home__description_loginUser {
-        display: flex;
-    }
 }
 
-@media (max-width: 281px) {
-    .home__description_loginUser {
-        display: none;
-    }
-}
