@@ -74,8 +74,6 @@ const LeaderBord = () => {
                     </div>
                 </div>
 
-                <PresentForUserAlways/>
-
             </div>
     );
 };
