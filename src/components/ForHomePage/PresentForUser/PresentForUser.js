@@ -22,11 +22,11 @@ const PresentForUser = () => {
                 </div>
 
                 <div className={css.fontSize36}>
-                    {EN ? <p>Skilliant pays <span className={css.present__block_underline}>$100</span> for the first <br/>
-                            <span className={css.present__block_underline}>10</span> users on the leaderboard</p>
+                    {EN ? <p>Skilliant will split <span className={css.present__block_underline}>$100</span> between by<br/>
+                            the first <span className={css.present__block_underline}>10</span> users on the leaderboard</p>
                         :
-                        <p>Skilliant платить <span className={css.present__block_underline}>$100</span> для перших <br/>
-                            <span className={css.present__block_underline}>10</span> користувачів у таблиці лідерів</p>}
+                        <p>Skilliant розділить <span className={css.present__block_underline}>$100</span> між першими <br/>
+                            <span className={css.present__block_underline}>10</span> користувачами у таблиці лідерів</p>}
                 </div>
 
                 <div className={css.fontSize30}>

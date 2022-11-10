@@ -54,6 +54,7 @@
 
 .fontSize36 {
     font-size: 36px;
+    line-height: 1.4;
 }
 
 .fontSize30 {
@@ -71,6 +72,7 @@
 @media (max-width: 767px) {
     .present__block {
         width: 600px;
+        padding: 20px 20px;
     }
 
     .fontSize36 {
@@ -112,7 +114,7 @@
     .present__block {
         width: 90%;
         height: 250px;
-        padding: 20px 30px;
+        padding: 20px 10px;
     }
 
     .present__title {
@@ -147,7 +149,7 @@
     }
 
     .present__block {
-        padding: 5px;
+        padding: 3px;
         height: 200px;
     }
 
@@ -160,6 +162,7 @@
 
     .fontSize36 {
         font-size: 14px;
+        line-height: 1.5;
     }
 
     .fontSize30 {
