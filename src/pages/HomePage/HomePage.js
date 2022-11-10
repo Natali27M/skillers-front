@@ -22,7 +22,6 @@ const HomePage = () => {
                                 'Платформа для перевірки твоїх IT навичок'}
                         </div>
                     </div>
-
                     <TechList/>
                 </div>
 
@@ -50,7 +49,6 @@ const HomePage = () => {
             <LeaderBord/>
             <PresentForUserAlways/>
             <Feedbacks/>
-            {/*<Banner/>*/}
         </>
     );
 };

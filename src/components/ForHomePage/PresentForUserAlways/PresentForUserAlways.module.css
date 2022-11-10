@@ -5,6 +5,8 @@
     display: flex;
     justify-content: flex-end;
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
 }
 
 .banner__content {
@@ -30,11 +32,11 @@
 }
 
 .banner__name {
-    font-weight: bold;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
     font-size: 45px;
 }
 
-.banner__name,
 .banner__underline {
     border-bottom: 4px solid;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
@@ -101,6 +103,12 @@
 
     .banner__name {
         font-size: 30px;
+    }
+
+    .banner__underline{
+        border-bottom: 2px solid;
+        border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+        border-image-slice: 1;
     }
 
 }
