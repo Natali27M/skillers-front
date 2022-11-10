@@ -1,15 +1,16 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-
 import css from './HomePage.module.css';
-import {LeaderBord, TechList, Feedbacks} from '../../components';
+import logo from '../../images/header/SKILLERS.svg';
+import {LeaderBord, TechList,Feedbacks, Banner, SignUpModal, PresentForUser, PresentForUserAlways} from '../../components';
 import {Link} from 'react-router-dom';
 
 
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-
     const {user} = useSelector(state => state['userReducers']);
+
+    const present = JSON.parse(localStorage.getItem('present'));
 
     return (
         <>
@@ -45,7 +46,9 @@ const HomePage = () => {
                     <TechList/>
                 </div>
             }
+            {!present && <PresentForUser/>}
             <LeaderBord/>
+            <PresentForUserAlways/>
             <Feedbacks/>
             {/*<Banner/>*/}
         </>
@@ -53,4 +56,3 @@ const HomePage = () => {
 };
 
 export {HomePage};
-
