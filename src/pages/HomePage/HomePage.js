@@ -11,16 +11,11 @@ const HomePage = () => {
 
     const {user} = useSelector(state => state['userReducers']);
 
-
     return (
         <>
             {user ?
                 <div className={css.home__page_loginUser}>
                     <div  className={css.block_loginUser}>
-                        {/*<img className={css.home__logo} src={logo} alt="logo"/>*/}
-                        <h1 className={css.main__title_loginUser}>
-                            SKILLIANT
-                        </h1>
                         <div className={css.home__description_loginUser}>
                             {EN ? 'Platform for testing your IT skills' :
                                 'Платформа для перевірки твоїх IT навичок'}
@@ -54,10 +49,8 @@ const HomePage = () => {
             <Feedbacks/>
             {/*<Banner/>*/}
         </>
-
     );
 };
 
 export {HomePage};
-
 
