@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
+    position: relative;
 }
 .home__page {
     padding: 50px 15px;
