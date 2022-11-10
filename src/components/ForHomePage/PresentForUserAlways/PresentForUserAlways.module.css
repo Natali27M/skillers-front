@@ -45,6 +45,14 @@
         height: 150px;
     }
 
+    .banner__angle {
+        width: 170px;
+    }
+
+    .banner__content {
+        width: 450px;
+    }
+
     .banner__text {
         font-size: 30px;
     }
@@ -57,7 +65,7 @@
 
 @media (max-width: 1000px) {
     .banner__content {
-        width: 550px;
+        width: 500px;
     }
 
 }
@@ -67,8 +75,12 @@
         height: 100px;
     }
 
+    .banner__angle {
+        width: 120px;
+    }
+
     .banner__content {
-        width: 500px;
+        width: 370px;
     }
 
     .banner__text {
@@ -83,7 +95,7 @@
 
 @media (max-width: 500px) {
     .banner__content {
-        width: 410px;
+        width: 300px;
     }
 
     .banner__text {
@@ -97,6 +109,14 @@
 }
 
 @media (max-width: 450px) {
+    .banner__box {
+        height: 80px;
+    }
+
+    .banner__content {
+        width: 250px;
+    }
+
     .banner__text {
         font-size: 16px;
     }
@@ -105,19 +125,31 @@
         font-size: 20px;
     }
 
+    .banner__angle {
+        width: 100px;
+    }
+
 }
 
 @media (max-width: 350px) {
     .banner__content {
-        width: 300px;
+        width: 180px;
     }
 
     .banner__text {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .banner__name {
-        font-size: 14px;
+        font-size: 15px;
+    }
+
+    .banner__box {
+        height: 70px;
+    }
+
+    .banner__angle {
+        width: 90px;
     }
 
 }
