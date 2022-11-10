@@ -26,6 +26,7 @@
 .banner__text {
     font-weight: 500;
     font-size: 34px;
+    line-height: 1.2;
 }
 
 .banner__name {
@@ -68,15 +69,24 @@
         width: 500px;
     }
 
+    .banner__text {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .banner__name {
+        font-size: 36px;
+    }
+
 }
 
 @media (max-width: 767px) {
     .banner__box {
-        height: 100px;
+        height: 110px;
     }
 
     .banner__angle {
-        width: 120px;
+        width: 130px;
     }
 
     .banner__content {
@@ -110,15 +120,16 @@
 
 @media (max-width: 450px) {
     .banner__box {
-        height: 80px;
+        height: 90px;
     }
 
     .banner__content {
-        width: 250px;
+        width: 240px;
     }
 
     .banner__text {
         font-size: 16px;
+        line-height: 1.4;
     }
 
     .banner__name {
@@ -126,14 +137,14 @@
     }
 
     .banner__angle {
-        width: 100px;
+        width: 110px;
     }
 
 }
 
 @media (max-width: 350px) {
     .banner__content {
-        width: 180px;
+        width: 200px;
     }
 
     .banner__text {
@@ -150,6 +161,14 @@
 
     .banner__angle {
         width: 90px;
+    }
+
+}
+
+@media (max-width: 300px) {
+    .banner__content {
+        width: 190px;
+        justify-content: flex-start;
     }
 
 }
