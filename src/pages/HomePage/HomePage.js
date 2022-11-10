@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import css from './HomePage.module.css';
-import {LeaderBord, TechList} from '../../components';
 import {Link} from 'react-router-dom';
 
+import css from './HomePage.module.css';
+import {LeaderBord, TechList} from '../../components';
 
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);

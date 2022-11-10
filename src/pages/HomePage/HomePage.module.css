@@ -32,8 +32,15 @@
 .home__description,
 .home__description_loginUser {
     width: 900px;
-    font-size: 35px;
     text-align: center;
+}
+
+.home__description {
+    font-size: 35px;
+}
+
+.home__description_loginUser {
+    font-size: 40px;
 }
 
 .home__description_loginUser {
@@ -56,15 +63,10 @@
     text-transform: uppercase;
 }
 
-.main__title,
-.main__title_loginUser {
+.main__title {
     font-family: 'Aldrich', sans-serif;
     font-size: 100px;
     font-weight: 400;
-}
-
-.main__title_loginUser {
-    color: white;
 }
 
 .block_loginUser {
@@ -99,21 +101,17 @@
         font-size: 30px;
     }
 
-    .main__title,
-    .main__title_loginUser {
+    .main__title {
         font-size: 80px;
     }
 
 }
 
 @media (max-width: 1025px) {
-    .main__title_loginUser {
-        font-size: 60px;
-    }
-
     .block_loginUser {
         row-gap: 0;
     }
+
 }
 
 @media (max-width: 1023px) {
@@ -128,12 +126,8 @@
     .home__description_loginUser {
         display: flex;
         width: 100%;
-        font-size: 30px;
     }
 
-    .main__title_loginUser {
-        font-size: 80px;
-    }
     .block_loginUser {
         row-gap: 10px;
     }
@@ -182,13 +176,10 @@
     }
 
     .home__description_loginUser {
-        font-size: 27px;
         width: 80%;
-        /*width: fit-content;*/
     }
 
-    .main__title,
-    .main__title_loginUser {
+    .main__title {
         font-size: 70px;
     }
 
@@ -199,8 +190,7 @@
 }
 
 @media (max-width: 500px) {
-    .home__description,
-    .home__description_loginUser {
+    .home__description {
         font-size: 26px;
     }
 
@@ -213,35 +203,31 @@
         font-size: 20px;
     }
 
-    .main__title,
-    .main__title_loginUser {
+    .main__title {
         font-size: 65px;
     }
-}
 
-@media (max-width: 376px) {
-    .home__description_loginUser {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 374px) {
-    .home__description_loginUser {
-        font-size: 27px;
-    }
 }
 
 @media (max-width: 370px) {
-    .main__title,
-    .main__title_loginUser {
+    .main__title {
         font-size: 55px;
     }
+
+    .home__description_loginUser {
+        font-size: 25px;
+    }
+
+    .home__page_loginUser {
+        padding: 0;
+    }
+
 }
 
 @media (max-width: 320px) {
-    .main__title,
-    .main__title_loginUser {
+    .main__title {
         font-size: 45px;
     }
+
 }
 

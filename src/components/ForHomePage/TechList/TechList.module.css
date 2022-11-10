@@ -1,16 +1,17 @@
-.tech__wrap {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 50px 30px;
-}
-
+.tech__wrap,
 .tech__wrap_loginUser {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
+}
+
+.tech__wrap_loginUser {
+    padding: 0;
+}
+
+.tech__wrap {
+    padding: 50px 30px;
 }
 
 .title_loginUser {
@@ -25,18 +26,21 @@
     .tech__title {
         font-size: 28px;
     }
+
 }
 
 @media (max-width: 700px) {
     .carousel__btn {
         display: none;
     }
+
 }
 
 @media (max-width: 520px) {
     .carousel__btn {
         display: block;
     }
+
 }
 
 @media (max-width: 500px) {
@@ -50,12 +54,14 @@
     .carousel__btn {
         display: none;
     }
+
 }
 
 @media (max-width: 320px) {
     .tech__wrap {
         padding: 30px 10px;
     }
+
 }
 
 

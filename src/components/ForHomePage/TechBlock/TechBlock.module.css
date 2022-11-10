@@ -176,12 +176,14 @@
     .tech__block_wrap {
         width: 250px;
     }
+
 }
 
 @media (max-width: 1500px) {
     .for__slider_wrap {
         padding: 20px 15px;
     }
+
 }
 
 @media (max-width: 1300px) {
@@ -193,6 +195,7 @@
     .tech__block_title {
         font-size: 23px;
     }
+
 }
 
 @media (max-width: 767px) {
@@ -244,13 +247,13 @@
 
 }
 
-
 @media (max-width: 340px) {
     .for__slider_wrap {
         width: 100vw;
         display: flex;
         justify-content: center;
     }
+
 }
 
 @media (max-width: 280px) {
@@ -262,6 +265,7 @@
     .tech__block_title {
         font-size: 16px;
     }
+
 }
 
 
