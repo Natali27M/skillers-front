@@ -45,7 +45,7 @@ const HomePage = () => {
                     <TechList/>
                 </div>
             }
-            {!present && <PresentForUser/>}
+            {/*{!present && <PresentForUser/>}*/}
             <LeaderBord/>
             <PresentForUserAlways/>
             <Feedbacks/>
