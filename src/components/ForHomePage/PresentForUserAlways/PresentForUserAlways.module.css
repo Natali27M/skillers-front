@@ -52,6 +52,7 @@
 
     .banner__content {
         width: 450px;
+        justify-content: flex-start;
     }
 
     .banner__text {
@@ -67,6 +68,7 @@
 @media (max-width: 1000px) {
     .banner__content {
         width: 500px;
+        justify-content: center;
     }
 
     .banner__text {
