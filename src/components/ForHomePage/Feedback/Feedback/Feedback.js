@@ -19,12 +19,14 @@ const Feedback = ({feedback}) => {
             </div>
 
             <div className={css.feedback__text}>
-                {feedback.attributes?.message.length >= 260
-                    ?
-                    text(feedback?.attributes.message)
-                    :
-                    feedback?.attributes?.message
-                }
+                <q>
+                    {feedback.attributes?.message.length >= 260
+                        ?
+                        text(feedback?.attributes.message)
+                        :
+                        feedback?.attributes?.message
+                    }
+                </q>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
 
-    const present = JSON.parse(localStorage.getItem('present'));
+    // const present = JSON.parse(localStorage.getItem('present'));
 
     return (
         <>

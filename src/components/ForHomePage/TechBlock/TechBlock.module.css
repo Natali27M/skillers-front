@@ -134,10 +134,10 @@
 
 .mini__test_block_loading {
     width: 90%;
-    height: 40px;
+    height: 45px;
     background-color: lightgray;
     border-radius: 5px;
-    margin: 5px 0;
+    margin: 7px 0;
 }
 
 .tech__img_loading{
@@ -243,6 +243,18 @@
 
     .number__tests_icon {
         width: 10px;
+    }
+
+    .mini__test_block_loading {
+        height: 38px;
+    }
+
+    .test_block_loading {
+        padding: 7px;
+    }
+
+    .tech__img_loading{
+        height: 80%;
     }
 
 }
