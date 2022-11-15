@@ -17,7 +17,7 @@ import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from
 
 import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
-import {getTestsByQuery, getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
+import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -286,10 +286,12 @@ const UserPage = () => {
                             <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
                         </div>
                         {resultsByTest?.data?.map(result =>
-                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`} key={result.id}
+                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`}
+                                  key={result.id}
                                   className={css.results__block}>
                                 <div className={css.result__testName}>{result?.attributes?.userId}</div>
-                                <div className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
+                                <div
+                                    className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
                             </Link>
                         )}
                         {!!resultsByTest?.data?.length ? <div className={css.pagination__block}>
@@ -303,8 +305,16 @@ const UserPage = () => {
                         </div> : <div>{EN ? 'No results' : 'Немає результатів'}</div>}
                     </div>
                 }
+
+                {/*<div className={css.buttons__wrap}>*/}
+                {/*    <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'Стати ментором'}</Link>*/}
+                {/*</div>*/}
+
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
+
+                    <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'Стати ментором'}</Link>
+
                     {/*<Link to={'/createTest'}
                           className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}
                     <div className={rootCSS.default__button}
