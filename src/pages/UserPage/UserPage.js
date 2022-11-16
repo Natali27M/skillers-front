@@ -306,14 +306,10 @@ const UserPage = () => {
                     </div>
                 }
 
-                {/*<div className={css.buttons__wrap}>*/}
-                {/*    <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'Стати ментором'}</Link>*/}
-                {/*</div>*/}
-
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
 
-                    <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'Стати ментором'}</Link>
+                    <Link to={'/mentor'} className={rootCSS.default__button}>{EN ? 'To be a mentor' : 'Стати ментором'}</Link>
 
                     {/*<Link to={'/createTest'}
                           className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}

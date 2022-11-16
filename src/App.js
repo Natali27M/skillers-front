@@ -12,6 +12,7 @@ import {
     GoogleRedirectPage,
     HomePage,
     LoginPage,
+    MentorPage,
     NotFoundPage,
     PolicyPage,
     RankPage,
@@ -104,6 +105,7 @@ function App() {
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
