@@ -1,7 +1,17 @@
 export const technologies = [
-    {value: 'node.js', label: 'Node.js'},
-    {value: 'react.js', label: 'React.js'},
-    {value: 'java', label: 'Java'}
+    {value: 'Node.js', label: 'Node.js'},
+    {value: 'React.js', label: 'React.js'},
+    {value: 'Javascript', label: 'Javascript'},
+    {value: 'C++', label: 'C++'},
+    {value: 'C', label: 'C'},
+    {value: 'Go', label: 'Go'},
+    {value: 'Angular', label: 'Angular'},
+    {value: 'Python', label: 'Python'},
+    {value: 'HTML', label: 'HTML'},
+    {value: 'CSS', label: 'CSS'},
+    {value: 'Bootstrap', label: 'Bootstrap'},
+    {value: 'MySQl', label: 'MySQl'},
+    {value: 'MongoDB', label: 'MongoDB'},
 ];
 
 export const experiences = [

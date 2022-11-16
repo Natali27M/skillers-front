@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import Select from 'react-select'
 import {useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css from './MentorPage.module.css';
 import rootCSS from '../../styles/root.module.css'
 import {englishLevels, experiences, technologies} from "./constants/mentor__constants";
-import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {MentorValidator} from "../../validation/mentor.validator";
+import cross from '../../images/cross.svg';
 
 const MentorPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -19,6 +20,7 @@ const MentorPage = () => {
     const [technology, setTechnology] = useState([]);
     const [englishLevel, setEnglishLevel] = useState({value: "Not selected"});
     const [experience, setExperience] = useState({value: "Not selected"});
+    const [modalOpen, setModalOpen] = useState(false);
 
     if (!user) {
         user = JSON.parse(localStorage.getItem('user'))
@@ -31,11 +33,15 @@ const MentorPage = () => {
             userEmail: user.email,
             technology: technology,
             experience: experience.value,
-            english_level: englishLevel.value,
+            englishLevel: englishLevel.value,
         }
         console.log(mentorData);
-
         reset();
+
+        setModalOpen(true);
+        setTimeout(() => {
+            setModalOpen(false);
+        }, 4000);
     }
 
     return (
@@ -94,7 +100,7 @@ const MentorPage = () => {
                             <textarea
                                 className={css.mentor__cover_letter}
                                 placeholder={EN ? 'Cover Letter' : 'Супровідний лист'}
-                                {...register('cover_letter')}
+                                {...register('coverLetter')}
                             />
                         </div>
                         <button className={rootCSS.default__button}>
@@ -104,10 +110,11 @@ const MentorPage = () => {
                 </div>
 
 
-                {/*<div className={modalOpen ? css.feedback__modal_open : css.feedback__modal}>*/}
-                {/*    {EN ? 'Thank you for your feedback' : 'Дякуємо за ваш відгук'}*/}
-                {/*    <img className={css.modal__cross} src={cross} alt="cross" onClick={() => setModalOpen(false)}/>*/}
-                {/*</div>*/}
+                <div className={modalOpen ? css.mentor__modal_open : css.mentor__modal}>
+                    {EN ? 'Your application has been processed, please wait for a response' :
+                        'Ваша заявка оформлена, очікуйте зворотнього зв\'язку'}
+                    <img className={css.modal__cross} src={cross} alt="cross" onClick={() => setModalOpen(false)}/>
+                </div>
             </div>
         </div>
     );

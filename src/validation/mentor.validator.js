@@ -6,6 +6,7 @@ export const MentorValidator = Joi.object({
     userName: Joi.string()
         .min(4)
         .max(16),
+
     userEmail: Joi.string()
         .regex(
             new RegExp(
@@ -17,20 +18,18 @@ export const MentorValidator = Joi.object({
     linkedin: Joi.string()
         .required(),
 
-    cover_letter: Joi.string()
+    coverLetter: Joi.string()
         .max(140),
 
-    english_level: Joi.object({
+    englishLevel: Joi.object({
         value: Joi.string(),
         label: Joi.string()
-    })
-        .required(),
+    }),
 
     experience: Joi.object({
         value: Joi.string(),
         label: Joi.string()
-    })
-        .required(),
+    }),
 
     technology: Joi.array(),
 });

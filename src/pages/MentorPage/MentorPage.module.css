@@ -79,3 +79,30 @@
     height: 100px;
     padding: 10px;
 }
+
+.mentor__modal,
+.mentor__modal_open {
+    position: fixed;
+    bottom: -200px;
+    right: 50px;
+    padding: 30px;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 10px rgba(27, 29, 46, 0.75);
+    border: 2px solid;
+    border-image: linear-gradient(213deg, #00dbde 0%, #fc00ff 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    transition: all 0.4s linear;
+}
+
+.mentor__modal_open {
+    bottom: 100px;
+}
+
+.modal__cross {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 10px;
+    cursor: pointer;
+}
