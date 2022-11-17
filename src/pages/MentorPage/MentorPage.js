@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Select from 'react-select'
 import {useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css from './MentorPage.module.css';
@@ -9,10 +9,12 @@ import rootCSS from '../../styles/root.module.css'
 import {englishLevels, experiences, technologies} from "./constants/mentor__constants";
 import {MentorValidator} from "../../validation/mentor.validator";
 import cross from '../../images/cross.svg';
+import {createMentor} from "../../store/slices/mentors.slice";
 
 const MentorPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     let {user} = useSelector(state => state['userReducers']);
+    const dispatch = useDispatch();
 
 
     const {handleSubmit, register, reset} = useForm({resolver: joiResolver(MentorValidator)});
@@ -35,7 +37,7 @@ const MentorPage = () => {
             experience: experience.value,
             englishLevel: englishLevel.value,
         }
-        console.log(mentorData);
+        dispatch(createMentor(mentorData));
         reset();
 
         setModalOpen(true);

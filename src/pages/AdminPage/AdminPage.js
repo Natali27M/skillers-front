@@ -8,6 +8,9 @@ import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
+import {
+    UnapprovedMentors
+} from "../../components/ForAdminPage/AllUnapprovedMentors/UnapprovedMentors/UnapprovedMentors";
 
 
 const AdminPage = () => {
@@ -31,7 +34,6 @@ const AdminPage = () => {
 
     useEffect(() => {
         dispatch(getFeedback(feedbackPageNumber));
-
     }, [feedbackPageNumber, isDelete, isConfirmed]);
 
 
@@ -46,7 +48,6 @@ const AdminPage = () => {
     if (!(roles?.includes('admin'))) {
         return <Navigate to={'/user'} replace/>;
     }
-
 
     return (
         <div className={css.admin__page}>
@@ -147,6 +148,7 @@ const AdminPage = () => {
                             </div>
                         </div>
                     )}
+
                     <div className={css.pagination__wrap}>
                         <div className={css.pagination__block}>
                             <img src={arrow} alt="arrow" className={css.arrow__left}
@@ -156,6 +158,21 @@ const AdminPage = () => {
                                  onClick={() => feedbackPageNumber < feedbackPage.meta?.pagination?.pageCount && setFeedbackPageNumber(feedbackPageNumber + 1)}/>
                         </div>
                     </div>
+                </div>
+                <div className={css.admin__title}>
+                    {EN ? 'Mentors' : 'Ментори'}
+                </div>
+                <div className={css.mentors__wrap}>
+                    <div className={css.mentors__header}>
+                        <div className={css.mentor__name}>
+                            {EN ? 'User' : 'Користувач'}
+                        </div>
+                        <div className={css.mentor__experience}>
+                            {EN ? 'Experience' : 'Досвід'}
+                        </div>
+                    </div>
+
+                    <UnapprovedMentors/>
                 </div>
             </div>
         </div>

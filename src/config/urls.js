@@ -30,6 +30,7 @@ export const urls = {
     fullTestResults: '/api/full-test-results',
 
     feedback: '/api/feedbacks',
+    mentors: '/api/mentors',
 
     rates: 'api/rates'
 };
