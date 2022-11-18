@@ -16,3 +16,12 @@
 .unapprovedMentor__experience {
     width: 30%;
 }
+
+.unapprovedMentor__block:hover {
+    background-color: #e5e3e3;
+    cursor: pointer;
+}
+
+.delete__mentor {
+    
+}

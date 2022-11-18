@@ -1,0 +1,24 @@
+
+.pagination__wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.pagination__block {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    column-gap: 10px;
+}
+
+.arrow__left,
+.arrow__right {
+    height: 25px;
+    cursor: pointer;
+}
+
+.arrow__right {
+    transform: rotate(180deg);
+}

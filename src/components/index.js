@@ -4,3 +4,4 @@ export * from './ForRecruiterPage';
 export * from './ForTestListPage';
 export * from './ForTestPage';
 export * from './GeneralComponents';
+export * from './ForAdminPage';
