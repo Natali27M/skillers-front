@@ -16,6 +16,8 @@ import {deleteMentor, updateIsConfirmedMentor} from "../../../../store/slices/me
 
 const UnapprovedMentorDetails = ({mentor, setUserId, mentorId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+    const {roles} = useSelector(state => state['userReducers']);
+
     const {isDeletedMentor, isConfirmedMentor} = useSelector(state => state['mentorReducers']);
     const dispatch = useDispatch();
 
@@ -210,21 +212,24 @@ const UnapprovedMentorDetails = ({mentor, setUserId, mentorId}) => {
                         <div className={css.user__info_title}>{EN ? 'Cover letter' : 'Супроводжуючий лист'}</div>
                         <div className={css.cover__letter}>{mentor.coverLetter}</div>
                     </div>
-                    <div className={css.mentor__delete__approve__block}>
-                        <div onClick={() => makeMentorDelete(mentorId)}>
-                            <img src={cross} alt="cross" className={css.delete__mentor}/>
-                        </div>
 
-                        <div>
-                            {
-                                mentor.isConfirmedMentor ?
-                                    <img src={grey} alt="grey" className={css.unApprove__mentor}
-                                         onClick={() => approve(mentorId, false)}/> :
-                                    <img src={green} alt="green" className={css.approve__mentor}
-                                         onClick={() => approve(mentorId, true)}/>
-                            }
+                    {
+                        roles?.length && roles[0] === "admin" && <div className={css.mentor__delete__approve__block}>
+                            <div onClick={() => makeMentorDelete(mentorId)}>
+                                <img src={cross} alt="cross" className={css.delete__mentor}/>
+                            </div>
+
+                            <div>
+                                {
+                                    mentor.isConfirmedMentor ?
+                                        <img src={grey} alt="grey" className={css.unApprove__mentor}
+                                             onClick={() => approve(mentorId, false)}/> :
+                                        <img src={green} alt="green" className={css.approve__mentor}
+                                             onClick={() => approve(mentorId, true)}/>
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
 
             </div>

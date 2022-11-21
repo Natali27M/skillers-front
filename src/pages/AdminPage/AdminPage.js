@@ -10,7 +10,7 @@ import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
 import {
     UnapprovedMentors
-} from "../../components/ForAdminPage/AllUnapprovedMentors/UnapprovedMentors/UnapprovedMentors";
+} from "../../components";
 
 
 const AdminPage = () => {
@@ -159,19 +159,7 @@ const AdminPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className={css.admin__title}>
-                    {EN ? 'Mentors' : 'Ментори'}
-                </div>
                 <div className={css.mentors__wrap}>
-                    <div className={css.mentors__header}>
-                        <div className={css.mentor__name}>
-                            {EN ? 'User' : 'Користувач'}
-                        </div>
-                        <div className={css.mentor__experience}>
-                            {EN ? 'Experience' : 'Досвід'}
-                        </div>
-                    </div>
-
                     <UnapprovedMentors/>
                 </div>
             </div>

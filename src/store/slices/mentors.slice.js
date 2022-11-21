@@ -28,7 +28,6 @@ export const updateIsConfirmedMentor = createAsyncThunk(
     async (obj, {rejectWithValue}) => {
         try {
             const {id, booleanValue} = obj;
-            console.log(obj);
             return mentorsService.updateIsConfirmedMentor(id, booleanValue);
         } catch (e) {
             rejectWithValue(e);
@@ -41,6 +40,17 @@ export const deleteMentor = createAsyncThunk(
     async (id, {rejectWithValue}) => {
         try {
             return mentorsService.deleteMentor(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getMentorsPaginatedConfirmed = createAsyncThunk(
+    'mentorSlice/getMentorsPaginatedConfirmed',
+    async (pageNumber, {rejectWithValue}) => {
+        try {
+            return mentorsService.getMentorsPaginatedConfirmed(pageNumber);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -97,6 +107,17 @@ export const MentorsSlice = createSlice({
         [deleteMentor.fulfilled]: (state) => {
             state.status = 'fulfilled';
             state.isDeletedMentor = !state.isDeletedMentor;
+        },
+        [getMentorsPaginatedConfirmed.pending]: (state) => {
+            state.status = 'pending'
+        },
+        [getMentorsPaginatedConfirmed.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getMentorsPaginatedConfirmed.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.confirmedMentorPage = action.payload;
         },
     }
 })

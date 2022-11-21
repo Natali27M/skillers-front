@@ -7,7 +7,13 @@ import css from "./UnapprovedMentors.module.css";
 import arrow from "../../../../images/arrow.svg";
 
 const UnapprovedMentors = () => {
-    const {isDeletedMentor, isConfirmedMentor, mentorPage} = useSelector(state => state['mentorReducers']);
+    const {EN} = useSelector(state => state['languageReducers']);
+
+    const {
+        isDeletedMentor,
+        isConfirmedMentor,
+        mentorPage,
+    } = useSelector(state => state['mentorReducers']);
     const dispatch = useDispatch();
 
     const [mentorPageNumber, setMentorPageNumber] = useState(1);
@@ -20,6 +26,18 @@ const UnapprovedMentors = () => {
 
     return (
         <>
+            <div className={css.admin__title}>
+                {EN ? 'Mentors' : 'Ментори'}
+            </div>
+
+            <div className={css.mentors__header}>
+                <div className={css.mentor__name}>
+                    {EN ? 'User' : 'Користувач'}
+                </div>
+                <div className={css.mentor__experience}>
+                    {EN ? 'Experience' : 'Досвід'}
+                </div>
+            </div>
             {mentorPage?.data && mentorPage.data.map(value => <UnapprovedMentor key={value.id} mentor={value}/>)}
 
             <div className={css.pagination__wrap}>

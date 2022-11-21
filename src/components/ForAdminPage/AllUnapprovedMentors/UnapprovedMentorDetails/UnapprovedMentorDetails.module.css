@@ -1,6 +1,6 @@
 .user__block {
     position: relative;
-    width: 60%;
+    width: 70%;
     padding: 20px 30px;
     margin: 30px 0;
     border: 2px solid black;
@@ -154,7 +154,7 @@
     height: 30px;
 }
 
-.delete__mentor, .approve__mentor, .unApprove__mentor :hover {
+.delete__mentor:hover, .approve__mentor:hover, .unApprove__mentor:hover {
     cursor: pointer;
 }
 

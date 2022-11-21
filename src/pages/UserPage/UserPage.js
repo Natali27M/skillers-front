@@ -18,6 +18,7 @@ import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from
 import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
+import {ConfirmedMentors} from "../../components";
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -309,7 +310,8 @@ const UserPage = () => {
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
 
-                    <Link to={'/mentor'} className={rootCSS.default__button}>{EN ? 'To be a mentor' : 'Стати ментором'}</Link>
+                    <Link to={'/mentor'}
+                          className={rootCSS.default__button}>{EN ? 'To be a mentor' : 'Стати ментором'}</Link>
 
                     {/*<Link to={'/createTest'}
                           className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}
@@ -328,6 +330,9 @@ const UserPage = () => {
 
                     }
                 </div>
+
+                <ConfirmedMentors/>
+
             </div>
         </div>
     );

@@ -17,18 +17,6 @@
     row-gap: 30px;
 }
 
-.admin__title {
-    display: flex;
-    font-size: 30px;
-    font-weight: 500;
-    justify-content: center;
-    border-bottom: 3px solid;
-    padding: 0 10px;
-    margin-bottom: 20px;
-    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
-}
-
 .tests__wrap,
 .feedback__wrap {
     width: 90%;
@@ -116,7 +104,6 @@
     min-width: 3%;
     height: 100%;
 }
-
 
 
 .delete__feedback img {
@@ -221,25 +208,6 @@
     height: 50px;
     right: -110px;
     font-size: 10px;
-}
-
-.mentors__header {
-    width: 100%;
-    height: 40px;
-    background-color: #000;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    font-size: 16px;
-}
-
-.mentor__name {
-    width: 70%;
-}
-
-.mentor__experience {
-    width: 30%;
 }
 
 @media (max-width: 1200px) {
