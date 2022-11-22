@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 
-import css from './UnapprovedMentorDetails.module.css';
-import rootCSS from "../../../../styles/root.module.css";
-import userCSS from "../../../../pages/UserPage/UserPage.module.css";
+import css from './MentorDetails.module.css';
+import rootCSS from "../../../styles/root.module.css";
+import userCSS from "../../../pages/UserPage/UserPage.module.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {achievementsServices, userServices} from "../../../../services";
-import {resultsServices} from "../../../../services/results.services";
+import {achievementsServices, userServices} from "../../../services";
+import {resultsServices} from "../../../services/results.services";
 
-import up from "../../../../images/up.svg";
-import cross from "../../../../images/cross-red.svg";
-import grey from "../../../../images/check-grey.svg";
-import green from "../../../../images/check-green.svg";
-import {deleteMentor, updateIsConfirmedMentor} from "../../../../store/slices/mentors.slice";
+import up from "../../../images/up.svg";
+import cross from "../../../images/cross-red.svg";
+import grey from "../../../images/check-grey.svg";
+import green from "../../../images/check-green.svg";
+import {deleteMentor, updateIsConfirmedMentor} from "../../../store/slices/mentors.slice";
 
-const UnapprovedMentorDetails = ({mentor, setUserId, mentorId}) => {
+const MentorDetails = ({mentor, setUserId, mentorId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {roles} = useSelector(state => state['userReducers']);
 
@@ -238,4 +238,4 @@ const UnapprovedMentorDetails = ({mentor, setUserId, mentorId}) => {
     );
 };
 
-export {UnapprovedMentorDetails};
+export {MentorDetails};

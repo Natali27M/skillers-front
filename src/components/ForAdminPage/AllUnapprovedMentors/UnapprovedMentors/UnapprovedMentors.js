@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 import {getMentorsPaginated} from "../../../../store/slices/mentors.slice";
-import {UnapprovedMentor} from "../UnapprovedMentor/UnapprovedMentor";
+import {UnapprovedMentor} from '../UnapprovedMentor/UnapprovedMentor'
 import css from "./UnapprovedMentors.module.css";
 import arrow from "../../../../images/arrow.svg";
 

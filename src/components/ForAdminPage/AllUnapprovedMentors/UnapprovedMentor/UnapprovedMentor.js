@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-import css from './UnapprovedMentor.module.css';
-import {UnapprovedMentorDetails} from "../UnapprovedMentorDetails/UnapprovedMentorDetails";
+import css from './Mentor.module.css';
+import {MentorDetails} from "../../../ForMentorsPage";
 
 const UnapprovedMentor = ({mentor}) => {
     const unapprovedMentor = mentor?.attributes;
@@ -15,7 +15,7 @@ const UnapprovedMentor = ({mentor}) => {
                 <div className={css.unapprovedMentor__userName}>{unapprovedMentor.userName}</div>
                 <div className={css.unapprovedMentor__experience}>{unapprovedMentor.experience}</div>
             </div>
-            {userId && <UnapprovedMentorDetails mentor={unapprovedMentor} setUserId={setUserId} mentorId={mentor.id}/>}
+            {userId && <MentorDetails mentor={unapprovedMentor} setUserId={setUserId} mentorId={mentor.id}/>}
         </>
     );
 };

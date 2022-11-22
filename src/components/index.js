@@ -5,4 +5,4 @@ export * from './ForTestListPage';
 export * from './ForTestPage';
 export * from './GeneralComponents';
 export * from './ForAdminPage';
-export * from './ForUserPage';
+export * from './ForMentorsPage';

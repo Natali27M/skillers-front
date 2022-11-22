@@ -1,7 +1,7 @@
 .confirmed__mentors__block {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     margin-top: 40px;
     width: 80%;
@@ -18,12 +18,40 @@
     font-size: 16px;
 }
 
-.mentor__name {
-    width: 70%;
+.mentor__name__column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20%;
 }
 
-.mentor__experience {
-    width: 30%;
+.mentor__technologies__column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20%;
+}
+
+.mentor__tests__column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 15%;
+}
+
+.mentor__status__column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 17%;
+}
+
+.mentor__experience__column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 28%;
+    padding-left: 30px;
 }
 
 .admin__title {

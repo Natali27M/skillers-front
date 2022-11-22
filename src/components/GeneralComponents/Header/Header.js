@@ -64,6 +64,10 @@ const Header = () => {
                 <Link className={css.header__link} to={'/createTest'}>
                     {EN ? 'Create quiz' : 'Створити тест'}
                 </Link>
+                <Link className={css.header__link} to={'/mentors'}>
+                    {EN ? 'Mentors page' : 'Ментори'}
+                </Link>
+
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : EN ? 'Login' : 'Увійти'}
@@ -104,6 +108,9 @@ const Header = () => {
                 </Link>
                 <Link className={css.header__link} to={'/createTest'}>
                     {EN ? 'Create quiz' : 'Створити тест'}
+                </Link>
+                <Link className={css.header__link} to={'/mentors'}>
+                    {EN ? 'Mentors page' : 'Ментори'}
                 </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
