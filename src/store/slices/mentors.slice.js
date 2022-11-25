@@ -48,9 +48,10 @@ export const deleteMentor = createAsyncThunk(
 
 export const getMentorsPaginatedConfirmed = createAsyncThunk(
     'mentorSlice/getMentorsPaginatedConfirmed',
-    async (pageNumber, {rejectWithValue}) => {
+    async (obj, {rejectWithValue}) => {
         try {
-            return mentorsService.getMentorsPaginatedConfirmed(pageNumber);
+            const {query, mentorPageNumber} = obj;
+            return mentorsService.getMentorsPaginatedConfirmed(query, mentorPageNumber);
         } catch (e) {
             rejectWithValue(e);
         }

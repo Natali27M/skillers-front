@@ -19,7 +19,7 @@ export const mentorsService = {
         {
             headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
         }).then(value => value.data),
-    getMentorsPaginatedConfirmed: (pageNumber) => axiosServices(
-        `${urls.mentors}?filters[isConfirmedMentor][$eq]=true&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`
+    getMentorsPaginatedConfirmed: (query, pageNumber) => axiosServices(
+        `${urls.mentors}?populate=%2A&filters[isConfirmedMentor][$eq]=true&${query}&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`
     ).then(value => value.data),
 };

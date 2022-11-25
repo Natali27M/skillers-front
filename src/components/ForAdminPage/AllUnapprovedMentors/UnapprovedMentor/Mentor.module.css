@@ -1,5 +1,5 @@
 .unapprovedMentor__block {
-    width: 100%;
+    width: 90%;
     height: 40px;
     display: flex;
     align-items: center;
@@ -23,5 +23,5 @@
 }
 
 .delete__mentor {
-    
+
 }

@@ -1,12 +1,12 @@
 .approvedMentor__block {
-    width: 100%;
+    width: 90%;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     padding: 0 15px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .approvedMentor__block:hover {

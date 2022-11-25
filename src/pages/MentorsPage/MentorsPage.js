@@ -11,7 +11,6 @@ const MentorsPage = () => {
             <div className={css.mentors__block__wrap}>
                 <ApprovedMentors/>
             </div>
-
         </div>
     );
 };
