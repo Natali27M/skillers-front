@@ -9,10 +9,8 @@ export const mentorsService = {
         }
     }).then(value => value.data),
     getMentorsPaginated: (pageNumber) => axiosServices
-        .get(`${urls.mentors}?pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc&populate=%2A`,
-            {
-                headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
-            }).then(value => value.data),
+        .get(`${urls.mentors}?populate=%2A&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`)
+        .then(value => value.data),
     updateIsConfirmedMentor: (id, booleanValue) => axiosServices.put(`${urls.mentors}/${id}`, {data: {isConfirmedMentor: booleanValue}}, {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
