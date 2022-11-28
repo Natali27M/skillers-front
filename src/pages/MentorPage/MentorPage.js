@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from 'react-select'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,14 +6,16 @@ import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css from './MentorPage.module.css';
 import rootCSS from '../../styles/root.module.css'
-import {englishLevels, experiences, technologies} from "./constants/mentor__constants";
+import {englishLevels, experiences} from "./constants/mentor__constants";
 import {MentorValidator} from "../../validation/mentor.validator";
 import cross from '../../images/cross.svg';
+import {getTechnologies} from "../../store";
 import {createMentor} from "../../store/slices/mentors.slice";
 
 const MentorPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     let {user} = useSelector(state => state['userReducers']);
+    const {technologies} = useSelector(state => state['technologiesReducers']);
     const dispatch = useDispatch();
 
 
@@ -24,6 +26,10 @@ const MentorPage = () => {
     const [experience, setExperience] = useState({value: "Not selected"});
     const [modalOpen, setModalOpen] = useState(false);
 
+    useEffect(() => {
+        dispatch(getTechnologies())
+    }, [])
+
     if (!user) {
         user = JSON.parse(localStorage.getItem('user'))
     }
@@ -33,9 +39,9 @@ const MentorPage = () => {
             ...data,
             userId: user.id,
             userEmail: user.email,
-            technology: technology,
             experience: experience.value,
             englishLevel: englishLevel.value,
+            technologies: technology
         }
         dispatch(createMentor(mentorData));
         reset();
@@ -44,6 +50,15 @@ const MentorPage = () => {
         setTimeout(() => {
             setModalOpen(false);
         }, 4000);
+    }
+
+    const technologiesArray = (array) => {
+        let mentorTechnologies = []
+        for (const element of array) {
+            const find = technologies.data.find(value => value.attributes.value === element.value);
+            mentorTechnologies.push(find)
+        }
+        setTechnology(mentorTechnologies)
     }
 
     return (
@@ -67,7 +82,8 @@ const MentorPage = () => {
 
                         <div className={css.mentor__select__block}>
                             <span>{EN ? "Select a technology" : "Виберіть технологію"}</span>
-                            <Select options={technologies} onChange={setTechnology}
+                            <Select options={technologies?.data?.map(value => value.attributes)}
+                                    onChange={technologiesArray}
                                     isMulti
                                     placeholder={EN ? "Technology" : "Виберіть технологію"}
                                     className={css.mentor__select__input}/>

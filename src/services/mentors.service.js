@@ -1,4 +1,5 @@
 import {axiosServices} from "./axios.services";
+
 import {urls} from "../config";
 
 export const mentorsService = {
@@ -8,7 +9,7 @@ export const mentorsService = {
         }
     }).then(value => value.data),
     getMentorsPaginated: (pageNumber) => axiosServices
-        .get(`${urls.mentors}?pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`,
+        .get(`${urls.mentors}?pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc&populate=%2A`,
             {
                 headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
             }).then(value => value.data),
@@ -19,7 +20,7 @@ export const mentorsService = {
         {
             headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
         }).then(value => value.data),
-    getMentorsPaginatedConfirmed: (query, pageNumber) => axiosServices(
+    getMentorsPaginatedConfirmed: (query, pageNumber) => axiosServices.get(
         `${urls.mentors}?populate=%2A&filters[isConfirmedMentor][$eq]=true&${query}&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`
     ).then(value => value.data),
 };

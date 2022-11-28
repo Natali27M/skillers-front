@@ -3,23 +3,30 @@ import {useDispatch, useSelector} from "react-redux";
 import qs from 'qs';
 import {Checkbox, FormControlLabel} from "@mui/material";
 
-import {englishLevels, experiences, technologies} from '../../../pages/MentorPage/constants/mentor__constants'
+import {englishLevels, experiences} from '../../../pages/MentorPage/constants/mentor__constants'
 import {getMentorsPaginatedConfirmed} from "../../../store/slices/mentors.slice";
 import {ApprovedMentor} from "../ApprovedMentor/ApprovedMentor";
 import arrow from "../../../images/arrow.svg";
 import css from './ApprovedMentors.module.css';
+import {getTechnologies} from "../../../store";
 
 const ApprovedMentors = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {
         isDeletedMentor, isConfirmedMentor, confirmedMentorPage,
     } = useSelector(state => state['mentorReducers']);
+    const {technologies} = useSelector(state => state['technologiesReducers']);
+
     const dispatch = useDispatch();
 
     const [mentorPageNumber, setMentorPageNumber] = useState(1);
     const [technologyArray, setTechnologyArray] = useState([]);
     const [experienceArray, setExperienceArray] = useState([]);
     const [englishArray, setEnglishArray] = useState([]);
+
+    useEffect(() => {
+        dispatch(getTechnologies())
+    }, [])
 
     useEffect(() => {
         let query = qs.stringify({
@@ -146,11 +153,11 @@ const ApprovedMentors = () => {
                 </div>
                 <div>
                     <span>{EN ? "Technology" : "Технологія"}</span>
-                    {technologies.map(value =>
+                    {technologies?.data?.map(technology =>
                         <FormControlLabel onChange={setTechnology}
-                                          key={value.value}
-                                          control={<Checkbox value={value.value}/>}
-                                          label={value.value}/>)
+                                          key={technology.id}
+                                          control={<Checkbox value={technology.attributes.value}/>}
+                                          label={technology.attributes.value}/>)
                     }
 
                 </div>

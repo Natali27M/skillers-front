@@ -181,7 +181,7 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
                     <div className={css.user__results_wrap}>
                         <div className={css.user__info_title}>{EN ? 'Technologies' : 'Технології'}</div>
                         {
-                            mentor?.technology?.length ?
+                            mentor?.technologies?.data?.length ?
                                 <div className={css.results__content}>
                                     <div className={css.result__header}>
                                         <div className={css.result__test}>
@@ -191,13 +191,13 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
                                             {EN ? 'Name' : 'Назава'}
                                         </div>
                                     </div>
-                                    {mentor?.technology?.map(result =>
-                                        <div className={css.result__block} key={result.value}>
+                                    {mentor?.technologies?.data?.map(result =>
+                                        <div className={css.result__block} key={result.id}>
                                             <div className={css.result__test}>
                                                 {counter()}
                                             </div>
                                             <div className={css.result__number}>
-                                                {result.value}
+                                                {result.attributes.label}
                                             </div>
                                         </div>
                                     )

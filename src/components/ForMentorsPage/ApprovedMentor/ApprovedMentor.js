@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import {useSelector} from "react-redux";
 
 import {MentorDetails} from "../MentorDetails/MentorDetails";
 import css from './ApprovedMentor.module.css';
 import css_helper from '../ApprovedMentors/ApprovedMentors.module.css'
 import {resultsServices} from "../../../services/results.services";
-import {useSelector} from "react-redux";
+
 
 const ApprovedMentor = ({mentor}) => {
     const approvedMentor = mentor?.attributes;

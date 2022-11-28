@@ -31,6 +31,7 @@ export const urls = {
 
     feedback: '/api/feedbacks',
     mentors: '/api/mentors',
+    technologies: '/api/technology',
 
     rates: 'api/rates'
 };
