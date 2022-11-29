@@ -7,6 +7,7 @@ import {englishLevels, experiences} from '../../../pages/MentorPage/constants/me
 import {getMentorsPaginatedConfirmed} from "../../../store/slices/mentors.slice";
 import {ApprovedMentor} from "../ApprovedMentor/ApprovedMentor";
 import arrow from "../../../images/arrow.svg";
+import cross from "../../../images/cross.svg";
 import css from './ApprovedMentors.module.css';
 import {getTechnologies} from "../../../store";
 
@@ -19,6 +20,8 @@ const ApprovedMentors = () => {
 
     const dispatch = useDispatch();
 
+    const [modal, setModal] = useState(false);
+
     const [mentorPageNumber, setMentorPageNumber] = useState(1);
     const [technologyArray, setTechnologyArray] = useState([]);
     const [experienceArray, setExperienceArray] = useState([]);
@@ -26,7 +29,7 @@ const ApprovedMentors = () => {
 
     useEffect(() => {
         dispatch(getTechnologies())
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         let query = qs.stringify({
@@ -96,27 +99,8 @@ const ApprovedMentors = () => {
             <div className={css.admin__title}>
                 {EN ? 'Mentors' : 'Ментори'}
             </div>
-
-            <div className={css.mentors__header}>
-                <div className={css.mentor__name__column}>
-                    {EN ? 'Mentor' : 'Ментор'}
-                </div>
-                <div className={css.mentor__technologies__column}>
-                    {EN ? "Technologies" : 'К-ть технологій'}
-                </div>
-                <div className={css.mentor__tests__column}>
-                    {EN ? "Tests" : 'Тести'}
-                </div>
-                <div className={css.mentor__status__column}>
-                    {EN ? 'Confirmed' : 'Підтверджений'}
-                </div>
-                <div className={css.mentor__experience__column}>
-                    {EN ? 'Experience' : 'Досвід'}
-                </div>
-            </div>
             {confirmedMentorPage?.data && confirmedMentorPage.data.map(value => <ApprovedMentor key={value.id}
                                                                                                 mentor={value}/>)}
-
             <div className={css.pagination__wrap}>
                 <div className={css.pagination__block}>
                     <img src={arrow} alt="arrow" className={css.arrow__left}
@@ -132,36 +116,86 @@ const ApprovedMentors = () => {
                 {EN ? 'Filters' : 'Фільтри'}
             </div>
             <div className={css.check__block}>
-                <div>
-                    <span>{EN ? "English level" : "Рівень Англійської"}</span>
+                <div className={css.check__block__form}>
+                    <span className={css.check__block__span}>{EN ? "English level : " : "Рівень Англійської : "}</span>
                     {englishLevels.map(value =>
                         <FormControlLabel onChange={setEnglish}
                                           key={value.value}
-                                          control={<Checkbox value={value.value}/>}
-                                          label={value.value}/>)
+                                          control={<Checkbox value={value.value} size={"small"}/>}
+                                          label={<div className={css.label}>{value.value}</div>}/>)
                     }
                 </div>
-                <div>
-                    <span>{EN ? "Experience" : "Досвід"}</span>
+                <div className={css.check__block__form}>
+                    <span className={css.check__block__span}>{EN ? "Experience : " : "Досвід : "}</span>
                     {experiences.map(value =>
                         <FormControlLabel onChange={setExperience}
                                           key={value.value}
-                                          control={<Checkbox value={value.value}/>}
-                                          label={value.value}/>)
+                                          control={<Checkbox value={value.value} size={"small"}/>}
+                                          label={<div className={css.label}>{value.value}</div>}/>)
                     }
 
                 </div>
-                <div>
-                    <span>{EN ? "Technology" : "Технологія"}</span>
-                    {technologies?.data?.map(technology =>
-                        <FormControlLabel onChange={setTechnology}
-                                          key={technology.id}
-                                          control={<Checkbox value={technology.attributes.value}/>}
-                                          label={technology.attributes.value}/>)
-                    }
+                <div className={css.check__block__form}>
+                    <span className={css.check__block__span}>{EN ? "Technology :" : "Технологія :"}</span>
+                    <div>
+                        {technologies?.data?.map(technology =>
+                            <FormControlLabel onChange={setTechnology}
+                                              key={technology.id}
+                                              control={<Checkbox value={technology.attributes.value} size={"small"}/>}
+                                              label={<div
+                                                  className={css.label}>{technology?.attributes?.value}</div>}/>)
+                        }
+                    </div>
 
                 </div>
             </div>
+        </div>
+
+
+        <div className={css.filters__modal__block}>
+            <div className={css.admin__title__modal} onClick={() => setModal(!modal)}>
+                {modal ? <img src={cross} alt="cross"/> : <div>{EN ? 'Filters' : 'Фільтри'}</div>}
+            </div>
+            {
+                modal &&
+                <div className={css.filters__modal}>
+                    <div className={css.check__block__modal}>
+                        <div className={css.check__block__form}>
+                            <span className={css.check__block__span}>{EN ? "English level : " : "Рівень Англійської : "}</span>
+                            {englishLevels.map(value =>
+                                <FormControlLabel onChange={setEnglish}
+                                                  key={value.value}
+                                                  control={<Checkbox value={value.value} size={"small"}/>}
+                                                  label={<div className={css.label}>{value.value}</div>}/>)
+                            }
+                        </div>
+                        <div className={css.check__block__form}>
+                            <span className={css.check__block__span}>{EN ? "Experience : " : "Досвід : "}</span>
+                            {experiences.map(value =>
+                                <FormControlLabel onChange={setExperience}
+                                                  key={value.value}
+                                                  control={<Checkbox value={value.value} size={"small"}/>}
+                                                  label={<div className={css.label}>{value.value}</div>}/>)
+                            }
+
+                        </div>
+                        <div className={css.check__block__form}>
+                            <span className={css.check__block__span}>{EN ? "Technology :" : "Технологія :"}</span>
+                            <div>
+                                {technologies?.data?.map(technology =>
+                                    <FormControlLabel onChange={setTechnology}
+                                                      key={technology.id}
+                                                      control={<Checkbox value={technology.attributes.value} size={"small"}/>}
+                                                      label={<div
+                                                          className={css.label}>{technology?.attributes?.value}</div>}/>)
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
         </div>
     </div>);
 };

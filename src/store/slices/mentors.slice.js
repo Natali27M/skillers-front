@@ -84,7 +84,6 @@ export const MentorsSlice = createSlice({
             state.error = action.payload;
         },
         [getMentorsPaginated.fulfilled]: (state, action) => {
-            console.log(action.payload);
             state.status = 'fulfilled';
             state.mentorPage = action.payload;
         },
