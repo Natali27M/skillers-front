@@ -6,6 +6,7 @@
 .top__footer {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 60px;
 }
@@ -13,7 +14,7 @@
 .block__pages {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
   font-size: 18px;
   font-family: 'Semibold New', sans-serif;
 }
@@ -44,17 +45,14 @@
   padding-bottom: 20px;
 }
 
-.pages__link {
+.pages__link, .footer__policy {
   text-decoration: none;
   color: white;
   cursor: pointer;
 }
 
-.email__btn {
-  color: white;
-  cursor: pointer;
-  width: 150px;
-  text-align: right;
+.feedback__form_wrap {
+  width: 20%;
 }
 
 .feedback__form {
@@ -78,15 +76,10 @@ textarea::placeholder {
   width: 100%;
   height: 40px;
   border: none;
-  border-bottom: 2px solid white;
-  font-size: 16px;
   outline: none;
   padding: 0 10px;
   background-color: #000;
-}
-
-.feedback__input_error {
-  border-color: crimson;
+  color: white;
 }
 
 .feedback__textarea,
@@ -94,17 +87,21 @@ textarea::placeholder {
   width: 100%;
   height: 100px;
   border: none;
-  border-bottom: 2px solid white;
   padding: 10px;
   outline: none;
   resize: none;
-  font-size: 16px;
   background-color: black;
+  color: white;
 }
 
-.feedback__textarea_error,
-.feedback__input_error {
-  border-color: crimson;
+.feedback__input,
+.feedback__textarea {
+  border-bottom: 2px solid white;
+}
+
+.feedback__input_error,
+.feedback__textarea_error {
+  border-bottom: 2px solid crimson;
 }
 
 .feedback__modal,
@@ -137,7 +134,6 @@ textarea::placeholder {
   font-family: 'regular', sans-serif;
   cursor: pointer;
   padding: 7px 20px;
-  /*min-width: 150px;*/
   display: flex;
   justify-content: center;
   background-color: white;
@@ -157,46 +153,162 @@ hr.footer__hr {
 .footer__private {
   display: flex;
   background-color: #000;
+  padding-top: 17px;
 }
 
 .footer__skilliant {
+  color: white;
+  font-size: 32px;
+  font-family: 'Aldrich', sans-serif;
+  padding-right: 17px;
   border-right: 2px solid white;
 }
 
-.footer__allRight, .footer__skilliant {
+.footer__privacy {
+  padding-left: 17px;
+}
+
+.footer__policy, .footer__allRight {
   color: white;
+  font-size: 14px;
+  font-family: 'regular', sans-serif;
+}
+
+.footer__allRight {
+  padding-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .top__footer {
+    padding: 0 40px;
+  }
 }
 
 @media (max-width: 900px) {
-  .main__footer {
-    height: 70px;
+  .feedback__form_wrap {
+    width: 30%;
   }
+ .top__footer {
+   padding: 0 20px;
+ }
 }
 
 @media (max-width: 767px) {
   .main__footer {
-    height: 60px;
+    width: 100%;
+    background-color: #000;
+    padding: 40px 10px;
+  }
+
+  .top__footer {
+    justify-content: space-around;
+    padding: 0;
+    row-gap: 40px;
+  }
+
+  .footer__email img,
+  .footer__telegram img {
+    width: 40px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
     font-size: 14px;
-    padding: 0 20px;
   }
 }
 
-@media (max-width: 500px) {
-  .main__footer {
-    flex-direction: column-reverse;
-    align-items: center;
-    height: fit-content;
-    padding: 10px 0;
-    row-gap: 10px;
+@media (max-width: 630px) {
+  .feedback__form_wrap {
+    width: 60%;
   }
 
-  .email__btn {
-    width: fit-content;
+  .footer__feedback {
+    display: flex;
+    justify-content: center;
   }
 }
 
 @media (max-width: 400px) {
-  .main__footer {
+  .top__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .block__pages {
+    row-gap: 10px;
+    font-size: 16px;
+  }
+
+  .footer__telegram, .footer__email {
+    padding-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .block__pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__contact {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__feedback {
+    font-size: 16px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
     font-size: 12px;
+  }
+
+  .feedback__button {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  hr.footer__hr {
+    display: none;
+  }
+
+  .footer__private {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__skilliant {
+    font-size: 25px;
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 10px;
+  }
+
+  .footer__privacy {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+
+  .footer__policy, .footer__allRight {
+    font-size: 12px;
+  }
+
+  .footer__allRight {
+    padding-top: 0;
+  }
+}
+
+
+@media (max-width: 330px) {
+  .footer__contact {
+    width: 70%;
   }
 }

@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import css from './Footer.module.css';
 import telegram from '../../../images/telegram.png';
 import email from '../../../images/email.png';
-import rootCSS from '../../../styles/root.module.css';
 import cross from '../../../images/cross.svg';
 import {createFeedback} from '../../../store';
 import {useForm} from 'react-hook-form';
@@ -66,7 +65,7 @@ const Footer = () => {
                     </Link>
                 </div>
 
-                <div>
+                <div  className={css.footer__contact}>
                     <div className={css.footer__telegram}>
                         <a href="https://t.me/skilliant" target="_blank" className={css.pages__link}>
                             <img src={telegram} alt="t.me/skilliant"/> SKILLIANT
@@ -117,9 +116,9 @@ const Footer = () => {
 
             <div className={css.footer__private}>
                 <div className={css.footer__skilliant}>Skilliant</div>
-                <div>
+                <div className={css.footer__privacy}>
                     <Link to={'/policy'}
-                          className={css.pages__link}>
+                          className={css.footer__policy}>
                         {EN ? 'Privacy policy' : 'Політика конфіденційності'}
                     </Link>
 

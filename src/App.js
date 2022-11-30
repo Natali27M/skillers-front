@@ -103,7 +103,7 @@ function App() {
                 <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                {/*<Route path={'/feedback'} element={<FeedbackFormPage/>}/>*/}
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
