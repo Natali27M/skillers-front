@@ -104,6 +104,11 @@ textarea::placeholder {
   border-bottom: 2px solid crimson;
 }
 
+input:-webkit-autofill{
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .feedback__modal,
 .feedback__modal_open {
   position: fixed;
