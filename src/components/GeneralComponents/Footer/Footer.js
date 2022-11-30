@@ -41,7 +41,7 @@ const Footer = () => {
     };
 
     return (
-        <div  className={css.main__footer}>
+        <div className={css.main__footer}>
             <div className={css.top__footer}>
                 <div className={css.block__pages}>
                     <Link to={'/for-users'}
@@ -65,7 +65,7 @@ const Footer = () => {
                     </Link>
                 </div>
 
-                <div  className={css.footer__contact}>
+                <div className={css.footer__contact}>
                     <div className={css.footer__telegram}>
                         <a href="https://t.me/skilliant" target="_blank" className={css.pages__link}>
                             <img src={telegram} alt="t.me/skilliant"/> SKILLIANT
@@ -112,7 +112,7 @@ const Footer = () => {
 
             </div>
 
-            <hr className={css.footer__hr}/>
+            <div className={css.footer__hr}></div>
 
             <div className={css.footer__private}>
                 <div className={css.footer__skilliant}>Skilliant</div>
