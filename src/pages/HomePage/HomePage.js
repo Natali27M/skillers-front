@@ -18,8 +18,8 @@ const HomePage = () => {
                 <div className={css.home__page_loginUser}>
                     <div  className={css.block_loginUser}>
                         <div className={css.home__description_loginUser}>
-                            {EN ? 'Platform for testing your IT skills' :
-                                'Платформа для перевірки твоїх IT навичок'}
+                            {EN ? 'We help engineers to grow in IT' :
+                                'Ми допомагаємо інженерам розвиватися в ІТ'}
                         </div>
                     </div>
                     <TechList/>
