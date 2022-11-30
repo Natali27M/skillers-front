@@ -3,10 +3,8 @@ import React, {useEffect, useState} from 'react';
 import css from './MentorDetails.module.css';
 import rootCSS from "../../../styles/root.module.css";
 import userCSS from "../../../pages/UserPage/UserPage.module.css";
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {achievementsServices, userServices} from "../../../services";
-import {resultsServices} from "../../../services/results.services";
 
 import up from "../../../images/up.svg";
 import cross from "../../../images/cross-red.svg";
@@ -25,8 +23,6 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
 
     const [rating, setRating] = useState(0);
 
-    const [result, setResult] = useState({});
-
     const [emailCopyTime, setEmailCopyTime] = useState(false);
 
 
@@ -40,10 +36,6 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
         });
     }, [mentor.userId, isConfirmedMentor, isDeletedMentor]);
 
-
-    useEffect(() => {
-        resultsServices.getUserResult(mentor.userId, 1).then(value => setResult(value));
-    }, [mentor.userId]);
 
     const emailCopy = () => {
         setEmailCopyTime(true);
@@ -124,14 +116,6 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
                         </div>
                         <div className={css.user__info_block}>
                             <div className={css.user__info_field}>
-                                {EN ? 'Is confirmed:' : 'Підтверджений:'}
-                            </div>
-                            <div className={css.user__info_element}>
-                                {mentor.isConfirmedMentor ? (EN ? "yes" : "Так") : (EN ? "Is not" : "Ні")}
-                            </div>
-                        </div>
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
                                 Linkedin
                             </div>
                             <div className={css.user__info_element}>
@@ -146,37 +130,6 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
                                 }
                             </div>
                         </div>
-                    </div>
-                    <div className={css.user__results_wrap}>
-                        <div className={css.user__info_title}>{EN ? 'Tests results' : 'Результати тестів'}</div>
-                        {
-                            result?.data?.length ?
-                                <div className={css.results__content}>
-                                    <div className={css.result__header}>
-                                        <div className={css.result__test}>
-                                            {EN ? 'Test' : 'Тест'}
-                                        </div>
-                                        <div className={css.result__number}>
-                                            {EN ? 'Result' : 'Результат'}
-                                        </div>
-                                    </div>
-                                    {result?.data?.map(result =>
-                                        <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`}
-                                              key={result?.id} className={css.result__block}>
-                                            <div className={css.result__test}>
-                                                {result?.attributes?.testName}
-                                            </div>
-                                            <div className={css.result__number}>
-                                                {result.attributes.correctAnswer}/{result.attributes.allExercises}
-                                            </div>
-                                        </Link>
-                                    )
-                                    }
-                                </div> :
-                                <div className={css.result__header}>
-                                    {EN ? "No tests results" : "Нема результатів тестів"}
-                                </div>
-                        }
                     </div>
                     <div className={css.user__results_wrap}>
                         <div className={css.user__info_title}>{EN ? 'Technologies' : 'Технології'}</div>
