@@ -1,0 +1,42 @@
+.unapprovedMentor__block {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.unapprovedMentor__userName {
+    width: 70%;
+}
+
+.unapprovedMentor__experience {
+    width: 30%;
+}
+
+.unapprovedMentor__block:hover {
+    background-color: #e5e3e3;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .unapprovedMentor__userName {
+        width: 60%;
+    }
+
+    .unapprovedMentor__experience {
+        width: 40%;
+    }
+    .unapprovedMentor__block {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    .unapprovedMentor__block {
+        font-size: 14px;
+    }
+}

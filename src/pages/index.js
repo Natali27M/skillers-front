@@ -14,3 +14,5 @@ export * from './RankPage/RankPage';
 export * from './RecruiterPage/RecruiterPage'
 export * from './UserPage/UserPage';
 export * from './FeedbackFormPage/FeedbackFormPage'
+export * from './MentorPage/MentorPage';
+export * from './MentorsPage/MentorsPage';

@@ -17,20 +17,15 @@
     row-gap: 30px;
 }
 
-.admin__title {
-    display: flex;
-    font-size: 30px;
-    font-weight: 500;
-    justify-content: center;
-    border-bottom: 3px solid;
-    padding: 0 10px;
-    margin-bottom: 20px;
-    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
-}
-
 .tests__wrap,
 .feedback__wrap {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mentors__wrap {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -109,20 +104,6 @@
     min-width: 3%;
     height: 100%;
 }
-
-.approve__feedback button {
-    background-color: #0ec717;
-    border: 1px solid rgba(6, 61, 16, 0.56);
-    border-radius: 10px;
-    padding: 5px 5px;
-    margin-left: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/*.approve__feedback span {*/
-/*    font-size: 15px;*/
-/*}*/
 
 
 .delete__feedback img {
@@ -229,11 +210,11 @@
     font-size: 10px;
 }
 
-
 @media (max-width: 1200px) {
     .delete__feedback img {
         width: 40%;
     }
+
     .admin__wrap {
         width: 90%;
     }
@@ -299,6 +280,7 @@
     .delete__feedback img {
         width: 50%;
     }
+
     .approve__feedback span {
         font-size: 10px;
     }
@@ -325,6 +307,7 @@
     .delete__feedback img {
         width: 60%;
     }
+
     .tests__wrap {
         margin-top: 10px;
     }

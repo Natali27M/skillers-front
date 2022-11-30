@@ -1,0 +1,228 @@
+.mentor__page {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.mentor__page__bg {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: url("../../images/mainBg.png") no-repeat center / cover;
+}
+
+.mentor__form__wrap {
+    width: 70%;
+    background-color: #fff;
+    z-index: 2;
+    min-height: calc(100vh - 80px);
+    box-shadow: 0 0 15px 3px #323232;
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mentor__congratulations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: auto;
+    font-size: 22px;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1
+}
+
+.mentor__select__span {
+    font-size: 18px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.required {
+    height: 15px;
+    color: red;
+}
+
+.mentor__form__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.mentor__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+    margin-top: 20px;
+    justify-content: center;
+    width: 80%;
+}
+
+.mentor__select__block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mentor__cover_letter__block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mentor__select__input {
+    width: 40%;
+    font-size: 14px;
+}
+
+.mentor__input {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 40%;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.mentor__cover_letter {
+    width: 250px;
+    height: 100px;
+    padding: 10px;
+}
+
+.mentor__modal,
+.mentor__modal_open {
+    position: fixed;
+    bottom: -200px;
+    right: 50px;
+    padding: 30px;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 10px rgba(27, 29, 46, 0.75);
+    border: 2px solid;
+    border-image: linear-gradient(213deg, #00dbde 0%, #fc00ff 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    transition: all 0.4s linear;
+}
+
+.mentor__modal_open {
+    bottom: 100px;
+}
+
+.modal__cross {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 920px) {
+    .mentor__congratulations {
+        font-size: 17px;
+    }
+
+    .mentor__select__span {
+        font-size: 14px;
+    }
+
+    .mentor__form__wrap {
+        align-items: flex-start;
+    }
+
+    .mentor__form {
+        row-gap: 40px;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .mentor__form__wrap {
+        width: 90%;
+    }
+
+    .mentor__select__block {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+
+    .mentor__cover_letter__block {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 30px;
+    }
+
+    .mentor__select__input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .mentor__input {
+        width: 100%;
+    }
+
+    .mentor__congratulations {
+        font-size: 18px;
+    }
+
+    .mentor__form {
+        margin: 0;
+    }
+
+    .mentor__select__span {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    .mentor__form__wrap {
+        width: 90%;
+    }
+
+    .mentor__select__block {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .mentor__cover_letter__block {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 20px;
+    }
+
+    .mentor__select__input {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .mentor__input {
+        width: 100%;
+    }
+
+    .mentor__congratulations {
+        font-size: 16px;
+    }
+
+    .mentor__form {
+        margin: 10px 0;
+    }
+
+    .mentor__select__span {
+        font-size: 14px;
+    }
+}

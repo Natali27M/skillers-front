@@ -12,6 +12,7 @@ import {
     GoogleRedirectPage,
     HomePage,
     LoginPage,
+    MentorPage,
     NotFoundPage,
     PolicyPage,
     RankPage,
@@ -19,7 +20,8 @@ import {
     RegisterPage,
     TestListPage,
     TestPage,
-    UserPage
+    UserPage,
+    MentorsPage,
 } from './pages';
 import {Layout} from './components';
 import {
@@ -34,7 +36,6 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-
 
 function App() {
     const {user} = useSelector(state => state['userReducers']);
@@ -104,6 +105,8 @@ function App() {
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                <Route path={'/mentor'} element={<MentorPage/>}/>
+                <Route path={'/mentors'} element={<MentorsPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

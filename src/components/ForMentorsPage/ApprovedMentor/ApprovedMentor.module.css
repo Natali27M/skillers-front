@@ -1,0 +1,152 @@
+.approvedMentor__block {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    position: relative;
+    min-height: 163px;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 20px 50px;
+    row-gap: 20px;
+}
+
+.approvedMentor__block:hover {
+    background-color: #e5e3e3;
+    cursor: pointer;
+}
+
+.mentor__info__block {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 10px;
+}
+
+.mentor__username {
+    font-size: 18px;
+    width: 20%;
+}
+
+.mentor__user__email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    font-size: 14px;
+}
+
+.linked__btn {
+    padding: 2px 10px;
+    text-align: center;
+    background-color: #0073B1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+.mentor__technologies__block {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.mentor__technology {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 13px;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.mentor__level__block {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mentor__level__block__experience {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    flex-direction: row;
+    width: 60%;
+}
+
+.mentor__level__block__english {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    flex-direction: row;
+    width: 40%;
+    font-size: 14px;
+}
+
+
+@media (max-width: 920px) {
+    .mentor__technologies__block {
+        flex-wrap: wrap;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+
+    .mentor__technology {
+        font-weight: 400;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .mentor__level__block__experience {
+        font-size: 14px;
+    }
+
+    .mentor__user__email {
+        font-size: 13px;
+    }
+
+    .mentor__level__block__english {
+        font-size: 12px;
+    }
+
+    .mentor__info__block {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        row-gap: 10px;
+    }
+
+    .linked__btn {
+        margin: 0;
+    }
+}
+
+@media (max-width: 620px) {
+    .mentor__level__block__experience {
+        font-size: 12px;
+    }
+
+    .mentor__level__block__english {
+        font-size: 11px;
+    }
+
+    .linked__btn {
+        font-size: 13px;
+    }
+
+}
