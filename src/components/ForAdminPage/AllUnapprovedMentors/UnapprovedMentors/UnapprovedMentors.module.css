@@ -53,3 +53,23 @@
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
 }
+
+
+@media (max-width: 767px) {
+    .mentor__name {
+        width: 60%;
+    }
+
+    .mentor__experience {
+        width: 40%;
+    }
+    .mentors__header {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    .mentors__header {
+        font-size: 14px;
+    }
+}

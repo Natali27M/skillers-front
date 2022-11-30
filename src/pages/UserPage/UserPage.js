@@ -309,7 +309,7 @@ const UserPage = () => {
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
 
                     <Link to={'/mentor'}
-                          className={rootCSS.default__button}>{EN ? 'To be a mentor' : 'Стати ментором'}</Link>
+                          className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
                     {/*<Link to={'/createTest'}
                           className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}

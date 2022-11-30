@@ -65,13 +65,16 @@ const MentorPage = () => {
         <div className={css.mentor__page}>
             <div className={css.mentor__page__bg}></div>
             <div className={css.mentor__form__wrap}>
-                <h2>{EN ? `Congratulations ${user.username}, to become a mentor, fill in the fields according to your skills` :
-                    `Вітаємо ${user.username}, щоб стати ментором заповніть поля про свої навички`}</h2>
+                <div
+                    className={css.mentor__congratulations}>{EN ? `Congratulations ${user.username}, to become a mentor, fill out all the fields of the form !` :
+                    `Вітаємо ${user.username}, щоб стати ментором заповніть поля форми`}
+                </div>
 
                 <div className={css.mentor__form__block}>
                     <form className={css.mentor__form} onSubmit={handleSubmit(sendMentorData)}>
                         <div className={css.mentor__select__block}>
-                            <span>{EN ? "Input the name" : "Ваше ім'я"}</span>
+                            <span className={css.mentor__select__span}><div className={css.required}>*</div>
+                                {EN ? "Input the name : " : "Ваше ім'я : "}</span>
                             <input
                                 type="text"
                                 placeholder={EN ? 'Name' : 'Ім\'я'}
@@ -81,7 +84,9 @@ const MentorPage = () => {
                         </div>
 
                         <div className={css.mentor__select__block}>
-                            <span>{EN ? "Select a technology" : "Виберіть технологію"}</span>
+                            <span
+                                className={css.mentor__select__span}><div className={css.required}>*</div>
+                                {EN ? "Select a technology : " : "Виберіть технологію : "}</span>
                             <Select options={technologies?.data?.map(value => value.attributes)}
                                     onChange={technologiesArray}
                                     isMulti
@@ -90,21 +95,27 @@ const MentorPage = () => {
                         </div>
 
                         <div className={css.mentor__select__block}>
-                            <span>{EN ? "Experience" : "Виберіть досвід роботи"}</span>
+                            <span
+                                className={css.mentor__select__span}><div className={css.required}>*</div>
+                                {EN ? "Experience : " : "Виберіть досвід роботи : "}</span>
                             <Select options={experiences} onChange={setExperience}
                                     placeholder={EN ? "Experience" : "Досвід роботи"}
                                     className={css.mentor__select__input}/>
                         </div>
 
                         <div className={css.mentor__select__block}>
-                            <span>{EN ? "English level" : "Виберіть рівень англійської"}</span>
+                            <span
+                                className={css.mentor__select__span}><div className={css.required}>*</div>
+                                {EN ? "English level : " : "Виберіть рівень англійської : "}</span>
                             <Select options={englishLevels} onChange={setEnglishLevel}
                                     placeholder={EN ? "English level" : "Рівень англійської"}
                                     className={css.mentor__select__input}/>
                         </div>
 
                         <div className={css.mentor__select__block}>
-                            <span>{EN ? "Linkedin profile" : "Профіль на Linkedin"}</span>
+                            <span
+                                className={css.mentor__select__span}><div className={css.required}>*</div>
+                                {EN ? "Linkedin profile : " : "Профіль на Linkedin : "}</span>
                             <input
                                 type="text"
                                 placeholder={EN ? 'Linkedin profile' : 'Профіль на Linkedin'}
@@ -114,7 +125,8 @@ const MentorPage = () => {
                         </div>
 
                         <div className={css.mentor__cover_letter__block}>
-                            <span>{EN ? "Cover Letter" : "Супровідний лист"}</span>
+                            <span
+                                className={css.mentor__select__span}>{EN ? "Cover Letter : " : "Супровідний лист : "}</span>
                             <textarea
                                 className={css.mentor__cover_letter}
                                 placeholder={EN ? 'Cover Letter' : 'Супровідний лист'}
