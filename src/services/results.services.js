@@ -4,6 +4,7 @@ import {urls} from '../config';
 
 export const resultsServices = {
     getUserResult: (userId, pageNum) => axiosServices.get(`${urls.testResultsByUser}${userId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`).then(value => value.data),
+    getUserResultWithTechId: (userId, pageNum) => axiosServices.get(`${urls.testResultsByUser}${userId}&filters[techId][$notNull]=true&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`).then(value => value.data),
     getUserResultAll: (userId) => axiosServices.get(`${urls.testResultsByUser}${userId}&pagination[pageSize]=30&pagination[page]=1`).then(value => value.data),
     getUserByTestResult: (userId, testId) => axiosServices.get(`${urls.testResultsByUser}${userId}&filters[testId][$eq]=${testId}`)
         .then(value => value.data.data),
