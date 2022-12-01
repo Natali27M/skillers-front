@@ -57,6 +57,10 @@ const ExBlock = ({tempId, testTempId}) => {
                 :
                 <form className={css.create__ex_form} onSubmit={handleSubmit(saveExercise)}>
                     <div className={css.textarea__wrap}>
+                        <div className={css.test__header_textarea}>
+                            {EN ? 'Task'
+                                : 'Завдання'}
+                        </div>
                         <textarea
                             placeholder={EN ? 'Enter the task' : 'Введіть умову завдання'}
                             {...register('description')}
@@ -64,6 +68,10 @@ const ExBlock = ({tempId, testTempId}) => {
                             autoCorrect="off"
                             className={css.create__ex_input}
                         />
+                        <div className={css.test__header_textarea}>
+                            {EN ? 'Code'
+                                : 'Код'}
+                        </div>
                         <textarea
                             placeholder={EN ? 'Enter the code (optionally)' : 'Введіть код для завдання (за потреби)'}
                             {...register('code')}
@@ -82,17 +90,24 @@ const ExBlock = ({tempId, testTempId}) => {
                     <VarBlock exTempId={tempId} key={variant.varTempId} varTempId={variant.varTempId}/>
                 )}
             </div>
+            <div className={css.variants__block_button}>
+                {exercise &&
+                    <div className={css.add__var_button}>
+                        <button onClick={() => addVariant()} className={css.add__var_btn}>
+                            {EN ? '+Add variant' : '+Додати варіант'}
+                        </button>
+                    </div>
+                }
+                {/*<div className={css.del__ex_btn_wrap}>*/}
+                <div className={css.add__var_button}>
+                    <button className={css.del__ex_btn} onClick={() => dispatch(deleteExerciseFromArray(tempId))}>
+                        {EN ? 'Delete exercise' : 'Видалити завдання'}
+                    </button>
+                </div>
 
-            {exercise &&
-                <button onClick={() => addVariant()} className={css.add__var_btn}>
-                    {EN ? '+Add variant' : '+Додати варіант'}
-                </button>
-            }
-            <div className={css.del__ex_btn_wrap}>
-                <button className={css.del__ex_btn} onClick={() => dispatch(deleteExerciseFromArray(tempId))}>
-                    {EN ? 'Delete exercise' : 'Видалити завдання'}
-                </button>
+                {/*</div>*/}
             </div>
+
         </div>
     );
 };

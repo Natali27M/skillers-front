@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import css from './TechDropdown.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {clearCreateTest, getTechNames, setTechnology} from '../../../store';
-import dropArrow from '../../../images/dropArrow.svg';
 import {useLocation} from 'react-router-dom';
+
+import css from './TechDropdown.module.css';
+import {clearCreateTest, getTechNames, setTechnology} from '../../../store';
+import dropArrow from '../../../images/arrow-color.png';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 

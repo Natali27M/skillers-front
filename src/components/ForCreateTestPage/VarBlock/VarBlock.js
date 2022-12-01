@@ -54,14 +54,14 @@ const VarBlock = ({exTempId, varTempId}) => {
                         defaultValue=''
                         className={css.var__input}
                     />
-                    <div className={css.is__correct}>
-                        {EN ? 'Correct: ' : 'Правильна: '}
-                    </div>
-                    <input
-                        type="checkbox"
-                        {...register('correct')}
-                        className={css.var__checkbox}
-                    />
+                        <div className={css.is__correct}>
+                            {EN ? 'Correct: ' : 'Правильна: '}
+                        </div>
+                        <input
+                            type="checkbox"
+                            {...register('correct')}
+                            className={css.var__checkbox}
+                        />
                     <button className={css.save__var_btn}>
                         {EN ? 'Save' : 'Зберегти'}
                     </button>
