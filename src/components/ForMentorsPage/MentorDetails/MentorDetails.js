@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
 import css from './MentorDetails.module.css';
 import rootCSS from "../../../styles/root.module.css";
 import userCSS from "../../../pages/UserPage/UserPage.module.css";
-import {useDispatch, useSelector} from "react-redux";
 import {achievementsServices, userServices} from "../../../services";
 
-import up from "../../../images/up.svg";
+import cross_g from "../../../images/cross.svg";
 import cross from "../../../images/cross-red.svg";
 import grey from "../../../images/check-grey.svg";
 import green from "../../../images/check-green.svg";
@@ -58,137 +58,121 @@ const MentorDetails = ({mentor, setUserId, mentorId}) => {
     const approve = (id, booleanValue) => {
         dispatch(updateIsConfirmedMentor({id, booleanValue}))
     }
-    return (
-        <>
-            <div className={css.user__block}>
-                <div className={css.roll__up} onClick={() => setUserId()}>
-                    <img src={up} alt="cross"/>
-                </div>
-
-                <div className={rootCSS.default__title_24}>{mentor?.userName}</div>
-                <div className={css.user__content}>
-                    <div className={css.user__info_wrap}>
-                        <div className={css.user__info_title}>{EN ? 'Information' : 'Інформація'}</div>
-                        <a href={`mailto:${user?.email}`} className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                Email:
-                            </div>
-                            <div className={css.user__info_element}>
-                                {mentor?.userEmail}
-                            </div>
-                        </a>
-
-                        <button className={css.email__btn} onClick={() => emailCopy()}>
-                            {emailCopyTime ? (EN ? 'Copied!' : 'Скопійовано!') : (EN ? 'Copy email' : 'Скопіювати email')}
-                        </button>
-
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                {EN ? 'Rating:' : 'Рейтинг:'}
-                            </div>
-                            <div className={css.user__info_element}>
-                                {rating === 0 ? `${EN ? "Not any rating" : "Немає рейтигу"}` : rating}
-                            </div>
-                        </div>
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                {EN ? 'Search:' : 'У пошуку:'}
-                            </div>
-                            <div className={css.user__info_element}>
-                                {user?.openForHiring ? (EN ? 'Yes' : 'Так') : (EN ? 'No' : 'Ні')}
-                            </div>
-                        </div>
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                {EN ? 'Experience:' : 'Досвід:'}
-                            </div>
-                            <div className={css.user__info_element}>
-                                {mentor?.experience}
-                            </div>
-                        </div>
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                {EN ? 'English Level:' : 'Рівень англійської:'}
-                            </div>
-                            <div className={css.user__info_element}>
-                                {mentor.englishLevel}
-                            </div>
-                        </div>
-                        <div className={css.user__info_block}>
-                            <div className={css.user__info_field}>
-                                Linkedin
-                            </div>
-                            <div className={css.user__info_element}>
-                                {
-                                    user?.linkedin ?
-                                        <a href={user?.linkedin} target="_blank" className={userCSS.linked__btn}>
-                                            LinkedIn
-                                        </a> :
-                                        <a href={mentor?.linkedin} target="_blank" className={userCSS.linked__btn}>
-                                            LinkedIn
-                                        </a>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div className={css.user__results_wrap}>
-                        <div className={css.user__info_title}>{EN ? 'Technologies' : 'Технології'}</div>
-                        {
-                            mentor?.technologies?.data?.length ?
-                                <div className={css.results__content}>
-                                    <div className={css.result__header}>
-                                        <div className={css.result__test}>
-                                            <span>№</span>
-                                        </div>
-                                        <div className={css.result__number}>
-                                            {EN ? 'Name' : 'Назава'}
-                                        </div>
-                                    </div>
-                                    {mentor?.technologies?.data?.map(result =>
-                                        <div className={css.result__block} key={result.id}>
-                                            <div className={css.result__test}>
-                                                {counter()}
-                                            </div>
-                                            <div className={css.result__number}>
-                                                {result.attributes.label}
-                                            </div>
-                                        </div>
-                                    )
-                                    }
-                                </div> :
-                                <div className={css.result__header}>
-                                    {EN ? "There are no selected technologies" : "Немає обраних технологій"}
-                                </div>
-                        }
-                    </div>
-                    <div className={css.user__results_wrap}>
-                        <div className={css.user__info_title}>{EN ? 'Cover letter' : 'Супроводжуючий лист'}</div>
-                        <div className={css.cover__letter}>{mentor.coverLetter}</div>
-                    </div>
-
-                    {
-                        roles?.length && roles[0] === "admin" && <div className={css.mentor__delete__approve__block}>
-                            <div onClick={() => makeMentorDelete(mentorId)}>
-                                <img src={cross} alt="cross" className={css.delete__mentor}/>
-                            </div>
-
-                            <div>
-                                {
-                                    mentor.isConfirmedMentor ?
-                                        <img src={grey} alt="grey" className={css.unApprove__mentor}
-                                             onClick={() => approve(mentorId, false)}/> :
-                                        <img src={green} alt="green" className={css.approve__mentor}
-                                             onClick={() => approve(mentorId, true)}/>
-                                }
-                            </div>
-                        </div>
-                    }
-                </div>
-
+    return (<>
+        <div className={css.user__block}>
+            <div className={css.roll__up} onClick={() => setUserId()}>
+                <img src={cross_g} alt="cross"/>
             </div>
 
-        </>
-    );
+            <div className={rootCSS.default__title_24}>{mentor?.userName}</div>
+            <div className={css.user__content}>
+                <div className={css.user__info_wrap}>
+                    <div className={css.user__info_title}>{EN ? 'Information' : 'Інформація'}</div>
+                    <a href={`mailto:${user?.email}`} className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            Email:
+                        </div>
+                        <div className={css.user__info_element}>
+                            {mentor?.userEmail}
+                        </div>
+                    </a>
+
+                    <button className={css.email__btn} onClick={() => emailCopy()}>
+                        {emailCopyTime ? (EN ? 'Copied!' : 'Скопійовано!') : (EN ? 'Copy email' : 'Скопіювати email')}
+                    </button>
+
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            {EN ? 'Rating:' : 'Рейтинг:'}
+                        </div>
+                        <div className={css.user__info_element}>
+                            {rating === 0 ? `${EN ? "Not any rating" : "Немає рейтигу"}` : rating}
+                        </div>
+                    </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            {EN ? 'Search:' : 'У пошуку:'}
+                        </div>
+                        <div className={css.user__info_element}>
+                            {user?.openForHiring ? (EN ? 'Yes' : 'Так') : (EN ? 'No' : 'Ні')}
+                        </div>
+                    </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            {EN ? 'Experience:' : 'Досвід:'}
+                        </div>
+                        <div className={css.user__info_element}>
+                            {mentor?.experience}
+                        </div>
+                    </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            {EN ? 'English Level:' : 'Рівень англійської:'}
+                        </div>
+                        <div className={css.user__info_element}>
+                            {mentor.englishLevel}
+                        </div>
+                    </div>
+                    <div className={css.user__info_block}>
+                        <div className={css.user__info_field}>
+                            Linkedin
+                        </div>
+                        <div className={css.user__info_element}>
+                            {user?.linkedin ?
+                                <a href={user?.linkedin} target="_blank" className={userCSS.linked__btn}>
+                                    LinkedIn
+                                </a> : <a href={mentor?.linkedin} target="_blank" className={userCSS.linked__btn}>
+                                    LinkedIn
+                                </a>}
+                        </div>
+                    </div>
+                </div>
+                <div className={css.user__results_wrap}>
+                    <div className={css.user__info_title}>{EN ? 'Technologies' : 'Технології'}</div>
+                    {mentor?.technologies?.data?.length ? <div className={css.results__content}>
+                        <div className={css.result__header}>
+                            <div className={css.result__test}>
+                                <span>№</span>
+                            </div>
+                            <div className={css.result__number}>
+                                {EN ? 'Name' : 'Назава'}
+                            </div>
+                        </div>
+                        {mentor?.technologies?.data?.map(result => <div className={css.result__block}
+                                                                        key={result.id}>
+                            <div className={css.result__test}>
+                                {counter()}
+                            </div>
+                            <div className={css.result__number}>
+                                {result.attributes.label}
+                            </div>
+                        </div>)}
+                    </div> : <div className={css.result__header}>
+                        {EN ? "There are no selected technologies" : "Немає обраних технологій"}
+                    </div>}
+                </div>
+                <div className={css.user__results_wrap}>
+                    <div className={css.user__info_title}>{EN ? 'Cover letter' : 'Супроводжуючий лист'}</div>
+                    <div className={css.cover__letter}>{mentor.coverLetter}</div>
+                </div>
+
+                {roles?.length && roles[0] === "admin" && <div className={css.mentor__delete__approve__block}>
+                    <div onClick={() => makeMentorDelete(mentorId)}>
+                        <img src={cross} alt="cross" className={css.delete__mentor}/>
+                    </div>
+
+                    <div>
+                        {mentor.isConfirmedMentor ? <img src={grey} alt="grey" className={css.unApprove__mentor}
+                                                         onClick={() => approve(mentorId, false)}/> :
+                            <img src={green} alt="green" className={css.approve__mentor}
+                                 onClick={() => approve(mentorId, true)}/>}
+                    </div>
+                </div>}
+            </div>
+
+        </div>
+
+    </>);
 };
 
 export {MentorDetails};

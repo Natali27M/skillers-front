@@ -12,4 +12,5 @@
     min-height: calc(100vh - 80px);
     background-color: #fff;
     box-shadow: 0 0 15px 3px #323232;
+    padding-bottom: 50px;
 }

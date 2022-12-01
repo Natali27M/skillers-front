@@ -13,6 +13,7 @@ import {
     HomePage,
     LoginPage,
     MentorPage,
+    MentorsPage,
     NotFoundPage,
     PolicyPage,
     RankPage,
@@ -21,7 +22,6 @@ import {
     TestListPage,
     TestPage,
     UserPage,
-    MentorsPage,
 } from './pages';
 import {Layout} from './components';
 import {
@@ -45,7 +45,7 @@ function App() {
 
     const {timeToClear} = useSelector(state => state['createTestsReducers']);
 
-    const {userAchievement, userTitle} = useSelector(state => state['achievementsReducers']);
+    const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
     const dispatch = useDispatch();
 

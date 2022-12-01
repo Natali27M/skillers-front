@@ -65,7 +65,7 @@ const Header = () => {
                     {EN ? 'Create quiz' : 'Створити тест'}
                 </Link>
                 <Link className={css.header__link} to={'/mentors'}>
-                    {EN ? 'Mentors page' : 'Ментори'}
+                    {EN ? 'Mentors' : 'Ментори'}
                 </Link>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
@@ -110,7 +110,7 @@ const Header = () => {
                     {EN ? 'Create quiz' : 'Створити тест'}
                 </Link>
                 <Link className={css.header__link} to={'/mentors'}>
-                    {EN ? 'Mentors page' : 'Ментори'}
+                    {EN ? 'Mentors' : 'Ментори'}
                 </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
