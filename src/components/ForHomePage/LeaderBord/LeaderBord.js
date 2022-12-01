@@ -22,7 +22,7 @@ const LeaderBord = () => {
     const [isQuery, setIsQuery] = useState(false);
 
     useEffect(() => {
-        badgesProcessing();
+        badgesProcessing(65);
     }, []);
 
     useEffect(() => {
