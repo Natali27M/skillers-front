@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation, useParams, Navigate, useNavigate} from 'react-router-dom';
+import {Link, Navigate, useLocation, useNavigate, useParams} from 'react-router-dom';
 import css from './TestPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
@@ -14,19 +14,23 @@ import {
 import {
     checkProxyResults,
     clear,
-    clearResults, getFullTestResult,
+    clearResults,
+    getFullTestResult,
     getProxyExercises,
+    getUserByTestResults,
     makeTimeToPush,
     setTestComplete
 } from '../../store';
 import {BackButton, ExerciseBlock, SignUpModal} from '../../components';
 import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
-import {createUserResult, getUserByTestResults} from '../../store';
 import star__rating from '../../images/star-rating.svg';
 import lock from '../../images/lock.svg';
+import coin from '../../images/coin.svg';
 import {userServices} from '../../services';
 
 const TestPage = () => {
+    const [coins, setCoins] = useState(0);
+
     const {EN} = useSelector(state => state['languageReducers']);
     const {oneTest, userTestRate} = useSelector(state => state['testsReducers']);
     const {
@@ -40,6 +44,8 @@ const TestPage = () => {
     } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
+
+    console.log(userAchievement);
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
@@ -110,8 +116,13 @@ const TestPage = () => {
         }
     }, [timeToPush, variants.length]);
 
+
     useEffect(() => {
         if (result && user) {
+            let myCorrectPercent = (100 * result.correct) / result.allExercises;
+            if (myCorrectPercent > oneTest?.attributes?.monetizedPercent && oneTest?.attributes?.isMonetized) {
+                setCoins(1);
+            }
             const correctPart = +result.correct / result.allExercises;
             const rating = (correctPart === Infinity || isNaN(correctPart) ? 0 : oneTest.attributes.difficult * correctPart).toFixed(1);
             dispatch(getUserAchievement(user.id));
@@ -121,31 +132,58 @@ const TestPage = () => {
                         achId: userAchievement.id,
                         data: {
                             rating: (+userAchievement?.attributes?.rating + (+rating)).toFixed(1),
-                            userName: user.username
+                            userName: user.username,
+                            coins: userAchievement?.attributes?.coins + coins,
                         }
                     }));
                 } else {
                     dispatch(createUserAchievement({
                         userName: user.username,
                         userId: user.id,
-                        rating: rating
+                        rating: rating,
+                        coins: coins,
                     }));
                 }
             }
-            dispatch(createUserResult({
-                    testName: oneTest.attributes.name,
-                    testId: oneTest.id,
+
+            if (userAchievement) {
+                dispatch(updateUserAchievement({
+                    achId: userAchievement.id,
+                    data: {
+                        rating: (+userAchievement?.attributes?.rating + (+rating)).toFixed(1),
+                        userName: user.username,
+                        coins: userAchievement?.attributes?.coins + coins,
+                    }
+                }));
+
+            } else {
+                dispatch(createUserAchievement({
+                    userName: user.username,
                     userId: user.id,
-                    techId: oneTest.attributes.techId,
-                    correctAnswer: result.correct,
-                    allExercises: result.allExercises
-                }
-            ));
+                    rating: rating,
+                    coins: coins,
+                }));
+            }
+
+
+            console.log("---my result-----");
+            console.log((100 * result.correct) / result.allExercises);
+            console.log("---my result-----");
+
+            // dispatch(createUserResult({
+            //         testName: oneTest.attributes.name,
+            //         testId: oneTest.id,
+            //         userId: user.id,
+            //         techId: oneTest.attributes.techId,
+            //         correctAnswer: result.correct,
+            //         allExercises: result.allExercises
+            //     }
+            // ));
         } else if (result && !user) {
             setModalOpen(true);
         }
 
-    }, [result]);
+    }, [result, coins]);
 
     useEffect(() => {
         if (testFailed) {
@@ -215,7 +253,10 @@ const TestPage = () => {
         <div className={css.test__page}>
             {modalOpen && <SignUpModal setModalOpen={setModalOpen} type="test"/>}
             <div className={css.test__page_title}>
-                <div>{oneTest?.attributes?.name}</div>
+                <div className={css.test__page_title__name}>{oneTest?.attributes?.name}
+                    {oneTest?.attributes?.isMonetized &&
+                        <img src={coin} alt="coin" style={{width: '22px', height: '22px'}}/>}
+                </div>
                 <div className={css.title__rating}>
                     <div>{EN ? 'Rating' : 'Рейтинг'}: {oneTest?.attributes?.avgMark || 0}</div>
                     <img src={star__rating} alt="star"/>
@@ -225,7 +266,10 @@ const TestPage = () => {
                 <BackButton/>
             </div>
             <div className={css.test__info_wrap}>
-                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || defaultPercent}</div>
+                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || defaultPercent}
+                    {oneTest?.attributes?.monetizedPercent &&
+                        <div>{EN ? 'Coin get result, %: ' : 'Результат отримання монетки, %: '}{oneTest?.attributes?.monetizedPercent}</div>}
+                </div>
                 {!!oneTest?.attributes?.isPrivate && <div className={css.private__wrap}>
                     <img className={css.private__img} src={lock} alt="lock"/>
                     <div>{EN ? 'Private test' : 'Приватний тест'}</div>
