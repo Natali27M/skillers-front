@@ -94,7 +94,7 @@ const ExBlock = ({tempId, testTempId}) => {
                 {exercise &&
                     <div className={css.add__var_button}>
                         <button onClick={() => addVariant()} className={css.add__var_btn}>
-                            {EN ? '+Add variant' : '+Додати варіант'}
+                            {EN ? '+ Add variant' : '+Додати варіант'}
                         </button>
                     </div>
                 }
