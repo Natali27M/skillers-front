@@ -20,6 +20,14 @@
     border-image-slice: 1;
 }
 
+.test__page_title__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    min-height: 20px;
+}
+
 .back__btn_wrap {
     width: 100%;
     display: flex;
