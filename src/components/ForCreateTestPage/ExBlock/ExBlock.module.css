@@ -1,10 +1,7 @@
 .exBlock {
     width: 100%;
-    padding: 30px 50px;
-    background-color: #F1F1F1;
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
 }
 
 .ex__data_wrap{
@@ -21,26 +18,37 @@
 .create__ex_form {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    /*flex-direction: column;*/
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid #CDC9C9;
 }
 
 .textarea__wrap {
+    width: 100%;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     row-gap: 15px;
+    padding-bottom: 20px;
+}
+
+.textarea__wrap textarea {
+    height: 150px;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    font-size: 18px;
+    padding: 0;
+}
+
+.test__header_textarea {
+    font-size: 14px;
+    color: grey;
 }
 
 .create__ex_input {
     font-size: 16px;
     padding: 10px;
-    height: 100px;
-    width: 70%;
-    border: 1px solid black;
     outline: none;
 }
 
@@ -49,17 +57,29 @@
 .save__var_btn,
 .add__var_btn,
 .del__ex_btn {
-    height: 40px;
+    width: 30%;
+    height: 50px;
     font-size: 16px;
-    background-color: #000;
+    background-color: grey;
     color: white;
-    padding: 0 15px;
     cursor: pointer;
     border: none;
+    border-radius: 5px;
+}
+
+.create__ex_btn {
+    width: fit-content;
+    padding: 0 40px;
 }
 
 .del__ex_btn {
-    background-color: crimson;
+    /*width: 60%;*/
+    width: fit-content;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 16px;
+    background-color: black;
+    margin: 0 5px;
 }
 
 .del__var_btn {
@@ -73,18 +93,23 @@
 }
 
 .del__ex_btn_wrap {
-    margin-top: 40px;
+    margin-top: 10px;
+    padding-bottom: 30px;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .variant__form {
     width: 100%;
-    padding-left: 30px;
     display: flex;
     align-items: center;
     column-gap: 20px;
+}
+
+.variant__form > input:checked {
+    background-color: white;
+    content: url("../../../images/chek-color.png");
 }
 
 .var__input {
@@ -111,6 +136,12 @@
     display: flex;
     flex-direction: column;
     row-gap: 15px;
+    padding: 10px 0 40px 0;
+}
+
+.variants__wrap input {
+    border: none;
+    border-bottom: 2px solid lightgray;
 }
 
 .ex__description {
@@ -119,16 +150,35 @@
     font-size: 22px;
     font-weight: 500;
     padding-bottom: 20px;
+    margin-bottom: 20px;
     overflow: hidden;
     border-bottom: 1px solid #CDC9C9;
     white-space: pre-wrap;
 }
 
+.variants__block_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+    width: 100%;
+}
 
+.add__var_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
 
 .add__var_btn {
-    background-color: limegreen;
+    background-color: grey;
+    color: white;
+    padding: 0 20px;
     width: fit-content;
+    height: 50px;
+    font-size: 16px;
+    margin: 0 5px;
 }
 
 .is__correct {
@@ -144,7 +194,6 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #CDC9C9;
     white-space: pre-wrap;
-
 }
 
 .variant__name {
@@ -165,10 +214,12 @@
 }
 
 @media (max-width: 1200px) {
-    .variant__form {
-        flex-direction: column;
-        align-items: center;
-        row-gap: 10px;
+    .create__ex_btn {
+        width: fit-content;
+    }
+
+    .del__ex_btn {
+        width: fit-content;
     }
 }
 
@@ -203,6 +254,11 @@
         font-size: 10px;
     }
 
+    .variant__form {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -227,10 +283,30 @@
     .ex__description{
         font-size: 16px;
     }
+
+    .create__ex_btn {
+        width: fit-content;
+        padding: 0 35px;
+    }
 }
 
 @media (max-width: 500px) {
     .ex__description{
         font-size: 14px;
+    }
+
+    .create__ex_btn {
+        width: fit-content;
+        padding: 0 25px;
+    }
+}
+
+@media (max-width: 380px) {
+    .exBlock {
+      padding: 20px 5px;
+    }
+
+    .create__ex_btn {
+        padding: 0 15px;
     }
 }

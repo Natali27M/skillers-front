@@ -136,39 +136,46 @@ const CreateTestPage = () => {
                     <>
                         <div className={css.test__header}>
                             <div className={css.test__name}>{tempTest?.name}</div>
-                            <div className={css.test__name}>{technology?.attributes.name}</div>
+                            <div className={css.test__name_technology}>{technology?.attributes.name}</div>
                             {!!tempTest.isPrivate && <div className={css.private__wrap}>
                                 <img className={css.private__img} src={lock} alt="lock"/>
                                 <div>{EN ? 'Private test' : 'Приватний тест'}</div>
                             </div>}
                             <div
-                                className={css.test__difficult}>{EN ? 'Difficult' : 'Складність'} {tempTest?.difficult}
+                                className={css.test__difficult}>{EN ? 'Difficult : ' : 'Складність : '} {tempTest?.difficult}
                             </div>
                             <div className={css.test__difficult}>
-                                {EN ? 'Min. result, %: ' : 'Мін. результат, %: '} {tempTest?.correctPercent}
+                                {EN ? 'Min. result, % : ' : 'Мін. результат, % : '} {tempTest?.correctPercent}
                             </div>
                         </div>
                         {!!tempArray?.length && <div className={css.ex__wrap}>
                             {!!tempArray?.length && tempArray.map(ex => <ExBlock testTempId={tempTest.testTempId}
                                                                                  tempId={ex} key={ex}/>)}
                         </div>}
-                        <div className={css.addEx__btn_wrap}>
-                            <div className={css.addEx__btn} onClick={() => addExBlock()}>
-                                {EN ? '+ Add exercise' : '+ Додати завдання'}
+                        <div  className={css.test__block_btn}>
+                            <div className={css.addEx__btn_wrap}>
+                                <div className={css.addEx__btn} onClick={() => addExBlock()}>
+                                    {EN ? '+ Add exercise' : '+ Додати завдання'}
+                                </div>
                             </div>
-                        </div>
-                        <div className={css.addEx__btn_wrap}>
-                            <button onClick={() => sendNormTest()} className={css.addEx__btn}>
-                                {EN ? 'SEND' : 'НАДІСЛАТИ'}
-                            </button>
+                            <div className={css.addEx__btn_wrap}>
+                                <button onClick={() => sendNormTest()} className={css.addEx__btn}>
+                                    {EN ? 'SEND' : 'НАДІСЛАТИ'}
+                                </button>
+                            </div>
                         </div>
                     </>
                     :
                     <form className={css.test__form} onSubmit={handleSubmit(sendTest)}>
+                        <div className={css.test__head}>{EN ? 'Create Quiz' : 'Створити Тест'}</div>
                         <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Test name'
+                                    : 'Назва тесту'}
+                            </div>
                             <input
                                 type="text"
-                                placeholder={EN ? 'Test name' : 'Назва тесту'}
+                                placeholder={EN ? 'Enter the test name' : 'Введіть назву тесту'}
                                 {...register('name')}
                                 autoComplete="off"
                                 autoCorrect="off"
@@ -182,6 +189,10 @@ const CreateTestPage = () => {
                             }
                         </div>
                         <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Needed category'
+                                    : 'Потрібна категорія'}
+                            </div>
                             <TechDropdown/>
                             {!isTech &&
                                 <div className={css.input__error}>
@@ -191,9 +202,13 @@ const CreateTestPage = () => {
                             }
                         </div>
                         <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Difficult'
+                                    : 'Складність'}
+                            </div>
                             <input
                                 type="number"
-                                placeholder={EN ? 'Difficult' : 'Складність'}
+                                placeholder={EN ? 'Enter the difficulty of the test' : 'Введіть складність тесту'}
                                 {...register('difficult')}
                                 min="1" max="10"
                                 autoComplete="off"
@@ -208,9 +223,13 @@ const CreateTestPage = () => {
                             }
                         </div>
                         <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Min. result'
+                                    : 'Мін. результат'}
+                            </div>
                             <input
                                 type="number"
-                                placeholder={EN ? 'Min. result, %' : 'Мін. результат, %'}
+                                placeholder={EN ? 'Enter the min. result, %' : 'Введіть мін. результат, %'}
                                 {...register('correctPercent')}
                                 min="10" max="100"
                                 autoComplete="off"
@@ -224,7 +243,7 @@ const CreateTestPage = () => {
                                 </div>
                             }
                         </div>
-                        <div className={css.input__wrap}>
+                        <div className={css.input__wrap_private}>
                             <label className={css.private__label}>
                                 <div>{EN ? 'Private' : 'Приватний'}</div>
                                 <input
