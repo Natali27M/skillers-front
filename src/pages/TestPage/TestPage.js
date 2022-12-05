@@ -170,15 +170,15 @@ const TestPage = () => {
             console.log((100 * result.correct) / result.allExercises);
             console.log("---my result-----");
 
-            // dispatch(createUserResult({
-            //         testName: oneTest.attributes.name,
-            //         testId: oneTest.id,
-            //         userId: user.id,
-            //         techId: oneTest.attributes.techId,
-            //         correctAnswer: result.correct,
-            //         allExercises: result.allExercises
-            //     }
-            // ));
+            dispatch(createUserResult({
+                    testName: oneTest.attributes.name,
+                    testId: oneTest.id,
+                    userId: user.id,
+                    techId: oneTest.attributes.techId,
+                    correctAnswer: result.correct,
+                    allExercises: result.allExercises
+                }
+            ));
         } else if (result && !user) {
             setModalOpen(true);
         }
