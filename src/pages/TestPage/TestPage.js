@@ -141,6 +141,7 @@ const TestPage = () => {
                     allExercises: result.allExercises
                 }
             ));
+
         } else if (result && !user) {
             setModalOpen(true);
         }

@@ -8,7 +8,6 @@ import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
 // import {LeaderBlock} from '../LeaderBlock/LeaderBlock';
 import {LeaderBlock, PresentForUserAlways} from '../../../components';
-import badgesProcessing from '../../../RootFunctions/badgesProcessing';
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -20,10 +19,6 @@ const LeaderBord = () => {
     const [pageNumber, setPageNumber] = useState(1);
 
     const [isQuery, setIsQuery] = useState(false);
-
-    useEffect(() => {
-        badgesProcessing(65);
-    }, []);
 
     useEffect(() => {
         dispatch(getLeaderBord(pageNumber));

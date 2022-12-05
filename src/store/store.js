@@ -9,12 +9,14 @@ import achievementsReducers from './slices/achievments.slice';
 import resultReducers from './slices/results.slice';
 import createTestsReducers from './slices/createTest.slice';
 import feedbackReducers from './slices/feedback.slice';
+import badgesReducers from './slices/badges.slice';
 
 
 const store = configureStore({
     reducer: {
         languageReducers,
         testsReducers,
+        badgesReducers,
         exercisesReducers,
         userReducers,
         achievementsReducers,

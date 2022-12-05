@@ -32,6 +32,8 @@ const UserPage = () => {
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
+    const {userBadges} = useSelector(state => state['badgesReducers']);
+
     const {pathname} = useLocation();
 
     const dispatch = useDispatch();
@@ -50,6 +52,10 @@ const UserPage = () => {
 
     const [testForResults, setTestForResults] = useState(null);
 
+
+    useEffect(() => {
+        console.log(userBadges);
+    }, [userBadges]);
 
     useEffect(() => {
         if (user) {
@@ -286,10 +292,12 @@ const UserPage = () => {
                             <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
                         </div>
                         {resultsByTest?.data?.map(result =>
-                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`} key={result.id}
+                            <Link to={`/test/${result?.attributes?.testId}-${result?.attributes?.userId}`}
+                                  key={result.id}
                                   className={css.results__block}>
                                 <div className={css.result__testName}>{result?.attributes?.userId}</div>
-                                <div className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
+                                <div
+                                    className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
                             </Link>
                         )}
                         {!!resultsByTest?.data?.length ? <div className={css.pagination__block}>

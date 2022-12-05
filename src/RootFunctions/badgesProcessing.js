@@ -1,4 +1,5 @@
 import {resultsServices} from '../services/results.services';
+import {badgesServices} from '../services';
 
 export default async function badgesProcessing(userId) {
     return new Promise(async resolve => {
@@ -18,7 +19,7 @@ export default async function badgesProcessing(userId) {
 
         const allResults = await getAllResultsWithTechId(userId);
 
-        const techGrouping =  (results) => {
+        const techGrouping = (results) => {
             console.log(results);
             let techGroups = {};
             for (const result of results) {
@@ -31,8 +32,9 @@ export default async function badgesProcessing(userId) {
             return techGroups;
         };
 
-        console.log(techGrouping(allResults));
+        const badgeData = techGrouping(allResults);
 
+        // await badgesServices.createBadge(userId, badgeData);
 
         resolve();
 

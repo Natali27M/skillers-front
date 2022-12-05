@@ -34,6 +34,7 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {DonationPage} from './pages/DonationPage/DonationPage';
+import {getUserBadges} from './store/slices/badges.slice';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
             dispatch(getUserAchievement(id));
             dispatch(getUserResults({userId: id, pageNum: 1}));
             dispatch(getUserRoles(id));
+            dispatch(getUserBadges(id))
         }
     }, [user]);
 

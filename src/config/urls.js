@@ -31,5 +31,7 @@ export const urls = {
 
     feedback: '/api/feedbacks',
 
-    rates: 'api/rates'
+    rates: 'api/rates',
+
+    badges: 'api/badges'
 };
