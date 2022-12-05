@@ -55,6 +55,13 @@
     margin-top: 10px;
 }
 
+.coin__result__get {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
 .check__wrap {
     width: 100%;
     display: flex;
@@ -222,6 +229,30 @@
     }
 }
 
+@media (max-width: 920px) {
+    .result__block {
+        font-size: 19px;
+    }
+
+    .check__btn {
+        font-size: 20px;
+    }
+
+    .coin__result__get {
+        column-gap: 3px;
+    }
+
+    .rating__wrap {
+        column-gap: 2px;
+    }
+
+    .coin__result__get {
+        font-size: 18px;
+        column-gap: 5px;
+        margin-top: 10px;
+    }
+}
+
 
 @media (max-width: 767px) {
     .test__page_title {
@@ -241,7 +272,7 @@
     }
 
     .result__block {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .result__wrap {
@@ -255,6 +286,11 @@
 
     .back__btn_wrap {
         padding: 10px 0;
+    }
+
+    .rating__wrap {
+        flex-direction: column;
+        row-gap: 3px;
     }
 }
 

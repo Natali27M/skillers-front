@@ -15,6 +15,7 @@ import {
     checkProxyResults,
     clear,
     clearResults,
+    createUserResult,
     getFullTestResult,
     getProxyExercises,
     getUserByTestResults,
@@ -44,8 +45,6 @@ const TestPage = () => {
     } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
-
-    console.log(userAchievement);
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
@@ -145,31 +144,6 @@ const TestPage = () => {
                     }));
                 }
             }
-
-            if (userAchievement) {
-                dispatch(updateUserAchievement({
-                    achId: userAchievement.id,
-                    data: {
-                        rating: (+userAchievement?.attributes?.rating + (+rating)).toFixed(1),
-                        userName: user.username,
-                        coins: userAchievement?.attributes?.coins + coins,
-                    }
-                }));
-
-            } else {
-                dispatch(createUserAchievement({
-                    userName: user.username,
-                    userId: user.id,
-                    rating: rating,
-                    coins: coins,
-                }));
-            }
-
-
-            console.log("---my result-----");
-            console.log((100 * result.correct) / result.allExercises);
-            console.log("---my result-----");
-
             dispatch(createUserResult({
                     testName: oneTest.attributes.name,
                     testId: oneTest.id,
@@ -344,7 +318,14 @@ const TestPage = () => {
                 <div className={css.result__wrap}>
                     <div className={css.result__left}>
                         <div className={css.result__block}>
-                            {EN ? 'Your result:' : 'Ваш результат:'} {result?.correct} {EN ? 'from' : 'з'} {result?.allExercises}
+                            <div>{EN ? 'Your result:' : 'Ваш результат:'} {result?.correct} {EN ? 'from' : 'з'} {result?.allExercises}</div>
+                            {
+                                ((100 * result.correct) / result.allExercises) > oneTest?.attributes?.monetizedPercent && oneTest?.attributes?.isMonetized &&
+                                <div className={css.coin__result__get}>
+                                    <div>{EN ? "You got a coin" : "Ви отримали монетку "}</div>
+                                    <img src={coin} alt="coin" style={{width: '22px', height: '22px'}}/>
+                                </div>
+                            }
                         </div>
                         <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
                     </div>

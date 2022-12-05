@@ -16,5 +16,12 @@ export const TestNameValidator = Joi.object({
             .max(100)
             .optional(),
     isPrivate:
-        Joi.boolean()
+        Joi.boolean(),
+    isMonetized:
+        Joi.boolean(),
+    monetizedPercent:
+        Joi.number()
+            .min(50)
+            .max(100)
+            .optional(),
 });

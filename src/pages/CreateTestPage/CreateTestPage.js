@@ -6,17 +6,17 @@ import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {TestNameValidator} from '../../validation';
 import {ExBlock, TechDropdown} from '../../components';
 import {
-    clearCreateTest,
     createExercise,
     createTempTest,
-    createTest, createTimeToClear,
+    createTest,
+    createTimeToClear,
     deleteVariantFromArray,
-    pushExercise,
     sendExercise,
     sendVariant
 } from '../../store';
 import {Navigate} from 'react-router-dom';
 import lock from '../../images/lock.svg';
+import coin from "../../images/coin.svg";
 
 
 const CreateTestPage = () => {
@@ -38,6 +38,8 @@ const CreateTestPage = () => {
     const [isTech, setIsTech] = useState(true);
 
     const [isComplete, setIsComplete] = useState(false);
+
+    const [monetize, setMonetize] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -72,7 +74,7 @@ const CreateTestPage = () => {
                 }));
             });
         }
-    }, [testId]);
+    }, [testId, monetize]);
 
     useEffect(() => {
         if (completedEx?.length === exercises.length) {
@@ -105,8 +107,9 @@ const CreateTestPage = () => {
             isApproved: false,
             authorId: user?.id,
             isPrivate: tempTest?.isPrivate ? true : null,
-            correctPercent: tempTest?.correctPercent
-
+            correctPercent: tempTest?.correctPercent,
+            isMonetized: tempTest?.isMonetized ? true : null,
+            monetizedPercent: tempTest?.monetizedPercent ? tempTest?.monetizedPercent : null,
         }));
         setTimeout(() => {
             if (exercises.length === 0) {
@@ -141,18 +144,26 @@ const CreateTestPage = () => {
                                 <img className={css.private__img} src={lock} alt="lock"/>
                                 <div>{EN ? 'Private test' : 'Приватний тест'}</div>
                             </div>}
+                            {!!tempTest.isMonetized && <div className={css.private__wrap}>
+                                <img src={coin} alt="coin" style={{width: '22px', height: '22px'}}/>
+                                <div>{EN ? 'Monetized' : 'Монетизований'}</div>
+                            </div>}
                             <div
                                 className={css.test__difficult}>{EN ? 'Difficult : ' : 'Складність : '} {tempTest?.difficult}
                             </div>
                             <div className={css.test__difficult}>
                                 {EN ? 'Min. result, % : ' : 'Мін. результат, % : '} {tempTest?.correctPercent}
                             </div>
+                            {!!tempTest.monetizedPercent && <div className={css.test__difficult}>
+                                {EN ? 'Min. result to get coin, % : '
+                                    : 'Мін. результат для отримання монети, % : '} {tempTest?.monetizedPercent}
+                            </div>}
                         </div>
                         {!!tempArray?.length && <div className={css.ex__wrap}>
                             {!!tempArray?.length && tempArray.map(ex => <ExBlock testTempId={tempTest.testTempId}
                                                                                  tempId={ex} key={ex}/>)}
                         </div>}
-                        <div  className={css.test__block_btn}>
+                        <div className={css.test__block_btn}>
                             <div className={css.addEx__btn_wrap}>
                                 <div className={css.addEx__btn} onClick={() => addExBlock()}>
                                     {EN ? '+ Add exercise' : '+ Додати завдання'}
@@ -253,6 +264,40 @@ const CreateTestPage = () => {
                                 />
                             </label>
                         </div>
+                        <div className={css.input__wrap_private}>
+                            <label className={css.private__label}>
+                                <div>{EN ? 'Monetize ' : 'Монетизувати '}</div>
+                                <input
+                                    className={css.private__check}
+                                    type="checkbox"
+                                    {...register('isMonetized')}
+                                    onChange={() => setMonetize(!monetize)}
+                                />
+                            </label>
+                        </div>
+                        {monetize && <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Min. result to get coin'
+                                    : 'Мін. результат для отримання монети'}
+                            </div>
+                            <input
+                                type="number"
+                                placeholder={EN ? 'Enter the min. result to get coin, %' : 'Введіть мін. результат для отримання монети, %'}
+                                {...register('monetizedPercent')}
+                                min="50" max="100"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                className={css.difficult__input}
+                            />
+                            {errors.difficult &&
+                                <div className={css.difficult__error}>
+                                    {EN ? 'Set an integer value between 50 and 100'
+                                        : 'Встановіть ціле значення від 50 до 100'}
+                                </div>
+                            }
+                        </div>
+
+                        }
                         <button className={css.testCreate__btn}>{EN ? 'Continue' : 'Продовжити'}</button>
                     </form>
                 }
