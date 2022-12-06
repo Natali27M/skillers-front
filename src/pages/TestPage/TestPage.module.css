@@ -1,5 +1,6 @@
 .test__page {
     min-height: calc(100vh - 160px);
+    position: relative;
     padding: 40px 50px;
     display: flex;
     flex-direction: column;
@@ -51,15 +52,17 @@
 }
 
 .result__block {
+    display: flex;
+    flex-direction: column;
     font-size: 30px;
     margin-top: 10px;
+    row-gap: 20px;
 }
 
 .coin__result__get {
     display: flex;
     align-items: center;
-    justify-content: center;
-    column-gap: 5px;
+    justify-content: space-around;
 }
 
 .check__wrap {
@@ -84,48 +87,33 @@
     border: none;
 }
 
-.result__left > .check__btn {
-    margin: 0;
-}
+/*.result__left > .check__btn {*/
+/*    margin: 0;*/
+/*}*/
 
 
-.result__left {
-    display: flex;
-    align-items: center;
-    column-gap: 30px;
-}
+/*.check__btn::before {*/
+/*    content: '';*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: #00DBDE;*/
+/*    border-radius: 100px;*/
+/*    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);*/
+/*    position: absolute;*/
+/*    transform: translateZ(-1px);*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    transition: all .2s linear;*/
+/*}*/
 
+/*.check__btn:hover::before {*/
+/*    transition: all .2s linear;*/
+/*    width: calc(100% + 12px);*/
+/*    height: calc(100% + 12px);*/
+/*    top: -6px;*/
+/*    left: -6px;*/
+/*}*/
 
-.check__btn::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: #00DBDE;
-    border-radius: 100px;
-    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
-    position: absolute;
-    transform: translateZ(-1px);
-    top: 0;
-    left: 0;
-    transition: all .2s linear;
-}
-
-.check__btn:hover::before {
-    transition: all .2s linear;
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
-    top: -6px;
-    left: -6px;
-}
-
-.result__wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: fit-content;
-    column-gap: 30px;
-    margin-top: 30px;
-}
 
 .completed__header {
     display: flex;
@@ -220,6 +208,71 @@
     justify-content: space-between;
 }
 
+.test__info_wrap__percent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.result__check__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    width: 100%;
+}
+
+.modal__result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 93%;
+    position: absolute;
+    top: 20px;
+
+}
+
+
+.result__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    width: 70%;
+    height: 60%;
+    padding: 50px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.result__left {
+    display: flex;
+    align-items: center;
+}
+
+.result__left__congratulations {
+    width: 70%;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    padding-bottom: 25px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.result__wrap__cross {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+
 @media (max-width: 1200px) {
     .completed__header {
         width: 100%;
@@ -231,7 +284,7 @@
 
 @media (max-width: 920px) {
     .result__block {
-        font-size: 19px;
+        font-size: 24px;
     }
 
     .check__btn {
@@ -247,9 +300,12 @@
     }
 
     .coin__result__get {
-        font-size: 18px;
+        font-size: 24px;
         column-gap: 5px;
-        margin-top: 10px;
+    }
+
+    .result__left__congratulations {
+        font-size: 28px;
     }
 }
 
@@ -290,7 +346,20 @@
 
     .rating__wrap {
         flex-direction: column;
-        row-gap: 3px;
+        row-gap: 5px;
+    }
+
+    .result__wrap__cross {
+        width: 24px;
+        height: 24px;
+    }
+
+    .result__left__congratulations {
+        font-size: 21px;
+    }
+
+    .coin__result__get {
+        font-size: 18px;
     }
 }
 
@@ -309,6 +378,16 @@
 
     .try__again_btn {
         font-size: 14px;
+    }
+
+    .result__wrap__cross {
+        width: 22px;
+        height: 22px;
+    }
+
+    .result__left__congratulations {
+        width: 90%;
+        font-size: 20px;
     }
 }
 
@@ -329,5 +408,10 @@
 
     .back__btn_wrap {
         padding: 0;
+    }
+
+    .result__left__congratulations {
+        width: 90%;
+        font-size: 20px;
     }
 }

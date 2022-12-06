@@ -27,6 +27,7 @@ import {createUserAchievement, getUserAchievement, updateUserAchievement} from '
 import star__rating from '../../images/star-rating.svg';
 import lock from '../../images/lock.svg';
 import coin from '../../images/coin.svg';
+import cross from '../../images/cross.svg';
 import {userServices} from '../../services';
 
 const TestPage = () => {
@@ -65,6 +66,7 @@ const TestPage = () => {
     const [userForHr, setUserForHr] = useState({});
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [modalResult, setModalResult] = useState(false);
 
     useEffect(() => {
         if (hrUserId) {
@@ -153,11 +155,13 @@ const TestPage = () => {
                     allExercises: result.allExercises
                 }
             ));
+            setModalResult(true);
         } else if (result && !user) {
             setModalOpen(true);
         }
 
     }, [result, coins]);
+
 
     useEffect(() => {
         if (testFailed) {
@@ -240,7 +244,8 @@ const TestPage = () => {
                 <BackButton/>
             </div>
             <div className={css.test__info_wrap}>
-                <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || defaultPercent}
+                <div className={css.test__info_wrap__percent}>
+                    <div>{EN ? 'Min. result, %: ' : 'Мін. результат, %: '}{oneTest?.attributes?.correctPercent || defaultPercent}</div>
                     {oneTest?.attributes?.monetizedPercent &&
                         <div>{EN ? 'Coin get result, %: ' : 'Результат отримання монетки, %: '}{oneTest?.attributes?.monetizedPercent}</div>}
                 </div>
@@ -314,42 +319,59 @@ const TestPage = () => {
                 <button className={css.check__btn}
                         onClick={() => dispatch(makeTimeToPush())}>{EN ? 'CHECK' : 'ПЕРЕВІРИТИ'}</button>
             </div>}
-            {result &&
-                <div className={css.result__wrap}>
-                    <div className={css.result__left}>
-                        <div className={css.result__block}>
-                            <div>{EN ? 'Your result:' : 'Ваш результат:'} {result?.correct} {EN ? 'from' : 'з'} {result?.allExercises}</div>
-                            {
-                                ((100 * result.correct) / result.allExercises) > oneTest?.attributes?.monetizedPercent && oneTest?.attributes?.isMonetized &&
-                                <div className={css.coin__result__get}>
-                                    <div>{EN ? "You got a coin" : "Ви отримали монетку "}</div>
-                                    <img src={coin} alt="coin" style={{width: '22px', height: '22px'}}/>
-                                </div>
-                            }
-                        </div>
-                        <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
-                    </div>
-                    {user &&
-                        <>
-                            {userTestRate ?
-                                <div className={css.rating__wrap}>
-                                    {EN ? 'Your rate:' : 'Ваша оцінка:'} {userTestRate?.attributes?.rate}
-                                </div>
-                                :
-                                <div className={css.rating__wrap}>
-                                    <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
-                                    <ReactStarsExample/>
-                                    <div className={css.user__mark}>
-                                        {rateValue}
-                                    </div>
-                                    <button className={css.rate__btn} onClick={() => makeRate()}>
-                                        {EN ? 'Rate' : 'Оцінити'}
-                                    </button>
-                                </div>
-                            }
-                        </>
-                    }
 
+            {result &&
+                <div className={css.result__check__btn}>
+                    <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
+                </div>
+            }
+
+            {result && modalResult &&
+                <div className={css.modal__result}>
+                    <div className={css.result__wrap}>
+                        <img src={cross} alt="cross" className={css.result__wrap__cross}
+                             onClick={() => setModalResult(!modalResult)}/>
+
+                        <div className={css.result__left__congratulations}>
+                            {EN ? "Our congratulations !" : "Наші вітання !"}
+                        </div>
+
+                        <div className={css.result__left}>
+                            <div className={css.result__block}>
+                                <div>{EN ? 'Your result:' : 'Ваш результат:  '} {result?.correct} {EN ? 'from' : 'з  '} {result?.allExercises}</div>
+                                {
+                                    ((100 * result.correct) / result.allExercises) > oneTest?.attributes?.monetizedPercent && oneTest?.attributes?.isMonetized &&
+                                    <div className={css.coin__result__get}>
+                                        <div>{EN ? "You got a coin  " : "Ви отримали монетку   "}</div>
+                                        <img src={coin} alt="coin" style={{width: '24px', height: '24px'}}/>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        {user &&
+                            <>
+                                {userTestRate ?
+                                    <div className={css.rating__wrap}>
+                                        {EN ? 'Your rate:' : 'Ваша оцінка:'} {userTestRate?.attributes?.rate}
+                                    </div>
+                                    :
+                                    <div className={css.rating__wrap}>
+                                        <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
+                                        <ReactStarsExample/>
+                                        <div className={css.user__mark}>
+                                            {rateValue}
+                                        </div>
+                                        <button className={css.rate__btn} onClick={() => makeRate()}>
+                                            {EN ? 'Rate' : 'Оцінити'}
+                                        </button>
+                                    </div>
+                                }
+                            </>
+                        }
+                        <div>
+                            <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
+                        </div>
+                    </div>
                 </div>
             }
 

@@ -255,25 +255,29 @@ const CreateTestPage = () => {
                             }
                         </div>
                         <div className={css.input__wrap_private}>
-                            <label className={css.private__label}>
-                                <div>{EN ? 'Private' : 'Приватний'}</div>
-                                <input
-                                    className={css.private__check}
-                                    type="checkbox"
-                                    {...register('isPrivate')}
-                                />
-                            </label>
+                            <div className={css.input__wrap_private__label}>
+                                <label className={css.private__label}>
+                                    <div>{EN ? 'Private' : 'Приватний'}</div>
+                                    <input
+                                        className={css.private__check}
+                                        type="checkbox"
+                                        {...register('isPrivate')}
+                                    />
+                                </label>
+                            </div>
                         </div>
                         <div className={css.input__wrap_private}>
-                            <label className={css.private__label}>
-                                <div>{EN ? 'Monetize ' : 'Монетизувати '}</div>
-                                <input
-                                    className={css.private__check}
-                                    type="checkbox"
-                                    {...register('isMonetized')}
-                                    onChange={() => setMonetize(!monetize)}
-                                />
-                            </label>
+                            <div className={css.input__wrap_private__label}>
+                                <label className={css.private__label}>
+                                    <div>{EN ? 'Monetize ' : 'Монетизувати '}</div>
+                                    <input
+                                        className={css.private__check}
+                                        type="checkbox"
+                                        {...register('isMonetized')}
+                                        onChange={() => setMonetize(!monetize)}
+                                    />
+                                </label>
+                            </div>
                         </div>
                         {monetize && <div className={css.input__wrap}>
                             <div className={css.test__header_input}>

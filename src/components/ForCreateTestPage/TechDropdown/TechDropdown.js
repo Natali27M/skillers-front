@@ -53,7 +53,7 @@ const TechDropdown = () => {
                         <span className={css.placeholder}>{EN ? 'Choose technology' : 'Виберіть технологію'}</span>}
                 </div>
                 <div className={openDrop ? css.tech__drop_arrow_side : css.tech__drop_arrow}>
-                    <img src={dropArrow} alt="dropArrow"/>
+                    <img src={dropArrow} alt="dropArrow" style={{width: "24px", height: "24px"}}/>
                 </div>
             </div>
             <div className={openDrop ? css.dropdown__menu : css.drop__hide}>
