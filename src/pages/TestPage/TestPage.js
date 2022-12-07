@@ -397,7 +397,7 @@ const TestPage = () => {
                             }
                             <div className={css.box__rating_difficult}>
                                 {EN ? 'Difficult test' : 'Складність тесту'}
-                                <form onSubmit={handleSubmit(changeDifficult)}>
+                                <form onSubmit={handleSubmit(changeDifficult)}  className={css.box__rating_form}>
                                     <input
                                         type="number"
                                         {...register('difficult')}

@@ -312,4 +312,13 @@
     .back__btn_wrap {
         padding: 0;
     }
+
+    .box__rating_difficult {
+        flex-direction: column;
+        row-gap: 3px;
+    }
+
+    .box__rating_form {
+        padding: 5px 0;
+    }
 }
