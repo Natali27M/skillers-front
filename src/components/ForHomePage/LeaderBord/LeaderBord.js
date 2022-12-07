@@ -7,6 +7,7 @@ import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
 import {LeaderBlock, PresentForUserAlways} from '../../../components';
+import {getUsersForLeaderboard} from '../../../RootFunctions/getUsersForLiderBoard';
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -34,6 +35,10 @@ const LeaderBord = () => {
             setIsQuery(true);
         }
     };
+
+    // useEffect(() => {
+    //     dispatch(getUsersForLeaderboard(leaderBord));
+    // }, [leaderBord]);
 
     return (
             <div className={css.leader__bord_wrap}>
