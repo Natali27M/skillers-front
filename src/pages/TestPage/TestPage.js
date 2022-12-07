@@ -327,8 +327,8 @@ const TestPage = () => {
             }
 
             {result && modalResult &&
-                <div className={css.modal__result}>
-                    <div className={css.result__wrap}>
+                <div className={css.modal__result} onClick={() => setModalResult(!modalResult)}>
+                    <div className={css.result__wrap} onClick={e => e.stopPropagation()}>
                         <img src={cross} alt="cross" className={css.result__wrap__cross}
                              onClick={() => setModalResult(!modalResult)}/>
 

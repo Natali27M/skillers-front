@@ -45,16 +45,22 @@
 
 .test__head {
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 600;
+    border-bottom: 4px solid;
+    z-index: 3;
+    padding: 10px 0;
+    background-color: #fff;
+    border-image: linear-gradient(100deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
 }
 
 .test__header_input {
     color: grey;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .input__wrap input::placeholder {
-    font-size: 18px;
+    font-size: 17px;
     white-space: pre-wrap;
 }
 
@@ -238,18 +244,46 @@
 
 @media (max-width: 1100px) {
     .createTest__wrap {
-        padding: 30px 50px;
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 920px) {
+
+    .test__form {
+        width: 90%;
+    }
+
+    .test__input {
+        font-size: 16px;
+    }
+
+    .test__header_input {
+        font-size: 20px;
+    }
+
+    .input__wrap input::placeholder {
+        font-size: 16px;
+    }
+
+    .createTest__wrap {
+        width: 90%;
+        padding: 40px;
+    }
+
+    .private__label {
+        font-size: 18px;
+    }
+
+    .private__check {
+        width: 20px;
+        height: 20px;
     }
 }
 
 @media (max-width: 767px) {
     .createTest__page {
         min-height: calc(100vh - 60px);
-    }
-
-    .createTest__wrap {
-        width: 80%;
-        padding: 30px 50px;
     }
 
     .test__header {
@@ -262,13 +296,47 @@
         text-align: center;
     }
 
+    .test__form {
+        width: 90%;
+    }
+
+    .test__input {
+        font-size: 14px;
+    }
+
+    .test__header_input {
+        font-size: 17px;
+    }
+
+    .input__wrap input::placeholder {
+        font-size: 14px;
+    }
+
+    .createTest__wrap {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .private__label {
+        font-size: 16px;
+    }
+
+    .private__check {
+        width: 18px;
+        height: 18px;
+    }
+
+    .test__head {
+        font-size: 24px;
+    }
+
 }
 
 @media (max-width: 500px) {
     .test__input,
     .difficult__input {
         width: 300px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .input__error,
@@ -277,7 +345,33 @@
     }
 
     .createTest__wrap {
-        padding: 20px;
+        padding: 0;
+    }
+
+    .test__header_input {
+        font-size: 16px;
+    }
+
+    .input__wrap input::placeholder {
+        font-size: 12px;
+    }
+
+    .createTest__wrap {
+        width: 90%;
+        padding: 40px 0 0 0;
+    }
+
+    .private__label {
+        font-size: 14px;
+    }
+
+    .private__check {
+        width: 14px;
+        height: 14px;
+    }
+
+    .test__head {
+        font-size: 20px;
     }
 }
 
@@ -292,10 +386,13 @@
     .difficult__error {
         width: 250px;
     }
-}
 
-@media (max-width: 330px) {
+    .test__head {
+        font-size: 16px;
+    }
+
     .createTest__wrap {
-        width: 90%;
+        width: 100%;
     }
 }
+
