@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {userServices} from '../../services';
-import {getLeaderBord} from './achievments.slice';
 
+import {userServices} from '../../services';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -213,7 +212,7 @@ const userSlice = createSlice({
         [getAllUsers.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.allUsers = action.payload;
-        },
+        }
     }
 });
 

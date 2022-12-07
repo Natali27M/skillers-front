@@ -14,6 +14,11 @@ const LeaderBlock = ({leader, position}) => {
 
     let rank;
 
+    // let users = [];
+    // users.push(...users,leader.attributes.userId);
+    //
+    // console.log(users,'users');
+
     const rating = leader?.attributes?.rating;
 
     if (rating < 20) {
