@@ -213,6 +213,24 @@
     justify-content: space-between;
 }
 
+.box__rating {
+    display: flex;
+    flex-direction: column;
+}
+
+.box__rating_difficult {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.difficult__input {
+    margin-right: 20px;
+    width: 40px;
+    padding-left: 5px;
+}
+
 @media (max-width: 1200px) {
     .completed__header {
         width: 100%;
