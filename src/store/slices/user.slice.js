@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {userServices} from '../../services';
+import {getLeaderBord} from './achievments.slice';
 
 
 export const registration = createAsyncThunk(
@@ -74,6 +75,20 @@ export const googleAuth = createAsyncThunk(
     }
 );
 
+export const getAllUsers = createAsyncThunk(
+    'achievementsSlice/getAllUsers',
+    async () => {
+        // async (pageNumber, {rejectWithValue}) => {
+        try {
+            return await userServices.getAllUsers();
+            // return await userServices.getAllUsers(pageNumber);
+        } catch (e) {
+            // return rejectWithValue(e.message);
+            console.error(e);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
@@ -84,6 +99,7 @@ const userSlice = createSlice({
         roles: null,
         token: null,
         noUser: true,
+        allUsers: []
     },
 
     reducers: {
@@ -183,7 +199,21 @@ const userSlice = createSlice({
         [getUserRoles.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.roles = action.payload[0]?.attributes?.roles;
-        }
+        },
+
+        [getAllUsers.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getAllUsers.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getAllUsers.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.allUsers = action.payload;
+        },
     }
 });
 

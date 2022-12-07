@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useEffect}from 'react';
+import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+
 import css from '../LeaderBord/LeaderBord.module.css';
 import Lamer from '../../../images/rank_little/Lamer.png';
 import Trainee from '../../../images/rank_little/Trainee.png';
 import Junior from '../../../images/rank_little/Junior.png';
 import Middle from '../../../images/rank_little/Middle.png';
 import Senior from '../../../images/rank_little/Senior.png';
-import {Link} from 'react-router-dom';
+import {getAllUsers} from '../../../store';
 
 const LeaderBlock = ({leader, position}) => {
+
     let rank;
 
     const rating = leader?.attributes?.rating;

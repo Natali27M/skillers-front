@@ -2,7 +2,6 @@
     min-height: calc(100vh - 160px);
     padding: 40px 50px;
     display: flex;
-    flex-direction: column;
 }
 
 .test__page_title {

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {achievementsServices} from '../../services';
 
+import {achievementsServices} from '../../services';
 
 export const getLeaderBord = createAsyncThunk(
     'achievementsSlice/getLeaderBord',
