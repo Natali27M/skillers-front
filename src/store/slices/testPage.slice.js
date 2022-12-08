@@ -102,6 +102,17 @@ export const rateTest = createAsyncThunk(
     }
 );
 
+export const difficultTest = createAsyncThunk(
+    'testSlice/difficultTest',
+    async ({testId, difficultObj}, {rejectWithValue}) => {
+        try {
+            return await testsServices.updateTest(testId, difficultObj);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 
 export const getRateOfTest = createAsyncThunk(
     'testSlice/getRateOfTest',

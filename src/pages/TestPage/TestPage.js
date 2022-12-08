@@ -3,13 +3,17 @@ import {Link, Navigate, useLocation, useNavigate, useParams} from 'react-router-
 import css from './TestPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
+import {useForm} from 'react-hook-form';
+
+import css from './TestPage.module.css';
 import {
     approveTest,
     createRateOfTest,
     deleteTest,
     getOneTest,
     getRateOfTest,
-    rateTest
+    rateTest,
+    difficultTest
 } from '../../store/slices/testPage.slice';
 import {
     checkProxyResults,
@@ -47,6 +51,8 @@ const TestPage = () => {
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
+    console.log(userAchievement);
+
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
     const paramsData = useParams();
@@ -66,7 +72,10 @@ const TestPage = () => {
     const [userForHr, setUserForHr] = useState({});
 
     const [modalOpen, setModalOpen] = useState(false);
+
     const [modalResult, setModalResult] = useState(false);
+
+    const {register, handleSubmit, reset} = useForm();
 
     useEffect(() => {
         if (hrUserId) {
@@ -226,6 +235,32 @@ const TestPage = () => {
 
     };
 
+    const changeDifficult = (obj) => {
+        let newDifficultCount;
+        let newAllDifficults;
+        if(oneTest?.attributes?.difficultCount === null) {
+            newDifficultCount = 2;
+        } else {
+            newDifficultCount = +oneTest?.attributes?.difficultCount + 1;
+        }
+
+        if(oneTest?.attributes?.allDifficults === null) {
+            newAllDifficults = +oneTest?.attributes?.difficult + +obj.difficult;
+        } else {
+            newAllDifficults = +oneTest?.attributes?.allDifficults + +obj.difficult;
+        }
+
+        const newDifficult = Math.round(newAllDifficults / newDifficultCount);
+
+        const difficultObj = {
+            difficultCount: newDifficultCount,
+            allDifficults: newAllDifficults,
+            difficult: newDifficult
+        };
+        dispatch(difficultTest({testId: oneTest?.id, difficultObj}));
+
+        reset();
+    }
 
     return (
         <div className={css.test__page}>
