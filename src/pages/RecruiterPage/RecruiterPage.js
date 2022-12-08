@@ -3,7 +3,7 @@ import css from './RecruiterPage.module.css';
 import rootCSS from '../../styles/root.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {getLeaderBord, getLeaderBordByQuery, setLeaderBordClear} from '../../store/slices/achievments.slice';
+// import {getLeaderBord, getLeaderBordByQuery, setLeaderBordClear} from '../../store/slices/achievments.slice';
 import {getAllUsers, getAllUsersByQuery} from '../../store';
 import {UserBlock} from '../../components';
 import {Navigate} from 'react-router-dom';
@@ -14,7 +14,7 @@ const RecruiterPage = () => {
 
     const {roles, allUsers} = useSelector(state => state['userReducers']);
 
-    const {leaderBord} = useSelector(state => state['achievementsReducers']);
+    // const {leaderBord} = useSelector(state => state['achievementsReducers']);
 
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const RecruiterPage = () => {
 
     const [isQuery, setIsQuery] = useState(false);
 
-    const [pageNumber, setPageNumber] = useState(1);
+    // const [pageNumber, setPageNumber] = useState(1);
 
     const [startNumber, setStartNumber] = useState(0);
 
@@ -35,7 +35,6 @@ const RecruiterPage = () => {
     }, [startNumber]);
 
     const handleChange = (e) => {
-
         e.preventDefault();
         setStartNumber(0);
         const data = e.target.value;
@@ -73,12 +72,25 @@ const RecruiterPage = () => {
         <div className={css.recruiter__page}>
             <div className={rootCSS.root__background}></div>
             <div className={css.recruiter__wrap}>
-                <div className={css.user__search_wrap}>
+                <div
+                    className={css.recruiter__title}>{EN ? 'Information about users' : 'Інформація про користувачів'}</div>
+                <div className={css.user__search_wrap} onClick={() => setUserId(null)}>
                     <form className={css.user__search_form} onSubmit={e => e.preventDefault()}>
                         <input onChange={e => handleChange(e)} className={css.user__search_input} type="text"
-                               placeholder={EN ? 'Search users' : 'Знайти користувачів'}/>
+                               placeholder={EN ? 'Search users by name' : 'Знайти користувачів за ім\'ям'}/>
                     </form>
                 </div>
+
+                {allUsers.length ?
+                    ''
+                    :
+                    (EN ? <div className={css.search__info}>There are no users with this username <span
+                                className={css.search__info_span}>!</span></div>
+                            :
+                            <div className={css.search__info}>Немає користувачів з таким юзернеймом <span
+                                className={css.search__info_span}>!</span></div>
+                    )
+                }
 
                 <div className={css.users__wrap}>
                     <div className={css.users__header}>
@@ -101,22 +113,33 @@ const RecruiterPage = () => {
 
                     {userId && <UserBlock userId={userId}/>}
 
-                    <div className={css.search__info}>
-                        {allUsers.length ?
-                            ''
-                            :
-                            (EN ? 'There are no users with this username' : 'Немає користувачів з таким юзернеймом')
-                        }
-                    </div>
                 </div>
-                <div className={css.pagination__wrap}>
-                    <div className={css.pagination__block}>
-                        <img src={arrow} alt="arrow" className={css.arrow__left}
-                             onClick={() => startNumber > 0 && setStartNumber(startNumber - 10)}/>
-                        <div>Prew / Next</div>
-                        <img src={arrow} alt="arrow" className={css.arrow__right}
-                             onClick={() => allUsers.length === 10 && setStartNumber(startNumber + 10)}/>
+
+                <div className={css.pagination__wrap} onClick={() => setUserId(null)}>
+                    <div className={css.pagination__button}
+                         onClick={() => startNumber > 0 && setStartNumber(startNumber - 10)}>
+                        {'<'}
                     </div>
+                    <div className={css.pagination__button_center}>{EN ? 'Prew / Next' : 'Попередня / Наступна'}</div>
+                    <div className={css.pagination__button}
+                         onClick={() => allUsers.length === 10 && setStartNumber(startNumber + 10)}>
+                        {'>'}
+                    </div>
+                    {/*<div className={css.pagination__block}>*/}
+                    {/*    <div className={css.pagination__button}>*/}
+                    {/*        /!* onClick={() => startNumber > 0 && setStartNumber(startNumber - 10)}>*!/*/}
+                    {/*        /!* {EN ? 'Prew' : 'Попер'}*!/*/}
+                    {/*        <img src={arrow} alt="arrow" className={css.arrow__left}*/}
+                    {/*             onClick={() => startNumber > 0 && setStartNumber(startNumber - 10)}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={css.pagination__button_center}>{EN ? 'Prew / Next' : 'Попередня / Наступна'}</div>*/}
+                    {/*    <div className={css.pagination__button}>*/}
+                    {/*         /!*onClick={() => allUsers.length === 10 && setStartNumber(startNumber + 10)}>*!/*/}
+                    {/*         /!*{EN ? 'Next' : 'Наст'}*!/*/}
+                    {/*        <img src={arrow} alt="arrow" className={css.arrow__right}*/}
+                    {/*             onClick={() => allUsers.length === 10 && setStartNumber(startNumber + 10)}/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
 
 

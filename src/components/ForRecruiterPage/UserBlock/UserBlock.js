@@ -61,7 +61,7 @@ const UserBlock = ({userId}) => {
             <div className={css.user__content}>
                 <div className={css.user__info_wrap}>
                     <div className={css.user__info_title}>{EN ? 'Information' : 'Інформація'}</div>
-                    <a href={`mailto:${user?.email}`} className={css.user__info_block}>
+                    <a href={`mailto:${user?.email}`} className={css.user__info_block_email}>
                         <div className={css.user__info_field}>
                             Email:
                         </div>

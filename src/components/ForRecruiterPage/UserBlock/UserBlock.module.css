@@ -1,10 +1,7 @@
 .user__block {
     width: 100%;
     padding: 20px 30px;
-    border: 2px solid;
-    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
-    border-top: none;
+    border: 2px solid black;
 }
 
 .user__content {
@@ -20,7 +17,8 @@
     align-items: center;
 }
 
-.user__info_block {
+.user__info_block,
+.user__info_block_email {
     width: 100%;
     height: 30px;
     font-size: 16px;
@@ -30,6 +28,11 @@
     align-items: center;
     text-decoration: none;
     padding: 0 10px;
+    word-break: break-all;
+}
+
+.user__info_block_email {
+    height: 50px;
 }
 
 .user__info_element {
@@ -97,6 +100,14 @@
 }
 
 .result__header {
+    height: 50px;
+}
+
+.result__block {
+    height: 40px;
+}
+
+.result__header {
     background-color: #000;
     color: #FFFFFF;
 }
@@ -107,6 +118,8 @@
 
 .result__number {
     width: 30%;
+    display: flex;
+    justify-content: center;
 }
 
 .results__content {
@@ -124,6 +137,15 @@
     .user__results_wrap {
         width: 360px;
     }
+
+    .user__info_block,
+    .user__info_block_email {
+        width: 90%;
+    }
+
+    .results__content {
+        width: 90%;
+    }
 }
 
 @media (max-width: 550px) {
@@ -133,22 +155,52 @@
         font-size: 14px;
     }
 
-    .user__info_block {
+    .user__info_block,
+    .user__info_block_email {
         font-size: 14px;
     }
 
     .user__block {
-        padding: 0;
         border: none;
+    }
+
+    .user__info_block_email {
+        font-size: 14px;
+    }
+
+    .results__content {
+        width: 100%;
     }
 }
 
 @media (max-width: 450px) {
+    .result__block {
+        padding: 0 5px;
+    }
     .result__test {
-        width: 80%;
+        width: 70%;
     }
 
     .result__number {
-        width: 20%;
+        width: 30%;
+    }
+
+    .user__block {
+        padding: 20px 10px;
+    }
+
+    .user__info_element {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .user__info_field {
+        width: 50%;
+    }
+
+    .user__info_block,
+    .user__info_block_email {
+        width: 100%;
     }
 }
