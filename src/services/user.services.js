@@ -1,5 +1,6 @@
 import {axiosServices} from './axios.services';
 import {urls} from '../config';
+import {getAllUsersByQuery} from '../store';
 
 
 export const userServices = {
@@ -11,5 +12,8 @@ export const userServices = {
     }).then(value => value.data),
     getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
     getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
-    getAllUsers: () => axiosServices.get(`${urls.user}`).then(value => value.data),
+    getAllUsers: (startNumber) => axiosServices.get(urls.usersPaginated + startNumber).then(value => value.data),
+    getAllUsersByQuery: (startNumber, query) =>
+        axiosServices.get(urls.usersPaginated + startNumber + '&filters[userName][$contains]=' + query)
+            .then(value => value.data)
 };

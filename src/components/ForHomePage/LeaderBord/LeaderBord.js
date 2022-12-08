@@ -7,7 +7,6 @@ import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
 import {LeaderBlock, PresentForUserAlways} from '../../../components';
-import getUsersForLeaderboard from '../../../RootFunctions/getUsersForLeaderboard'
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -23,8 +22,6 @@ const LeaderBord = () => {
     useEffect(() => {
         dispatch(getLeaderBord(pageNumber));
     }, [pageNumber]);
-
-    getUsersForLeaderboard(leaderBord);
 
     const handleChange = (e) => {
         const data = e.target.value;

@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {userServices} from '../../services';
+import {achievementsServices, userServices} from '../../services';
+import {getLeaderBordByQuery} from './achievments.slice';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -75,15 +76,23 @@ export const googleAuth = createAsyncThunk(
 );
 
 export const getAllUsers = createAsyncThunk(
-    'achievementsSlice/getAllUsers',
-    async () => {
-        // async (pageNumber, {rejectWithValue}) => {
+    'userSlice/getAllUsers',
+    async (startNumber, {rejectWithValue}) => {
         try {
-            return await userServices.getAllUsers();
-            // return await userServices.getAllUsers(pageNumber);
+            return await userServices.getAllUsers(startNumber);
         } catch (e) {
-            // return rejectWithValue(e.message);
-            console.error(e);
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getAllUsersByQuery = createAsyncThunk(
+    'userSlice/getAllUsersByQuery',
+    async ({startNumber, query}, {rejectWithValue}) => {
+        try {
+            return await userServices.getAllUsersByQuery(startNumber, query);
+        } catch (e) {
+            rejectWithValue(e);
         }
     }
 );
@@ -212,7 +221,21 @@ const userSlice = createSlice({
         [getAllUsers.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.allUsers = action.payload;
-        }
+        },
+
+        [getAllUsersByQuery.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getAllUsersByQuery.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getAllUsersByQuery.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.allUsers = action.payload;
+        },
     }
 });
 
