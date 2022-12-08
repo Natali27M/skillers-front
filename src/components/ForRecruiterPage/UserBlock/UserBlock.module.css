@@ -1,7 +1,10 @@
 .user__block {
     width: 100%;
     padding: 20px 30px;
-    border: 2px solid black;
+    border: 2px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    border-top: none;
 }
 
 .user__content {

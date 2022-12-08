@@ -98,6 +98,9 @@ const RecruiterPage = () => {
                             </div>
                         )
                     }
+
+                    {userId && <UserBlock userId={userId}/>}
+
                     <div className={css.search__info}>
                         {allUsers.length ?
                             ''
@@ -152,7 +155,7 @@ const RecruiterPage = () => {
                 {/*             onClick={() => pageNumber < leaderBord.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}/>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                {userId && <UserBlock userId={userId}/>}
+                {/*{userId && <UserBlock userId={userId}/>}*/}
             </div>
         </div>
     );

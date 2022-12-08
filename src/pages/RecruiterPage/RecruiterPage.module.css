@@ -31,7 +31,9 @@
     width: 250px;
     height: 40px;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
     font-size: 16px;
     padding: 0 10px;
     outline: none;
@@ -39,7 +41,7 @@
 }
 
 .users__wrap {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,13 +50,22 @@
 .users__header,
 .user__block {
     width: 100%;
-    height: 40px;
-    background-color: #000;
+    height: 50px;
+    /*background-color: #000;*/
     color: white;
     display: flex;
     align-items: center;
     padding: 0 15px;
-    font-size: 16px;
+    font-size: 18px;
+}
+
+.users__header {
+    background: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+.users__header {
+    height: 70px;
+    font-size: 22px;
 }
 
 .search__info {
@@ -64,7 +75,10 @@
 .user__block {
     background-color: #fff;
     color: black;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid;
+    /*border-bottom: 2px solid lightgray;*/
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
     cursor: pointer;
     transition: all .1s linear;
 }
@@ -75,11 +89,11 @@
 }
 
 .user__name {
-    width: 70%;
+    width: 50%;
 }
 
 .user__rating {
-    width: 30%;
+    width: 50%;
 }
 
 
