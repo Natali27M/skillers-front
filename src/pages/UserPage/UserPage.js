@@ -33,6 +33,8 @@ const UserPage = () => {
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
+    const {userBadges} = useSelector(state => state['badgesReducers']);
+
     const {pathname} = useLocation();
 
     const dispatch = useDispatch();
@@ -319,6 +321,7 @@ const UserPage = () => {
                     <Link to={'/mentor'}
                           className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
+
                     <div className={rootCSS.default__button}
                          onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
                     {roles?.includes('admin') &&
@@ -331,6 +334,7 @@ const UserPage = () => {
                                   className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
                             </Link>
                         </>
+
                     }
                 </div>
             </div>

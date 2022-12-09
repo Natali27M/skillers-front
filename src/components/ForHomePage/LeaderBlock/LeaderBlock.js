@@ -25,7 +25,7 @@ const LeaderBlock = ({leader, position}) => {
     }
 
     return (
-        <div className={css.leader__block}>
+        <div className={position <= 3 ? css.payment__leader_block : css.leader__block}>
             <div
                 className={css.position}>{position}
             </div>

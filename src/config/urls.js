@@ -33,5 +33,7 @@ export const urls = {
     mentors: '/api/mentors',
     technologies: '/api/technology',
 
-    rates: 'api/rates'
+    rates: 'api/rates',
+
+    badges: 'api/badges'
 };
