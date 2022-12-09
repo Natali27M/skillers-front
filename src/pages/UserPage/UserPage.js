@@ -18,6 +18,7 @@ import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from
 import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
+import coin from '../../images/coin.svg';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -152,6 +153,13 @@ const UserPage = () => {
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Rating' : 'Рейтинг'}</div>
                     <div className={css.user__db_content}>{userAchievement?.attributes?.rating || 0}</div>
+                </div>
+                <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>{EN ? 'Coins' : 'Монетки'}</div>
+                    <div className={css.user__db_content}>
+                        <div>{userAchievement?.attributes?.coins || 0}</div>
+                        <img src={coin} alt="coin" className={css.coin__img}/>
+                    </div>
                 </div>
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Rank' : 'Звання'}</div>
@@ -311,8 +319,6 @@ const UserPage = () => {
                     <Link to={'/mentor'}
                           className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
-                    {/*<Link to={'/createTest'}
-                          className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}
                     <div className={rootCSS.default__button}
                          onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
                     {roles?.includes('admin') &&
@@ -325,7 +331,6 @@ const UserPage = () => {
                                   className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
                             </Link>
                         </>
-
                     }
                 </div>
             </div>

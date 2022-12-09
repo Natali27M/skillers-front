@@ -19,7 +19,7 @@ const HomePage = () => {
                     <div  className={css.block_loginUser}>
                         <div className={css.home__description_loginUser}>
                             {EN ? 'We help engineers to grow in IT' :
-                                'Ми допомагаємо інженерам розвиватися в ІТ'}
+                                'Ми допомагаємо розробникам розвиватися в ІТ'}
                         </div>
                     </div>
                     <TechList/>

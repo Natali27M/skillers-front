@@ -158,7 +158,6 @@ const testSlice = createSlice({
 
         [getTests.pending]: (state) => {
             state.status = 'pending';
-            state.tests = null;
         },
 
         [getTestsByQuery.fulfilled]: (state, action) => {

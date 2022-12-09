@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    column-gap: 10px;
 }
 
 .check__wrap {
@@ -85,49 +86,6 @@
     position: relative;
     transform-style: preserve-3d;
     border: none;
-}
-
-.result__left > .check__btn {
-    margin: 0;
-}
-
-
-.result__left {
-    display: flex;
-    align-items: center;
-    column-gap: 30px;
-}
-
-
-.check__btn::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: #00DBDE;
-    border-radius: 100px;
-    background-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
-    position: absolute;
-    transform: translateZ(-1px);
-    top: 0;
-    left: 0;
-    transition: all .2s linear;
-}
-
-.check__btn:hover::before {
-    transition: all .2s linear;
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
-    top: -6px;
-    left: -6px;
-}
-
-.result__wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: fit-content;
-    column-gap: 30px;
-    margin-top: 30px;
 }
 
 .completed__header {
@@ -289,22 +247,24 @@
 }
 
 
-.box__rating {
-    display: flex;
-    flex-direction: column;
-}
-
 .box__rating_difficult {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.box__rating_form {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .difficult__input {
-    margin-right: 20px;
-    width: 40px;
-    padding-left: 5px;
+    height: 30px;
+    width: 60px;
+    outline: none;
+
 }
 
 @media (max-width: 1200px) {
@@ -447,14 +407,5 @@
     .result__left__congratulations {
         width: 90%;
         font-size: 20px;
-    }
-
-    .box__rating_difficult {
-        flex-direction: column;
-        row-gap: 3px;
-    }
-
-    .box__rating_form {
-        padding: 5px 0;
     }
 }

@@ -164,6 +164,7 @@
 }
 
 .footer__skilliant {
+    text-transform: uppercase;
     color: white;
     font-size: 32px;
     font-family: 'Aldrich', sans-serif;

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Navigate, useLocation, useNavigate, useParams} from 'react-router-dom';
-import css from './TestPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import {useForm} from 'react-hook-form';
 
 import css from './TestPage.module.css';
+import rootCss from '../../styles/root.module.css';
+
 import {
     approveTest,
     createRateOfTest,
@@ -50,8 +51,6 @@ const TestPage = () => {
     } = useSelector(state => state['exercisesReducers']);
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
-
-    console.log(userAchievement);
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
@@ -215,11 +214,6 @@ const TestPage = () => {
     };
 
 
-    /*    if ((!(roles?.includes('admin')) && oneTest?.attributes?.authorId !== user?.id) && hrUserId) {
-            return <Navigate to={`/user`} replace/>;
-        }*/
-
-
     if (approveCompleted) {
         return <Navigate to={'/user'} replace/>;
     }
@@ -238,13 +232,13 @@ const TestPage = () => {
     const changeDifficult = (obj) => {
         let newDifficultCount;
         let newAllDifficults;
-        if(oneTest?.attributes?.difficultCount === null) {
+        if (oneTest?.attributes?.difficultCount === null) {
             newDifficultCount = 2;
         } else {
             newDifficultCount = +oneTest?.attributes?.difficultCount + 1;
         }
 
-        if(oneTest?.attributes?.allDifficults === null) {
+        if (oneTest?.attributes?.allDifficults === null) {
             newAllDifficults = +oneTest?.attributes?.difficult + +obj.difficult;
         } else {
             newAllDifficults = +oneTest?.attributes?.allDifficults + +obj.difficult;
@@ -260,7 +254,7 @@ const TestPage = () => {
         dispatch(difficultTest({testId: oneTest?.id, difficultObj}));
 
         reset();
-    }
+    };
 
     return (
         <div className={css.test__page}>
@@ -368,7 +362,7 @@ const TestPage = () => {
                              onClick={() => setModalResult(!modalResult)}/>
 
                         <div className={css.result__left__congratulations}>
-                            {EN ? "Our congratulations !" : "Наші вітання !"}
+                            {EN ? 'Our congratulations !' : 'Наші вітання !'}
                         </div>
 
                         <div className={css.result__left}>
@@ -377,7 +371,7 @@ const TestPage = () => {
                                 {
                                     ((100 * result.correct) / result.allExercises) > oneTest?.attributes?.monetizedPercent && oneTest?.attributes?.isMonetized &&
                                     <div className={css.coin__result__get}>
-                                        <div>{EN ? "You got a coin  " : "Ви отримали монетку   "}</div>
+                                        <div>{EN ? 'You got a coin  ' : 'Ви отримали монетку   '}</div>
                                         <img src={coin} alt="coin" style={{width: '24px', height: '24px'}}/>
                                     </div>
                                 }
@@ -403,6 +397,24 @@ const TestPage = () => {
                                 }
                             </>
                         }
+                       {/* <div className={css.box__rating_difficult}>
+                            <div>
+                                {EN ? 'How difficult did you find this test?' : 'Наскільки важким для вас видався цей тест?'}
+                            </div>
+                            <form onSubmit={handleSubmit(changeDifficult)}  className={css.box__rating_form}>
+                                <input
+                                    type="number"
+                                    {...register('difficult')}
+                                    min="1" max="10"
+                                    autoComplete="off"
+                                    autoCorrect="off"
+                                    className={css.difficult__input}
+                                />
+                                <button className={css.rate__btn}>{EN ? 'Send' : 'Надіслати'}</button>
+                            </form>
+                        </div>*/}
+
+
                         <div>
                             <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>
                         </div>
