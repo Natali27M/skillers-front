@@ -29,8 +29,7 @@ const badgesSlice = createSlice({
             let endBadgesArray = [];
 
             for (const badge in badges.attributes.badgesArray) {
-                const number =
-                console.log(badge);
+                // console.log(badge);
             }
 
 

@@ -52,11 +52,6 @@ const UserPage = () => {
 
     const [testForResults, setTestForResults] = useState(null);
 
-
-    useEffect(() => {
-        console.log(userBadges);
-    }, [userBadges]);
-
     useEffect(() => {
         if (user) {
             const id = user.id;
@@ -313,8 +308,7 @@ const UserPage = () => {
                 }
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
-                    {/*<Link to={'/createTest'}
-                          className={rootCSS.default__button}>{EN ? 'Create test' : 'Створити тест'}</Link>*/}
+
                     <div className={rootCSS.default__button}
                          onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
                     {roles?.includes('admin') &&
