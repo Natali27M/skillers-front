@@ -10,6 +10,7 @@ import html5 from '../../../images/techList/html5.svg';
 import other from '../../../images/techList/other.svg';
 import manager from '../../../images/techList/project-manager.svg';
 import star from '../../../images/badges/star.svg';
+import {Link} from 'react-router-dom';
 
 const Badge = ({badge}) => {
     const techId = badge?.techId;
@@ -21,7 +22,7 @@ const Badge = ({badge}) => {
     }
 
     return (
-        <div className={css.badge}>
+        <Link to={'/rank'} className={css.badge}>
             <img className={css.badge__bg} src={badge_bg} alt="badge"/>
             <div className={css.badge_content}>
                 <img src={techId === 3 ? java : techId === 4 ? python : techId === 5 ? js :
@@ -32,7 +33,7 @@ const Badge = ({badge}) => {
                     {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
