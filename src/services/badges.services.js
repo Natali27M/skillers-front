@@ -9,5 +9,10 @@ export const badgesServices = {
             badgesArray: data
         }
     }).then(value => value.data),
+    updateBadges: (id, data) => axiosServices.put(`${urls.badges}/${id}`,
+        {
+            data:
+                {badgesArray: data}
+        }).then(value => value.data),
     getUserBadges: (userId) => axiosServices.get(`${urls.badges}?filters[userId][$eq]=${userId}`).then(value => value.data)
 };

@@ -19,6 +19,7 @@ import {getUserAchievement} from '../../store/slices/achievments.slice';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
+import {UserBadges} from '../../components/ForUserPage';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -33,8 +34,6 @@ const UserPage = () => {
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
-    const {userBadges} = useSelector(state => state['badgesReducers']);
-
     const {pathname} = useLocation();
 
     const dispatch = useDispatch();
@@ -44,6 +43,8 @@ const UserPage = () => {
     const [resultsPageNumber, setResultsPageNumber] = useState(1);
 
     const [testsPageNumber, setTestsPageNumber] = useState(1);
+
+    const {resultBadges} = useSelector(state => state['badgesReducers']);
 
     const [hiring, setHiring] = useState(false);
 
@@ -253,6 +254,12 @@ const UserPage = () => {
                              alt="arrow"/>
                     </div>
                 </div>}
+                {resultBadges && <>
+                    <div className={rootCSS.default__title_24}>
+                        {EN ? 'My badges' : 'Мої нагороди'}
+                    </div>
+                    <UserBadges/>
+                </>}
                 {!!testsByUser?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>

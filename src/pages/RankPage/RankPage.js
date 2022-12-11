@@ -9,6 +9,7 @@ import Middle from '../../images/rank_big/Middle.png';
 import Senior from '../../images/rank_big/Senior.png';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Badge} from '../../components/ForUserPage/Badge/Badge';
 
 
 const RankPage = () => {
@@ -88,6 +89,23 @@ const RankPage = () => {
                         </div>
                         <div className={css.rank__block_content}>
                             {EN ? 'Linus Torvalds, is that you?' : 'Лінус Торвальдс, це ти?'}
+                        </div>
+                    </div>
+                </div>
+                <div className={rootCSS.default__title_24}>
+                    {EN ? 'Badges' : 'Нагороди'}
+                </div>
+                <div className={css.rank__block}>
+                    <Badge badge={{techId: 4, count: 5}}/>
+                    <div className={css.rank__text}>
+                        <div className={css.rank__block_content}>
+                            {EN ? 'If you pass 5 tests on one technology' : 'Якщо ви пройдете 5 тестів з однієї технології'}
+                        </div>
+                        <div className={css.rank__block_content}>
+                            {EN ? 'a one-star award will appear on your user page' : 'на вашій сторінці користувача з\'явиться нагорода з однією зіркою'}
+                        </div>
+                        <div className={css.rank__block_content}>
+                            {EN ? 'And as the tests are passed, awards and stars will be added to them' : 'І по мірі проходження тестів нагороди, та зірки на них, будуть додаватись'}
                         </div>
                     </div>
                 </div>

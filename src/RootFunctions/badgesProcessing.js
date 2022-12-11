@@ -1,11 +1,13 @@
 import {resultsServices} from '../services/results.services';
 import {badgesServices} from '../services';
 
-export default async function badgesProcessing(userId) {
+export default async function badgesProcessing(userId, currentResult, badgeId) {
     return new Promise(async resolve => {
         const getAllResultsWithTechId = async (id) => {
             let endResult = [];
-            const firstPage = await resultsServices.getUserResultWithTechId(id, 1);
+            endResult.push({id: 0, attributes: currentResult});
+            let firstPage = await resultsServices.getUserResultWithTechId(id, 1);
+            firstPage.data = firstPage.data.filter(element => element.attributes.testId !== currentResult.testId);
             endResult = endResult.concat(firstPage?.data);
             if (firstPage?.meta?.pagination?.pageCount === 1) {
                 return endResult;
@@ -18,6 +20,8 @@ export default async function badgesProcessing(userId) {
         };
 
         const allResults = await getAllResultsWithTechId(userId);
+
+        console.log(allResults);
 
         const techGrouping = (results) => {
             console.log(results);
@@ -34,7 +38,12 @@ export default async function badgesProcessing(userId) {
 
         const badgeData = techGrouping(allResults);
 
-        // await badgesServices.createBadge(userId, badgeData);
+
+        if (badgeId) {
+            await badgesServices.updateBadges(badgeId, badgeData);
+        } else {
+            await badgesServices.createBadge(userId, badgeData);
+        }
 
         resolve();
 

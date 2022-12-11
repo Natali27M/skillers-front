@@ -22,7 +22,7 @@ import {
     clearResults,
     createUserResult,
     getFullTestResult,
-    getProxyExercises,
+    getProxyExercises, getUserBadges,
     getUserByTestResults,
     makeTimeToPush,
     setTestComplete
@@ -34,6 +34,7 @@ import lock from '../../images/lock.svg';
 import coin from '../../images/coin.svg';
 import cross from '../../images/cross.svg';
 import {userServices} from '../../services';
+import badgesProcessing from '../../RootFunctions/badgesProcessing';
 
 const TestPage = () => {
     const [coins, setCoins] = useState(0);
@@ -53,6 +54,8 @@ const TestPage = () => {
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
+
+    const {userBadges} = useSelector(state => state['badgesReducers']);
 
     const paramsData = useParams();
 
@@ -154,21 +157,25 @@ const TestPage = () => {
                     }));
                 }
             }
-            dispatch(createUserResult({
-                    testName: oneTest.attributes.name,
-                    testId: oneTest.id,
-                    userId: user.id,
-                    techId: oneTest.attributes.techId,
-                    correctAnswer: result.correct,
-                    allExercises: result.allExercises
-                }
-            ));
+            const resultToPush = {
+                testName: oneTest.attributes.name,
+                testId: oneTest.id,
+                userId: user.id,
+                techId: oneTest.attributes.techId,
+                correctAnswer: result.correct,
+                allExercises: result.allExercises
+            };
+
+            dispatch(createUserResult(resultToPush));
+            badgesProcessing(user.id, resultToPush, userBadges?.id);
+            dispatch(getUserBadges(user.id));
+
             setModalResult(true);
         } else if (result && !user) {
             setModalOpen(true);
         }
 
-    }, [result, coins]);
+    }, [result]);
 
 
     useEffect(() => {
@@ -397,7 +404,7 @@ const TestPage = () => {
                                 }
                             </>
                         }
-                       {/* <div className={css.box__rating_difficult}>
+                        {/* <div className={css.box__rating_difficult}>
                             <div>
                                 {EN ? 'How difficult did you find this test?' : 'Наскільки важким для вас видався цей тест?'}
                             </div>
