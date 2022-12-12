@@ -7,7 +7,7 @@ import Middle from '../../../images/rank_little/Middle.png';
 import Senior from '../../../images/rank_little/Senior.png';
 import {Link} from 'react-router-dom';
 import getBadgesForLeader from '../../../RootFunctions/getBadgesForLeader';
-import {BadgeMini} from '../../ForUserPage';
+import {BadgeMini} from '../BadgeMini/BadgeMini';
 
 const LeaderBlock = ({leader, position, setLeaderModal}) => {
     const [leaderBadges, setLeaderBadges] = useState(null);

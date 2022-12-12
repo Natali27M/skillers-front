@@ -32,10 +32,6 @@ const BadgeMini = ({badge}) => {
                 } className={css.badge__tech_img} alt="js"/>
                 <div className={css.stars__wrap}>
                     {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
-                    {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
-                    {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
-                    {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
-                    {starsArray?.map(starImg => <img key={starImg} className={css.star__img} src={star} alt="star"/>)}
                 </div>
             </div>
         </div>
