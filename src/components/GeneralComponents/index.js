@@ -3,3 +3,4 @@ export * from './Header/Header';
 export * from './Layout/Layout';
 export * from './CodeSnippet/CodeSnippet';
 export * from './SignUpModal/SignUpModal';
+export * from './Pagination/Pagination';

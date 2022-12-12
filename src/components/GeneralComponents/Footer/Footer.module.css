@@ -20,6 +20,10 @@
     font-family: 'Semibold New', sans-serif;
 }
 
+.footer__contact {
+    width: 20%;
+}
+
 .footer__telegram, .footer__email {
     padding-bottom: 25px;
     font-size: 18px;
@@ -200,6 +204,10 @@
     .top__footer {
         padding: 0 20px;
     }
+
+    .footer__contact {
+        width: 30%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -224,9 +232,7 @@
     .main__footer textarea::placeholder {
         font-size: 14px;
     }
-}
 
-@media (max-width: 630px) {
     .feedback__form_wrap {
         width: 60%;
     }
@@ -237,7 +243,13 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 630px) {
+    .footer__contact {
+        width: 45%;
+    }
+}
+
+@media (max-width: 500px) {
     .top__footer {
         display: flex;
         flex-direction: column;
@@ -260,12 +272,12 @@
         align-items: center;
     }
 
-    .footer__contact {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    /*.footer__contact {*/
+    /*    width: 50%;*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*    align-items: flex-start;*/
+    /*}*/
 
     .footer__feedback {
         font-size: 16px;
@@ -317,3 +329,4 @@
         width: 70%;
     }
 }
+

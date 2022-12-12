@@ -14,6 +14,7 @@ import doubleArrowSide from '../../images/dobleArrow.svg';
 import DoubleArrowSideGrey from '../../images/dobleArrow-grey.svg';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 import useWindowDimensions from '../../RootFunctions/WindowDimensions';
+import pagination from '../../RootFunctions/pagination';
 
 
 const TestListPage = () => {
@@ -68,25 +69,26 @@ const TestListPage = () => {
 
     const allPages = tests?.meta?.pagination?.pageCount;
 
-    const pagesArray = [];
+    // const pagesArray = [];
+    //
+    // if (allPages > 4) {
+    //     for (let i = currenPage; i <= currenPage + 3 && i <= allPages; i++) {
+    //         pagesArray.push(i);
+    //     }
+    //     if (pagesArray.length < 4) {
+    //         const count = 4 - pagesArray.length;
+    //         for (let i = 1; i <= count; i++) {
+    //             let firsElement = pagesArray[0];
+    //             pagesArray.unshift(firsElement - 1);
+    //         }
+    //     }
+    // } else {
+    //     for (let i = 1; i <= allPages; i++) {
+    //         pagesArray.push(i);
+    //     }
+    // }
 
-    if (allPages > 4) {
-        for (let i = currenPage; i <= currenPage + 3 && i <= allPages; i++) {
-            pagesArray.push(i);
-        }
-        if (pagesArray.length < 4) {
-            const count = 4 - pagesArray.length;
-            for (let i = 1; i <= count; i++) {
-                let firsElement = pagesArray[0];
-                pagesArray.unshift(firsElement - 1);
-            }
-        }
-    } else {
-        for (let i = 1; i <= allPages; i++) {
-            pagesArray.push(i);
-        }
-    }
-
+    const pagesArray = pagination(allPages, currenPage);
 
     const handleChange = (e) => {
         const data = e.target.value;
@@ -169,8 +171,10 @@ const TestListPage = () => {
                         <img className={css.arrow__left} src={currenPage === 1 ? DoubleArrowSideGrey : doubleArrowSide}
                              alt="arrow"
                              onClick={() => currenPage !== 1 && setCurrentPage(1)}/>}
+
                     <img className={css.arrow__left} src={currenPage === 1 ? arrowSideGrey : arrowSide} alt="arrow"
                          onClick={() => currenPage > 1 && setCurrentPage(currenPage - 1)}/>
+
                     {pagesArray?.map(page =>
                         <div onClick={() => page !== currenPage && setCurrentPage(page)}
                              className={currenPage === page ? css.pagination__number_active : css.pagination__number}

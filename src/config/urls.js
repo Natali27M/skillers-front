@@ -16,10 +16,12 @@ export const urls = {
     login: '/api/auth/local',
     user: '/api/users',
     userRoles: '/api/user-roles?filters[userId][$eq]=',
+    usersPaginated: '/api/users?limit=10&start=',
 
     achievements: '/api/achievements',
     achievementsByUser: '/api/achievements?filters[userId][$eq]=',
     achievementPaginated: '/api/achievements?sort=rating:desc&pagination[pageSize]=15&pagination[page]=',
+    achievementPaginatedTen: '/api/achievements?sort=rating:desc&pagination[pageSize]=10&pagination[page]=',
 
     googleAuth: 'api/connect/google',
     googleCallback: 'api/auth/google/callback?',

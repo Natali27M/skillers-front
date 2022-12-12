@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {achievementsServices} from '../../services';
 
+import {achievementsServices} from '../../services';
 
 export const getLeaderBord = createAsyncThunk(
     'achievementsSlice/getLeaderBord',
@@ -13,11 +13,33 @@ export const getLeaderBord = createAsyncThunk(
     }
 );
 
+export const getLeaderBordTen = createAsyncThunk(
+    'achievementsSlice/getLeaderBordTen',
+    async (currentPage, {rejectWithValue}) => {
+        try {
+            return await achievementsServices.getLeaderBordTen(currentPage);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 export const getLeaderBordByQuery = createAsyncThunk(
     'achievementsSlice/getLeaderBord',
     async ({pageNumber, query}, {rejectWithValue}) => {
         try {
             return await achievementsServices.getLeaderBordByQuery(pageNumber, query);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getLeaderBordByQueryTen = createAsyncThunk(
+    'achievementsSlice/getLeaderBordTen',
+    async ({currentPage, query}, {rejectWithValue}) => {
+        try {
+            return await achievementsServices.getLeaderBordByQueryTen(currentPage, query);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -66,7 +88,9 @@ const achievementsSlice = createSlice({
         error: null,
         userRank: null,
         leaderBord: [],
-        userAchievement: null
+        leaderBordTen: [],
+        userAchievement: null,
+        userAchievementTen: null
     },
     reducers: {
         setUserRank: (state) => {
@@ -106,6 +130,21 @@ const achievementsSlice = createSlice({
             state.status = 'rejected';
             state.error = action.payload;
         },
+
+        [getLeaderBordTen.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getLeaderBordTen.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getLeaderBordTen.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.leaderBordTen = action.payload;
+        },
+
         [getLeaderBordByQuery.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.leaderBord = action.payload;
@@ -118,6 +157,20 @@ const achievementsSlice = createSlice({
         [getLeaderBordByQuery.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
+        },
+
+        [getLeaderBordByQueryTen.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getLeaderBordByQueryTen.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getLeaderBordByQueryTen.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.leaderBordTen = action.payload;
         },
 
         [getUserAchievement.fulfilled]: (state, action) => {

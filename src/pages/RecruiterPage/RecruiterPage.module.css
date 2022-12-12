@@ -43,6 +43,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .users__header,
@@ -58,13 +59,26 @@
 }
 
 .search__info {
+    font-size: 20px;
+    font-weight: 600;
     color: #323232;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+    transition: all .1s linear;
+    width: 100%;
+}
+
+.search__info_span {
+    color: red;
+    font-size: 24px;
 }
 
 .user__block {
     background-color: #fff;
     color: black;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid lightgray;
     cursor: pointer;
     transition: all .1s linear;
 }
@@ -82,38 +96,15 @@
     width: 30%;
 }
 
-
-.pagination__wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.pagination__block {
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    column-gap: 10px;
-}
-
-.arrow__left,
-.arrow__right {
-    height: 25px;
-    cursor: pointer;
-}
-
-.arrow__right {
-    transform: rotate(180deg);
-}
-
-@media (max-width: 1250px) {
-    .recruiter__wrap{
+@media (max-width: 1200px) {
+    .recruiter__wrap {
         width: 90%;
+        min-height: calc(100vh - 60px);
     }
 }
 
 @media (max-width: 767px) {
-    .recruiter__wrap{
+    .recruiter__wrap {
         padding: 40px;
     }
 
@@ -125,20 +116,26 @@
         justify-content: center;
     }
 
-    .user__search_input{
+    .user__search_input {
         width: 200px;
         height: 30px;
         font-size: 14px;
     }
+
     .users__header,
     .user__block {
         height: 30px;
         font-size: 14px;
     }
+
+    .search__info {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 400px) {
-    .recruiter__wrap{
+    .recruiter__wrap {
         padding: 30px 10px;
     }
 }
+

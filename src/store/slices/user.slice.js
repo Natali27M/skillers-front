@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {userServices} from '../../services';
 
+import {achievementsServices, userServices} from '../../services';
+import {getLeaderBordByQuery} from './achievments.slice';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -74,6 +75,28 @@ export const googleAuth = createAsyncThunk(
     }
 );
 
+export const getAllUsers = createAsyncThunk(
+    'userSlice/getAllUsers',
+    async (startNumber, {rejectWithValue}) => {
+        try {
+            return await userServices.getAllUsers(startNumber);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getAllUsersByQuery = createAsyncThunk(
+    'userSlice/getAllUsersByQuery',
+    async ({startNumber, query}, {rejectWithValue}) => {
+        try {
+            return await userServices.getAllUsersByQuery(startNumber, query);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
@@ -84,6 +107,7 @@ const userSlice = createSlice({
         roles: null,
         token: null,
         noUser: true,
+        allUsers: []
     },
 
     reducers: {
@@ -183,7 +207,35 @@ const userSlice = createSlice({
         [getUserRoles.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.roles = action.payload[0]?.attributes?.roles;
-        }
+        },
+
+        [getAllUsers.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getAllUsers.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getAllUsers.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.allUsers = action.payload;
+        },
+
+        [getAllUsersByQuery.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getAllUsersByQuery.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getAllUsersByQuery.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.allUsers = action.payload;
+        },
     }
 });
 

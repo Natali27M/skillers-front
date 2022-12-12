@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import css from './RecruiterPage.module.css';
-import rootCSS from '../../styles/root.module.css';
+import {Navigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {getLeaderBord, getLeaderBordByQuery, setLeaderBordClear} from '../../store/slices/achievments.slice';
-import {UserBlock} from '../../components';
-import {Navigate} from 'react-router-dom';
-import arrow from '../../images/arrow.svg';
+import css from './RecruiterPage.module.css';
+import rootCSS from '../../styles/root.module.css';
+import {getLeaderBordTen, getLeaderBordByQueryTen} from '../../store/slices/achievments.slice';
+import {UserBlock, Pagination} from '../../components';
+import pagination from '../../RootFunctions/pagination';
 
 const RecruiterPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {roles} = useSelector(state => state['userReducers']);
 
-    const {leaderBord} = useSelector(state => state['achievementsReducers']);
+    const {leaderBordTen} = useSelector(state => state['achievementsReducers']);
 
     const dispatch = useDispatch();
 
@@ -21,24 +21,33 @@ const RecruiterPage = () => {
 
     const [isQuery, setIsQuery] = useState(false);
 
-    const [pageNumber, setPageNumber] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [data, setData] = useState();
 
     useEffect(() => {
-        dispatch(getLeaderBord(pageNumber));
-    }, [pageNumber]);
+        if (isQuery === false) {
+            dispatch(getLeaderBordTen(currentPage));
+        }
+    }, [currentPage, isQuery]);
 
+    useEffect(() => {
+        if (isQuery === true) {
+            dispatch(getLeaderBordByQueryTen({query: data, currentPage}));
+        }
+    }, [currentPage, isQuery, data]);
+
+    const allPages = leaderBordTen?.meta?.pagination?.pageCount;
+
+    const pagesArray = pagination(allPages, currentPage);
 
     const handleChange = (e) => {
-
         e.preventDefault();
-        setPageNumber(1);
-        const data = e.target.value;
-        setPageNumber(1);
-        if (data === '') {
-            dispatch(getLeaderBord(pageNumber));
+        setCurrentPage(1);
+        setData(e.target.value);
+        if (e.target.value === '') {
             setIsQuery(false);
         } else {
-            dispatch(getLeaderBordByQuery({query: data, pageNumber}));
             setIsQuery(true);
         }
     };
@@ -48,17 +57,17 @@ const RecruiterPage = () => {
         return <Navigate to={'/user'} replace/>;
     }
 
-
     return (
         <div className={css.recruiter__page}>
             <div className={rootCSS.root__background}></div>
             <div className={css.recruiter__wrap}>
-                <div className={css.user__search_wrap}>
+                <div className={css.user__search_wrap} onClick={() => setUserId(null)}>
                     <form className={css.user__search_form} onSubmit={e => e.preventDefault()}>
                         <input onChange={e => handleChange(e)} className={css.user__search_input} type="text"
                                placeholder={EN ? 'Search users' : 'Знайти користувачів'}/>
                     </form>
                 </div>
+
                 <div className={css.users__wrap}>
                     <div className={css.users__header}>
                         <div className={css.user__name}>
@@ -69,7 +78,7 @@ const RecruiterPage = () => {
                         </div>
                     </div>
                     {
-                        leaderBord?.data?.map(user =>
+                        leaderBordTen?.data?.map(user =>
                             <div className={css.user__block} key={user.id}
                                  onClick={() => setUserId(user.attributes.userId)}>
                                 <div className={css.user__name}>{user?.attributes?.userName}</div>
@@ -77,24 +86,27 @@ const RecruiterPage = () => {
                             </div>
                         )
                     }
-                    <div className={css.search__info}>
-                        {leaderBord?.data?.length ?
-                            ''
+                    {userId && <UserBlock userId={userId} setUserId={setUserId}/>}
+                </div>
+
+                {leaderBordTen?.data?.length ?
+                    ''
+                    :
+                    (EN ? <div>There are no users with this username <span
+                                className={css.search__info_span}>!</span></div>
                             :
-                            (EN ? 'There are no users with this username' : 'Немає користувачів з таким юзернеймом')
-                        }
-                    </div>
-                </div>
-                <div className={css.pagination__wrap}>
-                    <div className={css.pagination__block}>
-                        <img src={arrow} alt="arrow" className={css.arrow__left}
-                             onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}/>
-                        <div>{pageNumber} / {leaderBord?.meta?.pagination?.pageCount}</div>
-                        <img src={arrow} alt="arrow" className={css.arrow__right}
-                             onClick={() => pageNumber < leaderBord.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}/>
-                    </div>
-                </div>
-                {userId && <UserBlock userId={userId}/>}
+                            <div>Немає користувачів з таким юзернеймом <span
+                                className={css.search__info_span}>!</span></div>
+                    )
+                }
+
+                <Pagination key={leaderBordTen?.id}
+                            setCurrentPage={setCurrentPage}
+                            currentPage={currentPage}
+                            allPages={allPages}
+                            setUserId={setUserId}
+                            pagesArray={pagesArray}
+                />
             </div>
         </div>
     );

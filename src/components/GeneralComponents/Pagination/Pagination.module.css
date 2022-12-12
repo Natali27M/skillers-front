@@ -1,0 +1,83 @@
+.pagination__block {
+    display: flex;
+    align-items: center;
+    column-gap: 5%;
+    font-size: 40px;
+}
+
+.arrow__left,
+.arrow__right {
+    width: 12%;
+    height: 25px;
+    cursor: pointer;
+}
+
+.arrow__right {
+    transform: rotate(180deg);
+}
+
+.pagination__wrap {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+    position: absolute;
+    top: calc(80%);
+}
+
+.pagination__number,
+.pagination__number_active {
+    width: 10%;
+    height: 35px;
+    font-size: 26px;
+    color: #8D8D8D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.pagination__number_active {
+    color: black;
+}
+
+.pagination__container {
+    width: 30%;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2%;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
+}
+
+.pagination__wrap_none {
+    display: none;
+}
+@media (max-width: 992px) {
+    .pagination__container {
+        width: 40%;
+    }
+}
+
+@media (max-width: 550px) {
+    .pagination__number,
+    .pagination__number_active {
+        font-size: 18px;
+    }
+
+    .pagination__container {
+        padding: 5px 15px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .pagination__container {
+        width: 60%;
+    }
+}

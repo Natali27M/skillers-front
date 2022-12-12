@@ -202,7 +202,7 @@ const UserPage = () => {
                             user?.linkedin ?
                                 <div className={css.hiring__wrap}>
                                     <a href={user?.linkedin} target="_blank" className={css.linked__btn}>
-                                        {linkedName}
+                                        LinkedIn
                                     </a>
                                     <button
                                         className={css.hiring__btn_active}
