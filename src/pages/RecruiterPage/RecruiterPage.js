@@ -70,19 +70,6 @@ const RecruiterPage = () => {
                     </form>
                 </div>
 
-                {/*<div className={css.search__info}>*/}
-                {/*    {leaderBordTen?.data?.length ?*/}
-                {/*        ''*/}
-                {/*        :*/}
-                {/*        (EN ? <div className={css.search__info}>There are no users with this username <span*/}
-                {/*                    className={css.search__info_span}>!</span></div>*/}
-                {/*                :*/}
-                {/*                <div className={css.search__info}>Немає користувачів з таким юзернеймом <span*/}
-                {/*                    className={css.search__info_span}>!</span></div>*/}
-                {/*        )*/}
-                {/*    }*/}
-                {/*</div>*/}
-
                 <div className={css.users__wrap}>
                     <div className={css.users__header}>
                         <div className={css.user__name}>
@@ -101,7 +88,7 @@ const RecruiterPage = () => {
                             </div>
                         )
                     }
-                    {userId && <UserBlock userId={userId}/>}
+                    {userId && <UserBlock userId={userId} setUserId={setUserId}/>}
                 </div>
 
                 <div className={css.search__info}>
