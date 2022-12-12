@@ -28,6 +28,7 @@ import {
     clear,
     clearCreateTest,
     getLanguage,
+    getUserBadges,
     getUserResults,
     getUserResultsAll,
     getUserRoles,
@@ -36,7 +37,6 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store/slices/achievments.slice';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-import {getUserBadges} from './store/slices/badges.slice';
 
 
 function App() {
@@ -97,7 +97,7 @@ function App() {
                 <Route path={'/registration'} element={<RegisterPage/>}/>
                 <Route path={'/user'} element={<UserPage/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
-                <Route path={'/createTest'} element={<CreateTestPage/>}/>
+                <Route path={'/createTest'} element={<CreateTestPage/>}/> -
                 <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
                 <Route path={'/admin'} element={<AdminPage/>}/>
                 <Route path={'/policy'} element={<PolicyPage/>}/>
@@ -107,7 +107,6 @@ function App() {
                 <Route path={'/donation'} element={<DonationPage/>}/>
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                {/*<Route path={'/feedback'} element={<FeedbackFormPage/>}/>*/}
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
