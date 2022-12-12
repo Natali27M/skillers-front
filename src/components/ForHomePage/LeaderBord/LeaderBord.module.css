@@ -54,7 +54,10 @@
 }
 
 .leader__name {
-    flex-grow: 1;
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .position {
@@ -66,7 +69,7 @@
 }
 
 .leader__rating {
-    width: 20%;
+    width: 10%;
 }
 
 .leader__rank {
@@ -128,9 +131,27 @@
     .search__user_form {
         width: 85%;
     }
+
+    .leader__rating {
+        width: 15%;
+    }
+
+    .leader__rank {
+        width: 20%;
+    }
+
+    .leader__name {
+        width: 30%;
+    }
 }
 
 @media (max-width: 767px) {
+    .leader__block,
+    .payment__leader_block,
+    .leader__header {
+        column-gap: 10px;
+    }
+
     .leader__title {
         font-size: 28px;
     }
