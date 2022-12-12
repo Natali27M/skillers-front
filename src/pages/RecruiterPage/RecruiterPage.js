@@ -41,8 +41,6 @@ const RecruiterPage = () => {
 
     const pagesArray = pagination(allPages, currentPage);
 
-    console.log(pagesArray);
-
     const handleChange = (e) => {
         e.preventDefault();
         setCurrentPage(1);

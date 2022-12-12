@@ -7,7 +7,7 @@ import arrowSideGrey from '../../../images/arrow-grey.svg';
 import arrowSide from '../../../images/arrow.svg';
 
 const Pagination = ({setCurrentPage, currentPage, allPages, setUserId, pagesArray}) => {
-    console.log(pagesArray);
+
     return (
         <>
             {
