@@ -40,12 +40,12 @@ const LeaderModal = ({leader, setLeaderModal}) => {
         }
     }, [leader?.id]);
 
-
+/*
     useEffect(() => {
         if (scrollTop > 0) {
             setLeaderModal(null);
         }
-    }, [scrollTop]);
+    }, [scrollTop]);*/
 
     return (
         <div className={css.leader__modal}>
