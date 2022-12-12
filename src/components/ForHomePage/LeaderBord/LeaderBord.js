@@ -59,6 +59,7 @@ const LeaderBord = () => {
                     <div className={css.leader__name}> {EN ? 'User' : 'Користувач'}</div>
                     <div className={css.leader__rating}> {EN ? 'Rating' : 'Рейтинг'}</div>
                     <div className={css.leader__rank}> {EN ? 'Rank' : 'Звання'}</div>
+                    <div className={css.leader__rank}> {EN ? 'Badges' : 'Нагороди'}</div>
                 </div>
                 {!!leaderBord?.data?.length && leaderBord?.data?.map(leader =>
                     <LeaderBlock setLeaderModal={setLeaderModal} key={leader?.id} leader={leader}
