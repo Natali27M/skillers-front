@@ -89,18 +89,16 @@ const RecruiterPage = () => {
                     {userId && <UserBlock userId={userId} setUserId={setUserId}/>}
                 </div>
 
-                <div className={css.search__info}>
-                    {leaderBordTen?.data?.length ?
-                        ''
-                        :
-                        (EN ? <div>There are no users with this username <span
-                                    className={css.search__info_span}>!</span></div>
-                                :
-                                <div>Немає користувачів з таким юзернеймом <span
-                                    className={css.search__info_span}>!</span></div>
-                        )
-                    }
-                </div>
+                {leaderBordTen?.data?.length ?
+                    ''
+                    :
+                    (EN ? <div>There are no users with this username <span
+                                className={css.search__info_span}>!</span></div>
+                            :
+                            <div>Немає користувачів з таким юзернеймом <span
+                                className={css.search__info_span}>!</span></div>
+                    )
+                }
 
                 <Pagination key={leaderBordTen?.id}
                             setCurrentPage={setCurrentPage}
