@@ -14,7 +14,15 @@ const LeaderBlock = ({leader, position, setLeaderModal}) => {
 
     useEffect(() => {
         if (leader?.id) {
-            getBadgesForLeader(leader?.attributes?.userId).then(value => setLeaderBadges(value));
+            getBadgesForLeader(leader?.attributes?.userId).then(value => {
+                let startArray = value;
+                if (startArray.length > 3) {
+                    startArray = startArray.slice(0, 3);
+                    setLeaderBadges(startArray)
+                } else {
+                    setLeaderBadges(value);
+                }
+            });
         }
     }, [leader?.id]);
 
