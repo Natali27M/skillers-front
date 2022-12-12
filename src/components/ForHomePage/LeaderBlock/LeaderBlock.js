@@ -7,7 +7,7 @@ import Middle from '../../../images/rank_little/Middle.png';
 import Senior from '../../../images/rank_little/Senior.png';
 import {Link} from 'react-router-dom';
 
-const LeaderBlock = ({leader, position}) => {
+const LeaderBlock = ({leader, position, setLeaderModal}) => {
     let rank;
 
     const rating = leader?.attributes?.rating;
@@ -25,7 +25,8 @@ const LeaderBlock = ({leader, position}) => {
     }
 
     return (
-        <div className={position <= 3 ? css.payment__leader_block : css.leader__block}>
+        <div onClick={() => setLeaderModal({...leader, rank: rank})}
+             className={position <= 3 ? css.payment__leader_block : css.leader__block}>
             <div
                 className={css.position}>{position}
             </div>
