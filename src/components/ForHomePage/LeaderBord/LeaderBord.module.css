@@ -29,6 +29,10 @@
     font-size: 20px;
 }
 
+.payment__leader_block,
+.leader__block {
+    cursor: pointer;
+}
 
 .payment__leader_block {
     background: linear-gradient(73.25deg, rgba(255, 214, 0, 0.61) 1.44%, rgba(255, 214, 0, 0.25) 48.24%, rgba(255, 214, 0, 0) 98.46%);

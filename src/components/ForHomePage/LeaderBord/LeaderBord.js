@@ -6,8 +6,7 @@ import rootCSS from '../../../styles/root.module.css';
 import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
-// import {LeaderBlock} from '../LeaderBlock/LeaderBlock';
-import {LeaderBlock, PresentForUserAlways} from '../../../components';
+import {LeaderBlock, LeaderModal} from '../../../components';
 
 const LeaderBord = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -17,6 +16,8 @@ const LeaderBord = () => {
     const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(1);
+
+    const [leaderModal, setLeaderModal] = useState(null);
 
     const [isQuery, setIsQuery] = useState(false);
 
@@ -38,6 +39,7 @@ const LeaderBord = () => {
 
     return (
         <div className={css.leader__bord_wrap}>
+            {leaderModal && <LeaderModal setLeaderModal={setLeaderModal} leader={leaderModal}/>}
             <div className={rootCSS.default__title_34}>
                 {EN ? 'Leader board' : 'Фаворити'}
             </div>
@@ -59,7 +61,7 @@ const LeaderBord = () => {
                     <div className={css.leader__rank}> {EN ? 'Rank' : 'Звання'}</div>
                 </div>
                 {!!leaderBord?.data?.length && leaderBord?.data?.map(leader =>
-                    <LeaderBlock key={leader?.id} leader={leader}
+                    <LeaderBlock setLeaderModal={setLeaderModal} key={leader?.id} leader={leader}
                                  position={!isQuery && leaderBord?.data?.indexOf(leader) + 1 + 15 * (pageNumber - 1)}
                     />
                 )}

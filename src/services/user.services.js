@@ -10,5 +10,6 @@ export const userServices = {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
     getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
+    getAllUsers: () => axiosServices.get(urls.user).then(value => value.data),
     getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data)
 };

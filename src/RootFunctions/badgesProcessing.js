@@ -5,9 +5,14 @@ export default async function badgesProcessing(userId, currentResult, badgeId) {
     return new Promise(async resolve => {
         const getAllResultsWithTechId = async (id) => {
             let endResult = [];
-            endResult.push({id: 0, attributes: currentResult});
+            if (currentResult) {
+                endResult.push({id: 0, attributes: currentResult});
+            }
             let firstPage = await resultsServices.getUserResultWithTechId(id, 1);
-            firstPage.data = firstPage.data.filter(element => element.attributes.testId !== currentResult.testId);
+            if (!firstPage?.data?.length) {
+                resolve(null);
+            }
+            firstPage.data = firstPage.data.filter(element => element?.attributes?.testId !== currentResult?.testId);
             endResult = endResult.concat(firstPage?.data);
             if (firstPage?.meta?.pagination?.pageCount === 1) {
                 return endResult;
@@ -21,10 +26,7 @@ export default async function badgesProcessing(userId, currentResult, badgeId) {
 
         const allResults = await getAllResultsWithTechId(userId);
 
-        console.log(allResults);
-
         const techGrouping = (results) => {
-            console.log(results);
             let techGroups = {};
             for (const result of results) {
                 techGroups[result?.attributes?.techId]
