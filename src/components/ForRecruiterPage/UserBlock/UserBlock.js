@@ -96,17 +96,17 @@ const UserBlock = ({userId, setUserId}) => {
                                 {user?.openForHiring ? (EN ? 'Yes' : 'Так') : (EN ? 'No' : 'Ні')}
                             </div>
                         </div>
+
                         <div className={css.user__info_block}>
                             <div className={css.user__info_field}>
                                 Linkedin
                             </div>
-                            <div className={css.user__info_element}>
-                                {user?.linkedin ?
-                                    <a href={user?.linkedin} target="_blank" className={css.user__info_linked_btn}>
-                                        {linkedName}
-                                    </a> : (EN ? 'none' : 'немає')
-                                }
-                            </div>
+                            {user?.linkedin ?
+                                <a href={user?.linkedin} target="_blank" className={userCSS.linked__btn}>
+                                    LinkedIn
+                                </a> : <a href={user?.linkedin} target="_blank" className={userCSS.linked__btn}>
+                                    LinkedIn
+                                </a>}
                         </div>
                     </div>
                     <div className={css.user__results_wrap}>
