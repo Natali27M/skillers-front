@@ -1,8 +1,8 @@
-export default function pagination(allPages, currenPage) {
+export default function pagination(allPages, currentPage) {
     let pagesArray = [];
 
     if (allPages > 4) {
-        for (let i = currenPage; i <= currenPage + 3 && i <= allPages; i++) {
+        for (let i = currentPage; i <= currentPage + 3 && i <= allPages; i++) {
             pagesArray.push(i);
         }
         if (pagesArray.length < 4) {

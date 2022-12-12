@@ -45,8 +45,6 @@ const TestPage = () => {
     const {user, roles} = useSelector(state => state['userReducers']);
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
-    console.log(userAchievement);
-
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
 
     const paramsData = useParams();
