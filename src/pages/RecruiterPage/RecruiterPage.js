@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import css from './RecruiterPage.module.css';
 import rootCSS from '../../styles/root.module.css';
-import {getLeaderBordTen, getLeaderBordByQueryTen} from '../../store/slices/achievments.slice';
+import {getLeaderBordTen, getLeaderBordByQueryTen} from '../../store';
 import {UserBlock, Pagination} from '../../components';
 import pagination from '../../RootFunctions/pagination';
 

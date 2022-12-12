@@ -9,9 +9,12 @@ import {achievementsServices, userServices} from '../../../services';
 import {resultsServices} from '../../../services/results.services';
 import arrow from '../../../images/arrow.svg';
 import cross from '../../../images/cross.svg';
+import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 
 const UserBlock = ({userId, setUserId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
     const [user, setUser] = useState(null);
 
@@ -25,6 +28,13 @@ const UserBlock = ({userId, setUserId}) => {
     const [linkedName, setLinkedName] = useState('');
 
     const [informationModal, setInformationModal] = useState('');
+
+    useEffect(() => {
+        if (!isComponentVisible) {
+            setUserId(null);
+            setIsComponentVisible(true);
+        }
+    }, [isComponentVisible]);
 
     useEffect(() => {
         userServices.getUserById(userId).then(value => setUser(value));
@@ -60,7 +70,7 @@ const UserBlock = ({userId, setUserId}) => {
 
     return (
         <div className={css.user__block_wrap}>
-            <div className={css.user__block}>
+            <div ref={ref} className={css.user__block}>
                 <img className={css.cross__btn} onClick={() => setUserId(null)} src={cross}
                      alt="cross"/>
                 <div className={rootCSS.default__title_24}>{user?.username}</div>
