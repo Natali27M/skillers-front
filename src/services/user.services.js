@@ -12,9 +12,9 @@ export const userServices = {
     }).then(value => value.data),
     getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
     getAllUsers: () => axiosServices.get(urls.user).then(value => value.data),
-    getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data)
+    getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
     //getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
-   /// getAllUsers: (startNumber) => axiosServices.get(urls.usersPaginated + startNumber).then(value => value.data),
+    /// getAllUsers: (startNumber) => axiosServices.get(urls.usersPaginated + startNumber).then(value => value.data),
     getAllUsersByQuery: (startNumber, query) =>
         axiosServices.get(urls.usersPaginated + startNumber + '&filters[userName][$contains]=' + query)
             .then(value => value.data)
