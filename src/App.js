@@ -28,6 +28,7 @@ import {
     clear,
     clearCreateTest,
     getLanguage,
+    getUserBadges,
     getUserResults,
     getUserResultsAll,
     getUserRoles,
@@ -97,7 +98,7 @@ function App() {
                 <Route path={'/registration'} element={<RegisterPage/>}/>
                 <Route path={'/user'} element={<UserPage/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
-                <Route path={'/createTest'} element={<CreateTestPage/>}/>
+                <Route path={'/createTest'} element={<CreateTestPage/>}/> -
                 <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
                 <Route path={'/admin'} element={<AdminPage/>}/>
                 <Route path={'/policy'} element={<PolicyPage/>}/>
