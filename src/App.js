@@ -37,7 +37,6 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-import {getUserBadges} from './store';
 
 
 function App() {
