@@ -7,3 +7,5 @@ export * from './tech.services';
 export * from './feedbackService';
 export * from './tests.services';
 export * from './user.services';
+export * from './codeTest.services';
+export * from './codeResults.services';

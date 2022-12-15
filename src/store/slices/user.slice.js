@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {achievementsServices, userServices} from '../../services';
-import {getLeaderBordByQuery} from './achievments.slice';
+import { userServices} from '../../services';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -41,7 +40,6 @@ export const getUserRoles = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.message);
         }
-
     }
 );
 

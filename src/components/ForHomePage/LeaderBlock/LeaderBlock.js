@@ -16,9 +16,9 @@ const LeaderBlock = ({leader, position, setLeaderModal}) => {
         if (leader?.id) {
             getBadgesForLeader(leader?.attributes?.userId).then(value => {
                 let startArray = value;
-                if (startArray.length > 3) {
+                if (startArray?.length > 3) {
                     startArray = startArray.slice(0, 3);
-                    setLeaderBadges(startArray)
+                    setLeaderBadges(startArray);
                 } else {
                     setLeaderBadges(value);
                 }
@@ -44,7 +44,7 @@ const LeaderBlock = ({leader, position, setLeaderModal}) => {
     }
 
     return (
-        <div onClick={() => setLeaderModal({...leader, rank: rank})}
+        <div onClick={() => setLeaderModal({...leader, rank: rank, leaderBadges: leaderBadges})}
              className={position <= 3 ? css.payment__leader_block : css.leader__block}>
             <div
                 className={css.position}>{position}

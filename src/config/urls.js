@@ -37,5 +37,7 @@ export const urls = {
 
     rates: 'api/rates',
 
-    badges: 'api/badges'
+    badges: 'api/badges',
+
+    codeTests: '/api/code-tests'
 };
