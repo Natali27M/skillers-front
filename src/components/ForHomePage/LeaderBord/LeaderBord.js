@@ -21,8 +21,6 @@ const LeaderBord = () => {
 
     const [isQuery, setIsQuery] = useState(false);
 
-    console.log(leaderBord);
-
     useEffect(() => {
         dispatch(getLeaderBord(pageNumber));
     }, [pageNumber]);
