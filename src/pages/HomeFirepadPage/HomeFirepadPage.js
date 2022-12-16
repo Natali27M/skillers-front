@@ -20,10 +20,6 @@ function HomeFirepadPage() {
         console.log(e.target.value,'handle');
         setTodo(e.target.value);
     };
-    const handleTodoChange2 = (e) => {
-        console.log(e.target.value,'handle');
-        setTodo(e.target.value);
-    };
 
     const writeToDatabase = () => {
         const uuid = uid();
@@ -36,28 +32,40 @@ function HomeFirepadPage() {
     };
 
     useEffect(() => {
+        console.log(1111)
         onValue(ref(db), (snapshot) => {
+            console.log(snapshot)
             setTodos([]);
             const data = snapshot.val();
             // console.log(newUuid,'uuid!!!!!!!!!!');
-            console.log(data?.one?.todo,'data');
-            setValue('you2', data?.one?.todo);
+            console.log(data,'data');
+            if(!todo) {
+                setValue('todo', data?.one?.todo);
+            }
             if (data !== null) {
                 Object.values(data).map((todo) => {
                     setTodos((oldArray) => [...oldArray, todo]);
                 });
             }
         });
-    }, []);
+
+        setTodos('');
+    }, [todo]);
 
         // setValue("you",1);
 
 
     return (
         <div>
-            <input type="textarea" onChange={handleTodoChange} onInput={writeToDatabase} {...register('you')}/>
+            <input type="textarea" {...register('todo', {
+                // value: todo,
+                onChange: handleTodoChange,
+                onBlur: writeToDatabase,
+            })}/>
+            {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase} ref={register('todo')}/>*/}
+            {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase}/>*/}
             {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase} {...register('you')}/>*/}
-            <input type="textarea" {...register('you2')} onChange={handleTodoChange2}/>
+            {/*<input type="textarea" {...register('you2')}/>*/}
             {/*<button onClick={writeToDatabase}>Submit</button>*/}
 
 
