@@ -10,6 +10,7 @@ import {
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
+    HomeFirepadPage,
     HomePage,
     LoginPage,
     MentorPage,
@@ -111,6 +112,7 @@ function App() {
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
+                <Route path={'/firepad'} element={<HomeFirepadPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
