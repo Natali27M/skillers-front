@@ -39,5 +39,8 @@ export const urls = {
 
     badges: 'api/badges',
 
-    codeTests: '/api/code-tests'
+    codeTests: '/api/code-tests',
+
+    codeResults: '/api/code-results',
+    codeResultsByUser: '/api/code-results?filters[userId][$eq]='
 };

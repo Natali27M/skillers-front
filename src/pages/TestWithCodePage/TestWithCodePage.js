@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
-import {getOneCodeTest} from '../../store';
+import {createCodeResult, getOneCodeTest} from '../../store';
 import css from './TestWithCodePage.module.css';
+import rootCss from '../../styles/root.module.css';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import run_icon from '../../images/code-run.svg';
 import useTimer from '../../RootFunctions/timer';
@@ -12,6 +13,8 @@ import timeDisplay from '../../RootFunctions/timeDisplay';
 
 const TestWithCodePage = () => {
     const {id} = useParams();
+
+    const {user, roles} = useSelector(state => state['userReducers']);
 
     const dispatch = useDispatch();
 
@@ -51,13 +54,23 @@ const TestWithCodePage = () => {
         }
     }, [startTime]);
 
+    const makeResult = () => {
+        dispatch(createCodeResult({
+            userId: user?.id,
+            codeTestId: oneCodeTest?.id,
+            userCode: code,
+            techId: oneCodeTest?.attributes?.techId,
+            testName: oneCodeTest?.attributes?.testName
+        }));
+    };
+
     const tryAgain = () => {
         setCode(oneCodeTest?.attributes?.codeFragment);
         setTime(oneCodeTest?.attributes?.timeSeconds);
         setStartTime(oneCodeTest?.attributes?.timeSeconds);
         setError(null);
         setResult(null);
-        startTimer()
+        startTimer();
     };
 
     const compile = () => {
@@ -126,6 +139,9 @@ const TestWithCodePage = () => {
             <div className={css.console}>
                 <div>D:\skilliant\code-test\{(oneCodeTest?.attributes?.testName)?.toLowerCase()}></div>
                 <div>{wait ? 'Wait...' : result ? result : error ? <span className={css.error}>ERROR</span> : ''}</div>
+            </div>
+            <div onClick={() => makeResult()} className={rootCss.default__button}>
+                {EN ? 'Send result' : 'Надіслати результат'}
             </div>
         </div>
     );

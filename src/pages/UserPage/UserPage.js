@@ -13,9 +13,9 @@ import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
-import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from '../../store';
+import {getResultsByTest, getUserCodeResults, getUserResults, getUserRoles, logout, updateUser} from '../../store';
 
-import {getUserAchievement} from '../../store/slices/achievments.slice';
+import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
@@ -34,6 +34,8 @@ const UserPage = () => {
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
+    const {userCodeResultPage} = useSelector(state => state['codeResultsReducers']);
+
     const {pathname} = useLocation();
 
     const dispatch = useDispatch();
@@ -41,6 +43,8 @@ const UserPage = () => {
     const [pageNumber, setPageNumber] = useState(1);
 
     const [resultsPageNumber, setResultsPageNumber] = useState(1);
+
+    const [codeResultsPageNumber, setCodeResultsPageNumber] = useState(1);
 
     const [testsPageNumber, setTestsPageNumber] = useState(1);
 
@@ -75,6 +79,10 @@ const UserPage = () => {
     }, [user]);
 
     useEffect(() => {
+        console.log(userCodeResultPage);
+    }, [userCodeResultPage]);
+
+    useEffect(() => {
         if (user) {
             const id = user.id;
             dispatch(getTestsByUser({pageNum: testsPageNumber, authorId: id}));
@@ -87,6 +95,13 @@ const UserPage = () => {
             dispatch(getUserResults({userId: id, pageNum: pageNumber}));
         }
     }, [user, pageNumber]);
+
+    useEffect(() => {
+        if (user) {
+            const id = user.id;
+            dispatch(getUserCodeResults({userId: id, pageNum: pageNumber}));
+        }
+    }, [user, codeResultsPageNumber]);
 
     useEffect(() => {
         if (testForResults) {
@@ -254,6 +269,34 @@ const UserPage = () => {
                              alt="arrow"/>
                     </div>
                 </div>}
+                {userCodeResultPage?.data?.length &&
+                    <div className={css.results__wrap}>
+                        <div className={rootCSS.default__title_24}>
+                            {EN ? 'Results of practical tasks' : 'Результати практичних завдань '}
+                        </div>
+                        <div className={css.results__header}>
+                            <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
+                            <div className={css.results__result}>{EN ? 'Mark' : 'Оцінка'}</div>
+                        </div>
+                        {userCodeResultPage?.data?.map(result =>
+                            <div key={result.id} className={css.results__block}>
+                                <div className={css.result__testName}>{result.attributes.testName}</div>
+                                <div
+                                    className={css.results__result}>{result?.attributes?.authorMark || '-'}</div>
+                            </div>
+                        )}
+                        <div className={css.pagination__block}>
+                            <img className={css.arrow__left}
+                                 onClick={() => codeResultsPageNumber > 1 && setCodeResultsPageNumber(codeResultsPageNumber - 1)}
+                                 src={arrow} alt="arrow"/>
+                            <div>{codeResultsPageNumber}/{userCodeResultPage.meta.pagination.pageCount}</div>
+                            <img className={css.arrow__right} src={arrow}
+                                 onClick={() => pageNumber < userCodeResultPage.meta?.pagination?.pageCount && setCodeResultsPageNumber(codeResultsPageNumber + 1)}
+                                 alt="arrow"/>
+                        </div>
+
+                    </div>
+                }
                 {resultBadges && <>
                     <div className={rootCSS.default__title_24}>
                         {EN ? 'My badges' : 'Мої нагороди'}
