@@ -12,8 +12,8 @@ const DonationPage = () => {
             <div className={css.logo__wrap}>
                 <img src={logo} alt="logo" className={css.skilliant__logo}/>
                 <div className={css.skilliant__description}>
-                    {EN ? 'Platform for testing your IT skills' :
-                        'Платформа для перевірки твоїх IT навичок'}
+                    {EN ? 'We help engineers to grow in IT' :
+                        'Ми допомагаємо розробникам розвиватися в ІТ'}
                 </div>
             </div>
             <div className={css.donation__content}>

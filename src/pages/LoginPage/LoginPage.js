@@ -91,8 +91,8 @@ const LoginPage = () => {
             <div className={css.register__left}>
                 <img className={css.home__logo} src={logo} alt="logo"/>
                 <div className={css.home__description}>
-                    {EN ? 'Platform for testing your IT skills' :
-                        'Платформа для перевірки твоїх IT навичок'}
+                    {EN ? 'We help engineers to grow in IT' :
+                        'Ми допомагаємо розробникам розвиватися в ІТ'}
                 </div>
             </div>
         </div>
