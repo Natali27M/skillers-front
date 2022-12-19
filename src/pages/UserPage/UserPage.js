@@ -13,7 +13,15 @@ import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
-import {getResultsByTest, getUserCodeResults, getUserResults, getUserRoles, logout, updateUser} from '../../store';
+import {
+    getCodeResultsForEvaluating,
+    getResultsByTest,
+    getUserCodeResults,
+    getUserResults,
+    getUserRoles,
+    logout,
+    updateUser
+} from '../../store';
 
 import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
@@ -34,7 +42,7 @@ const UserPage = () => {
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
-    const {userCodeResultPage} = useSelector(state => state['codeResultsReducers']);
+    const {userCodeResultPage, resultPageForEvaluate} = useSelector(state => state['codeResultsReducers']);
 
     const {pathname} = useLocation();
 
@@ -45,6 +53,8 @@ const UserPage = () => {
     const [resultsPageNumber, setResultsPageNumber] = useState(1);
 
     const [codeResultsPageNumber, setCodeResultsPageNumber] = useState(1);
+
+    const [resultsFooEvaluatePageNumber, setResultsFooEvaluatePageNumber] = useState(1);
 
     const [testsPageNumber, setTestsPageNumber] = useState(1);
 
@@ -99,9 +109,16 @@ const UserPage = () => {
     useEffect(() => {
         if (user) {
             const id = user.id;
-            dispatch(getUserCodeResults({userId: id, pageNum: pageNumber}));
+            dispatch(getUserCodeResults({userId: id, pageNum: codeResultsPageNumber}));
         }
     }, [user, codeResultsPageNumber]);
+
+    useEffect(() => {
+        if (user) {
+            const id = user.id;
+            dispatch(getCodeResultsForEvaluating({authorId: id, pageNum: resultsFooEvaluatePageNumber}));
+        }
+    }, [user, resultsFooEvaluatePageNumber]);
 
     useEffect(() => {
         if (testForResults) {
@@ -269,7 +286,7 @@ const UserPage = () => {
                              alt="arrow"/>
                     </div>
                 </div>}
-                {userCodeResultPage?.data?.length &&
+                {!!userCodeResultPage?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
                             {EN ? 'Results of practical tasks' : 'Результати практичних завдань '}
@@ -293,6 +310,39 @@ const UserPage = () => {
                             <img className={css.arrow__right} src={arrow}
                                  onClick={() => pageNumber < userCodeResultPage.meta?.pagination?.pageCount && setCodeResultsPageNumber(codeResultsPageNumber + 1)}
                                  alt="arrow"/>
+                        </div>
+
+                    </div>
+                }
+                {!!resultPageForEvaluate?.data?.length &&
+                    <div className={css.results__wrap}>
+                        <div className={rootCSS.default__title_24}>
+                            {EN ? 'The results of your tests that need to be evaluated'
+                                : 'Результати ваших тестів, які треба оцінити'}
+                        </div>
+                        <div className={css.results__header}>
+                            <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
+                            <div className={css.results__result}>{EN ? 'User' : 'Користувач'}</div>
+                        </div>
+                        {resultPageForEvaluate?.data?.map(result =>
+                            <Link to={`/code-test/${result?.attributes?.codeTestId}-${result.id}`} key={result.id}
+                                  className={css.results__block}>
+                                <div className={css.result__testName}>{result.attributes.testName}</div>
+                                <div
+                                    className={css.results__result}>{result?.attributes?.userName}
+                                </div>
+                            </Link>
+                        )}
+                        <div className={css.pagination__block}>
+                            <img className={css.arrow__left}
+                                 onClick={() => resultsFooEvaluatePageNumber > 1 && setResultsFooEvaluatePageNumber(resultsFooEvaluatePageNumber - 1)}
+                                 src={arrow} alt="arrow"
+                            />
+                            <div>{resultsFooEvaluatePageNumber}/{resultPageForEvaluate.meta.pagination.pageCount}</div>
+                            <img className={css.arrow__right} src={arrow}
+                                 onClick={() => pageNumber < resultPageForEvaluate.meta?.pagination?.pageCount && setResultsFooEvaluatePageNumber(resultsFooEvaluatePageNumber + 1)}
+                                 alt="arrow"
+                            />
                         </div>
 
                     </div>

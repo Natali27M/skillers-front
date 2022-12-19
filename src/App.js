@@ -108,7 +108,6 @@ function App() {
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
                 <Route path={'/code-test/:id'} element={<TestWithCodePage/>}/>
-                {/*<Route path={'/feedback'} element={<FeedbackFormPage/>}/>*/}
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>

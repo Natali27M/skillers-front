@@ -42,5 +42,6 @@ export const urls = {
     codeTests: '/api/code-tests',
 
     codeResults: '/api/code-results',
-    codeResultsByUser: '/api/code-results?filters[userId][$eq]='
+    codeResultsByUser: '/api/code-results?filters[userId][$eq]=',
+    codeResultForEvaluate: '/api/code-results?filters[evaluated][$eq]=false&filters[authorId][$eq]='
 };

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Navigate, useNavigate, useParams} from 'react-router-dom';
 import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
-import {createCodeResult, getOneCodeTest} from '../../store';
+import {changeCodeResult, createCodeResult, getOneCodeResult, getOneCodeTest} from '../../store';
 import css from './TestWithCodePage.module.css';
 import rootCss from '../../styles/root.module.css';
 import CodeEditor from '@uiw/react-textarea-code-editor';
@@ -10,19 +10,28 @@ import run_icon from '../../images/code-run.svg';
 import useTimer from '../../RootFunctions/timer';
 import {StartTestModal, TimeIsUpModal} from '../../components';
 import timeDisplay from '../../RootFunctions/timeDisplay';
+import {useForm} from 'react-hook-form';
 
 const TestWithCodePage = () => {
-    const {id} = useParams();
+    const {register, handleSubmit, reset} = useForm();
 
-    const {user, roles} = useSelector(state => state['userReducers']);
+    const paramsData = useParams();
 
-    const dispatch = useDispatch();
+    const id = paramsData?.id?.split('-')[0];
+
+    const resultId = paramsData?.id?.split('-')[1];
+
+    const {user} = useSelector(state => state['userReducers']);
+
+    const {oneCodeResult} = useSelector(state => state['codeResultsReducers']);
 
     const {oneCodeTest} = useSelector(state => state['codeTestReducers']);
 
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {time, startTimer, setTime} = useTimer(0);
+    const dispatch = useDispatch();
+
+    const {time, startTimer, stopTimer, setTime} = useTimer(0);
 
     const [testStarted, setTestStarted] = useState(false);
 
@@ -36,9 +45,23 @@ const TestWithCodePage = () => {
 
     const [error, setError] = useState(null);
 
+    const [isEvaluated, setIsEvaluated] = useState(false);
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(getOneCodeTest(id));
     }, []);
+
+    useEffect(() => {
+        if (resultId) {
+            dispatch(getOneCodeResult(resultId));
+        }
+    }, [resultId]);
+
+    useEffect(() => {
+        setCode(oneCodeResult?.attributes?.userCode);
+    }, [oneCodeResult]);
 
     useEffect(() => {
         if (testStarted && oneCodeTest) {
@@ -47,6 +70,7 @@ const TestWithCodePage = () => {
             setStartTime(oneCodeTest?.attributes?.timeSeconds);
         }
     }, [oneCodeTest, testStarted]);
+
 
     useEffect(() => {
         if (startTime > 0) {
@@ -60,17 +84,19 @@ const TestWithCodePage = () => {
             codeTestId: oneCodeTest?.id,
             userCode: code,
             techId: oneCodeTest?.attributes?.techId,
-            testName: oneCodeTest?.attributes?.testName
+            testName: oneCodeTest?.attributes?.testName,
+            evaluated: false
         }));
     };
 
     const tryAgain = () => {
-        setCode(oneCodeTest?.attributes?.codeFragment);
+        navigate(0);
+        /*setCode(oneCodeTest?.attributes?.codeFragment);
         setTime(oneCodeTest?.attributes?.timeSeconds);
         setStartTime(oneCodeTest?.attributes?.timeSeconds);
         setError(null);
         setResult(null);
-        startTimer();
+        startTimer();*/
     };
 
     const compile = () => {
@@ -86,26 +112,61 @@ const TestWithCodePage = () => {
         });
     };
 
+    const evaluateCodeTest = (obj) => {
+        dispatch(changeCodeResult(
+            {resultId: oneCodeResult?.id, data: {authorMark: obj?.authorMark, evaluated: true}}
+        ));
+        setIsEvaluated(true);
+    };
+
+    if (isEvaluated) {
+        return <Navigate to={'/user'} replace/>;
+    }
+
 
     return (
         <div className={css.testWithCode__page}>
-            {!testStarted && <StartTestModal setTestStarted={setTestStarted} test={oneCodeTest?.attributes}/>}
-            {oneCodeTest?.attributes && testStarted && time < 1 && <TimeIsUpModal tryAgain={tryAgain}/>}
+            {!resultId && !testStarted &&
+                <StartTestModal setTestStarted={setTestStarted} test={oneCodeTest?.attributes}/>}
+            {!resultId && oneCodeTest?.attributes && testStarted && time < 1 && <TimeIsUpModal tryAgain={tryAgain}/>}
+
 
             <div className={css.header}>
                 <div className={css.test__name}>{oneCodeTest?.attributes?.testName}</div>
-                <div className={css.countdown}>
-                    {EN ? 'Remaining time:' : 'Залишок часу:'}
-                    {oneCodeTest?.attributes?.timeSeconds &&
-                        timeDisplay(time)
-                    }
-                </div>
+
+                {oneCodeResult ?
+                    <div>
+                        {EN ?
+                            `${oneCodeResult?.attributes?.userName} result`
+                            :
+                            `Результат ${oneCodeResult?.attributes?.userName}`
+                        }
+                    </div>
+                    :
+                    <div className={css.countdown}>
+                        {EN ? 'Remaining time:' : 'Залишок часу:'}
+                        {oneCodeTest?.attributes?.timeSeconds &&
+                            timeDisplay(time)
+                        }
+                    </div>}
             </div>
 
             <div className={css.description}>
                 {oneCodeTest?.attributes?.description}
             </div>
 
+            {resultId
+                &&
+                <form onSubmit={handleSubmit(evaluateCodeTest)} className={css.mark__form}>
+                    <input
+                        className={css.mark__input}
+                        placeholder={EN ? 'mark' : 'оцінка'}
+                        type="number" min={0} max={10}
+                        {...register('authorMark')}
+                    />
+                    <button className={css.mark__btn}>{EN ? 'Evaluate' : 'Оцінити'}</button>
+                </form>
+            }
 
             <div className={css.main__part}>
                 <div className={css.editor__wrap}>
@@ -128,11 +189,11 @@ const TestWithCodePage = () => {
                 <div className={css.main__right}>
                     <div className={css.result}>
                         <div>{EN ? 'Expected result:' : 'Очікуваний результат:'}</div>
-                        <div>{testStarted && oneCodeTest?.attributes?.outputResult}</div>
+                        <div>{(testStarted || resultId) && oneCodeTest?.attributes?.outputResult}</div>
                     </div>
                     <div className={css.result}>
                         <div>{EN ? 'Input data:' : 'Вхідні дані:'}</div>
-                        <div>{testStarted && oneCodeTest?.attributes?.input}</div>
+                        <div>{(testStarted || resultId) && oneCodeTest?.attributes?.input}</div>
                     </div>
                 </div>
             </div>
@@ -140,9 +201,9 @@ const TestWithCodePage = () => {
                 <div>D:\skilliant\code-test\{(oneCodeTest?.attributes?.testName)?.toLowerCase()}></div>
                 <div>{wait ? 'Wait...' : result ? result : error ? <span className={css.error}>ERROR</span> : ''}</div>
             </div>
-            <div onClick={() => makeResult()} className={rootCss.default__button}>
+            {!resultId && <div onClick={() => makeResult()} className={rootCss.default__button}>
                 {EN ? 'Send result' : 'Надіслати результат'}
-            </div>
+            </div>}
         </div>
     );
 };
