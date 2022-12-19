@@ -34,8 +34,8 @@ const HomePage = () => {
                             SKILLIANT
                         </h1>
                         <div className={css.home__description}>
-                            {EN ? 'Platform for testing your IT skills' :
-                                'Платформа для перевірки твоїх IT навичок'}
+                            {EN ? 'We help engineers to grow in IT' :
+                                'Ми допомагаємо розробникам розвиватися в ІТ'}
                         </div>
                         <Link to={user ? '/user' : '/registration'} className={css.register__btn}>
                             {user ? (EN ? 'To my profile' : 'На мій профіль') : (EN ? 'Register now' : 'Зареєструватися')}
