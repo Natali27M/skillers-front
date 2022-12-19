@@ -271,11 +271,11 @@ const UserPage = () => {
                         <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
                     </div>
                     {userResults?.data?.map(result =>
-                        <div key={result.id} className={css.results__block}>
+                        <Link to={`/test/${result.attributes.testId}`} key={result.id} className={css.results__block}>
                             <div className={css.result__testName}>{result.attributes.testName}</div>
                             <div
                                 className={css.results__result}>{result.attributes.correctAnswer}/{result.attributes.allExercises}</div>
-                        </div>
+                        </Link>
                     )}
                     <div className={css.pagination__block}>
                         <img className={css.arrow__left} onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}
@@ -296,11 +296,12 @@ const UserPage = () => {
                             <div className={css.results__result}>{EN ? 'Mark' : 'Оцінка'}</div>
                         </div>
                         {userCodeResultPage?.data?.map(result =>
-                            <div key={result.id} className={css.results__block}>
+                            <Link to={`/code-test/${result.attributes.codeTestId}`} key={result.id}
+                                  className={css.results__block}>
                                 <div className={css.result__testName}>{result.attributes.testName}</div>
                                 <div
                                     className={css.results__result}>{result?.attributes?.authorMark || '-'}</div>
-                            </div>
+                            </Link>
                         )}
                         <div className={css.pagination__block}>
                             <img className={css.arrow__left}

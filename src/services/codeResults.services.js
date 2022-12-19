@@ -12,4 +12,6 @@ export const codeResultsServices = {
     getCreatorResultForEvaluate: (authorId, pageNum) =>
         axiosServices.get(`${urls.codeResultForEvaluate}${authorId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`)
             .then(value => value.data),
+    getUserResultByCodeTest: (testId, userId) =>
+        axiosServices.get(`${urls.codeResultsByUser}${userId}&filters[codeTestId][$eq]=${testId}`).then(value => value.data.data)
 };

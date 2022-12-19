@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {Navigate, useNavigate, useParams} from 'react-router-dom';
+import {Link, Navigate, useNavigate, useParams} from 'react-router-dom';
 import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeCodeResult, createCodeResult, getOneCodeResult, getOneCodeTest} from '../../store';
+import {
+    changeCodeResult,
+    createCodeResult,
+    getOneCodeResult,
+    getOneCodeTest,
+    getUserResultByCodeTest
+} from '../../store';
 import css from './TestWithCodePage.module.css';
 import rootCss from '../../styles/root.module.css';
+import testCss from '../TestPage/TestPage.module.css';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import run_icon from '../../images/code-run.svg';
 import useTimer from '../../RootFunctions/timer';
-import {StartTestModal, TimeIsUpModal} from '../../components';
+import {SignUpModal, StartTestModal, TimeIsUpModal} from '../../components';
 import timeDisplay from '../../RootFunctions/timeDisplay';
 import {useForm} from 'react-hook-form';
 
@@ -23,7 +30,7 @@ const TestWithCodePage = () => {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const {oneCodeResult} = useSelector(state => state['codeResultsReducers']);
+    const {oneCodeResult, userResultByTest} = useSelector(state => state['codeResultsReducers']);
 
     const {oneCodeTest} = useSelector(state => state['codeTestReducers']);
 
@@ -47,7 +54,21 @@ const TestWithCodePage = () => {
 
     const [isEvaluated, setIsEvaluated] = useState(false);
 
+    const [testCompleted, setTestCompleted] = useState(false);
+
+    const [registerModalOpen, setRegisterModalOpen] = useState(false);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setCode(userResultByTest?.attributes?.userCode);
+    }, [userResultByTest]);
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getUserResultByCodeTest({userId: user?.id, testId: id}));
+        }
+    }, [user]);
 
     useEffect(() => {
         dispatch(getOneCodeTest(id));
@@ -64,7 +85,7 @@ const TestWithCodePage = () => {
     }, [oneCodeResult]);
 
     useEffect(() => {
-        if (testStarted && oneCodeTest) {
+        if (testStarted && oneCodeTest && !userResultByTest) {
             setCode(oneCodeTest?.attributes?.codeFragment);
             setTime(oneCodeTest?.attributes?.timeSeconds);
             setStartTime(oneCodeTest?.attributes?.timeSeconds);
@@ -79,24 +100,26 @@ const TestWithCodePage = () => {
     }, [startTime]);
 
     const makeResult = () => {
-        dispatch(createCodeResult({
-            userId: user?.id,
-            codeTestId: oneCodeTest?.id,
-            userCode: code,
-            techId: oneCodeTest?.attributes?.techId,
-            testName: oneCodeTest?.attributes?.testName,
-            evaluated: false
-        }));
+        if (user) {
+            dispatch(createCodeResult({
+                userId: user?.id,
+                codeTestId: oneCodeTest?.id,
+                userCode: code,
+                techId: oneCodeTest?.attributes?.techId,
+                testName: oneCodeTest?.attributes?.testName,
+                authorId: oneCodeTest?.attributes?.authorId,
+                userName: user?.username,
+                evaluated: false
+            }));
+        } else {
+            setRegisterModalOpen(true);
+        }
+        stopTimer();
+        setTestCompleted(true);
     };
 
     const tryAgain = () => {
         navigate(0);
-        /*setCode(oneCodeTest?.attributes?.codeFragment);
-        setTime(oneCodeTest?.attributes?.timeSeconds);
-        setStartTime(oneCodeTest?.attributes?.timeSeconds);
-        setError(null);
-        setResult(null);
-        startTimer();*/
     };
 
     const compile = () => {
@@ -126,29 +149,42 @@ const TestWithCodePage = () => {
 
     return (
         <div className={css.testWithCode__page}>
-            {!resultId && !testStarted &&
+            {!userResultByTest && !resultId && !testStarted &&
                 <StartTestModal setTestStarted={setTestStarted} test={oneCodeTest?.attributes}/>}
-            {!resultId && oneCodeTest?.attributes && testStarted && time < 1 && <TimeIsUpModal tryAgain={tryAgain}/>}
+            {!userResultByTest && !resultId && oneCodeTest?.attributes && testStarted && time < 1 &&
+                <TimeIsUpModal tryAgain={tryAgain}/>}
 
 
-            <div className={css.header}>
-                <div className={css.test__name}>{oneCodeTest?.attributes?.testName}</div>
+            <div className={testCss.test__page_title}>
+                <div className={testCss.test__page_title__name}>{oneCodeTest?.attributes?.testName}</div>
 
-                {oneCodeResult ?
-                    <div>
-                        {EN ?
-                            `${oneCodeResult?.attributes?.userName} result`
+                <div className={css.header__info}>
+                    {oneCodeResult ?
+                        <div>
+                            {EN ?
+                                `${oneCodeResult?.attributes?.userName} result`
+                                :
+                                `Результат ${oneCodeResult?.attributes?.userName}`
+                            }
+                        </div>
+                        :
+                        (userResultByTest || (testCompleted && user)) ?
+                            <div>
+                                <div>{EN ? 'You have already passed this test ' : 'Ви вже пройшли цей тест '}</div>
+                                <div>{userResultByTest?.attributes?.authorMark
+                                    ? `${EN ? 'Your result: ' : 'Ваш результат: '}${userResultByTest?.attributes?.authorMark}`
+                                    : `${EN ? 'Expect an assessment from the author of the test' : 'Очікуйте оцінку від автора тесту'}`}
+                                </div>
+                            </div>
                             :
-                            `Результат ${oneCodeResult?.attributes?.userName}`
-                        }
-                    </div>
-                    :
-                    <div className={css.countdown}>
-                        {EN ? 'Remaining time:' : 'Залишок часу:'}
-                        {oneCodeTest?.attributes?.timeSeconds &&
-                            timeDisplay(time)
-                        }
-                    </div>}
+                            <div className={css.countdown}>
+                                {EN ? 'Remaining time:' : 'Залишок часу:'}
+                                {oneCodeTest?.attributes?.timeSeconds &&
+                                    timeDisplay(time)
+                                }
+                            </div>
+                    }
+                </div>
             </div>
 
             <div className={css.description}>
@@ -157,15 +193,19 @@ const TestWithCodePage = () => {
 
             {resultId
                 &&
-                <form onSubmit={handleSubmit(evaluateCodeTest)} className={css.mark__form}>
-                    <input
-                        className={css.mark__input}
-                        placeholder={EN ? 'mark' : 'оцінка'}
-                        type="number" min={0} max={10}
-                        {...register('authorMark')}
-                    />
-                    <button className={css.mark__btn}>{EN ? 'Evaluate' : 'Оцінити'}</button>
-                </form>
+                (oneCodeResult?.attributes?.authorMark ?
+                    <div
+                        className={css.authorMark}>{EN ? 'Mark:' : 'Оцінка:'} {oneCodeResult?.attributes?.authorMark}</div>
+                    :
+                    <form onSubmit={handleSubmit(evaluateCodeTest)} className={css.mark__form}>
+                        <input
+                            className={css.mark__input}
+                            placeholder={EN ? 'mark' : 'оцінка'}
+                            type="number" min={0} max={10}
+                            {...register('authorMark')}
+                        />
+                        <button className={css.mark__btn}>{EN ? 'Evaluate' : 'Оцінити'}</button>
+                    </form>)
             }
 
             <div className={css.main__part}>
@@ -181,6 +221,7 @@ const TestWithCodePage = () => {
                         className={css.code__area}
                         padding={15}
                         minHeight={400}
+
                         style={{
                             fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
                         }}
@@ -189,11 +230,11 @@ const TestWithCodePage = () => {
                 <div className={css.main__right}>
                     <div className={css.result}>
                         <div>{EN ? 'Expected result:' : 'Очікуваний результат:'}</div>
-                        <div>{(testStarted || resultId) && oneCodeTest?.attributes?.outputResult}</div>
+                        <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.outputResult}</div>
                     </div>
                     <div className={css.result}>
                         <div>{EN ? 'Input data:' : 'Вхідні дані:'}</div>
-                        <div>{(testStarted || resultId) && oneCodeTest?.attributes?.input}</div>
+                        <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.input}</div>
                     </div>
                 </div>
             </div>
@@ -201,9 +242,14 @@ const TestWithCodePage = () => {
                 <div>D:\skilliant\code-test\{(oneCodeTest?.attributes?.testName)?.toLowerCase()}></div>
                 <div>{wait ? 'Wait...' : result ? result : error ? <span className={css.error}>ERROR</span> : ''}</div>
             </div>
-            {!resultId && <div onClick={() => makeResult()} className={rootCss.default__button}>
-                {EN ? 'Send result' : 'Надіслати результат'}
-            </div>}
+            {!testCompleted && !userResultByTest && !resultId ?
+                <div onClick={() => makeResult()} className={rootCss.default__button}>
+                    {EN ? 'Send result' : 'Надіслати результат'}
+                </div>
+                :
+                <Link to={'/'} className={rootCss.default__button}>{EN ? 'To main' : 'На головну'}</Link>
+            }
+            {registerModalOpen && <SignUpModal setModalOpen={setRegisterModalOpen}/>}
         </div>
     );
 };
