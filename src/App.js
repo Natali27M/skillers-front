@@ -10,7 +10,7 @@ import {
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
-    HomeFirepadPage,
+    MainFirepadPage,
     HomePage,
     LoginPage,
     MentorPage,
@@ -23,6 +23,7 @@ import {
     TestListPage,
     TestPage,
     UserPage,
+    HomeFirepadPage,
 } from './pages';
 import {Layout} from './components';
 import {
@@ -113,6 +114,7 @@ function App() {
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
                 <Route path={'/firepad'} element={<HomeFirepadPage/>}/>
+                <Route path="/firepad/:template/:id" element={<MainFirepadPage/>} />
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

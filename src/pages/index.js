@@ -17,3 +17,4 @@ export * from './FeedbackFormPage/FeedbackFormPage'
 export * from './MentorPage/MentorPage';
 export * from './MentorsPage/MentorsPage';
 export * from './HomeFirepadPage/HomeFirepadPage';
+export * from './MainFirepadPage/MainFirepadPage';

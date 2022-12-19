@@ -1,98 +1,87 @@
-import {db} from "../../firebaseConfig";
-import {uid} from "uid";
-import {set, ref, onValue, remove, update} from "firebase/database";
-import {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
-import {FeedbackValidator} from '../../validation';
 
-function HomeFirepadPage() {
-    const [todo, setTodo] = useState("");
-    const [todos, setTodos] = useState([]);
-    const [isEdit, setIsEdit] = useState(false);
-    const [tempUuid, setTempUuid] = useState("");
-    const {register, handleSubmit, formState: {errors}, reset, setValue} = useForm();
-    const [form, setForm] = useState('');
-    const [newUuid, setNewUuid] = useState('');
+import css from '../CompilerPage/CompilerPage.module.css';
+import {compileServices} from '../../services';
+import arrow from '../../images/arrow.svg';
+import useComponentVisible from '../../RootFunctions/useComponentVisible';
 
+const HomeFirepadPage = () => {
+    const {user} = useSelector(state => state['userReducers']);
 
-    const handleTodoChange = (e) => {
-        console.log(e.target.value,'handle');
-        setTodo(e.target.value);
-    };
+    const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
 
-    const writeToDatabase = () => {
-        const uuid = uid();
-        set(ref(db, `/one`), {
-            todo,
-            uuid,
-        });
-        // setNewUuid(uuid);
-        setTodo("");
-    };
+    const [dropOpen, setDropOpen] = useState(false);
+
+    const [langArray, setLangArray] = useState([]);
+
+    const {ref} = useComponentVisible(true);
+
+    const {register, handleSubmit, reset} = useForm();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(1111)
-        onValue(ref(db), (snapshot) => {
-            console.log(snapshot)
-            setTodos([]);
-            const data = snapshot.val();
-            // console.log(newUuid,'uuid!!!!!!!!!!');
-            console.log(data,'data');
-            if(!todo) {
-                setValue('todo', data?.one?.todo);
-            }
-            if (data !== null) {
-                Object.values(data).map((todo) => {
-                    setTodos((oldArray) => [...oldArray, todo]);
-                });
-            }
-        });
+        compileServices.getLanguages().then(value => setLangArray(value));
+    }, []);
 
-        setTodos('');
-    }, [todo]);
+    const setLangValue = (lang) => {
+        setLanguage(lang);
+        setDropOpen(false);
+    };
 
-        // setValue("you",1);
-
+    const joinToRoom = (e) => {
+        navigate(`${e.path}`);
+    }
 
     return (
         <div>
-            <input type="textarea" {...register('todo', {
-                // value: todo,
-                onChange: handleTodoChange,
-                onBlur: writeToDatabase,
-            })}/>
-            {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase} ref={register('todo')}/>*/}
-            {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase}/>*/}
-            {/*<input type="textarea" value={todo} onChange={handleTodoChange} onInput={writeToDatabase} {...register('you')}/>*/}
-            {/*<input type="textarea" {...register('you2')}/>*/}
-            {/*<button onClick={writeToDatabase}>Submit</button>*/}
+            <div className={css.result__wrap}>
+                <div className={css.dropdown__container}>
+
+                    <div className={css.dropdown__title}>
+                        Choose Language
+                    </div>
+
+                    <div className={css.dropdown__wrap} ref={ref}>
+
+                        <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
+                            <div>{language.name}</div>
+                            <img className={dropOpen ? css.arrow__open : css.arrow__close} src={arrow} alt="arrow"/>
+                        </div>
+
+                        {dropOpen && <div className={css.drop__elements_wrap}>
+                            {
+                                langArray?.map(lang =>
+                                    <div key={lang?.id}>
+                                        {lang !== language &&
+                                            <div onClick={() => setLangValue(lang)}
+                                                 className={css.dropdown__element}>
+                                                <Link to={`/firepad/${lang.name}/${user?.id}`}>{lang?.name}</Link>
+                                            </div>
+                                        }
+                                    </div>
+                                )
+                            }
+                        </div>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
-            {/*{isEdit ? (*/}
-            {/*    <>*/}
-            {/*        <button onClick={handleSubmitChange}>Submit Change</button>*/}
-            {/*        <button*/}
-            {/*            onClick={() => {*/}
-            {/*                setIsEdit(false);*/}
-            {/*                setTodo("");*/}
-            {/*            }}*/}
-            {/*        >*/}
-            {/*            X*/}
-            {/*        </button>*/}
-            {/*    </>*/}
-            {/*) : (*/}
-            {/*    <button onClick={writeToDatabase}>submit</button>*/}
-            {/*)}*/}
-            {/*{todos.map((todo) => (*/}
-            {/*    <>*/}
-            {/*        <h1>{todo.todo}</h1>*/}
-            {/*        <button onClick={() => handleUpdate(todo)}>update</button>*/}
-            {/*        <button onClick={() => handleDelete(todo)}>delete</button>*/}
-            {/*    </>*/}
-            {/*))}*/}
+            <form onSubmit={handleSubmit(joinToRoom)}>
+                <input type="text" {...register('path')}/>
+                <button>Join room</button>
+            </form>
+
         </div>
     );
-}
+};
 
 export {HomeFirepadPage};
