@@ -30,7 +30,7 @@ const TestWithCodePage = () => {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const {oneCodeResult, userResultByTest} = useSelector(state => state['codeResultsReducers']);
+    const {oneCodeResult, userResultByTest, status} = useSelector(state => state['codeResultsReducers']);
 
     const {oneCodeTest} = useSelector(state => state['codeTestReducers']);
 
@@ -60,10 +60,19 @@ const TestWithCodePage = () => {
 
     const [tempAuthorMark, setTempAuthorMark] = useState(null);
 
+    const [bug, setBug] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (resultId && status === 'rejected') {
+            setBug(true);
+        }
+    }, [resultId, status]);
+
+    useEffect(() => {
         setCode(userResultByTest?.attributes?.userCode);
+
     }, [userResultByTest]);
 
     useEffect(() => {
@@ -83,7 +92,9 @@ const TestWithCodePage = () => {
     }, [resultId]);
 
     useEffect(() => {
-        setCode(oneCodeResult?.attributes?.userCode);
+        if (resultId && oneCodeResult) {
+            setCode(oneCodeResult?.attributes?.userCode);
+        }
     }, [oneCodeResult]);
 
     useEffect(() => {
@@ -142,15 +153,12 @@ const TestWithCodePage = () => {
             {resultId: oneCodeResult?.id, data: {authorMark: obj?.authorMark, evaluated: true}}
         ));
         setIsEvaluated(true);
-        setTempAuthorMark(obj?.authorMark)
+        setTempAuthorMark(obj?.authorMark);
     };
 
-    /*
-        if (isEvaluated) {
-            return navigate(0);
-        }
-    */
-
+    if (bug) {
+        return <Navigate to={'/'} replace/>;
+    }
 
     return (
         <div className={css.testWithCode__page}>
@@ -220,13 +228,12 @@ const TestWithCodePage = () => {
                     </div>
                     <CodeEditor
                         value={code}
-                        language={'cpp'}
-                        placeholder="Please enter code."
+                        language={oneCodeTest?.attributes?.editorLang || 'cpp'}
+                        placeholder="Please enter code"
                         onChange={(evn) => setCode(evn.target.value)}
                         className={css.code__area}
                         padding={15}
                         minHeight={400}
-
                         style={{
                             fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
                         }}

@@ -89,10 +89,6 @@ const UserPage = () => {
     }, [user]);
 
     useEffect(() => {
-        console.log(userCodeResultPage);
-    }, [userCodeResultPage]);
-
-    useEffect(() => {
         if (user) {
             const id = user.id;
             dispatch(getTestsByUser({pageNum: testsPageNumber, authorId: id}));

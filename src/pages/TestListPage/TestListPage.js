@@ -58,10 +58,6 @@ const TestListPage = () => {
     };
 
     useEffect(() => {
-        console.log(codeTestPage);
-    }, [codeTestPage]);
-
-    useEffect(() => {
         dispatch(getTechnology({techId}));
     }, [currenPage]);
 
