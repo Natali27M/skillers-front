@@ -58,6 +58,8 @@ const TestWithCodePage = () => {
 
     const [registerModalOpen, setRegisterModalOpen] = useState(false);
 
+    const [tempAuthorMark, setTempAuthorMark] = useState(null);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -140,11 +142,14 @@ const TestWithCodePage = () => {
             {resultId: oneCodeResult?.id, data: {authorMark: obj?.authorMark, evaluated: true}}
         ));
         setIsEvaluated(true);
+        setTempAuthorMark(obj?.authorMark)
     };
 
-    if (isEvaluated) {
-        return <Navigate to={'/user'} replace/>;
-    }
+    /*
+        if (isEvaluated) {
+            return navigate(0);
+        }
+    */
 
 
     return (
@@ -159,7 +164,7 @@ const TestWithCodePage = () => {
                 <div className={testCss.test__page_title__name}>{oneCodeTest?.attributes?.testName}</div>
 
                 <div className={css.header__info}>
-                    {oneCodeResult ?
+                    {(resultId && oneCodeResult) ?
                         <div>
                             {EN ?
                                 `${oneCodeResult?.attributes?.userName} result`
@@ -193,9 +198,9 @@ const TestWithCodePage = () => {
 
             {resultId
                 &&
-                (oneCodeResult?.attributes?.authorMark ?
+                ((oneCodeResult?.attributes?.authorMark || isEvaluated) ?
                     <div
-                        className={css.authorMark}>{EN ? 'Mark:' : 'Оцінка:'} {oneCodeResult?.attributes?.authorMark}</div>
+                        className={css.authorMark}>{EN ? 'Mark:' : 'Оцінка:'} {oneCodeResult?.attributes?.authorMark || tempAuthorMark}</div>
                     :
                     <form onSubmit={handleSubmit(evaluateCodeTest)} className={css.mark__form}>
                         <input

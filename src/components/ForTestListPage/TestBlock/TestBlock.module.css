@@ -47,14 +47,19 @@
     margin-bottom: 2px;
 }
 
-.test__top{
+.test__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.complete{
+.complete {
     height: 40px;
+}
+
+.description {
+    width: 85%;
+    font-size: 16px;
 }
 
 @media (max-width: 767px) {
@@ -79,12 +84,16 @@
         font-size: 14px;
     }
 
+    .description {
+        font-size: 14px;
+    }
+
     .test__rating img {
         height: 16px;
         margin-bottom: 1px;
     }
 
-    .complete{
+    .complete {
         height: 30px;
     }
 }
@@ -96,6 +105,10 @@
 
     .test__name {
         font-size: 16px;
+    }
+
+    .description {
+        font-size: 12px;
     }
 
     .test__left {
@@ -121,7 +134,7 @@
 }
 
 @media (max-width: 500px) {
-    .complete{
+    .complete {
         height: 20px;
     }
 }
@@ -133,6 +146,11 @@
 
     .test__difficult {
         font-size: 12px;
+    }
+
+
+    .description {
+        font-size: 10px;
     }
 
     .test__rating {

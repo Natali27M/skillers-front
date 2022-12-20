@@ -5,11 +5,11 @@ import css from './StartTestModal.module.css';
 import {useSelector} from 'react-redux';
 import timeDisplay from '../../../RootFunctions/timeDisplay';
 import rootCss from '../../../styles/root.module.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const StartTestModal = ({test, setTestStarted}) => {
     const {EN} = useSelector(state => state['languageReducers']);
-
+    const navigate = useNavigate()
 
     return (
         <div className={modalCss.timeIsUp__modal}>
@@ -29,7 +29,7 @@ const StartTestModal = ({test, setTestStarted}) => {
                 <div onClick={() => setTestStarted(true)} className={rootCss.default__button}>
                     {EN ? 'Start' : 'Розпочати'}
                 </div>
-                <Link className={modalCss.toMain__btn} to={'/'}>{EN ? 'To main' : 'На головну'}</Link>
+                <div className={modalCss.toMain__btn} onClick={() => navigate(-1)}>{EN ? 'Back' : 'Назад'}</div>
             </div>
         </div>
     );
