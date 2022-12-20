@@ -59,7 +59,7 @@ const HomeFirepadPage = () => {
                                         {lang !== language &&
                                             <div onClick={() => setLangValue(lang)}
                                                  className={css.dropdown__element}>
-                                                <Link to={`/firepad/${lang.name}/${user?.id}`}>{lang?.name}</Link>
+                                                <Link to={`/firepad/${lang.name}/${user?.id}`} state={user?.id} >{lang?.name}</Link>
                                             </div>
                                         }
                                     </div>
