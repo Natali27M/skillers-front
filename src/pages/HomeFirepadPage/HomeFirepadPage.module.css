@@ -1,0 +1,84 @@
+.result__wrap{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.dropdown__container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.dropdown__title{
+    font-size: 18px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.dropdown__wrap {
+    position: relative;
+    z-index: 2;
+}
+
+.dropdown__btn {
+    cursor: pointer;
+    height: 40px;
+    width: 250px;
+    background-color: #fff;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.arrow__open,
+.arrow__close{
+    height: 20px;
+    transition: all .2s linear;
+}
+
+.arrow__open{
+    transform: rotate(-90deg);
+}
+
+.drop__elements_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding-top: 40px;
+    width: 250px;
+    z-index: -1;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.dropdown__element {
+    padding: 10px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown__element:hover {
+    background-color: #F1F1F1;
+}
+
+.dropdown__element:last-child {
+    border-bottom: none
+}
+
+.join__room_form {
+    width: 100%;
+}
+
+.join__room_input {
+    width: 50%;
+}

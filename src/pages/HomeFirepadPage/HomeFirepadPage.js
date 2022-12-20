@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
-import css from '../CompilerPage/CompilerPage.module.css';
+import css from './HomeFirepadPage.module.css';
 import {compileServices} from '../../services';
 import arrow from '../../images/arrow.svg';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
@@ -75,8 +75,8 @@ const HomeFirepadPage = () => {
             </div>
 
 
-            <form onSubmit={handleSubmit(joinToRoom)}>
-                <input type="text" {...register('path')}/>
+            <form onSubmit={handleSubmit(joinToRoom)} className={css.join__room_form}>
+                <input type="text" {...register('path')} className={css.join__room_input}/>
                 <button>Join room</button>
             </form>
 

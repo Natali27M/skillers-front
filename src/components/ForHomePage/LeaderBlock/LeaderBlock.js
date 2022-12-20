@@ -16,7 +16,7 @@ const LeaderBlock = ({leader, position, setLeaderModal}) => {
         if (leader?.id) {
             getBadgesForLeader(leader?.attributes?.userId).then(value => {
                 let startArray = value;
-                if (startArray.length > 3) {
+                if (startArray?.length > 3) {
                     startArray = startArray.slice(0, 3);
                     setLeaderBadges(startArray)
                 } else {
