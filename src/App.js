@@ -113,8 +113,10 @@ function App() {
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
-                <Route path={'/firepad'} element={<HomeFirepadPage/>}/>
-                <Route path="/firepad/:template/:id" element={<MainFirepadPage/>} />
+                {/*<Route path={'/firepad'} element={<HomeFirepadPage/>}/>*/}
+                <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
+                {/*<Route path="/firepad/:template/:id" element={<MainFirepadPage/>} />*/}
+                <Route path="/team-coding/:template/:id" element={<MainFirepadPage/>} />
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

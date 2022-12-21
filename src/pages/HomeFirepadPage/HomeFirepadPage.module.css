@@ -1,10 +1,22 @@
-.result__wrap{
+.team__coding_main {
+    min-height: calc(100vh - 80px);
+    background: url("../../images/mainBg.png") no-repeat center / cover;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.result__wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     row-gap: 30px;
 }
 
 .dropdown__container{
+    width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -14,17 +26,25 @@
     font-size: 18px;
     color: #FFFFFF;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .dropdown__wrap {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dropdown__btn {
     cursor: pointer;
     height: 40px;
-    width: 250px;
+    width: 50%;
     background-color: #fff;
     padding: 0 10px;
     display: flex;
@@ -38,22 +58,22 @@
 .arrow__open,
 .arrow__close{
     height: 20px;
-    transition: all .2s linear;
-}
-
-.arrow__open{
     transform: rotate(-90deg);
 }
 
+.arrow__open{
+    transform: rotate(90deg);
+}
+
 .drop__elements_wrap {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     background: #fff;
     border-radius: 10px;
     border: 2px solid black;
-    padding-top: 40px;
-    width: 250px;
+    padding-top: 10px;
+    width: 50%;
     z-index: -1;
     height: 400px;
     overflow-y: scroll;
@@ -67,6 +87,11 @@
     white-space: nowrap;
 }
 
+.dropdown__element a{
+    text-decoration: none;
+    color: black;
+}
+
 .dropdown__element:hover {
     background-color: #F1F1F1;
 }
@@ -76,10 +101,28 @@
 }
 
 .join__room_form {
-    width: 100%;
+    position: relative;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    column-gap: 10px;
 }
 
 .join__room_input {
-    width: 50%;
-    border: 2px;
+    width: 80%;
+    border: 2px solid black;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.join__room_btn {
+    background: darkgray;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0 10px;
+    border-radius: 6px;
+    word-break: break-word;
+    /*margin: 0 5px;*/
 }

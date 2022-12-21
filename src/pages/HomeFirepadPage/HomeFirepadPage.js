@@ -9,6 +9,8 @@ import arrow from '../../images/arrow.svg';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 
 const HomeFirepadPage = () => {
+    const {EN} = useSelector(state => state['languageReducers']);
+
     const {user} = useSelector(state => state['userReducers']);
 
     const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
@@ -33,16 +35,18 @@ const HomeFirepadPage = () => {
     };
 
     const joinToRoom = (e) => {
+        console.log(e.path);
         navigate(`${e.path}`);
     }
 
     return (
-        <div>
+        <div className={css.team__coding_main}>
+            {/*<div className={css.team__coding_wrap}>*/}
             <div className={css.result__wrap}>
                 <div className={css.dropdown__container}>
 
                     <div className={css.dropdown__title}>
-                        Choose Language
+                        {EN ? 'Choose a programming language' : 'Виберіть мову програмування'}
                     </div>
 
                     <div className={css.dropdown__wrap} ref={ref}>
@@ -59,7 +63,8 @@ const HomeFirepadPage = () => {
                                         {lang !== language &&
                                             <div onClick={() => setLangValue(lang)}
                                                  className={css.dropdown__element}>
-                                                <Link to={`/firepad/${lang.name}/${user?.id}`} state={user?.id} >{lang?.name}</Link>
+                                                <Link to={`/team-coding/${lang.name}/${user?.id}`}
+                                                      state={lang}>{lang?.name}</Link>
                                             </div>
                                         }
                                     </div>
@@ -74,12 +79,16 @@ const HomeFirepadPage = () => {
 
             </div>
 
+            <div className={css.dropdown__title}>
+                {EN ? 'Or join using your colleague\'s link' : 'Або приєднайтеся за посиланням вашого колеги'}
+            </div>
 
             <form onSubmit={handleSubmit(joinToRoom)} className={css.join__room_form}>
                 <input type="text" {...register('path')} className={css.join__room_input}/>
-                <button>Join room</button>
+                <button className={css.join__room_btn}>{EN ? 'Join room' : 'Приєднатися до кімнати'}</button>
             </form>
 
+            {/*</div>*/}
         </div>
     );
 };

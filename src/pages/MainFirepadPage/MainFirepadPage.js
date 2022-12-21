@@ -1,9 +1,8 @@
 import React from 'react'
-import {uid} from "uid";
 import {set, ref, onValue, remove} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
-import {useParams, useLocation} from 'react-router-dom';
+import {useParams, useLocation, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
@@ -19,10 +18,6 @@ function MainFirepadPage() {
 
     const {handleSubmit} = useForm();
 
-    // const [todo, setTodo] = useState("");
-
-    const [todos, setTodos] = useState([]);
-
     const {register} = useForm();
 
     const param = useParams();
@@ -35,6 +30,8 @@ function MainFirepadPage() {
 
     let location = useLocation();
 
+    const navigate = useNavigate();
+
     const [highlightLang, setHighlightLang] = useState('cpp');
 
     const [output, setOutput] = useState({});
@@ -45,48 +42,15 @@ function MainFirepadPage() {
 
     const [formState, setFormState] = useState('');
 
-    const pathArray = location.pathname.split('/');
-    console.log(pathArray[pathArray.length - 1]);
-    console.log(user?.id, 'userId');
+    let teamCoding = localStorage.getItem('teamCoding');
 
     const [code, setCode] = React.useState(
         `#include \<iostream\> \nusing namespace std; \nint main() {\n     int a;\n     cin \>\> a;\n     cout << 1 << endl;\n     return 0; \n}`
     );
 
-    const writeToDatabase = () => {
-        const uuid = uid();
-
-        set(ref(db, `/${path}`), {
-            code,
-            uuid,
-        });
-    };
-
-    // const handleTodoChange = (e) => {
-    //     setTodo(e.target.value);
-    // };
-
-
     useEffect(() => {
-        onValue(ref(db), (snapshot) => {
-            setTodos([]);
-
-            const data = snapshot.val();
-
-            let myData;
-
-            if (data) {
-                myData = data[`${path}`].code;
-                setCode(myData)
-            }
-
-            if (data !== null) {
-                setTodos([...todos, data]);
-            }
-        });
-
-        setTodos('');
-    }, []);
+        setLanguage(location.state)
+    },[location.state])
 
     const makeOutput = (data) => {
         if (language.id === 1) {
@@ -119,15 +83,43 @@ function MainFirepadPage() {
         }
     }
 
+    useEffect(() => {
+        if (newTemplate?.includes('C++')) {
+            setHighlightLang('cpp');
+        } else if (newTemplate?.includes('C')) {
+            setHighlightLang('c');
+        } else if (newTemplate?.includes('C#')) {
+            setHighlightLang('cs');
+        } else if (newTemplate?.includes('JavaScript')) {
+            setHighlightLang('js');
+        } else if (newTemplate?.includes('Java')) {
+            setHighlightLang('java');
+        } else if (newTemplate?.includes('Python')) {
+            setHighlightLang('py');
+        } else if (newTemplate?.includes('TypeScript')) {
+            setHighlightLang('ta');
+        } else if (newTemplate?.includes('PHP')) {
+            setHighlightLang('php');
+        } else {
+            setHighlightLang('cpp');
+        }
+    }, [newTemplate]);
 
-    // function saveToApi(hobby) {
-    //     return new Promise((resolve) => {
-    //         setTimeout(() => {
-    //             console.log(hobby, 'hobby');
-    //             resolve();
-    //         }, 1000);
-    //     });
-    // }
+    useEffect(() => {
+        onValue(ref(db), (snapshot) => {
+            const data = snapshot.val();
+
+            let myData;
+
+            if (data) {
+                myData = data[`${path}`].code;
+                setCode(myData)
+            } else {
+                setCode(`#include \<iostream\> \nusing namespace std; \nint main() {\n     int a;\n     cin \>\> a;\n     cout << 1 << endl;\n     return 0; \n}`)
+            }
+        });
+
+    }, []);
 
     useEffect(() => {
         const handler = (event) => {
@@ -136,32 +128,31 @@ function MainFirepadPage() {
 
         };
 
-        if (formState !== "unchanged") {
+        const userId = user?.id
+        if (teamCoding && param.id == userId) {
+        // if (formState === 'modified' && param.id == user.id) {
             window.addEventListener("beforeunload", handler);
-            // if (pathArray[pathArray.length - 1] === user?.id) {
-            //     window.addEventListener("beforeunload", handler);
-            //     remove(ref(db, `/${path}`));
-            // }
-            remove(ref(db, `/${path}`));
             return () => {
                 window.removeEventListener("beforeunload", handler);
-                if (formState === 'modified') {
                     if (window.confirm("Leave site?")) {
                         remove(ref(db, `/${path}`));
+                        localStorage.removeItem('teamCoding');
                     } else {
-                        console.log(2);
-                        // navigate(`${location.pathname}`);
+                        navigate(`${location.pathname}`);
                     }
                 }
-            };
-            // }
-        }
-        return () => {
-        };
-    }, [formState]);
+            }
+    }, [formState, user]);
 
     const handleChange = (evn) => {
         setCode(evn.target.value);
+
+        // write from firebase
+        set(ref(db, `/${path}`), {
+            code: evn.target.value,
+        });
+
+        localStorage.setItem('teamCoding', 'yes');
 
         if (evn.target.value !== "") {
             setFormState("modified");
@@ -199,13 +190,10 @@ function MainFirepadPage() {
 
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
                             <CodeEditor
-                                // value={myDate}
                                 value={code}
                                 language={highlightLang}
                                 placeholder="Please enter code."
-                                // onChange={handleTodoChange}
                                 onChange={handleChange}
-                                onInput={writeToDatabase}
                                 padding={15}
                                 minHeight={400}
                                 className={css.compiler__textarea}
