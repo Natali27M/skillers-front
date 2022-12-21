@@ -6,22 +6,19 @@ import {Provider} from 'react-redux';
 import store from './store/store';
 import ScrollToTop from './RootFunctions/scrollUp';
 
-import {TransactionsProvider} from './context/TransactionContext'
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
-    <TransactionsProvider>
-        <StrictMode>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <ScrollToTop/>
-                    <App/>
-                </BrowserRouter>
-            </Provider>
-        </StrictMode>,
-    </TransactionsProvider>
+    <StrictMode>
+        <Provider store={store}>
+            <BrowserRouter>
+                <ScrollToTop/>
+                <App/>
+            </BrowserRouter>
+        </Provider>
+    </StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

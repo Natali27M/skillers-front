@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import rootCSS from '../../styles/root.module.css'
 import css from './AdminPage.module.css';
@@ -8,23 +8,9 @@ import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
-import {UnapprovedMentors, Wallet} from "../../components";
-
-import {TransactionContext} from '../../context/TransactionContext'
-
+import {UnapprovedMentors} from "../../components";
 
 const AdminPage = () => {
-    const {
-        transactionCount,
-        connectWallet,
-        transactions,
-        currentAccount,
-        isLoading,
-        sendTransaction,
-        handleChange,
-        formData,
-    } = useContext(TransactionContext);
-
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {roles} = useSelector(state => state['userReducers']);
@@ -44,7 +30,7 @@ const AdminPage = () => {
 
     useEffect(() => {
         dispatch(getFeedback(feedbackPageNumber));
-    }, [feedbackPageNumber, isDelete, isConfirmed, currentAccount]);
+    }, [feedbackPageNumber, isDelete, isConfirmed]);
 
 
     const makeDeleteFeedback = (id) => {
@@ -63,10 +49,7 @@ const AdminPage = () => {
         <div className={css.admin__page}>
             <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
-                {
-                    currentAccount ? <div className={css.admin__wallet}><Wallet/></div> :
-                        <button onClick={connectWallet}>Connect the admin Wallet</button>
-                }
+                {/*<Wallet/>*/}
                 <div className={css.admin__title}>
                     {EN ? 'Tests for approve' : 'Тести для затвердження'}
                 </div>

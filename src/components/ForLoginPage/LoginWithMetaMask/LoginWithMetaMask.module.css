@@ -1,0 +1,23 @@
+.modal__container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    opacity: 70%;
+    justify-content: center;
+    background-color: #c0bebe;
+    width: 100%;
+    height: 100%;
+}
+
+.modal__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    position: fixed;
+    width: 25%;
+    height: 20%;
+    background-color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 20px;
+}
