@@ -50,7 +50,7 @@ const UserPage = () => {
 
     const [linkedOpen, setLinkedOpen] = useState(false);
 
-    const [linkedName, setLinkedName] = useState('');
+    const [githubOpen, setGithubOpen] = useState(false);
 
     const [testForResults, setTestForResults] = useState(null);
 
@@ -61,16 +61,6 @@ const UserPage = () => {
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
             setHiring(user?.openForHiring);
-            if (user?.linkedin) {
-                const result = [];
-                const nameWithNumber = user?.linkedin.split('/')[4];
-                nameWithNumber.split('-').slice(0, 2).forEach(element => {
-                    let array = element.split('');
-                    array[0] = array[0].toUpperCase();
-                    result.push(array.join(''));
-                });
-                setLinkedName(result.join(' '));
-            }
         }
     }, [user]);
 
@@ -115,6 +105,11 @@ const UserPage = () => {
 
     const changeLinked = (obj) => {
         dispatch(updateUser({data: {linkedin: obj.linkedin}, userId: user.id}));
+        setLinkedOpen(false);
+    };
+
+    const changeGithub = (obj) => {
+        dispatch(updateUser({data: {github: obj.github}, userId: user.id}));
         setLinkedOpen(false);
     };
 
@@ -227,6 +222,41 @@ const UserPage = () => {
                         autoComplete="off"
                         defaultValue={user?.linkedin}
                         className={css.update__username__input}
+                    />
+                    <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
+                </form>}
+                <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>Github</div>
+                    <div className={css.user__db_content}>
+                        {
+                            user?.github ?
+                              <div className={css.hiring__wrap}>
+                                  <a href={user?.github} target="_blank" className={css.github__btn}>
+                                      Github
+                                  </a>
+                                  <button
+                                    className={css.hiring__btn_active}
+                                    onClick={() => setGithubOpen(!githubOpen)}
+                                  >
+                                      {EN ? 'Change' : 'Змінити'}
+                                  </button>
+                              </div>
+                              :
+                              <button onClick={() => setGithubOpen(!githubOpen)}
+                                      className={githubOpen ? css.hiring__btn : css.hiring__btn_active}>
+                                  {EN ? 'Add' : 'Додати'}
+                              </button>
+                        }
+                    </div>
+                </div>
+                {githubOpen && <form className={css.update__username_form} onSubmit={handleSubmit(changeGithub)}>
+                    <input
+                      type="text"
+                      placeholder="GitHub URL"
+                      {...register('github')}
+                      autoComplete="off"
+                      defaultValue={user?.github}
+                      className={css.update__username__input}
                     />
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
