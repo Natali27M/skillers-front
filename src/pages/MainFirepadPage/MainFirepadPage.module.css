@@ -18,12 +18,10 @@
     background-color: #fff;
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
     row-gap: 10px;
     flex-direction: column;
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    /*width: 25%;*/
     height: fit-content;
     margin: 20px;
     text-align: center;
@@ -31,6 +29,11 @@
     border-radius: 10px;
     font-weight: bold;
     word-break: break-word;
+}
+
+.leave__modal_block_text {
+    font-size: 16px;
+    font-weight: normal;
 }
 
 .modal__btn {
@@ -46,4 +49,37 @@
 .modal__btn:hover {
     background: lightgray;
     border: 1px solid darkgray;
+}
+
+.main__room_link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.title__room_link {
+    color: lightgray;
+    word-break: break-word;
+}
+
+.copy__room_link {
+    text-decoration: underline;
+    cursor: pointer;
+    padding-top: 10px;
+    word-break: break-word;
+}
+
+@media (max-width: 1200px) {
+    .main__room_link {
+        width: 60%;
+    }
+}
+
+@media (max-width: 900px) {
+    .main__room_link {
+        width: 50%;
+    }
 }

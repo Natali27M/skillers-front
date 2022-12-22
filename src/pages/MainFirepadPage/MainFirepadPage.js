@@ -43,11 +43,8 @@ function MainFirepadPage() {
 
     const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
 
-    const [formState, setFormState] = useState("unchanged");
-
     let teamCoding = localStorage.getItem('teamCoding');
 
-    // const [modal, setModal] = useState(false);
     const [modal, setModal] = useState('');
 
     const [roomLinkCopyTime, setRoomLinkCopyTime] = useState(false);
@@ -129,20 +126,6 @@ function MainFirepadPage() {
 
     }, []);
 
-
-    // // return () => {
-    // window.removeEventListener("popstate", handler);
-    // if (window.confirm("Leave site?")) {
-    //     remove(ref(db, `/${path}`));
-    //     localStorage.removeItem('teamCoding');
-    // } else {
-    //     navigate(`${location.pathname}`);
-    // }
-    // // }
-    // // }
-    // // }
-    // // }, []);
-
     const handleChange = (evn) => {
         setCode(evn.target.value);
 
@@ -154,19 +137,6 @@ function MainFirepadPage() {
         if (param.id == userId) {
             localStorage.setItem('teamCoding', 'yes');
         }
-
-        // if (evn.target.value !== "") {
-        //     setFormState("modified");
-        // } else {
-        //     setFormState("unchanged");
-        // }
-
-        // if (evn.target.value !== "") {
-        //     setFormState("modified");
-        // } else {
-        //     setFormState("unchanged");
-        // }
-        // setValue(evn.target.value);
     }
 
     const roomLinkCopy = () => {
@@ -178,23 +148,17 @@ function MainFirepadPage() {
 
     };
 
-    // if (teamCoding && param.id == userId) {
-
     if (teamCoding) {
         window.history.pushState(null, null, null);
 
         window.addEventListener("popstate", (e) => {
             e.preventDefault();
-            console.log(1111)
-            // setModal(true)
             setModal('leave')
         });
 
         window.addEventListener("load", (e) => {
             e.preventDefault();
-            console.log(2222)
             setModal('reload')
-            // setModal(true);
             window.history.pushState(null, null, null);
         });
     }
@@ -215,7 +179,6 @@ function MainFirepadPage() {
         setModal('');
         navigate(`${location.pathname}`);
     }
-    // }
 
     return (
         <div>
@@ -245,24 +208,51 @@ function MainFirepadPage() {
                         </div>
 
                         {teamCoding && modal === 'leave' && <div className={thisCSS.leave__main}>
-                            <div className={thisCSS.leave__modal_block}>Leave
-                                <button onClick={changeLeaveOk} className={thisCSS.modal__btn}>{EN ? 'Ok' : 'Так'}</button>
-                                <button onClick={changeLeaveCansel} className={thisCSS.modal__btn}>{EN ? 'Cansel' : 'Відмінити'}</button>
+                            <div className={thisCSS.leave__modal_block}>
+                                {EN ? 'Are you sure you want to leave the page?'
+                                    :
+                                    'Ви впевнені, що бажаєте покинути сторінку?'}
+
+                                <p className={thisCSS.leave__modal_block_text}>
+                                    {EN ? 'This action will remove the code'
+                                        :
+                                        'Ця дія приведе до видалення коду'}
+                                </p>
+
+                                <div>
+                                    <button onClick={changeLeaveOk} className={thisCSS.modal__btn}>
+                                        {EN ? 'Ok' : 'Так'}
+                                    </button>
+
+                                    <button onClick={changeLeaveCansel} className={thisCSS.modal__btn}>
+                                        {EN ? 'Cansel' : 'Відмінити'}
+                                    </button>
+                                </div>
+
                             </div>
                         </div>}
+
                         {teamCoding && modal === 'reload' && <div className={thisCSS.reload__main}>
                             <div className={thisCSS.reload__modal_block}>
                                 {EN ? 'Are you sure you want to reload the page?'
                                     :
                                     'Ви впевнені, що бажаєте оновити сторінку?'}
+
                                 <div>
-                                    <button onClick={changeReload} className={thisCSS.modal__btn}>{EN ? 'Ok' : 'Так'}</button>
-                                    <button onClick={changeReload} className={thisCSS.modal__btn}>{EN ? 'Cansel' : 'Відмінити'}</button>
+                                    <button onClick={changeReload} className={thisCSS.modal__btn}>
+                                        {EN ? 'Ok' : 'Так'}
+                                    </button>
+
+                                    <button onClick={changeReload} className={thisCSS.modal__btn}>
+                                        {EN ? 'Cansel' : 'Відмінити'}
+                                    </button>
                                 </div>
+
                             </div>
                         </div>}
 
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
+
                             <CodeEditor
                                 value={code}
                                 language={highlightLang}
@@ -306,21 +296,25 @@ function MainFirepadPage() {
                                 }
                             </div>
 
-                            <div>
-                                <div className={css.title__room_link}>
-                                    {EN ? 'Your colleague can join you using this link : ' : 'Ваш колега може приєдатися до вас за цим посилання :'}
+                            <div className={thisCSS.main__room_link}>
+
+                                <div className={thisCSS.title__room_link}>
+                                    {EN ? 'Your colleague can join you using this link : '
+                                        :
+                                        'Ваш колега може приєдатися до вас за цим посилання :'}
                                 </div>
-                                <div onClick={() => roomLinkCopy()} className={css.copy__room_link}>
-                                    {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано') : `${location?.pathname}`}
+
+                                <div onClick={() => roomLinkCopy()} className={thisCSS.copy__room_link}>
+                                    {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано')
+                                        :
+                                        `${location?.pathname}`}
                                 </div>
+
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

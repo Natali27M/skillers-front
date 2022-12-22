@@ -232,6 +232,7 @@
 
     .compiler__container {
         flex-direction: column-reverse;
+        align-items: center;
         row-gap: 20px;
     }
 
