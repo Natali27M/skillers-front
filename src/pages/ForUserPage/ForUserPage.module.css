@@ -36,7 +36,7 @@
     align-items: center;
     column-gap: 50px;
     flex-wrap: wrap;
-    row-gap: 60px;
+    row-gap: 35px;
     justify-content: center;
 }
 
@@ -53,6 +53,15 @@
     font-weight: 500;
     color: black;
     text-decoration: none;
+}
+
+.useful__link img {
+    width: 40px;
+    height: 40px;
+}
+
+.youtubeImg {
+    border-radius: 50%;
 }
 
 .courses__wrap {
