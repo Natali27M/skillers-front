@@ -3,11 +3,11 @@ import {Link, Navigate, useNavigate, useParams} from 'react-router-dom';
 import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-    changeCodeResult,
-    createCodeResult,
+    changeCodeResult, createCodeRate,
+    createCodeResult, createUserAchievement,
     getOneCodeResult,
-    getOneCodeTest,
-    getUserResultByCodeTest
+    getOneCodeTest, getOtherUserAchievement, getUserByCodeTestRate,
+    getUserResultByCodeTest, updateCodeTest, updateUserAchievement
 } from '../../store';
 import css from './TestWithCodePage.module.css';
 import rootCss from '../../styles/root.module.css';
@@ -18,6 +18,7 @@ import useTimer from '../../RootFunctions/timer';
 import {SignUpModal, StartTestModal, TimeIsUpModal} from '../../components';
 import timeDisplay from '../../RootFunctions/timeDisplay';
 import {useForm} from 'react-hook-form';
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 const TestWithCodePage = () => {
     const {register, handleSubmit, reset} = useForm();
@@ -32,7 +33,9 @@ const TestWithCodePage = () => {
 
     const {oneCodeResult, userResultByTest, status} = useSelector(state => state['codeResultsReducers']);
 
-    const {oneCodeTest} = useSelector(state => state['codeTestReducers']);
+    const {oneCodeTest, userCodeTestRate} = useSelector(state => state['codeTestReducers']);
+
+    const {otherUserAchievement} = useSelector(state => state['achievementsReducers']);
 
     const {EN} = useSelector(state => state['languageReducers']);
 
@@ -78,6 +81,7 @@ const TestWithCodePage = () => {
     useEffect(() => {
         if (user) {
             dispatch(getUserResultByCodeTest({userId: user?.id, testId: id}));
+            dispatch(getUserByCodeTestRate({userId: user?.id, testId: id}));
         }
     }, [user]);
 
@@ -94,6 +98,7 @@ const TestWithCodePage = () => {
     useEffect(() => {
         if (resultId && oneCodeResult) {
             setCode(oneCodeResult?.attributes?.userCode);
+            dispatch(getOtherUserAchievement(oneCodeResult?.attributes?.userId));
         }
     }, [oneCodeResult]);
 
@@ -105,6 +110,34 @@ const TestWithCodePage = () => {
         }
     }, [oneCodeTest, testStarted]);
 
+
+    const [rateValue, setRateValue] = useState(0);
+
+    const onChange = (value) => {
+        setRateValue(value);
+    };
+
+    const ReactStarsExample = ({value}) => {
+        return <ReactStarsRating onChange={onChange} value={rateValue ? rateValue : value}/>;
+    };
+
+    const makeRate = () => {
+        const newMarkCount = +oneCodeTest?.attributes?.markCount + 1;
+
+        const newAllMarks = +oneCodeTest?.attributes?.allMarks + +rateValue;
+
+        const newAvgMark = (newAllMarks / newMarkCount).toFixed(1);
+
+        const testObj = {
+            markCount: +newMarkCount,
+            allMarks: +newAllMarks,
+            avgMark: +newAvgMark
+        };
+
+        dispatch(updateCodeTest({testId: oneCodeTest?.id, data: testObj}));
+
+        dispatch(createCodeRate({userId: user?.id, testId: oneCodeTest?.id, rate: +rateValue}));
+    };
 
     useEffect(() => {
         if (startTime > 0) {
@@ -154,6 +187,21 @@ const TestWithCodePage = () => {
         ));
         setIsEvaluated(true);
         setTempAuthorMark(obj?.authorMark);
+        if (otherUserAchievement) {
+            dispatch(updateUserAchievement({
+                achId: otherUserAchievement.id,
+                data: {
+                    rating: (+otherUserAchievement?.attributes?.rating + (+oneCodeTest?.attributes?.difficult * (+obj?.authorMark / 10))).toFixed(1),
+                    userName: user.username
+                }
+            }));
+        } else {
+            dispatch(createUserAchievement({
+                userName: oneCodeResult?.attributes?.userName,
+                userId: oneCodeResult?.attributes?.userId,
+                rating: +oneCodeTest?.attributes?.difficult * (+obj?.authorMark / 10),
+            }));
+        }
     };
 
     if (bug) {
@@ -188,6 +236,25 @@ const TestWithCodePage = () => {
                                     ? `${EN ? 'Your result: ' : 'Ваш результат: '}${userResultByTest?.attributes?.authorMark}`
                                     : `${EN ? 'Expect an assessment from the author of the test' : 'Очікуйте оцінку від автора тесту'}`}
                                 </div>
+                                {userCodeTestRate ?
+                                    <div className={testCss.rating__wrap}>
+                                        {EN ? 'Your rate:' : 'Ваша оцінка:'} {userCodeTestRate?.attributes?.rate}
+                                    </div>
+                                    :
+                                    <div className={testCss.rating__wrap}>
+                                        <div>{EN ? 'Rate test' : 'Оцініть тест'}</div>
+                                        <div className={testCss.rate__mark}>
+                                            <ReactStarsExample/>
+                                            <div className={testCss.user__mark}>
+                                                {rateValue}
+                                            </div>
+                                        </div>
+
+                                        <button className={testCss.rate__btn} onClick={() => makeRate()}>
+                                            {EN ? 'Rate' : 'Оцінити'}
+                                        </button>
+                                    </div>
+                                }
                             </div>
                             :
                             <div className={css.countdown}>
