@@ -110,7 +110,7 @@ const UserPage = () => {
 
     const changeGithub = (obj) => {
         dispatch(updateUser({data: {github: obj.github}, userId: user.id}));
-        setLinkedOpen(false);
+        setGithubOpen(false);
     };
 
     return (
@@ -230,33 +230,33 @@ const UserPage = () => {
                     <div className={css.user__db_content}>
                         {
                             user?.github ?
-                              <div className={css.hiring__wrap}>
-                                  <a href={user?.github} target="_blank" className={css.github__btn}>
-                                      Github
-                                  </a>
-                                  <button
-                                    className={css.hiring__btn_active}
-                                    onClick={() => setGithubOpen(!githubOpen)}
-                                  >
-                                      {EN ? 'Change' : 'Змінити'}
-                                  </button>
-                              </div>
-                              :
-                              <button onClick={() => setGithubOpen(!githubOpen)}
-                                      className={githubOpen ? css.hiring__btn : css.hiring__btn_active}>
-                                  {EN ? 'Add' : 'Додати'}
-                              </button>
+                                <div className={css.hiring__wrap}>
+                                    <a href={user?.github} target="_blank" className={css.github__btn}>
+                                        Github
+                                    </a>
+                                    <button
+                                        className={css.hiring__btn_active}
+                                        onClick={() => setGithubOpen(!githubOpen)}
+                                    >
+                                        {EN ? 'Change' : 'Змінити'}
+                                    </button>
+                                </div>
+                                :
+                                <button onClick={() => setGithubOpen(!githubOpen)}
+                                        className={githubOpen ? css.hiring__btn : css.hiring__btn_active}>
+                                    {EN ? 'Add' : 'Додати'}
+                                </button>
                         }
                     </div>
                 </div>
                 {githubOpen && <form className={css.update__username_form} onSubmit={handleSubmit(changeGithub)}>
                     <input
-                      type="text"
-                      placeholder="GitHub URL"
-                      {...register('github')}
-                      autoComplete="off"
-                      defaultValue={user?.github}
-                      className={css.update__username__input}
+                        type="text"
+                        placeholder="GitHub URL"
+                        {...register('github')}
+                        autoComplete="off"
+                        defaultValue={user?.github}
+                        className={css.update__username__input}
                     />
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
