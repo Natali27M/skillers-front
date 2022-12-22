@@ -140,7 +140,7 @@ const ForUserPage = () => {
                     }
                 </div>
                 <div className={rootCSS.default__title_24}>
-                    {EN ? 'Recommended YT Channels' : 'Рекомендовані Ю Туб канали'}
+                    {EN ? 'Recommended YouTube Channels' : 'Рекомендовані YouTube канали'}
                 </div>
                 <div className={css.links__wrap}>
                     {
