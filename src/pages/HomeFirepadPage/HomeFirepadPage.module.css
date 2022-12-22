@@ -24,8 +24,9 @@
 
 .dropdown__title{
     font-size: 18px;
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     font-weight: 600;
+    text-decoration: underline;
     display: flex;
     justify-content: center;
     padding-top: 40px;
@@ -124,5 +125,4 @@
     padding: 0 10px;
     border-radius: 6px;
     word-break: break-word;
-    /*margin: 0 5px;*/
 }

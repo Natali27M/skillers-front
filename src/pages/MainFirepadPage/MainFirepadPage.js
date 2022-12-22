@@ -8,6 +8,7 @@ import CodeEditor from '@uiw/react-textarea-code-editor';
 
 import {db} from "../../firebaseConfig";
 import css from '../CompilerPage/CompilerPage.module.css';
+import thisCSS from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import rootCSS from '../../styles/root.module.css';
 
@@ -15,6 +16,8 @@ function MainFirepadPage() {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {user} = useSelector(state => state['userReducers']);
+
+    const userId = user?.id
 
     const {handleSubmit} = useForm();
 
@@ -40,9 +43,14 @@ function MainFirepadPage() {
 
     const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
 
-    const [formState, setFormState] = useState('');
+    const [formState, setFormState] = useState("unchanged");
 
     let teamCoding = localStorage.getItem('teamCoding');
+
+    // const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState('');
+
+    const [roomLinkCopyTime, setRoomLinkCopyTime] = useState(false);
 
     const [code, setCode] = React.useState(
         `#include \<iostream\> \nusing namespace std; \nint main() {\n     int a;\n     cin \>\> a;\n     cout << 1 << endl;\n     return 0; \n}`
@@ -50,7 +58,7 @@ function MainFirepadPage() {
 
     useEffect(() => {
         setLanguage(location.state)
-    },[location.state])
+    }, [location.state])
 
     const makeOutput = (data) => {
         if (language.id === 1) {
@@ -121,28 +129,19 @@ function MainFirepadPage() {
 
     }, []);
 
-    useEffect(() => {
-        const handler = (event) => {
-            event.preventDefault();
-            event.returnValue = "";
 
-        };
-
-        const userId = user?.id
-        if (teamCoding && param.id == userId) {
-        // if (formState === 'modified' && param.id == user.id) {
-            window.addEventListener("beforeunload", handler);
-            return () => {
-                window.removeEventListener("beforeunload", handler);
-                    if (window.confirm("Leave site?")) {
-                        remove(ref(db, `/${path}`));
-                        localStorage.removeItem('teamCoding');
-                    } else {
-                        navigate(`${location.pathname}`);
-                    }
-                }
-            }
-    }, [formState, user]);
+    // // return () => {
+    // window.removeEventListener("popstate", handler);
+    // if (window.confirm("Leave site?")) {
+    //     remove(ref(db, `/${path}`));
+    //     localStorage.removeItem('teamCoding');
+    // } else {
+    //     navigate(`${location.pathname}`);
+    // }
+    // // }
+    // // }
+    // // }
+    // // }, []);
 
     const handleChange = (evn) => {
         setCode(evn.target.value);
@@ -152,14 +151,71 @@ function MainFirepadPage() {
             code: evn.target.value,
         });
 
-        localStorage.setItem('teamCoding', 'yes');
-
-        if (evn.target.value !== "") {
-            setFormState("modified");
-        } else {
-            setFormState("unchanged");
+        if (param.id == userId) {
+            localStorage.setItem('teamCoding', 'yes');
         }
+
+        // if (evn.target.value !== "") {
+        //     setFormState("modified");
+        // } else {
+        //     setFormState("unchanged");
+        // }
+
+        // if (evn.target.value !== "") {
+        //     setFormState("modified");
+        // } else {
+        //     setFormState("unchanged");
+        // }
+        // setValue(evn.target.value);
     }
+
+    const roomLinkCopy = () => {
+        setRoomLinkCopyTime(true);
+        navigator.clipboard.writeText(`${location?.pathname}`);
+        setTimeout(() => {
+            setRoomLinkCopyTime(false);
+        }, 1000);
+
+    };
+
+    // if (teamCoding && param.id == userId) {
+
+    if (teamCoding) {
+        window.history.pushState(null, null, null);
+
+        window.addEventListener("popstate", (e) => {
+            e.preventDefault();
+            console.log(1111)
+            // setModal(true)
+            setModal('leave')
+        });
+
+        window.addEventListener("load", (e) => {
+            e.preventDefault();
+            console.log(2222)
+            setModal('reload')
+            // setModal(true);
+            window.history.pushState(null, null, null);
+        });
+    }
+
+    const changeReload = () => {
+        setModal('');
+        navigate(`${location.pathname}`);
+    }
+
+    const changeLeaveOk = () => {
+        setModal('');
+        navigate(`/team-coding`);
+        remove(ref(db, `/${path}`));
+        localStorage.removeItem('teamCoding');
+    }
+
+    const changeLeaveCansel = () => {
+        setModal('');
+        navigate(`${location.pathname}`);
+    }
+    // }
 
     return (
         <div>
@@ -187,6 +243,24 @@ function MainFirepadPage() {
                                 </>
                             }
                         </div>
+
+                        {teamCoding && modal === 'leave' && <div className={thisCSS.leave__main}>
+                            <div className={thisCSS.leave__modal_block}>Leave
+                                <button onClick={changeLeaveOk} className={thisCSS.modal__btn}>{EN ? 'Ok' : 'Так'}</button>
+                                <button onClick={changeLeaveCansel} className={thisCSS.modal__btn}>{EN ? 'Cansel' : 'Відмінити'}</button>
+                            </div>
+                        </div>}
+                        {teamCoding && modal === 'reload' && <div className={thisCSS.reload__main}>
+                            <div className={thisCSS.reload__modal_block}>
+                                {EN ? 'Are you sure you want to reload the page?'
+                                    :
+                                    'Ви впевнені, що бажаєте оновити сторінку?'}
+                                <div>
+                                    <button onClick={changeReload} className={thisCSS.modal__btn}>{EN ? 'Ok' : 'Так'}</button>
+                                    <button onClick={changeReload} className={thisCSS.modal__btn}>{EN ? 'Cansel' : 'Відмінити'}</button>
+                                </div>
+                            </div>
+                        </div>}
 
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
                             <CodeEditor
@@ -231,16 +305,20 @@ function MainFirepadPage() {
                                     </>
                                 }
                             </div>
+
+                            <div>
+                                <div className={css.title__room_link}>
+                                    {EN ? 'Your colleague can join you using this link : ' : 'Ваш колега може приєдатися до вас за цим посилання :'}
+                                </div>
+                                <div onClick={() => roomLinkCopy()} className={css.copy__room_link}>
+                                    {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано') : `${location?.pathname}`}
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
-            </div>
-
-            <div>
-                <div>
-                    {EN ? 'Your colleague can join you using this link : ' : 'Ваш колега може приєдатися до вас за цим посилання :'}
-                </div>
-                <div>{location?.pathname}</div>
             </div>
 
         </div>
