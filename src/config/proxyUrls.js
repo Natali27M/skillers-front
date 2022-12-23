@@ -1,6 +1,6 @@
-const baseURL = 'http://localhost:1339';
+// const baseURL = 'http://localhost:1339';
 
-// const baseURL = 'https://code.skilliant.net';
+const baseURL = 'https://code.skilliant.net';
 
 export default baseURL;
 

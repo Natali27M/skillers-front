@@ -1,6 +1,5 @@
 import {axiosServices} from './axios.services';
 import {urls} from '../config';
-import {getAllUsersByQuery} from '../store';
 
 
 export const userServices = {
