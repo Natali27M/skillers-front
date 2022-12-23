@@ -38,7 +38,10 @@ const LearningPlanPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const [planId, setPlanId] = useState(null);
 
-    const title = EN ? 'Choose the direction of study and we will show you how to achieve success step by step' : 'ua title';
+    const title = EN ?
+        'Choose the direction of study and we will show you how to achieve success step by step'
+        :
+        'Обирайте напрямок навчання і ми підкажемо, як крок за кроком досягти успіху';
 
     const handleCategory = (categoryId) => {
         setPlanId(categoryId);

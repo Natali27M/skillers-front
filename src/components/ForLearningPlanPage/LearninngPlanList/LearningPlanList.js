@@ -17,11 +17,8 @@ const LearningPlanList = ({planId}) => {
         );
     }
 
-    const title = EN ? currentPlan[0].nameEN : currentPlan[0].nameUA;
-
     return (
         <>
-            {/*<h1>{title}</h1>*/}
             {
                 currentPlan[0].items.map((item, index) => (
                     <div className={css.listItem} key={index}>
@@ -32,10 +29,10 @@ const LearningPlanList = ({planId}) => {
                             )}
                         </div>
                         <div className={css.listItem__content}>
-                            <div className={css.listItem__content__title}>
-                                {(EN ? item.titleEN : item.titleUA).toUpperCase()}
+                            <div className={css.listItem__content__body}>
+                                <h4>{(EN ? item.titleEN : item.titleUA).toUpperCase()}</h4>
+                                {EN ? item.bodyEN : item.bodyUA}
                             </div>
-                            <div className={css.listItem__content__body}>{item.bodyEN}</div>
                         </div>
                     </div>
                 ))
