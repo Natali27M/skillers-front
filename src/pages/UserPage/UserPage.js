@@ -15,7 +15,7 @@ import hiringImg from '../../images/hiring.svg';
 
 import {getResultsByTest, getUserResults, getUserRoles, logout, updateUser} from '../../store';
 
-import {getUserAchievement} from '../../store/slices/achievments.slice';
+import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
@@ -144,6 +144,11 @@ const UserPage = () => {
                     </div>
                 }
 
+                {user?.wallet && <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>{EN ? 'MetaMask wallet' : 'MetaMask гаманець'}</div>
+                    <div className={css.user__db_content}><div className={css.wallet}>{user.wallet}</div></div>
+                </div>
+                }
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Email' : 'Email'}</div>
                     <div className={css.user__db_content}>{user.email}</div>

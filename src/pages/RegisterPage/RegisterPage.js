@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import rootCSS from '../../styles/root.module.css'
 import css from './RegisterPage.module.css';
@@ -45,7 +45,7 @@ const RegisterPage = () => {
 
 
     if (user) {
-        return <Navigate to="/user" replace/>;
+        return <Navigate to="/" replace/>;
     }
 
     return (
