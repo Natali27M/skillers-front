@@ -8,13 +8,9 @@ import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
-import {
-    UnapprovedMentors
-} from "../../components";
-
+import {UnapprovedMentors} from "../../components";
 
 const AdminPage = () => {
-
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {roles} = useSelector(state => state['userReducers']);
@@ -53,6 +49,7 @@ const AdminPage = () => {
         <div className={css.admin__page}>
             <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
+                {/*<Wallet/>*/}
                 <div className={css.admin__title}>
                     {EN ? 'Tests for approve' : 'Тести для затвердження'}
                 </div>

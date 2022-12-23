@@ -11,6 +11,8 @@ import googleLogo from '../../images/google.svg'
 import {clearError, login} from '../../store';
 import baseURL from '../../config/urls';
 
+import {LoginWithMetaMask} from "../../components/ForLoginPage/LoginWithMetaMask/LoginWithMetaMask";
+
 const LoginPage = () => {
     const {user, jwt, error} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
@@ -87,6 +89,9 @@ const LoginPage = () => {
                 }>
                     <img src={googleLogo} alt="google"/> Google login
                 </div>
+
+                <LoginWithMetaMask/>
+
             </div>
             <div className={css.register__left}>
                 <img className={css.home__logo} src={logo} alt="logo"/>
