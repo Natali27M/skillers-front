@@ -23,6 +23,17 @@ export const updateCodeTest = createAsyncThunk(
     }
 );
 
+export const createCodeTest = createAsyncThunk(
+    'codeTestSlice/createCodeTest',
+    async (data, {rejectWithValue}) => {
+        try {
+            return await codeTestServices.createCodeTest(data);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const createCodeRate = createAsyncThunk(
     'codeTestSlice/createCodeRate',
     async ({userId, testId, rate}, {rejectWithValue}) => {
@@ -89,6 +100,20 @@ const codeTestSlice = createSlice({
         },
 
         [getOneCodeTest.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.oneCodeTest = action.payload;
+        },
+
+        [createCodeTest.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [createCodeTest.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [createCodeTest.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.oneCodeTest = action.payload;
         },

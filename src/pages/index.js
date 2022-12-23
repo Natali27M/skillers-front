@@ -1,6 +1,7 @@
 export * from './AdminPage/AdminPage';
 export * from './CompilerPage/CompilerPage';
 export * from './CreateTestPage/CreateTestPage';
+export * from './CreateCodeTestPage/CreateCodeTestPage';
 export * from './GoogleRedirectPage/GoogleRedirectPage';
 export * from './HomePage/HomePage';
 export * from './LoginPage/LoginPage';

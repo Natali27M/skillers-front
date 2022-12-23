@@ -22,4 +22,5 @@ export const codeTestServices = {
     }).then(value => value.data),
     getUserRateByCodeTest: (userId, testId) => axiosServices.get(`${urls.codeRates}?filters[userId][$eq]=${userId}&filters[testId][$eq]=${testId}`)
         .then(value => value.data),
+    createCodeTest: (data) => axiosServices.post(urls.codeTests, {data: {...data}}).then(value => value.data.data)
 };

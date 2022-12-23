@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {
     AdminPage,
-    CompilerPage,
+    CompilerPage, CreateCodeTestPage,
     CreateTestPage,
     FeedbackFormPage,
     ForUserPage,
@@ -108,6 +108,7 @@ function App() {
                 <Route path={'/compiler'} element={<CompilerPage/>}/>
                 <Route path={'/recruiter'} element={<RecruiterPage/>}/>
                 <Route path={'/code-test/:id'} element={<TestWithCodePage/>}/>
+                <Route path={'/create-code-test'} element={<CreateCodeTestPage/>}/>
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
