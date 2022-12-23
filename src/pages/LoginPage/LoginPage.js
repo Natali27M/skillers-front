@@ -10,8 +10,7 @@ import logo from '../../images/header/SKILLERS.svg';
 import googleLogo from '../../images/google.svg'
 import {clearError, login} from '../../store';
 import baseURL from '../../config/urls';
-
-import {LoginWithMetaMask} from "../../components/ForLoginPage/LoginWithMetaMask/LoginWithMetaMask";
+import {LoginWithMetaMask} from '../../components';
 
 const LoginPage = () => {
     const {user, jwt, error} = useSelector(state => state['userReducers']);
