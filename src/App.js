@@ -11,6 +11,7 @@ import {
     ForUserPage,
     GoogleRedirectPage,
     HomePage,
+    LearningPlanPage,
     LoginPage,
     MentorPage,
     MentorsPage,
@@ -111,6 +112,7 @@ function App() {
                 <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
                 <Route path={'/mentor'} element={<MentorPage/>}/>
                 <Route path={'/mentors'} element={<MentorsPage/>}/>
+                <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

@@ -1,5 +1,6 @@
 export * from './ForCreateTestPage';
 export * from './ForHomePage';
+export * from './ForLearningPlanPage';
 export * from './ForRecruiterPage';
 export * from './ForTestListPage';
 export * from './ForTestPage';

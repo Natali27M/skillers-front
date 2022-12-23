@@ -3,6 +3,7 @@ export * from './CompilerPage/CompilerPage'
 export * from './CreateTestPage/CreateTestPage';
 export * from './GoogleRedirectPage/GoogleRedirectPage';
 export * from './HomePage/HomePage';
+export * from './LearningPlanPage/LearningPlanPage';
 export * from './LoginPage/LoginPage';
 export * from './NotFoundPage/NotFoundPage';
 export * from './RegisterPage/RegisterPage';
