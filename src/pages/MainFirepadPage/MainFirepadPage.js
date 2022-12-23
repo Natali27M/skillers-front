@@ -7,8 +7,7 @@ import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
 import {db} from "../../firebaseConfig";
-import css from '../CompilerPage/CompilerPage.module.css';
-import thisCSS from './MainFirepadPage.module.css';
+import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import rootCSS from '../../styles/root.module.css';
 
@@ -188,14 +187,13 @@ function MainFirepadPage() {
     }
 
     return (
-        <div>
+        <div className={css.compiler__main}>
+
+            {/*<div className={rootCSS.root__background}></div>*/}
+
             <div className={css.compiler}>
 
-                <div className={rootCSS.root__background}></div>
-
                 <div className={css.compiler__wrap}>
-
-                    <h1 className={css.compiler__title}>Online compiler</h1>
 
                     <div className={css.compiler__container}>
 
@@ -214,24 +212,24 @@ function MainFirepadPage() {
                             }
                         </div>
 
-                        {teamCoding && modal === 'leave' && <div className={thisCSS.leave__main}>
-                            <div className={thisCSS.leave__modal_block}>
+                        {teamCoding && modal === 'leave' && <div className={css.leave__main}>
+                            <div className={css.leave__modal_block}>
                                 {EN ? 'Are you sure you want to leave the page?'
                                     :
                                     'Ви впевнені, що бажаєте покинути сторінку?'}
 
-                                <p className={thisCSS.leave__modal_block_text}>
+                                <p className={css.leave__modal_block_text}>
                                     {EN ? 'This action will remove the code'
                                         :
                                         'Ця дія приведе до видалення коду'}
                                 </p>
 
                                 <div>
-                                    <button onClick={changeLeaveOk} className={thisCSS.modal__btn}>
+                                    <button onClick={changeLeaveOk} className={css.modal__btn}>
                                         {EN ? 'Ok' : 'Так'}
                                     </button>
 
-                                    <button onClick={changeLeaveCansel} className={thisCSS.modal__btn}>
+                                    <button onClick={changeLeaveCansel} className={css.modal__btn}>
                                         {EN ? 'Cansel' : 'Відмінити'}
                                     </button>
                                 </div>
@@ -239,24 +237,24 @@ function MainFirepadPage() {
                             </div>
                         </div>}
 
-                        {teamCoding && modal === 'reload' && <div className={thisCSS.reload__main}>
-                            <div className={thisCSS.reload__modal_block}>
+                        {teamCoding && modal === 'reload' && <div className={css.reload__main}>
+                            <div className={css.reload__modal_block}>
                                 {EN ? 'Are you sure you want to reload the page?'
                                     :
                                     'Ви впевнені, що бажаєте оновити сторінку?'}
 
-                                <p className={thisCSS.leave__modal_block_text}>
+                                <p className={css.leave__modal_block_text}>
                                     {EN ? 'This action will delete all your previous actions'
                                         :
                                         'Ця дія приведе до видалення всіх ваших попередніх дій'}
                                 </p>
 
                                 <div>
-                                    <button onClick={changeReloadOk} className={thisCSS.modal__btn}>
+                                    <button onClick={changeReloadOk} className={css.modal__btn}>
                                         {EN ? 'Ok' : 'Так'}
                                     </button>
 
-                                    <button onClick={changeReloadCancel} className={thisCSS.modal__btn}>
+                                    <button onClick={changeReloadCancel} className={css.modal__btn}>
                                         {EN ? 'Cansel' : 'Відмінити'}
                                     </button>
                                 </div>
@@ -281,18 +279,28 @@ function MainFirepadPage() {
                                 }}
                             />
 
+                            {/*<input type="text"*/}
+                            {/*       className={css.compiler__input}*/}
+                            {/*       {...register('stdin')}*/}
+                            {/*       placeholder="input"*/}
+
+                            {/*/>*/}
+
+                            <button className={css.compiler__btn}>COMPILE</button>
+
+                        </form>
+
+
+
+
+                        <div className={css.result__wrap}>
+
                             <input type="text"
                                    className={css.compiler__input}
                                    {...register('stdin')}
                                    placeholder="input"
 
                             />
-
-                            <button className={css.compiler__btn}>COMPILE</button>
-
-                        </form>
-
-                        <div className={css.result__wrap}>
 
                             <div className={css.result__computer}>
                                 {wait ?
@@ -309,29 +317,40 @@ function MainFirepadPage() {
                                 }
                             </div>
 
-                            <div className={thisCSS.main__room_link}>
 
-                                <div className={thisCSS.title__room_link}>
-                                    {EN ? 'Your colleague can join you using this link : '
-                                        :
-                                        'Ваш колега може приєдатися до вас за цим посилання :'}
-                                </div>
-
-                                <div onClick={() => roomLinkCopy()} className={thisCSS.copy__room_link}>
-                                    {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано')
-                                        :
-                                        `${location?.pathname}`}
-                                </div>
-
-                            </div>
                         </div>
+
+
+
                     </div>
                 </div>
+
+
+
+                <div className={css.main__room_link}>
+
+                    <div className={css.title__room_link}>
+                        {EN ? 'Your colleague can join you using this link : '
+                            :
+                            'Ваш колега може приєдатися до вас за цим посилання :'}
+                    </div>
+
+                    <div onClick={() => roomLinkCopy()} className={css.copy__room_link}>
+                        {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано')
+                            :
+                            `${location?.pathname}`}
+                    </div>
+
+                </div>
+
+
+
             </div>
         </div>
     );
 }
 
 export {MainFirepadPage};
+
 
 

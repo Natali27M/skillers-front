@@ -7,6 +7,110 @@
     padding: 0 100px;
 }
 
+.team__coding_wrap {
+    width: 80%;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 40px 0;
+}
+
+.dropdown__main_title {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 3px solid;
+    padding: 10px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.dropdown__title {
+    width: fit-content;
+    font-weight: 500;
+    border-bottom: 3px solid;
+    padding-bottom: 10px;
+    text-align: center;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    font-size: 24px;
+}
+
+.team__coding_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    padding: 50px 0;
+}
+
+.join__room_form {
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.join__room_input,
+.join__room_input_language {
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 18px;
+    height: 60px;
+    width: 100%;
+}
+
+.join__room_input::placeholder,
+.join__room_input_language::placeholder {
+    font-size: 17px;
+    white-space: pre-wrap;
+}
+
+.join__room_input input:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+
+.join__room_btn {
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 20px;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    transform-style: preserve-3d;
+    color: #FFFFFF;
+    border-radius: 50px;
+    transition: all .2s linear;
+    position: relative;
+    text-decoration: none;
+    border: none;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.team__coding_hr_box {
+    display: flex;
+    align-items: center;
+    color: lightgray;
+}
+
+.team__coding_hr {
+    width: 200px;
+    border-bottom: 2px solid lightgray;
+}
+
+.team__coding_or {
+    padding: 0 10px;
+}
+
 .result__wrap {
     width: 100%;
     display: flex;
@@ -22,17 +126,6 @@
     row-gap: 10px;
 }
 
-.dropdown__title {
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: underline;
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    text-align: center;
-}
-
 .dropdown__wrap {
     position: relative;
     z-index: 2;
@@ -40,30 +133,51 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 50px 0;
+    row-gap: 20px;
 }
 
 .dropdown__btn {
     cursor: pointer;
-    height: 40px;
+    height: 60px;
     width: 50%;
     background-color: #fff;
     padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid black;
-    border-radius: 10px;
+    border: none;
+    border-bottom: 2px solid black;
     user-select: none;
 }
 
-.arrow__open,
-.arrow__close {
-    height: 20px;
-    transform: rotate(-90deg);
+.join__room_input_language {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 18px;
+    height: 60px;
+    width: 100%;
 }
 
-.arrow__open {
-    transform: rotate(90deg);
+.tech__drop_arrow,
+.tech__drop_arrow_side {
+    height: 100%;
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech__drop_arrow img,
+.tech__drop_arrow_side img {
+    transition: all .1s linear;
+    width: 40%;
+}
+
+.tech__drop_arrow_side img {
+    transition: all .1s linear;
+    transform: rotate(180deg);
 }
 
 .drop__elements_wrap {
@@ -72,7 +186,6 @@
     left: 0;
     background: #fff;
     border-radius: 10px;
-    border: 2px solid black;
     padding-top: 10px;
     width: 50%;
     z-index: -1;
@@ -101,65 +214,106 @@
     border-bottom: none
 }
 
-.join__room_form {
-    position: relative;
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-    column-gap: 10px;
-}
-
-.join__room_input {
-    width: 80%;
-    border: 2px solid black;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 6px;
-}
-
-.join__room_btn {
-    background: darkgray;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 0 10px;
-    border-radius: 6px;
-    word-break: break-word;
-}
-
-@media (max-width: 1200px) {
-    .dropdown__btn,
-    .drop__elements_wrap,
-    .join__room_form {
-        width: 70%;
-    }
-
-    .join__room_input {
-        width: 100%;
-    }
-}
-
 @media (max-width: 900px) {
-    .dropdown__btn,
-    .drop__elements_wrap,
+    .team__coding_main {
+        padding: 0;
+    }
+
+    .dropdown__main_title {
+        font-size: 24px;
+    }
+
+    .dropdown__title {
+        font-size: 20px;
+    }
+
+    .team__coding_hr {
+        width: 130px;
+    }
+
     .join__room_form {
-        width: 100%;
+        width: 72%;
+    }
+
+    .dropdown__btn {
+        width: 75%;
+    }
+
+    .drop__elements_wrap {
+        width: 75%;
     }
 }
 
 @media (max-width: 500px) {
-    .team__coding_main {
-        padding: 0 30px;
+    .dropdown__main_title {
+        font-size: 20px;
+    }
+
+    .dropdown__title {
+        font-size: 17px;
+    }
+
+    .team__coding_wrap {
+        padding: 30px 0;
+    }
+
+    .team__coding_box {
+        padding: 30px 0;
+        row-gap: 10px;
     }
 
     .join__room_form {
-        flex-direction: column;
+        width: 85%;
+    }
+
+    .join__room_input,
+    .join__room_input_language {
+        height: 45px;
+    }
+
+    .join__room_input::placeholder,
+    .join__room_input_language::placeholder {
+        font-size: 14px;
     }
 
     .join__room_btn {
-        margin: 20px 0;
-        height: 40px;
+        padding: 5px 0;
+        min-width: 100px;
     }
+
+    .team__coding_hr {
+        width: 80px;
+    }
+
+    .team__coding_or {
+        font-size: 12px;
+    }
+
+    .dropdown__btn {
+        padding: 0;
+        height: 45px;
+    }
+
+    .tech__drop_arrow,
+    .tech__drop_arrow_side {
+        width: 20px;
+    }
+
+    .tech__drop_arrow img,
+    .tech__drop_arrow_side img {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .drop__elements_wrap {
+        padding: 5px 0;
+        font-size: 14px;
+    }
+
+    .dropdown__element {
+        padding: 5px;
+    }
+
 }
 
 
