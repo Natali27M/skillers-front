@@ -163,7 +163,14 @@ function MainFirepadPage() {
         });
     }
 
-    const changeReload = () => {
+    const changeReloadOk = () => {
+        setModal('');
+        navigate(`${location.pathname}`);
+        remove(ref(db, `/${path}`));
+        localStorage.removeItem('teamCoding');
+    }
+
+    const changeReloadCancel = () => {
         setModal('');
         navigate(`${location.pathname}`);
     }
@@ -238,12 +245,18 @@ function MainFirepadPage() {
                                     :
                                     'Ви впевнені, що бажаєте оновити сторінку?'}
 
+                                <p className={thisCSS.leave__modal_block_text}>
+                                    {EN ? 'This action will delete all your previous actions'
+                                        :
+                                        'Ця дія приведе до видалення всіх ваших попередніх дій'}
+                                </p>
+
                                 <div>
-                                    <button onClick={changeReload} className={thisCSS.modal__btn}>
+                                    <button onClick={changeReloadOk} className={thisCSS.modal__btn}>
                                         {EN ? 'Ok' : 'Так'}
                                     </button>
 
-                                    <button onClick={changeReload} className={thisCSS.modal__btn}>
+                                    <button onClick={changeReloadCancel} className={thisCSS.modal__btn}>
                                         {EN ? 'Cansel' : 'Відмінити'}
                                     </button>
                                 </div>
