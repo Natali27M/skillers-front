@@ -243,4 +243,8 @@
     .compiler__title {
         font-size: 30px;
     }
+
+    .result__wrap {
+        align-items: center;
+    }
 }
