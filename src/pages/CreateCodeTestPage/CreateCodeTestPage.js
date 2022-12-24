@@ -94,7 +94,7 @@ const CreateCodeTestPage = () => {
                     </div>
                     <input
                         type="number"
-                        placeholder={EN ? 'Enter the min. result, %' : 'Введіть мін. результат, %'}
+                        placeholder={EN ? 'Enter seconds to complete' : 'Введіть секунди на виконання'}
                         {...register('timeSeconds')}
                         min="1" max="100000"
                         autoComplete="off"
