@@ -35,8 +35,7 @@ const HomeFirepadPage = () => {
     };
 
     const joinToRoom = (e) => {
-        console.log(e.path);
-        navigate(`${e.path}`);
+        navigate(`${e.pageLink}`);
     }
 
     return (
@@ -51,7 +50,7 @@ const HomeFirepadPage = () => {
                     </div>
 
                     <form onSubmit={handleSubmit(joinToRoom)} className={css.join__room_form}>
-                        <input type="text" {...register('path')}
+                        <input type="text" {...register('pageLink')}
                                className={css.join__room_input}
                                placeholder={EN ? 'Enter the room link' : 'Введіть посилання на кімнату'}/>
                         <button className={css.join__room_btn}>{EN ? 'Join room' : 'Приєднатися до кімнати'}</button>

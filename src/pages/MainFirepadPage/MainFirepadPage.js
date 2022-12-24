@@ -9,7 +9,7 @@ import CodeEditor from '@uiw/react-textarea-code-editor';
 import {db} from "../../firebaseConfig";
 import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
-import rootCSS from '../../styles/root.module.css';
+import playArrow from '../../images/play-compiler-green.svg';
 
 function MainFirepadPage() {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -176,7 +176,7 @@ function MainFirepadPage() {
 
     const changeLeaveOk = () => {
         setModal('');
-        navigate(`/team-coding`);
+        navigate('/team-coding');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
     }
@@ -189,8 +189,6 @@ function MainFirepadPage() {
     return (
         <div className={css.compiler__main}>
 
-            {/*<div className={rootCSS.root__background}></div>*/}
-
             <div className={css.compiler}>
 
                 <div className={css.compiler__wrap}>
@@ -202,7 +200,7 @@ function MainFirepadPage() {
                                 <div>Please, wait...</div>
                                 :
                                 <>
-                                    {(!(output?.error) && !(output?.status?.id === 6)) && <div>Result:</div>}
+                                    {(!(output?.error) && !(output?.status?.id === 6)) && <div>OUTPUT</div>}
                                     {(output?.error || (output?.status?.id === 6)) &&
                                         <div className={css.error}>ERROR</div>}
                                     {output?.stdout && <pre>Output: {output.stdout}</pre>}
@@ -279,26 +277,19 @@ function MainFirepadPage() {
                                 }}
                             />
 
-                            {/*<input type="text"*/}
-                            {/*       className={css.compiler__input}*/}
-                            {/*       {...register('stdin')}*/}
-                            {/*       placeholder="input"*/}
-
-                            {/*/>*/}
-
-                            <button className={css.compiler__btn}>COMPILE</button>
+                            <button className={css.compiler__btn}>
+                                RUN
+                                <img src={playArrow} alt="arrow"/>
+                            </button>
 
                         </form>
-
-
-
 
                         <div className={css.result__wrap}>
 
                             <input type="text"
                                    className={css.compiler__input}
                                    {...register('stdin')}
-                                   placeholder="input"
+                                   placeholder="INPUT"
 
                             />
 
@@ -307,7 +298,7 @@ function MainFirepadPage() {
                                     <div>Please, wait...</div>
                                     :
                                     <>
-                                        {(!(output?.error) && !(output?.status?.id === 6)) && <div>Result:</div>}
+                                        {(!(output?.error) && !(output?.status?.id === 6)) && <div>OUTPUT</div>}
                                         {(output?.error || (output?.status?.id === 6)) &&
                                             <div className={css.error}>ERROR</div>}
                                         {output?.stdout && <pre>Output: {output.stdout}</pre>}
@@ -321,11 +312,8 @@ function MainFirepadPage() {
                         </div>
 
 
-
                     </div>
                 </div>
-
-
 
                 <div className={css.main__room_link}>
 
@@ -335,14 +323,15 @@ function MainFirepadPage() {
                             'Ваш колега може приєдатися до вас за цим посилання :'}
                     </div>
 
-                    <div onClick={() => roomLinkCopy()} className={css.copy__room_link}>
-                        {roomLinkCopyTime ? (EN ? 'Copied to clipboard' : 'Скопійовано')
-                            :
-                            `${location?.pathname}`}
+                    <div className={css.copy__room_link}>{location?.pathname}
+
+                        <button onClick={() => roomLinkCopy()} className={css.copy__room_btn}>
+                            {roomLinkCopyTime ? 'Copied' : 'СOPY'}
+                        </button>
+
                     </div>
 
                 </div>
-
 
 
             </div>
