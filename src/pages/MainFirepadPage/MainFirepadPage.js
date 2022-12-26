@@ -135,6 +135,8 @@ function MainFirepadPage() {
 
         if (param.id == userId) {
             localStorage.setItem('teamCoding', 'yes');
+            localStorage.setItem('path', `${path}`);
+            localStorage.setItem('pathCoding', `${location.pathname}`);
         }
     }
 
@@ -167,6 +169,7 @@ function MainFirepadPage() {
         navigate(`${location.pathname}`);
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
+        localStorage.removeItem('pathCoding');
     }
 
     const changeReloadCancel = () => {
@@ -179,6 +182,7 @@ function MainFirepadPage() {
         navigate('/team-coding');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
+        localStorage.removeItem('pathCoding');
     }
 
     const changeLeaveCansel = () => {

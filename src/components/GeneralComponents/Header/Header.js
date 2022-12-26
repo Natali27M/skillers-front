@@ -116,6 +116,9 @@ const Header = () => {
                 <Link className={css.header__link} to={'/mentors'}>
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
+                <Link className={css.header__link} to={'/team-coding'}>
+                    {EN ? 'Team coding' : 'Командне кодування'}
+                </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : (EN ? 'Login' : 'Увійти')}

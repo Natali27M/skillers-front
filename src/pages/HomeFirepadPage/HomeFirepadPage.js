@@ -7,6 +7,7 @@ import css from './HomeFirepadPage.module.css';
 import {compileServices} from '../../services';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 import dropArrow from '../../images/arrow-color.png';
+import rootCSS from '../../styles/root.module.css';
 
 const HomeFirepadPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
