@@ -1,3 +1,5 @@
+import remarkGfm from 'remark-gfm'
+import ReactMarkdown from 'react-markdown';
 import {useSelector} from 'react-redux';
 
 import {plans} from '../../../constants';
@@ -31,7 +33,9 @@ const LearningPlanList = ({planId}) => {
                         <div className={css.listItem__content}>
                             <div className={css.listItem__content__body}>
                                 <h4>{(EN ? item.titleEN : item.titleUA).toUpperCase()}</h4>
-                                {EN ? item.bodyEN : item.bodyUA}
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                    {EN ? item.bodyEN : item.bodyUA}
+                                </ReactMarkdown>
                             </div>
                         </div>
                     </div>
