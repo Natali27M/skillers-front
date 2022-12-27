@@ -4,8 +4,7 @@ export const TestNameValidator = Joi.object({
     name:
         Joi.string()
             .min(3)
-            .max(35)
-            .message('Хибний Email'),
+            .max(35),
     difficult:
         Joi.number()
             .min(1)

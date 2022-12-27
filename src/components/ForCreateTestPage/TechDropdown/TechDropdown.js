@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useLocation} from 'react-router-dom';
 
 import css from './TechDropdown.module.css';
 import {clearCreateTest, getTechNames, setTechnology} from '../../../store';
@@ -8,7 +7,7 @@ import dropArrow from '../../../images/arrow-color.png';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 
-const TechDropdown = () => {
+const TechDropdown = ({codeTest}) => {
     const {technology, techNames} = useSelector(state => state['createTestsReducers']);
 
     const {EN} = useSelector(state => state['languageReducers']);
@@ -16,8 +15,6 @@ const TechDropdown = () => {
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
     const {width} = useWindowDimensions();
-
-    const {pathname} = useLocation();
 
     const dispatch = useDispatch();
 
@@ -36,12 +33,12 @@ const TechDropdown = () => {
 
 
     useEffect(() => {
-        setOpenDrop(false)
+        setOpenDrop(false);
     }, [width]);
 
     useEffect(() => {
         dispatch(clearCreateTest());
-        dispatch(getTechNames());
+        dispatch(getTechNames(codeTest));
     }, []);
 
 
@@ -53,7 +50,7 @@ const TechDropdown = () => {
                         <span className={css.placeholder}>{EN ? 'Choose technology' : 'Виберіть технологію'}</span>}
                 </div>
                 <div className={openDrop ? css.tech__drop_arrow_side : css.tech__drop_arrow}>
-                    <img src={dropArrow} alt="dropArrow" style={{width: "24px", height: "24px"}}/>
+                    <img src={dropArrow} alt="dropArrow" style={{width: '24px', height: '24px'}}/>
                 </div>
             </div>
             <div className={openDrop ? css.dropdown__menu : css.drop__hide}>
