@@ -69,7 +69,7 @@ const Header = () => {
                 </Link>
 
                 <Link className={css.header__link} to={'/team-coding'}>
-                    {EN ? 'Team coding' : 'Командне кодування'}
+                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
                 </Link>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
@@ -117,7 +117,7 @@ const Header = () => {
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
                 <Link className={css.header__link} to={'/team-coding'}>
-                    {EN ? 'Team coding' : 'Командне кодування'}
+                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
                 </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}

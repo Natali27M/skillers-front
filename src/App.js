@@ -42,6 +42,7 @@ import {DonationPage} from './pages/DonationPage/DonationPage';
 import {ref, remove} from 'firebase/database';
 import {db} from './firebaseConfig';
 import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
+import rootCSS from './styles/root.module.css';
 
 function App() {
     const {user} = useSelector(state => state['userReducers']);
@@ -65,6 +66,8 @@ function App() {
     let path = localStorage.getItem('path');
 
     const navigate = useNavigate();
+
+    const [code, setCode] = useState('');
 
     const [modal, setModal] = useState('');
 
@@ -105,6 +108,7 @@ function App() {
 
     const changeLeaveOk = () => {
         setModal('');
+        setCode('');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
@@ -137,12 +141,12 @@ function App() {
                             'Ця дія приведе до видалення коду'}
                     </p>
 
-                    <div>
-                        <button onClick={changeLeaveOk} className={css.modal__btn}>
+                    <div className={css.modal__box_btn}>
+                        <button onClick={changeLeaveOk} className={rootCSS.default__button}>
                             {EN ? 'Ok' : 'Так'}
                         </button>
 
-                        <button onClick={changeLeaveCansel} className={css.modal__btn}>
+                        <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
                             {EN ? 'Cansel' : 'Відмінити'}
                         </button>
                     </div>

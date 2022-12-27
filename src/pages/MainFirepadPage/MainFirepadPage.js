@@ -10,6 +10,7 @@ import {db} from "../../firebaseConfig";
 import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import playArrow from '../../images/play-compiler-green.svg';
+import rootCSS from '../../styles/root.module.css';
 
 function MainFirepadPage() {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -34,13 +35,13 @@ function MainFirepadPage() {
 
     const navigate = useNavigate();
 
-    const [highlightLang, setHighlightLang] = useState('cpp');
+    const [highlightLang, setHighlightLang] = useState('');
 
     const [output, setOutput] = useState({});
 
     const [wait, setWait] = useState(false);
 
-    const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
+    const [language, setLanguage] = useState({});
 
     let teamCoding = localStorage.getItem('teamCoding');
 
@@ -48,9 +49,7 @@ function MainFirepadPage() {
 
     const [roomLinkCopyTime, setRoomLinkCopyTime] = useState(false);
 
-    const [code, setCode] = React.useState(
-        `#include \<iostream\> \nusing namespace std; \nint main() {\n     int a;\n     cin \>\> a;\n     cout << 1 << endl;\n     return 0; \n}`
-    );
+    const [code, setCode] = useState('');
 
     useEffect(() => {
         setLanguage(location.state)
@@ -116,10 +115,11 @@ function MainFirepadPage() {
             let myData;
 
             if (data) {
-                myData = data[`${path}`].code;
+                const dataPath = data[`${path}`];
+                myData = dataPath?.code;
                 setCode(myData)
             } else {
-                setCode(`#include \<iostream\> \nusing namespace std; \nint main() {\n     int a;\n     cin \>\> a;\n     cout << 1 << endl;\n     return 0; \n}`)
+                setCode('');
             }
         });
 
@@ -166,6 +166,7 @@ function MainFirepadPage() {
 
     const changeReloadOk = () => {
         setModal('');
+        setCode('');
         navigate(`${location.pathname}`);
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
@@ -179,10 +180,11 @@ function MainFirepadPage() {
 
     const changeLeaveOk = () => {
         setModal('');
-        navigate('/team-coding');
+        setCode('');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
+        navigate('/team-coding');
     }
 
     const changeLeaveCansel = () => {
@@ -226,12 +228,12 @@ function MainFirepadPage() {
                                         'Ця дія приведе до видалення коду'}
                                 </p>
 
-                                <div>
-                                    <button onClick={changeLeaveOk} className={css.modal__btn}>
+                                <div className={css.modal__box_btn}>
+                                    <button onClick={changeLeaveOk} className={rootCSS.default__button}>
                                         {EN ? 'Ok' : 'Так'}
                                     </button>
 
-                                    <button onClick={changeLeaveCansel} className={css.modal__btn}>
+                                    <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
                                         {EN ? 'Cansel' : 'Відмінити'}
                                     </button>
                                 </div>
@@ -251,12 +253,12 @@ function MainFirepadPage() {
                                         'Ця дія приведе до видалення всіх ваших попередніх дій'}
                                 </p>
 
-                                <div>
-                                    <button onClick={changeReloadOk} className={css.modal__btn}>
+                                <div className={css.modal__box_btn}>
+                                    <button onClick={changeReloadOk} className={rootCSS.default__button}>
                                         {EN ? 'Ok' : 'Так'}
                                     </button>
 
-                                    <button onClick={changeReloadCancel} className={css.modal__btn}>
+                                    <button onClick={changeReloadCancel} className={rootCSS.default__button}>
                                         {EN ? 'Cansel' : 'Відмінити'}
                                     </button>
                                 </div>
