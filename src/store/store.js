@@ -11,6 +11,7 @@ import feedbackReducers from './slices/feedback.slice';
 import mentorReducers from "./slices/mentors.slice";
 import technologiesReducers from "./slices/technologies.slice";
 import badgesReducers from './slices/badges.slice';
+import recruiterReducers from "./slices/recruiter.slice";
 
 
 const store = configureStore({
@@ -26,6 +27,7 @@ const store = configureStore({
         feedbackReducers,
         mentorReducers,
         technologiesReducers,
+        recruiterReducers,
     }
 });
 

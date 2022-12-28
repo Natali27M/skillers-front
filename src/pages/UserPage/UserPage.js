@@ -19,7 +19,7 @@ import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
-import {UserBadges} from '../../components/ForUserPage';
+import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -363,6 +363,7 @@ const UserPage = () => {
                     <Link to={'/mentor'}
                           className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
+                    <RecruiterButton/>
 
                     <div className={rootCSS.default__button}
                          onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>
