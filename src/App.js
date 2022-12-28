@@ -147,7 +147,7 @@ function App() {
                         </button>
 
                         <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
-                            {EN ? 'Cansel' : 'Відмінити'}
+                            {EN ? 'Cancel' : 'Відмінити'}
                         </button>
                     </div>
 

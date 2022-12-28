@@ -2,7 +2,7 @@ import React from 'react'
 import {set, ref, onValue, remove} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
-import {useParams, useLocation, useNavigate} from 'react-router-dom';
+import {useParams, useLocation, useNavigate, Navigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
@@ -153,6 +153,7 @@ function MainFirepadPage() {
         window.history.pushState(null, null, null);
 
         window.addEventListener("popstate", (e) => {
+            console.log(12)
             e.preventDefault();
             setModal('leave')
         });
@@ -161,6 +162,17 @@ function MainFirepadPage() {
             e.preventDefault();
             setModal('reload')
             window.history.pushState(null, null, null);
+        });
+    }
+
+    if (!teamCoding) {
+        window.addEventListener("popstate", (e) => {
+            navigate('/team-coding');
+        });
+
+        window.addEventListener("load", (e) => {
+            e.preventDefault();
+            navigate(`${location.pathname}`);
         });
     }
 
@@ -179,18 +191,22 @@ function MainFirepadPage() {
     }
 
     const changeLeaveOk = () => {
+        console.log(1)
         setModal('');
         setCode('');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
         navigate('/team-coding');
+        // return <Navigate to={'/team-coding'} replace/>
     }
 
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${location.pathname}`);
     }
+
+    console.log(modal, 'modal');
 
     return (
         <div className={css.compiler__main}>
@@ -234,7 +250,7 @@ function MainFirepadPage() {
                                     </button>
 
                                     <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
-                                        {EN ? 'Cansel' : 'Відмінити'}
+                                        {EN ? 'Cancel' : 'Відмінити'}
                                     </button>
                                 </div>
 
