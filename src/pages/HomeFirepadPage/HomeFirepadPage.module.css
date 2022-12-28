@@ -232,6 +232,11 @@
         min-height: calc(100vh - 60px);
     }
 }
+@media (max-width: 1000px) {
+    .join__room_input_language {
+        height: 61px;
+    }
+}
 @media (max-width: 900px) {
     .team__coding_main {
         min-height: calc(100vh - 70px);
@@ -265,6 +270,10 @@
     .join__room_input,
     .join__room_input_language {
         font-size: 16px;
+    }
+
+    .join__room_input_language {
+        height: 61px;
     }
 
     .dropdown__btn {

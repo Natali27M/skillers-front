@@ -1,5 +1,5 @@
 import React from 'react'
-import {set, ref, onValue, remove} from 'firebase/database';
+import {ref, onValue, remove, update} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {useParams, useLocation, useNavigate} from 'react-router-dom';
@@ -17,8 +17,6 @@ function MainFirepadPage() {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const userId = user?.id
-
     const {handleSubmit} = useForm();
 
     const {register} = useForm();
@@ -26,10 +24,11 @@ function MainFirepadPage() {
     const param = useParams();
 
     const template = param?.template;
-    const langId = template.split('-')
-    const myLanguage = {id: langId[1], name: langId[0]}
 
-    const newTemplate = template.split(' ');
+    const newTemplate = template.split('-');
+
+    //  object for compilator
+    const myLanguage = {id: newTemplate[1], name: param?.language};
 
     const path = `${param?.id}-${newTemplate[0]}`;
 
@@ -49,6 +48,8 @@ function MainFirepadPage() {
 
     const [modal, setModal] = useState('');
 
+    const [modalForJoin, setModalForJoin] = useState('');
+
     const [roomLinkCopyTime, setRoomLinkCopyTime] = useState(false);
 
     const [code, setCode] = useState('');
@@ -58,7 +59,7 @@ function MainFirepadPage() {
     }, []);
 
     const makeOutput = (data) => {
-        if(language.id === 1){
+        if (language.id === 1) {
             setOutput({
                 stdout: data?.result,
                 time: data?.time_used,
@@ -94,7 +95,7 @@ function MainFirepadPage() {
 
     const compile = async (obj) => {
         setWait(true);
-        if(language?.id !== 1) {
+        if (language?.id !== 1) {
             compileServices.judgeCompile({
                 ...obj,
                 source_code: code,
@@ -110,9 +111,10 @@ function MainFirepadPage() {
     };
 
     useEffect(() => {
-        setLanguage(myLanguage)
+        setLanguage(myLanguage);
     }, []);
 
+    const [dbValue, setDbValue] = useState(' ');
     //read from firebase
     useEffect(() => {
         onValue(ref(db), (snapshot) => {
@@ -122,11 +124,18 @@ function MainFirepadPage() {
 
             if (data) {
                 const dataPath = data[`${path}`];
-                myData = dataPath?.code;
+                setDbValue(dataPath);
+                const codeDB = dataPath?.code;
+                myData = codeDB;
+
+                if (codeDB === ' ') {
+                    return setCode('')
+                }
                 setCode(myData);
-                // setLanguage(dataPath?.pathFirebase);
+
             } else {
                 setCode('');
+                setModalForJoin('leave')
             }
         });
 
@@ -135,17 +144,10 @@ function MainFirepadPage() {
     const handleChange = (evn) => {
         setCode(evn.target.value);
 
-        // write from firebase
-        set(ref(db, `/${path}`), {
+        // update from firebase
+        update(ref(db, `/${path}`), {
             code: evn.target.value,
-            // pathFirebase: location.state
         }).then(r => r);
-
-        if (+param.id === userId) {
-            localStorage.setItem('teamCoding', 'yes');
-            localStorage.setItem('path', `${path}`);
-            localStorage.setItem('pathCoding', `${location.pathname}`);
-        }
     }
 
     const roomLinkCopy = () => {
@@ -157,18 +159,25 @@ function MainFirepadPage() {
 
     };
 
+    if (dbValue.userId && +dbValue.userId === user?.id) {
+        localStorage.setItem('teamCoding', 'yes');
+        localStorage.setItem('path', `${path}`);
+        localStorage.setItem('pathCoding', `${location.pathname}`);
+    }
+
     if (teamCoding) {
         window.history.pushState(null, null, null);
 
         window.addEventListener("popstate", (e) => {
             e.preventDefault();
-            setModal('leave')
+            setModal('leave');
+            setCode('');
         });
 
         window.addEventListener("load", (e) => {
             e.preventDefault();
             setModal('reload')
-            window.history.pushState(null, null, null);
+            navigate(`${location.pathname}`);
         });
     }
 
@@ -186,11 +195,11 @@ function MainFirepadPage() {
 
     const changeReloadOk = () => {
         setModal('');
-        setCode('');
+        setCode(' ');
         navigate(`${location.pathname}`);
-        remove(ref(db, `/${path}`)).then(r => r);
-        localStorage.removeItem('teamCoding');
-        localStorage.removeItem('pathCoding');
+        update(ref(db, `/${path}`), {
+            code: ' ',
+        }).then(r => r);
     }
 
     const changeReloadCancel = () => {
@@ -199,7 +208,6 @@ function MainFirepadPage() {
     }
 
     const changeLeaveOk = () => {
-        console.log(1)
         setModal('');
         setCode('');
         remove(ref(db, `/${path}`)).then(r => r);
@@ -211,6 +219,10 @@ function MainFirepadPage() {
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${location.pathname}`);
+    }
+
+    const leaveOk = () => {
+        navigate('/team-coding');
     }
 
     return (
@@ -287,6 +299,21 @@ function MainFirepadPage() {
                             </div>
                         </div>}
 
+                        {modalForJoin === 'leave' && <div className={css.reload__main}>
+                            <div className={css.reload__modal_block}>
+                                {EN ? 'This code has been removed by the owner'
+                                    :
+                                    'Цей код видалено власником'}
+
+                                <button onClick={leaveOk} className={rootCSS.default__button}>
+                                    {EN ? 'Ok' : 'Так'}
+                                </button>
+
+                            </div>
+                        </div>
+
+                        }
+
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
 
                             <CodeEditor
@@ -334,11 +361,7 @@ function MainFirepadPage() {
                                     </>
                                 }
                             </div>
-
-
                         </div>
-
-
                     </div>
                 </div>
 
@@ -357,10 +380,7 @@ function MainFirepadPage() {
                         </button>
 
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     );

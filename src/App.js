@@ -113,7 +113,7 @@ function App() {
     const changeLeaveOk = () => {
         setModal('');
         setCode('');
-        remove(ref(db, `/${path}`));
+        remove(ref(db, `/${path}`)).then(r => r);
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
         navigate(`${pathname}`);
@@ -181,7 +181,7 @@ function App() {
                     <Route path={'/mentor'} element={<MentorPage/>}/>
                     <Route path={'/mentors'} element={<MentorsPage/>}/>
                     <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
-                    <Route path="/team-coding/:template/:id" element={<MainFirepadPage/>}/>
+                    <Route path="/team-coding/:template/:id/:language" element={<MainFirepadPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>
