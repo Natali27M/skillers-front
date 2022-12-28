@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {achievementsServices, userServices} from '../../services';
-import {getLeaderBordByQuery} from './achievments.slice';
+import {userServices} from '../../services';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -174,16 +173,17 @@ const userSlice = createSlice({
             state.user = action.payload;
             state.updateError = null;
             let oldUser = JSON.parse(localStorage.getItem('user'));
-            oldUser.username = action.payload.username
-            oldUser.openForHiring = action.payload.openForHiring
-            oldUser.linkedin = action.payload.linkedin
+            oldUser.username = action.payload.username;
+            oldUser.openForHiring = action.payload.openForHiring;
+            oldUser.linkedin = action.payload.linkedin;
+            oldUser.github = action.payload.github;
             localStorage.setItem('user', JSON.stringify(oldUser));
         },
         [googleAuth.pending]: (state) => {
             state.status = 'pending';
             state.error = null;
             state.user = null;
-            state.roles = null
+            state.roles = null;
             state.jwt = null;
         },
         [googleAuth.rejected]: (state, action) => {

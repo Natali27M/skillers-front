@@ -1,6 +1,5 @@
 import {axiosServices} from './axios.services';
 import {urls} from '../config';
-import {getAllUsersByQuery} from '../store';
 
 
 export const userServices = {
@@ -11,6 +10,7 @@ export const userServices = {
         headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
     getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
+    getUserByEmail: (email) => axiosServices.get(`${urls.user}?filters[email][$eq]=${email}`).then(value => value.data),
     getAllUsers: () => axiosServices.get(urls.user).then(value => value.data),
     getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
     //getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),

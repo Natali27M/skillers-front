@@ -25,7 +25,7 @@ const badgesSlice = createSlice({
 
             const badges = action.payload.data[action.payload.data?.length - 1];
 
-            const startBadgesObj = {...badges.attributes.badgesArray};
+            const startBadgesObj = {...badges?.attributes?.badgesArray};
 
             state.userBadges = badges;
 

@@ -17,6 +17,15 @@
     row-gap: 30px;
 }
 
+.admin__wallet {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .tests__wrap,
 .feedback__wrap {
     width: 90%;

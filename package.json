@@ -16,6 +16,7 @@
     "@uiw/react-textarea-code-editor": "^2.0.3",
     "axios": "^0.27.2",
     "emailjs-com": "^3.2.0",
+    "ethers": "^5.7.2",
     "hamburger-react": "^2.5.0",
     "joi": "^17.6.0",
     "qs": "^6.11.0",

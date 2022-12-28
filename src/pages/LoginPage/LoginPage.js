@@ -10,6 +10,7 @@ import logo from '../../images/header/SKILLERS.svg';
 import googleLogo from '../../images/google.svg'
 import {clearError, login} from '../../store';
 import baseURL from '../../config/urls';
+import {LoginWithMetaMask} from '../../components';
 
 const LoginPage = () => {
     const {user, jwt, error} = useSelector(state => state['userReducers']);
@@ -31,7 +32,7 @@ const LoginPage = () => {
     };
 
     if (user) {
-        return <Navigate to="/user" replace/>;
+        return <Navigate to="/" replace/>;
     }
 
     return (
@@ -87,12 +88,15 @@ const LoginPage = () => {
                 }>
                     <img src={googleLogo} alt="google"/> Google login
                 </div>
+
+                <LoginWithMetaMask/>
+
             </div>
             <div className={css.register__left}>
                 <img className={css.home__logo} src={logo} alt="logo"/>
                 <div className={css.home__description}>
-                    {EN ? 'Platform for testing your IT skills' :
-                        'Платформа для перевірки твоїх IT навичок'}
+                    {EN ? 'We help engineers to grow in IT' :
+                        'Ми допомагаємо розробникам розвиватися в ІТ'}
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import css from './ForUserPage.module.css';
 import rootCSS from '../../styles/root.module.css'
+
 import resume from '../../images/useful_links/resume.io.png';
 import djini from '../../images/useful_links/djini.png';
 import dou from '../../images/useful_links/dou.png';
@@ -14,7 +15,80 @@ import pm from '../../images/useful_links/pm.png';
 import tm from '../../images/useful_links/tm.png';
 import course from '../../images/useful_links/course.png';
 import telegram from '../../images/useful_links/telegram.png';
+import codechef from '../../images/useful_links/codechef.jpg';
+import coderbyte from '../../images/useful_links/coderbyte.png';
+import cppbuzz from '../../images/useful_links/cppbuzz.png'
+import examveda from '../../images/useful_links/examveda.png';
+import excercism from '../../images/useful_links/excercism.png';
+import freecdcmp from '../../images/useful_links/freecodecamp_icon.png';
+import geeksof from '../../images/useful_links/geeksofgeekgs.png';
+import grasshopper from '../../images/useful_links/grasshopper.png';
+import hackerEarth from '../../images/useful_links/HackerEarth_logo.png';
+import hackerRank from '../../images/useful_links/HackerRank.png';
+import indiabix from '../../images/useful_links/indiabix.png';
+import javatpoint from '../../images/useful_links/javatpoint.jpg';
+import leetcode from '../../images/useful_links/leetcode.jpg';
+import progHub from '../../images/useful_links/prog_hub.jpg';
+import programiz from '../../images/useful_links/programiz.jpg';
+import sanfoundry from '../../images/useful_links/sanfoundry-logo.webp';
+import sololearn from '../../images/useful_links/sololearn.webp';
+import studyTonight from '../../images/useful_links/study-tonight.png';
+import topCoder from '../../images/useful_links/topcoder.png';
+import tutorPoint from '../../images/useful_links/tutor-point.png';
+import w3School from '../../images/useful_links/w3school.png';
+import boston from '../../images/rec_channels/boston.jpg';
+import clever from '../../images/rec_channels/clever.jpg';
+import codecamp from '../../images/rec_channels/codecamp.jpg';
+import derek from '../../images/rec_channels/derek.jpg';
+import harry from '../../images/rec_channels/harry.jpg';
+import learncodeacad from '../../images/rec_channels/learncodeacad.jpg';
+import mosh from '../../images/rec_channels/mosh.jpg';
+import mycodeschool from '../../images/rec_channels/mycodeschool.jpg';
+import progknoledge from '../../images/rec_channels/progknoledge.jpg';
+import traversy from '../../images/rec_channels/traversy.jpg';
 
+const usefulLinks = [
+    {href: 'https://resume.io/', src: resume, title: 'Resume'},
+    {href: 'https://djinni.co/', src: djini, title: 'Djini'},
+    {href: 'https://dou.ua/', src: dou, title: 'Dou'},
+    {href: 'https://justjoin.it/', src: justjoint, title: 'Justjoin'},
+    {href: 'https://refactoring.guru/', src: refractoring, title: 'Refactoring.guru'},
+    {href: 'https://learnjavascript.online/app.html?id=1436', src: js, title: 'Learnjavascript.online'},
+    {href: 'https://www.programiz.com/', src: programiz, title: 'Programiz'},
+    {href: 'https://www.tutorialspoint.com/', src: tutorPoint, title: 'Tutorialspoint'},
+    {href: 'https://www.freecodecamp.org/', src: freecdcmp, title: 'Freecodecamp'},
+    {href: 'https://www.w3schools.com/', src: w3School, title: 'W3School'},
+    {href: 'https://www.studytonight.com/', src: studyTonight, title: 'Studytonight'},
+    {href: 'https://www.javatpoint.com/', src: javatpoint, title: 'Javapoint'},
+    {href: 'https://www.sololearn.com/', src: sololearn, title: 'Sololearn'},
+    {href: 'https://programminghub.io/', src: progHub, title: 'ProgrammingHub'},
+    {href: 'https://grasshopper.app/', src: grasshopper, title: 'Grasshopper'},
+    {href: 'https://www.hackerrank.com/', src: hackerRank, title: 'HackerRank'},
+    {href: 'https://www.topcoder.com/', src: topCoder, title: 'TopCoder'},
+    {href: 'https://www.codechef.com/', src: codechef, title: 'Codechef'},
+    {href: 'https://coderbyte.com/', src: coderbyte, title: 'Coderbyte'},
+    {href: 'https://leetcode.com/', src: leetcode, title: 'Leetcode'},
+    {href: 'https://www.hackerearth.com/', src: hackerEarth, title: 'HackerEarth'},
+    {href: 'https://exercism.org/', src: excercism, title: 'Exercism'},
+    {href: 'https://www.geeksforgeeks.org/', src: geeksof, title: 'Geeksforgeeks'},
+    {href: 'https://www.examveda.com/', src: examveda, title: 'Examveda'},
+    {href: 'https://www.cppbuzz.com/', src: cppbuzz, title: 'Cppbuzz'},
+    {href: 'https://www.sanfoundry.com/', src: sanfoundry, title: 'Sanfoundry'},
+    {href: 'https://www.indiabix.com/', src: indiabix, title: 'Indiabix'},
+];
+
+const recommendedChannels = [
+    {href: 'https://www.youtube.com/@programmingwithmosh', src: mosh, title: '@programmingwithmosh'},
+    {href: 'https://www.youtube.com/@CodeWithHarry', src: harry, title: '@CodeWithHarry'},
+    {href: 'https://www.youtube.com/@CleverProgrammer', src: clever, title: '@CleverProgrammer'},
+    {href: 'https://www.youtube.com/@freecodecamp', src: codecamp, title: '@freecodecamp'},
+    {href: 'https://www.youtube.com/@TraversyMedia', src: traversy, title: '@TraversyMedia'},
+    {href: 'https://www.youtube.com/@derekbanas', src: derek, title: '@derekbanas'},
+    {href: 'https://www.youtube.com/@thenewboston', src: boston, title: '@thenewboston'},
+    {href: 'https://www.youtube.com/@learncodeacademy', src: learncodeacad, title: '@learncodeacademy'},
+    {href: 'https://www.youtube.com/@mycodeschool', src: mycodeschool, title: '@mycodeschool'},
+    {href: 'https://www.youtube.com/@ProgrammingKnowledge', src: progknoledge, title: '@ProgrammingKnowledge'},
+];
 
 const ForUserPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -26,7 +100,6 @@ const ForUserPage = () => {
                 <div className={css.forUser__title}>
                     {EN ? 'For users' : 'Користувачам'}
                 </div>
-
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Support the project' : 'Підтримати проект'}
                 </div>
@@ -35,7 +108,6 @@ const ForUserPage = () => {
                         {EN ? 'Donate' : 'Донатити'}
                     </Link>
                 </div>
-
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Telegram chat for mentoring' : 'Телеграм чат для менторингу'}
                 </div>
@@ -47,49 +119,46 @@ const ForUserPage = () => {
                         </div>
                     </a>
                 </div>
-
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Useful links' : 'Корисні посилання'}
                 </div>
                 <div className={css.links__wrap}>
-                    <a href="https://resume.io/" target="_blank" className={css.useful__link}>
-                        <img src={resume} alt="resume.io"/>
-                        <div>
-                            Resume.io
-                        </div>
-                    </a>
-                    <a href="https://djinni.co/" target="_blank" className={css.useful__link}>
-                        <img src={djini} alt="djini.co"/>
-                        <div>
-                            Djini.co
-                        </div>
-                    </a>
-                    <a href="https://dou.ua/" target="_blank" className={css.useful__link}>
-                        <img src={dou} alt="dou.ua"/>
-                        <div>
-                            Dou.ua
-                        </div>
-                    </a>
-                    <a href="https://justjoin.it/" target="_blank" className={css.useful__link}>
-                        <img src={justjoint} alt="justjoin.it"/>
-                        <div>
-                            Justjoin.it
-                        </div>
-                    </a>
-                    <a href="https://refactoring.guru/" target="_blank" className={css.useful__link}>
-                        <img src={refractoring} alt="refactoring.guru"/>
-                        <div>
-                            Refactoring.guru
-                        </div>
-                    </a>
-                    <a href="https://learnjavascript.online/app.html?id=1436" target="_blank" className={css.useful__link}>
-                        <img src={js} alt="learnjavascript.online"/>
-                        <div>
-                            Learnjavascript.online
-                        </div>
-                    </a>
+                    {
+                        usefulLinks.map(({href, src, title}, i) => (
+                            <a
+                                href={href}
+                                target="_blank"
+                                className={css.useful__link}
+                                key={i}
+                            >
+                                <img src={src} alt={title}/>
+                                <div>
+                                    {title}
+                                </div>
+                            </a>)
+                        )
+                    }
                 </div>
-
+                <div className={rootCSS.default__title_24}>
+                    {EN ? 'Recommended YouTube Channels' : 'Рекомендовані YouTube канали'}
+                </div>
+                <div className={css.links__wrap}>
+                    {
+                        recommendedChannels.map(({href, src, title}, i) => (
+                            <a
+                                href={href}
+                                target="_blank"
+                                className={css.useful__link}
+                                key={i}
+                            >
+                                <img className={css.youtubeImg} src={src} alt={title}/>
+                                <div>
+                                    {title}
+                                </div>
+                            </a>)
+                        )
+                    }
+                </div>
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Recommended courses ' : 'Рекомендовані курси'}
                 </div>

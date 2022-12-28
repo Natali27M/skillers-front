@@ -137,6 +137,10 @@
 
 }
 
+.wallet {
+    font-size: 12px;
+}
+
 .update__username_form {
     width: 80%;
     display: flex;
@@ -239,6 +243,27 @@
     white-space: nowrap;
 }
 
+.github__btn {
+    min-width: 115px;
+    width: fit-content;
+    height: 20px;
+    display: flex;
+    padding: 0 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #24292F;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .rank__wrap {
     display: flex;
     align-items: center;
@@ -293,6 +318,10 @@
     .update__username_form {
         width: 90%;
     }
+
+    .wallet {
+        font-size: 8px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -317,6 +346,9 @@
         width: 65px;
     }
 
+    .wallet {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 400px) {
@@ -337,6 +369,10 @@
     .linked__btn {
         font-size: 12px;
         min-width: 100px;
+    }
+
+    .wallet {
+        font-size: 8px;
     }
 
 }

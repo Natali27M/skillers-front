@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import rootCSS from '../../styles/root.module.css'
 import css from './RegisterPage.module.css';
@@ -45,7 +45,7 @@ const RegisterPage = () => {
 
 
     if (user) {
-        return <Navigate to="/user" replace/>;
+        return <Navigate to="/" replace/>;
     }
 
     return (
@@ -53,8 +53,8 @@ const RegisterPage = () => {
             <div className={css.register__left}>
                 <img className={css.home__logo} src={logo} alt="logo"/>
                 <div className={css.home__description}>
-                    {EN ? 'Platform for testing your IT skills' :
-                        'Платформа для перевірки твоїх IT навичок'}
+                    {EN ? 'We help engineers to grow in IT' :
+                        'Ми допомагаємо розробникам розвиватися в ІТ'}
                 </div>
             </div>
             <div className={css.register__right}>
