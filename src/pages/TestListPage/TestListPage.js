@@ -109,7 +109,7 @@ const TestListPage = () => {
                     />
                 </form>
             </div>
-            <div className={css.test__switcher_wrap}>
+            {+techId !== 8 && +techId !== 9 && +techId !== 10 && <div className={css.test__switcher_wrap}>
                 <div className={css.test__switcher}>
                     <div onClick={() => codeSetter(true)}
                          className={`${css.test__switcher_btn} ${isCodeTest ? css.chosen : ''}`}>
@@ -120,7 +120,7 @@ const TestListPage = () => {
                         {EN ? 'Test' : 'Тестові'}
                     </div>
                 </div>
-            </div>
+            </div>}
             <div className={css.sorting__wrap}>
                 <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
                 <div className={css.sorting__dropdown_wrap} ref={ref}>
