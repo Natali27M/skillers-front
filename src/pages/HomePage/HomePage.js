@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
 import {Feedbacks, LeaderBord, PresentForUserAlways, TechList} from '../../components';

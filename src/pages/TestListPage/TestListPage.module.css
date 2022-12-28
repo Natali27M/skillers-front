@@ -1,6 +1,9 @@
 .test__page {
     min-height: calc(100vh - 80px);
     padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 .test__page_title {
@@ -138,12 +141,12 @@
     transition: all .2s linear;
 }
 
-.drop__arrow_close{
+.drop__arrow_close {
     transform: rotate(90deg);
 }
 
 .dropdown__menu,
-.dropdown__menu_close{
+.dropdown__menu_close {
     transition: all .2s linear;
     position: absolute;
     top: 100%;
@@ -156,7 +159,7 @@
     display: none;
 }
 
-.dropdown__element{
+.dropdown__element {
     height: 40px;
     width: 100%;
     border-top: 2px solid black;
@@ -171,7 +174,7 @@
     border-top: none;
 }
 
-.order__btn{
+.order__btn {
     height: 40px;
     width: 40px;
     border: 2px solid black;
@@ -183,6 +186,44 @@
 
 .order__btn img {
     height: 100%;
+}
+
+.test__switcher_wrap {
+    width: 100%;
+    display: flex;
+}
+
+.test__switcher {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.test__switcher_btn {
+    height: 40px;
+    width: 100px;
+    background-color: #e3e3e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.test__switcher_btn:first-child {
+    border-right: 1px solid #8d8d8d;
+    border-radius: 10px 0 0 10px;
+}
+
+.test__switcher_btn:last-child {
+    border-left: 1px solid #8d8d8d;
+    border-radius: 0 10px 10px 0;
+}
+
+
+.chosen {
+    background-color: #F3F3F3;
 }
 
 @media (max-width: 767px) {
@@ -205,34 +246,37 @@
         min-height: calc(100vh - 120px);
     }
 
-    .sorting__dropdown_wrap{
+    .sorting__dropdown_wrap {
         font-size: 12px;
     }
 
-    .sorting__dropdown_btn{
+    .sorting__dropdown_btn {
         height: 30px;
         width: 170px;
         font-size: 12px;
     }
 
-    .dropdown__element{
+    .dropdown__element {
         height: 30px;
         font-size: 12px;
     }
 
-    .order__btn{
+    .order__btn {
         height: 30px;
         width: 30px;
     }
 }
 
 @media (max-width: 500px) {
+    .test__switcher_wrap {
+        justify-content: center;
+    }
+
     .search__form {
         justify-content: flex-start;
     }
 
-    .sorting__wrap{
-        margin-top: -20px;
+    .sorting__wrap {
         flex-direction: column;
         align-items: flex-start;
         row-gap: 10px;
@@ -248,6 +292,7 @@
         flex-direction: column-reverse;
         row-gap: 10px;
         align-items: flex-start;
+        margin: 0;
     }
 
 

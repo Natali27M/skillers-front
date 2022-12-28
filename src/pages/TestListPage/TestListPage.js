@@ -15,6 +15,7 @@ import DoubleArrowSideGrey from '../../images/dobleArrow-grey.svg';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 import useWindowDimensions from '../../RootFunctions/WindowDimensions';
 import pagination from '../../RootFunctions/pagination';
+import {getCodeTestsPaginated} from '../../store';
 
 
 const TestListPage = () => {
@@ -23,6 +24,8 @@ const TestListPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {tests, technology} = useSelector(state => state['testsReducers']);
+
+    const {codeTestPage} = useSelector(state => state['codeTestReducers']);
 
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
@@ -38,6 +41,15 @@ const TestListPage = () => {
 
     const [isDesc, setIsDesc] = useState(true);
 
+    const [isCodeTest, setIsCodeTest] = useState(false);
+
+    const codeSetter = (value) => {
+        if (value !== isCodeTest) {
+            setIsCodeTest(value);
+            setCurrentPage(1);
+        }
+    };
+
     const paramsSetter = (value) => {
         if (sortParams !== value) {
             setSortParams(value);
@@ -50,9 +62,12 @@ const TestListPage = () => {
     }, [currenPage]);
 
     useEffect(() => {
-        dispatch(getTests({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc'}));
-    }, [currenPage, sortParams, isDesc]);
-
+        if (isCodeTest) {
+            dispatch(getCodeTestsPaginated({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc'}));
+        } else {
+            dispatch(getTests({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc'}));
+        }
+    }, [currenPage, sortParams, isDesc, isCodeTest]);
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -61,32 +76,12 @@ const TestListPage = () => {
         }
     }, [isComponentVisible]);
 
-
     useEffect(() => {
-        setDropOpen(false)
+        setDropOpen(false);
     }, [width]);
 
 
-    const allPages = tests?.meta?.pagination?.pageCount;
-
-    // const pagesArray = [];
-    //
-    // if (allPages > 4) {
-    //     for (let i = currenPage; i <= currenPage + 3 && i <= allPages; i++) {
-    //         pagesArray.push(i);
-    //     }
-    //     if (pagesArray.length < 4) {
-    //         const count = 4 - pagesArray.length;
-    //         for (let i = 1; i <= count; i++) {
-    //             let firsElement = pagesArray[0];
-    //             pagesArray.unshift(firsElement - 1);
-    //         }
-    //     }
-    // } else {
-    //     for (let i = 1; i <= allPages; i++) {
-    //         pagesArray.push(i);
-    //     }
-    // }
+    const allPages = isCodeTest ? codeTestPage?.meta?.pagination?.pageCount : tests?.meta?.pagination?.pageCount;
 
     const pagesArray = pagination(allPages, currenPage);
 
@@ -99,10 +94,10 @@ const TestListPage = () => {
             dispatch(getTestsByQuery({query: data, pageNum: currenPage}));
     };
 
-
     return (
         <div className={css.test__page}>
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
+
             <div className={css.search__form_wrap}>
                 <BackButton/>
                 <form className={css.search__form}>
@@ -114,6 +109,18 @@ const TestListPage = () => {
                     />
                 </form>
             </div>
+            {+techId !== 8 && +techId !== 9 && +techId !== 10 && <div className={css.test__switcher_wrap}>
+                <div className={css.test__switcher}>
+                    <div onClick={() => codeSetter(true)}
+                         className={`${css.test__switcher_btn} ${isCodeTest ? css.chosen : ''}`}>
+                        {EN ? 'Practical' : 'Практичні'}
+                    </div>
+                    <div onClick={() => codeSetter(false)}
+                         className={`${css.test__switcher_btn} ${!isCodeTest ? css.chosen : ''}`}>
+                        {EN ? 'Test' : 'Тестові'}
+                    </div>
+                </div>
+            </div>}
             <div className={css.sorting__wrap}>
                 <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
                 <div className={css.sorting__dropdown_wrap} ref={ref}>
@@ -160,9 +167,16 @@ const TestListPage = () => {
                     <img src={isDesc ? sortDesc : sortAsc} alt="order"/>
                 </div>
             </div>
-            {!!tests?.data?.length &&
+            {!isCodeTest && !!tests?.data?.length &&
                 <div className={css.tests__wrap}>
                     {!!tests?.data?.length && tests?.data?.map(test => <TestBlock key={test.id} test={test}/>)}
+                </div>
+            }
+            {isCodeTest && !!codeTestPage?.data?.length &&
+                <div className={css.tests__wrap}>
+                    {!!codeTestPage?.data?.length && codeTestPage?.data?.map(test => <TestBlock type={'code'}
+                                                                                                key={test.id}
+                                                                                                test={test}/>)}
                 </div>
             }
             <div className={css.pagination__wrap}>

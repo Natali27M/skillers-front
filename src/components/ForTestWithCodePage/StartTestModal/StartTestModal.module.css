@@ -1,0 +1,12 @@
+.description {
+    font-size: 16px;
+    text-align: center;
+    white-space: pre-line;
+}
+
+
+.time {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}

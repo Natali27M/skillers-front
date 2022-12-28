@@ -40,7 +40,6 @@ export const getUserRoles = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.message);
         }
-
     }
 );
 

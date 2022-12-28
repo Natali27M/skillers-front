@@ -124,6 +124,7 @@ const CompilerPage = () => {
                             language={highlightLang}
                             placeholder="Please enter code."
                             onChange={(evn) => setCode(evn.target.value)}
+
                             padding={15}
                             minHeight={400}
                             className={css.compiler__textarea}
@@ -153,12 +154,6 @@ const CompilerPage = () => {
                                     <img className={dropOpen ? css.arrow__open : css.arrow__close} src={arrow} alt="arrow"/>
                                 </div>
                                 {dropOpen && <div className={css.drop__elements_wrap}>
-
-                                    {/*{language.id !== 1 &&
-                                        <div onClick={() => setLangValue({name: 'C++ (custom compiler)', id: 1})}
-                                             className={css.dropdown__element}>
-                                            C++ (custom compiler)
-                                        </div>}*/}
                                     {
                                         langArray?.map(lang =>
                                             <div key={lang?.id}>

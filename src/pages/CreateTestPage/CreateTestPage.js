@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import css from './CreateTestPage.module.css';
+import rootCss from '../../styles/root.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
@@ -14,9 +15,9 @@ import {
     sendExercise,
     sendVariant
 } from '../../store';
-import {Navigate} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import lock from '../../images/lock.svg';
-import coin from "../../images/coin.svg";
+import coin from '../../images/coin.svg';
 
 
 const CreateTestPage = () => {
@@ -178,6 +179,11 @@ const CreateTestPage = () => {
                     </>
                     :
                     <form className={css.test__form} onSubmit={handleSubmit(sendTest)}>
+                        <div className={css.to__code_test}>
+                            <Link to={'/create-code-test'} className={rootCss.default__button}>
+                                {EN ? 'Or create code test' : 'Або створити практичне завдання'}
+                            </Link>
+                        </div>
                         <div className={css.test__head}>{EN ? 'Create Quiz' : 'Створити Тест'}</div>
                         <div className={css.input__wrap}>
                             <div className={css.test__header_input}>

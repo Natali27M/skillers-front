@@ -7,3 +7,4 @@ export * from './ForTestPage';
 export * from './GeneralComponents';
 export * from './ForAdminPage';
 export * from './ForMentorsPage';
+export * from './ForTestWithCodePage'

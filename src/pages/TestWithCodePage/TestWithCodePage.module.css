@@ -1,0 +1,244 @@
+.testWithCode__page {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 120px;
+    row-gap: 30px;
+}
+
+.test__name {
+    font-size: 24px;
+}
+
+.code__area {
+    overflow-y: scroll;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 5px rgba(175, 175, 175, 0.56);
+    font-size: 14px;
+    height: 100%;
+}
+
+.editor__wrap {
+    position: relative;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.run__btn {
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    z-index: 3;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px;
+}
+
+.run__btn img {
+    height: 15px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.main__part {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.main__right {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    row-gap: 40px;
+    height: 100%;
+}
+
+.result {
+    width: 100%;
+    height: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 5px rgba(175, 175, 175, 0.56);
+    padding: 10px;
+}
+
+.console {
+    width: 100%;
+    height: 200px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 5px rgba(175, 175, 175, 0.56);
+    padding: 10px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.countdown {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.error {
+    color: crimson;
+}
+
+.description {
+    font-size: 20px;
+    width: 100%;
+    padding-right: 20%;
+    white-space: pre-line;
+}
+
+.mark__form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 15px;
+    align-items: center;
+}
+
+.mark__input {
+    width: 80px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.mark__btn {
+    height: 30px;
+    background-color: #000000;
+    cursor: pointer;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.authorMark {
+    width: 100%;
+    font-size: 18px;
+}
+
+.header__info {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+
+@media (max-width: 1400px) {
+    .testWithCode__page {
+        padding: 20px 60px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .main__part {
+        flex-direction: column-reverse;
+        height: auto;
+        row-gap: 30px;
+    }
+
+    .main__right {
+        flex-direction: row;
+        width: 100%;
+        column-gap: 50px;
+    }
+
+    .result {
+        height: auto;
+    }
+
+    .editor__wrap {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .header__info {
+        font-size: 14px;
+    }
+
+    .testWithCode__page {
+        padding: 20px 30px;
+        row-gap: 20px;
+    }
+
+    .main__part {
+        row-gap: 20px;
+    }
+
+    .description {
+        font-size: 18px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .description {
+        font-size: 16px;
+        text-align: center;
+        padding: 0;
+    }
+
+    .header__info {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .result {
+        font-size: 14px;
+    }
+
+    .console {
+        font-size: 14px;
+        height: 150px;
+    }
+
+    .code__area {
+        font-size: 12px;
+    }
+
+    .run__btn {
+        right: 15px;
+        font-size: 10px;
+        column-gap: 5px;
+    }
+
+    .run__btn img {
+        height: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main__right {
+        column-gap: 20px;
+    }
+}

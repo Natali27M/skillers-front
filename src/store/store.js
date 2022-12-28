@@ -8,9 +8,11 @@ import achievementsReducers from './slices/achievments.slice';
 import resultReducers from './slices/results.slice';
 import createTestsReducers from './slices/createTest.slice';
 import feedbackReducers from './slices/feedback.slice';
-import mentorReducers from "./slices/mentors.slice";
-import technologiesReducers from "./slices/technologies.slice";
+import mentorReducers from './slices/mentors.slice';
+import technologiesReducers from './slices/technologies.slice';
 import badgesReducers from './slices/badges.slice';
+import codeTestReducers from './slices/codeTest.slice';
+import codeResultsReducers from './slices/codeResults.slice';
 
 
 const store = configureStore({
@@ -26,6 +28,8 @@ const store = configureStore({
         feedbackReducers,
         mentorReducers,
         technologiesReducers,
+        codeTestReducers,
+        codeResultsReducers
     }
 });
 

@@ -59,16 +59,27 @@
     font-size: 20px;
 }
 
-.input__wrap input::placeholder {
+.input__wrap input::placeholder,
+.input__wrap textarea::placeholder {
     font-size: 17px;
     white-space: pre-wrap;
 }
 
-.input__wrap input {
+.input__wrap input,
+.input__wrap textarea {
     border: none;
     border-bottom: 2px solid lightgray;
     padding: 0;
 }
+
+.description__textarea {
+    font-family: 'Noto Sans', sans-serif;
+    padding: 10px 0 !important;
+    height: 130px;
+    width: 100%;
+    resize: vertical;
+}
+
 
 .test__form {
     width: 80%;
@@ -238,6 +249,23 @@
 
 .private__img {
     height: 20px;
+}
+
+.to__code_test {
+    width: 100%;
+    display: flex;
+}
+
+.time__inputs__wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+
+.time__input {
+    height: 40px !important;
+    outline: none;
 }
 
 

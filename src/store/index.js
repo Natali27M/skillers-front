@@ -7,3 +7,5 @@ export * from './slices/feedback.slice';
 export * from './slices/exercises.slice';
 export * from './slices/results.slice';
 export * from './slices/technologies.slice';
+export * from './slices/codeTest.slice';
+export * from './slices/codeResults.slice';

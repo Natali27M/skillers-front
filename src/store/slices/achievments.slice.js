@@ -57,6 +57,17 @@ export const getUserAchievement = createAsyncThunk(
     }
 );
 
+export const getOtherUserAchievement = createAsyncThunk(
+    'achievementsSlice/getOtherUserAchievement',
+    async (userId, {rejectWithValue}) => {
+        try {
+            return await achievementsServices.searchUserAchievement(userId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 
 export const updateUserAchievement = createAsyncThunk(
     'achievementsSlice/updateUserAchievement',
@@ -90,7 +101,8 @@ const achievementsSlice = createSlice({
         leaderBord: [],
         leaderBordTen: [],
         userAchievement: null,
-        userAchievementTen: null
+        userAchievementTen: null,
+        otherUserAchievement: null
     },
     reducers: {
         setUserRank: (state) => {
@@ -183,6 +195,20 @@ const achievementsSlice = createSlice({
         },
 
         [getUserAchievement.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getOtherUserAchievement.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.otherUserAchievement = action.payload;
+        },
+
+        [getOtherUserAchievement.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getOtherUserAchievement.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         },

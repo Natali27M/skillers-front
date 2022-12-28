@@ -37,9 +37,13 @@ export const sendVariant = createAsyncThunk(
 
 export const getTechNames = createAsyncThunk(
     'createTestSlice/getTechNames',
-    async (_, {rejectWithValue}) => {
+    async (codeTest, {rejectWithValue}) => {
         try {
-            return await techServices.getAllTech();
+            let technologies = await techServices.getAllTech();
+            if (codeTest) {
+                technologies = technologies.filter(tech => tech.id !== 8 && tech.id !== 9 && tech.id !== 10);
+            }
+            return technologies;
         } catch (e) {
             rejectWithValue(e);
         }
