@@ -1,8 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
-import logo from '../../images/header/SKILLERS.svg';
-import {LeaderBord, TechList,Feedbacks, Banner, SignUpModal, PresentForUser, PresentForUserAlways} from '../../components';
+import {Feedbacks, LeaderBord, PresentForUserAlways, TechList} from '../../components';
 import {Link} from 'react-router-dom';
 
 
@@ -16,7 +15,7 @@ const HomePage = () => {
         <>
             {user ?
                 <div className={css.home__page_loginUser}>
-                    <div  className={css.block_loginUser}>
+                    <div className={css.block_loginUser}>
                         <div className={css.home__description_loginUser}>
                             {EN ? 'We help engineers to grow in IT' :
                                 'Ми допомагаємо розробникам розвиватися в ІТ'}

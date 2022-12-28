@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 
@@ -10,7 +10,6 @@ import {
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
-    MainFirepadPage,
     HomePage,
     LoginPage,
     MentorPage,
@@ -30,14 +29,16 @@ import {
     clear,
     clearCreateTest,
     getLanguage,
+    getUserAchievement,
+    getUserBadges,
     getUserBadges,
     getUserResults,
     getUserResultsAll,
     getUserRoles,
     setJwtFromLocalStorage,
-    setUserFromLocalStorage
+    setUserFromLocalStorage,
+    setUserRank
 } from './store';
-import {getUserAchievement, setUserRank} from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
 
 
