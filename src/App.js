@@ -39,7 +39,12 @@ import {
 } from './store';
 import {getUserAchievement, setUserRank} from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-import {getUserBadges} from './store';
+
+
+import {ref, remove} from 'firebase/database';
+import {db} from './firebaseConfig';
+import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
+import rootCSS from './styles/root.module.css';
 
 
 function App() {
@@ -120,7 +125,7 @@ function App() {
     }
 
     useEffect(() => {
-        if (teamCoding && pathname != pathCoding) {
+        if (teamCoding && pathname !== pathCoding) {
             setModal('leave');
             window.history.pushState(null, null, null);
         }
@@ -181,31 +186,6 @@ function App() {
                 </Route>
             </Routes>
         </div>
-        <Routes>
-            <Route path={'/'} element={<Layout/>}>
-                <Route index element={<HomePage/>}/>
-                <Route path={'/test-list/:techId'} element={<TestListPage/>}/>
-                <Route path={'/test/:testId'} element={<TestPage/>}/>
-                <Route path={'/registration'} element={<RegisterPage/>}/>
-                <Route path={'/user'} element={<UserPage/>}/>
-                <Route path={'/login'} element={<LoginPage/>}/>
-                <Route path={'/createTest'} element={<CreateTestPage/>}/>
-                <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
-                <Route path={'/admin'} element={<AdminPage/>}/>
-                <Route path={'/policy'} element={<PolicyPage/>}/>
-                <Route path={'/rank'} element={<RankPage/>}/>
-                <Route path={'/forgot-password'} element={<AdminPage/>}/>
-                <Route path={'/for-users'} element={<ForUserPage/>}/>
-                <Route path={'/donation'} element={<DonationPage/>}/>
-                <Route path={'/compiler'} element={<CompilerPage/>}/>
-                <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                {/*<Route path={'/feedback'} element={<FeedbackFormPage/>}/>*/}
-                <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
-                <Route path={'/mentor'} element={<MentorPage/>}/>
-                <Route path={'/mentors'} element={<MentorsPage/>}/>
-                <Route path={'*'} element={<NotFoundPage/>}/>
-            </Route>
-        </Routes>
     );
 }
 

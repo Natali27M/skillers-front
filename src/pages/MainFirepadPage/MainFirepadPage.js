@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {set, ref, onValue, remove} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
@@ -6,7 +6,7 @@ import {useParams, useLocation, useNavigate, Navigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
-import {db} from "../../firebaseConfig";
+import {db} from '../../firebaseConfig';
 import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import playArrow from '../../images/play-compiler-green.svg';
@@ -17,7 +17,7 @@ function MainFirepadPage() {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const userId = user?.id
+    const userId = user?.id;
 
     const {handleSubmit} = useForm();
 
@@ -52,8 +52,8 @@ function MainFirepadPage() {
     const [code, setCode] = useState('');
 
     useEffect(() => {
-        setLanguage(location.state)
-    }, [location.state])
+        setLanguage(location.state);
+    }, [location.state]);
 
     const makeOutput = (data) => {
         if (language.id === 1) {
@@ -61,7 +61,7 @@ function MainFirepadPage() {
                 stdout: data?.result,
                 time: data?.time_used,
                 memory: data?.memory_used
-            })
+            });
         } else {
             setOutput(data);
         }
@@ -71,20 +71,12 @@ function MainFirepadPage() {
     const compile = async (obj) => {
         setWait(true);
 
-        if (language.id !== 1) {
-            compileServices.judgeCompile({
-                ...obj,
-                source_code: code,
-                language_id: language.id
-            }).then(result => makeOutput(result));
-        } else {
-            compileServices.ownCompile({
-                input: obj.stdin,
-                source: code,
-                lang: 'CPP'
-            }).then(result => makeOutput(result));
-        }
-    }
+        compileServices.judgeCompile({
+            ...obj,
+            source_code: code,
+            language_id: language.id
+        }).then(result => makeOutput(result));
+    };
 
     useEffect(() => {
         if (newTemplate?.includes('C++')) {
@@ -117,7 +109,7 @@ function MainFirepadPage() {
             if (data) {
                 const dataPath = data[`${path}`];
                 myData = dataPath?.code;
-                setCode(myData)
+                setCode(myData);
             } else {
                 setCode('');
             }
@@ -133,12 +125,12 @@ function MainFirepadPage() {
             code: evn.target.value,
         });
 
-        if (param.id == userId) {
+        if (param.id === userId) {
             localStorage.setItem('teamCoding', 'yes');
             localStorage.setItem('path', `${path}`);
             localStorage.setItem('pathCoding', `${location.pathname}`);
         }
-    }
+    };
 
     const roomLinkCopy = () => {
         setRoomLinkCopyTime(true);
@@ -152,25 +144,25 @@ function MainFirepadPage() {
     if (teamCoding) {
         window.history.pushState(null, null, null);
 
-        window.addEventListener("popstate", (e) => {
-            console.log(12)
+        window.addEventListener('popstate', (e) => {
+            console.log(12);
             e.preventDefault();
-            setModal('leave')
+            setModal('leave');
         });
 
-        window.addEventListener("load", (e) => {
+        window.addEventListener('load', (e) => {
             e.preventDefault();
-            setModal('reload')
+            setModal('reload');
             window.history.pushState(null, null, null);
         });
     }
 
     if (!teamCoding) {
-        window.addEventListener("popstate", (e) => {
+        window.addEventListener('popstate', (e) => {
             navigate('/team-coding');
         });
 
-        window.addEventListener("load", (e) => {
+        window.addEventListener('load', (e) => {
             e.preventDefault();
             navigate(`${location.pathname}`);
         });
@@ -183,30 +175,26 @@ function MainFirepadPage() {
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
-    }
+    };
 
     const changeReloadCancel = () => {
         setModal('');
         navigate(`${location.pathname}`);
-    }
+    };
 
     const changeLeaveOk = () => {
-        console.log(1)
         setModal('');
         setCode('');
         remove(ref(db, `/${path}`));
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
         navigate('/team-coding');
-        // return <Navigate to={'/team-coding'} replace/>
-    }
+    };
 
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${location.pathname}`);
-    }
-
-    console.log(modal, 'modal');
+    };
 
     return (
         <div className={css.compiler__main}>
