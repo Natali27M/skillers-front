@@ -7,7 +7,6 @@ import css from './HomeFirepadPage.module.css';
 import {compileServices} from '../../services';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 import dropArrow from '../../images/arrow-color.png';
-import rootCSS from '../../styles/root.module.css';
 
 const HomeFirepadPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -22,7 +21,7 @@ const HomeFirepadPage = () => {
 
     const {ref} = useComponentVisible(true);
 
-    const {register, handleSubmit, reset} = useForm();
+    const {register, handleSubmit} = useForm();
 
     const navigate = useNavigate();
 
@@ -36,7 +35,8 @@ const HomeFirepadPage = () => {
     };
 
     const joinToRoom = (e) => {
-        navigate(`${e.pageLink}`);
+        const {pageLink} = e;
+        navigate(`${pageLink}`);
     }
 
     return (
@@ -44,7 +44,7 @@ const HomeFirepadPage = () => {
             <div className={css.team__coding_page_bg}></div>
                 <div className={css.team__coding_wrap}>
 
-                    <div className={css.dropdown__main_title}>{EN ? 'Team Coding' : 'Командне Кодування'}</div>
+                    <div className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
 
                     <div className={css.result__wrap}>
                         <div className={css.dropdown__container}>
@@ -71,8 +71,9 @@ const HomeFirepadPage = () => {
                                                 {lang !== language &&
                                                     <div onClick={() => setLangValue(lang)}
                                                          className={css.dropdown__element}>
-                                                        <Link to={`/team-coding/${lang.name}/${user?.id}`}
-                                                              state={lang}>{lang?.name}</Link>
+                                                        <Link to={`/team-coding/${lang.name}-${lang.id}/${user?.id}`}
+                                                              state={lang}>{lang.name}
+                                                        </Link>
                                                     </div>
                                                 }
                                             </div>

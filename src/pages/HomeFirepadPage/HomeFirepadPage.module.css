@@ -262,6 +262,11 @@
         width: 72%;
     }
 
+    .join__room_input,
+    .join__room_input_language {
+        font-size: 16px;
+    }
+
     .dropdown__btn {
         width: 75%;
     }
@@ -305,6 +310,11 @@
 
     .join__room_input_language {
         height: 45px;
+    }
+
+    .join__room_input,
+    .join__room_input_language {
+        font-size: 14px;
     }
 
     .join__room_input::placeholder,
@@ -359,6 +369,10 @@
 
     .team__coding_hr {
         width: 60px;
+    }
+    .dropdown__btn,
+    .join__room_input_language {
+        height: 50px;
     }
 }
 

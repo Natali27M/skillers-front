@@ -38,6 +38,7 @@ const CompilerPage = () => {
 
 
     const makeOutput = (data) => {
+        console.log(data,'data');
         if(language.id === 1){
             setOutput({
                 stdout: data?.result,
@@ -82,6 +83,7 @@ const CompilerPage = () => {
     };
 
     const compile = async (obj) => {
+        console.log(obj,'obj');
         setWait(true);
         if(language.id !== 1) {
             compileServices.judgeCompile({
@@ -98,7 +100,7 @@ const CompilerPage = () => {
         }
     };
 
-
+    console.log(output,'output');
     return (
         <div className={css.compiler}>
             <div className={rootCSS.root__background}></div>
