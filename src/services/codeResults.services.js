@@ -9,6 +9,9 @@ export const codeResultsServices = {
     getUserCodeResults: (userId, pageNum) =>
         axiosServices.get(`${urls.codeResultsByUser}${userId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`)
             .then(value => value.data),
+    getCodeResultsByTest: (testId, pageNum) =>
+        axiosServices.get(`${urls.codeResultsByTest}${testId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`)
+            .then(value => value.data),
     getCreatorResultForEvaluate: (authorId, pageNum) =>
         axiosServices.get(`${urls.codeResultForEvaluate}${authorId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`)
             .then(value => value.data),

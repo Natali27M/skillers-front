@@ -12,6 +12,17 @@ export const getOneCodeTest = createAsyncThunk(
     }
 );
 
+export const getCodeTestsByUser = createAsyncThunk(
+    'codeTestSlice/getCodeTestsByUser',
+    async ({pageNum, authorId}, {rejectWithValue}) => {
+        try {
+            return await codeTestServices.getTestsByUserPaginated(authorId, pageNum);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const updateCodeTest = createAsyncThunk(
     'codeTestSlice/updateCodeTest',
     async ({testId, data}, {rejectWithValue}) => {
@@ -119,7 +130,8 @@ const codeTestSlice = createSlice({
         oneCodeTest: null,
         codeTestPage: null,
         codeTestPageForApprove: null,
-        userCodeTestRate: null
+        userCodeTestRate: null,
+        codeTestsByUser: null
     },
     extraReducers: {
         [getOneCodeTest.pending]: (state) => {
@@ -134,6 +146,19 @@ const codeTestSlice = createSlice({
         [getOneCodeTest.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.oneCodeTest = action.payload;
+        },
+        [getCodeTestsByUser.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getCodeTestsByUser.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getCodeTestsByUser.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.codeTestsByUser = action.payload;
         },
         [approveCodeTest.pending]: (state) => {
             state.status = 'pending';

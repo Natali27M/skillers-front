@@ -24,6 +24,9 @@ export const codeTestServices = {
             rate
         }
     }).then(value => value.data),
+    getTestsByUserPaginated: (authorId, pageNum) => axiosServices.get(
+        `${urls.codeTests}?filters[authorId][$eq]=${authorId}&pagination[page]=${pageNum}&pagination[pageSize]=5&sort=createdAt:desc`
+    ).then(value => value.data),
     getUserRateByCodeTest: (userId, testId) => axiosServices.get(`${urls.codeRates}?filters[userId][$eq]=${userId}&filters[testId][$eq]=${testId}`)
         .then(value => value.data),
     createCodeTest: (data) => axiosServices.post(urls.codeTests, {data: {...data}}).then(value => value.data.data)
