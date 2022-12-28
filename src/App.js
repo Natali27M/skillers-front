@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 
@@ -10,6 +10,7 @@ import {
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
+    MainFirepadPage,
     HomePage,
     LoginPage,
     MentorPage,
@@ -22,12 +23,14 @@ import {
     TestListPage,
     TestPage,
     UserPage,
+    HomeFirepadPage,
 } from './pages';
 import {Layout} from './components';
 import {
     clear,
     clearCreateTest,
     getLanguage,
+    getUserBadges,
     getUserResults,
     getUserResultsAll,
     getUserRoles,
@@ -52,6 +55,20 @@ function App() {
 
     const {pathname} = useLocation();
 
+    const {EN} = useSelector(state => state['languageReducers']);
+
+    let teamCoding = localStorage.getItem('teamCoding');
+
+    let pathCoding = localStorage.getItem('pathCoding');
+
+    let path = localStorage.getItem('path');
+
+    const navigate = useNavigate();
+
+    const [code, setCode] = useState('');
+
+    const [modal, setModal] = useState('');
+
     useEffect(() => {
         dispatch(clear());
         dispatch(clearCreateTest());
@@ -71,7 +88,7 @@ function App() {
             dispatch(getUserAchievement(id));
             dispatch(getUserResults({userId: id, pageNum: 1}));
             dispatch(getUserRoles(id));
-            dispatch(getUserBadges(id))
+            dispatch(getUserBadges(id));
         }
     }, [user]);
 
@@ -88,7 +105,82 @@ function App() {
         }
     }, [user, isTestCompleted, pathname]);
 
+    const changeLeaveOk = () => {
+        setModal('');
+        setCode('');
+        remove(ref(db, `/${path}`));
+        localStorage.removeItem('teamCoding');
+        localStorage.removeItem('pathCoding');
+        navigate(`${pathname}`);
+    }
+
+    const changeLeaveCansel = () => {
+        setModal('');
+        navigate(`${pathCoding}`);
+    }
+
+    useEffect(() => {
+        if (teamCoding && pathname != pathCoding) {
+            setModal('leave');
+            window.history.pushState(null, null, null);
+        }
+    }, [pathname]);
+
     return (
+        <div>
+            {modal === 'leave' && <div className={css.leave__main}>
+                <div className={css.leave__modal_block}>
+                    {EN ? 'Are you sure you want to leave the page?'
+                        :
+                        'Ви впевнені, що бажаєте покинути сторінку?'}
+
+                    <p className={css.leave__modal_block_text}>
+                        {EN ? 'This action will remove the code'
+                            :
+                            'Ця дія приведе до видалення коду'}
+                    </p>
+
+                    <div className={css.modal__box_btn}>
+                        <button onClick={changeLeaveOk} className={rootCSS.default__button}>
+                            {EN ? 'Ok' : 'Так'}
+                        </button>
+
+                        <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
+                            {EN ? 'Cancel' : 'Відмінити'}
+                        </button>
+                    </div>
+
+                </div>
+            </div>}
+
+            <Routes>
+                <Route path={'/'} element={<Layout/>}>
+                    <Route index element={<HomePage/>}/>
+                    <Route path={'/test-list/:techId'} element={<TestListPage/>}/>
+                    <Route path={'/test/:testId'} element={<TestPage/>}/>
+                    <Route path={'/registration'} element={<RegisterPage/>}/>
+                    <Route path={'/user'} element={<UserPage/>}/>
+                    <Route path={'/login'} element={<LoginPage/>}/>
+                    <Route path={'/createTest'} element={<CreateTestPage/>}/> -
+                    <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
+                    <Route path={'/admin'} element={<AdminPage/>}/>
+                    <Route path={'/policy'} element={<PolicyPage/>}/>
+                    <Route path={'/rank'} element={<RankPage/>}/>
+                    <Route path={'/forgot-password'} element={<AdminPage/>}/>
+                    <Route path={'/for-users'} element={<ForUserPage/>}/>
+                    <Route path={'/donation'} element={<DonationPage/>}/>
+                    <Route path={'/compiler'} element={<CompilerPage/>}/>
+                    <Route path={'/recruiter'} element={<RecruiterPage/>}/>
+                    {/*<Route path={'/feedback'} element={<FeedbackFormPage/>}/>*/}
+                    <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                    <Route path={'/mentor'} element={<MentorPage/>}/>
+                    <Route path={'/mentors'} element={<MentorsPage/>}/>
+                    <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
+                    <Route path="/team-coding/:template/:id" element={<MainFirepadPage/>}/>
+                    <Route path={'*'} element={<NotFoundPage/>}/>
+                </Route>
+            </Routes>
+        </div>
         <Routes>
             <Route path={'/'} element={<Layout/>}>
                 <Route index element={<HomePage/>}/>

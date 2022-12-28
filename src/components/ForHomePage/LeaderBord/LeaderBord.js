@@ -5,7 +5,7 @@ import css from './LeaderBord.module.css';
 import rootCSS from '../../../styles/root.module.css';
 import pedestal from '../../../images/pedestal.svg';
 import arrow from '../../../images/arrow.svg';
-import {getLeaderBord, getLeaderBordByQuery} from '../../../store/slices/achievments.slice';
+import {getLeaderBord, getLeaderBordByQuery} from '../../../store';
 import {LeaderBlock, LeaderModal} from '../../../components';
 
 const LeaderBord = () => {

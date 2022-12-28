@@ -232,6 +232,7 @@
 
     .compiler__container {
         flex-direction: column-reverse;
+        align-items: center;
         row-gap: 20px;
     }
 
@@ -241,5 +242,9 @@
 
     .compiler__title {
         font-size: 30px;
+    }
+
+    .result__wrap {
+        align-items: center;
     }
 }

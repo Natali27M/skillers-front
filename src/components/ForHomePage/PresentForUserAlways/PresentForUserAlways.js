@@ -15,8 +15,8 @@ const PresentForUserAlways = () => {
                 {EN ?
                     <div className={css.banner__text}><span className={css.banner__name}>Skilliant</span>
                          will split <span className={css.banner__underline}>100$</span><br/>
-                        between by the top <span className={css.banner__underline}>3</span> users<br/>
-                        in the rating table
+                        between the top <span className={css.banner__underline}>3</span> leaders<br/>
+                        from the table
                     </div>
                     :
                     <div className={css.banner__text}> <span className={css.banner__name}>Skilliant </span>

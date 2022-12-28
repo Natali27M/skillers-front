@@ -1,0 +1,359 @@
+.leave__main,
+.reload__main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100vh;
+    background: rgba(126, 126, 126, 0.47);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leave__modal_block,
+.reload__modal_block {
+    width: 360px;
+    background-color: #fff;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-weight: bold;
+    word-break: break-word;
+}
+
+.leave__modal_block_text {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.modal__box_btn {
+    display: flex;
+    column-gap: 10px;
+}
+
+.main__room_link {
+    display: flex;
+    width: 100%;
+    padding: 20px 30px;
+    column-gap: 30px;
+}
+
+.title__room_link {
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+}
+
+.copy__room_link {
+    text-decoration: underline;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.compiler__main {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background: url("../../images/mainBg.png") no-repeat center / cover;
+}
+
+.copy__room_btn {
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #FFFFFF;
+    border-radius: 50px;
+    border: none;
+    width: fit-content;
+}
+
+.compiler {
+    width: 80%;
+    background: white;
+}
+
+.compiler__container{
+    width: 100%;
+    height: calc(100vh - 240px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.compiler__form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightgrey;
+    padding: 30px;
+}
+
+.compiler__textarea {
+    width: 95%;
+}
+
+.compiler__input {
+    width: 100%;
+    height: 40%;
+    border: 1px solid lightgrey;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.compiler__btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    height: 5%;
+    box-shadow: 0 0 10px rgb(0 0 0 / 25%);;
+    padding: 5px;
+}
+
+.result__computer,
+.result__phone{
+    width: 100%;
+    height: 70%;
+    background-color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    color: grey;
+    border: 1px solid lightgrey;
+}
+
+.result__phone {
+    display: none;
+}
+
+
+.dropdown__wrap {
+    position: relative;
+    z-index: 2;
+}
+
+.dropdown__btn {
+    cursor: pointer;
+    height: 40px;
+    width: 250px;
+    background-color: #fff;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.drop__elements_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding-top: 40px;
+    width: 250px;
+    z-index: -1;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.error{
+    color: crimson;
+}
+
+.drop__elements_wrap::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F3F3F3;
+    border-radius: 10px
+}
+
+.drop__elements_wrap::-webkit-scrollbar-thumb {
+    background-color: #CDC9C9;
+    border-radius: 2px;
+}
+
+
+
+.dropdown__element {
+    padding: 10px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown__element:hover {
+    background-color: #F1F1F1;
+}
+
+.dropdown__element:last-child {
+    border-bottom: none
+}
+
+.arrow__open,
+.arrow__close{
+    height: 20px;
+    transition: all .2s linear;
+}
+
+.arrow__open{
+    transform: rotate(-90deg);
+}
+
+.result__wrap{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dropdown__container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.dropdown__title{
+    font-size: 18px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.compiler__wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+
+.compiler__title {
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+@media (max-width: 1200px) {
+    .compiler__main {
+        min-height: calc(100vh - 60px);
+    }
+
+    .main__room_link {
+        column-gap: 15px;
+        font-size: 16px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .compiler__main {
+        min-height: calc(100vh - 70px);
+    }
+
+    .compiler__container{
+        height: calc(100vh - 290px);
+    }
+
+    .copy__room_btn {
+        font-size: 12px;
+        font-weight: 200;
+        padding: 0 20px;
+    }
+
+    .main__room_link {
+        padding: 20px;
+        column-gap: 10px;
+    }
+
+    .copy__room_link {
+        column-gap: 10px;
+    }
+    .copy__room_btn {
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .compiler__container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .compiler__form {
+        height: 70%;
+    }
+
+    .result__wrap{
+        width: 100%;
+    }
+
+    .compiler__input {
+        font-size: 14px;
+    }
+
+    .result__computer {
+        font-size: 13px;
+    }
+
+    .main__room_link {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .copy__room_link {
+        column-gap: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .compiler__form {
+        padding: 15px;
+    }
+
+    .compiler__btn,
+    .compiler__input,
+    .result__computer,
+    .copy__room_btn {
+        font-size: 10px;
+    }
+
+    .main__room_link {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .copy__room_link {
+        column-gap: 5px;
+    }
+
+    .leave__modal_block,
+    .reload__modal_block {
+        width: 90%;
+    }
+
+    .modal__box_btn {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
