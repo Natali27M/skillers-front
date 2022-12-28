@@ -20,7 +20,7 @@ import {
     checkProxyResults,
     clear,
     clearResults,
-    createUserResult,
+    createUserResult, deleteCodeTest,
     getFullTestResult,
     getProxyExercises, getUserBadges,
     getUserByTestResults,
@@ -233,7 +233,6 @@ const TestPage = () => {
     const sendDeleteTest = () => {
         dispatch(deleteTest(oneTest?.id));
         setApproveCompleted(true);
-
     };
 
     const changeDifficult = (obj) => {

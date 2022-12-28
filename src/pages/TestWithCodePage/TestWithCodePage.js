@@ -3,8 +3,9 @@ import {Link, Navigate, useNavigate, useParams} from 'react-router-dom';
 import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+    approveCodeTest,
     changeCodeResult, createCodeRate,
-    createCodeResult, createUserAchievement,
+    createCodeResult, createUserAchievement, deleteCodeTest,
     getOneCodeResult,
     getOneCodeTest, getOtherUserAchievement, getUserByCodeTestRate,
     getUserResultByCodeTest, updateCodeTest, updateUserAchievement
@@ -21,7 +22,7 @@ import {useForm} from 'react-hook-form';
 import ReactStarsRating from 'react-awesome-stars-rating';
 
 const TestWithCodePage = () => {
-    const {register, handleSubmit, reset} = useForm();
+    const {register, handleSubmit} = useForm();
 
     const paramsData = useParams();
 
@@ -29,7 +30,7 @@ const TestWithCodePage = () => {
 
     const resultId = paramsData?.id?.split('-')[1];
 
-    const {user} = useSelector(state => state['userReducers']);
+    const {user, roles} = useSelector(state => state['userReducers']);
 
     const {oneCodeResult, userResultByTest, status} = useSelector(state => state['codeResultsReducers']);
 
@@ -62,6 +63,8 @@ const TestWithCodePage = () => {
     const [registerModalOpen, setRegisterModalOpen] = useState(false);
 
     const [tempAuthorMark, setTempAuthorMark] = useState(null);
+
+    const [approveCompleted, setApproveCompleted] = useState(false);
 
     const [bug, setBug] = useState(false);
 
@@ -204,8 +207,24 @@ const TestWithCodePage = () => {
         }
     };
 
+
+    const approve = () => {
+        dispatch(approveCodeTest(oneCodeTest?.id));
+        setApproveCompleted(true);
+    };
+
+    const sendDeleteTest = () => {
+        dispatch(deleteCodeTest(oneCodeTest?.id));
+        setApproveCompleted(true);
+
+    };
+
     if (bug) {
         return <Navigate to={'/'} replace/>;
+    }
+
+    if (approveCompleted) {
+        return <Navigate to={'/user'} replace/>;
     }
 
     return (
@@ -329,6 +348,12 @@ const TestWithCodePage = () => {
                 <Link to={'/'} className={rootCss.default__button}>{EN ? 'To main' : 'На головну'}</Link>
             }
             {registerModalOpen && <SignUpModal setModalOpen={setRegisterModalOpen}/>}
+            {(!oneCodeTest?.attributes?.isApproved) && (roles?.includes('admin')) &&
+                <div className={testCss.approve__block}>
+                    <button className={testCss.approve__btn} onClick={() => approve()}>approve</button>
+                    <button className={testCss.delete__btn} onClick={() => sendDeleteTest()}>delete</button>
+                </div>
+            }
         </div>
     );
 };

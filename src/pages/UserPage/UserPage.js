@@ -14,7 +14,7 @@ import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
 import {
-    getCodeResultsForEvaluating,
+    getCodeResultsForEvaluating, getCodeTestsForApprove,
     getResultsByTest,
     getUserCodeResults,
     getUserResults,
@@ -39,6 +39,8 @@ const UserPage = () => {
     const {userResults, resultsByTest} = useSelector(state => state['resultReducers']);
 
     const {userAchievement, userRank} = useSelector(state => state['achievementsReducers']);
+
+    const {codeTestPageForApprove} = useSelector(state => state['codeTestReducers']);
 
     const {testsForApprove, testsByUser} = useSelector(state => state['testsReducers']);
 
@@ -124,6 +126,7 @@ const UserPage = () => {
 
     useEffect(() => {
         dispatch(getTestsForApprove(1));
+        dispatch(getCodeTestsForApprove(1));
     }, [pathname]);
 
 
@@ -425,7 +428,7 @@ const UserPage = () => {
                         <>
                             <Link to={'/admin'} className={rootCSS.default__button}>
                                 {EN ? 'Admin panel' : 'Адмін панель'}
-                                {!!testsForApprove?.data?.length && <div className={css.approve__time}>!</div>}
+                                {(!!testsForApprove?.data?.length || !!codeTestPageForApprove?.data?.length) && <div className={css.approve__time}>!</div>}
                             </Link>
                             <Link to={'/recruiter'}
                                   className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}

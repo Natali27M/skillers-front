@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 
-import rootCSS from '../../styles/root.module.css'
+import rootCSS from '../../styles/root.module.css';
 import css from './AdminPage.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteFeedback, getFeedback, updateIsApproved} from '../../store';
+import {deleteFeedback, getCodeTestsForApprove, getFeedback, updateIsApproved} from '../../store';
 import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
 import {
     UnapprovedMentors
-} from "../../components";
+} from '../../components';
 
 
 const AdminPage = () => {
@@ -21,16 +21,23 @@ const AdminPage = () => {
 
     const {testsForApprove} = useSelector(state => state['testsReducers']);
 
+    const {codeTestPageForApprove} = useSelector(state => state['codeTestReducers']);
+
     const {feedbackPage, isDelete, isConfirmed} = useSelector(state => state['feedbackReducers']);
 
     const dispatch = useDispatch();
 
     const [testsPageNumber, setTestsPageNumber] = useState(1);
+    const [codeTestsPageNumber, setCodeTestsPageNumber] = useState(1);
     const [feedbackPageNumber, setFeedbackPageNumber] = useState(1);
 
     useEffect(() => {
         dispatch(getTestsForApprove(testsPageNumber));
     }, [testsPageNumber]);
+    useEffect(() => {
+
+        dispatch(getCodeTestsForApprove(codeTestsPageNumber));
+    }, [codeTestsPageNumber]);
 
     useEffect(() => {
         dispatch(getFeedback(feedbackPageNumber));
@@ -38,12 +45,12 @@ const AdminPage = () => {
 
 
     const makeDeleteFeedback = (id) => {
-        dispatch(deleteFeedback(id))
+        dispatch(deleteFeedback(id));
     };
 
     const approve = (id, booleanValue) => {
-        dispatch(updateIsApproved({id, booleanValue}))
-    }
+        dispatch(updateIsApproved({id, booleanValue}));
+    };
 
     if (!(roles?.includes('admin'))) {
         return <Navigate to={'/user'} replace/>;
@@ -53,7 +60,7 @@ const AdminPage = () => {
         <div className={css.admin__page}>
             <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
-                <div className={css.admin__title}>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Tests for approve' : 'Тести для затвердження'}
                 </div>
                 <div className={css.tests__wrap}>
@@ -100,7 +107,54 @@ const AdminPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className={css.admin__title}>
+                <div className={rootCSS.default__title_24}>
+                    {EN ? 'Code tests for approve' : 'Практичні тести для затвердження'}
+                </div>
+                <div className={css.tests__wrap}>
+                    <div className={css.tests__header}>
+                        <div className={css.test__name}>
+                            {EN ? 'Name' : 'Назва'}
+                        </div>
+                        <div className={css.test__difficult}>
+                            {EN ? 'Difficult' : 'Складність'}
+                        </div>
+                        <div className={css.test__difficult}>
+                            {EN ? 'Tech id' : 'ІД технології'}
+                        </div>
+                        <div className={css.test__difficult}>
+                            {EN ? 'User id' : 'ІД користувача'}
+                        </div>
+                    </div>
+                    {codeTestPageForApprove?.data?.map(test =>
+                        <Link to={`/code-test/${test.id}`} className={css.tests__block} key={test.id}>
+                            <div className={css.test__name}>
+                                {test?.attributes?.testName}
+                            </div>
+                            <div className={css.test__difficult}>
+                                {test?.attributes?.difficult}
+                            </div>
+                            <div className={css.test__difficult}>
+                                {test?.attributes?.techId}
+                            </div>
+                            <div className={css.test__difficult}>
+                                {test?.attributes?.authorId}
+                            </div>
+                        </Link>
+                    )}
+                    {codeTestPageForApprove?.data?.length === 0 &&
+                        <div>{EN ? 'no code tests for approve' : 'немає практичних тестів для підтвердження'}</div>
+                    }
+                    <div className={css.pagination__wrap}>
+                        <div className={css.pagination__block}>
+                            <img src={arrow} alt="arrow" className={css.arrow__left}
+                                 onClick={() => codeTestsPageNumber > 1 && setCodeTestsPageNumber(codeTestsPageNumber - 1)}/>
+                            <div>{codeTestsPageNumber} / {codeTestPageForApprove?.meta?.pagination?.pageCount}</div>
+                            <img src={arrow} alt="arrow" className={css.arrow__right}
+                                 onClick={() => codeTestsPageNumber < codeTestPageForApprove.meta?.pagination?.pageCount && setCodeTestsPageNumber(codeTestsPageNumber + 1)}/>
+                        </div>
+                    </div>
+                </div>
+                <div className={rootCSS.default__title_24}>
                     {EN ? 'Feedback' : 'Відгуки'}
                 </div>
                 <div className={css.feedback__wrap}>
@@ -141,7 +195,7 @@ const AdminPage = () => {
                                         </div> :
                                         <div className={css.feedbackDone} onClick={() => approve(feedback?.id, true)}>
                                             <div className={css.feedback__hover}>
-                                                {EN ? "approve" : "підтвердити"}
+                                                {EN ? 'approve' : 'підтвердити'}
                                             </div>
                                         </div>
                                 }

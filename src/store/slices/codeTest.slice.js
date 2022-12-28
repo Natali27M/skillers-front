@@ -22,6 +22,27 @@ export const updateCodeTest = createAsyncThunk(
         }
     }
 );
+export const deleteCodeTest = createAsyncThunk(
+    'codeTestSlice/deleteCodeTest',
+    async (testId, {rejectWithValue}) => {
+        try {
+            return await codeTestServices.deleteTest(testId);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const approveCodeTest = createAsyncThunk(
+    'codeTestSlice/approveCodeTest',
+    async (testId, {rejectWithValue}) => {
+        try {
+            return await codeTestServices.updateTest(testId, {isApproved: true});
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 export const createCodeTest = createAsyncThunk(
     'codeTestSlice/createCodeTest',
@@ -66,6 +87,16 @@ export const getCodeTestsPaginated = createAsyncThunk(
         }
     }
 );
+export const getCodeTestsForApprove = createAsyncThunk(
+    'codeTestSlice/getCodeTestsForApprove',
+    async (pageNum, {rejectWithValue}) => {
+        try {
+            return await codeTestServices.getCodeTestsForApprove(pageNum);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 export const getCodeTestsByQueryPaginated = createAsyncThunk(
     'codeTestSlice/getCodeTestsByQueryPaginated',
@@ -87,6 +118,7 @@ const codeTestSlice = createSlice({
         error: null,
         oneCodeTest: null,
         codeTestPage: null,
+        codeTestPageForApprove: null,
         userCodeTestRate: null
     },
     extraReducers: {
@@ -100,6 +132,19 @@ const codeTestSlice = createSlice({
         },
 
         [getOneCodeTest.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.oneCodeTest = action.payload;
+        },
+        [approveCodeTest.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [approveCodeTest.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [approveCodeTest.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.oneCodeTest = action.payload;
         },
@@ -144,6 +189,19 @@ const codeTestSlice = createSlice({
         [getCodeTestsPaginated.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.codeTestPage = action.payload;
+        },
+        [getCodeTestsForApprove.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getCodeTestsForApprove.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getCodeTestsForApprove.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.codeTestPageForApprove = action.payload;
         },
 
         [getCodeTestsByQueryPaginated.pending]: (state) => {
