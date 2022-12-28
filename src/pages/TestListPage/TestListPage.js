@@ -3,7 +3,7 @@ import css from './TestListPage.module.css';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTechnology, getTests, getTestsByQuery} from '../../store/slices/testPage.slice';
-import {BackButton, CodeTestBlock, TestBlock} from '../../components';
+import {BackButton, TestBlock} from '../../components';
 
 import sortAsc from '../../images/sort-asc.svg';
 import sortDesc from '../../images/sotr-desc.svg';
