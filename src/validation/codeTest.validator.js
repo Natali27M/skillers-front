@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 export const CodeTestValidator = Joi.object({
-    name:
+    testName:
         Joi.string()
             .min(3)
             .max(35),
@@ -30,9 +30,16 @@ export const CodeTestValidator = Joi.object({
             .allow(null, ''),
     isPrivate:
         Joi.boolean(),
-    timeSeconds:
+    hours:
         Joi.number()
-            .min(1)
-            .max(100000)
-            .optional(),
+            .min(0)
+            .max(20),
+    minutes:
+        Joi.number()
+            .min(0)
+            .max(60),
+    seconds:
+        Joi.number()
+            .min(0)
+            .max(60)
 });

@@ -8,6 +8,7 @@ import compilerParamsSetter from '../../RootFunctions/compilerParamsSetter';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {CodeTestValidator} from '../../validation';
 import {createCodeTest} from '../../store';
+import {Navigate} from 'react-router-dom';
 
 
 const CreateCodeTestPage = () => {
@@ -17,24 +18,41 @@ const CreateCodeTestPage = () => {
 
     const {oneCodeTest} = useSelector(state => state['codeTestReducers']);
 
+    const {user} = useSelector(state => state['userReducers']);
+
+
     const {
         register, handleSubmit, formState: {errors}, reset
     } = useForm({resolver: joiResolver(CodeTestValidator)});
 
     const [isTech, setIsTech] = useState(true);
 
-    useEffect(() => {
-        console.log(oneCodeTest);
-    }, [oneCodeTest]);
-
     const dispatch = useDispatch();
 
     const createTest = (obj) => {
+        const timeSeconds = +obj.hours * 3600 + +obj.minutes * 60 + +obj.seconds;
+
+        delete obj.seconds;
+        delete obj.hours;
+        delete obj.minutes;
+
+
         const {languageId, editorLang} = compilerParamsSetter(technology?.id);
-        console.log({...obj, techId: technology?.id, languageId, editorLang});
-        dispatch(createCodeTest({...obj, techId: technology?.id, languageId, editorLang}));
+        // console.log({...obj, timeSeconds, techId: technology?.id, languageId, editorLang});
+        dispatch(createCodeTest({
+            ...obj,
+            timeSeconds,
+            techId: technology?.id,
+            languageId,
+            editorLang,
+            authorId: user?.id
+        }));
         reset();
     };
+
+    if (!user) {
+        return <Navigate to={'/login'} replace/>;
+    }
 
     return (
         <div className={testCss.createTest__page}>
@@ -49,7 +67,7 @@ const CreateCodeTestPage = () => {
                         <input
                             type="text"
                             placeholder={EN ? 'Enter the test name' : 'Введіть назву тесту'}
-                            {...register('name')}
+                            {...register('testName')}
                             autoComplete="off"
                             autoCorrect="off"
                             className={testCss.test__input}
@@ -148,20 +166,37 @@ const CreateCodeTestPage = () => {
                     </div>
                     <div className={testCss.input__wrap}>
                         <div className={testCss.test__header_input}>
-                            {EN ? 'Seconds to complete' : 'Секунди на виконання'}
+                            {EN ? 'Time to complete' : 'Час на виконання'}
                         </div>
-                        <input
-                            type="number"
-                            placeholder={EN ? 'Enter seconds to complete' : 'Введіть секунди на виконання'}
-                            {...register('timeSeconds')}
-                            min="1" max="100000"
-                            autoComplete="off"
-                            autoCorrect="off"
-                            className={testCss.difficult__input}
-                        />
-                        {errors.timeSeconds && <div className={testCss.difficult__error}>
-                            {EN ? 'Set an integer value between 1 and 100000' : 'Встановіть ціле значення від 1 до 100000'}
-                        </div>}
+                        <div className={testCss.time__inputs__wrap}>
+                            <input
+                                type="number"
+                                placeholder={EN ? 'Hours' : 'Години'}
+                                {...register('hours')}
+                                min="0" max="20"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                className={testCss.time__input}
+                            />
+                            <input
+                                type="number"
+                                placeholder={EN ? 'Minutes' : 'Хвилини'}
+                                {...register('minutes')}
+                                min="0" max="60"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                className={testCss.time__input}
+                            />
+                            <input
+                                type="number"
+                                placeholder={EN ? 'Seconds' : 'Секунди'}
+                                {...register('seconds')}
+                                min="0" max="60"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                className={testCss.time__input}
+                            />
+                        </div>
                     </div>
                     <div className={testCss.input__wrap_private}>
                         <div className={testCss.input__wrap_private__label}>
