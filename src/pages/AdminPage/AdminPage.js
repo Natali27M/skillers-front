@@ -32,7 +32,6 @@ const AdminPage = () => {
         dispatch(getFeedback(feedbackPageNumber));
     }, [feedbackPageNumber, isDelete, isConfirmed]);
 
-
     const makeDeleteFeedback = (id) => {
         dispatch(deleteFeedback(id))
     };
