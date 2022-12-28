@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 
@@ -22,7 +22,7 @@ import {
     TestListPage,
     TestPage,
     UserPage,
-    HomeFirepadPage,
+    HomeFirepadPage, MainFirepadPage,
 } from './pages';
 import {Layout} from './components';
 import {
@@ -30,7 +30,6 @@ import {
     clearCreateTest,
     getLanguage,
     getUserAchievement,
-    getUserBadges,
     getUserBadges,
     getUserResults,
     getUserResultsAll,
