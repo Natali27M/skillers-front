@@ -787,46 +787,440 @@ const cSharpPlan = {
     nameUA: 'C# покроковий план',
     items: [
         {
-            titleEN: 'Basics of programming',
-            titleUA: 'Основи програмування',
-            bodyEN: 'Before you start developing applications with C#, you need to learn the basics of the language. You can do this by taking online courses, reading books, or taking a college course on C# programming.',
-            bodyUA: 'Перш ніж стати Python розробником, необхідно розуміти основи програмування та кодування. Ви повинні вивчити основи програмування, такі як цикли, умови, функції, змінні та структури даних.',
+            titleEN: 'How Long Does it Take to Learn C#?',
+            titleUA: 'Скільки часу потрібно для вивчення C#?',
+            bodyEN: 'It will take you about two to three months to learn the basics of C#, assuming you devote an hour or so a day to learning. You may learn C# quicker if you study part-time or full-time.\n' +
+                '####\n' +
+                'But, don’t let this figure mislead you. If you want to become a professional developer who codes in C#, you’ll need to spend a lot more time with the language. It typically takes at least a year to develop a firm understanding of C# that will get you far in a professional setting.\n' +
+                '####\n' +
+                'Your learning journey will never be over. There will always be something new for you to learn. But, after a few months, you should have the knowledge you need to build some powerful applications by yourself.\n' +
+                '####\n' +
+                '***The Best Way to Learn C#***\n' +
+                '####\n' +
+                'So, you’re thinking to yourself: “Learning C# sounds like a good idea.” That’s great. But now you will likely be asking: “How do you actually learn to code in C#?”\n' +
+                '####\n' +
+                'To help you answer this question, we’re going to break it down into two parts. First, we’ll discuss the high-level skills that you need to master. Then, we will talk about learning methods.\n' +
+                '####\n' +
+                '***How to Learn C# Free***\n' +
+                '####\n' +
+                'C# is a powerful language and there’s no doubt it has a lot of uses. But before you go on to building complex video games or websites, you’ll need to master the basics of coding in C#.\n' +
+                '####\n' +
+                'Once you’ve learned the basics, you’ll have a solid foundation of knowledge you can later use to explore more advanced topics. When you know the basic syntax for C#, you’ll never need to learn it again.\n' +
+                '####\n' +
+                'Let’s explore the main topics that you need to learn about to master C#.\n' +
+                '####\n' +
+                '***Syntax and Variables***\n' +
+                '####\n' +
+                'Syntax is the basic set of rules and procedures that guide how you code. Before you go on further, you’ll need to master the syntax for C#.\n' +
+                '####\n' +
+                'The next step in your journey will be to learn about variables. These are used to store data in a program. Here are the main topics related to syntax and variables that you’ll need to learn:\n' +
+                '####\n' +
+                '- How to create a C# program\n' +
+                '- How to receive user input\n' +
+                '- How to write comments\n' +
+                '- How to declare a variable\n' +
+                '- What data types can be used with variables\n' +
+                '- How to convert the data type used by a variable\n' +
+                '####\n' +
+                '***Loops and Conditionals***\n' +
+                '####\n' +
+                'Loops allow you to automate repetitive tasks in a program. They are useful because they allow you to reuse similar code multiple times instead of repeating code manually in your program.\n' +
+                '####\n' +
+                'Conditionals allow you to control the flow of your program. They run certain code when a set of conditions is met in your program. This gives you greater control over when certain parts of a program are run.\n' +
+                '####\n' +
+                'The main topics you should explore related to loops and conditionals are:\n' +
+                '####\n' +
+                '- If and else statements\n' +
+                '- Comparison operators\n' +
+                '- Boolean data type\n' +
+                '- Logical operators\n' +
+                '- Truth tables\n' +
+                '- For loops and the for each statement\n' +
+                '####\n' +
+                '***Methods and Arrays***\n' +
+                '####\n' +
+                'A method is a type of function that groups together a block of code and performs a specific action in a program. For instance, a method could add two numbers together or go through a list and print each item to the console. Methods are the building blocks of code in C#.\n' +
+                '####\n' +
+                'An array is a method of storing lists of data in C#. For instance, an array could store data on a list of fruits sold at a fruit stand.\n' +
+                '####\n' +
+                'Here are the main topics related to methods and arrays that you should master:\n' +
+                '####\n' +
+                '- How to define a method\n' +
+                '- How to call a method\n' +
+                '- Method parameters\n' +
+                '- Parameters vs. arguments\n' +
+                '- Method overloading\n' +
+                '- What is an array\n' +
+                '- How to access items in an array\n' +
+                '- How to change items in an array\n' +
+                '####\n' +
+                '***Classes and Objects***\n' +
+                '####\n' +
+                'C# is an object-oriented programming language and it relies on classes and objects to determine the structure of data in a program.\n' +
+                '####\n' +
+                'Classes are like blueprints that define how a set of data should be structured. For instance, a class may define all the data that a user’s account can store in a banking application. Objects, on the other hand, are individual instances of a class. So an object may contain the account information for a specific customer based on the bank account class blueprint.\n' +
+                '####\n' +
+                'The main topics you should know about related to classes and objects are:\n' +
+                '####\n' +
+                '- What is a class\n' +
+                '- What is an object\n' +
+                '- Fields and properties\n' +
+                '- Public vs. private access modifiers\n' +
+                '- Constructors\n' +
+                '- this keyword\n' +
+                '- Overloading constructors\n' +
+                '- The dot notation\n' +
+                '####\n' +
+                '***Inheritance and Interfaces***\n' +
+                '####\n' +
+                'Inheritance is a feature of object-oriented programming that allows you to create a class based on existing ones. Interfaces allow you to enforce certain properties on a class.\n' +
+                '####\n' +
+                'Both these features can help you reduce repetition in your code and write more efficient and readable programs. The main topics you should master are:\n' +
+                '####\n' +
+                '- What is an interface\n' +
+                '- How to build an interface\n' +
+                '- How to test an interface\n' +
+                '- Parent and child classes\n' +
+                '- How to create a parent class\n' +
+                '- The inherited keyword\n' +
+                '- Accessing inherited members using base\n' +
+                '- Overriding inherited members of a class\n' +
+                '####\n' +
+                'Once you’ve mastered these basic topics, you’ll be ready to take the next step in your journey: building projects. Ideally, you’ll want to start building projects as soon as you can, even as you are learning these concepts. This will help you reinforce your knowledge and practice the theory that you have learned in class.\n' +
+                '####\n' +
+                'In addition, once you’ve learned the basics, you can go on to learn frameworks like .Net or explore the Unity game engine.\n' +
+                '####\n' +
+                '\n',
+            bodyUA: 'Вам знадобиться приблизно два-три місяці, щоб вивчити основи C#, за умови, що ви будете приділяти навчанню близько години на день. Ви можете вивчити C# швидше, якщо навчатиметеся за денною або заочною формою навчання.\n' +
+                '####\n' +
+                'Але нехай ця цифра не вводить вас в оману. Якщо ви хочете стати професійним розробником, який кодує на C#, вам потрібно буде витратити набагато більше часу на вивчення мови. Зазвичай потрібно щонайменше рік, щоб розвинути тверде розуміння C#, яке допоможе вам далеко піти в професійному середовищі.\n' +
+                '####\n' +
+                'Ваша навчальна подорож ніколи не закінчиться. Ви завжди будете дізнаватися щось нове. Але вже через кілька місяців ви будете володіти знаннями, необхідними для того, щоб самостійно створювати потужні додатки.\n' +
+                '####\n' +
+                '***Найкращий спосіб вивчити C#***\n' +
+                '####\n' +
+                'Отже, ви думаєте про себе: "Вивчення C# звучить як гарна ідея". Це чудово. Але тепер ви, швидше за все, запитаєте: "Як же насправді навчитися програмувати на C#?"\n' +
+                '####\n' +
+                'Щоб допомогти вам відповісти на це питання, ми розділимо його на дві частини. Спочатку ми обговоримо навички високого рівня, які вам необхідно опанувати. Потім поговоримо про методи навчання.\n' +
+                '####\n' +
+                '***Як вивчити C# безкоштовно***\n' +
+                '####\n' +
+                'C# - це потужна мова, і немає сумнівів, що вона має безліч застосувань. Але перш ніж перейти до створення складних відеоігор або веб-сайтів, вам потрібно освоїти основи кодування на C#.\n' +
+                '####\n' +
+                'Вивчивши основи, ви отримаєте міцний фундамент знань, який згодом зможете використовувати для вивчення більш складних тем. Знаючи базовий синтаксис C#, вам більше ніколи не доведеться його вчити.\n' +
+                '####\n' +
+                'Розглянемо основні теми, які необхідно вивчити для освоєння мови C#.\n' +
+                '####\n' +
+                '***Синтаксис та змінні***\n' +
+                '####\n' +
+                'Синтаксис - це основний набір правил і процедур, які визначають, як ви пишете код. Перш ніж йти далі, вам потрібно освоїти синтаксис мови C#.\n' +
+                '####\n' +
+                'Наступним кроком у вашій подорожі буде вивчення змінних. Вони використовуються для зберігання даних у програмі. Ось основні теми, пов\'язані з синтаксисом і змінними, які вам потрібно буде вивчити:\n' +
+                '####\n' +
+                '- Як створити програму на C#\n' +
+                '- Як отримувати вхідні дані від користувача\n' +
+                '- Як писати коментарі\n' +
+                '- Як оголосити змінну\n' +
+                '- Які типи даних можуть використовуватись зі змінними\n' +
+                '- Як перетворити тип даних, що використовується змінною\n' +
+                '####\n' +
+                '***Цикли та умови***\n' +
+                '####\n' +
+                'Цикли дозволяють автоматизувати повторювані задачі в програмі. Вони корисні тим, що дозволяють багаторазово використовувати подібний код замість того, щоб повторювати код вручну у своїй програмі.\n' +
+                '####\n' +
+                'Умовні переходи дозволяють контролювати потік вашої програми. Вони запускають певний код, коли у вашій програмі виконується набір умов. Це дає вам більший контроль над тим, коли виконуються певні частини програми.\n' +
+                '####\n' +
+                'Основні теми, які слід вивчити, пов\'язані з циклами та умовами\n' +
+                '####\n' +
+                '- Оператори if та else\n' +
+                '- Оператори порівняння\n' +
+                '- Логічний тип даних\n' +
+                '- Логічні оператори\n' +
+                '- Таблиці істинності\n' +
+                '- Цикли For та оператор for each\n' +
+                '####\n' +
+                '***Методи та масиви***\n' +
+                '####\n' +
+                'Метод - це тип функції, яка об\'єднує блок коду і виконує певну дію в програмі. Наприклад, метод може додавати два числа або перебирати список і виводити кожен елемент на консоль. Методи є будівельними блоками коду в C#.\n' +
+                '####\n' +
+                'Масив - це спосіб зберігання списків даних у мові C#. Наприклад, масив може зберігати дані про список фруктів, що продаються у фруктовому кіоску.\n' +
+                '####\n' +
+                'Ось основні теми, пов\'язані з методами та масивами, які варто засвоїти:\n' +
+                '####\n' +
+                '- Як описати метод\n' +
+                '- Як викликати метод\n' +
+                '- Параметри методу\n' +
+                '- Порівняння параметрів з аргументами\n' +
+                '- Перевантаження методів\n' +
+                '- Що таке масив\n' +
+                '- Як отримати доступ до елементів масиву\n' +
+                '- Як змінювати елементи масиву\n' +
+                '####\n' +
+                '***Класи та об\'єкти***\n' +
+                '####\n' +
+                'C# є об\'єктно-орієнтованою мовою програмування і для визначення структури даних у програмі покладається на класи та об\'єкти.\n' +
+                '####\n' +
+                'Класи - це як креслення, які визначають, як повинен бути структурований набір даних. Наприклад, клас може визначати всі дані, які може зберігати обліковий запис користувача в банківському додатку. Об\'єкти, з іншого боку, є окремими екземплярами класу. Так, об\'єкт може містити інформацію про рахунок конкретного клієнта на основі шаблону класу банківського рахунку.\n' +
+                '####\n' +
+                'Основні теми, про які варто знати, пов\'язані з класами та об\'єктами:\n' +
+                '####\n' +
+                '- Що таке клас\n' +
+                '- Що таке об\'єкт\n' +
+                '- Поля та властивості\n' +
+                '- Модифікатори доступу public vs. private\n' +
+                '- Конструктори\n' +
+                '- ключове слово this\n' +
+                '- Перевантаження конструкторів\n' +
+                '- Крапкова нотація\n' +
+                '####\n' +
+                '***Успадкування та інтерфейси***\n' +
+                '####\n' +
+                'Спадковість - це властивість об\'єктно-орієнтованого програмування, яка дозволяє створювати клас на основі вже існуючих. Інтерфейси дозволяють накладати на клас певні властивості.\n' +
+                '####\n' +
+                'Обидві ці можливості можуть допомогти вам зменшити кількість повторень у вашому коді та писати більш ефективні та читабельні програми. Основними темами, які ви повинні засвоїти, є:\n' +
+                '####\n' +
+                '- Що таке інтерфейс\n' +
+                '- Як створити інтерфейс\n' +
+                '- Як тестувати інтерфейс\n' +
+                '- Батьківський та дочірні класи\n' +
+                '- Як створити батьківський клас\n' +
+                '- Ключове слово inherited\n' +
+                '- Доступ до успадкованих членів з допомогою base\n' +
+                '- Перевизначення успадкованих членів класу\n' +
+                '####\n' +
+                'Опанувавши ці базові теми, ви будете готові зробити наступний крок у вашій подорожі: створювати проекти. В ідеалі, ви захочете почати створювати проекти якомога швидше, навіть якщо ви вивчаєте ці концепції. Це допоможе вам закріпити свої знання та застосувати на практиці теорію, яку ви вивчили в класі.\n' +
+                '####\n' +
+                'Крім того, вивчивши основи, ви можете перейти до вивчення фреймворків, таких як .Net, або дослідити ігровий рушій Unity.\n' +
+                '####',
         },
         {
-            titleEN: 'Familiarize Yourself with Visual Studio',
-            titleUA: 'Ознайомлення з Visual Studio',
-            bodyEN: 'Visual Studio is the Microsoft software used to develop applications using C#. You\'ll need to learn how to use the development environment, how to create projects, and how to debug your code.',
-            bodyUA: 'Після того, як ви отримаєте базове розуміння Java, розгляньте можливість проходження онлайн або особистого курсу для поглиблення своїх знань. Це допоможе вам краще зрозуміти мову і краще засвоїти більш складні теми.',
+            titleEN: 'Online C# Courses',
+            titleUA: 'Курси C# онлайн',
+            bodyEN: '[Introduction to C# Programming and Unity](https://www.coursera.org/learn/introduction-programming-unity)\n' +
+                '####\n' +
+                '- Price: Free\n' +
+                '- Audience: Beginners\n' +
+                '####\n' +
+                'This course is for people who want to build video games using C# and Unity on either Windows or Mac. Unity is one of the most popular game engines and is a valuable industry skill.\n' +
+                '####\n' +
+                'In this course, you’ll learn the basics of C# and object-oriented programming. You’ll work toward building a game that reinforces the skills you have learned in the course.\n' +
+                '####\n' +
+                '[Learn C# by Codecademy](https://www.codecademy.com/learn/learn-c-sharp)\n' +
+                '####\n' +
+                '- Price: Free\n' +
+                '- Audience: Beginners\n' +
+                '####\n' +
+                'This course covers the fundamental programming features in the C# language. Expect to learn everything from how to declare a variable all the way to using references and writing LINQ queries.\n' +
+                '####\n' +
+                '[C# Fundamentals](https://www.pluralsight.com/courses/csharp-fundamentals-dev)\n' +
+                '- Price: Free\n' +
+                '- Audience: Beginners\n' +
+                '####\n' +
+                'C# Fundamentals introduces learners to the basic syntax of C#. You’ll learn how to write a program in C# and you’ll venture on to discuss .NET. Toward the end of the course, you’ll learn about object-oriented programming and how it applies to C#.\n',
+            bodyUA: '[Вступ до програмування на C# та Unity](https://www.coursera.org/learn/introduction-programming-unity)\n' +
+                '####\n' +
+                '- Ціна: Безкоштовно\n' +
+                '- Аудиторія: Початківці\n' +
+                '####\n' +
+                'Цей курс для тих, хто хоче створювати відеоігри за допомогою C# та Unity на Windows або Mac. Unity є одним з найпопулярніших ігрових рушіїв і є цінною індустріальною навичкою.\n' +
+                '####\n' +
+                'На цьому курсі ви вивчите основи C# та об\'єктно-орієнтованого програмування. Ви будете працювати над створенням гри, яка закріпить навички, отримані на курсі.\n' +
+                '####\n' +
+                '[Вивчайте C# від Codecademy](https://www.codecademy.com/learn/learn-c-sharp)\n' +
+                '####\n' +
+                '- Вартість: Безкоштовно\n' +
+                '- Аудиторія: Початківці\n' +
+                '####\n' +
+                'Цей курс охоплює фундаментальні можливості програмування на мові C#. Очікується, що ви дізнаєтесь все: від оголошення змінної до використання посилань та написання LINQ-запитів.\n' +
+                '####\n' +
+                '[C# Fundamentals](https://www.pluralsight.com/courses/csharp-fundamentals-dev)\n' +
+                '- Вартість: Безкоштовно\n' +
+                '- Аудиторія: Початківці\n' +
+                '####\n' +
+                'Курс "Основи C#" знайомить слухачів з базовим синтаксисом мови C#. Ви навчитеся писати програми на C# і наважитеся обговорити .NET. Наприкінці курсу ви дізнаєтесь про об\'єктно-орієнтоване програмування та його застосування в C#.',
         },
         {
-            titleEN: 'Learn the .NET Framework',
-            titleUA: 'Вивчення .NET Фреймворку',
-            bodyEN: 'The .NET Framework is the platform that C# runs on. To become a C# developer, you\'ll need to understand the classes and methods of the .NET Framework and how to use them.',
-            bodyUA: '.NET Framework - це платформа, на якій працює мова C#. Щоб стати C# розробником, вам потрібно розуміти класи та методи .NET Framework та як їх використовувати.',
+            titleEN: 'Online C# Books',
+            titleUA: 'Онлайн книги по C#',
+            bodyEN: '[C# Programming Yellow Book by Rob Miles](http://www.csharpcourse.com/)\n' +
+                '####\n' +
+                'This book is used by the University of Hull to teach the first year of their computer science course. In this book, you’ll cover all the basics of C#. You will learn about data processing, solving problems with C#, and the syntax behind C#.\n' +
+                '####\n' +
+                'This book includes some more advanced examples so that you can push your knowledge.\n' +
+                '####\n' +
+                '[Fundamentals of Computer Programming with C#](https://www.introprogramming.info/wp-content/uploads/2013/07/Books/CSharpEn/Fundamentals-of-Computer-Programming-with-CSharp-Nakov-eBook-v2013.pdf)\n' +
+                '####\n' +
+                'This book is an excellent introduction to the C# programming language. The book is over 1000 pages long so there’s plenty of material to learn.\n' +
+                '####\n' +
+                'You’ll start with a detailed introduction to programming and then you’ll slowly work your way through all of the fundamental aspects of C#.\n' +
+                '####\n' +
+                '[Learn C# in One Day](https://www.amazon.co.uk/Beginners-Hands-Project-Coding-Project-ebook/dp/B016Z18MLG)\n' +
+                '####\n' +
+                'Unlike other books which go into significant depth on various aspects of C#, this book takes another approach. It aims to teach you the basics of C# in as little time as possible.\n' +
+                '####\n' +
+                'This book only covers what you need to know to write a simple program in C#. It is great for people who have little to no experience with programming or C#.\n',
+            bodyUA: '[C# Programming Yellow Book by Rob Miles](http://www.csharpcourse.com/)\n' +
+                '####\n' +
+                'Ця книга використовується в Університеті Халла для викладання першого курсу комп\'ютерних наук. У цій книзі ви охопите всі основи мови C#. Ви дізнаєтесь про обробку даних, розв\'язування задач за допомогою C# та синтаксис мови C#.\n' +
+                '####\n' +
+                'Ця книга містить більш складні приклади, щоб ви могли поглибити свої знання.\n' +
+                '####\n' +
+                '[Основи програмування мовою C#](https://www.introprogramming.info/wp-content/uploads/2013/07/Books/CSharpEn/Fundamentals-of-Computer-Programming-with-CSharp-Nakov-eBook-v2013.pdf)\n' +
+                '####\n' +
+                'Ця книга є чудовим вступом до мови програмування C#. Книга налічує понад 1000 сторінок, тому в ній є багато матеріалу для вивчення.\n' +
+                '####\n' +
+                'Ви почнете з детального вступу до програмування, а потім повільно пройдете через усі фундаментальні аспекти C#.\n' +
+                '####\n' +
+                '[Вивчити C# за один день](https://www.amazon.co.uk/Beginners-Hands-Project-Coding-Project-ebook/dp/B016Z18MLG)\n' +
+                '####\n' +
+                'На відміну від інших книг, які заглиблюються в різні аспекти C#, ця книга використовує інший підхід. Вона спрямована на те, щоб навчити вас основам мови C# за якомога менший час.\n' +
+                '####\n' +
+                'Ця книга охоплює лише те, що потрібно знати, щоб написати просту програму на C#. Вона чудово підходить для людей, які мають невеликий досвід програмування або взагалі не мають досвіду роботи з C#.',
         },
         {
-            titleEN: 'Practice, Practice, Practice',
-            titleUA: 'Практика, практика, практика',
-            bodyEN: 'To get better at coding in C#, you\'ll need to practice. Practice writing code, debugging it, and solving problems. You can find plenty of practice problems online or create your own.',
-            bodyUA: 'Щоб краще навчитися кодувати на C#, вам знадобиться практика. Практикуйтеся в написанні коду, його налагодженні та вирішенні проблем. Ви можете знайти безліч практичних завдань в Інтернеті або створити свої власні.',
+            titleEN: 'Online C# Resources',
+            titleUA: 'Онлайн ресурси по C#',
+            bodyEN: '***Microsoft C# Tutorials***\n' +
+                '####\n' +
+                'C# was developed by Microsoft, so it makes sense the company has been active in writing documentation and learning resources for the language.\n' +
+                '####\n' +
+                'On the Microsoft website, you’ll find a stockpile of great tutorials that you can use to learn C#. For instance, Microsoft has a list of videos and articles to help you learn C# on their [.Net website](https://dotnet.microsoft.com/learn/csharp).\n' +
+                '####\n' +
+                '***Microsoft C# Documentation***\n' +
+                '####\n' +
+                'You can also learn from [Microsoft’s C# guide](https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/) in the language’s documentation, which is a great starting point for beginners. The Microsoft C# guide covers all the basic principles of C# that you’ll need to know to code an application using the language.\n' +
+                '####\n' +
+                '***[LearnCS.org](http://learncs.org/)***\n' +
+                '####\n' +
+                'LearnCS.org is a basic introduction on how to code in C#. You’ll cover all the basics from arrays and dictionaries to variables and data types. This guide is under construction so you can expect to see more updates in the future.\n',
+            bodyUA: '***Уроки Microsoft C#***.\n' +
+                '####\n' +
+                'Мова C# була розроблена компанією Microsoft, тому цілком логічно, що компанія активно займається написанням документації та навчальних ресурсів для цієї мови.\n' +
+                '####\n' +
+                'На сайті Microsoft ви знайдете безліч чудових навчальних матеріалів, які можна використовувати для вивчення мови C#. Наприклад, на сайті Microsoft є список відео та статей, які допоможуть вам вивчити C# на їхньому [.Net сайті](https://dotnet.microsoft.com/learn/csharp).\n' +
+                '####\n' +
+                '***Документація Microsoft C#***\n' +
+                '####\n' +
+                'Ви також можете вивчити [Microsoft\'s C# guide](https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/) в документації до мови, що є чудовою відправною точкою для початківців. Посібник Microsoft C# охоплює всі основні принципи мови C#, які вам знадобляться для написання додатків з використанням цієї мови.\n' +
+                '####\n' +
+                '***[LearnCS.org](http://learncs.org/)***\n' +
+                '####\n' +
+                'LearnCS.org - це базовий вступ до програмування на C#. Ви охопите всі основи від масивів і словників до змінних і типів даних. Цей посібник знаходиться на стадії розробки, тому ви можете очікувати більше оновлень у майбутньому.',
         },
         {
-            titleEN: 'Create a Portfolio',
-            titleUA: 'Створіть портфоліо',
-            bodyEN: 'Once you\'ve mastered the basics of C# and have some practice under your belt, you can start creating applications and projects to showcase your skills. You can also include any projects you\'ve done in school or at work.',
-            bodyUA: 'Після того, як ви освоїте основи C# і отримаєте деяку практику, ви можете почати створювати додатки і проекти, щоб продемонструвати свої навички. Ви також можете включити будь-які проекти, які ви робили в школі або на роботі.',
+            titleEN: 'Build a Project',
+            titleUA: 'Створіть проєкт',
+            bodyEN: 'Learning from tutorials can only take you so far; after you’ve mastered the basics, you should start working on your own projects.\n' +
+                '####\n' +
+                'Working on projects is a great way to learn because they allow you to apply the theories that you have learned. This can help with boosting retention. You’ll have to think about both the concepts you have learned and how they apply to the specific project that you’re building.\n' +
+                '####\n' +
+                'To start, you should focus on building a few basic projects. This will help you get used to working on independent work that you’ve chosen. Then, when you’re ready, you can move your attention toward bigger projects.\n' +
+                '####\n' +
+                'If you’re stuck for inspiration, ask yourself the question: “What problems do I frequently encounter?” This will help you get into the mindset of thinking about new ideas.\n' +
+                '####\n' +
+                'Here are a few examples of starter projects you could build using C#:\n' +
+                '####\n' +
+                '- A login page for a game\n' +
+                '- An app that stores a list of trading cards that you collect\n' +
+                '- A ticketing application for teams\n' +
+                '- A program that helps you archive your files\n' +
+                '- An app to share clips from your favorite podcasts\n' +
+                '####\n' +
+                'If you’re looking to build a game with C#, then you must first come up with concept ideas. All you need to do is rack your mind for answers to the question: “what is my dream game?” Do remember that you should start small.\n' +
+                '####\n' +
+                'Once you’ve finished your first project, keep going. Build another one and make it more technically complex than your last one, if you feel like you are ready. Or, you could add new features to an existing project. This will help you get into the mindset of “how can I improve my work”, which will allow you to learn C# faster.\n' +
+                '\n',
+            bodyUA: 'Навчання за підручниками може завести вас лише на певний час, після того, як ви опануєте основи, ви повинні почати працювати над власними проектами.\n' +
+                '####\n' +
+                'Робота над проектами - це чудовий спосіб навчання, оскільки вони дозволяють застосувати вивчені теорії на практиці. Це може допомогти підвищити рівень запам\'ятовування. Вам доведеться подумати як про концепції, які ви вивчили, так і про те, як вони застосовуються до конкретного проекту, який ви створюєте.\n' +
+                '####\n' +
+                'Для початку вам слід зосередитися на створенні кількох базових проектів. Це допоможе вам звикнути до самостійної роботи над обраною вами темою. Потім, коли ви будете готові, ви можете перенести свою увагу на більші проекти.\n' +
+                '####\n' +
+                'Якщо вам не вистачає натхнення, задайте собі питання: "З якими проблемами я найчастіше стикаюся?". Це допоможе вам налаштуватися на обдумування нових ідей.\n' +
+                '####\n' +
+                'Ось кілька прикладів стартових проектів, які можна створити за допомогою C#:\n' +
+                '####\n' +
+                '- Сторінка входу в гру\n' +
+                '- Додаток, який зберігає список торгових карток, які ви збираєте\n' +
+                '- Додаток для продажу квитків для команд\n' +
+                '- Програма, яка допомагає архівувати файли\n' +
+                '- Додаток, щоб ділитися фрагментами улюблених подкастів\n' +
+                '####\n' +
+                'Якщо ви хочете створити гру за допомогою C#, то спочатку ви повинні придумати концептуальну ідею. Все, що вам потрібно зробити, це поламати голову в пошуках відповідей на питання: "Яка гра моєї мрії?" Пам\'ятайте, що починати потрібно з малого.\n' +
+                '####\n' +
+                'Закінчивши свій перший проект, не зупиняйтеся на досягнутому. Створіть ще один і зробіть його більш технічно складним, ніж попередній, якщо відчуваєте, що готові до цього. Або ви можете додати нові функції до вже існуючого проекту. Це допоможе вам зануритися в мислення "як я можу покращити свою роботу", що дозволить вам швидше вивчити C#.',
         },
         {
-            titleEN: 'Network and Look for Jobs',
-            titleUA: 'Налагоджуйте зв\'язки та шукайте роботу',
-            bodyEN: 'Once you have a portfolio, you can start networking with other developers and looking for jobs. You can join online forums, attend meetups, and look for job postings online.',
-            bodyUA: 'Після того, як у вас є портфоліо, ви можете почати налагоджувати зв\'язки з іншими розробниками та шукати роботу. Ви можете приєднатися до онлайн-форумів, відвідувати зустрічі та шукати оголошення про роботу в Інтернеті.',
+            titleEN: 'Join a Developer Community',
+            titleUA: 'Приєднуйтесь до спільноти розробників',
+            bodyEN: 'Learning to code is not a journey you should take in solitude. On the contrary, you should try to expose yourself to as many other developers as possible.\n' +
+                '####\n' +
+                'Joining a developer community should be high on your list of priorities when learning how to code. Developer communities are hubs for developers to come together, help each other, and discuss technical and non-technical questions.\n' +
+                '####\n' +
+                'When you join a community, you’ll be able to ask questions to other developers. You’ll be able to your support when you can and, in the process, get a greater sense of the C# developer ecosystem.\n' +
+                '####\n' +
+                'Are you unsure which communities to join? Here is a list of a few communities that are great for C# beginners:\n' +
+                '####\n' +
+                '- [C# on Discord](https://aka.ms/csharp-discord) : The C# community on Discord is a group of developers who have come together to discuss C#. In the community, you can ask questions, seek feedback on your work, and help others whenever possible.\n' +
+                '- [.Net Blog](https://devblogs.microsoft.com/dotnet/) : The .Net blog, while not exactly a community, is a great source of information for all .Net developers, and is worth a follow.\n' +
+                '- [Stack Overflow](https://stackoverflow.com/questions/tagged/.net?sort=frequent) : Stack Overflow is a website used by developers around the world to ask and answer programming questions. There are many great questions on Stack Overflow related to C# already. If you have your own, you can always post it to the platform.\n' +
+                '####\n' +
+                'Your first priority when joining a developer community should be to find ways to contribute. Ask yourself: How can I make this community a better place? Do you have a question to ask? Great, post it in a community. Can you help another developer? If so, extend your support.\n' +
+                '####\n' +
+                'If you’re looking for more communities for C# developers, check out Microsoft’s [list of C# communities](https://dotnet.microsoft.com/platform/community).\n' +
+                '\n',
+            bodyUA: 'Навчання кодуванню - це не та подорож, яку слід здійснювати на самоті. Навпаки, ви повинні намагатися познайомитися з якомога більшою кількістю інших розробників.\n' +
+                '####\n' +
+                'Приєднання до спільноти розробників повинно бути одним з ваших пріоритетів при вивченні програмування. Спільноти розробників - це центри, де розробники збираються разом, допомагають один одному та обговорюють технічні та нетехнічні питання.\n' +
+                '####\n' +
+                'Приєднавшись до спільноти, ви зможете задавати питання іншим розробникам. Ви зможете отримати підтримку, коли зможете, і, в процесі, отримати більше розуміння екосистеми C# розробників.\n' +
+                '####\n' +
+                'Не знаєте, до якої спільноти приєднатися? Ось перелік декількох спільнот, які можуть бути корисними для початківців C# розробників:\n' +
+                '####\n' +
+                '- [C# on Discord](https://aka.ms/csharp-discord) : Спільнота C# на Discord - це група розробників, які зібралися разом для обговорення C#. У спільноті ви можете задавати питання, шукати відгуки про свою роботу та допомагати іншим, коли це можливо.\n' +
+                '- [.Net Blog](https://devblogs.microsoft.com/dotnet/) : Блог .Net, хоча і не є спільнотою, є чудовим джерелом інформації для всіх .Net розробників, і за ним варто стежити.\n' +
+                '- [Stack Overflow](https://stackoverflow.com/questions/tagged/.net?sort=frequent) : Stack Overflow - це веб-сайт, який використовується розробниками по всьому світу для того, щоб задавати і відповідати на питання програмування. На Stack Overflow вже є багато чудових запитань, пов\'язаних з C#. Якщо у вас є своє, ви завжди можете задати його на платформі.\n' +
+                '####\n' +
+                'Вашим першим пріоритетом при приєднанні до спільноти розробників має бути пошук способів зробити свій внесок. Запитайте себе: Як я можу зробити цю спільноту кращим місцем? У вас є питання, яке ви хочете задати? Чудово, задайте його у спільноті. Чи можете ви допомогти іншому розробнику? Якщо так, надайте свою підтримку.\n' +
+                '####\n' +
+                'Якщо вам потрібні інші спільноти для C# розробників, перегляньте [список C# спільнот від Microsoft](https://dotnet.microsoft.com/platform/community).',
         },
         {
-            titleEN: 'Stay Up to Date',
-            titleUA: 'Будьте в курсі подій',
-            bodyEN: 'The world of programming is constantly changing, so you\'ll need to stay up to date on the latest trends and technologies. Read blogs, watch tutorials, and attend conferences to stay current.',
-            bodyUA: 'Світ програмування постійно змінюється, тому вам потрібно бути в курсі останніх тенденцій та технологій. Читайте блоги, дивіться відеоуроки та відвідуйте конференції, щоб бути в курсі подій.',
+            titleEN: 'Practice Your C# Skills',
+            titleUA: 'Практикуйте свої навички роботи з C#',
+            bodyEN: 'Practice, practice, practice. This principle is so important that it cannot be repeated enough.\n' +
+                '####\n' +
+                'Coding is a skill, and like any skill, the more you practice, the better you’ll get. Although you may feel somewhat unnerved by the complexity of C# at first, these feelings will dissipate. You’ll become more comfortable working with the language.\n' +
+                '####\n' +
+                'Practice is so important when it comes to coding because you’ll inevitably make mistakes. The only way that you’ll learn from them is to keep working hard and figuring out ways to improve your work. And, over time, you’ll develop a mental catalog of errors and mistakes you have seen, which will help you become a more effective programmer.\n' +
+                '####\n' +
+                'How often should you practice? That’s up to you, but when you’re getting started, it is best to try to fit in as much practice as you can. If possible try to code daily or at least a few times a week. This will reduce the likelihood that you forget about coding and stop working on projects.\n' +
+                '\n',
+            bodyUA: 'Практика, практика, практика. Цей принцип настільки важливий, що його не можна повторювати багато разів.\n' +
+                '####\n' +
+                'Кодування - це навичка, і як будь-яка навичка, чим більше ви практикуєтесь, тим краще ви стаєте. Хоча спочатку ви можете відчувати себе дещо знервованими через складність C#, ці почуття розвіються. Вам стане комфортніше працювати з мовою.\n' +
+                '####\n' +
+                'Практика дуже важлива, коли справа доходить до кодування, тому що ви неминуче будете робити помилки. Єдиний спосіб навчитися на них - це продовжувати наполегливо працювати і шукати способи поліпшити свою роботу. І, з часом, ви розробите ментальний каталог помилок і помилок, які ви бачили, що допоможе вам стати більш ефективним програмістом.\n' +
+                '####\n' +
+                'Як часто потрібно займатися? Це залежить від вас, але коли ви тільки починаєте, найкраще намагатися вкластися в якомога більшу кількість практики. По можливості намагайтеся кодувати щодня або хоча б кілька разів на тиждень. Це зменшить ймовірність того, що ви забудете про кодування і перестанете працювати над проектами.',
+        },
+        {
+            titleEN: 'How to Learn C#: Practice Ideas',
+            titleUA: 'Як вивчити C#: Практичні ідеї',
+            bodyEN: 'If you’re looking for creative ways to practice, here are a few ideas:\n' +
+                '####\n' +
+                '- Create a project. Building a project is a great way to learn how to code in C#. Think about an idea, then try to build it with the skills you have acquired.\n' +
+                '- Participate in a hackathon. Hackathons are contests where people come together to build a project in a short period of time. Participating in a hackathon is a great way to meet other developers who have varying levels of skills in the languages you know.\n' +
+                '- Take on a coding challenge. On sites like Codewars and Coderbyte, you can find coding challenges that have been written to help people refine their knowledge of coding. These sites often have challenges specifically for C# developers, which you can use to level up your skills.\n' +
+                '####\n' +
+                'Keep practicing, and before you know it you’ll be a master at coding in C#.\n',
+            bodyUA: 'Якщо ви шукаєте креативні способи для практики, ось кілька ідей:\n' +
+                '####\n' +
+                '- Створіть проект. Створення проекту - це чудовий спосіб навчитися програмувати на C#. Подумайте про ідею, а потім спробуйте побудувати її з набутими навичками.\n' +
+                '- Візьміть участь у хакатоні. Хакатони - це змагання, де люди об\'єднуються, щоб створити проект за короткий проміжок часу. Участь у хакатоні - це чудовий спосіб познайомитися з іншими розробниками, які мають різний рівень навичок у відомих вам мовах.\n' +
+                '- Прийміть виклик з кодування. На таких сайтах, як Codewars і Coderbyte, ви можете знайти завдання з кодування, які були написані, щоб допомогти людям вдосконалити свої знання з кодування. На цих сайтах часто є завдання спеціально для C# розробників, які ви можете використовувати для підвищення рівня своїх навичок.\n' +
+                '####\n' +
+                'Продовжуйте практикуватись, і не встигнете й оком моргнути, як станете майстром кодування на C#.',
         },
     ],
 };
@@ -837,52 +1231,112 @@ const html = {
     nameUA: 'HTML покроковий план',
     items: [
         {
-            titleEN: 'Familiarize yourself with the basics of HTML',
-            titleUA: 'Ознайомтеся з основами HTML',
-            bodyEN: 'Learn the structure of an HTML document, the main HTML tags and their purpose, and the different types of elements such as headings, lists, images, and tables.',
-            bodyUA: 'Вивчення структури HTML-документа, основних тегів HTML та їх призначення, а також різних типів елементів, таких як заголовки, списки, зображення та таблиці.',
+            titleEN: 'Learn Basics of HTML and CSS (Beginner)',
+            titleUA: 'Вивчення основ HTML та CSS (для початківців)',
+            bodyEN: 'This material gives you enough exposure to the basics of HTML and CSS. For personal assessment, you can try quizzes. Enough examples are there to practice, and you can also experiment with the codes in its editor.\n' +
+                '####\n' +
+                '- http://www.w3schools.com/html/default.asp\n' +
+                '- http://www.w3schools.com/css/\n',
+            bodyUA: 'Цей матеріал дає вам достатнє уявлення про основи HTML та CSS. Для особистої оцінки можна спробувати тестові завдання. Прикладів достатньо для практики, а також можна поекспериментувати з кодами в його редакторі.\n' +
+                '####\n' +
+                '- http://www.w3schools.com/html/default.asp\n' +
+                '- http://www.w3schools.com/css/',
         },
         {
-            titleEN: 'Set up an HTML development environment',
-            titleUA: 'Налаштування середовища розробки HTML',
-            bodyEN: 'Install an HTML editor such as Notepad++, Adobe Dreamweaver or Visual Studio Code.',
-            bodyUA: 'Встановіть HTML-редактор, наприклад, Notepad++, Adobe Dreamweaver або Visual Studio Code.',
+            titleEN: 'Learn by Doing (Beginner)',
+            titleUA: 'Навчайся на практиці (для початківців)',
+            bodyEN: 'Want to experience learn by coding? then code academy is your choice\n' +
+                '####\n' +
+                '- https://www.codecademy.com/learn/web\n',
+            bodyUA: 'Хочеш навчатися шляхом написання коду? Тоді code academy - твій вибір\n' +
+                '####\n' +
+                '- https://www.codecademy.com/learn/web',
         },
         {
-            titleEN: 'Start writing HTML',
-            titleUA: 'Почніть писати HTML',
-            bodyEN: 'Begin creating basic web pages using HTML tags.',
-            bodyUA: 'Почніть створювати базові веб-сторінки з використанням тегів HTML.',
+            titleEN: 'Understand HTML Layouts (Advanced)',
+            titleUA: 'Розуміння HTML верстки (просунутий рівень)',
+            bodyEN: 'Building a home and building a well-planned home are two different things, now we have the good foundational strength we are now ready to become creators, designers what not !!!. This article helps you find the techniques to create beautiful layouts. Layout plays a very critical role for any website.\n' +
+                '####\n' +
+                '- https://www.codementor.io/css/tutorial/4-different-layout-techniques-create-single-page\n' +
+                '- http://learnlayout.com/\n',
+            bodyUA: 'Будівництво будинку і будівництво добре спланованого будинку - це дві різні речі, тепер у нас є хороша фундаментальна база, ми тепер готові стати творцями, дизайнерами чого б це не коштувало !!! Ця стаття допоможе вам знайти прийоми для створення красивих макетів. Макет грає дуже важливу роль для будь-якого сайту.\n' +
+                '####\n' +
+                '- https://www.codementor.io/css/tutorial/4-different-layout-techniques-create-single-page\n' +
+                '- http://learnlayout.com/',
         },
         {
-            titleEN: 'Learn CSS',
-            titleUA: 'Вивчайте CSS',
-            bodyEN: 'Once you understand the basics of HTML and have created some basic web pages, it\'s time to learn CSS (Cascading Style Sheets).',
-            bodyUA: 'Після того, як ви зрозуміли основи HTML і створили кілька базових веб-сторінок, настав час вивчити CSS (каскадні таблиці стилів).',
+            titleEN: 'Understand HTML Forms (Advanced)',
+            titleUA: 'Розуміння HTML-форм (просунутий рівень)',
+            bodyEN: 'It’s very important that you don’t test the patience of user when asking input, so forms are very important for any web application. Sign Up, login, feedback, Comments.. all needs to be presented to the user with clear and concise style. Go and play with forms. Don’t forget !!! — Practice makes man perfect\n' +
+                '####\n' +
+                '- http://learn.shayhowe.com/html-css/building-forms/\n' +
+                '- http://www.javascript-coder.com/html-form/html-form-tutorial-p1.phtml',
+            bodyUA: 'Дуже важливо, щоб ви не випробовували терпіння користувача, просячи ввести дані, тому форми дуже важливі для будь-якого веб-додатку. Реєстрація, вхід, зворотній зв\'язок, коментарі... все повинно бути представлено користувачеві в зрозумілому і лаконічному стилі. Перейдіть і пограйтеся з формами. Не забувайте!!! - Практика робить людину досконалою\n' +
+                '####\n' +
+                '- http://learn.shayhowe.com/html-css/building-forms/\n' +
+                '- http://www.javascript-coder.com/html-form/html-form-tutorial-p1.phtml',
         },
         {
-            titleEN: 'Practice, practice, practice',
-            titleUA: 'Практика, практика, практика',
-            bodyEN: 'The best way to learn HTML is to practice writing it. Create web pages using HTML and CSS to gain experience.',
-            bodyUA: 'Найкращий спосіб вивчити HTML - це практикувати його написання. Створюйте веб-сторінки з використанням HTML і CSS, щоб отримати досвід.',
+            titleEN: 'Understand CSS Positioning (Advanced)',
+            titleUA: 'Розуміння позиціонування CSS (просунутий рівень)',
+            bodyEN: 'Clean home has things rightly placed — interior designing !!!, when building website elements positioning is very important and needs special attention. No ESCAPE from coding.. code it .. learn it..\n' +
+                '####\n' +
+                '- https://www.codecademy.com/courses/advanced-css-positioning/0/1\n' +
+                '- http://learn.shayhowe.com/advanced-html-css/detailed-css-positioning/\n',
+            bodyUA: 'В чистому домі все правильно розставлено - дизайн інтер\'єру!!!, при створенні сайту позиціонування елементів сайту є дуже важливим і потребує особливої уваги. Від кодингу не втечеш... програмуй... вчись...\n' +
+                '####\n' +
+                '- https://www.codecademy.com/courses/advanced-css-positioning/0/1\n' +
+                '- http://learn.shayhowe.com/advanced-html-css/detailed-css-positioning/',
         },
         {
-            titleEN: 'Explore HTML5',
-            titleUA: 'Вивчайте HTML5',
-            bodyEN: 'HTML5 is the latest version of HTML and has some new features and tags. Learn about the new features and start using them in your projects.',
-            bodyUA: 'HTML5 є останньою версією HTML і має деякі нові можливості та теги. Ознайомтеся з новими можливостями та почніть використовувати їх у своїх проектах.',
+            titleEN: 'Build a project using HTML and CSS (Intermediate)',
+            titleUA: 'Створіть проект з використанням HTML та CSS (середній рівень)',
+            bodyEN: 'Practice more by building a project\n' +
+                '####\n' +
+                '- http://www.theodinproject.com/courses/web-development-101/lessons/html-css\n',
+            bodyUA: 'Практикуйте більше, створюючи проект\n' +
+                '####\n' +
+                '- http://www.theodinproject.com/courses/web-development-101/lessons/html-css',
         },
         {
-            titleEN: 'Try out some JavaScript',
-            titleUA: 'Спробуйте JavaScript',
-            bodyEN: 'JavaScript is used to add interactive elements to web pages. Start learning the basics and experiment with some simple scripts.',
-            bodyUA: 'JavaScript використовується для додавання інтерактивних елементів на веб-сторінки. Почніть вивчати основи і поекспериментуйте з простими скриптами.',
+            titleEN: 'Learn about Responsive (Intermediate)',
+            titleUA: 'Ознайомтеся з адаптивністю (середній рівень)',
+            bodyEN: 'Mobile, Tablet, Desktop — devices with multiple screen sizes. Ahhhh.. my site works only on the desktop, Do I need to build separate sites for mobile and tablet. Wait Wait Wait !!! We have a responsive web design concepts.. go explore them and get your website flexible to work on any device\n' +
+                '####\n' +
+                '- http://www.w3schools.com/css/css_rwd_grid.asp\n',
+            bodyUA: 'Мобільний, планшет, десктоп - пристрої з декількома розмірами екрану. Аааа... мій сайт працює тільки на десктопі, чи потрібно мені створювати окремі сайти для мобільного і планшета. Зачекайте, зачекайте, зачекайте !!! У нас є концепції адаптивного веб-дизайну... ознайомтеся з ними і зробіть свій сайт гнучким для роботи на будь-яких пристроях\n' +
+                '####\n' +
+                '- http://www.w3schools.com/css/css_rwd_grid.asp',
         },
         {
-            titleEN: 'Join an online HTML community',
-            titleUA: 'Приєднуйтесь до онлайн-спільноти HTML',
-            bodyEN: 'Get involved in an online HTML forum or blog to learn from experienced developers, ask questions, and get feedback on your work.',
-            bodyUA: 'Візьміть участь в онлайн-форумі або блозі HTML, щоб вчитися у досвідчених розробників, задавати питання та отримувати відгуки про свою роботу.',
+            titleEN: 'Best Practices (Advanced)',
+            titleUA: 'Найкращі практики (просунутий рівень)',
+            bodyEN: 'When you write codes you don’t want to make any mistakes. To write clean and error free codes it is required to follow some procedures that are accepted by the developers worldwide. Here are some resources to write proper codes without any errors.\n' +
+                '####\n' +
+                '- http://learn.shayhowe.com/html-css/writing-your-best-code/\n' +
+                '- https://code.tutsplus.com/tutorials/30-css-best-practices-for-beginners--net-6741\n',
+            bodyUA: 'Коли ви пишете код, ви не хочете допустити жодної помилки. Щоб писати чистий і безпомилковий код, необхідно дотримуватися певних процедур, які прийняті серед розробників у всьому світі. Ось деякі ресурси для написання правильного коду без помилок.\n' +
+                '####\n' +
+                '- http://learn.shayhowe.com/html-css/writing-your-best-code/\n' +
+                '- https://code.tutsplus.com/tutorials/30-css-best-practices-for-beginners--net-6741',
+        },
+        {
+            titleEN: 'Testing time — Assignments (Shortcut to Success)',
+            titleUA: 'Час тестування - Завдання (Короткий шлях до успіху)',
+            bodyEN: 'Learning doesn’t work when you have not tested what you learned. To make your HTML & CSS learning fruitful you should test yourself with some assignments. Here are some assignments for you to practice.\n' +
+                '####\n' +
+                '- http://www.landofcode.com/html-exercises/\n' +
+                '- http://www.landofcode.com/css-examples/\n',
+            bodyUA: 'Навчання не працює, якщо ви не перевірили те, що вивчили. Щоб зробити вивчення HTML і CSS ефективним, ви повинні перевірити себе за допомогою деяких завдань. Ось кілька завдань для практики.\n' +
+                '####\n' +
+                '- http://www.landofcode.com/html-exercises/\n' +
+                '- http://www.landofcode.com/css-examples/',
+        },
+        {
+            titleEN: 'Additional Resources',
+            titleUA: 'Додаткові джерела',
+            bodyEN: '***[HTML and CSS Resources — Stepping Stones Of Web Development](https://www.zeolearn.com/magazine/html-and-css-resources-stepping-into-web-development)***',
+            bodyUA: '***[Ресурси HTML та CSS - кроки до веб-розробки](https://www.zeolearn.com/magazine/html-and-css-resources-stepping-into-web-development)***',
         },
     ],
 };
@@ -893,46 +1347,110 @@ const management = {
     nameUA: 'Project Manager покроковий план',
     items: [
         {
-            titleEN: 'Degree',
-            titleUA: 'Освіта',
-            bodyEN: 'Obtain a bachelor\'s degree in project management, business administration or a related field. Many employers prefer or require a bachelor\'s degree for project managers.',
-            bodyUA: 'Здобути ступінь бакалавра в галузі управління проектами, бізнес-адміністрування управління проектами, бізнес-адміністрування або в суміжній галузі. Багато роботодавців віддають перевагу або вимагають\n ступінь бакалавра для керівників проектів.',
+            titleEN: 'Understand what project management skills you already have',
+            titleUA: 'Зрозумійте, якими навичками управління проектами ви вже володієте',
+            bodyEN: 'If you’ve ever planned, led, budgeted, scheduled, or documented the progress of a project, you’ve done some elements of project management. Did you organize an event in a previous job? Find new ways to make your workplace more efficient? Coordinate volunteers to clean up a beach? Though you might not have thought of it as project management at the time, your past experiences may have given you some exposure to the skills you’ll need as a project manager.\n' +
+                '####\n' +
+                'If you find you have quite a bit of experience already, you may be ready to apply for project manager positions, or approach your manager to state your interest in becoming one. If you have a combined three years of experience, you’ll also be eligible to apply to take the exam for the [Project Management Professional (PMP)](https://www.coursera.org/articles/the-pmp-certification-a-guide-to-getting-started) certification, which may create opportunities for you in the project management world.\n' +
+                '\n',
+            bodyUA: 'Якщо ви коли-небудь планували, керували, складали бюджет, графік або документували хід виконання проекту, ви мали справу з деякими елементами проектного менеджменту. Ви організовували захід на попередній роботі? Шукали нові способи зробити своє робоче місце більш ефективним? Координували волонтерів для прибирання пляжу? Хоча ви, можливо, і не думали про це як про управління проектами в той час, ваш минулий досвід, можливо, дав вам певні навички, які знадобляться вам як менеджеру проекту.\n' +
+                '####\n' +
+                'Якщо ви вважаєте, що у вас вже достатньо досвіду, ви можете подати заявку на посаду менеджера проекту або звернутися до свого керівника, щоб заявити про свою зацікавленість у тому, щоб стати таким менеджером. Якщо ви маєте сукупний трирічний досвід, ви також маєте право подати заявку на складання іспиту на сертифікацію [Project Management Professional (PMP)](https://www.coursera.org/articles/the-pmp-certification-a-guide-to-getting-started), що може створити для вас можливості у світі проєктного менеджменту.',
         },
         {
-            titleEN: 'Experience',
-            titleUA: 'Досвід роботи',
-            bodyEN: 'Gain experience. Even if you don\'t have a lot of project management experience, you can gain experience through internships or volunteer projects.',
-            bodyUA: 'Набути досвіду. Навіть якщо ви не маєте великого досвіду управління проектами, ви можете отримати досвід через стажування або волонтерські проекти.',
+            titleEN: 'Build project management experience',
+            titleUA: 'Отримання досвіду проектного менеджменту',
+            bodyEN: 'Many project managers get their start in non-managerial positions on a team. For example, IT project managers may work for several years as an IT associate, or perhaps as a business analyst supporting the IT team. Their roles may gradually expand as they gain industry expertise, take on managerial tasks, develop organizational skills, and learn to work with the members on their team.\n' +
+                '####\n' +
+                'If you’re trying to build up project management skills, try **looking for opportunities in your current work**. Whether you work in a hospital or retail store, tech company or restaurant, chances are there are several items that need to be planned, executed, or improved. See if you can join in these efforts. If it makes sense to do so, approach your manager with ideas of how you can contribute, and let them know you’re interested in developing project management experience.\n' +
+                '\n',
+            bodyUA: 'Багато керівників проектів починають свою кар\'єру на некерівних посадах в команді. Наприклад, менеджери ІТ-проектів можуть працювати протягом декількох років як ІТ-спеціаліст або, можливо, як бізнес-аналітик, що підтримує ІТ-команду. Їх ролі можуть поступово розширюватися в міру того, як вони набувають галузевого досвіду, беруть на себе управлінські завдання, розвивають організаторські навички та вчаться працювати з членами своєї команди.\n' +
+                '####\n' +
+                'Якщо ви намагаєтеся розвинути навички управління проектами, спробуйте **пошукати можливості на своїй поточній роботі**. Незалежно від того, де ви працюєте - в лікарні чи роздрібній крамниці, технічній компанії чи ресторані, швидше за все, є кілька пунктів, які потрібно спланувати, виконати чи покращити. Подивіться, чи можете ви долучитися до цих зусиль. Якщо це має сенс, зверніться до свого керівника з ідеями про те, як ви можете зробити свій внесок, і дайте йому знати, що ви зацікавлені в розвитку досвіду управління проектами.',
         },
         {
-            titleEN: 'Network',
-            titleUA: 'Нетворк',
-            bodyEN: 'Get to know other professionals in the project management field. This will help you stay up to date on industry trends and learn more about the field.',
-            bodyUA: 'Познайомтеся з іншими професіоналами в галузі управління проектами. Це допоможе вам бути в курсі галузевих тенденцій та дізнатися більше про сферу.',
+            titleEN: 'Develop project management skills',
+            titleUA: 'Розвивайте навички проєктного менеджменту',
+            bodyEN: 'It’ll be a good idea to sharpen the technical and workplace skills involved in project management. Here are some skills commonly requested in project manager job descriptions:\n' +
+                '####\n' +
+                '- Risk management\n' +
+                '- Budgeting\n' +
+                '- Agile project management\n' +
+                '- Waterfall project management\n' +
+                '- Scrum\n' +
+                '- Organization\n' +
+                '- Communication\n' +
+                '- Leadership\n' +
+                '####\n' +
+                'You can develop skills by taking courses specific to a subject, studying for a certification, or practicing them in the workplace. Develop core project management skills with the [Google Project Management: Professional Certificate](https://www.coursera.org/professional-certificates/google-project-management). You can learn what you need to be job-ready in six months or less.\n',
+            bodyUA: 'Буде гарною ідеєю відточити технічні та робочі навички, пов\'язані з управлінням проектами. Ось деякі навички, які зазвичай вимагаються в описах посадових обов\'язків менеджерів проектів:\n' +
+                '####\n' +
+                '- Управління ризиками\n' +
+                '- Бюджетування\n' +
+                '- Гнучке управління проектами\n' +
+                '- Управління "водоспадними" проектами\n' +
+                '- Scrum\n' +
+                '- Організація\n' +
+                '- Комунікація\n' +
+                '- Лідерство\n' +
+                '####\n' +
+                'Ви можете розвивати навички, проходячи курси з конкретного предмету, готуючись до сертифікації або практикуючи їх на робочому місці. Розвивайте основні навички управління проектами за допомогою [Google Project Management: Professional Certificate](https://www.coursera.org/professional-certificates/google-project-management). Ви можете навчитися тому, що вам потрібно, щоб бути готовим до роботи за шість місяців або менше.',
         },
         {
-            titleEN: 'Get certified',
-            titleUA: 'Пройти сертифікацію',
-            bodyEN: 'Consider obtaining a professional certification, such as Certified Associate in Project Management (CAPM) or Project Management Professional (PMP).',
-            bodyUA: 'Розгляньте можливість отримання професійної сертифікації, наприклад, Certified Associate in Project Management (CAPM) або Project Management Professional (PMP).',
+            titleEN: 'Enhance your project manager resume',
+            titleUA: 'Покращуйте своє резюме менеджера проєктів',
+            bodyEN: 'As you gain experience and skills in this field, take the time to [enhance your resume](https://www.coursera.org/articles/ways-to-enhance-your-resume). Review project manager job listings, from entry-level to advanced roles, to find out what companies are looking for.\n' +
+                '####\n' +
+                'Highlight your qualifications that match the job requirements and feature them prominently on your resume.\n' +
+                '####\n' +
+                'Use action verbs to describe tasks you performed in previous roles, and when possible, emphasize any quantifiable outcomes.\n' +
+                '\n',
+            bodyUA: 'Здобуваючи досвід і навички в цій сфері, знайдіть час, щоб [покращити своє резюме](https://www.coursera.org/articles/ways-to-enhance-your-resume). Перегляньте списки вакансій менеджерів проектів, від початкового рівня до просунутих ролей, щоб дізнатися, що шукають компанії.\n' +
+                '####\n' +
+                'Підкресліть свою кваліфікацію, яка відповідає вимогам вакансії, і зробіть її помітною у своєму резюме.\n' +
+                '####\n' +
+                'Використовуйте дієслова для опису завдань, які ви виконували на попередніх посадах, і, по можливості, підкреслюйте будь-які результати, які можна виміряти кількісно.',
         },
         {
-            titleEN: 'Update your resume',
-            titleUA: 'Оновіть своє резюме',
-            bodyEN: 'Update your resume. Make sure your resume showcases your project management skills and experience.',
-            bodyUA: 'Оновіть своє резюме. Переконайтеся, що ваше резюме демонструє ваші навички та досвід управління проектами.',
+            titleEN: 'Look for entry-level positions',
+            titleUA: 'Шукайте вакансії початкового рівня',
+            bodyEN: 'Gradually working your way up the ladder from within a team isn’t the only way to become a project manager. Many project managers get their start in entry-level organizational positions to build key skills. Keep an eye out for these titles in your search:\n' +
+                '####\n' +
+                '- Project coordinator\n' +
+                '- Operations coordinator\n' +
+                '- Associate project manager\n' +
+                '- Junior project manager\n' +
+                '- Operations associate\n' +
+                '- Administrative associate\n' +
+                '\n',
+            bodyUA: 'Поступове просування по кар\'єрних сходах всередині команди не єдиний спосіб стати менеджером проекту. Багато менеджерів проєктів починають свою кар\'єру з організаційних посад початкового рівня, щоб розвинути ключові навички. Слідкуйте за цими назвами під час пошуку:\n' +
+                '####\n' +
+                '- Координатор проекту\n' +
+                '- Операційний координатор\n' +
+                '- Асистент менеджера проекту\n' +
+                '- Молодший менеджер проекту\n' +
+                '- Операційний асистент\n' +
+                '- Адміністративний асистент',
         },
         {
-            titleEN: 'Find a job',
-            titleUA: 'Пошук роботи',
-            bodyEN: 'Start applying for jobs that match your qualifications and experience.',
-            bodyUA: 'Почніть подавати заявки на роботу, яка відповідає вашій кваліфікації та досвіду.',
-        },
-        {
-            titleEN: 'Continuously improve',
-            titleUA: 'Постійно вдосконалюйтесь',
-            bodyEN: 'Keep learning and developing your skills to stay competitive.',
-            bodyUA: 'Продовжуйте вчитися та розвивати свої навички, щоб залишатися конкурентоспроможними.',
+            titleEN: 'Consider a project management credential',
+            titleUA: 'Розгляньте можливість отримання сертифікату з проєктного менеджменту',
+            bodyEN: 'A certification or certificate can help you get your foot in the door for project management jobs. Here are a few to consider:\n' +
+                '####\n' +
+                '- Certified Associate in Project Management (CAPM)\n' +
+                '- Google Project Management: Professional Certification\n' +
+                '- Project Management Professional (PMP)\n' +
+                '- Certified Scrum Master\n' +
+                '- Professional Scrum Master I (PSM I)\n' +
+                '- ICAgile Certified Professional (ICP)\n',
+            bodyUA: 'Сертифікація або сертифікат може допомогти вам отримати доступ до роботи з управління проектами. Ось кілька з них, які слід розглянути:\n' +
+                '####\n' +
+                '- Certified Associate in Project Management (CAPM)\n' +
+                '- Google Project Management: Professional Certification\n' +
+                '- Project Management Professional (PMP)\n' +
+                '- Certified Scrum Master\n' +
+                '- Professional Scrum Master I (PSM I)\n' +
+                '- ICAgile Certified Professional (ICP)\n',
         },
     ],
 };
