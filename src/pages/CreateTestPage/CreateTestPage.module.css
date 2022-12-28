@@ -73,12 +73,12 @@
 }
 
 .description__textarea {
-    padding: 10px 0!important;
+    font-family: 'Noto Sans', sans-serif;
+    padding: 10px 0 !important;
     height: 130px;
     width: 100%;
     resize: vertical;
 }
-
 
 
 .test__form {
@@ -250,6 +250,11 @@
 
 .private__img {
     height: 20px;
+}
+
+.to__code_test {
+    width: 100%;
+    display: flex;
 }
 
 
