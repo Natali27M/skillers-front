@@ -356,4 +356,12 @@
         flex-direction: column;
         row-gap: 10px;
     }
+
+    .copy__room_link {
+        word-break: break-word;
+    }
+
+    .copy__room_btn {
+        word-break: normal;
+    }
 }
