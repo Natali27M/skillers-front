@@ -1,12 +1,12 @@
-import React from 'react';
-import {set, ref, onValue, remove} from 'firebase/database';
+import React from 'react'
+import {ref, onValue, remove, update} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
-import {useParams, useLocation, useNavigate, Navigate} from 'react-router-dom';
+import {useParams, useLocation, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
-import {db} from '../../firebaseConfig';
+import {db} from "../../firebaseConfig";
 import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import playArrow from '../../images/play-compiler-green.svg';
@@ -17,8 +17,6 @@ function MainFirepadPage() {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const userId = user?.id;
-
     const {handleSubmit} = useForm();
 
     const {register} = useForm();
@@ -27,7 +25,10 @@ function MainFirepadPage() {
 
     const template = param?.template;
 
-    const newTemplate = template.split(' ');
+    const newTemplate = template.split('-');
+
+    //  object for compilator
+    const myLanguage = {id: newTemplate[1], name: param?.language};
 
     const path = `${param?.id}-${newTemplate[0]}`;
 
@@ -47,13 +48,15 @@ function MainFirepadPage() {
 
     const [modal, setModal] = useState('');
 
+    const [modalForJoin, setModalForJoin] = useState('');
+
     const [roomLinkCopyTime, setRoomLinkCopyTime] = useState(false);
 
     const [code, setCode] = useState('');
 
     useEffect(() => {
-        setLanguage(location.state);
-    }, [location.state]);
+        compileServices.getLanguages().then(value => value);
+    }, []);
 
     const makeOutput = (data) => {
         if (language.id === 1) {
@@ -61,45 +64,58 @@ function MainFirepadPage() {
                 stdout: data?.result,
                 time: data?.time_used,
                 memory: data?.memory_used
-            });
+            })
         } else {
             setOutput(data);
         }
         setWait(false);
     };
 
-    const compile = async (obj) => {
-        setWait(true);
-
-        compileServices.judgeCompile({
-            ...obj,
-            source_code: code,
-            language_id: language.id
-        }).then(result => makeOutput(result));
-    };
-
     useEffect(() => {
-        if (newTemplate?.includes('C++')) {
+        if (language?.name?.includes('C++')) {
             setHighlightLang('cpp');
-        } else if (newTemplate?.includes('C')) {
+        } else if (language?.name?.includes('C')) {
             setHighlightLang('c');
-        } else if (newTemplate?.includes('C#')) {
+        } else if (language?.name?.includes('C#')) {
             setHighlightLang('cs');
-        } else if (newTemplate?.includes('JavaScript')) {
+        } else if (language?.name?.includes('JavaScript')) {
             setHighlightLang('js');
-        } else if (newTemplate?.includes('Java')) {
+        } else if (language?.name?.includes('Java')) {
             setHighlightLang('java');
-        } else if (newTemplate?.includes('Python')) {
+        } else if (language?.name?.includes('Python')) {
             setHighlightLang('py');
-        } else if (newTemplate?.includes('TypeScript')) {
+        } else if (language?.name?.includes('TypeScript')) {
             setHighlightLang('ta');
-        } else if (newTemplate?.includes('PHP')) {
+        } else if (language?.name?.includes('PHP')) {
             setHighlightLang('php');
         } else {
             setHighlightLang('cpp');
         }
-    }, [newTemplate]);
+    }, [language]);
 
+    const compile = async (obj) => {
+        setWait(true);
+        if (language?.id !== 1) {
+            compileServices.judgeCompile({
+                ...obj,
+                source_code: code,
+                language_id: language?.id
+            }).then(result => makeOutput(result));
+        } else {
+            compileServices.ownCompile({
+                input: obj.stdin,
+                source: code,
+                lang: 'CPP'
+            }).then(result => makeOutput(result));
+        }
+    };
+
+    useEffect(() => {
+        setLanguage(myLanguage);
+    }, []);
+
+    const [dbValue, setDbValue] = useState(' ');
+    //read from firebase
     useEffect(() => {
         onValue(ref(db), (snapshot) => {
             const data = snapshot.val();
@@ -108,10 +124,18 @@ function MainFirepadPage() {
 
             if (data) {
                 const dataPath = data[`${path}`];
-                myData = dataPath?.code;
+                setDbValue(dataPath);
+                const codeDB = dataPath?.code;
+                myData = codeDB;
+
+                if (codeDB === ' ') {
+                    return setCode('')
+                }
                 setCode(myData);
+
             } else {
                 setCode('');
+                setModalForJoin('leave')
             }
         });
 
@@ -120,81 +144,58 @@ function MainFirepadPage() {
     const handleChange = (evn) => {
         setCode(evn.target.value);
 
-        // write from firebase
-        set(ref(db, `/${path}`), {
+        // update from firebase
+        update(ref(db, `/${path}`), {
             code: evn.target.value,
-        });
-
-        if (param.id === userId) {
-            localStorage.setItem('teamCoding', 'yes');
-            localStorage.setItem('path', `${path}`);
-            localStorage.setItem('pathCoding', `${location.pathname}`);
-        }
-    };
+        }).then(r => r);
+    }
 
     const roomLinkCopy = () => {
         setRoomLinkCopyTime(true);
-        navigator.clipboard.writeText(`${location?.pathname}`);
+        navigator.clipboard.writeText(`${location?.pathname}`).then(r => r);
         setTimeout(() => {
             setRoomLinkCopyTime(false);
         }, 1000);
 
     };
 
-    if (teamCoding) {
-        window.history.pushState(null, null, null);
+    if (dbValue.userId && +dbValue.userId === user?.id) {
+        localStorage.setItem('teamCoding', 'yes');
+        localStorage.setItem('path', `${path}`);
+        localStorage.setItem('pathCoding', `${location.pathname}`);
+    }
 
-        window.addEventListener('popstate', (e) => {
-            console.log(12);
+    if (teamCoding) {
+        window.addEventListener("popstate", (e) => {
             e.preventDefault();
             setModal('leave');
-        });
-
-        window.addEventListener('load', (e) => {
-            e.preventDefault();
-            setModal('reload');
-            window.history.pushState(null, null, null);
+            setCode('');
         });
     }
 
     if (!teamCoding) {
-        window.addEventListener('popstate', (e) => {
-            navigate('/team-coding');
-        });
-
-        window.addEventListener('load', (e) => {
+        window.addEventListener("popstate", (e) => {
             e.preventDefault();
-            navigate(`${location.pathname}`);
         });
     }
-
-    const changeReloadOk = () => {
-        setModal('');
-        setCode('');
-        navigate(`${location.pathname}`);
-        remove(ref(db, `/${path}`));
-        localStorage.removeItem('teamCoding');
-        localStorage.removeItem('pathCoding');
-    };
-
-    const changeReloadCancel = () => {
-        setModal('');
-        navigate(`${location.pathname}`);
-    };
 
     const changeLeaveOk = () => {
         setModal('');
         setCode('');
-        remove(ref(db, `/${path}`));
+        remove(ref(db, `/${path}`)).then(r => r);
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
         navigate('/team-coding');
-    };
+    }
 
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${location.pathname}`);
-    };
+    }
+
+    const leaveOk = () => {
+        navigate('/team-coding');
+    }
 
     return (
         <div className={css.compiler__main}>
@@ -245,30 +246,20 @@ function MainFirepadPage() {
                             </div>
                         </div>}
 
-                        {teamCoding && modal === 'reload' && <div className={css.reload__main}>
+                        {modalForJoin === 'leave' && <div className={css.reload__main}>
                             <div className={css.reload__modal_block}>
-                                {EN ? 'Are you sure you want to reload the page?'
+                                {EN ? 'This code has been removed by the owner'
                                     :
-                                    'Ви впевнені, що бажаєте оновити сторінку?'}
+                                    'Цей код видалено власником'}
 
-                                <p className={css.leave__modal_block_text}>
-                                    {EN ? 'This action will delete all your previous actions'
-                                        :
-                                        'Ця дія приведе до видалення всіх ваших попередніх дій'}
-                                </p>
-
-                                <div className={css.modal__box_btn}>
-                                    <button onClick={changeReloadOk} className={rootCSS.default__button}>
-                                        {EN ? 'Ok' : 'Так'}
-                                    </button>
-
-                                    <button onClick={changeReloadCancel} className={rootCSS.default__button}>
-                                        {EN ? 'Cansel' : 'Відмінити'}
-                                    </button>
-                                </div>
+                                <button onClick={leaveOk} className={rootCSS.default__button}>
+                                    {EN ? 'Ok' : 'Так'}
+                                </button>
 
                             </div>
-                        </div>}
+                        </div>
+
+                        }
 
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
 
@@ -317,11 +308,7 @@ function MainFirepadPage() {
                                     </>
                                 }
                             </div>
-
-
                         </div>
-
-
                     </div>
                 </div>
 
@@ -340,16 +327,14 @@ function MainFirepadPage() {
                         </button>
 
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     );
 }
 
 export {MainFirepadPage};
+
 
 
 
