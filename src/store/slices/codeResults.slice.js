@@ -90,6 +90,11 @@ const codeResultsSlice = createSlice({
         userResultByTest: null,
         resultsByCodeTest: null
     },
+    reducers: {
+        clearUserCodeResult: (state) => {
+            state.userResultByTest = null;
+        }
+    },
     extraReducers: {
         [createCodeResult.pending]: (state) => {
             state.status = 'pending';
@@ -193,5 +198,7 @@ const codeResultsSlice = createSlice({
 
 
 const codeResultsReducers = codeResultsSlice.reducer;
+
+export const {clearUserCodeResult} = codeResultsSlice.actions;
 
 export default codeResultsReducers;

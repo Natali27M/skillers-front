@@ -4,7 +4,7 @@ import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
 import {
     approveCodeTest,
-    changeCodeResult, createCodeRate,
+    changeCodeResult, clearCodeTestUserData, clearUserCodeResult, createCodeRate,
     createCodeResult, createUserAchievement, deleteCodeTest,
     getOneCodeResult,
     getOneCodeTest, getOtherUserAchievement, getUserByCodeTestRate,
@@ -85,6 +85,9 @@ const TestWithCodePage = () => {
         if (user) {
             dispatch(getUserResultByCodeTest({userId: user?.id, testId: id}));
             dispatch(getUserByCodeTestRate({userId: user?.id, testId: id}));
+        } else {
+            dispatch(clearCodeTestUserData());
+            dispatch(clearUserCodeResult());
         }
     }, [user]);
 
@@ -325,16 +328,22 @@ const TestWithCodePage = () => {
                         }}
                     />
                 </div>
-                <div className={css.main__right}>
-                    <div className={css.result}>
-                        <div>{EN ? 'Expected result:' : 'Очікуваний результат:'}</div>
-                        <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.outputResult}</div>
+                {oneCodeTest?.attributes?.outputResult && oneCodeTest?.attributes?.input &&
+                    <div className={css.main__right}>
+                        {oneCodeTest?.attributes?.outputResult &&
+                            <div className={css.result}>
+                                <div>{EN ? 'Expected result:' : 'Очікуваний результат:'}</div>
+                                <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.outputResult}</div>
+                            </div>
+                        }
+                        {oneCodeTest?.attributes?.input &&
+                            <div className={css.result}>
+                                <div>{EN ? 'Input data:' : 'Вхідні дані:'}</div>
+                                <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.input}</div>
+                            </div>
+                        }
                     </div>
-                    <div className={css.result}>
-                        <div>{EN ? 'Input data:' : 'Вхідні дані:'}</div>
-                        <div>{(testStarted || resultId || userResultByTest) && oneCodeTest?.attributes?.input}</div>
-                    </div>
-                </div>
+                }
             </div>
             <div className={css.console}>
                 <div>D:\skilliant\code-test\{(oneCodeTest?.attributes?.testName)?.toLowerCase()}></div>

@@ -133,6 +133,11 @@ const codeTestSlice = createSlice({
         userCodeTestRate: null,
         codeTestsByUser: null
     },
+    reducers: {
+        clearCodeTestUserData: (state) => {
+            state.userCodeTestRate = null;
+        }
+    },
     extraReducers: {
         [getOneCodeTest.pending]: (state) => {
             state.status = 'pending';
@@ -274,6 +279,8 @@ const codeTestSlice = createSlice({
 });
 
 const codeTestReducers = codeTestSlice.reducer;
+
+export const {clearCodeTestUserData} = codeTestSlice.actions
 
 export default codeTestReducers;
 
