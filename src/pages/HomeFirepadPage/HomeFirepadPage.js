@@ -38,25 +38,25 @@ const HomeFirepadPage = () => {
         setDropOpen(false)
     }, [language]);
 
-    const setLangValue = (language) => {
+    const setLangValue = () => {
         setTimeout(() => {
 
-        if(user) {
-        const name = language?.name.split('(')[0].trim();
+            if (user) {
+                const name = language?.name.split('(')[0].trim();
 
-        const path = `${user?.id}-${name}`
+                const path = `${user?.id}-${name}`
 
-        setDropOpen(false);
+                setDropOpen(false);
 
-        set(ref(db, `/${path}`), {
-            code: ' ',
-            userId: `${user?.id}`
-        }).then(r => r);
+                set(ref(db, `/${path}`), {
+                    code: ' ',
+                    userId: `${user?.id}`
+                }).then(r => r);
 
-        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
-        } else {
-            setError(true);
-        }
+                navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
+            } else {
+                setError(true);
+            }
         }, 300);
     };
 
@@ -114,7 +114,7 @@ const HomeFirepadPage = () => {
                                 }
                             </div>}
 
-                            <button  onClick={() => setLangValue()} className={css.join__room_btn}>
+                            <button onClick={() => setLangValue()} className={css.join__room_btn}>
                                 {EN ? 'Create room' : 'Створити кімнату'}
                             </button>
 

@@ -176,20 +176,22 @@ function MainFirepadPage() {
 
         window.addEventListener("load", (e) => {
             e.preventDefault();
-            setModal('reload')
-            navigate(`${location.pathname}`);
+            window.history.pushState(null, null, null);
+            setModal('reload');
+            setCode('');
+            // navigate(`${location.pathname}`);
         });
     }
 
     if (!teamCoding) {
         window.addEventListener("popstate", (e) => {
             e.preventDefault();
-            navigate('/team-coding');
+            // navigate('/team-coding');
         });
 
         window.addEventListener("load", (e) => {
             e.preventDefault();
-            navigate(`${location.pathname}`);
+            // navigate(`${location.pathname}`);
         });
     }
 
