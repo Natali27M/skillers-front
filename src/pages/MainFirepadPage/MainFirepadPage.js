@@ -145,7 +145,7 @@ function MainFirepadPage() {
         }, 1000);
     };
 
-    if (dbValue.userId && +dbValue.userId === user?.id) {
+    if (dbValue?.userId && +dbValue?.userId === user?.id) {
         localStorage.setItem('teamCoding', 'yes');
         localStorage.setItem('path', `${path}`);
         localStorage.setItem('pathCoding', `${location.pathname}`);
