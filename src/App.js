@@ -11,6 +11,7 @@ import {
     ForUserPage,
     GoogleRedirectPage,
     HomePage,
+    LearningPlanPage,
     LoginPage,
     MentorPage,
     MentorsPage,
@@ -188,6 +189,7 @@ function App() {
                     <Route path={'/mentor'} element={<MentorPage/>}/>
                     <Route path={'/mentors'} element={<MentorsPage/>}/>
                     <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
+                    <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                     <Route path="/team-coding/:template/:id/:language" element={<MainFirepadPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
