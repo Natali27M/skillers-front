@@ -448,8 +448,8 @@ const UserPage = () => {
                 {testForResults &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
-                            {EN ? `Results of ${codeTestForResults.attributes.name}`
-                                : `Результати ${codeTestForResults.attributes.name}`
+                            {EN ? `Results of ${testForResults.attributes.name}`
+                                : `Результати ${testForResults.attributes.name}`
                             }
                         </div>
                         <div className={css.results__header}>
