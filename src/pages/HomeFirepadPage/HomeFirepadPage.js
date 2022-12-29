@@ -15,15 +15,17 @@ const HomeFirepadPage = () => {
 
     const {user} = useSelector(state => state['userReducers']);
 
-    const [language, setLanguage] = useState({id: 54, name: 'C++ (GCC 9.2.0)'});
+    const [language, setLanguage] = useState({});
 
     const [dropOpen, setDropOpen] = useState(false);
 
     const [langArray, setLangArray] = useState([]);
 
+    const [error, setError] = useState(false);
+
     const {myRef} = useComponentVisibleForOnlineCoding(true);
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, setValue} = useForm();
 
     const navigate = useNavigate();
 
@@ -31,14 +33,19 @@ const HomeFirepadPage = () => {
         compileServices.getLanguages().then(value => setLangArray(value));
     }, []);
 
-    const setLangValue = (lang) => {
+    useEffect(() => {
+        setValue('path', language.name)
+        setDropOpen(false)
+    }, [language]);
+
+    const setLangValue = (language) => {
         setTimeout(() => {
+
         if(user) {
-        const name = lang.name.split('(')[0].trim();
+        const name = language?.name.split('(')[0].trim();
 
         const path = `${user?.id}-${name}`
 
-        setLanguage(lang);
         setDropOpen(false);
 
         set(ref(db, `/${path}`), {
@@ -46,9 +53,9 @@ const HomeFirepadPage = () => {
             userId: `${user?.id}`
         }).then(r => r);
 
-        navigate(`/team-coding/${name}-${lang.id}/${user?.id}/${lang.name}`);
+        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
         } else {
-            navigate(`/registration`)
+            setError(true);
         }
         }, 300);
     };
@@ -89,7 +96,7 @@ const HomeFirepadPage = () => {
                                     langArray?.map(lang =>
                                         <div key={lang?.id}>
                                             {lang !== language &&
-                                                <div onClick={() => setLangValue(lang)}
+                                                <div onClick={() => setLanguage(lang)}
                                                      className={css.dropdown__element}>
                                                     {lang.name}
                                                 </div>
@@ -99,6 +106,17 @@ const HomeFirepadPage = () => {
                                 }
                             </div>
                             }
+
+                            {error && <div className={css.error}>
+                                {EN ? 'This action is available only to registered users'
+                                    :
+                                    'Ця дія доступна тільки зареєстрованим користувачам'
+                                }
+                            </div>}
+
+                            <button  onClick={() => setLangValue()} className={css.join__room_btn}>
+                                {EN ? 'Create room' : 'Створити кімнату'}
+                            </button>
 
                         </div>
 
@@ -125,7 +143,8 @@ const HomeFirepadPage = () => {
                                className={css.join__room_input}
                                placeholder={EN ? 'Enter the room link' : 'Введіть посилання на кімнату'}/>
                         <button
-                            className={css.join__room_btn}>{EN ? 'Join room' : 'Приєднатися до кімнати'}</button>
+                            className={css.join__room_btn}>{EN ? 'Join the room' : 'Приєднатися до кімнати'}
+                        </button>
                     </form>
                 </div>
 
