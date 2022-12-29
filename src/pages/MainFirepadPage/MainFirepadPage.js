@@ -164,7 +164,7 @@ function MainFirepadPage() {
     }
 
     if (teamCoding) {
-        window.addEventListener("popstate", (e) => {
+        window.addEventListener("onbeforeunload", (e) => {
             e.preventDefault();
             setModal('leave');
             setCode('');
@@ -172,7 +172,7 @@ function MainFirepadPage() {
     }
 
     if (!teamCoding) {
-        window.addEventListener("popstate", (e) => {
+        window.addEventListener("onbeforeunload", (e) => {
             e.preventDefault();
         });
     }
