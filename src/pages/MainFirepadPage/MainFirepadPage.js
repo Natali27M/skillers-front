@@ -164,7 +164,8 @@ function MainFirepadPage() {
     }
 
     if (teamCoding) {
-        window.addEventListener("popstate", (e) => {
+        window.addEventListener("onbeforeunload", (e) => {
+        // window.addEventListener("popstate", (e) => {
             e.preventDefault();
             setModal('leave');
             setCode('');
@@ -172,7 +173,8 @@ function MainFirepadPage() {
     }
 
     if (!teamCoding) {
-        window.addEventListener("popstate", (e) => {
+        // window.addEventListener("popstate", (e) => {
+        window.addEventListener("onbeforeunload", (e) => {
             e.preventDefault();
         });
     }
@@ -332,6 +334,213 @@ function MainFirepadPage() {
 }
 
 export {MainFirepadPage};
+
+// if (teamCoding) {
+//     window.history.pushState(null, null, null);
+//
+//     window.addEventListener('popstate', (e) => {
+//         console.log(12);
+//         e.preventDefault();
+//         setModal('leave');
+//     });
+//
+//     window.addEventListener('load', (e) => {
+//         e.preventDefault();
+//         setModal('reload');
+//         window.history.pushState(null, null, null);
+//     });
+// }
+//
+// if (!teamCoding) {
+//     window.addEventListener('popstate', (e) => {
+//         navigate('/team-coding');
+//     });
+//
+//     window.addEventListener('load', (e) => {
+//         e.preventDefault();
+//         navigate(`${location.pathname}`);
+//     });
+// }
+//
+// const changeReloadOk = () => {
+//     setModal('');
+//     setCode('');
+//     navigate(`${location.pathname}`);
+//     remove(ref(db, `/${path}`));
+//     localStorage.removeItem('teamCoding');
+//     localStorage.removeItem('pathCoding');
+// };
+//
+// const changeReloadCancel = () => {
+//     setModal('');
+//     navigate(`${location.pathname}`);
+// };
+//
+// const changeLeaveOk = () => {
+//     setModal('');
+//     setCode('');
+//     remove(ref(db, `/${path}`));
+//     localStorage.removeItem('teamCoding');
+//     localStorage.removeItem('pathCoding');
+//     navigate('/team-coding');
+// };
+//
+// const changeLeaveCansel = () => {
+//     setModal('');
+//     navigate(`${location.pathname}`);
+// };
+//
+// return (
+//     <div className={css.compiler__main}>
+//
+//         <div className={css.compiler}>
+//
+//             <div className={css.compiler__wrap}>
+//
+//                 <div className={css.compiler__container}>
+//
+//                     <div className={css.result__phone}>
+//                         {wait ?
+//                             <div>Please, wait...</div>
+//                             :
+//                             <>
+//                                 {(!(output?.error) && !(output?.status?.id === 6)) && <div>OUTPUT</div>}
+//                                 {(output?.error || (output?.status?.id === 6)) &&
+//                                     <div className={css.error}>ERROR</div>}
+//                                 {output?.stdout && <pre>Output: {output.stdout}</pre>}
+//                                 {output?.time && <div>Time: {output.time}</div>}
+//                                 {output?.memory && <div>Memory: {output.memory}</div>}
+//                             </>
+//                         }
+//                     </div>
+//
+//                     {teamCoding && modal === 'leave' && <div className={css.leave__main}>
+//                         <div className={css.leave__modal_block}>
+//                             {EN ? 'Are you sure you want to leave the page?'
+//                                 :
+//                                 'Ви впевнені, що бажаєте покинути сторінку?'}
+//
+//                             <p className={css.leave__modal_block_text}>
+//                                 {EN ? 'This action will remove the code'
+//                                     :
+//                                     'Ця дія приведе до видалення коду'}
+//                             </p>
+//
+//                             <div className={css.modal__box_btn}>
+//                                 <button onClick={changeLeaveOk} className={rootCSS.default__button}>
+//                                     {EN ? 'Ok' : 'Так'}
+//                                 </button>
+//
+//                                 <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
+//                                     {EN ? 'Cancel' : 'Відмінити'}
+//                                 </button>
+//                             </div>
+//
+//                         </div>
+//                     </div>}
+//
+//                     {teamCoding && modal === 'reload' && <div className={css.reload__main}>
+//                         <div className={css.reload__modal_block}>
+//                             {EN ? 'Are you sure you want to reload the page?'
+//                                 :
+//                                 'Ви впевнені, що бажаєте оновити сторінку?'}
+//
+//                             <p className={css.leave__modal_block_text}>
+//                                 {EN ? 'This action will delete all your previous actions'
+//                                     :
+//                                     'Ця дія приведе до видалення всіх ваших попередніх дій'}
+//                             </p>
+//
+//                             <div className={css.modal__box_btn}>
+//                                 <button onClick={changeReloadOk} className={rootCSS.default__button}>
+//                                     {EN ? 'Ok' : 'Так'}
+//                                 </button>
+//
+//                                 <button onClick={changeReloadCancel} className={rootCSS.default__button}>
+//                                     {EN ? 'Cansel' : 'Відмінити'}
+//                                 </button>
+//                             </div>
+//
+//                         </div>
+//                     </div>}
+//
+//                     <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
+//
+//                         <CodeEditor
+//                             value={code}
+//                             language={highlightLang}
+//                             placeholder="Please enter code."
+//                             onChange={handleChange}
+//                             padding={15}
+//                             minHeight={400}
+//                             className={css.compiler__textarea}
+//                             style={{
+//                                 fontSize: 14,
+//                                 backgroundColor: '#FFF',
+//                                 fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+//                             }}
+//                         />
+//
+//                         <button className={css.compiler__btn}>
+//                             RUN
+//                             <img src={playArrow} alt="arrow"/>
+//                         </button>
+//
+//                     </form>
+//
+//                     <div className={css.result__wrap}>
+//
+//                         <input type="text"
+//                                className={css.compiler__input}
+//                                {...register('stdin')}
+//                                placeholder="INPUT"
+//
+//                         />
+//
+//                         <div className={css.result__computer}>
+//                             {wait ?
+//                                 <div>Please, wait...</div>
+//                                 :
+//                                 <>
+//                                     {(!(output?.error) && !(output?.status?.id === 6)) && <div>OUTPUT</div>}
+//                                     {(output?.error || (output?.status?.id === 6)) &&
+//                                         <div className={css.error}>ERROR</div>}
+//                                     {output?.stdout && <pre>Output: {output.stdout}</pre>}
+//                                     {output?.time && <div>Time: {output.time}</div>}
+//                                     {output?.memory && <div>Memory: {output.memory}</div>}
+//                                 </>
+//                             }
+//                         </div>
+//
+//
+//                     </div>
+//
+//
+//                 </div>
+//             </div>
+//
+//             <div className={css.main__room_link}>
+//
+//                 <div className={css.title__room_link}>
+//                     {EN ? 'Your colleague can join you using this link : '
+//                         :
+//                         'Ваш колега може приєдатися до вас за цим посилання :'}
+//                 </div>
+//
+//                 <div className={css.copy__room_link}>{location?.pathname}
+//
+//                     <button onClick={() => roomLinkCopy()} className={css.copy__room_btn}>
+//                         {roomLinkCopyTime ? 'Copied' : 'СOPY'}
+//                     </button>
+//
+//                 </div>
+//
+//             </div>
+//
+//
+//         </div>
+//     </div>
+// );
 
 
 
