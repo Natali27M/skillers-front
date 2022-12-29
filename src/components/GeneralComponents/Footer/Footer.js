@@ -54,6 +54,16 @@ const Footer = () => {
                         {EN ? 'Compiler' : 'Компілятор'}
                     </Link>
 
+                    <Link to={'/team-coding'}
+                          className={css.pages__link}>
+                        {EN ? 'Collaborative programming' : 'Спільне програмування'}
+                    </Link>
+
+                    <Link to={'/learning-plan'}
+                          className={css.pages__link}>
+                        {EN ? 'Learning plans' : 'Навчальні плани'}
+                    </Link>
+
                     <Link to={'/createTest'}
                           className={css.pages__link}>
                         {EN ? 'Create quiz' : 'Створити тест'}

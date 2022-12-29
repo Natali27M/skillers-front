@@ -4,7 +4,7 @@
     position: relative;
 }
 
-a {
+.root a {
     color: #8928EB;
     background-image: linear-gradient(71deg, rgba(140, 39, 234, 1) 35%, rgba(99, 90, 240, 1) 54%, rgba(0, 212, 255, 1) 100%);
     background-size: 0% 2px;
@@ -14,7 +14,7 @@ a {
     transition: background-size .4s ease;
 }
 
-a:hover {
+.root a:hover {
     background-size: 100% 2px;
     cursor: pointer;
 }
