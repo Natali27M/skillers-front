@@ -143,7 +143,6 @@ function MainFirepadPage() {
 
     const handleChange = (evn) => {
         setCode(evn.target.value);
-
         // update from firebase
         update(ref(db, `/${path}`), {
             code: evn.target.value,
@@ -156,7 +155,6 @@ function MainFirepadPage() {
         setTimeout(() => {
             setRoomLinkCopyTime(false);
         }, 1000);
-
     };
 
     if (dbValue.userId && +dbValue.userId === user?.id) {
