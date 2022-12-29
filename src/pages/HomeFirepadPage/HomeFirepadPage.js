@@ -32,6 +32,8 @@ const HomeFirepadPage = () => {
     }, []);
 
     const setLangValue = (lang) => {
+        setTimeout(() => {
+        if(user) {
         const name = lang.name.split('(')[0].trim();
 
         const path = `${user?.id}-${name}`
@@ -45,6 +47,10 @@ const HomeFirepadPage = () => {
         }).then(r => r);
 
         navigate(`/team-coding/${name}-${lang.id}/${user?.id}/${lang.name}`);
+        } else {
+            navigate(`/registration`)
+        }
+        }, 300);
     };
 
     const joinToRoom = (e) => {
