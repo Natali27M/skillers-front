@@ -83,9 +83,15 @@ const HomeFirepadPage = () => {
                             </div>
 
                             <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
-                                <input type="text" {...register('path')}
-                                       className={css.join__room_input_language}
-                                       placeholder={EN ? 'Choose compiler' : 'Виберіть компілятор'}/>
+                                <div className={css.join__room_input_language}
+                                      placeholder={EN ? 'Choose compiler' : 'Виберіть компілятор'}>
+                                    {/*{language ? `${language}` :*/}
+                                    {/*    {EN ? 'Choose compiler' : 'Виберіть компілятор'}  */}
+                                    {/*}*/}
+                                </div>
+                                {/*<input type="text" {...register('path')}*/}
+                                {/*       className={css.join__room_input_language}*/}
+                                {/*       placeholder={EN ? 'Choose compiler' : 'Виберіть компілятор'}/>*/}
                                 <div className={dropOpen ? css.tech__drop_arrow_side : css.tech__drop_arrow}>
                                     <img src={dropArrow} alt="dropArrow" style={{width: "24px", height: "24px"}}/>
                                 </div>
