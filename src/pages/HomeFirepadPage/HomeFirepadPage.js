@@ -9,7 +9,7 @@ import useComponentVisibleForOnlineCoding from '../../RootFunctions/useComponent
 import dropArrow from '../../images/arrow-color.png';
 import {ref, set} from 'firebase/database';
 import {db} from '../../firebaseConfig';
-import arrayLanguageCompiler from '../../RootFunctions/arrayLanguageCompiler'
+import arrayLanguageCompiler from '../../RootFunctions/arrayLanguageCompiler';
 
 const HomeFirepadPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -29,14 +29,14 @@ const HomeFirepadPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setValue('path', language.name)
-        setDropOpen(false)
+        setValue('path', language.name);
+        setDropOpen(false);
     }, [language]);
 
     const setLangValue = () => {
         const name = language?.name.split('(')[0].trim();
 
-        const path = `${user?.id}-${name}`
+        const path = `${user?.id}-${name}`;
 
         setDropOpen(false);
 
@@ -57,7 +57,7 @@ const HomeFirepadPage = () => {
             link = link + element;
         }
         navigate(`${link}`);
-    }
+    };
 
     return (
         <div className={css.team__coding_page}>
@@ -77,7 +77,7 @@ const HomeFirepadPage = () => {
                                 {EN ? 'Create a new room' : 'Створіть нову кімнату'}
                             </div>
 
-                            <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
+                            <div className={css.dropdown__btn} onClick={() => user && setDropOpen(!dropOpen)}>
 
                                 {!language.name && user &&
                                     <div className={css.join__room_input_language}>
@@ -100,7 +100,7 @@ const HomeFirepadPage = () => {
 
                                 {user &&
                                     <div className={dropOpen ? css.tech__drop_arrow_side : css.tech__drop_arrow}>
-                                        <img src={dropArrow} alt="dropArrow" style={{width: "24px", height: "24px"}}/>
+                                        <img src={dropArrow} alt="dropArrow" style={{width: '24px', height: '24px'}}/>
                                     </div>
                                 }
                             </div>
