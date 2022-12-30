@@ -6,7 +6,7 @@ import css from './TechBlock.module.css';
 import arrow from '../../../images/all-tests-arrow.svg';
 import numberTests from '../../../images/numberTests.png';
 import star from '../../../images/star-rating.svg';
-import {codeTestServices, testsServices} from '../../../services';
+import {testsServices} from '../../../services';
 
 
 const TechBlock = ({img, name, techId}) => {

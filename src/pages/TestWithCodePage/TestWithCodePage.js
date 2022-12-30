@@ -328,7 +328,7 @@ const TestWithCodePage = () => {
                         }}
                     />
                 </div>
-                {oneCodeTest?.attributes?.outputResult && oneCodeTest?.attributes?.input &&
+                {(oneCodeTest?.attributes?.outputResult || oneCodeTest?.attributes?.input) &&
                     <div className={css.main__right}>
                         {oneCodeTest?.attributes?.outputResult &&
                             <div className={css.result}>

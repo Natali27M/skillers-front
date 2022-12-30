@@ -136,6 +136,9 @@ const codeTestSlice = createSlice({
     reducers: {
         clearCodeTestUserData: (state) => {
             state.userCodeTestRate = null;
+        },
+        clearOneCodeTest: (state) => {
+            state.oneCodeTest = null;
         }
     },
     extraReducers: {
@@ -280,7 +283,7 @@ const codeTestSlice = createSlice({
 
 const codeTestReducers = codeTestSlice.reducer;
 
-export const {clearCodeTestUserData} = codeTestSlice.actions
+export const {clearCodeTestUserData, clearOneCodeTest} = codeTestSlice.actions;
 
 export default codeTestReducers;
 

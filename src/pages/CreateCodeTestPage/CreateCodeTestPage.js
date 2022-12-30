@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import testCss from '../CreateTestPage/CreateTestPage.module.css';
 import {useForm} from 'react-hook-form';
@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import compilerParamsSetter from '../../RootFunctions/compilerParamsSetter';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {CodeTestValidator} from '../../validation';
-import {createCodeTest} from '../../store';
+import {clearOneCodeTest, createCodeTest} from '../../store';
 import {Navigate} from 'react-router-dom';
 
 
@@ -20,6 +20,11 @@ const CreateCodeTestPage = () => {
 
     const {user} = useSelector(state => state['userReducers']);
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(clearOneCodeTest());
+    }, []);
 
     const {
         register, handleSubmit, formState: {errors}, reset
@@ -30,8 +35,6 @@ const CreateCodeTestPage = () => {
     const [isTime, setIsTime] = useState(true);
 
     const [isCreation, setIsCreation] = useState(false);
-
-    const dispatch = useDispatch();
 
     const createTest = (obj) => {
         const timeSeconds = +obj.hours * 3600 + +obj.minutes * 60 + +obj.seconds;
