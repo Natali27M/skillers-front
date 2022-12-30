@@ -9,7 +9,7 @@ import useComponentVisibleForOnlineCoding from '../../RootFunctions/useComponent
 import dropArrow from '../../images/arrow-color.png';
 import {ref, set} from 'firebase/database';
 import {db} from '../../firebaseConfig';
-import arrayLanguageCompiler from '../../RootFunctions/arrayLanguageCompiler'
+import arrayLanguageCompiler from '../../RootFunctions/arrayLanguageCompiler';
 
 const HomeFirepadPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -20,41 +20,32 @@ const HomeFirepadPage = () => {
 
     const [dropOpen, setDropOpen] = useState(false);
 
-    const [error, setError] = useState(false);
-
     const {myRef} = useComponentVisibleForOnlineCoding(true);
 
-    const  arrLanguage = arrayLanguageCompiler();
+    const arrLanguage = arrayLanguageCompiler();
 
     const {register, handleSubmit, setValue} = useForm();
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setValue('path', language.name)
-        setDropOpen(false)
+        setValue('path', language.name);
+        setDropOpen(false);
     }, [language]);
 
     const setLangValue = () => {
-        setTimeout(() => {
+        const name = language?.name.split('(')[0].trim();
 
-            if (user) {
-                const name = language?.name.split('(')[0].trim();
+        const path = `${user?.id}-${name}`;
 
-                const path = `${user?.id}-${name}`
+        setDropOpen(false);
 
-                setDropOpen(false);
+        set(ref(db, `/${path}`), {
+            code: ' ',
+            userId: `${user?.id}`
+        }).then(r => r);
 
-                set(ref(db, `/${path}`), {
-                    code: ' ',
-                    userId: `${user?.id}`
-                }).then(r => r);
-
-                navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
-            } else {
-                setError(true);
-            }
-        }, 300);
+        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
     };
 
     const joinToRoom = (e) => {
@@ -66,7 +57,7 @@ const HomeFirepadPage = () => {
             link = link + element;
         }
         navigate(`${link}`);
-    }
+    };
 
     return (
         <div className={css.team__coding_page}>
@@ -74,7 +65,8 @@ const HomeFirepadPage = () => {
             <div className={css.team__coding_wrap}>
 
                 <div
-                    className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                    className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}
+                </div>
 
                 <div className={css.result__wrap}>
                     <div className={css.dropdown__container}>
@@ -85,30 +77,30 @@ const HomeFirepadPage = () => {
                                 {EN ? 'Create a new room' : 'Створіть нову кімнату'}
                             </div>
 
-                            <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
+                            <div className={css.dropdown__btn} onClick={() => user && setDropOpen(!dropOpen)}>
 
-                                {!language.name && !error &&
+                                {!language.name && user &&
                                     <div className={css.join__room_input_language}>
                                         {EN ? 'Choose compiler' : 'Виберіть компілятор'}
                                     </div>
                                 }
 
-                                {language.name && !error &&
+                                {language.name && user &&
                                     <div className={css.join__room_input_language_active}>
                                         {language.name}
                                     </div>
                                 }
 
-                                {error && <div className={css.error}>
+                                {!user && <div className={css.error}>
                                     {EN ? 'This action is available only to registered users'
                                         :
                                         'Ця дія доступна тільки зареєстрованим користувачам'
                                     }
                                 </div>}
 
-                                {!error &&
+                                {user &&
                                     <div className={dropOpen ? css.tech__drop_arrow_side : css.tech__drop_arrow}>
-                                        <img src={dropArrow} alt="dropArrow" style={{width: "24px", height: "24px"}}/>
+                                        <img src={dropArrow} alt="dropArrow" style={{width: '24px', height: '24px'}}/>
                                     </div>
                                 }
                             </div>
@@ -129,12 +121,12 @@ const HomeFirepadPage = () => {
                             </div>
                             }
 
-                            {!error &&
+                            {user &&
                                 <button onClick={() => setLangValue()} className={rootCSS.default__button}>
                                     {EN ? 'Create room' : 'Створити кімнату'}
                                 </button>}
 
-                            {error &&
+                            {!user &&
                                 <button onClick={() => navigate('/registration')} className={rootCSS.default__button}>
                                     {EN ? 'Registration' : 'Зареєструватися'}
                                 </button>}
