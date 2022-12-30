@@ -238,6 +238,9 @@
 .error{
     color: crimson;
     text-align: center;
+    border-bottom: 2px solid black;
+    width: 100%;
+    padding-bottom: 20px;
 }
 
 @media (max-width: 1200px) {

@@ -151,6 +151,10 @@ function MainFirepadPage() {
         localStorage.setItem('pathCoding', `${location.pathname}`);
     }
 
+    // if(teamCoding) {
+    //
+    // }
+
     const leaveOk = () => {
         navigate('/team-coding');
     }
