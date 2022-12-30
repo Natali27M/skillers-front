@@ -65,7 +65,8 @@ const HomeFirepadPage = () => {
             <div className={css.team__coding_wrap}>
 
                 <div
-                    className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                    className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}
+                </div>
 
                 <div className={css.result__wrap}>
                     <div className={css.dropdown__container}>
