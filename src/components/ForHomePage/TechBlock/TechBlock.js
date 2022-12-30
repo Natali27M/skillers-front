@@ -6,19 +6,21 @@ import css from './TechBlock.module.css';
 import arrow from '../../../images/all-tests-arrow.svg';
 import numberTests from '../../../images/numberTests.png';
 import star from '../../../images/star-rating.svg';
-import {testsServices} from '../../../services';
+import {codeTestServices, testsServices} from '../../../services';
 
 
 const TechBlock = ({img, name, techId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const [tests, setTests] = useState([]);
-    const [numberTestsByCategory, setNumberTestsByCategory] = useState([]);
-    const {pagination} = numberTestsByCategory;
+    const [numberTestsByCategory, setNumberTestsByCategory] = useState(null);
 
     useEffect(() => {
-        testsServices.getTopTestsByTech(techId).then(value => setTests(value.data));
-        testsServices.getTopTestsByTech(techId).then(value => setNumberTestsByCategory(value.meta));
+        testsServices.getTopTestsByTech(techId).then(value => {
+            setTests(value.data);
+            setNumberTestsByCategory(value?.meta?.pagination?.total);
+        });
+
     }, []);
 
 
@@ -47,7 +49,8 @@ const TechBlock = ({img, name, techId}) => {
                                 <div className={css.all__tests_block}>
                                     <div className={css.number__tests_box}>
                                         <img className={css.number__tests_icon} src={numberTests} alt="numberTests"/>
-                                        {pagination && <div className={css.number__tests}>{pagination?.total}</div>}
+                                        {numberTestsByCategory &&
+                                            <div className={css.number__tests}>{numberTestsByCategory}</div>}
                                     </div>
 
                                     <div className={css.arrow_test}>
@@ -61,7 +64,7 @@ const TechBlock = ({img, name, techId}) => {
                         </Link>
                     }
 
-                    {!tests.length ?
+                    {!tests?.length ?
                         <div className={css.test_block_loading}>
                             <div className={css.mini__test_block_loading}></div>
                             <div className={css.mini__test_block_loading}></div>

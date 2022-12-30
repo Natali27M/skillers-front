@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
+import new_icon from '../../../images/new_icon.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
 import {Link, useLocation} from 'react-router-dom';
@@ -68,9 +69,12 @@ const Header = () => {
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
 
-                <Link className={css.header__link} to={'/team-coding'}>
-                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
-                </Link>
+                <div className={css.link__wrap}>
+                    <Link className={css.header__link} to={'/team-coding'}>
+                        <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                    </Link>
+                    <img src={new_icon} alt="new" className={css.new__icon}/>
+                </div>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
@@ -116,9 +120,12 @@ const Header = () => {
                 <Link className={css.header__link} to={'/mentors'}>
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
-                <Link className={css.header__link} to={'/team-coding'}>
-                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
-                </Link>
+                <div className={css.link__wrap}>
+                    <Link className={css.header__link} to={'/team-coding'}>
+                        <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                    </Link>
+                    <img src={new_icon} alt="new" className={css.new__icon}/>
+                </div>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : (EN ? 'Login' : 'Увійти')}

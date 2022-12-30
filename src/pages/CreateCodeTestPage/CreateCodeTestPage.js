@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import testCss from '../CreateTestPage/CreateTestPage.module.css';
 import {useForm} from 'react-hook-form';
@@ -27,6 +27,10 @@ const CreateCodeTestPage = () => {
 
     const [isTech, setIsTech] = useState(true);
 
+    const [isTime, setIsTime] = useState(true);
+
+    const [isCreation, setIsCreation] = useState(false);
+
     const dispatch = useDispatch();
 
     const createTest = (obj) => {
@@ -38,20 +42,35 @@ const CreateCodeTestPage = () => {
 
 
         const {languageId, editorLang} = compilerParamsSetter(technology?.id);
-        // console.log({...obj, timeSeconds, techId: technology?.id, languageId, editorLang});
-        dispatch(createCodeTest({
-            ...obj,
-            timeSeconds,
-            techId: technology?.id,
-            languageId,
-            editorLang,
-            authorId: user?.id
-        }));
-        reset();
+        if (technology && timeSeconds > 0) {
+            dispatch(createCodeTest({
+                ...obj,
+                timeSeconds,
+                techId: technology?.id,
+                languageId,
+                editorLang,
+                authorId: user?.id
+            }));
+            reset();
+            setIsTech(true);
+            setIsTime(true);
+            setIsCreation(true);
+
+        }
+        if (!technology) {
+            setIsTech(false);
+        }
+        if (timeSeconds <= 0) {
+            setIsTime(false);
+        }
     };
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
+    }
+
+    if (oneCodeTest && isCreation) {
+        return <Navigate to={`/code-test/${oneCodeTest?.id}`} replace/>;
     }
 
     return (
@@ -72,7 +91,7 @@ const CreateCodeTestPage = () => {
                             autoCorrect="off"
                             className={testCss.test__input}
                         />
-                        {errors.name && <div className={testCss.input__error}>
+                        {errors.testName && <div className={testCss.input__error}>
                             {EN ? 'The name of the test must be no shorter than 3 characters and no longer than 35' : 'Назва тесту повинна бути не коротшою ніж 3 символи та не довшою, ніж 35'}
                         </div>}
                     </div>
@@ -197,6 +216,9 @@ const CreateCodeTestPage = () => {
                                 className={testCss.time__input}
                             />
                         </div>
+                        {!isTime && <div className={testCss.difficult__error}>
+                            {EN ? 'Set time' : 'Встановіть час'}
+                        </div>}
                     </div>
                     <div className={testCss.input__wrap_private}>
                         <div className={testCss.input__wrap_private__label}>
