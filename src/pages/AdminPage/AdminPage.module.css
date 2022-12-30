@@ -17,6 +17,19 @@
     row-gap: 30px;
 }
 
+.admin__title {
+    display: flex;
+    font-size: 30px;
+    font-weight: 500;
+    justify-content: center;
+    border-bottom: 3px solid;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    margin-top: 30px;
+}
+
 .admin__wallet {
     width: 100%;
     height: auto;

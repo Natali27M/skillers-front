@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {recruiterService} from "../../services/recruiter.service";
 
 
@@ -10,28 +11,52 @@ export const createRecruiter = createAsyncThunk(
         } catch (e) {
             rejectWithValue(e)
         }
-    }
+    },
 );
-export const getRecruiterByUserIdNotConfirmed = createAsyncThunk(
+export const getRecruiterByUserId = createAsyncThunk(
     'recruiterSlice/getRecruiterByUserIdNotConfirmed',
     async (userId, {rejectWithValue}) => {
         try {
-            return recruiterService.getRecruiterByUserIdNotConfirmed(userId)
+            return recruiterService.getRecruiterByUserId(userId)
         } catch (e) {
             rejectWithValue(e)
         }
-    }
+    },
 );
 
 export const getAllRecruiters = createAsyncThunk(
     'recruiterSlice/getAllRecruiters',
-    async (_, {rejectWithValue}) => {
+    async (page, {rejectWithValue}) => {
         try {
-            return recruiterService.getAllRecruiters()
+            return recruiterService.getAllRecruiters(page);
         } catch (e) {
             rejectWithValue(e);
         }
-    }
+    },
+);
+
+
+export const deletedRecruiter = createAsyncThunk(
+    'recruiterSlice/deletedRecruiter',
+    async (id, {rejectWithValue}) => {
+        try {
+            return recruiterService.deletedRecruiter(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
+export const updateIsConfirmed = createAsyncThunk(
+    'recruiterSlice/updateIsConfirmed',
+    async (recruiter, {rejectWithValue}) => {
+        try {
+            const {recruiterId, booleanValue} = recruiter;
+            return recruiterService.updateRecruiter(recruiterId, booleanValue);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
 );
 
 
@@ -57,15 +82,14 @@ export const recruiterSlice = createSlice({
         [createRecruiter.fulfilled]: (state) => {
             state.status = 'fulfilled';
         },
-
-        [getRecruiterByUserIdNotConfirmed.pending]: (state) => {
+        [getRecruiterByUserId.pending]: (state) => {
             state.status = 'pending';
         },
-        [getRecruiterByUserIdNotConfirmed.rejected]: (state, action) => {
+        [getRecruiterByUserId.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         },
-        [getRecruiterByUserIdNotConfirmed.fulfilled]: (state, action) => {
+        [getRecruiterByUserId.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.notConfirmedRecruiter = action.payload?.data[0];
         },
@@ -79,6 +103,28 @@ export const recruiterSlice = createSlice({
         [getAllRecruiters.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.recruitersAll = action.payload;
+        },
+        [updateIsConfirmed.pending]: (state) => {
+            state.status = "pending";
+        },
+        [updateIsConfirmed.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [updateIsConfirmed.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isConfirmedRecruiter = !state.isConfirmedRecruiter;
+        },
+        [deletedRecruiter.pending]: (state) => {
+            state.status = "pending";
+        },
+        [deletedRecruiter.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [deletedRecruiter.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeletedRecruiter = !state.isDeletedRecruiter;
         },
     },
 });

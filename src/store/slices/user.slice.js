@@ -44,6 +44,28 @@ export const getUserRoles = createAsyncThunk(
     }
 );
 
+export const updateUserRoles = createAsyncThunk(
+    'userSlice/updateUserRoles',
+    async (obj, {rejectWithValue}) => {
+        try {
+            const {rolesId, roles} = obj;
+            return userServices.updateUserRoles(rolesId, roles);
+        } catch (e) {
+            rejectWithValue(e)
+        }
+    },
+);
+export const createUserRoles = createAsyncThunk(
+    'userSlice/createUserRoles',
+    async (obj, {rejectWithValue}) => {
+        try {
+            return userServices.createUserRoles(obj);
+        } catch (e) {
+            rejectWithValue(e)
+        }
+    },
+);
+
 export const updateUser = createAsyncThunk(
     'userSlice/updateUser',
     async ({data, userId}, {rejectWithValue}) => {
@@ -208,7 +230,28 @@ const userSlice = createSlice({
             state.status = 'fulfilled';
             state.roles = action.payload[0]?.attributes?.roles;
         },
-
+        [updateUserRoles.pending]: (state) => {
+            state.status = 'pending';
+            state.error = null;
+        },
+        [updateUserRoles.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [updateUserRoles.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+        },
+        [createUserRoles.pending]: (state) => {
+            state.status = 'pending';
+            state.error = null;
+        },
+        [createUserRoles.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [createUserRoles.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+        },
         [getAllUsers.pending]: (state) => {
             state.status = 'pending';
         },

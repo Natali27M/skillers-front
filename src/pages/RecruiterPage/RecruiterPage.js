@@ -53,7 +53,7 @@ const RecruiterPage = () => {
     };
 
 
-    if (!(roles?.includes('admin'))) {
+    if (!(roles?.includes('admin')) && !(roles?.includes('recruiter'))) {
         return <Navigate to={'/user'} replace/>;
     }
 

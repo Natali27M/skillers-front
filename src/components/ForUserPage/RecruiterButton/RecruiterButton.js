@@ -1,35 +1,33 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import rootCSS from "../../../styles/root.module.css";
-import {createRecruiter, getRecruiterByUserIdNotConfirmed} from "../../../store";
+import {createRecruiter} from "../../../store";
 
 
-const RecruiterButton = () => {
+const RecruiterButton = ({user, setModal, modal}) => {
     const {EN} = useSelector(state => state['languageReducers']);
-    const {user, roles} = useSelector(state => state['userReducers']);
-    const {notConfirmedRecruiter, status} = useSelector(state => state['recruiterReducers']);
+    const {roles} = useSelector(state => state['userReducers']);
+    const {notConfirmedRecruiter} = useSelector(state => state['recruiterReducers']);
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getRecruiterByUserIdNotConfirmed(user.id))
-    }, [notConfirmedRecruiter]);
-
-
-    const becomeRecruiter = () => {
+    const becomeRecruiter = async () => {
         const recruiter = {
-            userId: user?.id
+            userId: user?.id,
+            name: user?.username,
+            email: user?.email,
         }
-        dispatch(createRecruiter(recruiter))
+        setModal(!modal);
+        await dispatch(createRecruiter(recruiter));
     }
 
     return (
         <>
             {
-                roles && roles.includes('recruiter') ? <Link to={'/recruiter'}
-                                                             className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
+                roles && roles.includes('recruiter') && !roles.includes('admin') ? <Link to={'/recruiter'}
+                                                                                         className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
                     </Link> :
                     <>
                         {

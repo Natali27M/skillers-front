@@ -8,7 +8,7 @@ import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
-import {UnapprovedMentors} from "../../components";
+import {UnapprovedMentors, UnApprovedRecruiters} from "../../components";
 
 const AdminPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -158,6 +158,9 @@ const AdminPage = () => {
                 </div>
                 <div className={css.mentors__wrap}>
                     <UnapprovedMentors/>
+                </div>
+                <div className={css.mentors__wrap}>
+                    <UnApprovedRecruiters/>
                 </div>
             </div>
         </div>

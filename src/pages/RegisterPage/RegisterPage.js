@@ -10,6 +10,7 @@ import {clearError, registration} from '../../store';
 import {Link, Navigate} from 'react-router-dom';
 import googleLogo from '../../images/google.svg';
 import baseURL from '../../config/urls';
+import {LoginWithMetaMask} from "../../components";
 
 
 const RegisterPage = () => {
@@ -142,6 +143,7 @@ const RegisterPage = () => {
                 }>
                     <img src={googleLogo} alt="google"/> Google login
                 </div>
+                <LoginWithMetaMask/>
             </div>
         </div>
     );
