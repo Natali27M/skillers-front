@@ -20,11 +20,9 @@ const HomeFirepadPage = () => {
 
     const [dropOpen, setDropOpen] = useState(false);
 
-    // const [error, setError] = useState(false);
-
     const {myRef} = useComponentVisibleForOnlineCoding(true);
 
-    const  arrLanguage = arrayLanguageCompiler();
+    const arrLanguage = arrayLanguageCompiler();
 
     const {register, handleSubmit, setValue} = useForm();
 
@@ -36,25 +34,18 @@ const HomeFirepadPage = () => {
     }, [language]);
 
     const setLangValue = () => {
-        // setTimeout(() => {
+        const name = language?.name.split('(')[0].trim();
 
-            // if (user) {
-                const name = language?.name.split('(')[0].trim();
+        const path = `${user?.id}-${name}`
 
-                const path = `${user?.id}-${name}`
+        setDropOpen(false);
 
-                setDropOpen(false);
+        set(ref(db, `/${path}`), {
+            code: ' ',
+            userId: `${user?.id}`
+        }).then(r => r);
 
-                set(ref(db, `/${path}`), {
-                    code: ' ',
-                    userId: `${user?.id}`
-                }).then(r => r);
-
-                navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
-            // } else {
-            //     setError(true);
-            // }
-        // }, 300);
+        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
     };
 
     const joinToRoom = (e) => {

@@ -128,12 +128,10 @@ function App() {
     useEffect(() => {
         if (teamCoding && pathname !== pathCoding) {
             setModal('leave');
-            // window.history.pushState(null, null, null);
         }
 
         if (teamCoding && pathname === '/team-coding') {
             setModal('leave');
-            // window.history.pushState(null, null, null);
         }
     }, [pathname]);
 

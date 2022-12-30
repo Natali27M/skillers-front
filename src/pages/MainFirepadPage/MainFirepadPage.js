@@ -50,6 +50,8 @@ function MainFirepadPage() {
 
     const [code, setCode] = useState('');
 
+    let teamCoding = localStorage.getItem('teamCoding');
+
     useEffect(() => {
         compileServices.getLanguages().then(value => value);
     }, []);
@@ -151,9 +153,12 @@ function MainFirepadPage() {
         localStorage.setItem('pathCoding', `${location.pathname}`);
     }
 
-    // if(teamCoding) {
-    //
-    // }
+    if(teamCoding) {
+        window.addEventListener('popstate' ,(e) => {
+            e.preventDefault();
+            navigate('/team-coding')
+        })
+    }
 
     const leaveOk = () => {
         navigate('/team-coding');
