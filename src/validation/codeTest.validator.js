@@ -4,7 +4,7 @@ export const CodeTestValidator = Joi.object({
     testName:
         Joi.string()
             .min(3)
-            .max(35),
+            .max(50),
     difficult:
         Joi.number()
             .min(1)
@@ -33,13 +33,16 @@ export const CodeTestValidator = Joi.object({
     hours:
         Joi.number()
             .min(0)
-            .max(20),
+            .max(20)
+            .allow(null, ''),
     minutes:
         Joi.number()
             .min(0)
-            .max(60),
+            .max(60)
+            .allow(null, ''),
     seconds:
         Joi.number()
             .min(0)
             .max(60)
+            .allow(null, ''),
 });

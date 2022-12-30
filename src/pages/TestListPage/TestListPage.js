@@ -8,6 +8,7 @@ import {BackButton, TestBlock} from '../../components';
 import sortAsc from '../../images/sort-asc.svg';
 import sortDesc from '../../images/sotr-desc.svg';
 import dropArrow from '../../images/dropArrow.svg';
+import new_icon from '../../images/new_icon.svg';
 import arrowSide from '../../images/arrow.svg';
 import arrowSideGrey from '../../images/arrow-grey.svg';
 import doubleArrowSide from '../../images/dobleArrow.svg';
@@ -119,6 +120,7 @@ const TestListPage = () => {
                          className={`${css.test__switcher_btn} ${!isCodeTest ? css.chosen : ''}`}>
                         {EN ? 'Test' : 'Тестові'}
                     </div>
+                    <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
             </div>}
             <div className={css.sorting__wrap}>

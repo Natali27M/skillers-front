@@ -10,6 +10,8 @@ import {createFeedback} from '../../../store';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {FeedbackValidator} from '../../../validation';
+import new_icon from '../../../images/new_icon.svg';
+
 
 
 const Footer = () => {
@@ -57,11 +59,13 @@ const Footer = () => {
                     <Link to={'/team-coding'}
                           className={css.pages__link}>
                         {EN ? 'Collaborative programming' : 'Спільне програмування'}
+                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </Link>
 
                     <Link to={'/learning-plan'}
                           className={css.pages__link}>
                         {EN ? 'Learning plans' : 'Навчальні плани'}
+                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </Link>
 
                     <Link to={'/createTest'}

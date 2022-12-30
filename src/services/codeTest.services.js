@@ -29,5 +29,8 @@ export const codeTestServices = {
     ).then(value => value.data),
     getUserRateByCodeTest: (userId, testId) => axiosServices.get(`${urls.codeRates}?filters[userId][$eq]=${userId}&filters[testId][$eq]=${testId}`)
         .then(value => value.data),
-    createCodeTest: (data) => axiosServices.post(urls.codeTests, {data: {...data}}).then(value => value.data.data)
+    createCodeTest: (data) => axiosServices.post(urls.codeTests, {data: {...data}}).then(value => value.data.data),
+    getTopTestsByTech: (techId) => axiosServices
+        .get(`${urls.codeTests}?filters[techId][$eq]=${techId}&filters[isPrivate][$eq]=false&pagination[page]=1&pagination[pageSize]=1&sort=avgMark:desc&sort=allMarks:desc`)
+        .then(value => value.data)
 };
