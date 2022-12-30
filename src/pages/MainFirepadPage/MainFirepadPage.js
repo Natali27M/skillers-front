@@ -25,12 +25,14 @@ function MainFirepadPage() {
 
     const template = param?.template;
 
+    const idFirebase = param?.idFirebase;
+
     const newTemplate = template.split('-');
 
     //  object for compilator
     const myLanguage = {id: newTemplate[1], name: param?.language};
 
-    const path = `${param?.id}-${newTemplate[0]}`;
+    const path = `${param?.id}-${newTemplate[0]}-${idFirebase}`;
 
     let location = useLocation();
 

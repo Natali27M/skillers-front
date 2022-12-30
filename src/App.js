@@ -117,6 +117,7 @@ function App() {
         remove(ref(db, `/${path}`)).then(r => r);
         localStorage.removeItem('teamCoding');
         localStorage.removeItem('pathCoding');
+        localStorage.removeItem('path');
         navigate(`${pathname}`);
     }
 
@@ -188,7 +189,7 @@ function App() {
                     <Route path={'/mentors'} element={<MentorsPage/>}/>
                     <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
                     <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
-                    <Route path="/team-coding/:template/:id/:language" element={<MainFirepadPage/>}/>
+                    <Route path="/team-coding/:template/:id/:language/:idFirebase" element={<MainFirepadPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

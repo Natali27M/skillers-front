@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
+import { uid } from "uid";
 
 import css from './HomeFirepadPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -36,16 +37,19 @@ const HomeFirepadPage = () => {
     const setLangValue = () => {
         const name = language?.name.split('(')[0].trim();
 
-        const path = `${user?.id}-${name}`
+        const uuid = uid();
+
+        const path = `${user?.id}-${name}-${uuid}`
 
         setDropOpen(false);
 
         set(ref(db, `/${path}`), {
             code: ' ',
-            userId: `${user?.id}`
+            userId: `${user?.id}`,
+            uuid
         }).then(r => r);
 
-        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}`);
+        navigate(`/team-coding/${name}-${language?.id}/${user?.id}/${language?.name}/${uuid}`);
     };
 
     const joinToRoom = (e) => {
