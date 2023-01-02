@@ -105,8 +105,8 @@ const RecruiterPage = () => {
                     </div>
                     {
                         usersTen?.data[0].map(user =>
-                            <div className={css.user__block_main}>
-                                <div className={css.user__block} key={user?.id}
+                            <div className={css.user__block_main} key={user?.id}>
+                                <div className={css.user__block}
                                      onClick={() => setUserId(user?.id)}
                                 >
                                     <div className={css.user__name}>{user?.username}</div>
