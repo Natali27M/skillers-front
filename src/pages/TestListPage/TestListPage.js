@@ -16,11 +16,13 @@ import DoubleArrowSideGrey from '../../images/dobleArrow-grey.svg';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
 import useWindowDimensions from '../../RootFunctions/WindowDimensions';
 import pagination from '../../RootFunctions/pagination';
-import {getCodeTestsPaginated} from '../../store';
+import {getCodeTestsPaginated, getUserResultByTechnology} from '../../store';
 
 
 const TestListPage = () => {
     const {techId} = useParams();
+
+    const {user} = useSelector(state => state['userReducers']);
 
     const {EN} = useSelector(state => state['languageReducers']);
 
@@ -57,6 +59,12 @@ const TestListPage = () => {
         }
         setDropOpen(false);
     };
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getUserResultByTechnology({userId: user?.id, techId}));
+        }
+    }, [user, techId]);
 
     useEffect(() => {
         dispatch(getTechnology({techId}));
