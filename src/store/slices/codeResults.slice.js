@@ -66,6 +66,16 @@ export const getUserResultByCodeTest = createAsyncThunk(
         }
     }
 );
+export const getUserResultByTechnology = createAsyncThunk(
+    'codeResultsSlice/getUserResultByTechnology',
+    async ({userId, techId}, {rejectWithValue}) => {
+        try {
+            return await codeResultsServices.getUserCodeResultsByTechnology(userId, techId);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 export const changeCodeResult = createAsyncThunk(
     'codeResultsSlice/changeCodeResult',
@@ -88,6 +98,7 @@ const codeResultsSlice = createSlice({
         resultPageForEvaluate: null,
         oneCodeResult: null,
         userResultByTest: null,
+        userCodeResultsByTech: null,
         resultsByCodeTest: null
     },
     reducers: {
@@ -178,6 +189,19 @@ const codeResultsSlice = createSlice({
         [getUserResultByCodeTest.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.userResultByTest = action.payload[0];
+        },
+        [getUserResultByCodeTest.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getUserResultByCodeTest.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getUserResultByTechnology.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.userCodeResultsByTech = action.payload;
         },
 
         [changeCodeResult.pending]: (state) => {

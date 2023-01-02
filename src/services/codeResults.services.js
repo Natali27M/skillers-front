@@ -16,5 +16,8 @@ export const codeResultsServices = {
         axiosServices.get(`${urls.codeResultForEvaluate}${authorId}&pagination[pageSize]=5&pagination[page]=${pageNum}&sort=createdAt:desc`)
             .then(value => value.data),
     getUserResultByCodeTest: (userId, testId) =>
-        axiosServices.get(`${urls.codeResultsByUser}${userId}&filters[codeTestId][$eq]=${testId}`).then(value => value.data.data)
+        axiosServices.get(`${urls.codeResultsByUser}${userId}&filters[codeTestId][$eq]=${testId}`).then(value => value.data.data),
+    getUserCodeResultsByTechnology: (userId, techId) =>
+        axiosServices.get(`${urls.codeResultsByUser}${userId}&filters[techId][$eq]=${techId}&&pagination[pageSize]=255&pagination[page]=1`)
+            .then(value => value.data.data)
 };

@@ -11,11 +11,25 @@ const TestBlock = ({test, type}) => {
 
     const {userResultsAll} = useSelector(state => state['resultReducers']);
 
+    const {userCodeResultsByTech} = useSelector(state => state['codeResultsReducers']);
+
     const currentTest = test.attributes;
 
     const testId = test.id;
 
     const [testCompleted, setTestCompleted] = useState(false);
+
+    useEffect(() => {
+        if (type === 'code') {
+            let currentResult = [];
+            if (userCodeResultsByTech?.length) {
+                currentResult = userCodeResultsByTech?.filter(element => +element?.attributes?.codeTestId === testId);
+                if (currentResult?.length) {
+                    setTestCompleted(true);
+                }
+            }
+        }
+    }, [userCodeResultsByTech]);
 
     useEffect(() => {
         let currentResult = [];
