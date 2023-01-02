@@ -13,8 +13,6 @@ import {
     UnApprovedRecruiters
 } from "../../components";
 
-import {UnapprovedMentors, UnApprovedRecruiters} from "../../components";
-
 const AdminPage = () => {
 
     const {EN} = useSelector(state => state['languageReducers']);
