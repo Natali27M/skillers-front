@@ -46,6 +46,7 @@ import {ref, remove} from 'firebase/database';
 import {db} from './firebaseConfig';
 import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from './styles/root.module.css';
+import {userServices} from './services';
 
 
 function App() {
