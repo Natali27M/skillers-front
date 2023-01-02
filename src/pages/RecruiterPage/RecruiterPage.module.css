@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 40px 100px;
+    padding: 40px 50px;
     box-shadow: 0 0 15px 3px #323232;
     row-gap: 30px;
 }
@@ -46,8 +46,7 @@
     position: relative;
 }
 
-.users__header,
-.user__block {
+.users__header {
     width: 100%;
     height: 40px;
     background-color: #000;
@@ -55,6 +54,45 @@
     display: flex;
     align-items: center;
     padding: 0 15px;
+    font-size: 16px;
+}
+
+.user__block_main {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 16px;
+    background-color: #fff;
+    color: black;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.user__block_main:hover {
+    background-color: #F1F1F1;
+    transition: all .1s linear;
+}
+
+.user__name_header {
+    width: 40%;
+}
+
+.user__openForHiring_header,
+.user__linkedin_header,
+.user__github_header,
+.user__email_header {
+    width: 15%;
+    text-align: center;
+}
+
+.user__block {
+    width: 55%;
+    height: 40px;
+    display: flex;
+    align-items: center;
     font-size: 16px;
 }
 
@@ -75,67 +113,199 @@
     font-size: 24px;
 }
 
-.user__block {
-    background-color: #fff;
-    color: black;
-    border-bottom: 2px solid lightgray;
-    cursor: pointer;
-    transition: all .1s linear;
-}
-
-.user__block:hover {
-    background-color: #F1F1F1;
-    transition: all .1s linear;
-}
-
 .user__name {
-    width: 70%;
+    width: 75%;
+    overflow: hidden;
 }
 
-.user__rating {
-    width: 30%;
+.user__openForHiring {
+    width: 24%;
+}
+
+.user__openForHiring_img {
+    width: 24%;
+    display: flex;
+    justify-content: center;
+}
+
+.user__openForHiring_img img {
+    width: 25px;
+}
+
+.user__email,
+.user__linkedin,
+.user__github {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.linkedin__btn {
+    min-width: 100px;
+    width: fit-content;
+    height: 20px;
+    display: flex;
+    padding: 0 15px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #0073B1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.github__btn,
+.email__btn {
+    min-width: 100px;
+    width: fit-content;
+    height: 20px;
+    display: flex;
+    padding: 0 15px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    font-size: 14px;
+    font-weight: 600;
+    color: #24292F;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.email__btn {
+    background-color: white;
+    border: 1px solid black;
+}
+
+@media (max-width: 1440px) {
+    .recruiter__wrap {
+        min-height: calc(100vh - 60px);
+    }
 }
 
 @media (max-width: 1200px) {
     .recruiter__wrap {
         width: 90%;
-        min-height: calc(100vh - 60px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .recruiter__wrap {
+        width: 90%;
+        min-height: calc(100vh - 70px);
+    }
+
+    .users__header,
+    .user__block_main {
+        padding: 0 5px;
+    }
+
+    .user__openForHiring_header {
+        width: 15%;
+    }
+
+    .email__btn,
+    .linkedin__btn,
+    .github__btn {
+        min-width: 70px;
+        padding: 0 10px;
     }
 }
 
 @media (max-width: 767px) {
     .recruiter__wrap {
-        padding: 40px;
+        padding: 40px 20px;
+    }
+
+    .users__header {
+        font-size: 14px;
+    }
+
+    .email__btn,
+    .linkedin__btn,
+    .github__btn {
+        min-width: 50px;
+        font-size: 14px;
+        font-weight: 300;
     }
 
 }
 
-@media (max-width: 550px) {
-    .user__search_wrap {
-        display: flex;
-        justify-content: center;
+    @media (max-width: 550px) {
+        .users__header {
+            font-size: 12px;
+        }
+
+        .user__name {
+            font-size: 14px;
+        }
+
+        .email__btn,
+        .github__btn,
+        .linkedin__btn {
+            min-width: 30px;
+            font-size: 11px;
+            font-weight: 300;
+            padding: 0 5px;
+        }
+
+        .user__openForHiring_img img {
+            width: 15px;
+        }
+
+    }
+
+    @media (max-width: 400px) {
+        .user__name {
+            font-size: 10px;
+        }
+
+        .users__header,
+        .user__openForHiring_header,
+        .user__email_header,
+        .user__linkedin_header,
+        .user__github_header {
+            font-size: 8px;
+        }
+
+        .email__btn,
+        .github__btn,
+        .linkedin__btn {
+            min-width: 30px;
+            font-size: 8px;
+            font-weight: 100;
+            padding: 0;
+        }
+
+        .user__openForHiring_img img {
+            width: 10px;
+        }
+
+        .user__search_input {
+            font-size: 14px;
+        }
+    }
+
+@media (max-width: 300px) {
+    .recruiter__wrap {
+        padding: 20px;
+        row-gap: 20px;
     }
 
     .user__search_input {
-        width: 200px;
-        height: 30px;
-        font-size: 14px;
-    }
-
-    .users__header,
-    .user__block {
-        height: 30px;
-        font-size: 14px;
-    }
-
-    .search__info {
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 
-@media (max-width: 400px) {
-    .recruiter__wrap {
-        padding: 30px 10px;
-    }
-}
 
