@@ -18,6 +18,7 @@ import {
     getResultsByTest, getTestCodeResults,
     getUserCodeResults,
     getUserResults,
+    getRecruiterByUserId,
     getUserRoles,
     logout,
     updateUser
@@ -27,7 +28,7 @@ import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
-import {UserBadges} from '../../components/ForUserPage';
+import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -70,6 +71,8 @@ const UserPage = () => {
 
     const {resultBadges} = useSelector(state => state['badgesReducers']);
 
+    const [modal, setModal] = useState(false);
+
     const [hiring, setHiring] = useState(false);
 
     const [linkedOpen, setLinkedOpen] = useState(false);
@@ -83,7 +86,7 @@ const UserPage = () => {
 
     useEffect(() => {
         if (user) {
-            const id = user.id;
+            const id = user?.id;
             dispatch(getUserAchievement(id));
             dispatch(getUserRoles(id));
             setHiring(user?.openForHiring);
@@ -141,6 +144,11 @@ const UserPage = () => {
         dispatch(getCodeTestsForApprove(1));
     }, [pathname]);
 
+    useEffect(() => {
+        if (user) {
+            dispatch(getRecruiterByUserId(user?.id));
+        }
+    }, [modal, user]);
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
@@ -165,6 +173,10 @@ const UserPage = () => {
         dispatch(updateUser({data: {github: obj.github}, userId: user.id}));
         setGithubOpen(false);
     };
+
+    if (modal) {
+        setTimeout(() => setModal(!modal), 4000);
+    }
 
     return (
         <div className={css.user__page}>
@@ -547,6 +559,14 @@ const UserPage = () => {
                     <Link to={'/mentor'}
                           className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
+                    <RecruiterButton user={user} setModal={setModal} modal={modal}/>
+                    {
+                        modal && <div className={css.modal__container}>
+                            <div className={css.modal__block}>
+                                {EN ? "Your recruitment application has been processed!" : "Ваша заявка на рекрутинг оформлена!"}
+                            </div>
+                        </div>
+                    }
 
                     <div className={rootCSS.default__button}
                          onClick={() => dispatch(logout())}>{EN ? 'Logout' : 'Вихід'}</div>

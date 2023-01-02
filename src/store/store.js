@@ -13,6 +13,7 @@ import technologiesReducers from './slices/technologies.slice';
 import badgesReducers from './slices/badges.slice';
 import codeTestReducers from './slices/codeTest.slice';
 import codeResultsReducers from './slices/codeResults.slice';
+import recruiterReducers from "./slices/recruiter.slice";
 
 
 const store = configureStore({
@@ -29,7 +30,8 @@ const store = configureStore({
         mentorReducers,
         technologiesReducers,
         codeTestReducers,
-        codeResultsReducers
+        codeResultsReducers,
+        recruiterReducers,
     }
 });
 

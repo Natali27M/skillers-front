@@ -16,6 +16,7 @@ export const urls = {
     login: '/api/auth/local',
     user: '/api/users',
     userRoles: '/api/user-roles?filters[userId][$eq]=',
+    allRoles: '/api/user-roles',
     usersPaginated: '/api/users?limit=10&start=',
 
     achievements: '/api/achievements',
@@ -34,6 +35,7 @@ export const urls = {
     feedback: '/api/feedbacks',
     mentors: '/api/mentors',
     technologies: '/api/technology',
+    recruiters: 'api/recruiters',
 
     rates: 'api/rates',
 

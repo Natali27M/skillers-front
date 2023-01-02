@@ -13,6 +13,8 @@ export const userServices = {
     getUserByEmail: (email) => axiosServices.get(`${urls.user}?filters[email][$eq]=${email}`).then(value => value.data),
     getAllUsers: () => axiosServices.get(urls.user).then(value => value.data),
     getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
+    updateUserRoles: (roleId, roles) => axiosServices.put(urls.allRoles + `/${roleId}`, {data: {roles}}).then(value => value.data.data),
+    createUserRoles: (newRole) => axiosServices.post(urls.allRoles, {data: newRole}).then(value => value.data.data),
     //getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
     // getAllUsers: (startNumber) => axiosServices.get(urls.usersPaginated + startNumber).then(value => value.data),
     getAllUsersByQuery: (startNumber, query) =>
