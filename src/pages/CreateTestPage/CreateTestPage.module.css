@@ -256,6 +256,14 @@
     display: flex;
 }
 
+
+.language__btn{
+    cursor: pointer;
+    background-color: #F3F3F3;
+    margin-top: 10px;
+    user-select: none;
+}
+
 .time__inputs__wrap {
     display: flex;
     align-items: center;
