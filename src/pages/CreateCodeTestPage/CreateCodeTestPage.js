@@ -9,6 +9,8 @@ import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {CodeTestValidator} from '../../validation';
 import {clearOneCodeTest, createCodeTest} from '../../store';
 import {Navigate} from 'react-router-dom';
+import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
+import css from '../CreateTestPage/CreateTestPage.module.css';
 
 
 const CreateCodeTestPage = () => {
@@ -36,6 +38,8 @@ const CreateCodeTestPage = () => {
 
     const [isCreation, setIsCreation] = useState(false);
 
+    const [testLng, setTestLng] = useState(true);
+
     const createTest = (obj) => {
         const timeSeconds = +obj.hours * 3600 + +obj.minutes * 60 + +obj.seconds;
 
@@ -48,6 +52,7 @@ const CreateCodeTestPage = () => {
         if (technology && timeSeconds > 0) {
             dispatch(createCodeTest({
                 ...obj,
+                ukrLng: !testLng,
                 timeSeconds,
                 techId: technology?.id,
                 languageId,
@@ -106,6 +111,21 @@ const CreateCodeTestPage = () => {
                         {!isTech && <div className={testCss.input__error}>
                             {EN ? 'Choose technology' : 'Виберіть технологію'}
                         </div>}
+                    </div>
+                    <div className={testCss.input__wrap}>
+                        <div className={css.test__header_input}>
+                            {EN ? 'Test language'
+                                : 'Мова тесту'}
+                        </div>
+                        <div onClick={() => setTestLng(!testLng)}
+                             className={`${testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk} ${testCss.language__btn}`}>
+                            <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>
+                            </div>
+                            <div
+                                className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>
+                                {testLng ? 'EN' : 'UK'}
+                            </div>
+                        </div>
                     </div>
                     <div className={testCss.input__wrap}>
                         <div className={testCss.test__header_input}>

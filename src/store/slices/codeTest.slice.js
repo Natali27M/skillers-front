@@ -90,9 +90,9 @@ export const getUserByCodeTestRate = createAsyncThunk(
 
 export const getCodeTestsPaginated = createAsyncThunk(
     'codeTestSlice/getCodeTestsPaginated',
-    async ({techId, pageNum, sortParams, order}, {rejectWithValue}) => {
+    async ({techId, pageNum, sortParams, order, ukr}, {rejectWithValue}) => {
         try {
-            return await codeTestServices.getCodeTestsPaginated(techId, pageNum, sortParams, order);
+            return await codeTestServices.getCodeTestsPaginated(techId, pageNum, sortParams, order, ukr);
         } catch (error) {
             return rejectWithValue(error.message);
         }

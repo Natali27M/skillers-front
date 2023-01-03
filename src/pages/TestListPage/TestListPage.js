@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import css from './TestListPage.module.css';
+import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTechnology, getTests, getTestsByQuery} from '../../store/slices/testPage.slice';
@@ -46,6 +47,8 @@ const TestListPage = () => {
 
     const [isCodeTest, setIsCodeTest] = useState(false);
 
+    const [testLng, setTestLng] = useState(true);
+
     const codeSetter = (value) => {
         if (value !== isCodeTest) {
             setIsCodeTest(value);
@@ -72,11 +75,11 @@ const TestListPage = () => {
 
     useEffect(() => {
         if (isCodeTest) {
-            dispatch(getCodeTestsPaginated({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc'}));
+            dispatch(getCodeTestsPaginated({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc', ukr: !testLng}));
         } else {
-            dispatch(getTests({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc'}));
+            dispatch(getTests({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc', ukr: !testLng}));
         }
-    }, [currenPage, sortParams, isDesc, isCodeTest]);
+    }, [currenPage, sortParams, isDesc, isCodeTest, testLng]);
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -132,6 +135,16 @@ const TestListPage = () => {
                 </div>
             </div>}
             <div className={css.sorting__wrap}>
+                <div>{EN ? 'Test language:' : 'Мова тесту:'}</div>
+                <button onClick={() => setTestLng(!testLng)}
+                        className={testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk}>
+                    <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>
+                    </div>
+                    <div
+                        className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>
+                        {testLng ? 'EN' : 'UK'}
+                    </div>
+                </button>
                 <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
                 <div className={css.sorting__dropdown_wrap} ref={ref}>
                     <div className={css.sorting__dropdown_btn} onClick={() => setDropOpen(!dropOpen)}>
