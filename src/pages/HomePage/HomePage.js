@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
-import {Feedbacks, LeaderBord, PresentForUserAlways, TechList} from '../../components';
+import {Feedbacks, LeaderBord, PresentForUserAlways, TechList, YoutubeChannel} from '../../components';
 import {Link} from 'react-router-dom';
 
 
@@ -48,6 +48,7 @@ const HomePage = () => {
             <LeaderBord/>
             <PresentForUserAlways/>
             <Feedbacks/>
+            <YoutubeChannel/>
         </>
     );
 };
