@@ -6,7 +6,7 @@ import css from './TechBlock.module.css';
 import arrow from '../../../images/all-tests-arrow.svg';
 import numberTests from '../../../images/numberTests.png';
 import star from '../../../images/star-rating.svg';
-import {testsServices} from '../../../services';
+import {codeTestServices, testsServices} from '../../../services';
 
 
 const TechBlock = ({img, name, techId}) => {
@@ -17,8 +17,18 @@ const TechBlock = ({img, name, techId}) => {
 
     useEffect(() => {
         testsServices.getTopTestsByTech(techId).then(value => {
-            setTests(value.data);
-            setNumberTestsByCategory(value?.meta?.pagination?.total);
+            if (techId !== 8 && techId !== 9 && techId !== 10) {
+                codeTestServices.getTopTestsByTech(techId).then(codeValue => {
+                    setNumberTestsByCategory(codeValue?.meta?.pagination?.total + value?.meta?.pagination?.total);
+                    let resultTests = value.data;
+                    resultTests.pop();
+                    resultTests.push(codeValue.data[0]);
+                    setTests(resultTests);
+                });
+            } else {
+                setTests(value.data);
+                setNumberTestsByCategory(value?.meta?.pagination?.total);
+            }
         });
 
     }, []);
@@ -76,7 +86,7 @@ const TechBlock = ({img, name, techId}) => {
                         tests.map(test =>
                             <Link to={`test/${test?.id}`} key={test.id} className={css.mini__test_block}>
                                 <div className={css.mini__test_name}>
-                                    {test?.attributes?.name}
+                                    {test?.attributes?.name || test?.attributes?.testName}
                                 </div>
                                 <div className={css.mini__test_bottom}>
                                     <div className={css.mini__test_difficult}>

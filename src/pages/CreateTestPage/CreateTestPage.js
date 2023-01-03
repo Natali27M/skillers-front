@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import css from './CreateTestPage.module.css';
 import rootCss from '../../styles/root.module.css';
+import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
@@ -42,6 +43,8 @@ const CreateTestPage = () => {
 
     const [monetize, setMonetize] = useState(false);
 
+    const [testLng, setTestLng] = useState(true);
+
     const dispatch = useDispatch();
 
     const addExBlock = () => {
@@ -56,7 +59,12 @@ const CreateTestPage = () => {
         if (!technology) {
             setIsTech(false);
         } else {
-            dispatch(createTempTest({...obj, techId: technology.id, testTempId: `test${Date.now()}`}));
+            dispatch(createTempTest({
+                ...obj,
+                ukrLng: !testLng,
+                techId: technology.id,
+                testTempId: `test${Date.now()}`
+            }));
             setIsTech(true);
         }
         reset();
@@ -106,6 +114,7 @@ const CreateTestPage = () => {
             difficult: tempTest.difficult,
             techId: tempTest.techId,
             isApproved: false,
+            ukrLng: tempTest?.ukrLng,
             authorId: user?.id,
             isPrivate: tempTest?.isPrivate ? true : null,
             correctPercent: tempTest?.correctPercent,
@@ -217,6 +226,21 @@ const CreateTestPage = () => {
                                         : 'Виберіть технологію'}
                                 </div>
                             }
+                        </div>
+                        <div className={css.input__wrap}>
+                            <div className={css.test__header_input}>
+                                {EN ? 'Test language'
+                                    : 'Мова тесту'}
+                            </div>
+                            <div onClick={() => setTestLng(!testLng)}
+                                 className={`${testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk} ${css.language__btn}`}>
+                                <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>
+                                </div>
+                                <div
+                                    className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>
+                                    {testLng ? 'EN' : 'UK'}
+                                </div>
+                            </div>
                         </div>
                         <div className={css.input__wrap}>
                             <div className={css.test__header_input}>
