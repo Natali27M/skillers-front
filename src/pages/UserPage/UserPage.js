@@ -715,7 +715,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Link, Navigate, useLocation} from 'react-router-dom';
+import {Link, Navigate, useLocation, useNavigate} from 'react-router-dom';
 import {
     ref,
     uploadBytes,
@@ -815,7 +815,7 @@ const UserPage = () => {
 
     const [myCV, setMyCV] = useState('');
 
-    // const navigate = useNavigation();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -959,6 +959,10 @@ const UserPage = () => {
 
     if (modal) {
         setTimeout(() => setModal(!modal), 4000);
+    }
+
+    const navigateCreateCV = () => {
+        navigate('/create-cv')
     }
 
     console.log(myCV, 'myCV');
@@ -1159,7 +1163,7 @@ const UserPage = () => {
                         />
                         <button onClick={addCV} type="button">Додати CV</button>
                         <button onClick={deleteCV} type="button">Видалити CV</button>
-                        {/*<button onClick={navigate('/create-cv')} type="button">Створити CV</button>*/}
+                        <button onClick={navigateCreateCV} type="button">Створити CV</button>
                     </div>
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
