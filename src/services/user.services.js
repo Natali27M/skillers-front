@@ -1,5 +1,5 @@
 import {axiosServices} from './axios.services';
-import {urls} from '../config';
+import {proxyUrls, urls} from '../config';
 
 
 export const userServices = {
@@ -17,7 +17,4 @@ export const userServices = {
     createUserRoles: (newRole) => axiosServices.post(urls.allRoles, {data: newRole}).then(value => value.data.data),
     //getMyRoles: (userId) => axiosServices.get(`${urls.userRoles}${userId}`).then(value => value.data.data),
     // getAllUsers: (startNumber) => axiosServices.get(urls.usersPaginated + startNumber).then(value => value.data),
-    getAllUsersByQuery: (startNumber, query) =>
-        axiosServices.get(urls.usersPaginated + startNumber + '&filters[userName][$contains]=' + query)
-            .then(value => value.data)
 };

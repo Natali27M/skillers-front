@@ -6,23 +6,6 @@
     margin-top: 50px;
 }
 
-.pagination__block {
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    column-gap: 10px;
-}
-
-.arrow__left,
-.arrow__right {
-    height: 25px;
-    cursor: pointer;
-}
-
-.arrow__right {
-    transform: rotate(180deg);
-}
-
 .mentors__header {
     width: 100%;
     height: 40px;

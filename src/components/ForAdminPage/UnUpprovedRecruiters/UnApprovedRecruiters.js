@@ -8,6 +8,7 @@ import cross from "../../../images/cross-red.svg";
 import check_green from "../../../images/check-green.svg";
 import check_grey from "../../../images/check-grey.svg";
 import {userServices} from "../../../services";
+import {PaginationSmall} from '../../GeneralComponents';
 
 
 const UnApprovedRecruiters = () => {
@@ -101,15 +102,10 @@ const UnApprovedRecruiters = () => {
                 )
             }
 
-            <div className={css.pagination__wrap}>
-                <div className={css.pagination__block}>
-                    <img src={arrow} alt="arrow" className={css.arrow__left}
-                         onClick={() => page > 1 && setPage(page - 1)}/>
-                    <div>{page} / {recruitersAll?.meta?.pagination?.pageCount ? recruitersAll?.meta?.pagination?.pageCount : 1}</div>
-                    <img src={arrow} alt="arrow" className={css.arrow__right}
-                         onClick={() => page < recruitersAll.meta?.pagination?.pageCount && setPage(page + 1)}/>
-                </div>
-            </div>
+            <PaginationSmall pageNumber={page}
+                             setPageNumber={setPage}
+                             pageCount={recruitersAll.meta?.pagination?.pageCount}
+            />
 
         </>
     );

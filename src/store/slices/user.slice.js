@@ -1,6 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {userServices} from '../../services';
+import {achievementsServices, userServices} from '../../services';
+import {getLeaderBordByQueryTen, getLeaderBordTen} from './achievments.slice';
+import {usersProxyServices} from '../../services/users.proxy.services';
 
 export const registration = createAsyncThunk(
     'userSlice/registration',
@@ -117,6 +119,28 @@ export const getAllUsersByQuery = createAsyncThunk(
     }
 );
 
+export const getUsersTen = createAsyncThunk(
+    'usersSlice/getUsersTen',
+    async (currentPage, {rejectWithValue}) => {
+        try {
+            return await usersProxyServices.getUsersTen(currentPage);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+export const getUsersByQueryTen = createAsyncThunk(
+    'usersSlice/getUsersByQueryTen',
+    async ({currentPage, query}, {rejectWithValue}) => {
+        try {
+            return await usersProxyServices.getUsersByQueryTen(currentPage, query);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
@@ -127,7 +151,8 @@ const userSlice = createSlice({
         roles: null,
         token: null,
         noUser: true,
-        allUsers: []
+        allUsers: [],
+        usersTen: [],
     },
 
     reducers: {
@@ -277,6 +302,34 @@ const userSlice = createSlice({
         [getAllUsersByQuery.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.allUsers = action.payload;
+        },
+
+        [getUsersTen.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getUsersTen.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getUsersTen.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.usersTen = action.payload;
+        },
+
+        [getUsersByQueryTen.pending]: (state) => {
+            state.status = 'pending';
+        },
+
+        [getUsersByQueryTen.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+        [getUsersByQueryTen.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.usersTen = action.payload;
         },
     }
 });

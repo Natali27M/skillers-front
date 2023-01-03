@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import css from './FeedbackFormPage.module.css';
 import rootCSS from '../../styles/root.module.css'
 import {useDispatch, useSelector} from 'react-redux';
@@ -64,7 +65,7 @@ const FeedbackFormPage = () => {
                 </div>
             </div>
         </div>
-        
+
     );
 };
 
