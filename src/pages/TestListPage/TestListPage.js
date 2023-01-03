@@ -176,9 +176,10 @@ const TestListPage = () => {
             }
             {isCodeTest && !!codeTestPage?.data?.length &&
                 <div className={css.tests__wrap}>
-                    {!!codeTestPage?.data?.length && codeTestPage?.data?.map(test => <TestBlock type={'code'}
-                                                                                                key={test.id}
-                                                                                                test={test}/>)}
+                    {!!codeTestPage?.data?.length && codeTestPage?.data?.map(test =>
+                        <TestBlock type={'code'}
+                                   key={test.id}
+                                   test={test}/>)}
                 </div>
             }
             <div className={css.pagination__wrap}>

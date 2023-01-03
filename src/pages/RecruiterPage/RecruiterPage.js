@@ -103,7 +103,8 @@ const RecruiterPage = () => {
                             GitHub
                         </div>
                     </div>
-                    {
+
+                    { usersTen?.data &&
                         usersTen?.data[0].map(user =>
                             <div className={css.user__block_main} key={user?.id}>
                                 <div className={css.user__block}
@@ -122,7 +123,8 @@ const RecruiterPage = () => {
 
                                 <div onClick={() => emailCopy(user)} className={css.user__email}>
                                     {emailCopyTime && id === user?.id &&
-                                        <div className={css.email__btn}>{EN ? 'Copied to clipboard' : 'Скопійовано'}</div>
+                                        <div
+                                            className={css.email__btn}>{EN ? 'Copied to clipboard' : 'Скопійовано'}</div>
                                     }
 
                                     {emailCopyTime && id !== user?.id &&

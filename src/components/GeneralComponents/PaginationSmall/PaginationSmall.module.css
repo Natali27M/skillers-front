@@ -1,0 +1,21 @@
+.pagination__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.arrow__left,
+.arrow__right {
+    height: 15px;
+    cursor: pointer;
+}
+
+.arrow__right {
+    transform: rotate(-180deg);
+}
+
+
+

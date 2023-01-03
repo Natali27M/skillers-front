@@ -7,9 +7,9 @@ import rootCSS from '../../../styles/root.module.css';
 import userCSS from '../../../pages/UserPage/UserPage.module.css';
 import {achievementsServices, userServices} from '../../../services';
 import {resultsServices} from '../../../services/results.services';
-import arrow from '../../../images/arrow.svg';
 import cross from '../../../images/cross.svg';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
+import {PaginationSmall} from '../../GeneralComponents';
 
 const UserBlock = ({userId, setUserId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -23,11 +23,8 @@ const UserBlock = ({userId, setUserId}) => {
     const [pageNumber, setPageNumber] = useState(1);
 
     const [result, setResult] = useState({});
+
     const [emailCopyTime, setEmailCopyTime] = useState(false);
-
-    const [linkedName, setLinkedName] = useState('');
-
-    const [informationModal, setInformationModal] = useState('');
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -137,15 +134,11 @@ const UserBlock = ({userId, setUserId}) => {
                             </Link>
                           )}
                       </div>
-                      <div className={css.pagination__block}>
-                          <img className={css.arrow__left}
-                               onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}
-                               src={arrow} alt="arrow"/>
-                          <div>{pageNumber}/{result?.meta?.pagination?.pageCount}</div>
-                          <img className={css.arrow__right} src={arrow}
-                               onClick={() => pageNumber < result?.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}
-                               alt="arrow"/>
-                      </div>
+
+                      <PaginationSmall pageNumber={pageNumber}
+                                       setPageNumber={setPageNumber}
+                                       pageCount={result.meta?.pagination?.pageCount}
+                      />
                   </div>
               </div>
           </div>

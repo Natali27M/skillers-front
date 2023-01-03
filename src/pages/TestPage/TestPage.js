@@ -28,7 +28,7 @@ import {
     setTestComplete
 } from '../../store';
 import {BackButton, ExerciseBlock, SignUpModal} from '../../components';
-import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store/slices/achievments.slice';
+import {createUserAchievement, getUserAchievement, updateUserAchievement} from '../../store';
 import star__rating from '../../images/star-rating.svg';
 import lock from '../../images/lock.svg';
 import coin from '../../images/coin.svg';

@@ -188,12 +188,6 @@
     border: 1px solid black;
 }
 
-@media (max-width: 1440px) {
-    .recruiter__wrap {
-        min-height: calc(100vh - 60px);
-    }
-}
-
 @media (max-width: 1200px) {
     .recruiter__wrap {
         width: 90%;

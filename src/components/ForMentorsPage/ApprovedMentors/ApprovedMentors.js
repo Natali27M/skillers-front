@@ -10,6 +10,7 @@ import arrow from "../../../images/arrow.svg";
 import cross from "../../../images/cross.svg";
 import css from './ApprovedMentors.module.css';
 import {getTechnologies} from "../../../store";
+import {PaginationSmall} from '../../GeneralComponents';
 
 const ApprovedMentors = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -102,14 +103,12 @@ const ApprovedMentors = () => {
             {confirmedMentorPage?.data && confirmedMentorPage.data.map(value => <ApprovedMentor key={value.id}
                                                                                                 mentor={value}/>)}
             <div className={css.pagination__wrap}>
-                <div className={css.pagination__block}>
-                    <img src={arrow} alt="arrow" className={css.arrow__left}
-                         onClick={() => mentorPageNumber > 1 && setMentorPageNumber(mentorPageNumber - 1)}/>
-                    <div>{mentorPageNumber} / {confirmedMentorPage?.meta?.pagination?.pageCount}</div>
-                    <img src={arrow} alt="arrow" className={css.arrow__right}
-                         onClick={() => mentorPageNumber < confirmedMentorPage.meta?.pagination?.pageCount && setMentorPageNumber(mentorPageNumber + 1)}/>
-                </div>
+                <PaginationSmall pageNumber={mentorPageNumber}
+                                 setPageNumber={setMentorPageNumber}
+                                 pageCount={confirmedMentorPage.meta?.pagination?.pageCount}
+                />
             </div>
+
         </div>
         <div className={css.filters}>
             <div className={css.admin__title}>
