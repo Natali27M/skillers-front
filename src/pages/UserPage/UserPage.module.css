@@ -323,6 +323,7 @@
     border-left: none;
     height: 100%;
 }
+
 .update__username_form input[type="file"]::file-selector-button {
     background: lightgrey;
     height: 30px;
@@ -387,8 +388,8 @@
         width: 78%;
     }
 
-    .update__username__input_cv::-webkit-file-upload-button {
-        width: 35%;
+    .update__username_form input[type="file"]::file-selector-button {
+        width: 30%;
         font-size: 12px;
     }
 
@@ -473,7 +474,7 @@
         width: 67%;
     }
 
-    .update__username__input_cv::-webkit-file-upload-button {
+    .update__username_form input[type="file"]::file-selector-button {
         width: 30%;
         padding: 0;
         text-align: center;
