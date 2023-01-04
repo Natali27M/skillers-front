@@ -317,12 +317,15 @@
 .update__username__input_cv {
     font-size: 14px;
     width: 90%;
-    /*border: 1px solid black;*/
 }
 
-.update__username__input_cv::-webkit-file-upload-button {
-    background: lightgrey;
+.update__username_form input[type="file"]{
+    border-left: none;
     height: 100%;
+}
+.update__username_form input[type="file"]::file-selector-button {
+    background: lightgrey;
+    height: 30px;
     width: 25%;
     border: 1px solid black;
     font-size: 14px;
