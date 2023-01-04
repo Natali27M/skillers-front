@@ -3,67 +3,102 @@ import {useSelector} from "react-redux";
 
 import css from './SKLPage.module.css';
 import coin from '../../images/coin.svg'
+import {PresentForUserAlways} from "../../components";
+import banner__angle from "../../images/banner-angle.svg";
+import css_helper from './../../components/ForHomePage/SKLBanner/SKLBanner.module.css'
+import rootCSS from '../../styles/root.module.css';
+import {useNavigate} from "react-router-dom";
+
 
 const SklPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
+    const navigate = useNavigate();
 
+    const home = () => {
+        return navigate('/')
+    }
 
     return (
         <div className={css.skl__container}>
             <div className={css.skl__bg}></div>
             <div className={css.skl__block}>
-                <div className={css.banner__underline}>SKL token</div>
 
-                <div className={css.skl__instruction}>
+                <div className={css.skl__header}>
+                    <div className={css.skl__token}>
+                        <div className={css_helper.banner__box}>
+                            <div className={css_helper.banner__content}>
+                                {EN ?
+                                    <div className={css_helper.banner__text}>
+                                        Pass the <span className={css.banner__underline}>tests</span> successfully and
+                                        get <span
+                                        className={css.banner__underline}>SKL</span> token from
+                                        <span className={css_helper.banner__name}> Skilliant</span>
+                                    </div>
+                                    :
+                                    <div className={css_helper.banner__text}>
+                                        Проходиш успішно <span
+                                        className={css.banner__underline}>тести</span> отримуй <span
+                                        className={css.banner__underline}>SKL</span> токен
+                                        від <span className={css_helper.banner__name}>Skilliant</span>
+                                    </div>
+                                }
+                            </div>
+                            <img src={banner__angle} alt="banner__angle" className={css_helper.banner__angle}/>
+                        </div>
+                    </div>
+                </div>
 
-                    <div className={css.skl__instruction__block}>
-                        <div>
-                            <>
-                                {EN ? <span className={css.skl__instruction__block__title}>What is SKL?</span> :
-                                    <span className={css.skl__instruction__block__title}>Що таке SKL?</span>}
-                            </>
-                            <>
-                                {
-                                    EN ?
-                                        <div className={css.skl__instruction__block__content}>
+                <div className={css.what_it_is}>
+                    <>
+                        {EN ? <span className={css.skl__instruction__block__title}>What is SKL?</span> :
+                            <span className={css.skl__instruction__block__title}>Що таке SKL?</span>}
+                    </>
+                    <>
+                        {
+                            EN ?
+                                <div className={css.skl__instruction__block__content}>
                                         <span className={css.text__start}><img src={coin} alt="coin"
                                                                                className={css.coin}/>SKL</span> — is its
-                                            own <span className={css.banner__name__span}>SKILLIANT</span> token on the
-                                            main
-                                            network of the Polygon blockchain with the native token of the Polygon
-                                            network -
-                                            MATIC.
-                                            The token has entered the stock exchange and is traded in open access for
-                                            all
-                                            interested parties.
-                                            <br/>You can learn more about the token and see all transactions here:
-                                            <a
-                                                href="https://polygonscan.com/token/0x1d68dfc73e9ca737c12a8fc599251906358fe090"
-                                                className={css.skl__link}
-                                                target="_blank"
-                                            > www.polygonscan.com/token/skl</a>
-                                        </div> :
-                                        <div className={css.skl__instruction__block__content}>
+                                    own <span className={css.banner__name__span}>SKILLIANT</span> token on the main
+                                    network of the Polygon blockchain with the native token of the Polygon
+                                    network -
+                                    MATIC.
+                                    The token has entered the stock exchange and is traded in open access for
+                                    all
+                                    interested parties.
+                                    <br/>You can learn more about the token and see all transactions here:
+                                    <a
+                                        href="https://polygonscan.com/token/0x1d68dfc73e9ca737c12a8fc599251906358fe090"
+                                        className={css.skl__link}
+                                        target="_blank"
+                                    > www.polygonscan.com/token/skl</a>
+                                </div> :
+                                <div className={css.skl__instruction__block__content}>
                                         <span className={css.text__start}><img src={coin} alt="coin"
                                                                                className={css.coin}/>SKL</span> — це
-                                            власний <span className={css.banner__name__span}>SKILLIANT</span> токен на
-                                            головній мережі
-                                            блокчейну Polygon з
-                                            нативним токеном мережі Polygon - MATIC.
-                                            Токен вийшов на біржу і торгується у відкритому доступі для всіх охочих.
-                                            <br/>Більш детально ознайомитись з токеном та побачити всі трансакції ви
-                                            можете
-                                            тут: <a
-                                            href="https://polygonscan.com/token/0x1d68dfc73e9ca737c12a8fc599251906358fe090"
-                                            className={css.skl__link}
-                                        >www.polygonscan.com/token/skl</a>
+                                    власний <span className={css.banner__name__span}>SKILLIANT</span> токен на
+                                    головній мережі блокчейну Polygon з нативним токеном мережі Polygon - MATIC.
+                                    Токен вийшов на біржу і торгується у відкритому доступі для всіх охочих.
+                                    <br/>Більш детально ознайомитись з токеном та побачити всі трансакції ви
+                                    можете
+                                    тут: <a
+                                    href="https://polygonscan.com/token/0x1d68dfc73e9ca737c12a8fc599251906358fe090"
+                                    className={css.skl__link}
+                                >www.polygonscan.com/token/skl</a>
 
-                                        </div>
-                                }
-                            </>
-                        </div>
+                                </div>
+                        }
+                    </>
+                </div>
 
+                <div className={css.skl_present}>
+                    <PresentForUserAlways/>
+                </div>
+
+                <div className={css.skl__instruction}>
+                    <div className={css.skl__instruction__block}>
                         <div>
+                            <div className={css.polygon}></div>
                             <>
                                 {EN ? <span
                                         className={css.skl__instruction__block__title}>What is Polygon (MATIC)?</span> :
@@ -100,6 +135,7 @@ const SklPage = () => {
                         </div>
 
                         <div>
+                            <div className={css.person}></div>
                             <>
                                 {EN ? <span
                                         className={css.skl__instruction__block__title}>What is SKL for?</span> :
@@ -141,6 +177,7 @@ const SklPage = () => {
                         </div>
 
                         <div>
+                            <div className={css.steps}></div>
                             <>
                                 {EN ? <span
                                         className={css.skl__instruction__block__title}>How to get SKL?</span> :
@@ -235,8 +272,9 @@ const SklPage = () => {
                         }
                     </>
                 </div>
-
+                <div className={rootCSS.default__button} onClick={() => home()}>{EN ? "To main" : "На головну"}</div>
             </div>
+
         </div>
     );
 };

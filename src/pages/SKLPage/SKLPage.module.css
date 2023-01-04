@@ -17,15 +17,53 @@
 }
 
 .skl__block {
-    width: 60%;
+    width: 70%;
     background-color: #fff;
     z-index: 2;
     min-height: calc(100vh - 80px);
     box-shadow: 0 0 15px 3px #323232;
     display: flex;
-    padding: 50px 100px;
+    padding: 30px;
     flex-direction: column;
     align-items: center;
+}
+
+.skl__header {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.skl_present {
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+
+.border__bottom {
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.what_it_is {
+    margin: 50px 0;
+}
+
+.news {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 100%;
+    font-size: 20px;
+}
+
+.skl__token {
+    width: 100%;
+    height: 100%;
 }
 
 .banner__underline {
@@ -48,7 +86,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 60px;
     margin-top: 30px;
 }
 
@@ -62,11 +100,34 @@
 }
 
 .skl__instruction__block__content {
+    width: 100%;
     margin: 10px 0;
     font-family: 'Noto Sans', sans-serif;
     line-height: 26px;
     padding: 20px 0;
     text-align: justify;
+}
+
+.polygon {
+    background: url('../../images/polygon.svg') no-repeat center/cover;
+}
+
+.person {
+    background: url('../../images/person.svg') no-repeat center/cover;
+    padding: 20px;
+}
+
+.steps {
+    background: url('../../images/steps.svg') no-repeat center/cover;
+    padding: 20px;
+}
+
+.steps, .person, .polygon {
+    width: 160px;
+    height: 160px;
+    margin: 0 10px 10px 0;
+    float: left;
+
 }
 
 .banner__name__span {
@@ -103,6 +164,13 @@
     .skl__instruction__block__title {
         font-size: 23px;
     }
+
+
+    .steps, .person, .polygon {
+        width: 160px;
+        height: 160px;
+        margin: 0 6px 6px 0;
+    }
 }
 
 
@@ -132,6 +200,12 @@
 
     .banner__name__span {
         font-size: 16px;
+    }
+
+    .steps, .person, .polygon {
+        width: 140px;
+        height: 140px;
+        margin: 0 6px 6px 0;
     }
 }
 
@@ -167,6 +241,16 @@
     .banner__name__span {
         font-size: 14px;
     }
+
+    .steps, .person, .polygon {
+        width: 120px;
+        height: 120px;
+        margin: 0 4px 4px 0;
+    }
+
+    .banner__underline {
+        border-bottom: 2px solid;
+    }
 }
 
 
@@ -198,6 +282,12 @@
     .banner__name__span {
         font-size: 14px;
     }
+
+    .steps, .person, .polygon {
+        width: 100px;
+        height: 100px;
+        margin: 0 4px 4px 0;
+    }
 }
 
 @media (max-width: 520px) {
@@ -227,5 +317,57 @@
 
     .banner__name__span {
         font-size: 14px;
+    }
+
+    .steps, .person, .polygon {
+        width: 90px;
+        height: 90px;
+        margin: 0 4px 4px 0;
+    }
+
+    .banner__underline {
+        border-bottom: 1px solid;
+    }
+}
+
+@media (max-width: 450px) {
+    .text__start {
+        margin-left: 2px;
+    }
+
+    .skl__instruction__block__title {
+        font-size: 13px;
+    }
+
+    .skl__instruction__block__content {
+        font-size: 12px;
+    }
+
+    .steps, .person, .polygon {
+        width: 70px;
+        height: 70px;
+        margin: 0 4px 4px 0;
+
+    }
+}
+
+@media (max-width: 350px) {
+    .text__start {
+        margin-left: 0;
+    }
+
+    .skl__instruction__block__title {
+        font-size: 12px;
+    }
+
+    .skl__instruction__block__content {
+        font-size: 11px;
+    }
+
+    .steps, .person, .polygon {
+        width: 60px;
+        height: 60px;
+        margin: 0 2px 2px 0;
+
     }
 }
