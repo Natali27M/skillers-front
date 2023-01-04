@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getMentorsPaginated} from "../../../../store/slices/mentors.slice";
 import {UnapprovedMentor} from '../UnapprovedMentor/UnapprovedMentor'
 import css from "./UnapprovedMentors.module.css";
-import arrow from "../../../../images/arrow.svg";
+import {PaginationSmall} from '../../../GeneralComponents';
 
 const UnapprovedMentors = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -23,7 +23,6 @@ const UnapprovedMentors = () => {
         dispatch(getMentorsPaginated(mentorPageNumber))
     }, [mentorPageNumber, isConfirmedMentor, isDeletedMentor])
 
-
     return (
         <>
             <div className={css.admin__title}>
@@ -41,13 +40,11 @@ const UnapprovedMentors = () => {
             {mentorPage?.data && mentorPage.data.map(value => <UnapprovedMentor key={value.id} mentor={value}/>)}
 
             <div className={css.pagination__wrap}>
-                <div className={css.pagination__block}>
-                    <img src={arrow} alt="arrow" className={css.arrow__left}
-                         onClick={() => mentorPageNumber > 1 && setMentorPageNumber(mentorPageNumber - 1)}/>
-                    <div>{mentorPageNumber} / {mentorPage?.meta?.pagination?.pageCount}</div>
-                    <img src={arrow} alt="arrow" className={css.arrow__right}
-                         onClick={() => mentorPageNumber < mentorPage.meta?.pagination?.pageCount && setMentorPageNumber(mentorPageNumber + 1)}/>
-                </div>
+                <PaginationSmall pageNumber={mentorPageNumber}
+                                 setPageNumber={setMentorPageNumber}
+                                 pageCount={mentorPage.meta?.pagination?.pageCount}
+                />
+
             </div>
         </>
     );

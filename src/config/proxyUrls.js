@@ -9,4 +9,6 @@ export const proxyUrls = {
     nonce: '/metaMaskAuth/nonce',
     verify: '/metaMaskAuth/verify',
     saveEmail: '/metaMaskAuth/saveEmail',
+    usersPaginatedTen: '/users?pagination[pageSize]=10&pagination[page]=',
+    // usersPaginatedTenByQuery: '/users?pagination[pageSize]=10&pagination[page]='
 };

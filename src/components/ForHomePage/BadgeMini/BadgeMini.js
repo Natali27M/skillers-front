@@ -1,7 +1,6 @@
 import React from 'react';
 
 import css from './BadgeMini.module.css';
-import {Link} from 'react-router-dom';
 import badge_bg from '../../../images/badges/badge-bg.svg';
 import java from '../../../images/techList/java.svg';
 import python from '../../../images/techList/python.svg';

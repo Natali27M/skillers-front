@@ -3,12 +3,10 @@ import React from 'react';
 import css from './TimeIsUpModal.module.css';
 import rootCss from '../../../styles/root.module.css';
 import {useSelector} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const TimeIsUpModal = ({tryAgain}) => {
     const {EN} = useSelector(state => state['languageReducers']);
-
-    const navigate = useNavigate()
 
     return (
         <div className={css.timeIsUp__modal}>

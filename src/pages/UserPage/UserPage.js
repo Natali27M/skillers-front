@@ -5,7 +5,6 @@ import {Link, Navigate, useLocation} from 'react-router-dom';
 import css from './UserPage.module.css';
 import rootCSS from '../../styles/root.module.css';
 import avatar from '../../images/avatar.jpg';
-import arrow from '../../images/arrow.svg';
 import Lamer from '../../images/rank_little/Lamer.png';
 import Trainee from '../../images/rank_little/Trainee.png';
 import Junior from '../../images/rank_little/Junior.png';
@@ -29,6 +28,7 @@ import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
 import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
+import {PaginationSmall} from '../../components';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -338,6 +338,7 @@ const UserPage = () => {
                     </div>
                     <UserBadges/>
                 </>}
+
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
                     <div className={rootCSS.default__title_24}>
                         {EN ? 'My results' : 'Мої результати'}
@@ -353,15 +354,13 @@ const UserPage = () => {
                                 className={css.results__result}>{result.attributes.correctAnswer}/{result.attributes.allExercises}</div>
                         </Link>
                     )}
-                    <div className={css.pagination__block}>
-                        <img className={css.arrow__left} onClick={() => pageNumber > 1 && setPageNumber(pageNumber - 1)}
-                             src={arrow} alt="arrow"/>
-                        <div>{pageNumber}/{userResults.meta.pagination.pageCount}</div>
-                        <img className={css.arrow__right} src={arrow}
-                             onClick={() => pageNumber < userResults.meta?.pagination?.pageCount && setPageNumber(pageNumber + 1)}
-                             alt="arrow"/>
-                    </div>
+
+                    <PaginationSmall pageNumber={pageNumber}
+                                     setPageNumber={setPageNumber}
+                                     pageCount={userResults.meta?.pagination?.pageCount}
+                    />
                 </div>}
+
                 {!!userCodeResultPage?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
@@ -379,18 +378,14 @@ const UserPage = () => {
                                     className={css.results__result}>{result?.attributes?.authorMark || '-'}</div>
                             </Link>
                         )}
-                        <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => codeResultsPageNumber > 1 && setCodeResultsPageNumber(codeResultsPageNumber - 1)}
-                                 src={arrow} alt="arrow"/>
-                            <div>{codeResultsPageNumber}/{userCodeResultPage.meta.pagination.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => pageNumber < userCodeResultPage.meta?.pagination?.pageCount && setCodeResultsPageNumber(codeResultsPageNumber + 1)}
-                                 alt="arrow"/>
-                        </div>
 
+                        <PaginationSmall pageNumber={codeResultsPageNumber}
+                                         setPageNumber={setCodeResultsPageNumber}
+                                         pageCount={userCodeResultPage.meta?.pagination?.pageCount}
+                        />
                     </div>
                 }
+
                 {!!resultPageForEvaluate?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
@@ -410,20 +405,14 @@ const UserPage = () => {
                                 </div>
                             </Link>
                         )}
-                        <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => resultsFooEvaluatePageNumber > 1 && setResultsFooEvaluatePageNumber(resultsFooEvaluatePageNumber - 1)}
-                                 src={arrow} alt="arrow"
-                            />
-                            <div>{resultsFooEvaluatePageNumber}/{resultPageForEvaluate.meta.pagination.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => pageNumber < resultPageForEvaluate.meta?.pagination?.pageCount && setResultsFooEvaluatePageNumber(resultsFooEvaluatePageNumber + 1)}
-                                 alt="arrow"
-                            />
-                        </div>
 
+                        <PaginationSmall pageNumber={resultsFooEvaluatePageNumber}
+                                         setPageNumber={setResultsFooEvaluatePageNumber}
+                                         pageCount={resultPageForEvaluate.meta?.pagination?.pageCount}
+                        />
                     </div>
                 }
+
                 {!!testsByUser?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
@@ -446,15 +435,11 @@ const UserPage = () => {
                                 </button>
                             </div>
                         )}
-                        <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}
-                                 src={arrow} alt="arrow"/>
-                            <div>{testsPageNumber}/{testsByUser.meta.pagination.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => testsPageNumber < testsByUser.meta?.pagination?.pageCount && setTestsPageNumber(testsPageNumber + 1)}
-                                 alt="arrow"/>
-                        </div>
+
+                        <PaginationSmall pageNumber={testsPageNumber}
+                                         setPageNumber={setTestsPageNumber}
+                                         pageCount={testsByUser.meta?.pagination?.pageCount}
+                        />
                     </div>
                 }
                 {testForResults &&
@@ -477,17 +462,17 @@ const UserPage = () => {
                                     className={css.results__result}>{result?.attributes?.correctAnswer}/{result?.attributes?.allExercises}</div>
                             </Link>
                         )}
-                        {!!resultsByTest?.data?.length ? <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => resultsPageNumber > 1 && setResultsPageNumber(resultsPageNumber - 1)}
-                                 src={arrow} alt="arrow"/>
-                            <div>{resultsPageNumber}/{resultsByTest?.meta?.pagination?.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => resultsPageNumber < resultsByTest?.meta?.pagination?.pageCount && setTestsPageNumber(resultsPageNumber + 1)}
-                                 alt="arrow"/>
-                        </div> : <div>{EN ? 'No results' : 'Немає результатів'}</div>}
+                        {!!resultsByTest?.data?.length ?
+
+                            <PaginationSmall pageNumber={resultsPageNumber}
+                                             setPageNumber={setResultsPageNumber}
+                                             pageCount={resultsByTest.meta?.pagination?.pageCount}
+                            />
+                            :
+                            <div>{EN ? 'No results' : 'Немає результатів'}</div>}
                     </div>
                 }
+
                 {!!codeTestsByUser?.data?.length &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
@@ -510,17 +495,14 @@ const UserPage = () => {
                                 </button>
                             </div>
                         )}
-                        <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => codeTestsPageNumber > 1 && setCodeTestsPageNumber(codeTestsPageNumber - 1)}
-                                 src={arrow} alt="arrow"/>
-                            <div>{codeTestsPageNumber}/{codeTestsByUser.meta.pagination.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => codeTestsPageNumber < codeTestsByUser.meta?.pagination?.pageCount && setCodeTestsPageNumber(codeTestsPageNumber + 1)}
-                                 alt="arrow"/>
-                        </div>
+
+                        <PaginationSmall pageNumber={codeTestsPageNumber}
+                                         setPageNumber={setCodeTestsPageNumber}
+                                         pageCount={codeTestsByUser.meta?.pagination?.pageCount}
+                        />
                     </div>
                 }
+
                 {codeTestForResults &&
                     <div className={css.results__wrap}>
                         <div className={rootCSS.default__title_24}>
@@ -542,17 +524,17 @@ const UserPage = () => {
                                 </div>
                             </Link>
                         )}
-                        {!!resultsByCodeTest?.data?.length ? <div className={css.pagination__block}>
-                            <img className={css.arrow__left}
-                                 onClick={() => usersCodeResultsPageNumber > 1 && setUsersCodeResultsPageNumber(usersCodeResultsPageNumber - 1)}
-                                 src={arrow} alt="arrow"/>
-                            <div>{usersCodeResultsPageNumber}/{resultsByCodeTest?.meta?.pagination?.pageCount}</div>
-                            <img className={css.arrow__right} src={arrow}
-                                 onClick={() => usersCodeResultsPageNumber < resultsByCodeTest?.meta?.pagination?.pageCount && setUsersCodeResultsPageNumber(usersCodeResultsPageNumber + 1)}
-                                 alt="arrow"/>
-                        </div> : <div>{EN ? 'No results' : 'Немає результатів'}</div>}
+                        {!!resultsByCodeTest?.data?.length ?
+
+                            <PaginationSmall pageNumber={usersCodeResultsPageNumber}
+                                             setPageNumber={setUsersCodeResultsPageNumber}
+                                             pageCount={resultsByCodeTest.meta?.pagination?.pageCount}
+                            />
+                            :
+                            <div>{EN ? 'No results' : 'Немає результатів'}</div>}
                     </div>
                 }
+
                 <div className={css.buttons__wrap}>
                     <Link to={'/'} className={rootCSS.default__button}>{EN ? 'To main' : 'На головну'}</Link>
 
@@ -590,3 +572,4 @@ const UserPage = () => {
 };
 
 export {UserPage};
+

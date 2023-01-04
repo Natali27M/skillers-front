@@ -4,16 +4,15 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import css from './RecruiterPage.module.css';
 import rootCSS from '../../styles/root.module.css';
-import {getLeaderBordTen, getLeaderBordByQueryTen} from '../../store';
+import {getUsersByQueryTen, getUsersTen} from '../../store';
 import {UserBlock, Pagination} from '../../components';
 import pagination from '../../RootFunctions/pagination';
+import check from '../../images/check-green.svg';
 
 const RecruiterPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
-    const {roles} = useSelector(state => state['userReducers']);
-
-    const {leaderBordTen} = useSelector(state => state['achievementsReducers']);
+    const {roles, usersTen} = useSelector(state => state['userReducers']);
 
     const dispatch = useDispatch();
 
@@ -25,19 +24,23 @@ const RecruiterPage = () => {
 
     const [data, setData] = useState();
 
+    const [emailCopyTime, setEmailCopyTime] = useState(false);
+
+    const [id, setId] = useState(null);
+
     useEffect(() => {
         if (isQuery === false) {
-            dispatch(getLeaderBordTen(currentPage));
+            dispatch(getUsersTen(currentPage));
         }
     }, [currentPage, isQuery]);
 
     useEffect(() => {
         if (isQuery === true) {
-            dispatch(getLeaderBordByQueryTen({query: data, currentPage}));
+            dispatch(getUsersByQueryTen({query: data, currentPage}));
         }
     }, [currentPage, isQuery, data]);
 
-    const allPages = leaderBordTen?.meta?.pagination?.pageCount;
+    const allPages = usersTen?.meta?.pagination?.pageCount;
 
     const pagesArray = pagination(allPages, currentPage);
 
@@ -57,6 +60,16 @@ const RecruiterPage = () => {
         return <Navigate to={'/user'} replace/>;
     }
 
+    const emailCopy = (user) => {
+        setEmailCopyTime(true);
+        setId(user?.id);
+        navigator.clipboard.writeText(`${user?.email}`);
+        setTimeout(() => {
+            setEmailCopyTime(false);
+        }, 1000);
+
+    };
+
     return (
         <div className={css.recruiter__page}>
             <div className={rootCSS.root__background}></div>
@@ -70,26 +83,85 @@ const RecruiterPage = () => {
 
                 <div className={css.users__wrap}>
                     <div className={css.users__header}>
-                        <div className={css.user__name}>
+                        <div className={css.user__name_header}>
                             {EN ? 'User' : 'Користувач'}
                         </div>
-                        <div className={css.user__rating}>
-                            {EN ? 'Rating' : 'Рейтинг'}
+
+                        <div className={css.user__openForHiring_header}>
+                            Open to work
+                        </div>
+
+                        <div className={css.user__email_header}>
+                            Email
+                        </div>
+
+                        <div className={css.user__linkedin_header}>
+                            Linkedin
+                        </div>
+
+                        <div className={css.user__github_header}>
+                            GitHub
                         </div>
                     </div>
-                    {
-                        leaderBordTen?.data?.map(user =>
-                            <div className={css.user__block} key={user.id}
-                                 onClick={() => setUserId(user.attributes.userId)}>
-                                <div className={css.user__name}>{user?.attributes?.userName}</div>
-                                <div className={css.user__rating}>{user?.attributes?.rating}</div>
+
+                    { usersTen?.data &&
+                        usersTen?.data[0].map(user =>
+                            <div className={css.user__block_main} key={user?.id}>
+                                <div className={css.user__block}
+                                     onClick={() => setUserId(user?.id)}
+                                >
+                                    <div className={css.user__name}>{user?.username}</div>
+                                    {user?.openForHiring ?
+                                        <div className={css.user__openForHiring_img}>
+                                            <img src={check} alt="true"/>
+                                        </div>
+                                        :
+                                        <div className={css.user__openForHiring}></div>
+                                    }
+
+                                </div>
+
+                                <div onClick={() => emailCopy(user)} className={css.user__email}>
+                                    {emailCopyTime && id === user?.id &&
+                                        <div
+                                            className={css.email__btn}>{EN ? 'Copied to clipboard' : 'Скопійовано'}</div>
+                                    }
+
+                                    {emailCopyTime && id !== user?.id &&
+                                        <div className={css.email__btn}>Email</div>
+                                    }
+
+                                    {!emailCopyTime &&
+                                        <div className={css.email__btn}>Email</div>
+                                    }
+                                </div>
+
+                                <div className={css.user__linkedin}>
+                                    {user?.linkedin ?
+                                        <a href={user?.linkedin} target="_blank" className={css.linkedin__btn}>
+                                            LinkedIn
+                                        </a>
+                                        :
+                                        <div></div>
+                                    }
+                                </div>
+
+                                <div className={css.user__github}>
+                                    {user?.github ?
+                                        <a href={user?.github} target="_blank" className={css.github__btn}>
+                                            Github
+                                        </a>
+                                        :
+                                        <div></div>
+                                    }
+                                </div>
                             </div>
                         )
                     }
-                    {userId && <UserBlock userId={userId} setUserId={setUserId}/>}
+                    {userId && <UserBlock key={userId} userId={userId} setUserId={setUserId}/>}
                 </div>
 
-                {leaderBordTen?.data?.length ?
+                {usersTen?.data?.length ?
                     ''
                     :
                     (EN ? <div>There are no users with this username <span
@@ -100,7 +172,7 @@ const RecruiterPage = () => {
                     )
                 }
 
-                <Pagination key={leaderBordTen?.id}
+                <Pagination key={usersTen?.id}
                             setCurrentPage={setCurrentPage}
                             currentPage={currentPage}
                             allPages={allPages}

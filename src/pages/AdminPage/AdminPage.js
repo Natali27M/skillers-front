@@ -9,6 +9,7 @@ import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
 import arrow from '../../images/arrow.svg';
 import {
+    PaginationSmall,
     UnapprovedMentors,
     UnApprovedRecruiters
 } from "../../components";
@@ -97,15 +98,14 @@ const AdminPage = () => {
                     {testsForApprove?.data?.length === 0 &&
                         <div>{EN ? 'no tests for approve' : 'немає тестів для підтвердження'}</div>
                     }
+
                     <div className={css.pagination__wrap}>
-                        <div className={css.pagination__block}>
-                            <img src={arrow} alt="arrow" className={css.arrow__left}
-                                 onClick={() => testsPageNumber > 1 && setTestsPageNumber(testsPageNumber - 1)}/>
-                            <div>{testsPageNumber} / {testsForApprove?.meta?.pagination?.pageCount}</div>
-                            <img src={arrow} alt="arrow" className={css.arrow__right}
-                                 onClick={() => testsPageNumber < testsForApprove.meta?.pagination?.pageCount && setTestsPageNumber(testsPageNumber + 1)}/>
-                        </div>
+                        <PaginationSmall pageNumber={testsPageNumber}
+                                         setPageNumber={setTestsPageNumber}
+                                         pageCount={testsForApprove.meta?.pagination?.pageCount}
+                        />
                     </div>
+
                 </div>
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Code tests for approve' : 'Практичні тести для затвердження'}
@@ -144,15 +144,14 @@ const AdminPage = () => {
                     {codeTestPageForApprove?.data?.length === 0 &&
                         <div>{EN ? 'no code tests for approve' : 'немає практичних тестів для підтвердження'}</div>
                     }
+
                     <div className={css.pagination__wrap}>
-                        <div className={css.pagination__block}>
-                            <img src={arrow} alt="arrow" className={css.arrow__left}
-                                 onClick={() => codeTestsPageNumber > 1 && setCodeTestsPageNumber(codeTestsPageNumber - 1)}/>
-                            <div>{codeTestsPageNumber} / {codeTestPageForApprove?.meta?.pagination?.pageCount}</div>
-                            <img src={arrow} alt="arrow" className={css.arrow__right}
-                                 onClick={() => codeTestsPageNumber < codeTestPageForApprove.meta?.pagination?.pageCount && setCodeTestsPageNumber(codeTestsPageNumber + 1)}/>
-                        </div>
+                        <PaginationSmall pageNumber={codeTestsPageNumber}
+                                         setPageNumber={setCodeTestsPageNumber}
+                                         pageCount={codeTestPageForApprove.meta?.pagination?.pageCount}
+                        />
                     </div>
+
                 </div>
                 <div className={rootCSS.default__title_24}>
                     {EN ? 'Feedback' : 'Відгуки'}
@@ -204,14 +203,12 @@ const AdminPage = () => {
                     )}
 
                     <div className={css.pagination__wrap}>
-                        <div className={css.pagination__block}>
-                            <img src={arrow} alt="arrow" className={css.arrow__left}
-                                 onClick={() => feedbackPageNumber > 1 && setFeedbackPageNumber(feedbackPageNumber - 1)}/>
-                            <div>{feedbackPageNumber} / {feedbackPage?.meta?.pagination?.pageCount}</div>
-                            <img src={arrow} alt="arrow" className={css.arrow__right}
-                                 onClick={() => feedbackPageNumber < feedbackPage.meta?.pagination?.pageCount && setFeedbackPageNumber(feedbackPageNumber + 1)}/>
-                        </div>
+                        <PaginationSmall pageNumber={feedbackPageNumber}
+                                         setPageNumber={setFeedbackPageNumber}
+                                         pageCount={feedbackPage.meta?.pagination?.pageCount}
+                        />
                     </div>
+
                 </div>
                 <div className={css.mentors__wrap}>
                     <UnapprovedMentors/>
