@@ -75,9 +75,21 @@ const TestListPage = () => {
 
     useEffect(() => {
         if (isCodeTest) {
-            dispatch(getCodeTestsPaginated({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc', ukr: !testLng}));
+            dispatch(getCodeTestsPaginated({
+                techId,
+                pageNum: currenPage,
+                sortParams,
+                order: isDesc ? 'desc' : 'asc',
+                ukr: !testLng
+            }));
         } else {
-            dispatch(getTests({techId, pageNum: currenPage, sortParams, order: isDesc ? 'desc' : 'asc', ukr: !testLng}));
+            dispatch(getTests({
+                techId,
+                pageNum: currenPage,
+                sortParams,
+                order: isDesc ? 'desc' : 'asc',
+                ukr: !testLng
+            }));
         }
     }, [currenPage, sortParams, isDesc, isCodeTest, testLng]);
 
@@ -110,8 +122,25 @@ const TestListPage = () => {
         <div className={css.test__page}>
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
 
-            <div className={css.search__form_wrap}>
+
+            <div className={css.test__page_backAndLang}>
                 <BackButton/>
+                <div className={css.test__page_language}>
+                    <div>{EN ? 'Test language:' : 'Мова тесту:'}</div>
+                    <button onClick={() => setTestLng(!testLng)}
+                            className={testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk}>
+                        <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>
+                        </div>
+                        <div
+                            className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>
+                            {testLng ? 'EN' : 'UK'}
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div className={css.search__form_wrap}>
+                {/*<BackButton/>*/}
                 <form className={css.search__form}>
                     <input
                         type="text"
@@ -135,16 +164,16 @@ const TestListPage = () => {
                 </div>
             </div>}
             <div className={css.sorting__wrap}>
-                <div>{EN ? 'Test language:' : 'Мова тесту:'}</div>
-                <button onClick={() => setTestLng(!testLng)}
-                        className={testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk}>
-                    <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>
-                    </div>
-                    <div
-                        className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>
-                        {testLng ? 'EN' : 'UK'}
-                    </div>
-                </button>
+                {/*<div>{EN ? 'Test language:' : 'Мова тесту:'}</div>*/}
+                {/*<button onClick={() => setTestLng(!testLng)}*/}
+                {/*        className={testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk}>*/}
+                {/*    <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>*/}
+                {/*    </div>*/}
+                {/*    <div*/}
+                {/*        className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>*/}
+                {/*        {testLng ? 'EN' : 'UK'}*/}
+                {/*    </div>*/}
+                {/*</button>*/}
                 <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
                 <div className={css.sorting__dropdown_wrap} ref={ref}>
                     <div className={css.sorting__dropdown_btn} onClick={() => setDropOpen(!dropOpen)}>
@@ -190,6 +219,8 @@ const TestListPage = () => {
                     <img src={isDesc ? sortDesc : sortAsc} alt="order"/>
                 </div>
             </div>
+
+
             {!isCodeTest && !!tests?.data?.length &&
                 <div className={css.tests__wrap}>
                     {!!tests?.data?.length && tests?.data?.map(test => <TestBlock key={test.id} test={test}/>)}

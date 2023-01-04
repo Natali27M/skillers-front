@@ -236,6 +236,17 @@
     background-color: #F3F3F3;
 }
 
+.test__page_backAndLang {
+    display: flex;
+    justify-content: space-between;
+}
+
+.test__page_language {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
 @media (max-width: 767px) {
     .test__page_title {
         font-size: 30px;
