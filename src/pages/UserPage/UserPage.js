@@ -98,7 +98,7 @@ const UserPage = () => {
 
     const [myCV, setMyCV] = useState('');
 
-    const [submitCV, setSubmitCV] = useState(false);
+    // const [submitCV, setSubmitCV] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -169,24 +169,6 @@ const UserPage = () => {
     const cvListRef = ref(storage, 'allCV/');
 
     const cvRef = ref(storage, `${user?.id}/${cv + v4()}`);
-    // const cvRef = ref(storage, `allCV/${user?.id}/${cv + v4()}`);
-
-    const addCV = () => {
-        if (cv == null) return;
-
-        uploadBytes(cvRef, cv).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                setMyCV(() => url);
-            });
-        });
-    };
-
-    let firstSplit;
-    let twoSplit;
-    if (myCV) {
-        firstSplit = myCV.split('D')[1];
-        twoSplit = firstSplit.split('?')[0];
-    }
 
     useEffect(() => {
         listAll(cvListRef).then((response) => {
@@ -198,13 +180,53 @@ const UserPage = () => {
         });
     }, []);
 
-    useEffect(() => {
-        if (myCV && !cvOpen && !submitCV) {
-            deleteObject(ref(storage, `${user?.id}/${cv + twoSplit}`)).then(() => {
-                setMyCV('');
-            })
+    let firstSplitUser;
+    let twoSplitUser;
+
+    const changeCV = async () => {
+        if (cv == null) {
+            if (user?.cv) {
+                firstSplitUser = user?.cv.split('D')[1];
+                twoSplitUser = firstSplitUser.split('?')[0];
+                const newCV = `[object File]`;
+                deleteObject(ref(storage, `${user?.id}/${newCV + twoSplitUser}`)).then(() => {
+                    setMyCV('');
+                });
+            }
+            setCVOpen(false);
+            setMyCV('');
+            await dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            return;
         }
-    }, [cvOpen]);
+
+        uploadBytes(cvRef, cv).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                setMyCV(() => url);
+                setCVOpen(false);
+            });
+        });
+    };
+
+    useEffect(() => {
+        if (!user?.cv && myCV) {
+            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            setCVOpen(false);
+            setMyCV('');
+            setCV(null);
+        } else if (user?.cv && myCV) {
+            if (user?.cv) {
+                firstSplitUser = user?.cv.split('D')[1];
+                twoSplitUser = firstSplitUser.split('?')[0];
+                deleteObject(ref(storage, `${user?.id}/${cv + twoSplitUser}`)).then(() => {
+                    setMyCV('');
+                });
+            }
+            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            setCVOpen(false);
+            setMyCV('');
+            setCV(null);
+        }
+    }, [myCV]);
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
@@ -228,27 +250,6 @@ const UserPage = () => {
     const changeGithub = (obj) => {
         dispatch(updateUser({data: {github: obj.github}, userId: user.id}));
         setGithubOpen(false);
-    };
-
-    const changeCV = () => {
-        if (!user?.cv) {
-            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
-            setCVOpen(false);
-            setSubmitCV(true);
-            setMyCV('');
-        } else {
-            let firstSplit;
-            let twoSplit;
-            firstSplit = user?.cv.split('D')[1];
-            twoSplit = firstSplit.split('?')[0];
-            deleteObject(ref(storage, `${user?.id}/${cv + twoSplit}`)).then(() => {
-                setMyCV('');
-            });
-            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
-            setCVOpen(false);
-            setSubmitCV(true);
-            setMyCV('');
-        }
     };
 
     if (modal) {
@@ -435,23 +436,17 @@ const UserPage = () => {
                     </div>
                 </div>
                 {cvOpen && <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
-                    <div className={css.update__username_cv}>
                         <input
                             type="file"
+                            accept=".pdf"
                             placeholder="CV URL"
                             {...register('cv')}
-                            // autoComplete="off"
-                            // defaultValue={user?.cv}
                             onChange={(event) => {
                                 const newFile = event.target.files;
                                 setCV(newFile[0]);
                             }}
                             className={css.update__username__input_cv}
                         />
-                        <button onClick={addCV} type="button" className={css.update__username__button_cv}>
-                            {EN ? 'Add CV' : 'Додати CV'}
-                        </button>
-                    </div>
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
 
