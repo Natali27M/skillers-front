@@ -26,7 +26,6 @@ import {
     UserPage,
     HomeFirepadPage,
     MainFirepadPage,
-    CreateCVPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -193,7 +192,6 @@ function App() {
                     <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
                     <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                     <Route path="/team-coding/:template/:id/:language/:idFirebase" element={<MainFirepadPage/>}/>
-                    <Route path="/create-cv" element={<CreateCVPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

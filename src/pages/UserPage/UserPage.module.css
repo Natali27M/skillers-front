@@ -314,6 +314,41 @@
     border-radius: 20px;
 }
 
+.update__username_cv {
+    border: 1px solid black;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.update__username__input_cv {
+    font-size: 14px;
+}
+
+.update__username__input_cv::-webkit-file-upload-button {
+    background: lightgrey;
+    height: 100%;
+    width: 40%;
+    border: none;
+    border-right: 1px solid black;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.update__username__button_cv {
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.update__username__button_cv:active {
+    background-color: lightgray;
+}
+
 @media (max-width: 767px) {
     .user__wrap {
         width: 90%;
@@ -346,6 +381,24 @@
     .wallet {
         font-size: 8px;
     }
+
+    .user__db_content {
+        width: 45%;
+    }
+
+    .update__username_cv {
+        width: 78%;
+    }
+
+    .update__username__input_cv::-webkit-file-upload-button {
+        width: 35%;
+        font-size: 12px;
+    }
+
+    .update__username__button_cv {
+        font-size: 12px;
+        width: 30%;
+    }
 }
 
 @media (max-width: 500px) {
@@ -373,6 +426,21 @@
     .wallet {
         font-size: 10px;
     }
+
+    .update__username_cv {
+        width: 73%;
+    }
+
+    .update__username__input_cv::-webkit-file-upload-button {
+        width: 35%;
+        font-size: 10px;
+    }
+
+    .update__username__button_cv {
+        font-size: 10px;
+        width: 40%;
+        padding: 0;
+    }
 }
 
 @media (max-width: 400px) {
@@ -390,13 +458,38 @@
         column-gap: 10px;
     }
 
-    .linked__btn {
+    .linked__btn,
+    .github__btn {
         font-size: 12px;
-        min-width: 100px;
+        min-width: 80px;
     }
 
     .wallet {
         font-size: 8px;
+    }
+
+    .update__username__button {
+        font-size: 12px;
+    }
+
+    .update__username_cv {
+        width: 67%;
+    }
+
+    .update__username__input_cv::-webkit-file-upload-button {
+        width: 30%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .update__username__input,
+    .update__username__input_cv {
+        font-size: 12px;
+    }
+
+    .update__username__input {
+        padding: 0;
+        text-align: center;
     }
 
 }

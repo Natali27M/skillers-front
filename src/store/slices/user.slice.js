@@ -198,6 +198,8 @@ const userSlice = createSlice({
             oldUser.openForHiring = action.payload.openForHiring;
             oldUser.linkedin = action.payload.linkedin;
             oldUser.github = action.payload.github;
+            oldUser.cv = action.payload.cv;
+            oldUser.wallet = action.payload.wallet;
             localStorage.setItem('user', JSON.stringify(oldUser));
         },
         [googleAuth.pending]: (state) => {

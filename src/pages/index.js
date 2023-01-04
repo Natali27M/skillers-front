@@ -21,4 +21,3 @@ export * from './TestWithCodePage/TestWithCodePage';
 export * from './MentorsPage/MentorsPage';
 export * from './HomeFirepadPage/HomeFirepadPage';
 export * from './MainFirepadPage/MainFirepadPage';
-export * from './CreateCVPage/CreateCVPage';

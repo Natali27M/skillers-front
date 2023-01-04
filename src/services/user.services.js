@@ -7,7 +7,7 @@ export const userServices = {
     login: (regObj) => axiosServices.post(urls.login, regObj).then(value => value.data),
     googleAuth: (search) => axiosServices.get(urls.googleCallback + search).then(value => value.data),
     updateUser: (data, id) => axiosServices.put(`${urls.user}/${id}`, data, {
-        headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
+        // headers: {Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`}
     }).then(value => value.data),
     getUserById: (userId) => axiosServices.get(`${urls.user}/${userId}`).then(value => value.data),
     getUserByEmail: (email) => axiosServices.get(`${urls.user}?filters[email][$eq]=${email}`).then(value => value.data),
