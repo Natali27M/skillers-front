@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {ref, onValue, update} from 'firebase/database';
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
@@ -6,7 +6,7 @@ import {useParams, useLocation, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
-import {db} from "../../firebaseConfig";
+import {db} from '../../firebaseConfig';
 import css from './MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import playArrow from '../../images/play-compiler-green.svg';
@@ -64,7 +64,7 @@ function MainFirepadPage() {
                 stdout: data?.result,
                 time: data?.time_used,
                 memory: data?.memory_used
-            })
+            });
         } else {
             setOutput(data);
         }
@@ -121,13 +121,13 @@ function MainFirepadPage() {
                 myData = codeDB;
 
                 if (codeDB === ' ') {
-                    return setCode('')
+                    return setCode('');
                 }
                 setCode(myData);
 
             } else {
                 setCode('');
-                setModalForJoin('leave')
+                setModalForJoin('leave');
             }
         });
 
@@ -139,7 +139,7 @@ function MainFirepadPage() {
         update(ref(db, `/${path}`), {
             code: evn.target.value,
         }).then(r => r);
-    }
+    };
 
     const roomUrlCopy = () => {
         setRoomUrlCopyTime(true);
@@ -155,16 +155,16 @@ function MainFirepadPage() {
         localStorage.setItem('pathCoding', `${location.pathname}`);
     }
 
-    if(teamCoding) {
-        window.addEventListener('popstate' ,(e) => {
+    if (teamCoding) {
+        window.addEventListener('popstate', (e) => {
             e.preventDefault();
-            navigate('/team-coding')
-        })
+            navigate('/team-coding');
+        });
     }
 
     const leaveOk = () => {
         navigate('/team-coding');
-    }
+    };
 
     return (
         <div className={css.compiler__main}>
@@ -207,20 +207,20 @@ function MainFirepadPage() {
 
                         <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
 
-                            <CodeEditor
-                                value={code}
-                                language={highlightLang}
-                                placeholder="Please enter code."
-                                onChange={handleChange}
-                                padding={15}
-                                minHeight={400}
-                                className={css.compiler__textarea}
-                                style={{
-                                    fontSize: 14,
-                                    backgroundColor: '#FFF',
-                                    fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                                }}
-                            />
+                                <CodeEditor
+                                    value={code}
+                                    language={highlightLang}
+                                    placeholder="Please enter code."
+                                    onChange={handleChange}
+                                    padding={15}
+                                    minHeight={400}
+                                    className={css.compiler__textarea}
+                                    style={{
+                                        fontSize: 14,
+                                        backgroundColor: '#FFF',
+                                        fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                                    }}
+                                />
 
                             <button className={css.compiler__btn}>
                                 RUN

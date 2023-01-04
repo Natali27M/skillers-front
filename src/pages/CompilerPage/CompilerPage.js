@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
-import rootCSS from '../../styles/root.module.css'
+import rootCSS from '../../styles/root.module.css';
 import arrow from '../../images/arrow.svg';
 import css from './CompilerPage.module.css';
+import firepadCss from '../../pages/MainFirepadPage/MainFirepadPage.module.css';
 import {compileServices} from '../../services';
 import useComponentVisible from '../../RootFunctions/useComponentVisible';
+import playArrow from '../../images/play-compiler-green.svg';
 
 const CompilerPage = () => {
     const {register, handleSubmit} = useForm();
@@ -38,15 +40,8 @@ const CompilerPage = () => {
 
 
     const makeOutput = (data) => {
-        if(language.id === 1){
-            setOutput({
-                stdout: data?.result,
-                time: data?.time_used,
-                memory: data?.memory_used
-            })
-        } else {
-            setOutput(data);
-        }
+        setOutput(data);
+
         setWait(false);
     };
 
@@ -83,7 +78,7 @@ const CompilerPage = () => {
 
     const compile = async (obj) => {
         setWait(true);
-        if(language.id !== 1) {
+        if (language.id !== 1) {
             compileServices.judgeCompile({
                 ...obj,
                 source_code: code,
@@ -101,91 +96,69 @@ const CompilerPage = () => {
     return (
         <div className={css.compiler}>
             <div className={rootCSS.root__background}></div>
-            <div className={css.compiler__wrap}>
-                <h1 className={css.compiler__title}>Online compiler</h1>
-                <div className={css.compiler__container}>
-                    <div className={css.result__phone}>
+            <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
+                <CodeEditor
+                    value={code}
+                    language={highlightLang}
+                    placeholder="Please enter code."
+                    onChange={(evn) => setCode(evn.target.value)}
+                    className={css.compiler__textarea}
+                    padding={30}
+                    style={{
+                        backgroundColor: '#FFF',
+                        fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                    }}
+                />
+                <div className={css.result__wrap}>
+                    <div className={css.dropdown__wrap} ref={ref}>
+                        <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
+                            <div>{language.name}</div>
+                            <img className={dropOpen ? css.arrow__open : css.arrow__close} src={arrow}
+                                 alt="arrow"/>
+                        </div>
+                        {dropOpen && <div className={css.drop__elements_wrap}>
+                            {
+                                langArray?.map(lang =>
+                                    <div key={lang?.id}>
+                                        {lang !== language &&
+                                            <div onClick={() => setLangValue(lang)}
+                                                 className={css.dropdown__element}>
+                                                {lang?.name}
+                                            </div>
+
+                                        }
+                                    </div>
+                                )
+                            }
+                        </div>}
+                    </div>
+                    <input
+                        type="text"
+                        className={firepadCss.compiler__input}
+                        {...register('stdin')}
+                        placeholder="input"
+                    />
+                    <div className={firepadCss.result__computer}>
                         {wait ?
                             <div>Please, wait...</div>
                             :
                             <>
                                 {(!(output?.error) && !(output?.status?.id === 6)) && <div>Result:</div>}
-                                {(output?.error || (output?.status?.id === 6)) && <div className={css.error}>ERROR</div>}
+                                {(output?.error || (output?.status?.id === 6)) &&
+                                    <div className={css.error}>ERROR</div>}
                                 {output?.stdout && <pre>Output: {output.stdout}</pre>}
                                 {output?.time && <div>Time: {output.time}</div>}
                                 {output?.memory && <div>Memory: {output.memory}</div>}
                             </>
                         }
                     </div>
-                    <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
-                        <CodeEditor
-                            value={code}
-                            language={highlightLang}
-                            placeholder="Please enter code."
-                            onChange={(evn) => setCode(evn.target.value)}
 
-                            padding={15}
-                            minHeight={400}
-                            className={css.compiler__textarea}
-                            style={{
-                                fontSize: 14,
-                                backgroundColor: '#FFF',
-                                fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                            }}
-                        />
-                        <input type="text"
-                               className={css.compiler__input}
-                               {...register('stdin')}
-                               placeholder="input"
-
-                        />
-                        <button className={css.compiler__btn}>COMPILE</button>
-                    </form>
-
-                    <div className={css.result__wrap}>
-                        <div className={css.dropdown__container}>
-                            <div className={css.dropdown__title}>
-                                Choose Language
-                            </div>
-                            <div className={css.dropdown__wrap} ref={ref}>
-                                <div className={css.dropdown__btn} onClick={() => setDropOpen(!dropOpen)}>
-                                    <div>{language.name}</div>
-                                    <img className={dropOpen ? css.arrow__open : css.arrow__close} src={arrow} alt="arrow"/>
-                                </div>
-                                {dropOpen && <div className={css.drop__elements_wrap}>
-                                    {
-                                        langArray?.map(lang =>
-                                            <div key={lang?.id}>
-                                                {lang !== language &&
-                                                    <div onClick={() => setLangValue(lang)}
-                                                         className={css.dropdown__element}>
-                                                        {lang?.name}
-                                                    </div>
-
-                                                }
-                                            </div>
-                                        )
-                                    }
-                                </div>}
-                            </div>
-                        </div>
-                        <div className={css.result__computer}>
-                            {wait ?
-                                <div>Please, wait...</div>
-                                :
-                                <>
-                                    {(!(output?.error) && !(output?.status?.id === 6)) && <div>Result:</div>}
-                                    {(output?.error || (output?.status?.id === 6)) &&
-                                        <div className={css.error}>ERROR</div>}
-                                    {output?.stdout && <pre>Output: {output.stdout}</pre>}
-                                    {output?.time && <div>Time: {output.time}</div>}
-                                    {output?.memory && <div>Memory: {output.memory}</div>}
-                                </>
-                            }
-                        </div>
-                    </div>
                 </div>
-            </div>
+                <button className={`${firepadCss.compiler__btn} ${css.compiler__btn}`}>
+                    RUN
+                    <img src={playArrow} alt="arrow"/>
+                </button>
+            </form>
         </div>
     );
 };
