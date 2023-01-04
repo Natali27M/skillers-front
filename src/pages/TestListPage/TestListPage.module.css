@@ -88,9 +88,8 @@
 
 .search__form_wrap {
     width: 100%;
-    margin-bottom: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -98,6 +97,8 @@
     width: fit-content;
     display: flex;
     justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 .search__input {
@@ -110,6 +111,7 @@
     padding: 0 15px;
 }
 
+.sorting__wrap_main,
 .sorting__wrap {
     width: 100%;
     display: flex;
@@ -190,7 +192,7 @@
 
 
 .test__switcher_wrap {
-    width: 100%;
+    width: 75%;
     display: flex;
 }
 
@@ -286,21 +288,44 @@
         height: 30px;
         width: 30px;
     }
-}
 
-@media (max-width: 500px) {
+    .sorting__wrap_main {
+        flex-direction: column-reverse;
+        row-gap: 30px;
+        align-items: center;
+    }
     .test__switcher_wrap {
-        justify-content: center;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .test__switcher_btn {
+        height: 30px;
     }
 
     .search__form {
-        justify-content: flex-start;
+        width: 100%;
+        justify-content: flex-end;
     }
 
-    .sorting__wrap {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 10px;
+    .search__form input{
+        width: 70%;
+    }
+
+    .sorting__dropdown_wrap {
+        width: 50%;
+    }
+
+    .sorting__dropdown_btn {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .test__page_language {
+        column-gap: 5px;
+        font-size: 14px;
     }
 
     .search__input {
@@ -311,13 +336,31 @@
 
     .search__form_wrap {
         flex-direction: column-reverse;
-        row-gap: 10px;
         align-items: flex-start;
         margin: 0;
     }
 
+    .search__form input {
+        width: 90%;
+    }
 
     .test__page {
         padding: 30px 20px;
+    }
+
+    .sorting__wrap {
+        column-gap: 5px;
+        font-size: 12px;
+        justify-content: space-between;
+        padding-left: 5px;
+    }
+
+    .sorting__dropdown_wrap {
+        width: 70%;
+    }
+
+    .test__switcher_btn {
+        width: 80px;
+        font-size: 14px;
     }
 }

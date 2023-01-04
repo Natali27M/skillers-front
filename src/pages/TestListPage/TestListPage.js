@@ -121,8 +121,6 @@ const TestListPage = () => {
     return (
         <div className={css.test__page}>
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
-
-
             <div className={css.test__page_backAndLang}>
                 <BackButton/>
                 <div className={css.test__page_language}>
@@ -140,7 +138,6 @@ const TestListPage = () => {
             </div>
 
             <div className={css.search__form_wrap}>
-                {/*<BackButton/>*/}
                 <form className={css.search__form}>
                     <input
                         type="text"
@@ -150,73 +147,67 @@ const TestListPage = () => {
                     />
                 </form>
             </div>
-            {+techId !== 8 && +techId !== 9 && +techId !== 10 && <div className={css.test__switcher_wrap}>
-                <div className={css.test__switcher}>
-                    <div onClick={() => codeSetter(true)}
-                         className={`${css.test__switcher_btn} ${isCodeTest ? css.chosen : ''}`}>
-                        {EN ? 'Practical' : 'Практичні'}
+            <div className={css.sorting__wrap_main}>
+                {+techId !== 8 && +techId !== 9 && +techId !== 10 && <div className={css.test__switcher_wrap}>
+                    <div className={css.test__switcher}>
+                        <div onClick={() => codeSetter(true)}
+                             className={`${css.test__switcher_btn} ${isCodeTest ? css.chosen : ''}`}>
+                            {EN ? 'Practical' : 'Практичні'}
+                        </div>
+                        <div onClick={() => codeSetter(false)}
+                             className={`${css.test__switcher_btn} ${!isCodeTest ? css.chosen : ''}`}>
+                            {EN ? 'Test' : 'Тестові'}
+                        </div>
+                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </div>
-                    <div onClick={() => codeSetter(false)}
-                         className={`${css.test__switcher_btn} ${!isCodeTest ? css.chosen : ''}`}>
-                        {EN ? 'Test' : 'Тестові'}
+                </div>}
+                <div className={css.sorting__wrap}>
+                    <div className={css.sorting__wrap}>
+                        <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
+                        <div className={css.sorting__dropdown_wrap} ref={ref}>
+                            <div className={css.sorting__dropdown_btn} onClick={() => setDropOpen(!dropOpen)}>
+                                <div>
+                                    {sortParams === 'name' ?
+                                        (EN ? 'Name' : 'Ім\'ям') : sortParams === 'createdAt' ?
+                                            (EN ? 'Date' : 'Датою додання') : sortParams === 'difficult' ?
+                                                (EN ? 'Difficult' : 'Складністю') : (EN ? 'Rating' : 'Рейтингом')
+                                    }
+                                < /div>
+                                <img
+                                    className={dropOpen ?
+                                        css.drop__arrow_open
+                                        :
+                                        css.drop__arrow_close}
+                                    src={dropArrow} alt="arrow"
+                                />
+                            </div>
+                            <div className={dropOpen ? css.dropdown__menu : css.dropdown__menu_close}>
+                                {sortParams !== 'avgMark' &&
+                                    <div className={css.dropdown__element} onClick={() => paramsSetter('avgMark')}>
+                                        {EN ? 'Rating' : 'Рейтингом'}
+                                    </div>
+                                }
+                                {sortParams !== 'name' &&
+                                    <div className={css.dropdown__element} onClick={() => paramsSetter('name')}>
+                                        {EN ? 'Name' : 'Ім\'ям'}
+                                    </div>
+                                }
+                                {sortParams !== 'createdAt' &&
+                                    <div className={css.dropdown__element} onClick={() => paramsSetter('createdAt')}>
+                                        {EN ? 'Date' : 'Датою додання'}
+                                    </div>
+                                }
+                                {sortParams !== 'difficult' &&
+                                    <div className={css.dropdown__element} onClick={() => paramsSetter('difficult')}>
+                                        {EN ? 'Difficult' : 'Складністю'}
+                                    </div>
+                                }
+                            </div>
+                        </div>
                     </div>
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-            </div>}
-            <div className={css.sorting__wrap}>
-                {/*<div>{EN ? 'Test language:' : 'Мова тесту:'}</div>*/}
-                {/*<button onClick={() => setTestLng(!testLng)}*/}
-                {/*        className={testLng ? headerCss.switch_btn_en : headerCss.switch_btn_uk}>*/}
-                {/*    <div className={testLng ? headerCss.switch_btn_ball_en : headerCss.switch_btn_ball_uk}>*/}
-                {/*    </div>*/}
-                {/*    <div*/}
-                {/*        className={testLng ? headerCss.switch_btn_name_en : headerCss.switch_btn_name_uk}>*/}
-                {/*        {testLng ? 'EN' : 'UK'}*/}
-                {/*    </div>*/}
-                {/*</button>*/}
-                <div>{EN ? 'Sort by:' : 'Сортувати за:'}</div>
-                <div className={css.sorting__dropdown_wrap} ref={ref}>
-                    <div className={css.sorting__dropdown_btn} onClick={() => setDropOpen(!dropOpen)}>
-                        <div>
-                            {sortParams === 'name' ?
-                                (EN ? 'Name' : 'Ім\'ям') : sortParams === 'createdAt' ?
-                                    (EN ? 'Date' : 'Датою додання') : sortParams === 'difficult' ?
-                                        (EN ? 'Difficult' : 'Складністю') : (EN ? 'Rating' : 'Рейтингом')
-                            }
-                        < /div>
-                        <img
-                            className={dropOpen ?
-                                css.drop__arrow_open
-                                :
-                                css.drop__arrow_close}
-                            src={dropArrow} alt="arrow"
-                        />
+                    <div onClick={() => setIsDesc(!isDesc)} className={css.order__btn}>
+                        <img src={isDesc ? sortDesc : sortAsc} alt="order"/>
                     </div>
-                    <div className={dropOpen ? css.dropdown__menu : css.dropdown__menu_close}>
-                        {sortParams !== 'avgMark' &&
-                            <div className={css.dropdown__element} onClick={() => paramsSetter('avgMark')}>
-                                {EN ? 'Rating' : 'Рейтингом'}
-                            </div>
-                        }
-                        {sortParams !== 'name' &&
-                            <div className={css.dropdown__element} onClick={() => paramsSetter('name')}>
-                                {EN ? 'Name' : 'Ім\'ям'}
-                            </div>
-                        }
-                        {sortParams !== 'createdAt' &&
-                            <div className={css.dropdown__element} onClick={() => paramsSetter('createdAt')}>
-                                {EN ? 'Date' : 'Датою додання'}
-                            </div>
-                        }
-                        {sortParams !== 'difficult' &&
-                            <div className={css.dropdown__element} onClick={() => paramsSetter('difficult')}>
-                                {EN ? 'Difficult' : 'Складністю'}
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div onClick={() => setIsDesc(!isDesc)} className={css.order__btn}>
-                    <img src={isDesc ? sortDesc : sortAsc} alt="order"/>
                 </div>
             </div>
 
