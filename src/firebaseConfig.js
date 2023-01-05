@@ -1,16 +1,19 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import {initializeApp} from "firebase/app";
+import {getDatabase} from "firebase/database";
+import {getStorage} from 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAub7-VlpY-LIUJwNmeZcHdkpzSYVRxc1k",
-    authDomain: "skilliant-dcfd5.firebaseapp.com",
-    projectId: "skilliant-dcfd5",
-    storageBucket: "skilliant-dcfd5.appspot.com",
-    messagingSenderId: "889805425930",
-    appId: "1:889805425930:web:ceeac9dc6c24e42e77fef3",
-    databaseURL: "https://skilliant-dcfd5-default-rtdb.firebaseio.com/"
-
+    apiKey: "AIzaSyAYpsxajHEuH7r4Hsq9I26La0b01XSJAdw",
+    authDomain: "skilliant-e4cc9.firebaseapp.com",
+    projectId: "skilliant-e4cc9",
+    storageBucket: "skilliant-e4cc9.appspot.com",
+    messagingSenderId: "140592799129",
+    appId: "1:140592799129:web:03cc266109f77c4a3e8708",
+    measurementId: "G-49CHFSRNKS"
 };
 
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
 export const db = getDatabase(app);
+export {storage};

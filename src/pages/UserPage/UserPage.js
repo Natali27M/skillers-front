@@ -1,6 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, Navigate, useLocation} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {
+    ref,
+    uploadBytes,
+    listAll,
+    getDownloadURL,
+    deleteObject
+} from 'firebase/storage';
+import {v4} from 'uuid';
 
 import css from './UserPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -11,6 +20,7 @@ import Junior from '../../images/rank_little/Junior.png';
 import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
+import {storage} from '../../firebaseConfig';
 
 import {
     getCodeResultsForEvaluating, getCodeTestsByUser, getCodeTestsForApprove,
@@ -24,7 +34,6 @@ import {
 } from '../../store';
 
 import {getUserAchievement} from '../../store';
-import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
 import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
@@ -83,6 +92,13 @@ const UserPage = () => {
 
     const [codeTestForResults, setCodeTestForResults] = useState(null);
 
+    const [cvOpen, setCVOpen] = useState(false);
+
+    const [cv, setCV] = useState(null);
+
+    const [myCV, setMyCV] = useState('');
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -149,6 +165,72 @@ const UserPage = () => {
             dispatch(getRecruiterByUserId(user?.id));
         }
     }, [modal, user]);
+
+    const cvListRef = ref(storage, 'allCV/');
+
+    const cvRef = ref(storage, `${user?.id}/${cv + v4()}`);
+
+    useEffect(() => {
+        listAll(cvListRef).then((response) => {
+            response.items.forEach((item) => {
+                getDownloadURL(item).then((url) => {
+                    setCV(url);
+                });
+            });
+        });
+    }, []);
+
+    let firstSplitUser;
+    let twoSplitUser;
+
+    const changeCV = async () => {
+        setLoading(true);
+        if (cv == null) {
+            if (user?.cv) {
+                firstSplitUser = user?.cv.split('D')[1];
+                twoSplitUser = firstSplitUser.split('?')[0];
+                const newCV = `[object File]`;
+                deleteObject(ref(storage, `${user?.id}/${newCV + twoSplitUser}`)).then(() => {
+                    setMyCV('');
+                });
+            }
+            setCVOpen(false);
+            setMyCV('');
+            setLoading(false);
+            await dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            return;
+        }
+
+        uploadBytes(cvRef, cv).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                setMyCV(() => url);
+                setCVOpen(false);
+            });
+        });
+    };
+
+    useEffect(() => {
+        if (!user?.cv && myCV) {
+            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            setCVOpen(false);
+            setMyCV('');
+            setCV(null);
+            setLoading(false);
+        } else if (user?.cv && myCV) {
+            if (user?.cv) {
+                firstSplitUser = user?.cv.split('D')[1];
+                twoSplitUser = firstSplitUser.split('?')[0];
+                deleteObject(ref(storage, `${user?.id}/${cv + twoSplitUser}`)).then(() => {
+                    setMyCV('');
+                });
+            }
+            dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
+            setCVOpen(false);
+            setMyCV('');
+            setCV(null);
+            setLoading(false);
+        }
+    }, [myCV]);
 
     if (!user) {
         return <Navigate to={'/login'} replace/>;
@@ -332,6 +414,51 @@ const UserPage = () => {
                     />
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
+
+                <div className={css.user__data_block}>
+                    <div className={css.user__db_content}>CV</div>
+                    <div className={css.user__db_content_cv}>
+                        {
+                            user?.cv ?
+                                <div className={css.hiring__wrap}>
+                                    <a href={user?.cv} target="_blank" className={css.github__btn}>
+                                        CV(.pdf)
+                                    </a>
+                                    <button
+                                        className={css.hiring__btn_active}
+                                        onClick={() => setCVOpen(!cvOpen)}
+                                    >
+                                        {EN ? 'Change' : 'Змінити'}
+                                    </button>
+                                </div>
+                                :
+                                <button onClick={() => setCVOpen(!cvOpen)}
+                                        className={cvOpen ? css.hiring__btn : css.hiring__btn_active}>
+                                    {EN ? 'Add (.pdf)' : 'Додати (.pdf)'}
+                                </button>
+                        }
+                    </div>
+                </div>
+                {cvOpen && !loading && <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
+                    <input
+                        type="file"
+                        accept=".pdf"
+                        placeholder="CV URL"
+                        {...register('cv')}
+                        onChange={(event) => {
+                            const newFile = event.target.files;
+                            setCV(newFile[0]);
+                        }}
+                        className={css.update__username__input_cv}
+                    />
+                    <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
+                </form>}
+
+                {loading && cv !== null && !myCV &&
+                    <div className={css.update__username__loading}>{EN ? 'Wait please' : 'Зачекайте ,будь ласка'}</div>
+                }
+
+
                 {resultBadges && <>
                     <div className={rootCSS.default__title_24}>
                         {EN ? 'My badges' : 'Мої нагороди'}

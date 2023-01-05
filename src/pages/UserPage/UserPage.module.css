@@ -129,7 +129,8 @@
     height: 30px;
 }
 
-.user__db_content {
+.user__db_content,
+.user__db_content_cv {
     width: 50%;
     display: flex;
     align-items: center;
@@ -163,6 +164,10 @@
     border: none;
     cursor: pointer;
     color: white;
+}
+
+.update__username__button_load {
+    display: none;
 }
 
 .approve__time {
@@ -314,6 +319,51 @@
     border-radius: 20px;
 }
 
+.update__username__input_cv {
+    font-size: 14px;
+    width: 90%;
+}
+
+.update__username_form input[type="file"] {
+    border-left: none;
+    height: 100%;
+}
+
+.update__username_form input[type="file"]::file-selector-button {
+    background: lightgrey;
+    height: 30px;
+    width: 25%;
+    border: 1px solid black;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.update__username__button_cv {
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.update__username__button_cv:active {
+    background-color: lightgray;
+}
+
+.update__username__loading {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media (max-width: 767px) {
     .user__wrap {
         width: 90%;
@@ -323,7 +373,8 @@
     .results__header,
     .user__data_block,
     .update__username__input,
-    .update__username__button {
+    .update__username__button,
+    .update__username__loading {
         font-size: 14px;
     }
 }
@@ -339,26 +390,48 @@
 
     .results__wrap,
     .user__data_block,
-    .update__username_form {
+    .update__username_form,
+    .update__username__loading {
         width: 90%;
     }
 
     .wallet {
         font-size: 8px;
     }
+
+    .user__db_content,
+    .user__db_content_cv {
+        width: 45%;
+    }
+
+    .update__username_cv {
+        width: 78%;
+    }
+
+    .update__username_form input[type="file"]::file-selector-button {
+        width: 30%;
+        font-size: 12px;
+    }
+
+    .update__username__button_cv {
+        font-size: 12px;
+        width: 30%;
+    }
 }
 
 @media (max-width: 500px) {
     .results__block,
     .results__header,
-    .user__data_block {
+    .user__data_block,
+    .update__username__loading {
         font-size: 12px;
         padding: 0 10px;
     }
 
     .results__wrap,
     .user__data_block,
-    .update__username_form {
+    .update__username_form,
+    .update__username__loading {
         width: 95%;
     }
 
@@ -372,6 +445,21 @@
 
     .wallet {
         font-size: 10px;
+    }
+
+    .update__username_cv {
+        width: 73%;
+    }
+
+    .update__username__input_cv::-webkit-file-upload-button {
+        width: 35%;
+        font-size: 10px;
+    }
+
+    .update__username__button_cv {
+        font-size: 10px;
+        width: 40%;
+        padding: 0;
     }
 }
 
@@ -390,13 +478,38 @@
         column-gap: 10px;
     }
 
-    .linked__btn {
+    .linked__btn,
+    .github__btn {
         font-size: 12px;
-        min-width: 100px;
+        min-width: 80px;
     }
 
     .wallet {
         font-size: 8px;
+    }
+
+    .update__username__button {
+        font-size: 12px;
+    }
+
+    .update__username_cv {
+        width: 67%;
+    }
+
+    .update__username_form input[type="file"]::file-selector-button {
+        width: 30%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .update__username__input,
+    .update__username__input_cv {
+        font-size: 12px;
+    }
+
+    .update__username__input {
+        padding: 0;
+        text-align: center;
     }
 
 }

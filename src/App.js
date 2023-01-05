@@ -27,7 +27,7 @@ import {
     TestListPage,
     TestPage,
     TestWithCodePage,
-    UserPage,
+    UserPage
 } from './pages';
 import {Layout} from './components';
 import {
