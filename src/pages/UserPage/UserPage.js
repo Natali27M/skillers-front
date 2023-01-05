@@ -98,7 +98,7 @@ const UserPage = () => {
 
     const [myCV, setMyCV] = useState('');
 
-    // const [submitCV, setSubmitCV] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -184,6 +184,7 @@ const UserPage = () => {
     let twoSplitUser;
 
     const changeCV = async () => {
+        setLoading(true);
         if (cv == null) {
             if (user?.cv) {
                 firstSplitUser = user?.cv.split('D')[1];
@@ -195,6 +196,7 @@ const UserPage = () => {
             }
             setCVOpen(false);
             setMyCV('');
+            setLoading(false);
             await dispatch(updateUser({data: {cv: myCV}, userId: user.id}));
             return;
         }
@@ -213,6 +215,7 @@ const UserPage = () => {
             setCVOpen(false);
             setMyCV('');
             setCV(null);
+            setLoading(false);
         } else if (user?.cv && myCV) {
             if (user?.cv) {
                 firstSplitUser = user?.cv.split('D')[1];
@@ -225,6 +228,7 @@ const UserPage = () => {
             setCVOpen(false);
             setMyCV('');
             setCV(null);
+            setLoading(false);
         }
     }, [myCV]);
 
@@ -418,7 +422,7 @@ const UserPage = () => {
                             user?.cv ?
                                 <div className={css.hiring__wrap}>
                                     <a href={user?.cv} target="_blank" className={css.github__btn}>
-                                        CV
+                                        CV(.pdf)
                                     </a>
                                     <button
                                         className={css.hiring__btn_active}
@@ -435,20 +439,24 @@ const UserPage = () => {
                         }
                     </div>
                 </div>
-                {cvOpen && <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
-                        <input
-                            type="file"
-                            accept=".pdf"
-                            placeholder="CV URL"
-                            {...register('cv')}
-                            onChange={(event) => {
-                                const newFile = event.target.files;
-                                setCV(newFile[0]);
-                            }}
-                            className={css.update__username__input_cv}
-                        />
+                {cvOpen && !loading && <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
+                    <input
+                        type="file"
+                        accept=".pdf"
+                        placeholder="CV URL"
+                        {...register('cv')}
+                        onChange={(event) => {
+                            const newFile = event.target.files;
+                            setCV(newFile[0]);
+                        }}
+                        className={css.update__username__input_cv}
+                    />
                     <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
                 </form>}
+
+                {loading && cv !== null && !myCV &&
+                    <div className={css.update__username__loading}>{EN ? 'Wait please' : 'Зачекайте ,будь ласка'}</div>
+                }
 
 
                 {resultBadges && <>

@@ -165,6 +165,10 @@
     color: white;
 }
 
+.update__username__button_load {
+    display: none;
+}
+
 .approve__time {
     position: absolute;
     top: 0;
@@ -319,7 +323,7 @@
     width: 90%;
 }
 
-.update__username_form input[type="file"]{
+.update__username_form input[type="file"] {
     border-left: none;
     height: 100%;
 }
@@ -347,6 +351,18 @@
     background-color: lightgray;
 }
 
+.update__username__loading {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media (max-width: 767px) {
     .user__wrap {
         width: 90%;
@@ -356,7 +372,8 @@
     .results__header,
     .user__data_block,
     .update__username__input,
-    .update__username__button {
+    .update__username__button,
+    .update__username__loading {
         font-size: 14px;
     }
 }
@@ -372,7 +389,8 @@
 
     .results__wrap,
     .user__data_block,
-    .update__username_form {
+    .update__username_form,
+    .update__username__loading {
         width: 90%;
     }
 
@@ -402,14 +420,16 @@
 @media (max-width: 500px) {
     .results__block,
     .results__header,
-    .user__data_block {
+    .user__data_block,
+    .update__username__loading {
         font-size: 12px;
         padding: 0 10px;
     }
 
     .results__wrap,
     .user__data_block,
-    .update__username_form {
+    .update__username_form,
+    .update__username__loading {
         width: 95%;
     }
 
