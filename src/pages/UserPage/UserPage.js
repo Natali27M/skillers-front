@@ -434,7 +434,7 @@ const UserPage = () => {
                                 :
                                 <button onClick={() => setCVOpen(!cvOpen)}
                                         className={cvOpen ? css.hiring__btn : css.hiring__btn_active}>
-                                    {EN ? 'Add' : 'Додати'}
+                                    {EN ? 'Add(.pdf)' : 'Додати(.pdf)'}
                                 </button>
                         }
                     </div>
