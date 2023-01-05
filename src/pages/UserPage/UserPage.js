@@ -13,17 +13,19 @@ import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
 import {
-    getCodeResultsForEvaluating, getCodeTestsByUser, getCodeTestsForApprove,
-    getResultsByTest, getTestCodeResults,
+    getCodeResultsForEvaluating,
+    getCodeTestsByUser,
+    getCodeTestsForApprove,
+    getRecruiterByUserId,
+    getResultsByTest,
+    getTestCodeResults,
+    getUserAchievement,
     getUserCodeResults,
     getUserResults,
-    getRecruiterByUserId,
     getUserRoles,
     logout,
     updateUser
 } from '../../store';
-
-import {getUserAchievement} from '../../store';
 import {useForm} from 'react-hook-form';
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
@@ -563,7 +565,6 @@ const UserPage = () => {
                                   className={rootCSS.default__button}>{EN ? 'For recruiters' : 'Рекрутерам'}
                             </Link>
                         </>
-
                     }
                 </div>
             </div>
