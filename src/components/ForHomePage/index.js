@@ -7,4 +7,5 @@ export * from './PresentForUser/PresentForUser';
 export * from './PresentForUserAlways/PresentForUserAlways';
 export * from './LeaderModal/LeaderModal';
 export * from './Feedback';
+export * from './SKLBanner/SKLBanner';
 export * from './YoutubeChannel/YoutubeChannel';

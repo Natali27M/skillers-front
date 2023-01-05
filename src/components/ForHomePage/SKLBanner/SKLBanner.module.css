@@ -1,0 +1,174 @@
+.banner__box {
+    width: 100%;
+    height: 184px;
+    background-image: url("../../../images/banner.jpg");
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.banner__content {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    line-height: 26px;
+    align-items: center;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.banner__angle {
+    transform: rotate(180deg);
+    user-select: none;
+    width: 220px;
+    height: 100%;
+    margin-left: -1px;
+}
+
+
+.banner__text {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.5;
+
+}
+
+.banner__name {
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    font-size: 40px;
+}
+
+.banner__underline {
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 1200px) {
+
+    .banner__text {
+        font-size: 28px;
+    }
+
+    .banner__name {
+        font-size: 35px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .banner__text {
+        font-size: 26px;
+    }
+
+    .banner__name {
+        font-size: 34px;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .banner__text {
+        font-size: 20px;
+    }
+
+    .banner__name {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .banner__box {
+        height: 110px;
+    }
+
+    .banner__angle {
+        width: 140px;
+    }
+
+    .banner__text {
+        font-size: 15px;
+    }
+
+    .banner__name {
+        font-size: 20px;
+    }
+
+    .banner__underline {
+        border-bottom: 2px solid;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .banner__text {
+        font-size: 14px;
+    }
+
+    .banner__name {
+        font-size: 18px;
+    }
+
+    .banner__underline {
+        border-bottom: 1px solid;
+    }
+}
+
+@media (max-width: 450px) {
+    .banner__box {
+        height: 90px;
+    }
+
+
+    .banner__text {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .banner__name {
+        font-size: 14px;
+    }
+
+    .banner__angle {
+        width: 110px;
+    }
+
+}
+
+@media (max-width: 350px) {
+    .banner__content {
+        width: 200px;
+    }
+
+    .banner__text {
+        font-size: 12px;
+    }
+
+    .banner__name {
+        font-size: 14px;
+    }
+
+    .banner__box {
+        height: 70px;
+    }
+
+    .banner__angle {
+        width: 90px;
+    }
+
+}
+
+@media (max-width: 300px) {
+    .banner__content {
+        width: 60%;
+        justify-content: flex-start;
+    }
+
+}

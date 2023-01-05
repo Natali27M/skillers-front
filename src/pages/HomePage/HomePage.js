@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import css from './HomePage.module.css';
-import {Feedbacks, LeaderBord, PresentForUserAlways, TechList, YoutubeChannel} from '../../components';
+import {Feedbacks, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
 import {Link} from 'react-router-dom';
 
 
@@ -46,7 +46,8 @@ const HomePage = () => {
             }
             {/*{!present && <PresentForUser/>}*/}
             <LeaderBord/>
-            <PresentForUserAlways/>
+            {/*<PresentForUserAlways/>*/}
+            <SklBanner/>
             <Feedbacks/>
             <YoutubeChannel/>
         </>

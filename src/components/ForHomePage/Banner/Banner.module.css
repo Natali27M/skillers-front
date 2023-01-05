@@ -1,5 +1,5 @@
 .banner {
-  background: url("../../../images/Banner.jpg") no-repeat center / cover;
+  /*background: url("../../../images/Banner.jpg") no-repeat center / cover;*/
   width: 100%;
   height: 200px;
   display: flex;
@@ -22,7 +22,7 @@
 
 @media (max-width: 1440px) {
   .banner {
-    background: url("../../../images/Banner.jpg") no-repeat center right 30%;
+    /*background: url("../../../images/Banner.jpg") no-repeat center right 30%;*/
   }
 }
 
@@ -53,6 +53,6 @@
 
 @media (max-width: 500px) {
   .banner {
-    background: url("../../../images/Banner.jpg") no-repeat center left 80%;
+    /*background: url("../../../images/Banner.jpg") no-repeat center left 80%;*/
   }
 }

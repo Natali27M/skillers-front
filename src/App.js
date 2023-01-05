@@ -5,14 +5,17 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {
     AdminPage,
-    CompilerPage, CreateCodeTestPage,
+    CompilerPage,
+    CreateCodeTestPage,
     CreateTestPage,
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
+    HomeFirepadPage,
     HomePage,
     LearningPlanPage,
     LoginPage,
+    MainFirepadPage,
     MentorPage,
     MentorsPage,
     NotFoundPage,
@@ -20,10 +23,11 @@ import {
     RankPage,
     RecruiterPage,
     RegisterPage,
+    SklPage,
     TestListPage,
-    TestPage, TestWithCodePage,
+    TestPage,
+    TestWithCodePage,
     UserPage,
-    HomeFirepadPage, MainFirepadPage,
 } from './pages';
 import {Layout} from './components';
 import {
@@ -190,6 +194,7 @@ function App() {
                     <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
                     <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                     <Route path="/team-coding/:template/:id/:language/:idFirebase" element={<MainFirepadPage/>}/>
+                    <Route path={'/skl-token'} element={<SklPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

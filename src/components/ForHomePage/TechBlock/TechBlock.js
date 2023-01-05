@@ -19,10 +19,12 @@ const TechBlock = ({img, name, techId}) => {
         testsServices.getTopTestsByTech(techId).then(value => {
             if (techId !== 8 && techId !== 9 && techId !== 10) {
                 codeTestServices.getTopTestsByTech(techId).then(codeValue => {
+                    // console.log(codeValue);
                     setNumberTestsByCategory(codeValue?.meta?.pagination?.total + value?.meta?.pagination?.total);
                     let resultTests = value.data;
                     resultTests.pop();
                     resultTests.push(codeValue.data[0]);
+                    // console.log(resultTests[resultTests.length - 1]);
                     setTests(resultTests);
                 });
             } else {

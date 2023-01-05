@@ -14,14 +14,14 @@ const PresentForUserAlways = () => {
             <div className={css.banner__content}>
                 {EN ?
                     <div className={css.banner__text}><span className={css.banner__name}>Skilliant</span>
-                         will split <span className={css.banner__underline}>100$</span><br/>
-                        between the top <span className={css.banner__underline}>3</span> leaders<br/>
-                        from the table
+                        will split <span className={css.banner__underline}>100$</span> by own crypto token between the
+                        top <span
+                            className={css.banner__underline}>3</span> leaders from the table
                     </div>
                     :
-                    <div className={css.banner__text}> <span className={css.banner__name}>Skilliant </span>
-                        розділить <span className={css.banner__underline}>100$</span> між<br/>
-                        <span className={css.banner__underline}>3</span> найкращими користувачами <br/>
+                    <div className={css.banner__text}><span className={css.banner__name}>Skilliant </span>
+                        розділить <span className={css.banner__underline}>100$</span> власним токеном між <span
+                            className={css.banner__underline}>3</span> найкращими користувачами
                         в рейтинговій таблиці
                     </div>
                 }
