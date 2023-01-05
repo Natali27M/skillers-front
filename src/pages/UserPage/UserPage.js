@@ -13,6 +13,7 @@ import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 
 import {
+    createPaymentRequest,
     getCodeResultsForEvaluating,
     getCodeTestsByUser,
     getCodeTestsForApprove,
@@ -31,6 +32,7 @@ import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.sl
 import coin from '../../images/coin.svg';
 import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
 import {PaginationSmall} from '../../components';
+import {paymentRequestsService} from "../../services";
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -75,6 +77,8 @@ const UserPage = () => {
 
     const [modal, setModal] = useState(false);
 
+    const [modalTakeOfCoins, setModalTakeOfCoins] = useState(false);
+
     const [hiring, setHiring] = useState(false);
 
     const [linkedOpen, setLinkedOpen] = useState(false);
@@ -84,6 +88,8 @@ const UserPage = () => {
     const [testForResults, setTestForResults] = useState(null);
 
     const [codeTestForResults, setCodeTestForResults] = useState(null);
+
+    const [coinOpen, setCoinOpen] = useState(false);
 
 
     useEffect(() => {
@@ -176,8 +182,34 @@ const UserPage = () => {
         setGithubOpen(false);
     };
 
+
+    const setCoin = async () => {
+        console.log(user);
+        const {data} = await paymentRequestsService.checkPaymentRequestOfUserNotConfirmed(user.id);
+        if (data.length) {
+            return setModalTakeOfCoins(!modalTakeOfCoins);
+        }
+        return setCoinOpen(!coinOpen);
+    }
+    const TakeOfCoins = async (obj) => {
+        const paymentRequest = {
+            userId: user?.id,
+            userWallet: obj?.address ? obj?.address : user?.wallet,
+            userCoinsAll: userAchievement?.attributes?.coins,
+            withdraw: Number(obj?.coins),
+        }
+
+        await dispatch(createPaymentRequest(paymentRequest));
+        setModalTakeOfCoins(!modalTakeOfCoins);
+        setCoinOpen(!coinOpen)
+    }
+
     if (modal) {
         setTimeout(() => setModal(!modal), 4000);
+    }
+
+    if (modalTakeOfCoins) {
+        setTimeout(() => setModalTakeOfCoins(!modalTakeOfCoins), 4000);
     }
 
     return (
@@ -227,12 +259,61 @@ const UserPage = () => {
                     <div className={css.user__db_content}>{userAchievement?.attributes?.rating || 0}</div>
                 </div>
                 <div className={css.user__data_block}>
+
                     <div className={css.user__db_content}>{EN ? 'Coins' : 'Монетки'}</div>
                     <div className={css.user__db_content}>
                         <div>{userAchievement?.attributes?.coins || 0}</div>
                         <img src={coin} alt="coin" className={css.coin__img}/>
+                        {
+                            userAchievement?.attributes?.coins && !coinOpen &&
+                            <button
+                                className={css.hiring__btn_active}
+                                onClick={() => setCoin()}
+                            >
+                                {EN ? 'Take' : 'Вивести'}
+                            </button>
+                        }
                     </div>
+
                 </div>
+
+                {
+                    userAchievement?.attributes?.coins && coinOpen &&
+                    <form className={css.update__username_form} onSubmit={handleSubmit(TakeOfCoins)}>
+                        <input
+                            type="number"
+                            min='1'
+                            max={userAchievement?.attributes?.coins}
+                            placeholder={EN ? "Take out coins" : "Вивести монети"}
+                            {...register('coins')}
+                            autoComplete="off"
+                            defaultValue='1'
+                            className={css.update__username__input}
+                        />
+                        {
+                            !user.wallet && <input
+                                type="text"
+                                minLength='40'
+                                placeholder={EN ? "Input wallet address" : "Введіть адресу гаманця"}
+                                {...register('address')}
+                                autoComplete="off"
+                                className={css.update__username__input}
+                            />
+                        }
+                        <button className={css.update__username__button}>{EN ? 'Take out' : 'Вивести'}</button>
+                        <button className={css.update__username__button}
+                                onClick={() => setCoinOpen(!coinOpen)}>{EN ? 'Cancel' : 'Скасувати'}</button>
+                    </form>}
+
+
+                {
+                    modalTakeOfCoins && <div className={css.modal__container}>
+                        <div className={css.modal__block}>
+                            {EN ? "Your application for withdrawing coins has been processed!" : "Ваша заявка на зняття монет оформлена!"}
+                        </div>
+                    </div>
+                }
+
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Rank' : 'Звання'}</div>
                     <div className={css.user__db_content}>

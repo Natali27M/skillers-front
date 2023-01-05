@@ -14,6 +14,7 @@ import badgesReducers from './slices/badges.slice';
 import codeTestReducers from './slices/codeTest.slice';
 import codeResultsReducers from './slices/codeResults.slice';
 import recruiterReducers from "./slices/recruiter.slice";
+import paymentRequestReducers from "./slices/paymentRequest.slice";
 
 
 const store = configureStore({
@@ -32,6 +33,7 @@ const store = configureStore({
         codeTestReducers,
         codeResultsReducers,
         recruiterReducers,
+        paymentRequestReducers,
     }
 });
 

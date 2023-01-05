@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import {Link, Navigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 import rootCSS from '../../styles/root.module.css';
 import css from './AdminPage.module.css';
-import {useDispatch, useSelector} from 'react-redux';
 import {deleteFeedback, getCodeTestsForApprove, getFeedback, updateIsApproved} from '../../store';
-import {Link, Navigate} from 'react-router-dom';
 import {getTestsForApprove} from '../../store/slices/testPage.slice';
 import cross from '../../images/cross-red.svg';
-import arrow from '../../images/arrow.svg';
-import {
-    PaginationSmall,
-    UnapprovedMentors,
-    UnApprovedRecruiters
-} from "../../components";
+import {PaginationSmall, PaymentRequests, UnapprovedMentors, UnApprovedRecruiters} from "../../components";
 
 const AdminPage = () => {
 
@@ -215,6 +210,9 @@ const AdminPage = () => {
                 </div>
                 <div className={css.mentors__wrap}>
                     <UnApprovedRecruiters/>
+                </div>
+                <div className={css.mentors__wrap}>
+                    <PaymentRequests/>
                 </div>
             </div>
         </div>

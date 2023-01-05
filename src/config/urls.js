@@ -36,6 +36,7 @@ export const urls = {
     mentors: '/api/mentors',
     technologies: '/api/technology',
     recruiters: 'api/recruiters',
+    paymentRequests: '/api/payment-requests',
 
     rates: 'api/rates',
 
