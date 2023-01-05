@@ -417,7 +417,7 @@ const UserPage = () => {
 
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>CV</div>
-                    <div className={css.user__db_content}>
+                    <div className={css.user__db_content_cv}>
                         {
                             user?.cv ?
                                 <div className={css.hiring__wrap}>
@@ -434,7 +434,7 @@ const UserPage = () => {
                                 :
                                 <button onClick={() => setCVOpen(!cvOpen)}
                                         className={cvOpen ? css.hiring__btn : css.hiring__btn_active}>
-                                    {EN ? 'Add(.pdf)' : 'Додати(.pdf)'}
+                                    {EN ? 'Add (.pdf)' : 'Додати (.pdf)'}
                                 </button>
                         }
                     </div>
