@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import css from './TestBlock.module.css';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+
+import css from './TestBlock.module.css';
 import completed from '../../../images/testComplete.svg';
 import star_rating from '../../../images/star-rating.svg';
+import coin from '../../../images/coin.svg';
 import timeDisplay from '../../../RootFunctions/timeDisplay';
 
 const TestBlock = ({test, type}) => {
@@ -47,7 +49,12 @@ const TestBlock = ({test, type}) => {
             {currentTest &&
                 <Link to={type === 'code' ? `/code-test/${testId}` : `/test/${testId}`} className={css.test__block}>
                     <div className={css.test__left}>
-                        <div className={css.test__name}>{currentTest.name || currentTest.testName}</div>
+                        <div className={css.name_block}>
+                            <div className={css.test__name}>{currentTest.name || currentTest.testName}</div>
+                            {
+                                currentTest.isMonetized && <img src={coin} alt='coin' className={css.coin}/>
+                            }
+                        </div>
                         {type === 'code' &&
                             <div className={css.description}>
                                 {currentTest?.description}
@@ -65,6 +72,7 @@ const TestBlock = ({test, type}) => {
                         {currentTest?.avgMark > 0 && <div className={css.test__rating}>
                             <img src={star_rating} alt="star"/>
                             <div> {currentTest?.avgMark || 0} </div>
+
                         </div>}
                     </div>
 

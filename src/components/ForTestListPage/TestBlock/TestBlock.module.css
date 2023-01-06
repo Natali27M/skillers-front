@@ -11,6 +11,17 @@
     box-shadow: 5px 5px 15px 5px rgba(175, 175, 175, 0.56);
 }
 
+.name_block {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.coin {
+    width: 20px;
+    height: 20px;
+}
+
 .test__block:hover {
     box-shadow: 5px 5px 15px 5px rgba(175, 175, 175, 0.9);
     transition: all .2s linear;
@@ -132,11 +143,22 @@
     .test__left {
         column-gap: 75px;
     }
+    .coin {
+        width: 17px;
+        height: 17px;
+    }
 }
 
 @media (max-width: 500px) {
     .complete {
         height: 20px;
+    }
+    .coin {
+        width: 15px;
+        height: 15px;
+    }
+    .name_block {
+        column-gap: 10px;
     }
 }
 
@@ -156,5 +178,10 @@
 
     .test__rating {
         font-size: 10px;
+    }
+
+    .coin {
+        width: 10px;
+        height: 10px;
     }
 }
