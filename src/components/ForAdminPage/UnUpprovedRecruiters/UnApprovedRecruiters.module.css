@@ -108,6 +108,10 @@
         width: 20px;
         height: 20px;
     }
+
+    .admin__title {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 620px) {
@@ -132,6 +136,7 @@
         width: 20px;
         height: 20px;
     }
+
 }
 
 
@@ -144,6 +149,9 @@
         font-size: 12px;
     }
 
+    .check {
+        height: 20px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -167,5 +175,9 @@
     .approve__recruiter img {
         width: 14px;
         height: 14px;
+    }
+
+    .check {
+        height: 15px;
     }
 }

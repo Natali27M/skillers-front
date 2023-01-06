@@ -1,0 +1,89 @@
+
+.userId, .userCoinsAll, .withdraw {
+    display: flex;
+    width: 10%;
+    font-size: 16px;
+}
+
+.userCoinsAll, .withdraw {
+    align-items: center;
+    justify-content: center;
+}
+
+.userWallet {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    width: 62%;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 16px;
+
+}
+
+.delete_confirm {
+    width: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.wallet__text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+@media (max-width: 920px) {
+    .userWallet, .userId, .userCoinsAll, .withdraw {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .userWallet, .userId, .userCoinsAll, .withdraw {
+        font-size: 13px;
+    }
+
+    .userWallet {
+        width: 43%;
+    }
+
+    .userId, .userCoinsAll, .withdraw {
+        justify-content: left;
+        width: 13%;
+    }
+
+    .delete_confirm {
+        width: 16%;
+    }
+}
+
+@media (max-width: 600px) {
+    .userWallet, .userId, .userCoinsAll, .withdraw {
+        font-size: 12px;
+    }
+
+    .userWallet {
+        justify-content: center;
+        width: 40%;
+    }
+
+    .delete_confirm {
+        width: 18%;
+    }
+}
+
+@media (max-width: 500px) {
+    .userWallet, .userId, .userCoinsAll, .withdraw {
+        font-size: 10px;
+    }
+
+    .delete_confirm {
+        width: 20%;
+    }
+
+}
+
