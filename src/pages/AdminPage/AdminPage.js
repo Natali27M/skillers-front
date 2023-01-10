@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link, Navigate, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {Helmet} from 'react-helmet-async';
 
 import rootCSS from '../../styles/root.module.css';
 import css from './AdminPage.module.css';
@@ -10,7 +11,6 @@ import cross from '../../images/cross-red.svg';
 import {PaginationSmall, PaymentRequests, UnapprovedMentors, UnApprovedRecruiters} from "../../components";
 
 const AdminPage = () => {
-
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {roles} = useSelector(state => state['userReducers']);
@@ -22,6 +22,8 @@ const AdminPage = () => {
     const {feedbackPage, isDelete, isConfirmed} = useSelector(state => state['feedbackReducers']);
 
     const dispatch = useDispatch();
+
+    const location = useLocation();
 
     const [testsPageNumber, setTestsPageNumber] = useState(1);
     const [codeTestsPageNumber, setCodeTestsPageNumber] = useState(1);
@@ -52,8 +54,25 @@ const AdminPage = () => {
         return <Navigate to={'/user'} replace/>;
     }
 
+    const title = 'Admin page';
+    const description = 'Information about tests for approve, code tests for approve, feedbacks, mentors, recruiters and' +
+        ' coin withdrawal requests';
+    const url = `https://skilliant.net${location}`
+
     return (
         <div className={css.admin__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
                 <div className={rootCSS.default__title_24}>

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useForm} from 'react-hook-form';
+import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
+import {Helmet} from 'react-helmet-async';
 
 import css from './FeedbackFormPage.module.css';
 import rootCSS from '../../styles/root.module.css'
-import {useDispatch, useSelector} from 'react-redux';
-import {useForm} from 'react-hook-form';
 import cross from '../../images/cross.svg';
 import {createFeedback} from '../../store';
-import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {FeedbackValidator} from '../../validation';
 
 
@@ -28,9 +29,24 @@ const FeedbackFormPage = () => {
         }, 2000);
     };
 
+    const title = 'Feedback';
+    const description = 'Form for the opportunity to leave a review about the site';
+    const url = 'https://skilliant.net/feedback';
 
     return (
         <div className={css.feedback__form_page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.feedback__form__bg}></div>
             <div className={css.feedback__form_wrap}>
                 <div className={rootCSS.default__title_34}>

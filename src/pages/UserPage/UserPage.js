@@ -10,7 +10,7 @@ import {
     deleteObject
 } from 'firebase/storage';
 import {v4} from 'uuid';
-import {Helmet} from "react-helmet";
+import {Helmet} from 'react-helmet-async';
 
 import css from './UserPage.module.css';
 import rootCSS from '../../styles/root.module.css';

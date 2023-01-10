@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Navigate, useNavigate, useParams} from 'react-router-dom';
-import {compileServices} from '../../services';
 import {useDispatch, useSelector} from 'react-redux';
+import {useForm} from 'react-hook-form';
+import ReactStarsRating from 'react-awesome-stars-rating';
+import {Helmet} from 'react-helmet-async';
+
+import {compileServices} from '../../services';
 import {
     approveCodeTest,
     changeCodeResult, clearCodeTestUserData, clearUserCodeResult, createCodeRate,
@@ -18,8 +22,6 @@ import run_icon from '../../images/code-run.svg';
 import useTimer from '../../RootFunctions/timer';
 import {SignUpModal, StartTestModal, TimeIsUpModal} from '../../components';
 import timeDisplay from '../../RootFunctions/timeDisplay';
-import {useForm} from 'react-hook-form';
-import ReactStarsRating from 'react-awesome-stars-rating';
 
 const TestWithCodePage = () => {
     const {register, handleSubmit} = useForm();
@@ -230,8 +232,24 @@ const TestWithCodePage = () => {
         return <Navigate to={'/user'} replace/>;
     }
 
+    const title = `${oneCodeTest?.attributes?.testName}`;
+    const description = `${oneCodeTest?.attributes?.description}`;
+    const url = `https://skilliant.net/code-test/${id}`;
+
     return (
         <div className={css.testWithCode__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             {!userResultByTest && !resultId && !testStarted &&
                 <StartTestModal setTestStarted={setTestStarted} test={oneCodeTest?.attributes}/>}
             {!userResultByTest && !resultId && oneCodeTest?.attributes && testStarted && time < 1 &&

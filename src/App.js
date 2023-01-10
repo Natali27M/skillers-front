@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {ref, remove} from 'firebase/database';
-import {Helmet} from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import {
     AdminPage,
@@ -137,80 +137,82 @@ function App() {
         }
     }, [pathname]);
 
-    const title = 'SKILLIANT - We help engineers to grow in IT';
+    const title = 'Support the project financially';
     const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
     const url = 'https://skilliant.net';
 
     return (
-        <div>
-            <Helmet>
-                <meta charSet="utf-8"/>
-                <meta name="description" content={description}/>
-                <meta property="og:url" content={url}/>
-                <meta property="og:title" content={title}/>
-                <meta property="og:description" content={description}/>
-                <meta property="og:type" content="website"/>
-                <meta property="og:site_name" content="skilliant.net"/>
-                <title>{title}</title>
-                <link rel="canonical" href={url}/>
-            </Helmet>
+        <HelmetProvider>
+            <div>
+                <Helmet>
+                    <meta charSet="utf-8"/>
+                    <meta name="description" content={description}/>
+                    <meta property="og:url" content={url}/>
+                    <meta property="og:title" content={title}/>
+                    <meta property="og:description" content={description}/>
+                    <meta property="og:type" content="website"/>
+                    <meta property="og:site_name" content="skilliant.net"/>
+                    <title>{title}</title>
+                    <link rel="canonical" href={url}/>
+                </Helmet>
 
-            {modal === 'leave' && <div className={css.leave__main}>
-                <div className={css.leave__modal_block}>
-                    {EN ? 'Are you sure you want to leave the page?'
-                        :
-                        'Ви впевнені, що бажаєте покинути сторінку?'}
-
-                    <p className={css.leave__modal_block_text}>
-                        {EN ? 'This action will remove the code'
+                {modal === 'leave' && <div className={css.leave__main}>
+                    <div className={css.leave__modal_block}>
+                        {EN ? 'Are you sure you want to leave the page?'
                             :
-                            'Ця дія приведе до видалення коду'}
-                    </p>
+                            'Ви впевнені, що бажаєте покинути сторінку?'}
 
-                    <div className={css.modal__box_btn}>
-                        <button onClick={changeLeaveOk} className={rootCSS.default__button}>
-                            {EN ? 'Ok' : 'Так'}
-                        </button>
+                        <p className={css.leave__modal_block_text}>
+                            {EN ? 'This action will remove the code'
+                                :
+                                'Ця дія приведе до видалення коду'}
+                        </p>
 
-                        <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
-                            {EN ? 'Cancel' : 'Відмінити'}
-                        </button>
+                        <div className={css.modal__box_btn}>
+                            <button onClick={changeLeaveOk} className={rootCSS.default__button}>
+                                {EN ? 'Ok' : 'Так'}
+                            </button>
+
+                            <button onClick={changeLeaveCansel} className={rootCSS.default__button}>
+                                {EN ? 'Cancel' : 'Відмінити'}
+                            </button>
+                        </div>
+
                     </div>
+                </div>}
 
-                </div>
-            </div>}
-
-            <Routes>
-                <Route path={'/'} element={<Layout/>}>
-                    <Route index element={<HomePage/>}/>
-                    <Route path={'/test-list/:techId'} element={<TestListPage/>}/>
-                    <Route path={'/test/:testId'} element={<TestPage/>}/>
-                    <Route path={'/registration'} element={<RegisterPage/>}/>
-                    <Route path={'/user'} element={<UserPage/>}/>
-                    <Route path={'/login'} element={<LoginPage/>}/>
-                    <Route path={'/createTest'} element={<CreateTestPage/>}/> -
-                    <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
-                    <Route path={'/admin'} element={<AdminPage/>}/>
-                    <Route path={'/policy'} element={<PolicyPage/>}/>
-                    <Route path={'/rank'} element={<RankPage/>}/>
-                    <Route path={'/forgot-password'} element={<AdminPage/>}/>
-                    <Route path={'/for-users'} element={<ForUserPage/>}/>
-                    <Route path={'/donation'} element={<DonationPage/>}/>
-                    <Route path={'/compiler'} element={<CompilerPage/>}/>
-                    <Route path={'/recruiter'} element={<RecruiterPage/>}/>
-                    <Route path={'/code-test/:id'} element={<TestWithCodePage/>}/>
-                    <Route path={'/create-code-test'} element={<CreateCodeTestPage/>}/>
-                    <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
-                    <Route path={'/mentor'} element={<MentorPage/>}/>
-                    <Route path={'/mentors'} element={<MentorsPage/>}/>
-                    <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
-                    <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
-                    <Route path="/team-coding/:template/:id/:language/:idFirebase" element={<MainFirepadPage/>}/>
-                    <Route path={'/skl-token'} element={<SklPage/>}/>
-                    <Route path={'*'} element={<NotFoundPage/>}/>
-                </Route>
-            </Routes>
-        </div>
+                <Routes>
+                    <Route path={'/'} element={<Layout/>}>
+                        <Route index element={<HomePage/>}/>
+                        <Route path={'/test-list/:techId'} element={<TestListPage/>}/>
+                        <Route path={'/test/:testId'} element={<TestPage/>}/>
+                        <Route path={'/registration'} element={<RegisterPage/>}/>
+                        <Route path={'/user'} element={<UserPage/>}/>
+                        <Route path={'/login'} element={<LoginPage/>}/>
+                        <Route path={'/createTest'} element={<CreateTestPage/>}/> -
+                        <Route path={'/google-auth'} element={<GoogleRedirectPage/>}/>
+                        <Route path={'/admin'} element={<AdminPage/>}/>
+                        <Route path={'/policy'} element={<PolicyPage/>}/>
+                        <Route path={'/rank'} element={<RankPage/>}/>
+                        <Route path={'/forgot-password'} element={<AdminPage/>}/>
+                        <Route path={'/for-users'} element={<ForUserPage/>}/>
+                        <Route path={'/donation'} element={<DonationPage/>}/>
+                        <Route path={'/compiler'} element={<CompilerPage/>}/>
+                        <Route path={'/recruiter'} element={<RecruiterPage/>}/>
+                        <Route path={'/code-test/:id'} element={<TestWithCodePage/>}/>
+                        <Route path={'/create-code-test'} element={<CreateCodeTestPage/>}/>
+                        <Route path={'/feedback'} element={<FeedbackFormPage/>}/>
+                        <Route path={'/mentor'} element={<MentorPage/>}/>
+                        <Route path={'/mentors'} element={<MentorsPage/>}/>
+                        <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
+                        <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
+                        <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
+                        <Route path={'/skl-token'} element={<SklPage/>}/>
+                        <Route path={'*'} element={<NotFoundPage/>}/>
+                    </Route>
+                </Routes>
+            </div>
+        </HelmetProvider>
     );
 }
 

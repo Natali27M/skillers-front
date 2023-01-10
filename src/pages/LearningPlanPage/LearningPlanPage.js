@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
+import {Helmet} from 'react-helmet-async';
 
 import {LearningPlanList} from '../../components';
 import {
@@ -12,10 +13,8 @@ import {
     PYTHON,
 } from '../../constants/learningPlan/categories';
 import {categoriesId} from '../../constants/learningPlan/categoriesId';
-
 import rootCSS from '../../styles/root.module.css';
 import css from './LearningPlanPage.module.css';
-
 import js from '../../images/learningCategories/js.svg';
 import python from '../../images/learningCategories/python.svg';
 import java from '../../images/learningCategories/java.svg';
@@ -37,6 +36,10 @@ const categories = [
 const LearningPlanPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const [planId, setPlanId] = useState(null);
+
+    const myTitle = 'Support the project financially';
+    const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
+    const url = 'https://skilliant.net';
 
     const title = EN ?
         'Choose the direction of study and we will show you how to achieve success step by step'

@@ -1,4 +1,7 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 import css from './RankPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -7,16 +10,29 @@ import Trainee from '../../images/rank_big/Trainee.png';
 import Junior from '../../images/rank_big/Junior.png';
 import Middle from '../../images/rank_big/Middle.png';
 import Senior from '../../images/rank_big/Senior.png';
-import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {Badge} from '../../components/ForUserPage/Badge/Badge';
-
 
 const RankPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
+    const title = 'SKILLIANT ranks';
+    const description = 'Description of ranks by points and conditions for badges';
+    const url = 'https://skilliant.net/rank';
+
     return (
         <div className={css.rank__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <div className={css.rank__wrap}>
                 <div className={rootCSS.default__title_24}>

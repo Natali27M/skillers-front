@@ -3,6 +3,7 @@ import {Link, Navigate, useLocation, useNavigate, useParams} from 'react-router-
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import {useForm} from 'react-hook-form';
+import {Helmet} from 'react-helmet-async';
 
 import css from './TestPage.module.css';
 
@@ -34,7 +35,6 @@ import coin from '../../images/coin.svg';
 import cross from '../../images/cross.svg';
 import {userServices} from '../../services';
 import badgesProcessing from '../../RootFunctions/badgesProcessing';
-import {Helmet} from 'react-helmet';
 
 const TestPage = () => {
     const [coins, setCoins] = useState(0);

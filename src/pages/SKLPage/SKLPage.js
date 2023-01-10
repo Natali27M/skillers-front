@@ -1,5 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {Helmet} from 'react-helmet-async';
 
 import css from './SKLPage.module.css';
 import coin from '../../images/coin.svg'
@@ -7,8 +9,6 @@ import {PresentForUserAlways} from "../../components";
 import banner__angle from "../../images/banner-angle.svg";
 import css_helper from './../../components/ForHomePage/SKLBanner/SKLBanner.module.css'
 import rootCSS from '../../styles/root.module.css';
-import {useNavigate} from "react-router-dom";
-
 
 const SklPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -18,8 +18,24 @@ const SklPage = () => {
         return navigate('/')
     }
 
+    const title = 'SKL token';
+    const description = 'Instructions on how to get an SKL token and how to use it';
+    const url = 'https://skilliant.net/skl-token';
+
     return (
         <div className={css.skl__container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.skl__bg}></div>
             <div className={css.skl__block}>
 

@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {Link, Navigate} from 'react-router-dom';
-import {Helmet} from 'react-helmet';
+import {Helmet} from 'react-helmet-async';
 
 import rootCSS from '../../styles/root.module.css'
 import css from './RegisterPage.module.css';

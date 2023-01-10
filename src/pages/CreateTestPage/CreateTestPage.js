@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
-import {Helmet} from 'react-helmet';
+import {Helmet} from 'react-helmet-async';
 
 import css from './CreateTestPage.module.css';
 import rootCss from '../../styles/root.module.css';

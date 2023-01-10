@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import CodeEditor from '@uiw/react-textarea-code-editor';
+import {Helmet} from 'react-helmet-async';
 
 import rootCSS from '../../styles/root.module.css';
 import arrow from '../../images/arrow.svg';
@@ -93,8 +94,24 @@ const CompilerPage = () => {
         }
     };
 
+    const title = 'Compiler';
+    const description = 'Code compiler with text color according to programming language';
+    const url = 'https://skilliant.net/compiler';
+
     return (
         <div className={css.compiler}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <form className={css.compiler__form} onSubmit={handleSubmit(compile)}>
                 <CodeEditor

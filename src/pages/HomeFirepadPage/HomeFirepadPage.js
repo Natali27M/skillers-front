@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import { uid } from "uid";
+import {Helmet} from 'react-helmet-async';
 
 import css from './HomeFirepadPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -63,8 +64,24 @@ const HomeFirepadPage = () => {
         navigate(`${link}`);
     };
 
+    const title = 'Collaborative programming';
+    const description = 'Ability to create a room with a choice of programming language, or join a room';
+    const url = 'https://skilliant.net/team-coding';
+
     return (
         <div className={css.team__coding_page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.team__coding_page_bg}></div>
             <div className={css.team__coding_wrap}>
 

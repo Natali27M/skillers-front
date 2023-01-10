@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {Helmet} from 'react-helmet';
+import {Helmet} from 'react-helmet-async';
 
 import css from './TestListPage.module.css';
 import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
