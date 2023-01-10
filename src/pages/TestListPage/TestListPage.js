@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import css from './TestListPage.module.css';
-import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {Helmet} from 'react-helmet';
+
+import css from './TestListPage.module.css';
+import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {getTechnology, getTests, getTestsByQuery} from '../../store/slices/testPage.slice';
 import {BackButton, TestBlock} from '../../components';
-
 import sortAsc from '../../images/sort-asc.svg';
 import sortDesc from '../../images/sotr-desc.svg';
 import dropArrow from '../../images/dropArrow.svg';
@@ -118,8 +119,24 @@ const TestListPage = () => {
             dispatch(getTestsByQuery({query: data, pageNum: currenPage}));
     };
 
+    const title = `${technology} tests`;
+    const description = `All ${technology} tests and practical, search and sort this tests, difficult, rating and monetization`;
+    const url = `https://skilliant.net/test-list/${techId}`;
+
     return (
         <div className={css.test__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
             <div className={css.test__page_backAndLang}>
                 <BackButton/>

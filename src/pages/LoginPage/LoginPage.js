@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
-import {LoginValidator} from '../../validation';
 import {Link, Navigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
+
+import {LoginValidator} from '../../validation';
 import css from '../RegisterPage/RegisterPage.module.css';
 import rootCSS from '../../styles/root.module.css'
 import logo from '../../images/header/SKILLERS.svg';
@@ -35,8 +37,24 @@ const LoginPage = () => {
         return <Navigate to="/" replace/>;
     }
 
+    const title = 'Login user';
+    const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
+    const url = 'https://skilliant.net/login';
+
     return (
         <div className={css.login__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.register__right}>
                 <form onSubmit={handleSubmit(makeLogin)} className={css.register__form}>
                     <input

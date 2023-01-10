@@ -10,6 +10,7 @@ import {
     deleteObject
 } from 'firebase/storage';
 import {v4} from 'uuid';
+import {Helmet} from "react-helmet";
 
 import css from './UserPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -21,7 +22,6 @@ import Middle from '../../images/rank_little/Middle.png';
 import Senior from '../../images/rank_little/Senior.png';
 import hiringImg from '../../images/hiring.svg';
 import {storage} from '../../firebaseConfig';
-
 import {
     createPaymentRequest,
     getCodeResultsForEvaluating,
@@ -37,7 +37,6 @@ import {
     logout,
     updateUser
 } from '../../store';
-
 import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.slice';
 import coin from '../../images/coin.svg';
 import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
@@ -294,8 +293,24 @@ const UserPage = () => {
         setTimeout(() => setModalTakeOfCoins(!modalTakeOfCoins), 4000);
     }
 
+    const title = 'Information about the user';
+    const description = 'All information about the user and his badges, tests, results tests and practical tasks, code tests';
+    const url = 'https://skilliant.net/user';
+
     return (
         <div className={css.user__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <div className={css.user__wrap}>
                 <img src={avatar} className={css.user__avatar} alt={user.username}/>
@@ -521,23 +536,25 @@ const UserPage = () => {
                         }
                     </div>
                 </div>
-                {cvOpen && !loading && <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
-                    <input
-                        type="file"
-                        accept=".pdf"
-                        placeholder="CV URL"
-                        {...register('cv')}
-                        onChange={(event) => {
-                            const newFile = event.target.files;
-                            setCV(newFile[0]);
-                        }}
-                        className={css.update__username__input_cv}
-                    />
-                    <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
-                </form>}
+                {cvOpen && !loading &&
+                    <form className={css.update__username_form} onSubmit={handleSubmit(changeCV)}>
+                        <input
+                            type="file"
+                            accept=".pdf"
+                            placeholder="CV URL"
+                            {...register('cv')}
+                            onChange={(event) => {
+                                const newFile = event.target.files;
+                                setCV(newFile[0]);
+                            }}
+                            className={css.update__username__input_cv}
+                        />
+                        <button className={css.update__username__button}>{EN ? 'Save' : 'Зберегти'}</button>
+                    </form>}
 
                 {loading && cv !== null && !myCV &&
-                    <div className={css.update__username__loading}>{EN ? 'Wait please' : 'Зачекайте ,будь ласка'}</div>
+                    <div
+                        className={css.update__username__loading}>{EN ? 'Wait please' : 'Зачекайте ,будь ласка'}</div>
                 }
 
 
@@ -557,7 +574,8 @@ const UserPage = () => {
                         <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
                     </div>
                     {userResults?.data?.map(result =>
-                        <Link to={`/test/${result.attributes.testId}`} key={result.id} className={css.results__block}>
+                        <Link to={`/test/${result.attributes.testId}`} key={result.id}
+                              className={css.results__block}>
                             <div className={css.result__testName}>{result.attributes.testName}</div>
                             <div
                                 className={css.results__result}>{result.attributes.correctAnswer}/{result.attributes.allExercises}</div>

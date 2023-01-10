@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import css from './CreateTestPage.module.css';
-import rootCss from '../../styles/root.module.css';
-import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
+import {Helmet} from 'react-helmet';
+
+import css from './CreateTestPage.module.css';
+import rootCss from '../../styles/root.module.css';
+import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import {TestNameValidator} from '../../validation';
 import {ExBlock, TechDropdown} from '../../components';
 import {
@@ -20,10 +22,8 @@ import {Link, Navigate} from 'react-router-dom';
 import lock from '../../images/lock.svg';
 import coin from '../../images/coin.svg';
 
-
 const CreateTestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-
 
     const {user, jwt} = useSelector(state => state['userReducers']);
 
@@ -140,9 +140,24 @@ const CreateTestPage = () => {
         return <Navigate to={'/login'} replace/>;
     }
 
+    const title = 'Create quiz';
+    const description = 'Form for creating a test with a choice of category, difficulty, min.result, private, monetize';
+    const url = 'https://skilliant.net/createTest';
 
     return (
         <div className={css.createTest__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.createTest__bg}></div>
             <div className={css.createTest__wrap}>
                 {tempTest ?

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-
+import {ref, remove} from 'firebase/database';
+import {Helmet} from 'react-helmet';
 
 import {
     AdminPage,
@@ -44,14 +45,9 @@ import {
     setUserRank
 } from './store';
 import {DonationPage} from './pages/DonationPage/DonationPage';
-
-
-import {ref, remove} from 'firebase/database';
 import {db} from './firebaseConfig';
 import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from './styles/root.module.css';
-import {userServices} from './services';
-
 
 function App() {
     const {user} = useSelector(state => state['userReducers']);
@@ -141,8 +137,24 @@ function App() {
         }
     }, [pathname]);
 
+    const title = 'SKILLIANT - We help engineers to grow in IT';
+    const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
+    const url = 'https://skilliant.net';
+
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             {modal === 'leave' && <div className={css.leave__main}>
                 <div className={css.leave__modal_block}>
                     {EN ? 'Are you sure you want to leave the page?'
