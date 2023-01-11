@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     min-width: 0;
     height: auto;
     position: relative;
@@ -52,7 +52,7 @@
 
 @media (max-width: 920px) {
     .my_swiper {
-        width: 80%;
+        width: 90%;
     }
 
     .container {
@@ -70,6 +70,7 @@
     .prev, .next {
         width: 30px;
         height: 30px;
+        padding-bottom: 3px;
     }
 }
 
@@ -78,6 +79,7 @@
     .prev, .next {
         width: 30px;
         height: 30px;
+        padding-bottom: 3px;
     }
 
     .container {

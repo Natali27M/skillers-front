@@ -33,10 +33,9 @@ const SwiperComponent = () => {
                     prevEl: prev.current,
                     nextEl: next.current,
                 }}
-                // pagination={{clickable: true, dynamicBullets: true}}
                 className={css.my_swiper}
                 direction={'horizontal'}
-                speed={600}
+                speed={800}
                 loop={true}
                 breakpoints={
                     {
@@ -53,7 +52,7 @@ const SwiperComponent = () => {
                             slidesPerView: 3,
                             spaceBetween: 10
                         },
-                        1300: {
+                        1420: {
                             slidesPerView: 4,
                         }
                     }
