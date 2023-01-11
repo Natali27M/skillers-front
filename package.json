@@ -17,6 +17,7 @@
     "axios": "^0.27.2",
     "emailjs-com": "^3.2.0",
     "ethers": "^5.7.2",
+    "firebase": "^9.15.0",
     "hamburger-react": "^2.5.0",
     "joi": "^17.6.0",
     "qs": "^6.11.0",
@@ -31,9 +32,9 @@
     "react-select": "^5.6.1",
     "react-simply-carousel": "^8.4.0",
     "react-syntax-highlighter": "^15.5.0",
-    "uid": "^2.0.1",
-    "firebase": "^9.15.0",
     "remark-gfm": "^3.0.1",
+    "swiper": "^8.4.5",
+    "uid": "^2.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
