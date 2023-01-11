@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Navigation, Pagination} from 'swiper';
+import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/react';
 
 import css from './Swiper.module.css';
@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+
 import {TechBlock} from "../TechBlock/TechBlock";
 import java from "../../../images/techList/java.svg";
 import python from "../../../images/techList/python.svg";
@@ -25,19 +26,18 @@ const SwiperComponent = () => {
         <div className={css.container}>
             <div className={css.prev} ref={prev}>{'<'}</div>
             <Swiper
-                modules={[Pagination, Navigation]}
+                modules={[Navigation]}
                 slidesPerView={4}
                 effect={'coverflow'}
                 navigation={{
                     prevEl: prev.current,
                     nextEl: next.current,
                 }}
-                pagination={{clickable: true, dynamicBullets: true}}
+                // pagination={{clickable: true, dynamicBullets: true}}
                 className={css.my_swiper}
                 direction={'horizontal'}
-                speed={"800"}
-                // loop={true}
-                // loopedSlidesLimit={false}
+                speed={600}
+                loop={true}
                 breakpoints={
                     {
                         100: {
@@ -46,10 +46,10 @@ const SwiperComponent = () => {
                         320: {
                             slidesPerView: 1
                         },
-                        640: {
+                        641: {
                             slidesPerView: 2,
                         },
-                        920: {
+                        921: {
                             slidesPerView: 3,
                             spaceBetween: 10
                         },
@@ -87,8 +87,7 @@ const SwiperComponent = () => {
             </Swiper>
             <div className={css.next} ref={next}>></div>
         </div>
-    )
-        ;
+    );
 };
 
 export {SwiperComponent};
