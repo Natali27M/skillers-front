@@ -33,6 +33,7 @@
     color: #FFFFFF;
     background: black;
     border-radius: 50%;
+    user-select: none;
 }
 
 .next {
