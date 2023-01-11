@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {ref, remove} from 'firebase/database';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 import {
     AdminPage,
