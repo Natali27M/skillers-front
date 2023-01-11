@@ -208,7 +208,7 @@ const CreateTestPage = () => {
                                 {EN ? 'Or create code test' : 'Або створити практичне завдання'}
                             </Link>
                         </div>
-                        <div className={css.test__head}>{EN ? 'Create Quiz' : 'Створити Тест'}</div>
+                        <h2 className={css.test__head}>{EN ? 'Create Quiz' : 'Створити Тест'}</h2>
                         <div className={css.input__wrap}>
                             <div className={css.test__header_input}>
                                 {EN ? 'Test name'

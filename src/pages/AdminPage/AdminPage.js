@@ -75,9 +75,9 @@ const AdminPage = () => {
 
             <div className={rootCSS.root__background}></div>
             <div className={css.admin__wrap}>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Tests for approve' : 'Тести для затвердження'}
-                </div>
+                </h3>
                 <div className={css.tests__wrap}>
                     <div className={css.tests__header}>
                         <div className={css.test__name}>
@@ -121,9 +121,9 @@ const AdminPage = () => {
                     </div>
 
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Code tests for approve' : 'Практичні тести для затвердження'}
-                </div>
+                </h3>
                 <div className={css.tests__wrap}>
                     <div className={css.tests__header}>
                         <div className={css.test__name}>
@@ -167,9 +167,9 @@ const AdminPage = () => {
                     </div>
 
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Feedback' : 'Відгуки'}
-                </div>
+                </h3>
                 <div className={css.feedback__wrap}>
                     <div className={css.feedback__header}>
                         <div className={css.feedback__header_message}>

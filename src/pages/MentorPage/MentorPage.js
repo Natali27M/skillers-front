@@ -82,10 +82,10 @@ const MentorPage = () => {
 
             <div className={css.mentor__page__bg}></div>
             <div className={css.mentor__form__wrap}>
-                <div
+                <h4
                     className={css.mentor__congratulations}>{EN ? `Congratulations ${user.username}, to become a mentor, fill out all the fields of the form !` :
                     `Вітаємо ${user.username}, щоб стати ментором заповніть поля форми`}
-                </div>
+                </h4>
 
                 <div className={css.mentor__form__block}>
                     <form className={css.mentor__form} onSubmit={handleSubmit(sendMentorData)}>

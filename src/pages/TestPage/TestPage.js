@@ -6,7 +6,6 @@ import {useForm} from 'react-hook-form';
 import {Helmet} from 'react-helmet-async';
 
 import css from './TestPage.module.css';
-
 import {
     approveTest,
     createRateOfTest,

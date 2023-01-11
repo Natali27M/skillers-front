@@ -114,20 +114,20 @@ const ForUserPage = () => {
 
             <div className={rootCSS.root__background}></div>
             <div className={css.forUser__wrap}>
-                <div className={css.forUser__title}>
+                <h2 className={css.forUser__title}>
                     {EN ? 'For users' : 'Користувачам'}
-                </div>
-                <div className={rootCSS.default__title_24}>
+                </h2>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Support the project' : 'Підтримати проект'}
-                </div>
+                </h3>
                 <div className={css.toMain__btn_wrap}>
                     <Link to={'/donation'} className={rootCSS.default__button}>
                         {EN ? 'Donate' : 'Донатити'}
                     </Link>
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Telegram chat for mentoring' : 'Телеграм чат для менторингу'}
-                </div>
+                </h3>
                 <div className={css.toMain__btn_wrap}>
                     <a href="https://t.me/skilliant" target="_blank" className={css.useful__link}>
                         <img src={telegram} alt="t.me/skilliant"/>
@@ -136,9 +136,9 @@ const ForUserPage = () => {
                         </div>
                     </a>
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Useful links' : 'Корисні посилання'}
-                </div>
+                </h3>
                 <div className={css.links__wrap}>
                     {
                         usefulLinks.map(({href, src, title}, i) => (
@@ -156,9 +156,9 @@ const ForUserPage = () => {
                         )
                     }
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Recommended YouTube Channels' : 'Рекомендовані YouTube канали'}
-                </div>
+                </h3>
                 <div className={css.links__wrap}>
                     {
                         recommendedChannels.map(({href, src, title}, i) => (
@@ -176,9 +176,9 @@ const ForUserPage = () => {
                         )
                     }
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Recommended courses ' : 'Рекомендовані курси'}
-                </div>
+                </h3>
                 <div className={css.courses__wrap}>
                     <a href={'https://www.udemy.com/course/software-project-management-max'}
                        className={css.course__block} target="_blank">

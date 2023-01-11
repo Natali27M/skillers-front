@@ -85,18 +85,18 @@ const HomeFirepadPage = () => {
             <div className={css.team__coding_page_bg}></div>
             <div className={css.team__coding_wrap}>
 
-                <div
+                <h2
                     className={css.dropdown__main_title}>{EN ? 'Collaborative programming' : 'Спільне програмування'}
-                </div>
+                </h2>
 
                 <div className={css.result__wrap}>
                     <div className={css.dropdown__container}>
 
                         <div className={css.dropdown__wrap} ref={myRef}>
 
-                            <div className={css.dropdown__title}>
+                            <h3 className={css.dropdown__title}>
                                 {EN ? 'Create a new room' : 'Створіть нову кімнату'}
-                            </div>
+                            </h3>
 
                             <div className={css.dropdown__btn} onClick={() => user && setDropOpen(!dropOpen)}>
 
@@ -168,9 +168,9 @@ const HomeFirepadPage = () => {
                 </div>
 
                 <div className={css.team__coding_box}>
-                    <div className={css.dropdown__title}>
+                    <h3 className={css.dropdown__title}>
                         {EN ? 'Join an existing room' : 'Приєднайтеся до наявної кімнати'}
-                    </div>
+                    </h3>
 
                     <form onSubmit={handleSubmit(joinToRoom)} className={css.join__room_form}>
                         <input type="text" {...register('pageLink')}

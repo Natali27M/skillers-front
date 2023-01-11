@@ -12,7 +12,7 @@ const HomePage = () => {
 
     // const present = JSON.parse(localStorage.getItem('present'));
 
-    const title = 'Support the project financially';
+    const title = 'Skilliant - we help engineers to grow in IT';
     const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
     const url = 'https://skilliant.net';
 
@@ -49,10 +49,10 @@ const HomePage = () => {
                         <h1 className={css.main__title}>
                             SKILLIANT
                         </h1>
-                        <div className={css.home__description}>
+                        <h2 className={css.home__description}>
                             {EN ? 'We help engineers to grow in IT' :
                                 'Ми допомагаємо розробникам розвиватися в ІТ'}
-                        </div>
+                        </h2>
                         <Link to={user ? '/user' : '/registration'} className={css.register__btn}>
                             {user ? (EN ? 'To my profile' : 'На мій профіль') : (EN ? 'Register now' : 'Зареєструватися')}
                         </Link>

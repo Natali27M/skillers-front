@@ -41,9 +41,9 @@ const RankPage = () => {
                 <div className={css.rank__block}>
                     <img src={Lamer} alt="lamer" className={css.rank__img}/>
                     <div className={css.rank__text}>
-                        <div className={css.rank__block_title}>
+                        <h3 className={css.rank__block_title}>
                             Lamer
-                        </div>
+                        </h3>
                         <div className={css.rank__block_content}>
                             {EN ? 'User rating from 0 to 20' : 'Рейтинг користувача від 0 до 20'}
                         </div>
@@ -55,9 +55,9 @@ const RankPage = () => {
                 <div className={css.rank__block}>
                     <img src={Trainee} alt="Trainee" className={css.rank__img}/>
                     <div className={css.rank__text}>
-                        <div className={css.rank__block_title}>
+                        <h3 className={css.rank__block_title}>
                             Trainee
-                        </div>
+                        </h3>
                         <div className={css.rank__block_content}>
                             {EN ? 'User rating from 20 to 50' : 'Рейтинг користувача від 20 до 50'}
                         </div>
@@ -69,9 +69,9 @@ const RankPage = () => {
                 <div className={css.rank__block}>
                     <img src={Junior} alt="Junior" className={css.rank__img}/>
                     <div className={css.rank__text}>
-                        <div className={css.rank__block_title}>
+                        <h3 className={css.rank__block_title}>
                             Junior
-                        </div>
+                        </h3>
                         <div className={css.rank__block_content}>
                             {EN ? 'User rating from 50 to 100' : 'Рейтинг користувача від 50 до 100'}
                         </div>
@@ -83,9 +83,9 @@ const RankPage = () => {
                 <div className={css.rank__block}>
                     <img src={Middle} alt="Middle" className={css.rank__img}/>
                     <div className={css.rank__text}>
-                        <div className={css.rank__block_title}>
+                        <h3 className={css.rank__block_title}>
                             Middle
-                        </div>
+                        </h3>
                         <div className={css.rank__block_content}>
                             {EN ? 'User rating from 100 to 200' : 'Рейтинг користувача від 100 до 200'}
                         </div>
@@ -97,9 +97,9 @@ const RankPage = () => {
                 <div className={css.rank__block}>
                     <img src={Senior} alt="Senior" className={css.rank__img}/>
                     <div className={css.rank__text}>
-                        <div className={css.rank__block_title}>
+                        <h3 className={css.rank__block_title}>
                             Senior
-                        </div>
+                        </h3>
                         <div className={css.rank__block_content}>
                             {EN ? 'User rating from 200 and above' : 'Рейтинг користувача від 200 і вище'}
                         </div>

@@ -30,10 +30,10 @@ const DonationPage = () => {
 
             <div className={css.logo__wrap}>
                 <img src={logo} alt="logo" className={css.skilliant__logo}/>
-                <div className={css.skilliant__description}>
+                <h2 className={css.skilliant__description}>
                     {EN ? 'We help engineers to grow in IT' :
                         'Ми допомагаємо розробникам розвиватися в ІТ'}
-                </div>
+                </h2>
             </div>
             <div className={css.donation__content}>
                 <div className={rootCSS.default__title_34}>

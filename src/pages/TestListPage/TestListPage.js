@@ -105,7 +105,6 @@ const TestListPage = () => {
         setDropOpen(false);
     }, [width]);
 
-
     const allPages = isCodeTest ? codeTestPage?.meta?.pagination?.pageCount : tests?.meta?.pagination?.pageCount;
 
     const pagesArray = pagination(allPages, currenPage);
@@ -137,7 +136,7 @@ const TestListPage = () => {
                 <link rel="canonical" href={url}/>
             </Helmet>
 
-            <div className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</div>
+            <h2 className={css.test__page_title}>{EN ? `${technology} tests` : `Тести з ${technology}`}</h2>
             <div className={css.test__page_backAndLang}>
                 <BackButton/>
                 <div className={css.test__page_language}>
@@ -234,6 +233,7 @@ const TestListPage = () => {
                     {!!tests?.data?.length && tests?.data?.map(test => <TestBlock key={test.id} test={test}/>)}
                 </div>
             }
+
             {isCodeTest && !!codeTestPage?.data?.length &&
                 <div className={css.tests__wrap}>
                     {!!codeTestPage?.data?.length && codeTestPage?.data?.map(test =>

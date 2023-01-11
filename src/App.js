@@ -137,7 +137,7 @@ function App() {
         }
     }, [pathname]);
 
-    const title = 'Support the project financially';
+    const title = 'Skilliant - we help engineers to grow in IT';
     const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
     const url = 'https://skilliant.net';
 

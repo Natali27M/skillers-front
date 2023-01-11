@@ -25,9 +25,9 @@ const UnapprovedMentors = () => {
 
     return (
         <>
-            <div className={css.admin__title}>
+            <h2 className={css.admin__title}>
                 {EN ? 'Mentors' : 'Ментори'}
-            </div>
+            </h2>
 
             <div className={css.mentors__header}>
                 <div className={css.mentor__name}>

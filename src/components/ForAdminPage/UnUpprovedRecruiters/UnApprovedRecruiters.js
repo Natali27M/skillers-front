@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 import css from "./UnApprovedRecruiters.module.css";
-import arrow from "../../../images/arrow.svg";
 import {createUserRoles, deletedRecruiter, getAllRecruiters, updateIsConfirmed, updateUserRoles} from "../../../store";
 import cross from "../../../images/cross-red.svg";
 import check_green from "../../../images/check-green.svg";
@@ -57,9 +56,9 @@ const UnApprovedRecruiters = () => {
 
     return (
         <>
-            <div className={css.admin__title}>
+            <h2 className={css.admin__title}>
                 {EN ? 'Recruiters' : 'Ректутери'}
-            </div>
+            </h2>
 
             <div className={css.recruiter__header}>
                 <div className={css.recruiter__name}>

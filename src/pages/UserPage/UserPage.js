@@ -314,9 +314,9 @@ const UserPage = () => {
             <div className={rootCSS.root__background}></div>
             <div className={css.user__wrap}>
                 <img src={avatar} className={css.user__avatar} alt={user.username}/>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Information' : 'Інформація'}
-                </div>
+                </h3>
                 <div className={css.user__data_block}>
                     <div className={css.user__db_content}>{EN ? 'Username' : 'Нікнейм'}</div>
                     <div className={css.user__db_content}>{user.username}</div>
@@ -559,16 +559,16 @@ const UserPage = () => {
 
 
                 {resultBadges && <>
-                    <div className={rootCSS.default__title_24}>
+                    <h3 className={rootCSS.default__title_24}>
                         {EN ? 'My badges' : 'Мої нагороди'}
-                    </div>
+                    </h3>
                     <UserBadges/>
                 </>}
 
                 {!!userResults?.data?.length && <div className={css.results__wrap}>
-                    <div className={rootCSS.default__title_24}>
+                    <h3 className={rootCSS.default__title_24}>
                         {EN ? 'My results' : 'Мої результати'}
-                    </div>
+                    </h3>
                     <div className={css.results__header}>
                         <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
                         <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
@@ -642,9 +642,9 @@ const UserPage = () => {
 
                 {!!testsByUser?.data?.length &&
                     <div className={css.results__wrap}>
-                        <div className={rootCSS.default__title_24}>
+                        <h3 className={rootCSS.default__title_24}>
                             {EN ? 'My tests' : 'Мої тести'}
-                        </div>
+                        </h3>
                         <div className={css.results__header}>
                             <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
                             <div className={css.results__result}>{EN ? 'Tech ID' : 'ID технології'}</div>
@@ -671,11 +671,11 @@ const UserPage = () => {
                 }
                 {testForResults &&
                     <div className={css.results__wrap}>
-                        <div className={rootCSS.default__title_24}>
+                        <h3 className={rootCSS.default__title_24}>
                             {EN ? `Results of ${testForResults.attributes.name}`
                                 : `Результати ${testForResults.attributes.name}`
                             }
-                        </div>
+                        </h3>
                         <div className={css.results__header}>
                             <div className={css.result__testName}>{EN ? 'User ID' : 'ID Користувача'}</div>
                             <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>
@@ -702,9 +702,9 @@ const UserPage = () => {
 
                 {!!codeTestsByUser?.data?.length &&
                     <div className={css.results__wrap}>
-                        <div className={rootCSS.default__title_24}>
+                        <h3 className={rootCSS.default__title_24}>
                             {EN ? 'My code tests' : 'Мої практичні тести'}
-                        </div>
+                        </h3>
                         <div className={css.results__header}>
                             <div className={css.result__testName}>{EN ? 'Test' : 'Тест'}</div>
                             <div className={css.results__result}>{EN ? 'Tech ID' : 'ID технології'}</div>
@@ -732,11 +732,11 @@ const UserPage = () => {
 
                 {codeTestForResults &&
                     <div className={css.results__wrap}>
-                        <div className={rootCSS.default__title_24}>
+                        <h3 className={rootCSS.default__title_24}>
                             {EN ? `Results of ${codeTestForResults.attributes.testName}`
                                 : `Результати ${codeTestForResults.attributes.testName}`
                             }
-                        </div>
+                        </h3>
                         <div className={css.results__header}>
                             <div className={css.result__testName}>{EN ? 'User ID' : 'ID Користувача'}</div>
                             <div className={css.results__result}>{EN ? 'Result' : 'Результат'}</div>

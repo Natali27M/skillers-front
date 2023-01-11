@@ -6,7 +6,6 @@ import {Checkbox, FormControlLabel} from "@mui/material";
 import {englishLevels, experiences} from '../../../pages/MentorPage/constants/mentor__constants'
 import {getMentorsPaginatedConfirmed} from "../../../store/slices/mentors.slice";
 import {ApprovedMentor} from "../ApprovedMentor/ApprovedMentor";
-import arrow from "../../../images/arrow.svg";
 import cross from "../../../images/cross.svg";
 import css from './ApprovedMentors.module.css';
 import {getTechnologies} from "../../../store";
@@ -97,9 +96,9 @@ const ApprovedMentors = () => {
 
     return (<div className={css.confirmed__mentors__block}>
         <div className={css.confirmed__mentors}>
-            <div className={css.admin__title}>
+            <h2 className={css.admin__title}>
                 {EN ? 'Mentors' : 'Ментори'}
-            </div>
+            </h2>
             {confirmedMentorPage?.data && confirmedMentorPage.data.map(value => <ApprovedMentor key={value.id}
                                                                                                 mentor={value}/>)}
             <div className={css.pagination__wrap}>
@@ -111,9 +110,9 @@ const ApprovedMentors = () => {
 
         </div>
         <div className={css.filters}>
-            <div className={css.admin__title}>
+            <h2 className={css.admin__title}>
                 {EN ? 'Filters' : 'Фільтри'}
-            </div>
+            </h2>
             <div className={css.check__block}>
                 <div className={css.check__block__form}>
                     <span className={css.check__block__span}>{EN ? "English level : " : "Рівень Англійської : "}</span>

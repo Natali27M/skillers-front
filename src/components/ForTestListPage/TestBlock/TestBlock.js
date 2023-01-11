@@ -50,7 +50,7 @@ const TestBlock = ({test, type}) => {
                 <Link to={type === 'code' ? `/code-test/${testId}` : `/test/${testId}`} className={css.test__block}>
                     <div className={css.test__left}>
                         <div className={css.name_block}>
-                            <div className={css.test__name}>{currentTest.name || currentTest.testName}</div>
+                            <h3 className={css.test__name}>{currentTest.name || currentTest.testName}</h3>
                             {
                                 currentTest.isMonetized && <img src={coin} alt='coin' className={css.coin}/>
                             }
