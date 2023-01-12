@@ -4,6 +4,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    margin: 100px 0;
 }
 
 .tech__wrap_loginUser {

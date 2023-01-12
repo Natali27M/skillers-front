@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
 import css from './HomePage.module.css';
-import {Feedbacks, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
+import {Feedbacks, InformationBlock, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
 
 const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -62,6 +62,7 @@ const HomePage = () => {
             }
             <TechList/>
             <SklBanner/>
+            <InformationBlock/>
             <LeaderBord/>
             <Feedbacks/>
             <YoutubeChannel/>
