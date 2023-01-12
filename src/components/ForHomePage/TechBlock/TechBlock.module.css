@@ -1,5 +1,8 @@
 .for__slider_wrap {
     padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tech__block_wrap {

@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    min-width: 0;
+    height: auto;
+    position: relative;
+}
+
+.my_swiper {
+    width: 90%;
+    height: auto;
+    position: absolute;
+    padding: 0 50px;
+}
+
+.swiper-slide {
+    width: auto;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: black;
+    border-radius: 50%;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+}
+
+@media (max-width: 1200px) {
+    .my_swiper {
+        width: 90%;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 920px) {
+    .my_swiper {
+        width: 90%;
+    }
+
+    .container {
+        width: 85%;
+    }
+
+    .prev, .next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .prev, .next {
+        width: 30px;
+        height: 30px;
+        padding-bottom: 3px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .prev, .next {
+        width: 30px;
+        height: 30px;
+        padding-bottom: 3px;
+    }
+
+    .container {
+        width: 65%;
+    }
+}
+
+@media (max-width: 500px) {
+    .prev, .next {
+        width: 20px;
+        height: 20px;
+    }
+
+    .container {
+        width: 80%;
+    }
+}
