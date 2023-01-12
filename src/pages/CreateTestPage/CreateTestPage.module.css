@@ -50,6 +50,7 @@
     z-index: 3;
     padding: 10px 0;
     background-color: #fff;
+    width: fit-content;
     border-image: linear-gradient(100deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
 }

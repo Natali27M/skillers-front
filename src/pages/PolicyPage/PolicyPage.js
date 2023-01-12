@@ -1,12 +1,28 @@
 import React from 'react';
+import {Helmet} from 'react-helmet-async';
+
 import css from './PolicyPage.module.css';
-import {useSelector} from 'react-redux';
 
 const PolicyPage = () => {
-    const {EN} = useSelector(state => state['languageReducers']);
+    const title = 'Privacy Policy for SKILLIANT';
+    const description = 'A Privacy Policy is a legal document that informs the public about the data you collect, how' +
+        ' you collect it, and how you use it.';
+    const url = 'https://skilliant.net/policy';
 
     return (
         <div className={css.policy__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.policy__bg}></div>
             <div className={css.policy__wrap}>
                 <div className={css.policy}>

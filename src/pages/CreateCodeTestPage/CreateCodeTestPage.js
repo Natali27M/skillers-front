@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import {useForm} from 'react-hook-form';
+import {useDispatch, useSelector} from 'react-redux';
+import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
+import {Navigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 import testCss from '../CreateTestPage/CreateTestPage.module.css';
-import {useForm} from 'react-hook-form';
 import {TechDropdown} from '../../components';
-import {useDispatch, useSelector} from 'react-redux';
 import compilerParamsSetter from '../../RootFunctions/compilerParamsSetter';
-import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {CodeTestValidator} from '../../validation';
 import {clearOneCodeTest, createCodeTest} from '../../store';
-import {Navigate} from 'react-router-dom';
 import headerCss from '../../components/GeneralComponents/Header/Header.module.css';
 import css from '../CreateTestPage/CreateTestPage.module.css';
 
@@ -81,8 +82,24 @@ const CreateCodeTestPage = () => {
         return <Navigate to={`/code-test/${oneCodeTest?.id}`} replace/>;
     }
 
+    const title = 'Create code test';
+    const description = 'Form for creating a test with a choice of category, difficulty, min.result, private, monetize';
+    const url = 'https://skilliant.net/create-code-test';
+
     return (
         <div className={testCss.createTest__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={testCss.createTest__bg}></div>
             <div className={testCss.createTest__wrap}>
                 <form className={testCss.test__form} onSubmit={handleSubmit(createTest)}>

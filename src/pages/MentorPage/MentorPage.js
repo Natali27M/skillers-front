@@ -3,6 +3,7 @@ import Select from 'react-select'
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {Helmet} from 'react-helmet-async';
 
 import css from './MentorPage.module.css';
 import rootCSS from '../../styles/root.module.css'
@@ -61,14 +62,30 @@ const MentorPage = () => {
         setTechnology(mentorTechnologies)
     }
 
+    const title = 'Become a mentor';
+    const description = 'Form for filling out an application to become a mentor';
+    const url = 'https://skilliant.net/mentor';
+
     return (
         <div className={css.mentor__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.mentor__page__bg}></div>
             <div className={css.mentor__form__wrap}>
-                <div
+                <h4
                     className={css.mentor__congratulations}>{EN ? `Congratulations ${user.username}, to become a mentor, fill out all the fields of the form !` :
                     `Вітаємо ${user.username}, щоб стати ментором заповніть поля форми`}
-                </div>
+                </h4>
 
                 <div className={css.mentor__form__block}>
                     <form className={css.mentor__form} onSubmit={handleSubmit(sendMentorData)}>

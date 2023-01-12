@@ -1,10 +1,10 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 import css from './ForUserPage.module.css';
 import rootCSS from '../../styles/root.module.css'
-
 import resume from '../../images/useful_links/resume.io.png';
 import djini from '../../images/useful_links/djini.png';
 import dou from '../../images/useful_links/dou.png';
@@ -93,24 +93,41 @@ const recommendedChannels = [
 const ForUserPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
+    const title = 'For users';
+    const description = 'Information about donations, Telegram chat and useful information about sites, YouTube channels' +
+        ' and courses';
+    const url = 'https://skilliant.net/for-users';
+
     return (
         <div className={css.forUser__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <div className={css.forUser__wrap}>
-                <div className={css.forUser__title}>
+                <h2 className={css.forUser__title}>
                     {EN ? 'For users' : 'Користувачам'}
-                </div>
-                <div className={rootCSS.default__title_24}>
+                </h2>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Support the project' : 'Підтримати проект'}
-                </div>
+                </h3>
                 <div className={css.toMain__btn_wrap}>
                     <Link to={'/donation'} className={rootCSS.default__button}>
                         {EN ? 'Donate' : 'Донатити'}
                     </Link>
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Telegram chat for mentoring' : 'Телеграм чат для менторингу'}
-                </div>
+                </h3>
                 <div className={css.toMain__btn_wrap}>
                     <a href="https://t.me/skilliant" target="_blank" className={css.useful__link}>
                         <img src={telegram} alt="t.me/skilliant"/>
@@ -119,9 +136,9 @@ const ForUserPage = () => {
                         </div>
                     </a>
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Useful links' : 'Корисні посилання'}
-                </div>
+                </h3>
                 <div className={css.links__wrap}>
                     {
                         usefulLinks.map(({href, src, title}, i) => (
@@ -139,9 +156,9 @@ const ForUserPage = () => {
                         )
                     }
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Recommended YouTube Channels' : 'Рекомендовані YouTube канали'}
-                </div>
+                </h3>
                 <div className={css.links__wrap}>
                     {
                         recommendedChannels.map(({href, src, title}, i) => (
@@ -159,9 +176,9 @@ const ForUserPage = () => {
                         )
                     }
                 </div>
-                <div className={rootCSS.default__title_24}>
+                <h3 className={rootCSS.default__title_24}>
                     {EN ? 'Recommended courses ' : 'Рекомендовані курси'}
-                </div>
+                </h3>
                 <div className={css.courses__wrap}>
                     <a href={'https://www.udemy.com/course/software-project-management-max'}
                        className={css.course__block} target="_blank">

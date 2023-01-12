@@ -25,9 +25,9 @@ const PaymentRequests = () => {
 
     return (
         <>
-            <div className={css__helper.admin__title}>
+            <h2 className={css__helper.admin__title}>
                 {EN ? 'Coin withdrawal requests' : 'Запити на зняття монет'}
-            </div>
+            </h2>
 
             <div className={css__helper.recruiter__header}>
                 <div className={css.userId}>

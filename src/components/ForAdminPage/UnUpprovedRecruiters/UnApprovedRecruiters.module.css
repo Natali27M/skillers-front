@@ -1,5 +1,6 @@
 .admin__title {
     display: flex;
+    width: fit-content;
     font-size: 30px;
     font-weight: 500;
     justify-content: center;

@@ -20,6 +20,7 @@
 .forUser__title {
     display: flex;
     font-size: 30px;
+    font-weight: 100;
     justify-content: center;
     text-align: center;
     border-bottom: 3px solid;

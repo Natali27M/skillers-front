@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 import {useParams, useLocation, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import CodeEditor from '@uiw/react-textarea-code-editor';
+import {Helmet} from 'react-helmet-async';
 
 import {db} from '../../firebaseConfig';
 import css from './MainFirepadPage.module.css';
@@ -166,8 +167,23 @@ function MainFirepadPage() {
         navigate('/team-coding');
     };
 
+    const title = 'Collaborative programming';
+    const description = 'A room where multiple people can write code at the same time and everyone can see those changes';
+    const url = `https://skilliant.net${location.pathname}`;
+
     return (
         <div className={css.compiler__main}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
 
             <div className={css.compiler}>
 

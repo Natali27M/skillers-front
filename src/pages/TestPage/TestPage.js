@@ -3,10 +3,9 @@ import {Link, Navigate, useLocation, useNavigate, useParams} from 'react-router-
 import {useDispatch, useSelector} from 'react-redux';
 import ReactStarsRating from 'react-awesome-stars-rating';
 import {useForm} from 'react-hook-form';
+import {Helmet} from 'react-helmet-async';
 
 import css from './TestPage.module.css';
-import rootCss from '../../styles/root.module.css';
-
 import {
     approveTest,
     createRateOfTest,
@@ -40,7 +39,9 @@ const TestPage = () => {
     const [coins, setCoins] = useState(0);
 
     const {EN} = useSelector(state => state['languageReducers']);
+
     const {oneTest, userTestRate} = useSelector(state => state['testsReducers']);
+
     const {
         exercises,
         result,
@@ -50,7 +51,9 @@ const TestPage = () => {
         status,
         variants
     } = useSelector(state => state['exercisesReducers']);
+
     const {user, roles} = useSelector(state => state['userReducers']);
+
     const {userAchievement} = useSelector(state => state['achievementsReducers']);
 
     const {userByTestResult, isTestCompleted} = useSelector(state => state['resultReducers']);
@@ -64,7 +67,9 @@ const TestPage = () => {
     const testId = paramsData?.testId?.split('-')[0];
 
     const dispatch = useDispatch();
+
     const {pathname} = useLocation();
+
     const navigate = useNavigate();
 
     const defaultPercent = 51;
@@ -262,8 +267,24 @@ const TestPage = () => {
         reset();
     };
 
+    const title = `${oneTest?.attributes?.name}`;
+    const description = 'All information about the test (title, description, rating, coin)  and multiple-choice test questions';
+    const url = `https://skilliant.net/test/${oneTest?.id}`;
+
     return (
         <div className={css.test__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             {modalOpen && <SignUpModal setModalOpen={setModalOpen} type="test"/>}
             <div className={css.test__page_title}>
                 <div className={css.test__page_title__name}>{oneTest?.attributes?.name}

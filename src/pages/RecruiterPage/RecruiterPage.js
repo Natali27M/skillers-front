@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Navigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {Helmet} from 'react-helmet-async';
 
 import css from './RecruiterPage.module.css';
 import rootCSS from '../../styles/root.module.css';
@@ -70,8 +71,24 @@ const RecruiterPage = () => {
 
     };
 
+    const title = 'For recruiters';
+    const description = 'Information with all data of the site user, his results and contacts';
+    const url = 'https://skilliant.net/recruiter';
+
     return (
         <div className={css.recruiter__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={rootCSS.root__background}></div>
             <div className={css.recruiter__wrap}>
                 <div className={css.user__search_wrap} onClick={() => setUserId(null)}>

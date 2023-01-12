@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useDispatch, useSelector} from 'react-redux';
+import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
+import {Link, Navigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
+
 import rootCSS from '../../styles/root.module.css'
 import css from './RegisterPage.module.css';
-import {useDispatch, useSelector} from 'react-redux';
 import logo from '../../images/header/SKILLERS.svg';
-import {joiResolver} from '@hookform/resolvers/joi/dist/joi';
 import {UserValidator} from '../../validation';
 import {clearError, registration} from '../../store';
-import {Link, Navigate} from 'react-router-dom';
 import googleLogo from '../../images/google.svg';
 import baseURL from '../../config/urls';
 import {LoginWithMetaMask} from "../../components";
 
 
 const RegisterPage = () => {
-    const {user, jwt, error} = useSelector(state => state['userReducers']);
+    const {user, error} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {
@@ -49,8 +51,24 @@ const RegisterPage = () => {
         return <Navigate to="/" replace/>;
     }
 
+    const title = 'Registration user';
+    const description = 'User login form';
+    const url = 'https://skilliant.net/registration';
+
     return (
         <div className={css.register__page}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.register__left}>
                 <img className={css.home__logo} src={logo} alt="logo"/>
                 <div className={css.home__description}>
