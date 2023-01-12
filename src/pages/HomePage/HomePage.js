@@ -38,7 +38,6 @@ const HomePage = () => {
                                 'Ми допомагаємо розробникам розвиватися в ІТ'}
                         </div>
                     </div>
-                    <TechList/>
                 </div>
 
                 :
@@ -61,8 +60,9 @@ const HomePage = () => {
                     <TechList/>
                 </div>
             }
-            <LeaderBord/>
+            <TechList/>
             <SklBanner/>
+            <LeaderBord/>
             <Feedbacks/>
             <YoutubeChannel/>
         </>
