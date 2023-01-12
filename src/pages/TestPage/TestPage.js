@@ -82,7 +82,9 @@ const TestPage = () => {
 
     const [modalResult, setModalResult] = useState(false);
 
-    const {register, handleSubmit, reset} = useForm();
+    const {reset} = useForm();
+
+    const location = useLocation();
 
     useEffect(() => {
         if (hrUserId) {
@@ -267,7 +269,7 @@ const TestPage = () => {
         reset();
     };
 
-    const title = `${oneTest?.attributes?.name}`;
+    const title = `${oneTest?.attributes ? oneTest.attributes.name : location.state}`;
     const description = 'All information about the test (title, description, rating, coin)  and multiple-choice test questions';
     const url = `https://skilliant.net/test/${oneTest?.id}`;
 

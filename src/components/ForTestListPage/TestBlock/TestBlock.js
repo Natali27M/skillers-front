@@ -43,11 +43,10 @@ const TestBlock = ({test, type}) => {
         }
     }, [userResultsAll]);
 
-
     return (
         <>
             {currentTest &&
-                <Link to={type === 'code' ? `/code-test/${testId}` : `/test/${testId}`} className={css.test__block}>
+                <Link to={type === 'code' ? `/code-test/${testId}` : `/test/${testId}`} state={currentTest.name} className={css.test__block}>
                     <div className={css.test__left}>
                         <div className={css.name_block}>
                             <h3 className={css.test__name}>{currentTest.name || currentTest.testName}</h3>
