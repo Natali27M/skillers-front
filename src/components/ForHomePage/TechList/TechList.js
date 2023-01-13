@@ -5,20 +5,17 @@ import css from './TechList.module.css';
 import rootCSS from '../../../styles/root.module.css'
 import {SwiperComponent} from "../Swiper/Swiper";
 
-
 const TechList = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {user} = useSelector(state => state['userReducers']);
 
-
     return (
         <>
             <div className={user ? css.tech__wrap_loginUser : css.tech__wrap}>
-
-                <h4 className={rootCSS.default__title_24}>
-                    {EN ? 'Choose your quiz' : 'Виберіть тест'}
-                </h4>
+                    <h4 className={rootCSS.default__title_34}>
+                        {EN ? 'Choose your quiz' : 'Виберіть тест'}
+                    </h4>
 
                 {/*<ReactSimplyCarousel*/}
                 {/*    activeSlideIndex={activeSlideIndex}*/}
