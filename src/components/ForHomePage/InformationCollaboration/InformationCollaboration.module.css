@@ -2,3 +2,21 @@
     width: 50%;
     padding-right: 50px;
 }
+
+@media (max-width: 992px) {
+    .testing__img {
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .testing__img {
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .testing__img {
+        padding-right: 10px;
+    }
+}

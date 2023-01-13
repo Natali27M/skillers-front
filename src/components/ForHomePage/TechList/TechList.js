@@ -16,15 +16,9 @@ const TechList = () => {
         <>
             <div className={user ? css.tech__wrap_loginUser : css.tech__wrap}>
 
-                {user ?
-                    <h4 className={css.title_loginUser}>
-                        {EN ? 'Choose your quiz' : 'Виберіть тест'}
-                    </h4>
-                    :
-                    <h4 className={rootCSS.default__title_24}>
-                        {EN ? 'Choose your quiz' : 'Виберіть тест'}
-                    </h4>
-                }
+                <h4 className={rootCSS.default__title_24}>
+                    {EN ? 'Choose your quiz' : 'Виберіть тест'}
+                </h4>
 
                 {/*<ReactSimplyCarousel*/}
                 {/*    activeSlideIndex={activeSlideIndex}*/}

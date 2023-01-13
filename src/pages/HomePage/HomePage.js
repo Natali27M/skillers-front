@@ -61,8 +61,8 @@ const HomePage = () => {
                 </div>
             }
             <TechList/>
-            <SklBanner/>
             <InformationBlock/>
+            <SklBanner/>
             <LeaderBord/>
             <Feedbacks/>
             <YoutubeChannel/>
