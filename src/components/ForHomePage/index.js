@@ -8,6 +8,5 @@ export * from './LeaderModal/LeaderModal';
 export * from './Feedback';
 export * from './SKLBanner/SKLBanner';
 export * from './YoutubeChannel/YoutubeChannel';
-export * from './InformationBlock/InformationBlock';
-export * from './InformationTesting/InformationTesting';
-export * from './InformationCollaboration/InformationCollaboration';
+export * from './InformationBlockMain';
+

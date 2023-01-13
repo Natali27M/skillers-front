@@ -1,6 +1,6 @@
 import React from 'react';
 
-import testing from '../../../images/information/testing.png'
+import testing from '../../../../images/information/testing.png'
 import css from './InformationTesting.module.css'
 
 const InformationTesting = () => {

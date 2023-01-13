@@ -2,7 +2,7 @@ import React from 'react';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from './InformationCollaboration.module.css';
-import collaboration from '../../../images/information/collaboration.png';
+import collaboration from '../../../../images/information/collaboration.png';
 
 const InformationCollaboration = () => {
     return (
