@@ -12,10 +12,12 @@ const InformationTelegram = () => {
             <div className={css.testing__text_box}>
                 <h4 className={css.testing__header}>Telegram bot</h4>
 
-                <h5 className={css.testing__small_header}>Chat is an opportunity to communicate anywhere.</h5>
+                <h5 className={css.testing__small_header}>Telegram bot makes it possible to pass tests without
+                    logging in to the site.
+                </h5>
 
                 <p className={css.testing__description}>
-                    Here you can choose a technology and conduct testing according to the level of difficulty.
+                    In it you have access to all those tests that you can find on the site.
                 </p>
             </div>
         </div>
