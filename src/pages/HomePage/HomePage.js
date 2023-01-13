@@ -1,12 +1,13 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {useNavigate} from "react-router-dom";
 
 import css from './HomePage.module.css';
 import {Feedbacks, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
 
 const HomePage = () => {
+    const navigate = useNavigate();
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
 
@@ -30,36 +31,19 @@ const HomePage = () => {
                 <link rel="canonical" href={url}/>
             </Helmet>
 
-            {user ?
-                <div className={css.home__page_loginUser}>
-                    <div className={css.block_loginUser}>
-                        <div className={css.home__description_loginUser}>
-                            {EN ? 'We help engineers to grow in IT' :
-                                'Ми допомагаємо розробникам розвиватися в ІТ'}
-                        </div>
+            <div className={css.home__page_loginUser}>
+                <div className={css.block_loginUser}>
+                    <h1 className={css.skilliant}>SKILLIANT</h1>
+                    <div className={css.home__description_loginUser}>
+                        {EN ? 'We help engineers to grow in IT' :
+                            'Ми допомагаємо розробникам розвиватися в ІТ'}
                     </div>
+                    {
+                        !user &&
+                        <button className={css.home__button} onClick={() => navigate('/login')}>Cet started</button>
+                    }
                 </div>
-
-                :
-
-                <div>
-                    <div className={css.home__page}>
-                        {/*<img className={css.home__logo} src={logo} alt="logo"/>*/}
-                        <h1 className={css.main__title}>
-                            SKILLIANT
-                        </h1>
-                        <h2 className={css.home__description}>
-                            {EN ? 'We help engineers to grow in IT' :
-                                'Ми допомагаємо розробникам розвиватися в ІТ'}
-                        </h2>
-                        <Link to={user ? '/user' : '/registration'} className={css.register__btn}>
-                            {user ? (EN ? 'To my profile' : 'На мій профіль') : (EN ? 'Register now' : 'Зареєструватися')}
-                        </Link>
-                    </div>
-
-                    <TechList/>
-                </div>
-            }
+            </div>
             <TechList/>
             <SklBanner/>
             <LeaderBord/>
