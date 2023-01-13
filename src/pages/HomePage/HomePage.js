@@ -40,7 +40,8 @@ const HomePage = () => {
                     </div>
                     {
                         !user &&
-                        <button className={css.home__button} onClick={() => navigate('/login')}>Cet started</button>
+                        <button className={css.home__button}
+                                onClick={() => navigate('/login')}>{EN ? "Get started" : "Розпочати"}</button>
                     }
                 </div>
             </div>
