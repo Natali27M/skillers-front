@@ -12,7 +12,7 @@ const TechList = () => {
 
     return (
         <>
-            <div className={user ? css.tech__wrap_loginUser : css.tech__wrap}>
+            <div id="testing" className={user ? css.tech__wrap_loginUser : css.tech__wrap}>
                     <h4 className={rootCSS.default__title_34}>
                         {EN ? 'Choose your quiz' : 'Виберіть тест'}
                     </h4>

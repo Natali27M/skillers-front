@@ -1,0 +1,13 @@
+.video__block {
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.video {
+    width: 80%;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}

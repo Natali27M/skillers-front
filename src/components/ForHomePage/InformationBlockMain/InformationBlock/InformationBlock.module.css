@@ -1,7 +1,7 @@
 .information__main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 100px 0;
     padding: 50px 0;

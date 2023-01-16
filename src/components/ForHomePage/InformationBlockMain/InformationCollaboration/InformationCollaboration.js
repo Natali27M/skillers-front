@@ -1,30 +1,78 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from './InformationCollaboration.module.css';
 import collaboration from '../../../../images/information/collaboration.png';
+import {useNavigate} from 'react-router-dom';
+import longColorArrow from '../../../../images/information/longColorArrow.svg';
 
 const InformationCollaboration = () => {
-    // const observer = new IntersectionObserver(entries => {
-    //     entries.forEach(entry => {
-    //         const square = entry.target.querySelector('.testing__img');
-    //
-    //         if (entry.isIntersecting) {
-    //             square.classList.add('testing__img_active');
-    //             return; // if we added the class, exit the function
-    //         }
-    //
-    //         // We're not intersecting, so remove the class!
-    //         square.classList.remove('testing__animation');
-    //     });
-    // });
-    //
-    // observer.observe(document.querySelector('.square-wrapper'));
+    const navigate = useNavigate();
+
+    const [imageCollaborationActive, setImageCollaborationActive] = useState(false);
+    const [scrollTop, setScrollTop] = useState(0);
+
+    useEffect(() => {
+        const onScroll = e => {
+            setScrollTop(e.target.documentElement.scrollTop);
+        };
+        window.addEventListener('scroll', onScroll);
+
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [scrollTop]);
+
+    useEffect(() => {
+        if (window.innerWidth > 1300) {
+            if (scrollTop >= 4 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else if (window.innerWidth > 1200) {
+            if (scrollTop >= 1.75 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else if (window.innerWidth > 1100) {
+            if (scrollTop >= 1.65 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else if (window.innerWidth > 992) {
+            if (scrollTop >= 1.65 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else if (window.innerWidth > 767) {
+            if (scrollTop >= 1.5 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else if (window.innerWidth > 576) {
+            if (scrollTop >= 1.3 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        } else {
+            if (scrollTop >= 1.05 * window.innerHeight) {
+                setImageCollaborationActive(true);
+            } else {
+                setImageCollaborationActive(false);
+            }
+        }
+    }, [scrollTop]);
+
     return (
         <div className={css.testing__main}>
-            {/*<div className={cssThis.testing__animation}>*/}
-            <img src={collaboration} alt="testing" className={cssThis.testing__img}/>
-            {/*</div>*/}
+            <div className={cssThis.testing__animation}>
+                <img src={collaboration} alt="testing"
+                     className={imageCollaborationActive ? cssThis.testing__img_active : cssThis.testing__img}/>
+            </div>
 
             <div className={css.testing__text_box}>
                 <h4 className={css.testing__header}>Collaborative programming</h4>
@@ -35,24 +83,12 @@ const InformationCollaboration = () => {
                     Write code together, track changes in real time, solve problems and bugs together too, with online
                     coding from SKILLIANT.
                 </p>
+
+                <div className={css.testing__details} onClick={() => navigate('/team-coding')}>
+                    Try now
+                    <img src={longColorArrow} alt="arrow" className={css.testing__arrow}/>
+                </div>
             </div>
-            {/*<script>*/}
-            {/*     const observer = new IntersectionObserver(entries => {*/}
-            {/*         entries.forEach(entry => {*/}
-            {/*             const square = entry.target.querySelector('.testing__img');*/}
-
-            {/*             if (entry.isIntersecting) {*/}
-            {/*                 square.classList.add('testing__img_active');*/}
-            {/*                 return; // if we added the class, exit the function*/}
-            {/*             }*/}
-
-            {/*             // We're not intersecting, so remove the class!*/}
-            {/*             square.classList.remove('testing__img_active');*/}
-            {/*         })*/}
-            {/*     });*/}
-
-            {/*     observer.observe(document.querySelector('.square-wrapper'));*/}
-            {/*</script>*/}
         </div>
     );
 };
