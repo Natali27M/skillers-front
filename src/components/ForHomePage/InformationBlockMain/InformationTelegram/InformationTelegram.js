@@ -17,9 +17,10 @@ const InformationTelegram = () => {
 
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
-                } else {
-                    setScrollTop(false)
                 }
+                // else {
+                //     setScrollTop(false)
+                // }
             });
         }
         ,
