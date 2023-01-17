@@ -10,63 +10,30 @@ import longColorArrow from '../../../../images/information/longColorArrow.svg';
 const InformationCollaboration = () => {
     const navigate = useNavigate();
     const {EN} = useSelector(state => state['languageReducers']);
-    const [imageCollaborationActive, setImageCollaborationActive] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollTop, setScrollTop] = useState(false);
 
     useEffect(() => {
-        const onScroll = e => {
-            setScrollTop(e.target.documentElement.scrollTop);
-        };
-        window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', function () {
+                let element = document.querySelector('#collaborationInfo');
+                let position = element.getBoundingClientRect();
 
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [scrollTop]);
+                if (position.top < window.innerHeight && position.bottom >= 0) {
+                    setScrollTop(true);
+                } else {
+                    setScrollTop(false)
+                }
 
-    useEffect(() => {
-        if (window.innerWidth > 1300) {
-            if (scrollTop >= 2 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else if (window.innerWidth > 1200) {
-            if (scrollTop >= 1.7 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else if (window.innerWidth > 992) {
-            if (scrollTop >= 1.65 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else if (window.innerWidth > 767) {
-            if (scrollTop >= 1.5 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else if (window.innerWidth > 576) {
-            if (scrollTop >= 1.3 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else {
-            if (scrollTop >= 1.05 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
+            });
         }
-    }, [scrollTop]);
+        ,
+        [scrollTop]
+    );
 
     return (
-        <div className={css.testing__main}>
+        <div id="collaborationInfo" className={css.testing__main}>
             <div className={cssThis.testing__animation}>
                 <img src={collaboration} alt="testing"
-                     className={imageCollaborationActive ? cssThis.testing__img_active : cssThis.testing__img}/>
+                     className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
             </div>
 
             <div className={css.testing__text_box}>

@@ -9,63 +9,31 @@ import {useSelector} from 'react-redux';
 
 const InformationTesting = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    const [imageTestingActive, setImageTestingActive] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollTop, setScrollTop] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const onScroll = e => {
-            setScrollTop(e.target.documentElement.scrollTop);
-        };
-        window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', function () {
+                let element = document.querySelector('#testingInfo');
+                let position = element.getBoundingClientRect();
 
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [scrollTop]);
-
-    useEffect(() => {
-            if (window.innerWidth > 1300) {
-                if (scrollTop >= 1.5 * window.innerHeight) {
-                    setImageTestingActive(true);
+                if (position.top < window.innerHeight && position.bottom >= 0) {
+                    setScrollTop(true);
                 } else {
-                    setImageTestingActive(false);
+                    setScrollTop(false)
                 }
-            } else if (window.innerWidth > 1200) {
-                if (scrollTop >= 0.95 * window.innerHeight) {
-                    setImageTestingActive(true);
-                } else {
-                    setImageTestingActive(false);
-                }
-            } else if (window.innerWidth > 767) {
-                if (scrollTop >= window.innerHeight) {
-                    setImageTestingActive(true);
-                } else {
-                    setImageTestingActive(false);
-                }
-            } else if (window.innerWidth > 576) {
-                if (scrollTop >= 0.95 * window.innerHeight) {
-                    setImageTestingActive(true);
-                } else {
-                    setImageTestingActive(false);
-                }
-            } else {
-                if (scrollTop >= 0.85 * window.innerHeight) {
-                    setImageTestingActive(true);
-                } else {
-                    setImageTestingActive(false);
-                }
-            }
+            });
         }
         ,
         [scrollTop]
-    )
-    ;
+    );
 
     window.addEventListener('load', function () {
         navigate('/');
-    })
+    });
 
     return (
-        <div className={css.testing__main}>
+        <div id="testingInfo" className={css.testing__main}>
             <div className={css.testing__text_box}>
                 <h4 className={css.testing__header}>
                     {EN ? 'Testing' :
@@ -92,7 +60,7 @@ const InformationTesting = () => {
 
             <div className={cssThis.testing__animation}>
                 <img src={testing} alt="testing"
-                     className={imageTestingActive ? cssThis.testing__img_active : cssThis.testing__img}/>
+                     className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
             </div>
         </div>
     );

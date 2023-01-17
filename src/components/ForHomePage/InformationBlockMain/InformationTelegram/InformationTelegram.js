@@ -1,73 +1,33 @@
 import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
 import telegram from '../../../../images/information/telegramChat.png';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
-import {useSelector} from 'react-redux';
 
 const InformationTelegram = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    const [imageTelegramActive, setImageTelegramActive] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollTop, setScrollTop] = useState(false);
 
     useEffect(() => {
-        const onScroll = e => {
-            setScrollTop(e.target.documentElement.scrollTop);
-        };
-        window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', function () {
+                let element = document.querySelector('#telegramInfo');
+                let position = element.getBoundingClientRect();
 
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [scrollTop]);
-
-    useEffect(() => {
-        if (window.innerWidth > 1300) {
-            if (scrollTop >= 3 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        } else if (window.innerWidth > 1200) {
-            if (scrollTop >= 2.35 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        } else if (window.innerWidth > 992) {
-            if (scrollTop >= 2.25 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        } else if (window.innerWidth > 767) {
-            if (scrollTop >= 1.9 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        } else if (window.innerWidth > 576) {
-            if (scrollTop >= 1.6 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        }  else if (window.innerWidth > 400) {
-            if (scrollTop >= 1.35 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
-        }else {
-            if (scrollTop >= 1.2 * window.innerHeight) {
-                setImageTelegramActive(true);
-            } else {
-                setImageTelegramActive(false);
-            }
+                if (position.top < window.innerHeight && position.bottom >= 0) {
+                    setScrollTop(true);
+                } else {
+                    setScrollTop(false)
+                }
+            });
         }
-    }, [scrollTop]);
+        ,
+        [scrollTop]
+    );
 
     return (
-        <div className={css.testing__main}>
+        <div id="telegramInfo" className={css.testing__main}>
             <div className={css.testing__text_box}>
                 <h4 className={css.testing__header}>
                     {EN ? 'Telegram bot' :
@@ -92,7 +52,7 @@ const InformationTelegram = () => {
 
             <div className={cssThis.testing__animation}>
                 <img src={telegram} alt="testing"
-                     className={imageTelegramActive ? cssThis.testing__img_active : cssThis.testing__img}/>
+                     className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
             </div>
         </div>
     );
