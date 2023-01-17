@@ -56,8 +56,6 @@ const HomePage = () => {
                             {user ? (EN ? 'To my profile' : 'На мій профіль') : (EN ? 'Register now' : 'Зареєструватися')}
                         </Link>
                     </div>
-
-                    <TechList/>
                 </div>
             }
             <TechList/>

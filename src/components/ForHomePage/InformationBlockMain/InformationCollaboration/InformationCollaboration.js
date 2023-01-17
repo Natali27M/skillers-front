@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from './InformationCollaboration.module.css';
@@ -8,7 +9,7 @@ import longColorArrow from '../../../../images/information/longColorArrow.svg';
 
 const InformationCollaboration = () => {
     const navigate = useNavigate();
-
+    const {EN} = useSelector(state => state['languageReducers']);
     const [imageCollaborationActive, setImageCollaborationActive] = useState(false);
     const [scrollTop, setScrollTop] = useState(0);
 
@@ -23,19 +24,13 @@ const InformationCollaboration = () => {
 
     useEffect(() => {
         if (window.innerWidth > 1300) {
-            if (scrollTop >= 4 * window.innerHeight) {
+            if (scrollTop >= 2 * window.innerHeight) {
                 setImageCollaborationActive(true);
             } else {
                 setImageCollaborationActive(false);
             }
         } else if (window.innerWidth > 1200) {
-            if (scrollTop >= 1.75 * window.innerHeight) {
-                setImageCollaborationActive(true);
-            } else {
-                setImageCollaborationActive(false);
-            }
-        } else if (window.innerWidth > 1100) {
-            if (scrollTop >= 1.65 * window.innerHeight) {
+            if (scrollTop >= 1.7 * window.innerHeight) {
                 setImageCollaborationActive(true);
             } else {
                 setImageCollaborationActive(false);
@@ -75,17 +70,28 @@ const InformationCollaboration = () => {
             </div>
 
             <div className={css.testing__text_box}>
-                <h4 className={css.testing__header}>Collaborative programming</h4>
+                <h4 className={css.testing__header}>
+                    {EN ? 'Collaborative programming'
+                        :
+                        'Спільне програмування'}
+                </h4>
 
-                <h5 className={css.testing__small_header}>Teamwork is always more effective.</h5>
+                <h5 className={css.testing__small_header}>
+                    {EN ? 'Teamwork is always more effective.'
+                        :
+                        'Командна робота завжди ефективніша.'}
+                </h5>
 
-                <p className={css.testing__description}>
-                    Write code together, track changes in real time, solve problems and bugs together too, with online
-                    coding from SKILLIANT.
-                </p>
+                <h6 className={css.testing__description}>
+                    {EN ? ' Write code together, track changes in real time, solve problems and bugs together too, with ' +
+                        'online coding from SKILLIANT.'
+                        :
+                        'Пишіть код разом, відстежуйте зміни в режимі реального часу, вирішуйте проблеми та помилки ' +
+                        'також разом в Інтернеті, кодування від SKILLIANT.'}
+                </h6>
 
                 <div className={css.testing__details} onClick={() => navigate('/team-coding')}>
-                    Try now
+                    {EN ? 'Try now' : 'Спробувати зараз'}
                     <img src={longColorArrow} alt="arrow" className={css.testing__arrow}/>
                 </div>
             </div>

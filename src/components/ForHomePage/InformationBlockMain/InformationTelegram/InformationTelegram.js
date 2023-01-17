@@ -4,8 +4,10 @@ import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
 import telegram from '../../../../images/information/telegramChat.png';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
+import {useSelector} from 'react-redux';
 
 const InformationTelegram = () => {
+    const {EN} = useSelector(state => state['languageReducers']);
     const [imageTelegramActive, setImageTelegramActive] = useState(false);
     const [scrollTop, setScrollTop] = useState(0);
 
@@ -20,19 +22,18 @@ const InformationTelegram = () => {
 
     useEffect(() => {
         if (window.innerWidth > 1300) {
-            if (scrollTop >= 6 * window.innerHeight) {
+            if (scrollTop >= 3 * window.innerHeight) {
                 setImageTelegramActive(true);
             } else {
                 setImageTelegramActive(false);
             }
         } else if (window.innerWidth > 1200) {
-            if (scrollTop >= 2.45 * window.innerHeight) {
+            if (scrollTop >= 2.35 * window.innerHeight) {
                 setImageTelegramActive(true);
             } else {
                 setImageTelegramActive(false);
             }
-        }
-        else if (window.innerWidth > 992) {
+        } else if (window.innerWidth > 992) {
             if (scrollTop >= 2.25 * window.innerHeight) {
                 setImageTelegramActive(true);
             } else {
@@ -68,17 +69,23 @@ const InformationTelegram = () => {
     return (
         <div className={css.testing__main}>
             <div className={css.testing__text_box}>
-                <h4 className={css.testing__header}>Telegram bot</h4>
+                <h4 className={css.testing__header}>
+                    {EN ? 'Telegram bot' :
+                        'Телеграм бот'}</h4>
 
-                <h5 className={css.testing__small_header}>Telegram bot makes it possible to pass tests without
-                    logging in to the site.
+                <h5 className={css.testing__small_header}>
+                    {EN ? ' Telegram bot makes it possible to pass tests without logging in to the site.'
+                        :
+                        'Телеграм-бот дає можливість проходити тести без авторизації на сайті.'}
                 </h5>
 
                 <p className={css.testing__description}>
-                    In it you have access to all those tests that you can find on the site.
+                    {EN ? 'In it you have access to all those tests that you can find on the site.'
+                        :
+                        'У ньому ви маєте доступ до всіх тих тестів, які можете знайти на сайті.'}
                 </p>
                 <a className={css.testing__details} href="https://t.me/SkilliantBot">
-                    Try now
+                    {EN ? 'Try now' : 'Спробувати зараз'}
                     <img src={longColorArrow} alt="arrow" className={css.testing__arrow}/>
                 </a>
             </div>
