@@ -32,6 +32,8 @@ const InformationTesting = () => {
         navigate('/');
     });
 
+    const techList = document.getElementById('testing');
+
     return (
         <div id="testingInfo" className={css.testing__main}>
             <div className={css.testing__text_box}>
@@ -52,10 +54,11 @@ const InformationTesting = () => {
                         'Перевірте свої навички, створіть власні тести та отримуйте за це нагороди та монети.'}
                 </h6>
 
-                <a href="#testing" className={css.testing__details}>
+                <div  onClick = {() => document.getElementById('testing').scrollIntoView()}
+                      className={css.testing__details}>
                     {EN ? 'Try now' : 'Спробувати зараз'}
                     <img src={longColorArrow} alt="arrow" className={css.testing__arrow}/>
-                </a>
+                </div>
             </div>
 
             <div className={cssThis.testing__animation}>
