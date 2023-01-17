@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
-import testing from '../../../../images/information/testing.png'
+import testing from '../../../../images/information/testing.svg'
 import longColorArrow from '../../../../images/information/longColorArrow.svg'
 import css from './InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
-import {useSelector} from 'react-redux';
 
 const InformationTesting = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -20,9 +20,6 @@ const InformationTesting = () => {
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
                 }
-                // else {
-                //     setScrollTop(false)
-                // }
             });
         }
         ,

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from './InformationCollaboration.module.css';
-import collaboration from '../../../../images/information/collaboration.png';
-import {useNavigate} from 'react-router-dom';
+import collaboration from '../../../../images/information/collaboration.svg';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
 
 const InformationCollaboration = () => {
@@ -20,10 +20,6 @@ const InformationCollaboration = () => {
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
                 }
-                // else {
-                //     setScrollTop(false)
-                // }
-
             });
         }
         ,
