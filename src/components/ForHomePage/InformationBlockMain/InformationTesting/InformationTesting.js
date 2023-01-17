@@ -32,8 +32,6 @@ const InformationTesting = () => {
         navigate('/');
     });
 
-    const techList = document.getElementById('testing');
-
     return (
         <div id="testingInfo" className={css.testing__main}>
             <div className={css.testing__text_box}>
