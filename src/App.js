@@ -6,6 +6,7 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 import {
     AdminPage,
+    CommunityPage,
     CompilerPage,
     CreateCodeTestPage,
     CreateTestPage,
@@ -30,7 +31,7 @@ import {
     TestWithCodePage,
     UserPage
 } from './pages';
-import {Layout} from './components';
+import {CommunityIdea, CommunityMain, CommunityQuestion, Layout} from './components';
 import {
     clear,
     clearCreateTest,
@@ -208,6 +209,11 @@ function App() {
                         <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                         <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
+                        <Route path={'/community'} element={<CommunityPage/>}>
+                            <Route index element={<CommunityMain/>}/>
+                            <Route path={'/community/question'} element={<CommunityQuestion/>}/>
+                            <Route path={'/community/idea'} element={<CommunityIdea/>}/>
+                        </Route>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>

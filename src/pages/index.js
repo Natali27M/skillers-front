@@ -22,3 +22,4 @@ export * from './MentorsPage/MentorsPage';
 export * from './HomeFirepadPage/HomeFirepadPage';
 export * from './MainFirepadPage/MainFirepadPage';
 export * from './SKLPage/SKLPage';
+export * from './CommunityPage/CommunityPage';
