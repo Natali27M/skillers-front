@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 
 import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
-import telegram from '../../../../images/information/telegramChat.png';
+import telegram from '../../../../images/information/telegramChat.svg';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
 
 const InformationTelegram = () => {
@@ -18,9 +18,6 @@ const InformationTelegram = () => {
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
                 }
-                // else {
-                //     setScrollTop(false)
-                // }
             });
         }
         ,
