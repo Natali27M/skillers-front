@@ -1,63 +1,171 @@
-.home__page,
 .home__page_loginUser {
     width: 100%;
-    min-height: calc(100vh - 80px);
-    background: url("../../images/mainBg.png") no-repeat center, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
+    height: calc(100vh - 80px);
+    background: url("../../images/mainBg.png") no-repeat center/cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
     position: relative;
-}
-.home__page {
-    padding: 50px 15px;
-    justify-content: center;
-    row-gap: 45px;
-    color: white;
-}
-
-.home__page_loginUser {
-    padding: 0 15px;
-    justify-content: space-evenly;
+    justify-content: space-around;
     color: #2f2f2f;
+    padding: 20px;
+
 }
 
-.home__logo {
-    width: 500px;
+.info__main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    padding: 20px;
+
 }
 
-.home__welcome {
+.description__block {
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    row-gap: 50px;
+}
+
+.swiper__block__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    width: 30%;
+    border-radius: 30px;
+    padding: 20px;
+    row-gap: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.swiper__block__skilliant {
+    font-family: 'Aldrich', sans-serif;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.skilliant {
+    padding: 5px 10px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.swiper__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.description {
+    font-size: 35px;
+    width: 90%;
+    font-weight: 500;
+    color: #F1F1F1;
+}
+
+
+.mainSwiper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.slide__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.slide__img__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 430px;
+    height: 100%;
+    position: relative;
+}
+
+.telegram, .testing, .collaborative, .mentoring {
+    width: 250px;
+    height: 250px;
+}
+
+.slide__description {
+    text-align: center;
+    color: #030303;
+    font-size: 22px;
+}
+
+.testing {
+    background: url("../../images/slides/tests.png") no-repeat center/cover;
+}
+
+.collaborative {
+    background: url("../../images/slides/collaborative.png") no-repeat center/cover;
+}
+
+.telegram {
+    background: url("../../images/slides/telegram.png") no-repeat center/cover;
+}
+
+.mentoring {
+    background: url("../../images/slides/mentoring.png") no-repeat center/cover;
+}
+
+.home__button {
+    background: black;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    border: none;
     font-size: 20px;
     font-weight: 500;
-}
-
-.home__description,
-.home__description_loginUser {
-    width: 900px;
-    text-align: center;
-}
-
-.home__description {
-    font-size: 35px;
-}
-
-.home__description_loginUser {
-    font-size: 40px;
-}
-
-.home__description_loginUser {
     color: white;
+    cursor: pointer;
+    user-select: none;
 }
+
+.home__button__new {
+    display: none;
+}
+
+.home__description_loginUser {
+    width: 100%;
+    text-align: left;
+    font-size: 70px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
 
 .register__btn {
-    /*height: 60px;*/
     border-radius: 50px;
-    padding: 15px 25px;
+    padding: 25px 35px;
     background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 25px;
     color: #FFFFFF;
     transition: all .2s linear;
     cursor: pointer;
@@ -65,55 +173,64 @@
     text-transform: uppercase;
 }
 
-.main__title {
-    font-family: 'Aldrich', sans-serif;
-    font-size: 100px;
-    font-weight: 400;
+@media (max-width: 1450px) {
+    .telegram, .testing, .collaborative, .mentoring {
+        width: 220px;
+        height: 220px;
+    }
+
+    .swiper__block__skilliant {
+        font-size: 25px;
+    }
+
+    .slide__description {
+        font-size: 20px;
+    }
+
+    .home__description_loginUser {
+        font-size: 65px;
+    }
+
+    .description {
+        font-size: 30px;
+    }
 }
 
-.block_loginUser {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-/*
-.register__btn:hover{
-    box-shadow: 2px 2px 15px 5px #D2D2D2;
-    transition: all .2s linear;
-}
-*/
-
-@media (max-width: 1200px) {
+@media (max-width: 1230px) {
     .home__page_loginUser {
         height: calc(100vh - 60px);
     }
 
-    .home__page {
-        min-height: calc(100vh - 60px);
+    .home__description_loginUser {
+        font-size: 60px;
     }
 
-    .home__logo{
-        width: 400px;
+    .swiper__block__main {
+        width: 33%;
+        padding: 10px;
     }
 
-    .home__description {
-        width: 90%;
-        font-size: 30px;
+    .swiper__block__skilliant {
+        font-size: 22px;
     }
 
-    .main__title {
-        font-size: 80px;
+    .slide__description {
+        font-size: 18px;
     }
 
-}
-
-@media (max-width: 1025px) {
-    .block_loginUser {
-        row-gap: 0;
+    .description {
+        font-size: 25px;
     }
 
+    .info__main {
+        width: 100%;
+    }
+
+    .telegram, .testing, .collaborative, .mentoring {
+        width: 210px;
+        height: 210px;
+    }
 }
 
 @media (max-width: 1023px) {
@@ -121,115 +238,176 @@
         height: calc(100vh - 60px);
     }
 
-    .home__logo{
-        width: 400px;
-    }
-
     .home__description_loginUser {
-        display: flex;
         width: 100%;
     }
 
-    .block_loginUser {
-        row-gap: 10px;
+    .telegram, .testing, .collaborative, .mentoring {
+        width: 180px;
+        height: 180px;
+    }
+
+    .home__description_loginUser {
+        font-size: 50px;
+    }
+
+    .swiper__block__main {
+        row-gap: 20px;
     }
 
 }
 
-@media (max-width: 900px) {
-    .block_loginUser {
-        row-gap: 10px;
-    }
-
+@media (max-width: 920px) {
     .home__page_loginUser {
         height: calc(100vh - 70px);
     }
 
-    /*  .home__logo{
-          width: 700px;
-      }
+    .telegram, .testing, .collaborative, .mentoring {
+        width: 150px;
+        height: 150px;
+    }
 
-      .home__description {
-          width: 700px;
-          font-size: 45px;
-      }
+    .swiper__block__skilliant {
+        font-size: 18px;
+    }
 
-      .register__btn {
-          font-size: 25px;
-      }*/
+    .slide__description {
+        font-size: 14px;
+    }
+
+    .home__description_loginUser {
+        font-size: 38px;
+    }
+
+    .description {
+        font-size: 22px;
+    }
+
+    .home__button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
 }
 
 
 @media (max-width: 767px) {
-    .home__page {
-        min-height: calc(100vh - 60px)
-    }
     .home__page_loginUser {
         height: calc(100vh - 60px);
     }
 
-    .home__logo {
-        width: 60%;
+    .info__main {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 10px;
     }
 
-    .home__description {
-        font-size: 27px;
-        width: fit-content;
+    .description__block {
+        width: 100%;
+        text-align: center;
+        row-gap: 30px;
     }
 
     .home__description_loginUser {
-        width: 80%;
+        width: 100%;
+        text-align: center;
+        font-size: 38px;
     }
 
-    .main__title {
-        font-size: 70px;
+    .home__button {
+        display: none;
     }
 
-    .block_loginUser {
-        row-gap: 0;
+    .description {
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .home__button__new {
+        display: flex;
+        text-align: center;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        background-color: #000;
+        font-size: 18px;
+        color: #FFFFFF;
+        cursor: pointer;
+        text-decoration: none;
+
+    }
+
+    .swiper__block__main {
+        width: 40%;
+    }
+
+    .telegram, .testing, .collaborative, .mentoring {
+        width: 120px;
+        height: 120px;
     }
 
 }
 
 @media (max-width: 500px) {
-    .home__description {
-        font-size: 26px;
-    }
-
-    .home__logo{
-        width: 80%;
-    }
-
-    .register__btn {
-        padding: 10px 20px;
-        font-size: 20px;
-    }
-
-    .main__title {
-        font-size: 65px;
-    }
-
-}
-
-@media (max-width: 370px) {
-    .main__title {
-        font-size: 55px;
+    .home__page_loginUser {
+        height: calc(100vh - 60px);
     }
 
     .home__description_loginUser {
-        font-size: 25px;
+        width: 100%;
+        font-size: 28px;
     }
 
-    .home__page_loginUser {
-        padding: 0;
+    .description {
+        font-size: 18px;
     }
+
+    .description__block {
+        justify-content: space-around;
+        row-gap: 0;
+    }
+
+    .swiper__block__main {
+        width: 50%;
+    }
+
+    .home__button__new {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .slide__description {
+        font-size: 12px;
+    }
+
 
 }
 
-@media (max-width: 320px) {
-    .main__title {
-        font-size: 45px;
+@media (max-width: 400px) {
+    .home__page_loginUser {
+        height: calc(100vh - 60px);
     }
+
+    .home__description_loginUser {
+        width: 100%;
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+
+    .swiper__block__main {
+        width: 60%;
+    }
+
+    .home__button__new {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
 
 }
 
