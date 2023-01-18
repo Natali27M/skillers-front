@@ -1,5 +1,6 @@
 .testing__animation {
     width: 50%;
+    cursor: pointer;
 }
 
 .testing__img {
