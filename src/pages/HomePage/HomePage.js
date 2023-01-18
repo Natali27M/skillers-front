@@ -9,11 +9,6 @@ import 'swiper/css/autoplay';
 import css from './HomePage.module.css';
 import {Feedbacks, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
 
-import tests from '../../images/slides/tests.png';
-import collaborative from '../../images/slides/collaborative.png';
-import telegram from '../../images/slides/telegram.png';
-import mentors from '../../images/slides/mentors.png';
-
 const HomePage = () => {
     const navigate = useNavigate();
     const {EN} = useSelector(state => state['languageReducers']);
@@ -63,7 +58,8 @@ const HomePage = () => {
                     </div>
 
                     <div className={css.swiper__block__main}>
-                        <div className={css.swiper__block__skilliant}>SKILLIANT</div>
+                        <div className={css.swiper__block__skilliant}><span
+                            className={css.skilliant}>{EN ? "What is SKILLIANT?" : 'SKILLIANT це?'}</span></div>
                         <div className={css.swiper__block}>
                             <div className={css.mainSwiper}>
                                 <Swiper
@@ -76,54 +72,64 @@ const HomePage = () => {
                                 >
                                     <SwiperSlide>
                                         <div className={css.slide__block}>
-                                            <div className={css.slide__img__block}>
-                                                <img src={tests} alt="tests" className={css.testing}/>
-                                            </div>
                                             <div
-                                                className={css.slide__description}>{EN ? "Testing" : "Тестування"}</div>
+                                                className={css.slide__description}>{
+                                                EN ? "140 tests and test code from 8 technologies" :
+                                                    "140 тестів і тестовий код з 8 технологій"}
+                                            </div>
+                                            <div className={css.slide__img__block}>
+                                                <div className={css.testing}></div>
+                                            </div>
                                         </div>
                                     </SwiperSlide>
 
                                     <SwiperSlide>
                                         <div className={css.slide__block}>
-                                            <div className={css.slide__img__block}>
-                                                <div className={css.slide__img__block}>
-                                                    <img src={collaborative} alt="collaborative"
-                                                         className={css.collaborative}/>
-                                                </div>
+                                            <div className={css.slide__description}>
+                                                {EN ? "A real-time collaborative programming tool" :
+                                                    "Інструмент для спільного програмування в реальному часі"}
                                             </div>
-                                            <div
-                                                className={css.slide__description}>{EN ? "Collaborative programming" : "Спільне програмування"}</div>
+                                            <div className={css.slide__img__block}>
+                                                <div className={css.collaborative}></div>
+                                            </div>
                                         </div>
                                     </SwiperSlide>
 
                                     <SwiperSlide>
                                         <div className={css.slide__block}>
-                                            <div className={css.slide__img__block}>
-                                                <div className={css.slide__img__block}>
-                                                    <img src={telegram} alt="telegram" className={css.telegram}/>
-                                                </div>
-                                            </div>
                                             <div
-                                                className={css.slide__description}>{EN ? "Telegram chatbot" : "Телеграм чат-бот"}</div>
+                                                className={css.slide__description}>{EN ? "Telegram bot for passing tests wherever you are" :
+                                                "Telegram бот для проходження тестів, де б ви не були"}
+                                            </div>
+                                            <div className={css.slide__img__block}>
+                                                <div className={css.telegram}></div>
+                                            </div>
                                         </div>
                                     </SwiperSlide>
 
                                     <SwiperSlide>
                                         <div className={css.slide__block}>
-                                            <div className={css.slide__img__block}>
-                                                <div className={css.slide__img__block}>
-                                                    <img src={mentors} alt="mentors" className={css.mentoring}/>
-                                                </div>
-                                            </div>
                                             <div
-                                                className={css.slide__description}>{EN ? "Mentoring" : "Менторство"}</div>
+                                                className={css.slide__description}>{EN ? "A portal for mentoring in many IT technologies" :
+                                                "Портал для менторингу в багатьох ІТ-технологіях"}
+                                            </div>
+                                            <div className={css.slide__img__block}>
+                                                <div className={css.mentoring}></div>
+                                            </div>
                                         </div>
                                     </SwiperSlide>
+
                                 </Swiper>
                             </div>
                         </div>
                     </div>
+
+
+                    {
+                        !user &&
+                        <button className={css.home__button__new}
+                                onClick={() => navigate('/login')}>{EN ? "Get started" : "Розпочати"}</button>
+                    }
                 </div>
             </div>
             <TechList/>
