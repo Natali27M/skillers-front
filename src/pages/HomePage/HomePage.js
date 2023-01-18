@@ -9,6 +9,11 @@ import 'swiper/css/autoplay';
 import css from './HomePage.module.css';
 import {Feedbacks, InformationBlock, LeaderBord, SklBanner, TechList, YoutubeChannel} from '../../components';
 
+import testing from '../../images/slides/tests.svg';
+import collaborative from '../../images/slides/collaborative.svg';
+import telegram from '../../images/slides/telegram.svg';
+import mentoring from '../../images/slides/mentoring.svg';
+
 const HomePage = () => {
     const navigate = useNavigate();
     const {EN} = useSelector(state => state['languageReducers']);
@@ -78,7 +83,7 @@ const HomePage = () => {
                                                     "140 тестів і тестовий код з 8 технологій"}
                                             </div>
                                             <div className={css.slide__img__block}>
-                                                <div className={css.testing}></div>
+                                                <img src={testing} alt="testing" className={css.testing}/>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -90,7 +95,7 @@ const HomePage = () => {
                                                     "Інструмент для спільного програмування в реальному часі"}
                                             </div>
                                             <div className={css.slide__img__block}>
-                                                <div className={css.collaborative}></div>
+                                                <img src={collaborative} alt="testing" className={css.collaborative}/>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -102,7 +107,7 @@ const HomePage = () => {
                                                 "Telegram бот для проходження тестів, де б ви не були"}
                                             </div>
                                             <div className={css.slide__img__block}>
-                                                <div className={css.telegram}></div>
+                                                <img src={telegram} alt="testing" className={css.telegram}/>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -114,7 +119,7 @@ const HomePage = () => {
                                                 "Портал для менторингу в багатьох ІТ-технологіях"}
                                             </div>
                                             <div className={css.slide__img__block}>
-                                                <div className={css.mentoring}></div>
+                                                <img src={mentoring} alt="testing" className={css.mentoring}/>
                                             </div>
                                         </div>
                                     </SwiperSlide>

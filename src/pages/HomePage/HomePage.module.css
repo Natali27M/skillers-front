@@ -115,22 +115,6 @@
     font-size: 22px;
 }
 
-.testing {
-    background: url("../../images/slides/tests.svg") no-repeat center/cover;
-}
-
-.collaborative {
-    background: url("../../images/slides/collaborative.svg") no-repeat center/cover;
-}
-
-.telegram {
-    background: url("../../images/slides/telegram.svg") no-repeat center/cover;
-}
-
-.mentoring {
-    background: url("../../images/slides/mentoring.svg") no-repeat center/cover;
-}
-
 .home__button {
     background: black;
     padding: 15px 30px;
