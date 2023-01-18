@@ -124,7 +124,6 @@ const HomePage = () => {
                         </div>
                     </div>
 
-
                     {
                         !user &&
                         <button className={css.home__button__new}
@@ -134,8 +133,8 @@ const HomePage = () => {
             </div>
             <TechList/>
             <InformationBlock/>
-            <SklBanner/>
             <LeaderBord/>
+            <SklBanner/>
             <Feedbacks/>
             <YoutubeChannel/>
         </>

@@ -6,6 +6,9 @@
     margin: 100px 0;
     padding: 50px 0;
     row-gap: 150px;
+    background-color: #F3F3F3;
+    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
+
 }
 
 @media (max-width: 992px) {

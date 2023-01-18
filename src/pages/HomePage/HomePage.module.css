@@ -1,7 +1,8 @@
 .home__page_loginUser {
     width: 100%;
     height: calc(100vh - 80px);
-    background: url("../../images/mainBg.png") no-repeat center/cover;
+    /*background: url("../../images/mainBg.png") no-repeat center/cover;*/
+    background: url("../../images/mainBg.png") no-repeat center/cover, linear-gradient(252.92deg, #00DBDE -9.77%, #FC00FF 104.49%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,19 +116,19 @@
 }
 
 .testing {
-    background: url("../../images/slides/tests.png") no-repeat center/cover;
+    background: url("../../images/slides/tests.svg") no-repeat center/cover;
 }
 
 .collaborative {
-    background: url("../../images/slides/collaborative.png") no-repeat center/cover;
+    background: url("../../images/slides/collaborative.svg") no-repeat center/cover;
 }
 
 .telegram {
-    background: url("../../images/slides/telegram.png") no-repeat center/cover;
+    background: url("../../images/slides/telegram.svg") no-repeat center/cover;
 }
 
 .mentoring {
-    background: url("../../images/slides/mentoring.png") no-repeat center/cover;
+    background: url("../../images/slides/mentoring.svg") no-repeat center/cover;
 }
 
 .home__button {
