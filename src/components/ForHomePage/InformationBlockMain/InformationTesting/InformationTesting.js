@@ -26,10 +26,6 @@ const InformationTesting = () => {
         [scrollTop]
     );
 
-    window.addEventListener('load', function () {
-        navigate('/');
-    });
-
     return (
         <div id="testingInfo" className={css.testing__main}>
             <div className={css.testing__text_box}>
@@ -57,9 +53,9 @@ const InformationTesting = () => {
                 </div>
             </div>
 
-            <div className={cssThis.testing__animation}>
-                <img src={testing} alt="testing"
-                     className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
+            <div className={cssThis.testing__animation}
+                 onClick={() =>  document.getElementById('testing').scrollIntoView()}>
+                <img src={testing} alt="testing" className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
             </div>
         </div>
     );

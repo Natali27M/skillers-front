@@ -5,6 +5,7 @@ import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
 import telegram from '../../../../images/information/telegramChat.svg';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
+import {Link} from 'react-router-dom';
 
 const InformationTelegram = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -49,8 +50,10 @@ const InformationTelegram = () => {
             </div>
 
             <div className={cssThis.testing__animation}>
-                <img src={telegram} alt="testing"
-                     className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
+                <a href="https://t.me/SkilliantBot" className={cssThis.testing__animation}>
+                    <img src={telegram} alt="testing"
+                         className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
+                </a>
             </div>
         </div>
     );

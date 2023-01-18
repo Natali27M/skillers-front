@@ -28,7 +28,7 @@ const InformationCollaboration = () => {
 
     return (
         <div id="collaborationInfo" className={css.testing__main}>
-            <div className={cssThis.testing__animation}>
+            <div className={cssThis.testing__animation} onClick={() => navigate('/team-coding')}>
                 <img src={collaboration} alt="testing"
                      className={scrollTop ? cssThis.testing__img_active : cssThis.testing__img}/>
             </div>
