@@ -68,14 +68,9 @@ const Header = () => {
                 <Link className={css.header__link} to={'/mentors'}>
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
-
-                <div className={css.link__wrap}>
-                    <Link className={css.header__link} to={'/team-coding'}>
-                        <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                    </Link>
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-
+                <Link className={css.header__link} to={'/team-coding'}>
+                    <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : EN ? 'Login' : 'Увійти'}
@@ -120,12 +115,9 @@ const Header = () => {
                 <Link className={css.header__link} to={'/mentors'}>
                     {EN ? 'Mentors' : 'Ментори'}
                 </Link>
-                <div className={css.link__wrap}>
-                    <Link className={css.header__link} to={'/team-coding'}>
-                        <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                    </Link>
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
+                <Link className={css.header__link} to={'/team-coding'}>
+                    <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                </Link>
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : (EN ? 'Login' : 'Увійти')}

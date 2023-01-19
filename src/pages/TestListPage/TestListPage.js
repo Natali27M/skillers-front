@@ -174,7 +174,6 @@ const TestListPage = () => {
                              className={`${css.test__switcher_btn} ${!isCodeTest ? css.chosen : ''}`}>
                             {EN ? 'Test' : 'Тестові'}
                         </div>
-                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </div>
                 </div>}
                 <div className={css.sorting__wrap}>

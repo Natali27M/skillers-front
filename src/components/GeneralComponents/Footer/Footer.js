@@ -59,13 +59,11 @@ const Footer = () => {
                     <Link to={'/team-coding'}
                           className={css.pages__link}>
                         {EN ? 'Collaborative programming' : 'Спільне програмування'}
-                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </Link>
 
                     <Link to={'/learning-plan'}
                           className={css.pages__link}>
                         {EN ? 'Learning plans' : 'Навчальні плани'}
-                        <img src={new_icon} alt="new" className={css.new__icon}/>
                     </Link>
 
                     <Link to={'/createTest'}
