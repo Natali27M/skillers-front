@@ -3,8 +3,6 @@ import {badgesServices} from '../services';
 
 export default async function badgesProcessing(userId, currentResult, badgeId) {
     return new Promise(async resolve => {
-        console.log(userId);
-
         const getAllResultsWithTechId = async (id) => {
             let endResult = [];
             if (currentResult) {
