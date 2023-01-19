@@ -5,7 +5,6 @@ import css from '../InformationTesting/InformationTesting.module.css';
 import cssThis from '../InformationCollaboration/InformationCollaboration.module.css';
 import telegram from '../../../../images/information/telegramChat.svg';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
-import {Link} from 'react-router-dom';
 
 const InformationTelegram = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -14,8 +13,12 @@ const InformationTelegram = () => {
     useEffect(() => {
             window.addEventListener('scroll', function () {
                 let element = document.querySelector('#telegramInfo');
-                let position = element.getBoundingClientRect();
-
+                let position;
+                if(element !== null) {
+                    position = element.getBoundingClientRect();
+                } else {
+                    return;
+                }
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
                 }

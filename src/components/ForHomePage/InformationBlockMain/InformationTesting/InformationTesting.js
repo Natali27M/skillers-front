@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import testing from '../../../../images/information/testing.svg'
@@ -10,12 +9,16 @@ import cssThis from '../InformationCollaboration/InformationCollaboration.module
 const InformationTesting = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const [scrollTop, setScrollTop] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
             window.addEventListener('scroll', function () {
                 let element = document.querySelector('#testingInfo');
-                let position = element.getBoundingClientRect();
+                let position;
+                if(element !== null) {
+                    position = element.getBoundingClientRect();
+                } else {
+                    return;
+                }
 
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);

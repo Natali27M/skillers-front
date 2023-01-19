@@ -15,7 +15,12 @@ const InformationCollaboration = () => {
     useEffect(() => {
             window.addEventListener('scroll', function () {
                 let element = document.querySelector('#collaborationInfo');
-                let position = element.getBoundingClientRect();
+                let position;
+                if(element !== null) {
+                    position = element.getBoundingClientRect();
+                } else {
+                    return;
+                }
 
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
