@@ -49,5 +49,7 @@ export const urls = {
     codeResultsByTest: '/api/code-results?filters[codeTestId][$eq]=',
     codeResultForEvaluate: '/api/code-results?filters[evaluated][$eq]=false&filters[authorId][$eq]=',
 
-    codeRates: '/api/code-rates'
+    codeRates: '/api/code-rates',
+
+    vacancies: '/api/vacancies'
 };

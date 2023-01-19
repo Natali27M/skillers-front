@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import css from './VacanciesPage.module.css';
 import rootCss from '../../styles/root.module.css';
+import {useDispatch, useSelector} from 'react-redux';
+import {getVacanciesPaginated} from '../../store/slices/vacancy.slice';
+import {PaginationSmall, VacancyBlock} from '../../components';
 
 const VacanciesPage = () => {
+    const {EN} = useSelector(state => state['languageReducers']);
+
+    const {technologies} = useSelector(state => state['technologiesReducers']);
+
+    const {vacanciesPage} = useSelector(state => state['vacancyReducers']);
+
+    const [pageNumber, setPageNumber] = useState(1);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getVacanciesPaginated(pageNumber));
+    }, [pageNumber]);
 
 
     const title = 'SKILLIANT vacancies';
@@ -25,7 +41,24 @@ const VacanciesPage = () => {
             </Helmet>
             <div className={rootCss.root__background}></div>
             <div className={css.vacancies__wrap}>
-
+                <div className={css.result__vacancies}>
+                    <h3 className={rootCss.default__title_24}>
+                        {EN ? 'Vacancies' : 'Вакансії'}
+                    </h3>
+                    {vacanciesPage.data.map(vacancy =>
+                        <VacancyBlock vacancy={vacancy.attributes} id={vacancy?.id}
+                                      key={vacancy?.id}/>
+                    )}
+                    <PaginationSmall pageNumber={pageNumber}
+                                     setPageNumber={setPageNumber}
+                                     pageCount={vacanciesPage?.meta?.pagination?.pageCount}
+                    />
+                </div>
+                <div className={css.vacancies__filter}>
+                    <h3 className={rootCss.default__title_24}>
+                        {EN ? 'Filters' : 'Фільтри'}
+                    </h3>
+                </div>
             </div>
         </div>
     );

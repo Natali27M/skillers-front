@@ -1,0 +1,8 @@
+.vacancy__block {
+    width: 800px;
+    border-bottom: 1px solid #8d8d8d;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
