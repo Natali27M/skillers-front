@@ -28,7 +28,7 @@ import {
     TestListPage,
     TestPage,
     TestWithCodePage,
-    UserPage
+    UserPage, VacanciesPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -120,12 +120,12 @@ function App() {
         localStorage.removeItem('pathCoding');
         localStorage.removeItem('path');
         navigate(`${pathname}`);
-    }
+    };
 
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${pathCoding}`);
-    }
+    };
 
     useEffect(() => {
         if (teamCoding && pathname !== pathCoding) {
@@ -208,6 +208,7 @@ function App() {
                         <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                         <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
+                        <Route path={'/vacancies'} element={<VacanciesPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>
