@@ -31,7 +31,7 @@ import {
     TestWithCodePage,
     UserPage
 } from './pages';
-import {CommunityIdea, CommunityMain, CommunityQuestion, Layout} from './components';
+import {CommunityIdea, Posts, CommunityQuestion, Layout} from './components';
 import {
     clear,
     clearCreateTest,
@@ -210,7 +210,7 @@ function App() {
                         <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
                         <Route path={'/community'} element={<CommunityPage/>}>
-                            <Route index element={<CommunityMain/>}/>
+                            <Route index element={<Posts/>}/>
                             <Route path={'/community/question'} element={<CommunityQuestion/>}/>
                             <Route path={'/community/idea'} element={<CommunityIdea/>}/>
                         </Route>
