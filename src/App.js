@@ -31,7 +31,7 @@ import {
     TestWithCodePage,
     UserPage
 } from './pages';
-import {CommunityIdea, CommunityMain, CommunityQuestion, Layout} from './components';
+import {CommunityIdea, CommunityMain, Layout, Questions} from './components';
 import {
     clear,
     clearCreateTest,
@@ -49,6 +49,7 @@ import {DonationPage} from './pages/DonationPage/DonationPage';
 import {db} from './firebaseConfig';
 import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from './styles/root.module.css';
+import {AskQuestion, QuestionDetails} from "./components/ForCommunityPage/CommunityQuestion";
 
 function App() {
     const {user} = useSelector(state => state['userReducers']);
@@ -211,7 +212,9 @@ function App() {
                         <Route path={'/skl-token'} element={<SklPage/>}/>
                         <Route path={'/community'} element={<CommunityPage/>}>
                             <Route index element={<CommunityMain/>}/>
-                            <Route path={'/community/question'} element={<CommunityQuestion/>}/>
+                            <Route path={'/community/question'} element={<Questions/>}/>
+                            <Route path={'/community/question/:id'} element={<QuestionDetails/>}/>
+                            <Route path={'/community/question/ask'} element={<AskQuestion/>}/>
                             <Route path={'/community/idea'} element={<CommunityIdea/>}/>
                         </Route>
                         <Route path={'*'} element={<NotFoundPage/>}/>

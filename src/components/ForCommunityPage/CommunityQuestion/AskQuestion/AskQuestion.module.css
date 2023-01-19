@@ -1,0 +1,90 @@
+.question__sure__info__block__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 20px;
+    width: 100%;
+}
+
+.question__sure__info__block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 30px;
+    width: 90%;
+    background: rgb(233, 243, 251);
+    border: 1px solid rgb(168, 202, 228);
+    border-radius: 5px;
+}
+
+h4 {
+    margin-bottom: 5px;
+}
+
+ul > li {
+    margin-left: 30px;
+    padding: 3px;
+}
+
+.form__block__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.write_you_question {
+    width: 90%;
+    padding: 10px;
+    text-align: left;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 90%;
+}
+
+.form_sub_block {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px 15px;
+    background: #F3F3F3;
+    border: 1px solid rgb(172, 177, 182);
+    border-radius: 5px;
+}
+
+.form_sub_block > input {
+    width: 80%;
+    padding: 10px;
+}
+
+.form_sub_block > textarea {
+    width: 80%;
+    padding: 10px;
+    min-height: 250px;
+}
+
+.input_description {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+
+.button_div {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
