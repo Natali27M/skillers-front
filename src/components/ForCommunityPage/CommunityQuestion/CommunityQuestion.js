@@ -3,7 +3,7 @@ import React from 'react';
 const CommunityQuestion = () => {
     return (
         <div>
-            CommunityQuestion
+            <span>CommunityQuestion</span>
         </div>
     );
 };
