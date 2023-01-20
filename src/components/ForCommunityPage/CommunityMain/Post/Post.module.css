@@ -27,11 +27,11 @@
 }
 
 .post__username {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     border-bottom: 3px solid;
     padding-bottom: 3px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
     border-image-slice: 1;
 }

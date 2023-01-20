@@ -123,9 +123,9 @@ const Post = ({post}) => {
                     <div className={css.post__block_header}>
                         <div className={css.post__block_header_left}>
                             <img src={questionColor} alt="question" className={css.post__question}/>
-                            <div className={css.post__username}>{post.attributes.post.username}</div>
+                            <div className={css.post__username}>{post.attributes.post.userName}</div>
                         </div>
-                        <div>{createdAt[0]}</div>
+                        <div className={css.post__createdAt}>{createdAt[0]}</div>
                     </div>
                     <div>Title: {post.attributes.post.title}</div>
                     <div>Description: {post.attributes.post.description}</div>

@@ -10,6 +10,20 @@
     justify-content: space-between;
 }
 
+.post__username {
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 3px solid;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    border-image-slice: 1;
+}
+
+.post__createdAt {
+    font-size: 12px;
+}
+
 .comment__block_box {
     background: #FFFF !important;
     font-size: 12px;
