@@ -1,36 +1,74 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './AskQuestion.module.css';
 import {postsServices} from "../../../../services/posts.services";
-import {createQuestion} from "../../../../store";
+import {createQuestion, getTechnologies} from "../../../../store";
+import Select from "react-select";
+import {useNavigate} from "react-router-dom";
 
 const AskQuestion = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     let {user} = useSelector(state => state['userReducers']);
+    const {technologies} = useSelector(state => state['technologiesReducers']);
 
     const dispatch = useDispatch();
-    const {handleSubmit, register, formState: {errors}, reset} = useForm();
+    const navigate = useNavigate();
+    const {handleSubmit, register, reset} = useForm();
+
+    const [technology, setTechnology] = useState([]);
+
+    useEffect(() => {
+        dispatch(getTechnologies())
+    }, [])
+
+
+    const technologiesArray = (array) => {
+        let mentorTechnologies = []
+        for (const element of array) {
+            const find = technologies.data.find(value => value.attributes.value === element.value);
+            mentorTechnologies.push(find)
+        }
+        setTechnology(mentorTechnologies)
+    }
+
+
+    const create = async (question) => {
+        return dispatch(createQuestion(question));
+    }
+
+    const createQuestionPost = async (myQuestion) => {
+        const question = JSON.parse(localStorage.getItem('question'));
+        if (question.id) {
+            const post = {
+                userId: user.id,
+                post: {
+                    ...myQuestion,
+                    id: question.id
+                }
+            }
+            await postsServices.createPost({...post});
+        }
+        return localStorage.removeItem('question');
+    }
 
     const askQuestion = async (formData) => {
-        const question = {
+        const myQuestion = {
             ...formData,
             userId: user?.id,
             userName: user?.username,
             type: 'question',
+            technologies: technology,
         }
-        const post = {
-            userId: user.id,
-            post: question
-        }
-        console.log('start question')
-        await postsServices.createPost({...post});
-        console.log('post created')
-        dispatch(createQuestion(question));
-        console.log('question created');
+        await create(myQuestion);
+        await createQuestionPost(myQuestion);
+
+        reset();
+        return navigate('/community/question');
     }
+
 
     return (
         <div className={css_helper.container}>
@@ -48,6 +86,7 @@ const AskQuestion = () => {
                                 <li>{EN ? "Description - describe your question in detail" : "Description - детально розкрийте ваше запитання "}</li>
                                 <li>{EN ? "Details - specify examples of the code you have already written" : "Details - вкажіть приклади коду який ви вже написали "}</li>
                                 <li>{EN ? "Expected Result - the result you expect" : "Expected Result - результат який ви очікуєте"}</li>
+                                <li>{EN ? "Select technology - mark one about several technologies" : "Select technology - позначте одну обо декілька технологій "}</li>
                             </ul>
                         </div>
                         <div>
@@ -94,8 +133,8 @@ const AskQuestion = () => {
                         <div className={css.form_sub_block}>
                             <h4>Details</h4>
                             <div className={css.input_description}>
-                                {EN ? "Details include examples of what you've already tried" :
-                                    "Деталі містять пркликлади того, що ви вже пробували зробити"}
+                                {EN ? "Details include code examples of what you've already tried" :
+                                    "Деталі містять пркликлади коду та того, що ви вже пробували зробити"}
                             </div>
                             <textarea
                                 placeholder='Details'
@@ -113,6 +152,19 @@ const AskQuestion = () => {
                                 placeholder='Expected Result'
                                 {...register('expected_result')}
                             />
+                        </div>
+                        <div className={css.form_sub_block}>
+                            <h4>Select technology</h4>
+                            <div className={css.input_description}>
+                                {EN ? "Mark one about several technologies" :
+                                    "Позначте одну обо декілька технологій "}
+                            </div>
+
+                            <Select options={technologies?.data?.map(value => value.attributes)}
+                                    onChange={technologiesArray}
+                                    isMulti
+                                    placeholder={EN ? "Technology" : "Виберіть технологію"}
+                                    className={css.select__input}/>
                         </div>
                         <div className={css.button_div}>
                             <button

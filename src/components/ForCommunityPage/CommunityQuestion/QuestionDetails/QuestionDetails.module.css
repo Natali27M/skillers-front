@@ -1,0 +1,26 @@
+.question_details_block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.title__block {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+}
+
+.question_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 75%;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(43,48,53);
+    line-height: 1.5;
+}

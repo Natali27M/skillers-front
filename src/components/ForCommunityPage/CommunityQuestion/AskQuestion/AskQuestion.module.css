@@ -83,6 +83,11 @@ ul > li {
     font-size: 14px;
 }
 
+.select__input {
+    width: 80%;
+    padding: 10px;
+}
+
 .button_div {
     width: 100%;
     display: flex;

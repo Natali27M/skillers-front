@@ -37,3 +37,12 @@
 .ask__button:hover {
     box-shadow: 0 0 2px 1px #9f9e9e;
 }
+
+.questions__block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    row-gap: 20px;
+}
