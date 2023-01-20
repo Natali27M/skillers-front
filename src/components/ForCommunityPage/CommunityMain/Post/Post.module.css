@@ -64,13 +64,13 @@
 }
 
 .post__difficult {
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Noto Sans', sans-serif;
     font-style: italic;
 }
 
 .post__correctAnswer {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .post__img {
