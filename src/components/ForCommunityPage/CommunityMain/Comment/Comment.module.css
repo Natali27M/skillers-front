@@ -1,6 +1,23 @@
 .comment__block {
-    padding: 20px 0;
-    margin: 20px;
-    border: 1px solid black;
+    padding: 20px;
+    margin: 20px 0;
     border-radius: 10px;
+    background-color: #FFFF;
+}
+
+.comment__block_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment__block_box {
+    background: #FFFF !important;
+    font-size: 12px;
+}
+
+.comment__block_more {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-right: 20px;
 }

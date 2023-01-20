@@ -282,7 +282,9 @@ const TestPage = () => {
             techName: technology?.data?.attributes.name,
             testName: oneTest.attributes.name,
             correctAnswer: result.correct,
-            allExercises: result.allExercises
+            allExercises: result.allExercises,
+            username: user.username,
+            difficult: oneTest.attributes.difficult
         }
 
         const newPost = {

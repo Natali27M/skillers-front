@@ -4,5 +4,5 @@ import {urls} from '../config';
 
 export const postsServices = {
     createPost: (obj) => axiosServices.post(urls.posts, {data: {...obj}}).then(value => value.data),
-    getAllPosts: () => axiosServices.get(urls.posts + `?populate=%2A`).then(value => value.data)
+    getAllPosts: () => axiosServices.get(urls.posts + `?populate=%2A&sort=createdAt:DESC`).then(value => value.data)
 }

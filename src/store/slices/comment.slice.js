@@ -22,7 +22,18 @@ const commentSlice = createSlice({
 
     reducers: {},
 
-    extraReducers: {}
+    extraReducers: {
+        [createComment.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [createComment.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [createComment.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+        },
+    }
 });
 
 const commentReducers = commentSlice.reducer;

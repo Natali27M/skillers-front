@@ -7,14 +7,14 @@ import {Post} from '../Post/Post';
 
 const Posts = () => {
     const {posts} = useSelector(state => state['postReducers']);
+    const {status} = useSelector(state => state['commentReducers']);
     const dispatch = useDispatch();
-
     useEffect(() => {
             dispatch(getAllPosts());
-    }, [posts]);
+    }, [status==='fulfilled']);
 
     return (
-        <div>
+        <div className={css.posts__main}>
             {posts?.data?.length && posts?.data?.map(value => <Post key={value.id} post={value}/>)}
         </div>
     );
