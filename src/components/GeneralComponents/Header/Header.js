@@ -1,33 +1,31 @@
 import React, {useEffect, useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {Turn as Hamburger} from 'hamburger-react';
+
 import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
 import new_icon from '../../../images/new_icon.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
-import {Link, useLocation} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {switchLanguage} from '../../../store';
-import {Turn as Hamburger} from 'hamburger-react';
+import {makeNotification, switchLanguage} from '../../../store';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
+import {Notification} from '../../ForCommunityPage';
 
 
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
+    const {posts, notifications} = useSelector(state => state['postReducers']);
 
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
-
     const dispatch = useDispatch();
-
     const {pathname} = useLocation();
-
     const {width} = useWindowDimensions();
-
-
     const [open, setOpen] = useState(false);
-
+    const [openNotifications, setOpenNotifications] = useState(false);
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -40,6 +38,34 @@ const Header = () => {
         setOpen(false);
     }, [width, pathname]);
 
+    useEffect(() => {
+        const fullNotifications = [];
+        if (posts.data) {
+            for (const post of posts.data) {
+                if (user.id === post.attributes.userId) {
+                    for (const notificationElement of post.attributes.comments.data) {
+                        if (notificationElement.attributes.notification === false) {
+                            const elementNotification = {
+                                notifications: notificationElement,
+                                postId: post.id
+                            }
+                            fullNotifications.push(elementNotification);
+                        }
+                    }
+                }
+            }
+        }
+
+        dispatch(makeNotification(fullNotifications));
+    }, [posts]);
+
+    const commentingPosts = () => {
+        if(!openNotifications) {
+            setOpenNotifications(true);
+        } else {
+            setOpenNotifications(false);
+        }
+    }
 
     return (
         <div className={css.main__header}>
@@ -52,9 +78,7 @@ const Header = () => {
                 </a>
             </div>
 
-
             <div className={css.header__left}>
-
 
                 <Link className={css.header__link} to={'/for-users'}>
                     {EN ? 'For users' : 'Користувачам'}
@@ -75,6 +99,15 @@ const Header = () => {
                     </Link>
                     <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
+
+                <div onClick={() => {
+                    commentingPosts()
+                }}>{notifications.length}</div>
+
+                {openNotifications && <div className={css.notification__main}>
+                    {notifications.map(value => <Notification key={value.notifications.id} notification={value}/>)}
+                </div>
+                }
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}

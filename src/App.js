@@ -22,6 +22,7 @@ import {
     MentorsPage,
     NotFoundPage,
     PolicyPage,
+    PostDetailsPage,
     RankPage,
     RecruiterPage,
     RegisterPage,
@@ -35,6 +36,7 @@ import {CommunityIdea, Posts, CommunityQuestion, Layout} from './components';
 import {
     clear,
     clearCreateTest,
+    getAllPosts,
     getLanguage,
     getUserAchievement,
     getUserBadges,
@@ -87,6 +89,7 @@ function App() {
         dispatch(getLanguage());
         dispatch(setUserFromLocalStorage());
         dispatch(setJwtFromLocalStorage());
+        dispatch(getAllPosts());
 
     }, []);
 
@@ -101,9 +104,7 @@ function App() {
     }, [user]);
 
     useEffect(() => {
-
         dispatch(setUserRank());
-
     }, [userAchievement]);
 
 
@@ -209,6 +210,7 @@ function App() {
                         <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
                         <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
+                        <Route path={'post/:id'} element={<PostDetailsPage/>}/>
                         <Route path={'/community'} element={<CommunityPage/>}>
                             <Route index element={<Posts/>}/>
                             <Route path={'/community/question'} element={<CommunityQuestion/>}/>

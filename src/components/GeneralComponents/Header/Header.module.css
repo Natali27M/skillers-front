@@ -151,8 +151,19 @@
     height: 50px
 }
 
-
-
+.notification__main {
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 4px solid;
+    border-bottom: none;
+    border-top: none;
+    /*z-index: 3;*/
+    background-color: #fff;
+    color: black;
+}
 
 @media (max-width: 1440px) {
     .burger__btn {

@@ -9,9 +9,10 @@ const Posts = () => {
     const {posts} = useSelector(state => state['postReducers']);
     const {status} = useSelector(state => state['commentReducers']);
     const dispatch = useDispatch();
+
     useEffect(() => {
-            dispatch(getAllPosts());
-    }, [status==='fulfilled']);
+        dispatch(getAllPosts());
+    }, [status === 'fulfilled']);
 
     return (
         <div className={css.posts__main}>

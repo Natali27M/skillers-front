@@ -2,9 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import css from './Post.module.css';
-import {createComment} from '../../../../store';
+import {createComment, makeNotification} from '../../../../store';
 import {Comment} from '../Comment/Comment';
 import questionColor from '../../../../images/community/questionColor.svg';
 import message from '../../../../images/community/message.svg';
@@ -59,6 +60,8 @@ const Post = ({post}) => {
             comment: value,
             userId: user.id,
             username: user.username,
+            notification: false,
+            postAuthorId: post.attributes.userId
         }
         dispatch(createComment(comment));
         reset();
@@ -127,9 +130,15 @@ const Post = ({post}) => {
                         </div>
                         <div className={css.post__createdAt}>{createdAt[0]}</div>
                     </div>
-                    <div>Title: {post.attributes.post.title}</div>
+
+                    <div className={css.post__test}>{post.attributes.post.title}</div>
+
                     <div>Description: {post.attributes.post.description}</div>
-                    <div>Details: {post.attributes.post.details}</div>
+
+                    <SyntaxHighlighter className={css.comment__block_box}>
+                        {post.attributes.post.details}
+                    </SyntaxHighlighter>
+
                     <div>Expected result: {post.attributes.post.expected_result}</div>
 
                     <div className={css.post__block_footer}>
@@ -138,6 +147,7 @@ const Post = ({post}) => {
                             {EN ? 'Go to discussion' : 'Перейти до обговорення'}
                         </div>
                     </div>
+
                 </div>
             }
         </div>

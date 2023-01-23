@@ -8,6 +8,7 @@ import question from '../../../images/community/question.svg'
 import idea from '../../../images/community/idea.svg'
 
 const CommunityHeader = () => {
+
     return (
         <div className={css.header}>
             <img src={logo} alt="logo" className={css.header__logo}/>
