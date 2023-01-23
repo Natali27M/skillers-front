@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom";
 
 const AskQuestion = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    let {user} = useSelector(state => state['userReducers']);
+    const {user} = useSelector(state => state['userReducers']);
     const {technologies} = useSelector(state => state['technologiesReducers']);
 
     const dispatch = useDispatch();
