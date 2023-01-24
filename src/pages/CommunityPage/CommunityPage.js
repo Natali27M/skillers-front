@@ -6,7 +6,7 @@ import {CommunityHeader} from '../../components';
 
 const CommunityPage = () => {
     return (
-        <div>
+        <div className={css.communityPage}>
             <CommunityHeader/>
             <Outlet/>
         </div>

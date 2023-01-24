@@ -1,9 +1,10 @@
 .post__main {
-    width: 35%;
-    border-radius: 10px;
+    width: 70%;
+    border-radius: 5px;
     margin-bottom: 50px;
     background-color: #F1F1F1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border: 1px solid darkgrey;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);*/
     padding: 10px 50px 0 50px;
 }
 
@@ -29,11 +30,11 @@
 .post__username {
     font-size: 16px;
     font-weight: 500;
-    border-bottom: 3px solid;
+    /*border-bottom: 3px solid;*/
     padding-bottom: 3px;
     margin-bottom: 15px;
-    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
+    /*border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);*/
+    /*border-image-slice: 1;*/
 }
 
 .post__createdAt {
@@ -55,7 +56,6 @@
 }
 
 .post__test {
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +76,13 @@
 .post__img {
     display: flex;
     justify-content: center;
-    background: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
+    background: black;
+    /*background: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);*/
     margin: 10px 0;
+}
+
+.post__img img {
+    width: 100%;
 }
 
 .post__createComment_form {
@@ -92,7 +97,6 @@
     width: 100%;
     min-height: 10px;
     max-height: 200px;
-    border-radius: 20px;
     border: 1px solid #8E8B8B;
     font-size: 14px;
     padding: 10px;
@@ -128,17 +132,28 @@
 .post__createComment_send {
     width: 30px;
     height: 30px;
-    background: url("../../../../images/community/send.svg") no-repeat center / cover;
+    background: url("../../../../images/community/send 2.svg") no-repeat center / cover;
+    /*background: url("../../../../images/community/send.svg") no-repeat center / cover;*/
     border: none;
     cursor: pointer;
 }
 
-.post__message {
+.post__message,
+.post__message_question {
     display: flex;
     justify-content: flex-end;
     padding-top: 20px;
     cursor: pointer;
     column-gap: 10px;
+}
+
+.post__message_question div {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    background-color: black;
+    color: white;
 }
 
 .post__message img {
@@ -152,6 +167,7 @@
 
 .post__block_footer {
     border-top: 1px solid #8E8B8B;
+    margin-top: 10px;
 }
 
 .question_container {
@@ -214,5 +230,7 @@
 .comment__block_box {
     background: #FFFF !important;
     font-size: 12px;
+    max-height: 200px;
+    margin: 20px 0;
 }
 

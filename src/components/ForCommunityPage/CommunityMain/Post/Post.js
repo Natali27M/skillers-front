@@ -9,7 +9,8 @@ import {createComment, getPostById} from '../../../../store';
 import {Comment} from '../Comment/Comment';
 import questionColor from '../../../../images/community/questionColor.svg';
 import message from '../../../../images/community/message.svg';
-import results from '../../../../images/community/results.svg';
+// import results from '../../../../images/community/results.svg';
+import results from '../../../../images/community/winner.svg';
 
 const Post = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -139,20 +140,22 @@ const Post = ({post}) => {
                         <div className={css.post__createdAt}>{createdAt[0]}</div>
                     </div>
 
-                    <div className={css.post__test}>{post.attributes.post.title}</div>
+                    <div className={css.question_title}>{post.attributes.post.title}</div>
 
-                    <div>Description: {post.attributes.post.description}</div>
+                    <div>{post.attributes.post.description}</div>
 
-                    <SyntaxHighlighter className={css.comment__block_box}>
-                        {post.attributes.post.details}
-                    </SyntaxHighlighter>
+                    {post.attributes.post.details &&
+                        <SyntaxHighlighter className={css.comment__block_box}>
+                            {post.attributes.post.details}
+                        </SyntaxHighlighter>
+                    }
 
-                    <div>Expected result: {post.attributes.post.expected_result}</div>
+                    <div>{post.attributes.post.expected_result}</div>
 
                     <div className={css.post__block_footer}>
                         <div onClick={() => navigate(`/community/question/${post.attributes.post.id}`)}
-                             className={css.post__message}>
-                            {EN ? 'Go to discussion' : 'Перейти до обговорення'}
+                             className={css.post__message_question}>
+                            <div>{EN ? 'Go to discussion' : 'Перейти до обговорення'}</div>
                         </div>
                     </div>
 

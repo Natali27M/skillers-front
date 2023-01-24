@@ -1,7 +1,6 @@
 .comment__block {
     padding: 20px;
     margin: 20px 0;
-    border-radius: 10px;
     background-color: #FFFF;
 }
 
@@ -26,6 +25,7 @@
 
 .comment__block_box {
     background: #FFFF !important;
+    max-height: 200px;
     font-size: 12px;
 }
 
@@ -39,4 +39,5 @@
 .basket {
     display: flex;
     justify-content: flex-end;
+    margin-top: 10px;
 }
