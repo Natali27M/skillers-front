@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
+import Select from "react-select";
+import {useNavigate} from "react-router-dom";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './AskQuestion.module.css';
 import {postsServices} from "../../../../services/posts.services";
 import {createQuestion, getTechnologies} from "../../../../store";
-import Select from "react-select";
-import {useNavigate} from "react-router-dom";
+import {createQuestionValidator} from "../../../../validation";
 
 const AskQuestion = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -16,7 +18,12 @@ const AskQuestion = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {handleSubmit, register, reset} = useForm();
+    const {
+        handleSubmit,
+        register,
+        reset,
+        formState: {errors}
+    } = useForm({resolver: joiResolver(createQuestionValidator)});
 
     const [technology, setTechnology] = useState([]);
 
@@ -114,8 +121,14 @@ const AskQuestion = () => {
                             <input
                                 type="text"
                                 placeholder='Title'
+                                className={errors.title && css.errorFeld}
                                 {...register('title')}
                             />
+                            {errors.title &&
+                                <div className={css.error}>
+                                    {EN ? "The title can not be a empty" : "Поле Title не може бути пустим"}
+                                </div>
+                            }
                         </div>
                         <div className={css.form_sub_block}>
                             <h4>Description</h4>
@@ -127,8 +140,14 @@ const AskQuestion = () => {
                             </div>
                             <textarea
                                 placeholder='Description'
+                                className={errors.description && css.errorFeld}
                                 {...register('description')}
                             />
+                            {errors.description &&
+                                <div className={css.error}>
+                                    {EN ? "The minimum allowable number of characters is 40" : "Мінімальна допустима кількість символів – 40"}
+                                </div>
+                            }
                         </div>
                         <div className={css.form_sub_block}>
                             <h4>Details</h4>
@@ -138,8 +157,14 @@ const AskQuestion = () => {
                             </div>
                             <textarea
                                 placeholder='Details'
+                                className={errors.details && css.errorFeld}
                                 {...register('details')}
                             />
+                            {errors.details &&
+                                <div className={css.error}>
+                                    {EN ? "The minimum allowable number of characters is 40" : "Мінімальна допустима кількість символів – 40"}
+                                </div>
+                            }
                         </div>
                         <div className={css.form_sub_block}>
                             <h4>Expected Result</h4>
@@ -150,8 +175,14 @@ const AskQuestion = () => {
                             <input
                                 type="text"
                                 placeholder='Expected Result'
+                                className={errors.expected_result && css.errorFeld}
                                 {...register('expected_result')}
                             />
+                            {errors.expected_result &&
+                                <div className={css.error}>
+                                    {EN ? "The expected result can not be a empty" : "Поле expected result не може бути пустим"}
+                                </div>
+                            }
                         </div>
                         <div className={css.form_sub_block}>
                             <h4>Select technology</h4>

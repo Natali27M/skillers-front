@@ -16,9 +16,9 @@ export const createQuestion = createAsyncThunk(
 
 export const getAllQuestions = createAsyncThunk(
     'questionSlice/getAllQuestions',
-    async (pageNum, {rejectWithValue}) => {
+    async ({page, query}, {rejectWithValue}) => {
         try {
-            return questionServices.getAllQuestions(pageNum);
+            return questionServices.getAllQuestions(page, query);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -30,6 +30,17 @@ export const getOneQuestion = createAsyncThunk(
     async (id, {rejectWithValue}) => {
         try {
             return questionServices.getOneQuestion(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
+export const deleteQuestion = createAsyncThunk(
+    'questionSlice/deleteQuestion',
+    async (id, {rejectWithValue}) => {
+        try {
+            return questionServices.deleteQuestion(id);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -81,6 +92,17 @@ export const questionSlice = createSlice({
         [getOneQuestion.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.oneQuestion = action.payload.data;
+        },
+        [deleteQuestion.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [deleteQuestion.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [deleteQuestion.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeleteQuestion = !state.isDeleteQuestion;
         },
     },
 });

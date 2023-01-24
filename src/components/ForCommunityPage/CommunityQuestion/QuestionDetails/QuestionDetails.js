@@ -5,27 +5,35 @@ import {useForm} from "react-hook-form";
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './QuestionDetails.module.css';
-import {createAnswer, getOneQuestion} from "../../../../store";
+import {createAnswer, deleteAnswer, deleteQuestion, getOneQuestion} from "../../../../store";
+import user_image from '../../../../images/user.svg';
+import {answerQuestionValidator} from "../../../../validation";
 
 const QuestionDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {oneQuestion} = useSelector(state => state['questionsReducers']);
-    const {status} = useSelector(state => state['answersReducers']);
+    const {status, isDeletedAnswer} = useSelector(state => state['answersReducers']);
 
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {id} = useParams();
-    const {handleSubmit, register, reset} = useForm();
+    const {
+        handleSubmit,
+        register,
+        reset,
+        formState: {errors}
+    } = useForm({resolver: joiResolver(answerQuestionValidator)});
 
 
     useEffect(() => {
         dispatch(getOneQuestion(Number(id)));
-    }, [id, status === 'fulfilled'])
+    }, [id, status === 'fulfilled', isDeletedAnswer]);
 
 
     const createMyAnswer = (answer) => {
@@ -35,8 +43,17 @@ const QuestionDetails = () => {
             userId: user?.id,
             userName: user?.username,
         }
-        dispatch(createAnswer(myAnswer))
-        reset()
+        dispatch(createAnswer(myAnswer));
+        reset();
+    }
+
+    const makeDeleteQuestion = () => {
+        dispatch(deleteQuestion(oneQuestion?.id));
+        navigate('/community/question');
+    }
+
+    const makeDeleteAnswer = (id) => {
+        dispatch(deleteAnswer(id));
     }
 
     return (
@@ -56,7 +73,7 @@ const QuestionDetails = () => {
 
                     <div className={css.info__block}>
                         <div className={css.user}>
-                            <img src={user} alt="user"/>
+                            <img src={user_image} alt="user"/>
                             <div className={css.question_user_name}>{oneQuestion?.attributes?.userName}</div>
                         </div>
                         <div className={css.asked}>
@@ -93,6 +110,18 @@ const QuestionDetails = () => {
                                 )
                             }
                         </div>
+
+                        {user?.id === oneQuestion?.attributes?.userId &&
+                            <div className={css.delete_question_block}>
+                                <button
+                                    onClick={() => makeDeleteQuestion()}
+                                    className={css_helper.ask__button}
+                                >
+                                    {EN ? "Delete my question" : "Видалити моє запитання"}
+                                </button>
+                            </div>
+                        }
+
                     </div>
 
                     <div className={css.answers__block}>
@@ -105,7 +134,7 @@ const QuestionDetails = () => {
                                             oneQuestion?.attributes?.answers?.data?.map(value =>
                                                 <div className={css.answer__one__block} key={value.id}>
                                                     <div className={css.user}>
-                                                        <img src={user} alt="user"/>
+                                                        <img src={user_image} alt="user"/>
                                                         <div
                                                             className={css.question_user_name}>{value?.attributes?.userName} {EN ? " answered" : " відповів"}</div>
                                                     </div>
@@ -116,6 +145,17 @@ const QuestionDetails = () => {
                                                             {value?.attributes?.code}
                                                         </SyntaxHighlighter>
                                                     </div>
+
+                                                    {user?.id === value?.attributes?.userId &&
+                                                        <div className={css.delete_question_block}>
+                                                            <button
+                                                                className={css.delete_question_button}
+                                                                onClick={() => makeDeleteAnswer(value.id)}
+                                                            >
+                                                                {EN ? "Delete my answer" : "Видалити мою відповідь"}
+                                                            </button>
+                                                        </div>
+                                                    }
                                                 </div>
                                             )
                                         }
@@ -137,8 +177,14 @@ const QuestionDetails = () => {
                                 </div>
                                 <textarea
                                     placeholder='Your answer...'
+                                    className={errors.answer && css.errorBorder}
                                     {...register('answer')}
                                 />
+                                {errors.answer &&
+                                    <div className={css.errors}>
+                                        {EN ? "Feld answer can not be empty" : "Поле answer не може бути пустим"}
+                                    </div>
+                                }
                             </div>
 
                             <div className={css.form_sub_block}>

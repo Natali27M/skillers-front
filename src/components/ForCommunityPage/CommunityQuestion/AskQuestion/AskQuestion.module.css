@@ -93,3 +93,13 @@ ul > li {
     display: flex;
     align-items: flex-start;
 }
+
+.error {
+    font-size: 10px;
+    color: red;
+}
+
+.errorFeld {
+    border-color: red;
+    border-radius: 3px;
+}
