@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {postsServices} from '../../services/posts.service';
-import {getUserByTestResults} from './results.slice';
 
 export const createPost = createAsyncThunk(
     'postSlice/createPost',
@@ -49,7 +48,6 @@ const postSlice = createSlice({
 
     reducers: {
         makeNotification: (state, action) => {
-            // state.notifications = [...state.notifications, action.payload];
             state.notifications = action.payload;
         },
     },

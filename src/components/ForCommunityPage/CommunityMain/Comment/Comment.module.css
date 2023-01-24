@@ -35,3 +35,8 @@
     cursor: pointer;
     padding-right: 20px;
 }
+
+.basket {
+    display: flex;
+    justify-content: flex-end;
+}

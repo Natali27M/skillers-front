@@ -7,9 +7,10 @@ import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
 import new_icon from '../../../images/new_icon.svg';
+import bell from '../../../images/community/bell.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
-import {makeNotification, switchLanguage} from '../../../store';
+import {getAllPosts, makeNotification, switchLanguage} from '../../../store';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 import {Notification} from '../../ForCommunityPage';
@@ -19,7 +20,7 @@ const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
     const {posts, notifications} = useSelector(state => state['postReducers']);
-
+    const {isDeletedComment, isUpdateComment} = useSelector(state => state['commentReducers']);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     const dispatch = useDispatch();
     const {pathname} = useLocation();
@@ -32,7 +33,8 @@ const Header = () => {
             setOpen(false);
             setIsComponentVisible(true);
         }
-    }, [isComponentVisible]);
+        dispatch(getAllPosts());
+    }, [isComponentVisible, isUpdateComment]);
 
     useEffect(() => {
         setOpen(false);
@@ -57,10 +59,10 @@ const Header = () => {
         }
 
         dispatch(makeNotification(fullNotifications));
-    }, [posts]);
+    }, [posts, isDeletedComment]);
 
     const commentingPosts = () => {
-        if(!openNotifications) {
+        if (!openNotifications) {
             setOpenNotifications(true);
         } else {
             setOpenNotifications(false);
@@ -102,10 +104,21 @@ const Header = () => {
 
                 <div onClick={() => {
                     commentingPosts()
-                }}>{notifications.length}</div>
+                }} className={css.header__notification}>
+                    {notifications.length > 0 &&
+                        <div className={css.header__notification_length}>{notifications.length}</div>
+                    }
+                    <div className={css.header__notification_img}>
+                        <img src={bell} alt="notification"/>
+                    </div>
+                </div>
 
                 {openNotifications && <div className={css.notification__main}>
-                    {notifications.map(value => <Notification key={value.notifications.id} notification={value}/>)}
+                    {notifications.map(value =>
+                        <Notification key={value.notifications.id}
+                                      notification={value}
+                                      setOpenNotification={setOpenNotifications}/>)
+                    }
                 </div>
                 }
 

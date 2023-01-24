@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+
 import {commentsServices} from '../../services/comments.service';
 
 export const createComment = createAsyncThunk(
@@ -12,12 +13,37 @@ export const createComment = createAsyncThunk(
     }
 );
 
+export const updateComment = createAsyncThunk(
+    'commentSlice/updateComment',
+    async ({data, commentId}, {rejectWithValue}) => {
+        try {
+            return await commentsServices.updateComment(data, commentId);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+
+    }
+);
+
+export const deleteComment = createAsyncThunk(
+    'commentSlice/deleteComment',
+    async (commentId, {rejectWithValue}) => {
+        try {
+            return await commentsServices.deleteComment(commentId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 const commentSlice = createSlice({
     name: 'commentSlice',
     initialState: {
         updateError: null,
         error: null,
-        status: null
+        status: null,
+        isDeletedComment: false,
+        isUpdateComment: false
     },
 
     reducers: {},
@@ -32,6 +58,32 @@ const commentSlice = createSlice({
         },
         [createComment.fulfilled]: (state) => {
             state.status = 'fulfilled';
+        },
+
+        [updateComment.pending]: (state) => {
+            state.status = 'pending';
+            state.error = null;
+        },
+        [updateComment.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.updateError = action;
+        },
+        [updateComment.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.updateError = null;
+            state.isUpdateComment = !state.isUpdateComment;
+        },
+
+        [deleteComment.pending]: (state) => {
+            state.status = "pending";
+        },
+        [deleteComment.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [deleteComment.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeletedComment = !state.isDeletedComment;
         },
     }
 });

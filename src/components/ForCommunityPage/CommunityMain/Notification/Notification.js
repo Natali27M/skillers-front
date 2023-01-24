@@ -3,16 +3,18 @@ import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
 import css from './Notification.module.css';
-import {getPostById} from '../../../../store';
+import {updateComment} from '../../../../store';
 
-const Notification = ({notification}) => {
+const Notification = ({notification, setOpenNotification}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const postId = notification.postId
+    const postId = notification.postId;
 
     const getPostDetails = () => {
-        dispatch(getPostById({postId}));
+        const commentId = notification.notifications.id;
+        dispatch(updateComment({data:  {notification: true}, commentId: commentId}));
         navigate(`/post/${postId}`);
+        setOpenNotification(false);
     };
 
     return (

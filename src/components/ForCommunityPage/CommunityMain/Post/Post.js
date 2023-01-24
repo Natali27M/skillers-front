@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import css from './Post.module.css';
-import {createComment, makeNotification} from '../../../../store';
+import {createComment, getPostById} from '../../../../store';
 import {Comment} from '../Comment/Comment';
 import questionColor from '../../../../images/community/questionColor.svg';
 import message from '../../../../images/community/message.svg';
@@ -20,6 +20,7 @@ const Post = ({post}) => {
     const comments = post.attributes.comments.data;
     const createdAt = post.attributes.createdAt.split('T');
     const navigate = useNavigate();
+    const postId = post.id;
 
     const wantComment = () => {
         if (!sendComment) {
@@ -56,7 +57,7 @@ const Post = ({post}) => {
 
     const makeComment = () => {
         const comment = {
-            postId: post.id,
+            postId: postId,
             comment: value,
             userId: user.id,
             username: user.username,
@@ -67,31 +68,37 @@ const Post = ({post}) => {
         reset();
         setValue('');
         setSendComment(false);
+        dispatch(getPostById({postId}));
     };
+
+    useEffect(() => {
+    }, [comments]);
 
     return (
         <div className={css.post__main}>
             {post.attributes.post.type === 'achievement' &&
                 <div className={css.post__block}>
-                    <div className={css.post__block_header}>
-                        <div className={css.post__username}>{post.attributes.post.username}</div>
-                        <div className={css.post__createdAt}>{createdAt[0]}</div>
-                    </div>
+                    <div onClick={() => navigate(`/post/${postId}`)}>
+                        <div className={css.post__block_header}>
+                            <div className={css.post__username}>{post.attributes.post.username}</div>
+                            <div className={css.post__createdAt}>{createdAt[0]}</div>
+                        </div>
 
-                    <div className={css.post__tech}>{post.attributes.post.techName}</div>
+                        <div className={css.post__tech}>{post.attributes.post.techName}</div>
 
-                    <div className={css.post__test}>"{post.attributes.post.testName}"</div>
+                        <div className={css.post__test}>"{post.attributes.post.testName}"</div>
 
-                    <div className={css.post__difficult}>
-                        {EN ? 'Difficult' : 'Складність'}: {post.attributes.post.difficult}</div>
+                        <div className={css.post__difficult}>
+                            {EN ? 'Difficult' : 'Складність'}: {post.attributes.post.difficult}</div>
 
-                    <div className={css.post__correctAnswer}>
-                        {EN ? 'Сorrect answers' : 'Правильних відповідей'} {post.attributes.post.correctAnswer}
-                        {EN ? ' of' : ' з'} {post.attributes.post.allExercises}
-                    </div>
+                        <div className={css.post__correctAnswer}>
+                            {EN ? 'Сorrect answers' : 'Правильних відповідей'} {post.attributes.post.correctAnswer}
+                            {EN ? ' of' : ' з'} {post.attributes.post.allExercises}
+                        </div>
 
-                    <div className={css.post__img}>
-                        <img src={results} alt="results"/>
+                        <div className={css.post__img}>
+                            <img src={results} alt="results"/>
+                        </div>
                     </div>
 
                     <div className={css.post__block_footer}>
@@ -104,7 +111,7 @@ const Post = ({post}) => {
                     </div>
 
                     {sendComment &&
-                        <div className={css.post__comments}>
+                        <div>
                             <form onSubmit={handleSubmit(makeComment)} className={css.post__createComment_form}>
                         <textarea
                             className={css.post__createComment_input}
@@ -121,6 +128,7 @@ const Post = ({post}) => {
                     }
                 </div>
             }
+
             {post.attributes.post.type === 'question' &&
                 <div className={css.post__block}>
                     <div className={css.post__block_header}>

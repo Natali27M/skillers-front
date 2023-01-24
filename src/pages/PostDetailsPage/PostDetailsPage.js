@@ -7,13 +7,18 @@ import {Post} from '../../components';
 
 const PostDetailsPage = () => {
     const {postById} = useSelector(state => state['postReducers']);
+    const {isDeletedComment} = useSelector(state => state['commentReducers']);
     const dispatch = useDispatch();
     const params = useParams();
     const postId = params.id;
 
-    if(!postById) {
+    window.addEventListener("load", () => {
         dispatch(getPostById({postId}));
-    }
+    });
+
+    useEffect(() => {
+        dispatch(getPostById({postId}));
+    },[isDeletedComment])
 
     return (
         <div>
