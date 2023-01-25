@@ -52,5 +52,6 @@ export const urls = {
     codeRates: '/api/code-rates',
 
     posts: '/api/post',
-    comments: '/api/comments'
+    comments: '/api/comments',
+    notifications: '/api/notification'
 };

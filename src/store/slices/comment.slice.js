@@ -56,8 +56,9 @@ const commentSlice = createSlice({
             state.status = 'rejected';
             state.error = action.payload;
         },
-        [createComment.fulfilled]: (state) => {
+        [createComment.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
+            localStorage.setItem('comment', JSON.stringify(action.payload.data));
         },
 
         [updateComment.pending]: (state) => {

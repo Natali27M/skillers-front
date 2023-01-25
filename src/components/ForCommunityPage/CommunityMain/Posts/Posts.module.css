@@ -1,9 +1,55 @@
+.posts__main_box {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
 .posts__main {
-    width: 45%;
+    width: 50%;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-left: 1px solid darkgrey;
     border-right: 1px solid darkgrey;
+}
+
+.posts__main_left {
+    height: 280px;
+    border: 1px solid black;
+    margin-top: 50px;
+    width: 25%;
+}
+
+.posts__courses {
+    width: 25%;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.courses__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    position: sticky;
+    top: 7px;
+}
+
+.courses__wrap_no {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*column-gap: 100px;*/
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    padding-top: 50px;
+    position: relative;
+}
+
+.fix-search {
+    position: fixed;
+    top: 10px;
 }

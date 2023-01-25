@@ -10,7 +10,7 @@ import new_icon from '../../../images/new_icon.svg';
 import bell from '../../../images/community/bell.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
-import {getAllPosts, makeNotification, switchLanguage} from '../../../store';
+import {getAllNotifications, getAllPosts, makeNotification, switchLanguage} from '../../../store';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 import {Notification} from '../../ForCommunityPage';
@@ -19,7 +19,9 @@ import {Notification} from '../../ForCommunityPage';
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
-    const {posts, notifications} = useSelector(state => state['postReducers']);
+    // const {posts} = useSelector(state => state['postReducers']);
+    const {notifications} = useSelector(state => state['notificationReducers']);
+    // const {posts, notifications} = useSelector(state => state['postReducers']);
     const {isDeletedComment, isUpdateComment} = useSelector(state => state['commentReducers']);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     const dispatch = useDispatch();
@@ -33,33 +35,34 @@ const Header = () => {
             setOpen(false);
             setIsComponentVisible(true);
         }
-        dispatch(getAllPosts());
+        dispatch(getAllNotifications());
+        // dispatch(getAllPosts());
     }, [isComponentVisible, isUpdateComment]);
 
     useEffect(() => {
         setOpen(false);
     }, [width, pathname]);
 
-    useEffect(() => {
-        const fullNotifications = [];
-        if (posts.data) {
-            for (const post of posts.data) {
-                if (user.id === post.attributes.userId) {
-                    for (const notificationElement of post.attributes.comments.data) {
-                        if (notificationElement.attributes.notification === false) {
-                            const elementNotification = {
-                                notifications: notificationElement,
-                                postId: post.id
-                            }
-                            fullNotifications.push(elementNotification);
-                        }
-                    }
-                }
-            }
-        }
-
-        dispatch(makeNotification(fullNotifications));
-    }, [posts, isDeletedComment]);
+    // useEffect(() => {
+    //     const fullNotifications = [];
+    //     if (posts.data) {
+    //         for (const post of posts.data) {
+    //             if (user.id === post.attributes.userId) {
+    //                 for (const notificationElement of post.attributes.comments.data) {
+    //                     if (notificationElement.attributes.notification === false) {
+    //                         const elementNotification = {
+    //                             notifications: notificationElement,
+    //                             postId: post.id
+    //                         }
+    //                         fullNotifications.push(elementNotification);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     dispatch(makeNotification(fullNotifications));
+    // }, [posts, isDeletedComment]);
 
     const commentingPosts = () => {
         if (!openNotifications) {
@@ -102,9 +105,7 @@ const Header = () => {
                     <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
 
-                <div onClick={() => {
-                    commentingPosts()
-                }} className={css.header__notification}>
+                <div onClick={() => {commentingPosts()}} className={css.header__notification}>
                     {notifications.length > 0 &&
                         <div className={css.header__notification_length}>{notifications.length}</div>
                     }
@@ -115,12 +116,11 @@ const Header = () => {
 
                 {openNotifications && <div className={css.notification__main}>
                     {notifications.map(value =>
-                        <Notification key={value.notifications.id}
+                        <Notification key={value.id}
                                       notification={value}
                                       setOpenNotification={setOpenNotifications}/>)
                     }
-                </div>
-                }
+                </div>}
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
@@ -138,7 +138,26 @@ const Header = () => {
                     </button>
                 </div>
             </div>
+
             <div className={css.burger__btn} onClick={() => setOpen(!open)}>
+
+                <div onClick={() => {commentingPosts()}} className={css.header__notification}>
+                    {notifications.length > 0 &&
+                        <div className={css.header__notification_length}>{notifications.length}</div>
+                    }
+                    <div className={css.header__notification_img}>
+                        <img src={bell} alt="notification"/>
+                    </div>
+                </div>
+
+                {openNotifications && <div className={css.notification__main}>
+                    {notifications.map(value =>
+                        <Notification key={value.id}
+                                      notification={value}
+                                      setOpenNotification={setOpenNotifications}/>)
+                    }
+                </div>}
+
                 <Hamburger toggled={open}/>
             </div>
 

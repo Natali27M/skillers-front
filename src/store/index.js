@@ -13,3 +13,4 @@ export * from './slices/recruiter.slice';
 export * from './slices/paymentRequest.slice';
 export * from './slices/post.slice';
 export * from './slices/comment.slice';
+export * from './slices/notification.slice';

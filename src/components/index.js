@@ -8,5 +8,6 @@ export * from './ForTestPage';
 export * from './GeneralComponents';
 export * from './ForAdminPage';
 export * from './ForMentorsPage';
-export * from './ForTestWithCodePage'
-export * from './ForCommunityPage'
+export * from './ForTestWithCodePage';
+export * from './ForCommunityPage';
+export * from './ForPostDetailsPage';

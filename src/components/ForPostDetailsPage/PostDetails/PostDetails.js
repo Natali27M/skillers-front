@@ -4,26 +4,22 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import css from './Post.module.css';
-import {
-    createComment,
-    createNotification,
-    getAllNotifications,
-    getPostById
-} from '../../../../store';
-import {Comment} from '../Comment/Comment';
-import questionColor from '../../../../images/community/questionColor.svg';
-import message from '../../../../images/community/message.svg';
-// import results from '../../../../images/community/results.svg';
-import results from '../../../../images/community/winner.svg';
+import css from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
 
-const Post = ({post}) => {
+
+import questionColor from '../../../images/community/questionColor.svg';
+import message from '../../../images/community/message.svg';
+// import results from '../../../images/community/results.svg';
+import results from '../../../images/community/winner.svg';
+import {Comment} from '../../ForCommunityPage';
+import {createComment, getPostById} from '../../../store';
+import {CommentDetails} from '../CommentDetails/CommentDetails';
+
+const PostDetails = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const [sendComment, setSendComment] = useState(false);
-    const [value, setValue] = useState("");
     const {handleSubmit, reset} = useForm();
-    const textAreaRef = useRef(null);
     const dispatch = useDispatch();
     const comments = post.attributes.comments.data;
     const createdAt = post.attributes.createdAt.split('T');
@@ -38,6 +34,9 @@ const Post = ({post}) => {
             setValue('');
         }
     };
+
+    const [value, setValue] = useState("");
+    const textAreaRef = useRef(null);
 
     const useAutosizeTextArea = (textAreaRef, value) => {
         useEffect(() => {
@@ -60,41 +59,24 @@ const Post = ({post}) => {
         setValue(val);
     };
 
-    const createNotifications = async () => {
-        const comment = JSON.parse(localStorage.getItem('comment'));
-
-        if (comment.id) {
-            const notification = {
-                postId: comment.attributes.idPost,
-                commentId: comment.id,
-                idComment: comment.id,
-                userId: user.id,
-                username: user.username,
-                isReaded: false
-            };
-            dispatch(createNotification(notification));
-        }
-        return localStorage.removeItem('question');
-    }
-
-    const makeComment = async () => {
+    const makeComment = () => {
         const comment = {
             postId: postId,
             comment: value,
             userId: user.id,
             username: user.username,
             notification: false,
-            postAuthorId: post.attributes.userId,
-            idPost: postId
-        };
-        await dispatch(createComment(comment));
-        createNotifications();
+            postAuthorId: post.attributes.userId
+        }
+        dispatch(createComment(comment));
         reset();
         setValue('');
         setSendComment(false);
         dispatch(getPostById({postId}));
-        dispatch(getAllNotifications());
     };
+
+    useEffect(() => {
+    }, [comments]);
 
     const newComments = comments.map(value => value);
     const reverseComments = newComments.reverse();
@@ -148,11 +130,13 @@ const Post = ({post}) => {
                                 <button className={css.post__createComment_send}></button>
                             </form>
 
-                            {reverseComments.length > 0 &&
-                                <Comment key={value.id} comment={reverseComments[0]} comments={reverseComments}/>
-                            }
                         </div>
                     }
+
+                    {reverseComments.length > 0 &&
+                        <CommentDetails key={value.id} comments={reverseComments}/>
+                    }
+
                 </div>
             }
 
@@ -176,6 +160,8 @@ const Post = ({post}) => {
                         </SyntaxHighlighter>
                     }
 
+                    <div>{post.attributes.post.expected_result}</div>
+
                     <div className={css.post__block_footer}>
                         <div onClick={() => navigate(`/community/question/${post.attributes.post.id}`)}
                              className={css.post__message_question}>
@@ -189,4 +175,5 @@ const Post = ({post}) => {
     );
 };
 
-export {Post};
+
+export {PostDetails};

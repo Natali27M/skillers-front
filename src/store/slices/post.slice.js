@@ -15,9 +15,9 @@ export const createPost = createAsyncThunk(
 
 export const getAllPosts = createAsyncThunk(
     'postSlice/getAllPosts',
-    async () => {
+    async ({pageNumber}) => {
         try {
-            return await postsServices.getAllPosts();
+            return await postsServices.getAllPosts(pageNumber);
         } catch (error) {
             return error.message;
         }

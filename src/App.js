@@ -213,6 +213,7 @@ function App() {
                         <Route path={'post/:id'} element={<PostDetailsPage/>}/>
                         <Route path={'/community'} element={<CommunityPage/>}>
                             <Route index element={<Posts/>}/>
+                            <Route path={'/community/home'} element={<Posts/>}/>
                             <Route path={'/community/question'} element={<CommunityQuestion/>}/>
                             <Route path={'/community/idea'} element={<CommunityIdea/>}/>
                         </Route>
