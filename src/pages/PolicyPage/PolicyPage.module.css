@@ -14,8 +14,8 @@
     align-items: center;
 }
 
-h1,
-h2 {
+.policy__page h1,
+.policy__page h2 {
     text-align: center;
     width: 100%;
 }

@@ -4,8 +4,7 @@ import {urls} from '../config';
 
 export const vacancyServices = {
     createVacancy: (data) => axiosServices.post(urls.vacancies, {data: data}).then(value => value.data),
-    getVacancyPaginated: (pageNumber) => axiosServices.get(`${urls.vacancies}?populate=%2A&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`)
-        .then(value => value.data)
-
-
+    getVacancyPaginated: (query, pageNumber) => axiosServices.get(`${urls.vacancies}?populate=%2A&${query}&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`)
+        .then(value => value.data),
+    getOneVacancy: (id) => axiosServices.get(`${urls.vacancies}/${id}?populate=%2A`).then(value => value.data.data)
 };

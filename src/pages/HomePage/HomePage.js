@@ -64,7 +64,7 @@ const HomePage = () => {
             <LeaderBord/>
             <SklBanner/>
             <Feedbacks/>
-            <YoutubeChannel/>
+            {/*<YoutubeChannel/>*/}
         </>
     );
 };

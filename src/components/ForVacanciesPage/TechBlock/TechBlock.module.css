@@ -1,0 +1,11 @@
+.tech__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 15px;
+}

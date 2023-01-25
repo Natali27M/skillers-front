@@ -23,3 +23,4 @@ export * from './HomeFirepadPage/HomeFirepadPage';
 export * from './MainFirepadPage/MainFirepadPage';
 export * from './SKLPage/SKLPage';
 export * from './VacanciesPage/VacanciesPage';
+export * from './VacancyPage/VacancyPage';

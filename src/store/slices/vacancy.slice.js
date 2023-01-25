@@ -14,9 +14,19 @@ export const createVacancy = createAsyncThunk(
 
 export const getVacanciesPaginated = createAsyncThunk(
     'vacancySlice/getVacanciesPaginated',
-    async (pageNumber, {rejectWithValue}) => {
+    async ({query, pageNumber}, {rejectWithValue}) => {
         try {
-            return await vacancyServices.getVacancyPaginated(pageNumber);
+            return await vacancyServices.getVacancyPaginated(query, pageNumber);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+export const getOneVacancy = createAsyncThunk(
+    'vacancySlice/getOneVacancy',
+    async (id, {rejectWithValue}) => {
+        try {
+            return await vacancyServices.getOneVacancy(id);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -53,6 +63,19 @@ export const vacancySlice = createSlice({
             state.status = 'pending';
         },
         [getVacanciesPaginated.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+
+        [getOneVacancy.fulfilled]: (state, action) => {
+            state.vacancy = action.payload;
+            state.status = 'fulfilled';
+        },
+        [getOneVacancy.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getOneVacancy.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         }

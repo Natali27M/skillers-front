@@ -28,7 +28,7 @@ import {
     TestListPage,
     TestPage,
     TestWithCodePage,
-    UserPage, VacanciesPage
+    UserPage, VacanciesPage, VacancyPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -209,6 +209,7 @@ function App() {
                         <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
                         <Route path={'/vacancies'} element={<VacanciesPage/>}/>
+                        <Route path={'/vacancy/:vacancyId'} element={<VacancyPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>
