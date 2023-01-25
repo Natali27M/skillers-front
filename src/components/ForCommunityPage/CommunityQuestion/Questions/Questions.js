@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {Checkbox, FormControlLabel} from "@mui/material";
+import qs from "qs";
 
 import css from './Questions.module.css';
 
 import {getAllQuestions, getTechnologies} from "../../../../store";
 import {PaginationSmall} from "../../../GeneralComponents";
 import {Question} from "../Question/Question";
-import {Checkbox, FormControlLabel} from "@mui/material";
-import qs from "qs";
+
 
 const Questions = () => {
     const {EN} = useSelector(state => state['languageReducers']);
-    let {user} = useSelector(state => state['userReducers']);
+    const {user} = useSelector(state => state['userReducers']);
     const {questions, isDeleteQuestion} = useSelector(state => state['questionsReducers']);
     const {technologies} = useSelector(state => state['technologiesReducers']);
 
@@ -60,7 +61,8 @@ const Questions = () => {
         <div className={css.container}>
             <div className={css.questions__container}>
                 <div className={css.top_ack__block}>
-                    <h3>{EN ? "All Question" : "Всі Запитання"}</h3>
+                    <h4>{EN ? "All Question" : "Всі Запитання"}</h4>
+                    <h3>Community questions</h3>
                     <button className={css.ask__button}
                             onClick={() => navigate('/community/question/ask')}>{EN ? "Ask question" : "Задати запитання"}</button>
                 </div>

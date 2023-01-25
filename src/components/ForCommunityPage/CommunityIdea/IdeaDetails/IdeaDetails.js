@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CommunityIdea = () => {
+const IdeaDetails = () => {
     return (
         <div>
-            Community Idea
+
         </div>
     );
 };
 
-export {CommunityIdea};
+export {IdeaDetails};
