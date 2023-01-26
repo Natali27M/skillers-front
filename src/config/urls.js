@@ -51,5 +51,7 @@ export const urls = {
 
     codeRates: '/api/code-rates',
 
-    vacancies: '/api/vacancies'
+    vacancies: '/api/vacancies',
+
+    vacancyResponse: '/api/vacancy-responses'
 };

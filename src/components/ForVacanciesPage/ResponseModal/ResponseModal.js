@@ -2,20 +2,28 @@ import React from 'react';
 
 import css from './ResponseModal.module.css';
 import rootCss from '../../../styles/root.module.css';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import cross from '../../../images/cross.svg';
 import {useForm} from 'react-hook-form';
 import {Link} from 'react-router-dom';
+import {createVacancyResponse} from '../../../store/slices/vacancyResponses.slice';
 
-const ResponseModal = ({vacancy, setResponseTime}) => {
+const ResponseModal = ({vacancy, setResponseTime, userId}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
+
+    const dispatch = useDispatch();
 
     const {
         register, handleSubmit, reset
     } = useForm();
 
     const sendResponse = (obj) => {
-        console.log(obj);
+        dispatch(createVacancyResponse({
+            ...obj,
+            vacancyId: vacancy?.id,
+            userId
+        }));
         setResponseTime(false);
         reset();
     };

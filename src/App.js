@@ -8,7 +8,7 @@ import {
     AdminPage,
     CompilerPage,
     CreateCodeTestPage,
-    CreateTestPage,
+    CreateTestPage, EmployerPage,
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
@@ -28,7 +28,7 @@ import {
     TestListPage,
     TestPage,
     TestWithCodePage,
-    UserPage, VacanciesPage, VacancyPage
+    UserPage, VacanciesPage, VacancyPage, VacancyResponsesPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -210,6 +210,8 @@ function App() {
                         <Route path={'/skl-token'} element={<SklPage/>}/>
                         <Route path={'/vacancies'} element={<VacanciesPage/>}/>
                         <Route path={'/vacancy/:vacancyId'} element={<VacancyPage/>}/>
+                        <Route path={'/employer'} element={<EmployerPage/>}/>
+                        <Route path={'/vacancy-responses/:vacancyId'} element={<VacancyResponsesPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>

@@ -16,17 +16,26 @@ import vacancyTimeDisplay from '../../RootFunctions/vacancyTimeDisplay';
 import vacanciesReviewDisplay from '../../RootFunctions/vacanciesReviewDisplay';
 import rootCss from '../../styles/root.module.css';
 import {ResponseModal} from '../../components';
+import {getResponseOfUserByVacancy} from '../../store/slices/vacancyResponses.slice';
 
 const VacancyPage = () => {
     const {vacancyId} = useParams();
 
     const {vacancy} = useSelector(state => state['vacancyReducers']);
 
+    const {userResponse} = useSelector(state => state['vacancyResponseReducers']);
+
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {user} = useSelector(state => state['userReducers']);
 
     const dispatch = useDispatch();
 
     const [responseTime, setResponseTime] = useState(false);
+
+    useEffect(() => {
+        if (user) dispatch(getResponseOfUserByVacancy({userId: user?.id, vacancyId}));
+    }, [vacancyId, user]);
 
     useEffect(() => {
         dispatch(getOneVacancy(vacancyId));
@@ -54,7 +63,7 @@ const VacancyPage = () => {
                 <title>{title}</title>
                 <link rel="canonical" href={url}/>
             </Helmet>
-            {responseTime && <ResponseModal vacancy={vacancy} setResponseTime={setResponseTime}/>}
+            {responseTime && <ResponseModal vacancy={vacancy} setResponseTime={setResponseTime} userId={user?.id}/>}
             <div className={css.vacancy__wrap}>
                 <div className={css.vacancy__main}>
                     <div className={css.vacancy__header}>
@@ -101,9 +110,11 @@ const VacancyPage = () => {
                         <img src={people} alt="people"/>
                         <h6>{vacanciesReviewDisplay(vacancy?.attributes?.reviews, EN)}</h6>
                     </div>
-                    <button onClick={() => setResponseTime(true)} className={rootCss.default__button}>
-                        {EN ? 'Reply to the vacancy' : 'Відповісти на вакансію'}
-                    </button>
+                    {userResponse ? (EN ? 'You have already responded to the vacancy' : 'Ви вже відповіли на вакансію') :
+                        <button onClick={() => setResponseTime(true)} className={rootCss.default__button}>
+                            {EN ? 'Reply to the vacancy' : 'Відповісти на вакансію'}
+                        </button>
+                    }
                 </div>}
             </div>
         </div>

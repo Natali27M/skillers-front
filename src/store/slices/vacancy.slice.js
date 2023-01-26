@@ -22,6 +22,7 @@ export const getVacanciesPaginated = createAsyncThunk(
         }
     }
 );
+
 export const getOneVacancy = createAsyncThunk(
     'vacancySlice/getOneVacancy',
     async (id, {rejectWithValue}) => {
@@ -33,13 +34,26 @@ export const getOneVacancy = createAsyncThunk(
     }
 );
 
+export const getVacanciesByEmployer = createAsyncThunk(
+    'vacancySlice/getVacanciesByEmployer',
+    async ({employerId, pageNum}, {rejectWithValue}) => {
+        try {
+            return await vacancyServices.getVacanciesPageByEmployer(employerId, pageNum);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
+
 export const vacancySlice = createSlice({
     name: 'vacancySlice',
     initialState: {
         status: null,
         error: null,
         vacancy: null,
-        vacanciesPage: null
+        vacanciesPage: null,
+        vacanciesByEmployerPage: null
     },
     extraReducers: {
         [createVacancy.fulfilled]: (state, action) => {
@@ -76,6 +90,19 @@ export const vacancySlice = createSlice({
             state.status = 'pending';
         },
         [getOneVacancy.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+
+
+        [getVacanciesByEmployer.fulfilled]: (state, action) => {
+            state.vacanciesByEmployerPage = action.payload;
+            state.status = 'fulfilled';
+        },
+        [getVacanciesByEmployer.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getVacanciesByEmployer.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.payload;
         }
