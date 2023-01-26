@@ -1,0 +1,35 @@
+.response__block {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.response__username {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cover__letter {
+    font-size: 16px;
+}
+
+.data__links {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.response__time {
+    font-size: 16px;
+    color: #646464;
+}
+
+.response__email {
+    font-size: 16px;
+    color: #646464;
+    font-weight: 400;
+    cursor: pointer;
+}

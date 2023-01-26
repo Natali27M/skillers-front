@@ -15,7 +15,7 @@ import vacanciesExperienceDisplay from '../../RootFunctions/vacanciesExperienceD
 import vacancyTimeDisplay from '../../RootFunctions/vacancyTimeDisplay';
 import vacanciesReviewDisplay from '../../RootFunctions/vacanciesReviewDisplay';
 import rootCss from '../../styles/root.module.css';
-import {ResponseModal} from '../../components';
+import {BackButton, ResponseModal} from '../../components';
 import {getResponseOfUserByVacancy} from '../../store/slices/vacancyResponses.slice';
 
 const VacancyPage = () => {
@@ -94,6 +94,7 @@ const VacancyPage = () => {
                     }
                 </div>
                 {!!vacancy && <div className={css.vacancy__info}>
+                    <BackButton/>
                     <div className={css.vacancy__info_block}>
                         <img src={experience} alt="experience"/>
                         <h6>{vacanciesExperienceDisplay(vacancy?.attributes?.experience, EN)}</h6>

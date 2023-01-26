@@ -8,7 +8,7 @@ import {getOneVacancy} from '../../store/slices/vacancy.slice';
 import {useDispatch, useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet-async';
 import {getResponsesByVacancy} from '../../store/slices/vacancyResponses.slice';
-import {PaginationSmall, ResponseBlock} from '../../components';
+import {BackButton, PaginationSmall, ResponseBlock} from '../../components';
 
 const VacancyResponsesPage = () => {
     const {vacancyId} = useParams();
@@ -22,10 +22,6 @@ const VacancyResponsesPage = () => {
     const [pageNumber, setPageNumber] = useState(1);
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        console.log(responsesPage);
-    }, [responsesPage]);
 
     useEffect(() => {
         dispatch(getOneVacancy(vacancyId));
@@ -54,6 +50,7 @@ const VacancyResponsesPage = () => {
                     <h2 className={employerCss.employer__title}>
                         {vacancy?.attributes?.title && (EN ? `${vacancy?.attributes?.title} responses` : `${vacancy?.attributes?.title} відгуки`)}
                     </h2>
+                    <BackButton/>
                 </div>
                 {responsesPage?.data?.map(response => <ResponseBlock key={response?.id} response={response}/>)}
                 {!!responsesPage?.data?.length &&
