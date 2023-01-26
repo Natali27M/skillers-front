@@ -53,5 +53,9 @@ export const urls = {
 
     questions: '/api/question',
     answers: '/api/answers-to-questions',
+    categories: '/api/categorie',
+    ideas: '/api/idea',
+    discussions: '/api/discussion',
+
     posts: '/api/post',
 };

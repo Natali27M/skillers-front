@@ -12,3 +12,5 @@ export * from './codeResults.services';
 export * from './paymentRequests.service';
 export * from './question.services';
 export * from './answers.services';
+export * from './categories.services';
+export * from './ideas.services';

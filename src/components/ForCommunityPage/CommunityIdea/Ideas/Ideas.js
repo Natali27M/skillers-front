@@ -1,26 +1,50 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import qs from "qs";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css from './Ideas.module.css';
-import {useNavigate} from "react-router-dom";
+
+import {getAllIdeas} from "../../../../store";
+import {PaginationSmall} from "../../../GeneralComponents";
+import {OneIdea} from "../OneIdea/OneIdea";
 
 const Ideas = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
+    const {ideas} = useSelector(state => state['ideasReducers']);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [page, setPage] = useState(1);
     const [filters, setFilters] = useState(false);
-
+    const [technologyArray, setTechnologyArray] = useState([]);
+    const [categoryArray, setCategoryArray] = useState([]);
 
     useEffect(() => {
         if (!user) {
             return navigate('/login');
         }
-        // dispatch()
-    }, [])
+        let query = qs.stringify({
+            filters: {
+                technologies: {
+                    value: {
+                        $in: technologyArray,
+                    },
+                },
+                categories: {
+                    value: {
+                        $in: categoryArray,
+                    },
+                }
+            }
+        }, {encodeValuesOnly: true});
+
+        dispatch(getAllIdeas({page, query}))
+
+    }, [page])
 
     return (
         <div className={css_helper.container}>
@@ -47,6 +71,18 @@ const Ideas = () => {
                         <button onClick={() => setFilters(!filters)}>
                             {EN ? "Filter" : " Фільтрувати"}
                         </button>
+                    </div>
+                </div>
+
+                <div className={css.filter_container}>
+                    <div className={css.ideas}>
+                        {ideas?.data?.length && ideas.data.map(value => <OneIdea key={value.id} idea={value}/>)}
+                    </div>
+
+                    <div className={css.ideas_pagination}>
+                        <PaginationSmall pageNumber={page}
+                                         setPageNumber={setPage}
+                                         pageCount={ideas?.meta?.pagination?.pageCount}/>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
     width: 100%;
     min-height: 100px;
     background: #F3F3F3;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     cursor: pointer;
     padding: 20px;
 }
