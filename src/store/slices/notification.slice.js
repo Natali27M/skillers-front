@@ -47,6 +47,17 @@ export const deleteNotification = createAsyncThunk(
     }
 );
 
+export const findNotificationByCommentId = createAsyncThunk(
+    'commentSlice/findNotificationByCommentId',
+    async (commentId, {rejectWithValue}) => {
+        try {
+            return await notificationsServices.findNotificationByCommentId(commentId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 const notificationSlice = createSlice({
     name: 'notificationSlice',
     initialState: {

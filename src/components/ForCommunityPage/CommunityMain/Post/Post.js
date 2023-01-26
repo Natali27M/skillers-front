@@ -24,10 +24,10 @@ const Post = ({post}) => {
     const [value, setValue] = useState("");
     const {handleSubmit, reset} = useForm();
     const textAreaRef = useRef(null);
-    const dispatch = useDispatch();
     const comments = post.attributes.comments.data;
     const createdAt = post.attributes.createdAt.split('T');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const postId = post.id;
 
     const wantComment = () => {
@@ -146,10 +146,12 @@ const Post = ({post}) => {
                             value={value}
                         />
                                 <button className={css.post__createComment_send}></button>
+
                             </form>
 
                             {reverseComments.length > 0 &&
-                                <Comment key={value.id} comment={reverseComments[0]} comments={reverseComments}/>
+                                <Comment key={value.id} comment={reverseComments[0]}
+                                         comments={reverseComments}/>
                             }
                         </div>
                     }
@@ -185,6 +187,37 @@ const Post = ({post}) => {
 
                 </div>
             }
+
+            {post.attributes.post.type === 'idea' &&
+                <div className={css.post__block}>
+                    <div className={css.post__block_header}>
+                        <div className={css.post__block_header_left}>
+                            <img src={questionColor} alt="question" className={css.post__question}/>
+                            <div className={css.post__username}>{post.attributes.post.userName}</div>
+                        </div>
+                        <div className={css.post__createdAt}>{createdAt[0]}</div>
+                    </div>
+
+                    <div className={css.question_title}>{post.attributes.post.title}</div>
+
+                    <div>{post.attributes.post.description}</div>
+
+                    {/*{post.attributes.post.details &&*/}
+                    {/*    <SyntaxHighlighter className={css.comment__block_box}>*/}
+                    {/*        {post.attributes.post.details}*/}
+                    {/*    </SyntaxHighlighter>*/}
+                    {/*}*/}
+
+                    <div className={css.post__block_footer}>
+                        <div onClick={() => navigate(`/community/idea/${post.attributes.post.id}`)}
+                             className={css.post__message_question}>
+                            <div>{EN ? 'Go to discussion' : 'Перейти до обговорення'}</div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
         </div>
     );
 };

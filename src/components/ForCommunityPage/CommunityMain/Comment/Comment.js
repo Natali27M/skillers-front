@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -6,10 +6,12 @@ import css from "./Comment.module.css";
 import cssPost from "../Post/Post.module.css";
 import basket from '../../../../images/community/basket.svg';
 import {MoreComment} from '../MoreComment/MoreComment';
-import {deleteComment} from '../../../../store';
+import {notificationsServices} from '../../../../services';
+import {deleteComment, deleteNotification} from '../../../../store';
 
 const Comment = ({comment, comments}) => {
     const {user} = useSelector(state => state['userReducers']);
+    const {status, isDeletedNotification} = useSelector(state => state['commentReducers']);
     const [moreComments, setMoreComments] = useState(false);
     const createdAt = comment.attributes.createdAt.split('T');
     const dispatch = useDispatch();
@@ -23,7 +25,9 @@ const Comment = ({comment, comments}) => {
         }
     }
 
-    const deletedComment = () => {
+    const deletedComment = async () => {
+        const {data} = await notificationsServices.findNotificationByCommentId(commentId);
+        dispatch(deleteNotification(data[0].id));
         dispatch(deleteComment(commentId));
     };
 

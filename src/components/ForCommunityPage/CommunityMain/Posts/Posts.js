@@ -44,7 +44,27 @@ const Posts = () => {
             <div className={css.posts__main_left}>HELLO</div>
 
             <div className={css.posts__main}>
-                {posts?.data?.length && posts?.data?.map(value => <Post key={value.id} post={value}/>)}
+                {posts?.data?.length ? posts?.data?.map(value => <Post key={value.id} post={value}/>)
+                    :
+                    <div className={css.loading__main_post}>
+                        <div className={css.loading__header}>
+                            <div className={css.loading__userName}></div>
+                            <div className={css.loading__createdAt}></div>
+                        </div>
+                        <div className={css.loading__title}></div>
+                        <div className={css.loading__line}></div>
+                        <div className={css.loading__testName}></div>
+                        <div className={css.loading__left_block}>
+                            <div className={css.loading__createdAt}></div>
+                            <div className={css.loading__createdAt}></div>
+                        </div>
+                        <div className={css.loading__img}></div>
+                        <div className={css.loading__hr}></div>
+                        <div className={css.loading__footer}>
+                            <div className={css.loading__comment}></div>
+                        </div>
+                    </div>
+                }
 
                 <PaginationSmall
                     pageNumber={posts?.meta?.pagination.page}

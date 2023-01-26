@@ -5,20 +5,24 @@ import {useNavigate} from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import css from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
-
-
 import questionColor from '../../../images/community/questionColor.svg';
 import message from '../../../images/community/message.svg';
 // import results from '../../../images/community/results.svg';
 import results from '../../../images/community/winner.svg';
-import {Comment} from '../../ForCommunityPage';
-import {createComment, getPostById} from '../../../store';
+import {
+    createComment,
+    createNotification,
+    getPostById,
+} from '../../../store';
 import {CommentDetails} from '../CommentDetails/CommentDetails';
 
 const PostDetails = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
+    const {status} = useSelector(state => state['commentReducers']);
+    const {notifications} = useSelector(state => state['notificationReducers']);
     const [sendComment, setSendComment] = useState(false);
+    const [scrollTop, setScrollTop] = useState(false);
     const {handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
     const comments = post.attributes.comments.data;
@@ -59,6 +63,23 @@ const PostDetails = ({post}) => {
         setValue(val);
     };
 
+    const createNotifications = async () => {
+        const comment = JSON.parse(localStorage.getItem('comment'));
+
+        if (comment.id) {
+            const notification = {
+                postId: comment.attributes.idPost,
+                commentId: comment.id,
+                idComment: comment.id,
+                userId: user.id,
+                username: user.username,
+                isReaded: false
+            };
+            dispatch(createNotification(notification));
+        }
+        return localStorage.removeItem('question');
+    }
+
     const makeComment = () => {
         const comment = {
             postId: postId,
@@ -69,6 +90,7 @@ const PostDetails = ({post}) => {
             postAuthorId: post.attributes.userId
         }
         dispatch(createComment(comment));
+        createNotifications();
         reset();
         setValue('');
         setSendComment(false);
@@ -76,7 +98,36 @@ const PostDetails = ({post}) => {
     };
 
     useEffect(() => {
-    }, [comments]);
+    }, [comments.length, status === 'fulfilled']);
+
+    // console.log(notifications);
+
+// // Get a reference to the <div> with the corresponding ID
+//     let myDiv = React.useRef(null);
+//
+// // Function to track the scroll position
+//     const trackScroll = () => {
+//         // Get the current scroll position
+//         let scrollPosition = window.scrollY;
+//
+//         // Create an array to store the divs with dynamic IDs
+//         let divs = [];
+//
+//         // Loop through the divs and push it to the divs array
+//         for (let i = 0; i < myDiv.current.length; i++) {
+//             divs.push(myDiv.current[i]);
+//         }
+//
+//         // Loop through the divs array and compare the scrollPosition with the offsetTop of the divs
+//         for (let i = 0; i < divs.length; i++) {
+//             if (scrollPosition >= divs[i].offsetTop) {
+//                 console.log(`Div with ID ${divs[i].id} is visible`);
+//             }
+//         }
+//     };
+//
+// // Attach the event listener to the window and call the trackScroll() function
+//     window.addEventListener("scroll", trackScroll);
 
     const newComments = comments.map(value => value);
     const reverseComments = newComments.reverse();

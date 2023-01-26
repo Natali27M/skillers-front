@@ -7,7 +7,7 @@ import {PostDetails} from '../../components';
 
 const PostDetailsPage = () => {
     const {postById} = useSelector(state => state['postReducers']);
-    const {isDeletedComment} = useSelector(state => state['commentReducers']);
+    const {isDeletedComment, status} = useSelector(state => state['commentReducers']);
     const dispatch = useDispatch();
     const params = useParams();
     const postId = params.id;
@@ -18,7 +18,7 @@ const PostDetailsPage = () => {
 
     useEffect(() => {
         dispatch(getPostById({postId}));
-    },[isDeletedComment])
+    },[isDeletedComment, status === 'fulfilled']);
 
     return (
         <div>

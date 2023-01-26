@@ -176,6 +176,10 @@
     align-items: flex-start;
 }
 
+.header__notification_length_no {
+    display: none;
+}
+
 .header__notification_img {
     display: flex;
     align-items: center;

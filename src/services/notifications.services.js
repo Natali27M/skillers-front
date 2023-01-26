@@ -10,4 +10,7 @@ export const notificationsServices = {
         .then(value => value.data),
     deleteNotification: (notificationId) => axiosServices.delete(`${urls.notifications}/${notificationId}`)
         .then(value => value.data),
+    findNotificationByCommentId: (commentId) => axiosServices.get(`${urls.notifications}?find[idComment][$eq]=${commentId}`),
+    notificationByCommentId: (commentId) => axiosServices.get(`${urls.notifications}?find[idComment][$eq]=${commentId}&filters[isReaded][$eq]=false`)
+        .then(value => value.data)
 }
