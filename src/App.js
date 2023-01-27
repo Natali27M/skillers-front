@@ -8,7 +8,7 @@ import {
     AdminPage,
     CompilerPage,
     CreateCodeTestPage,
-    CreateTestPage, EmployerPage,
+    CreateTestPage, CreateVacancyPage, EmployerPage,
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
@@ -212,6 +212,7 @@ function App() {
                         <Route path={'/vacancy/:vacancyId'} element={<VacancyPage/>}/>
                         <Route path={'/employer'} element={<EmployerPage/>}/>
                         <Route path={'/vacancy-responses/:vacancyId'} element={<VacancyResponsesPage/>}/>
+                        <Route path={'/create-vacancy'} element={<CreateVacancyPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>
