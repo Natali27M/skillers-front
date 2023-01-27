@@ -66,6 +66,16 @@ const CreateVacancyPage = () => {
                                className={css.create__vacancy_input}/>
                     </div>
                     <div className={css.select__wrap}>
+                        <h4>{EN ? 'Enter company website url' : 'Ведіть посилання на сайт компанії'}</h4>
+                        <input placeholder={EN ? 'Company website' : 'Сайт компанії'} type="text"
+                               className={css.create__vacancy_input}/>
+                    </div>
+                    <div className={css.select__wrap}>
+                        <h4>{EN ? 'Enter salary' : 'Ведіть зарплату'}</h4>
+                        <input placeholder={EN ? 'Salary' : 'Зарплата'} type="text"
+                               className={css.create__vacancy_input}/>
+                    </div>
+                    <div className={css.select__wrap}>
                         <h4>{EN ? 'Select a technology: ' : 'Виберіть технологію: '}</h4>
                         <Select options={technologies?.data?.map(value => value.attributes)}
                                 onChange={technologiesArray}
@@ -83,7 +93,7 @@ const CreateVacancyPage = () => {
                                 className={css.create__vacancy_select}/>
                     </div>
                     <div className={css.select__wrap}>
-                        <h4>{EN ? 'Select experience: ' : 'Виберіть досвід: '}</h4>
+                        <h4>{EN ? 'Select english level: ' : 'Виберіть рівень англійської: '}</h4>
                         <Select options={englishLevels} onChange={setEnglishLevel}
                                 placeholder={EN ? 'English level' : 'Рівень англійської'}
                                 styles={style}
@@ -100,7 +110,6 @@ const CreateVacancyPage = () => {
                         </div>
 
                     </div>
-
 
 
                 </form>
