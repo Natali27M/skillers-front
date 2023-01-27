@@ -9,5 +9,5 @@ export const vacancyServices = {
     getOneVacancy: (id) => axiosServices.get(`${urls.vacancies}/${id}?populate=%2A`).then(value => value.data.data),
     getVacanciesPageByEmployer: (employerId, pageNumber) =>
         axiosServices.get(`${urls.vacancies}?populate=%2A&filters[employerId][$eq]=${employerId}&pagination[page]=${pageNumber}&pagination[pageSize]=10&sort=createdAt:desc`)
-            .then(value => value.data)
+            .then(value => value.data),
 };

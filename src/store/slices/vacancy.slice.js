@@ -55,6 +55,12 @@ export const vacancySlice = createSlice({
         vacanciesPage: null,
         vacanciesByEmployerPage: null
     },
+    reducers: {
+        clearBeforeCreate: (state) => {
+            state.status = null;
+            state.vacancy = null;
+        }
+    },
     extraReducers: {
         [createVacancy.fulfilled]: (state, action) => {
             state.vacancy = action.payload;
@@ -108,6 +114,8 @@ export const vacancySlice = createSlice({
         }
     }
 });
+
+export const {clearBeforeCreate} = vacancySlice.actions;
 
 const vacancyReducers = vacancySlice.reducer;
 

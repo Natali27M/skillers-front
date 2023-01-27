@@ -10,4 +10,5 @@ export * from './slices/technologies.slice';
 export * from './slices/codeTest.slice';
 export * from './slices/codeResults.slice';
 export * from './slices/recruiter.slice';
+export * from './slices/vacancy.slice';
 export * from './slices/paymentRequest.slice';

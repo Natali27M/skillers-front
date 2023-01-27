@@ -111,7 +111,7 @@ const VacancyPage = () => {
                         <img src={people} alt="people"/>
                         <h6>{vacanciesReviewDisplay(vacancy?.attributes?.reviews, EN)}</h6>
                     </div>
-                    {userResponse ? (EN ? 'You have already responded to the vacancy' : 'Ви вже відповіли на вакансію') :
+                    {userResponse?.data?.length ? (EN ? 'You have already responded to the vacancy' : 'Ви вже відповіли на вакансію') :
                         <button onClick={() => setResponseTime(true)} className={rootCss.default__button}>
                             {EN ? 'Reply to the vacancy' : 'Відповісти на вакансію'}
                         </button>
