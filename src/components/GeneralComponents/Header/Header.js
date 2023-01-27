@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Turn as Hamburger} from 'hamburger-react';
 
@@ -10,40 +10,54 @@ import new_icon from '../../../images/new_icon.svg';
 import bell from '../../../images/community/bell.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
-import {getAllNotifications, switchLanguage} from '../../../store';
+import {getNoOpenedNotifications, getNoReadNotifications, switchLanguage, updateNotification} from '../../../store';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
-import {Notification} from '../../ForCommunityPage';
-
 
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
-    const {notifications} = useSelector(state => state['notificationReducers']);
-    const {isUpdateComment, status} = useSelector(state => state['commentReducers']);
+    const {noOpenNotifications} = useSelector(state => state['notificationReducers']);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     const dispatch = useDispatch();
     const {pathname} = useLocation();
+    const navigate = useNavigate();
     const {width} = useWindowDimensions();
     const [open, setOpen] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
+    const userId = user?.id;
 
     useEffect(() => {
         if (!isComponentVisible) {
             setOpen(false);
             setIsComponentVisible(true);
         }
-        dispatch(getAllNotifications());
-    }, [isComponentVisible, isUpdateComment, status === 'fulfilled', openNotifications]);
+    }, [isComponentVisible]);
+
+    useEffect(() => {
+        if (userId) {
+            dispatch(getNoOpenedNotifications({userId}));
+        }
+    }, [pathname]);
 
     useEffect(() => {
         setOpen(false);
     }, [width, pathname]);
 
+    window.addEventListener('load', () => {
+        if (userId) {
+            dispatch(getNoOpenedNotifications({userId}));
+        }
+    });
+
     const commentingPosts = () => {
         if (!openNotifications) {
             setOpenNotifications(true);
             setOpen(!open);
+            navigate('/community/notification');
+            for (const elem of noOpenNotifications) {
+                dispatch(updateNotification({data: {isOpened: true}, notificationId: elem.id}));
+            }
         } else {
             setOpenNotifications(false);
         }
@@ -83,26 +97,18 @@ const Header = () => {
                 </div>
 
                 <div onClick={() => {
-                    if(notifications.length) {commentingPosts()}
+                    commentingPosts()
                 }} className={css.header__notification}>
-                    {/*{notifications.length &&*/}
-                        <div className={notifications.length ? css.header__notification_length
+                    {/*{!openNotifications &&*/}
+                        <div className={noOpenNotifications.length ? css.header__notification_length
                             : css.header__notification_length_no}>
-                            {notifications.length}
+                            {noOpenNotifications.length}
                         </div>
                     {/*}*/}
-                    <div className={css.header__notification_img}>
+                        <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>
-                    </div>
+                        </div>
                 </div>
-
-                {openNotifications && notifications.length && <div className={css.notification__main}>
-                    {notifications.map(value =>
-                        <Notification key={value.id}
-                                      notification={value}
-                                      setOpenNotification={setOpenNotifications}/>)
-                    }
-                </div>}
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
@@ -122,10 +128,10 @@ const Header = () => {
             </div>
 
             <div className={css.burger__btn} onClick={() => setOpen(!open)}>
-                {/*{notifications.length &&*/}
-                    <div className={notifications.length && !open ? css.header__notification_length
+                {/*{!openNotifications &&*/}
+                    <div className={noOpenNotifications.length && !open ? css.header__notification_length
                         : css.header__notification_length_no}>
-                        {notifications.length}
+                        {noOpenNotifications.length}
                     </div>
                 {/*}*/}
 
@@ -168,26 +174,18 @@ const Header = () => {
                 </Link>
 
                 <div onClick={() => {
-                    if(notifications.length) {commentingPosts()}
+                    commentingPosts()
                 }} className={css.header__notification}>
-                    {/*{notifications.length &&*/}
-                        <div className={notifications.length ? css.header__notification_length
+                    {/*{!openNotifications &&*/}
+                        <div className={noOpenNotifications.length ? css.header__notification_length
                             : css.header__notification_length_no}>
-                            {notifications.length}
+                            {noOpenNotifications.length}
                         </div>
                     {/*}*/}
                     <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>
                     </div>
                 </div>
-
-                {openNotifications && notifications.length && <div className={css.notification__main}>
-                    {notifications.map(value =>
-                        <Notification key={value.id}
-                                      notification={value}
-                                      setOpenNotification={setOpenNotifications}/>)
-                    }
-                </div>}
 
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -11,44 +11,35 @@ const Notification = ({notification, setOpenNotification}) => {
     const dispatch = useDispatch();
     const params = useParams();
     const postId = notification.attributes.postId;
-    const [scrollTop, setScrollTop] = useState(false);
     const commentId = notification.attributes.idComment;
-    let element = document.getElementById(`${commentId}`);
 
     const getPostDetails = () => {
         if (params.id && !postId) {
-            navigate(`/post/${params.id}`);
+            navigate(`/post/${params.id}`, {
+                state: {
+                    commentId: commentId
+                },
+            });
         } else if (!params.id && postId) {
-            navigate(`/post/${postId}`);
+            navigate(`/post/${postId}`, {
+                state: {
+                    commentId: commentId
+                },
+            });
         }
-        setOpenNotification(false);
-        dispatch(updateNotification({data: {isReaded: true}, notificationId: notification.id}));
-        if (element) {
-            element.scrollIntoView();
-        }
-    };
 
-    // useEffect(() => {
-    //     window.addEventListener('scroll', function () {
-    //         let position;
-    //         if (element !== null) {
-    //             position = element.getBoundingClientRect();
-    //         } else {
-    //             return;
-    //         }
-    //
-    //         if (position.top < window.innerHeight && position.bottom >= 0) {
-    //             setScrollTop(true);
-    //             dispatch(updateNotification({data: {isReaded: true}, notificationId: notification.id}));
-    //         }
-    //     });
-    // }, [scrollTop]);
+        if (setOpenNotification) {
+            setOpenNotification(false);
+        }
+        dispatch(updateNotification({data: {isReaded: true}, notificationId: notification.id}));
+    };
 
     return (
         <div>
             <div onClick={() => {
                 getPostDetails();
-            }} className={scrollTop ? css.notification_active : css.notification_notActive}>
+            }}
+                 className={notification.attributes.isReaded === false ? css.notification_noReaded : css.notification_readed}>
                 {EN ? `${notification.attributes.username} leaves a comment on your post`
                     : `${notification.attributes.username} залишає коментар до вашого посту`}
             </div>

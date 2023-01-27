@@ -18,6 +18,11 @@
     justify-content: space-between;
 }
 
+.post__user {
+    width: 50px;
+    height: 50px;
+}
+
 .post__block_header_left {
     display: flex;
     column-gap: 10px;
@@ -29,17 +34,11 @@
 }
 
 .post__username {
-    font-size: 16px;
-    font-weight: 500;
-    /*border-bottom: 3px solid;*/
-    padding-bottom: 3px;
-    margin-bottom: 15px;
-    /*border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);*/
-    /*border-image-slice: 1;*/
+    font-size: 14px;
 }
 
 .post__createdAt {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .post__tech {

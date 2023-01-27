@@ -24,3 +24,4 @@ export * from './MainFirepadPage/MainFirepadPage';
 export * from './SKLPage/SKLPage';
 export * from './CommunityPage/CommunityPage';
 export * from './PostDetailsPage/PostDetailsPage';
+export * from './NotificationPage/NotificationPage';

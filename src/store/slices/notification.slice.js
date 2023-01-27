@@ -4,11 +4,33 @@ import {notificationsServices} from '../../services';
 
 export const getAllNotifications = createAsyncThunk(
     'notificationSlice/getAllNotifications',
-    async () => {
+    async ({userId},{rejectWithValue}) => {
         try {
-            return await notificationsServices.getAllNotifications();
+            return await notificationsServices.getAllNotifications(userId);
         } catch (error) {
-            return error.message;
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const getNoReadNotifications = createAsyncThunk(
+    'notificationSlice/noReadNotifications',
+    async ({userId},{rejectWithValue}) => {
+        try {
+            return await notificationsServices.getNoReadNotifications(userId);
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const getNoOpenedNotifications = createAsyncThunk(
+    'notificationSlice/noOpenedNotifications',
+    async ({userId},{rejectWithValue}) => {
+        try {
+            return await notificationsServices.getNoOpenedNotifications(userId);
+        } catch (error) {
+            return rejectWithValue(error.message);
         }
     }
 );
@@ -47,17 +69,6 @@ export const deleteNotification = createAsyncThunk(
     }
 );
 
-export const findNotificationByCommentId = createAsyncThunk(
-    'commentSlice/findNotificationByCommentId',
-    async (commentId, {rejectWithValue}) => {
-        try {
-            return await notificationsServices.findNotificationByCommentId(commentId);
-        } catch (e) {
-            rejectWithValue(e);
-        }
-    }
-);
-
 const notificationSlice = createSlice({
     name: 'notificationSlice',
     initialState: {
@@ -65,6 +76,8 @@ const notificationSlice = createSlice({
         error: null,
         status: null,
         notifications: [],
+        noReadNotifications: [],
+        noOpenNotifications: [],
         isDeletedNotification: false,
         isUpdateNotification: false
     },
@@ -82,6 +95,30 @@ const notificationSlice = createSlice({
         [getAllNotifications.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.notifications = action.payload.data;
+        },
+
+        [getNoReadNotifications.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getNoReadNotifications.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getNoReadNotifications.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.noReadNotifications = action.payload.data;
+        },
+
+        [getNoOpenedNotifications.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getNoOpenedNotifications.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getNoOpenedNotifications.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.noOpenNotifications = action.payload.data;
         },
 
         [createNotification.pending]: (state) => {

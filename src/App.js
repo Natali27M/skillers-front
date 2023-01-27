@@ -21,6 +21,7 @@ import {
     MentorPage,
     MentorsPage,
     NotFoundPage,
+    NotificationPage,
     PolicyPage,
     PostDetailsPage,
     RankPage,
@@ -216,6 +217,7 @@ function App() {
                             <Route path={'/community/home'} element={<Posts/>}/>
                             <Route path={'/community/question'} element={<CommunityQuestion/>}/>
                             <Route path={'/community/idea'} element={<CommunityIdea/>}/>
+                            <Route path={'/community/notification'} element={<NotificationPage/>}/>
                         </Route>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>

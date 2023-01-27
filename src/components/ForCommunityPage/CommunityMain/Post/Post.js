@@ -8,7 +8,6 @@ import css from './Post.module.css';
 import {
     createComment,
     createNotification,
-    getAllNotifications,
     getPostById
 } from '../../../../store';
 import {Comment} from '../Comment/Comment';
@@ -16,6 +15,7 @@ import questionColor from '../../../../images/community/questionColor.svg';
 import message from '../../../../images/community/message.svg';
 // import results from '../../../../images/community/results.svg';
 import results from '../../../../images/community/winner.svg';
+import avatar from '../../../../images/community/user.svg';
 
 const Post = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -60,23 +60,6 @@ const Post = ({post}) => {
         setValue(val);
     };
 
-    const createNotifications = async () => {
-        const comment = JSON.parse(localStorage.getItem('comment'));
-
-        if (comment.id) {
-            const notification = {
-                postId: comment.attributes.idPost,
-                commentId: comment.id,
-                idComment: comment.id,
-                userId: user.id,
-                username: user.username,
-                isReaded: false
-            };
-            dispatch(createNotification(notification));
-        }
-        return localStorage.removeItem('question');
-    }
-
     const makeComment = async () => {
         const comment = {
             postId: postId,
@@ -93,18 +76,46 @@ const Post = ({post}) => {
         setValue('');
         setSendComment(false);
         dispatch(getPostById({postId}));
-        dispatch(getAllNotifications());
+        // dispatch(getAllNotifications());
     };
+
+    const createNotifications = async () => {
+        const comment = JSON.parse(localStorage.getItem('comment'));
+
+        if (comment.id) {
+            const notification = {
+                postId: comment.attributes.idPost,
+                commentId: comment.id,
+                idComment: comment.id,
+                postAuthorId: comment.attributes.postAuthorId,
+                userId: user.id,
+                username: user.username,
+                isReaded: false,
+                isOpened: false
+            };
+            dispatch(createNotification(notification));
+        }
+        return localStorage.removeItem('comment');
+    }
 
     const newComments = comments.map(value => value);
     const reverseComments = newComments.reverse();
+
+    const deletePost = () => {
+        console.log(1)
+    }
 
     return (
         <div className={css.post__main}>
             {post.attributes.post.type === 'achievement' &&
                 <div className={css.post__block}>
+                    {post.attributes.userId === user.id &&
+                        <div onClick={deletePost}>close</div>
+                    }
+
                     <div onClick={() => navigate(`/post/${postId}`)}>
                         <div className={css.post__block_header}>
+                            <img src={avatar} alt="user" className={css.post__user}/>
                             <div className={css.post__username}>{post.attributes.post.username}</div>
                             <div className={css.post__createdAt}>{createdAt[0]}</div>
                         </div>
@@ -114,7 +125,8 @@ const Post = ({post}) => {
                         <div className={css.post__test}>"{post.attributes.post.testName}"</div>
 
                         <div className={css.post__difficult}>
-                            {EN ? 'Difficult' : 'Складність'}: {post.attributes.post.difficult}</div>
+                            {EN ? 'Difficult' : 'Складність'}: {post.attributes.post.difficult}
+                        </div>
 
                         <div className={css.post__correctAnswer}>
                             {EN ? 'Сorrect answers' : 'Правильних відповідей'} {post.attributes.post.correctAnswer}
@@ -162,6 +174,7 @@ const Post = ({post}) => {
                 <div className={css.post__block}>
                     <div className={css.post__block_header}>
                         <div className={css.post__block_header_left}>
+                            <img src={avatar} alt="user" className={css.post__user}/>
                             <img src={questionColor} alt="question" className={css.post__question}/>
                             <div className={css.post__username}>{post.attributes.post.userName}</div>
                         </div>
@@ -192,10 +205,13 @@ const Post = ({post}) => {
                 <div className={css.post__block}>
                     <div className={css.post__block_header}>
                         <div className={css.post__block_header_left}>
-                            <img src={questionColor} alt="question" className={css.post__question}/>
-                            <div className={css.post__username}>{post.attributes.post.userName}</div>
+                            <img src={avatar} alt="user" className={css.post__user}/>
+                            <div className={css.post__info_user}>
+                                <div className={css.post__username}>{post.attributes.post.userName}</div>
+                                <div className={css.post__createdAt}>{createdAt[0]}</div>
+                            </div>
                         </div>
-                        <div className={css.post__createdAt}>{createdAt[0]}</div>
+                        <img src={questionColor} alt="question" className={css.post__question}/>
                     </div>
 
                     <div className={css.question_title}>{post.attributes.post.title}</div>

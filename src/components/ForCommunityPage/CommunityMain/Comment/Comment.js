@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -11,7 +11,6 @@ import {deleteComment, deleteNotification} from '../../../../store';
 
 const Comment = ({comment, comments}) => {
     const {user} = useSelector(state => state['userReducers']);
-    const {status, isDeletedNotification} = useSelector(state => state['commentReducers']);
     const [moreComments, setMoreComments] = useState(false);
     const createdAt = comment.attributes.createdAt.split('T');
     const dispatch = useDispatch();
@@ -26,14 +25,14 @@ const Comment = ({comment, comments}) => {
     }
 
     const deletedComment = async () => {
-        const {data} = await notificationsServices.findNotificationByCommentId(commentId);
+        const {data} = await notificationsServices.filterNotificationByCommentId(commentId);
         dispatch(deleteNotification(data[0].id));
         dispatch(deleteComment(commentId));
     };
 
     return (
         <div>
-            <div id={comment.id} className={css.comment__block}>
+            <div id={commentId} className={css.comment__block}>
                 <div className={cssPost.post__block_header}>
                     <div className={css.post__username}>{comment.attributes.username}</div>
                     <div className={css.post__createdAt}>{createdAt[0]}</div>

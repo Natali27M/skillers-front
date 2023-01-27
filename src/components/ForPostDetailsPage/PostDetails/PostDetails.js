@@ -63,6 +63,24 @@ const PostDetails = ({post}) => {
         setValue(val);
     };
 
+    const makeComment = async () => {
+        const comment = {
+            postId: post.id,
+            idPost: post.id,
+            comment: value,
+            userId: user.id,
+            username: user.username,
+            notification: false,
+            postAuthorId: post.attributes.userId
+        }
+        await dispatch(createComment(comment));
+        createNotifications();
+        reset();
+        setValue('');
+        setSendComment(false);
+        dispatch(getPostById({postId}));
+    };
+
     const createNotifications = async () => {
         const comment = JSON.parse(localStorage.getItem('comment'));
 
@@ -73,29 +91,15 @@ const PostDetails = ({post}) => {
                 idComment: comment.id,
                 userId: user.id,
                 username: user.username,
-                isReaded: false
+                isReaded: false,
+                isOpened: false,
+                postAuthorId: user.id
             };
             dispatch(createNotification(notification));
         }
-        return localStorage.removeItem('question');
-    }
 
-    const makeComment = () => {
-        const comment = {
-            postId: postId,
-            comment: value,
-            userId: user.id,
-            username: user.username,
-            notification: false,
-            postAuthorId: post.attributes.userId
-        }
-        dispatch(createComment(comment));
-        createNotifications();
-        reset();
-        setValue('');
-        setSendComment(false);
-        dispatch(getPostById({postId}));
-    };
+        return localStorage.removeItem('comment');
+    }
 
     useEffect(() => {
     }, [comments.length, status === 'fulfilled']);
