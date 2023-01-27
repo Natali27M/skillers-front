@@ -14,3 +14,4 @@ export * from './question.services';
 export * from './answers.services';
 export * from './categories.services';
 export * from './ideas.services';
+export * from './discussion.services';

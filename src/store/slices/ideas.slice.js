@@ -25,13 +25,36 @@ export const getAllIdeas = createAsyncThunk(
     }
 );
 
+export const getOneIdea = createAsyncThunk(
+    'ideasSlice/getOneIdea',
+    async (id, {rejectWithValue}) => {
+        try {
+            return ideasServices.getOneIdea(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+)
+
+export const deleteMyIdea = createAsyncThunk(
+    'ideasSlice/deleteMyIdea',
+    async (id, {rejectWithValue}) => {
+        try {
+            return ideasServices.deleteMyIdea(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
 export const ideasSlice = createSlice({
     name: 'ideasSlice',
     initialState: {
         status: '',
         errors: null,
         isDeletedIdea: false,
-        ideas: {}
+        ideas: {},
+        oneIdea: {},
     },
     extraReducers: {
         [createIdea.pending]: (state) => {
@@ -56,6 +79,28 @@ export const ideasSlice = createSlice({
         [getAllIdeas.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.ideas = action.payload;
+        },
+        [getOneIdea.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getOneIdea.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.errors = action.payload;
+        },
+        [getOneIdea.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.oneIdea = action.payload.data;
+        },
+        [deleteMyIdea.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [deleteMyIdea.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.errors = action.payload;
+        },
+        [deleteMyIdea.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeletedIdea = !state.isDeletedIdea;
         },
     },
 });

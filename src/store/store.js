@@ -19,6 +19,7 @@ import questionsReducers from "./slices/question.slice";
 import answersReducers from "./slices/answers.slice";
 import categoriesReducers from "./slices/categories.slice";
 import ideasReducers from "./slices/ideas.slice";
+import discussionReducers from "./slices/discussion.slice";
 
 
 const store = configureStore({
@@ -42,6 +43,7 @@ const store = configureStore({
         answersReducers,
         categoriesReducers,
         ideasReducers,
+        discussionReducers,
     }
 });
 

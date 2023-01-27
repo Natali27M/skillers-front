@@ -38,6 +38,16 @@
     width: 95%;
 }
 
+.ideas > h3 {
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 26px;
+    padding: 20px;
+    border-top: 1px solid gray;
+    color: #01293f;
+}
+
 .ideas_pagination {
     width: 100%;
     display: flex;
@@ -45,4 +55,40 @@
     justify-content: center;
     margin-bottom: 50px;
     margin-top: 50px;
+}
+
+.ideas_filter_by {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 80%;
+    min-height: 200px;
+    background: rgb(239, 240, 242);
+    padding: 30px;
+    border: 1px solid rgb(209, 213, 217);
+    border-radius: 10px;
+}
+
+.filters > span {
+    padding: 10px 0 15px 0;
+    border-bottom: 1px solid rgb(209, 213, 217);
+    font-size: 18px;
+    color: #050559;
+}
+
+
+.filters > div {
+    width: 100%;
+}
+
+.label {
+    font-size: 15px;
 }
