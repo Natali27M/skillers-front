@@ -1,20 +1,43 @@
 .post__main {
-    width: 70%;
-    border-radius: 5px;
+    width: 100%;
+    border-radius: 10px;
     margin-bottom: 50px;
-    /*background-color: #F1F1F1;*/
-    border: 1px solid darkgrey;
-    box-shadow: 0 0 10px rgba(72, 72, 72, 0.25);
-    padding: 10px 50px 0 50px;
+    background-color: #FFFFFF;
+    border: 1px solid lightgrey;
+    /*box-shadow: 0 0 10px rgba(72, 72, 72, 0.25);*/
+    padding: 20px;
+    /*padding: 10px 50px 0 50px;*/
 }
 
 .post__block {
-    padding: 20px 0;
+    /*padding: 20px 0;*/
+}
+
+.delete__btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.post__header {
+    display: flex;
+    justify-content: space-between;
+    /*column-gap: 10px;*/
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.post__header_right {
+    display: flex;
+    column-gap: 10px;
 }
 
 .post__block_header,
 .loading__header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -34,11 +57,23 @@
 }
 
 .post__username {
-    font-size: 14px;
+    font-size: 15px;
+    color: #2c2c2c;
+    font-weight: bold;
+}
+
+.post__userRank {
+    font-size: 12px;
 }
 
 .post__createdAt {
-    font-size: 10px;
+    font-size: 9px;
+    color: #525151;
+}
+
+.post__type img{
+    width: 20px;
+    height: 20px;
 }
 
 .post__tech {
@@ -49,10 +84,10 @@
     font-size: 24px;
     font-weight: bold;
     font-family: Aldrich, sans-serif;
-    border-bottom: 3px solid;
+    /*border-bottom: 3px solid;*/
     padding-bottom: 10px;
-    border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
+    /*border-image: linear-gradient(213deg, #00DBDE 0%, #FC00FF 100%);*/
+    /*border-image-slice: 1;*/
 }
 
 .post__test {
@@ -85,6 +120,17 @@
 .post__img img {
     width: 100%;
     /*width: 50%;*/
+}
+
+.post__img_main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.post__img_main img{
+    width: 200px;
+    height: 200px;
 }
 
 .post__createComment_form {

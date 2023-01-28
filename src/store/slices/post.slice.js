@@ -35,6 +35,17 @@ export const getPostById = createAsyncThunk(
     }
 );
 
+export const deletePost = createAsyncThunk(
+    'postSlice/deletePost',
+    async (postId, {rejectWithValue}) => {
+        try {
+            return await postsServices.deletePost(postId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    }
+);
+
 const postSlice = createSlice({
     name: 'postSlice',
     initialState: {
@@ -43,13 +54,14 @@ const postSlice = createSlice({
         status: null,
         posts: {},
         notifications: [],
-        postById: null
+        postById: null,
+        isDeletedPost: false,
     },
 
     reducers: {
-        makeNotification: (state, action) => {
-            state.notifications = action.payload;
-        },
+        // makeNotification: (state, action) => {
+        //     state.notifications = action.payload;
+        // },
     },
 
     extraReducers: {
@@ -78,11 +90,23 @@ const postSlice = createSlice({
             state.status = 'rejected';
             state.error = action.payload;
         },
+
+        [deletePost.pending]: (state) => {
+            state.status = "pending";
+        },
+        [deletePost.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [deletePost.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeletedPost = !state.isDeletedPost;
+        },
     }
 });
 
 const postReducers = postSlice.reducer;
 
-export const {makeNotification} = postSlice.actions;
+// export const {makeNotification} = postSlice.actions;
 
 export default postReducers;

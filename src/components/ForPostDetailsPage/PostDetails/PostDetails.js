@@ -1,30 +1,33 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import css from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
-import questionColor from '../../../images/community/questionColor.svg';
+// import questionColor from '../../../images/community/questionColor.svg';
 import message from '../../../images/community/message.svg';
 // import results from '../../../images/community/results.svg';
 import results from '../../../images/community/winner.svg';
 import {
     createComment,
-    createNotification,
+    createNotification, deleteComment, deleteNotification, deletePost,
     getPostById,
 } from '../../../store';
 import {CommentDetails} from '../CommentDetails/CommentDetails';
+import cssMainFirepadPage from '../../../pages/MainFirepadPage/MainFirepadPage.module.css';
+import rootCSS from '../../../styles/root.module.css';
+import {notificationsServices} from '../../../services';
 
 const PostDetails = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {status} = useSelector(state => state['commentReducers']);
-    const {notifications} = useSelector(state => state['notificationReducers']);
     const [sendComment, setSendComment] = useState(false);
-    const [scrollTop, setScrollTop] = useState(false);
+    const [modal, setModal] = useState(false);
     const {handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
+    const {pathname} = useLocation();
     const comments = post.attributes.comments.data;
     const createdAt = post.attributes.createdAt.split('T');
     const navigate = useNavigate();
@@ -104,42 +107,60 @@ const PostDetails = ({post}) => {
     useEffect(() => {
     }, [comments.length, status === 'fulfilled']);
 
-    // console.log(notifications);
-
-// // Get a reference to the <div> with the corresponding ID
-//     let myDiv = React.useRef(null);
-//
-// // Function to track the scroll position
-//     const trackScroll = () => {
-//         // Get the current scroll position
-//         let scrollPosition = window.scrollY;
-//
-//         // Create an array to store the divs with dynamic IDs
-//         let divs = [];
-//
-//         // Loop through the divs and push it to the divs array
-//         for (let i = 0; i < myDiv.current.length; i++) {
-//             divs.push(myDiv.current[i]);
-//         }
-//
-//         // Loop through the divs array and compare the scrollPosition with the offsetTop of the divs
-//         for (let i = 0; i < divs.length; i++) {
-//             if (scrollPosition >= divs[i].offsetTop) {
-//                 console.log(`Div with ID ${divs[i].id} is visible`);
-//             }
-//         }
-//     };
-//
-// // Attach the event listener to the window and call the trackScroll() function
-//     window.addEventListener("scroll", trackScroll);
-
     const newComments = comments.map(value => value);
     const reverseComments = newComments.reverse();
+
+    const modalDelete = () => {
+        setModal(!modal);
+    }
+
+    const deleteOk = async () => {
+        if(post.attributes.comments.data.length) {
+            for (const element of post.attributes.comments.data) {
+                const {data} = await notificationsServices.filterNotificationByCommentId(element.id);
+                dispatch(deleteNotification(data[0].id));
+                dispatch(deleteComment(element.id));
+                dispatch(deletePost(post.id));
+                setModal(!modal);
+                navigate(`/community`);
+            }
+        } else {
+            dispatch(deletePost(post.id));
+            setModal(!modal);
+            navigate(`/community`);
+        }
+    }
+
+    const deleteCansel = () => {
+        setModal(!modal);
+        navigate(`${pathname}`);
+    }
 
     return (
         <div className={css.post__main}>
             {post.attributes.post.type === 'achievement' &&
                 <div className={css.post__block}>
+                    {post.attributes.userId === user.id &&
+                        <div onClick={modalDelete}>close</div>
+                    }
+
+                    {modal && <div className={cssMainFirepadPage.leave__main}>
+                        <div className={cssMainFirepadPage.leave__modal_block}>
+                            {EN ? 'Delete?' : 'Видалити?'}
+
+                            <div className={cssMainFirepadPage.modal__box_btn}>
+                                <button onClick={deleteOk} className={rootCSS.default__button}>
+                                    {EN ? 'Ok' : 'Так'}
+                                </button>
+
+                                <button onClick={deleteCansel} className={rootCSS.default__button}>
+                                    {EN ? 'Cancel' : 'Відмінити'}
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>}
+
                     <div onClick={() => navigate(`/post/${postId}`)}>
                         <div className={css.post__block_header}>
                             <div className={css.post__username}>{post.attributes.post.username}</div>
@@ -199,7 +220,7 @@ const PostDetails = ({post}) => {
                 <div className={css.post__block}>
                     <div className={css.post__block_header}>
                         <div className={css.post__block_header_left}>
-                            <img src={questionColor} alt="question" className={css.post__question}/>
+                            {/*<img src={questionColor} alt="question" className={css.post__question}/>*/}
                             <div className={css.post__username}>{post.attributes.post.userName}</div>
                         </div>
                         <div className={css.post__createdAt}>{createdAt[0]}</div>

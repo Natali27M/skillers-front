@@ -99,12 +99,10 @@ const Header = () => {
                 <div onClick={() => {
                     commentingPosts()
                 }} className={css.header__notification}>
-                    {/*{!openNotifications &&*/}
                         <div className={noOpenNotifications.length ? css.header__notification_length
                             : css.header__notification_length_no}>
                             {noOpenNotifications.length}
                         </div>
-                    {/*}*/}
                         <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>
                         </div>
@@ -128,12 +126,10 @@ const Header = () => {
             </div>
 
             <div className={css.burger__btn} onClick={() => setOpen(!open)}>
-                {/*{!openNotifications &&*/}
                     <div className={noOpenNotifications.length && !open ? css.header__notification_length
                         : css.header__notification_length_no}>
                         {noOpenNotifications.length}
                     </div>
-                {/*}*/}
 
                 <Hamburger toggled={open}/>
             </div>

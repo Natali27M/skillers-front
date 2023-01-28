@@ -7,5 +7,6 @@ export const postsServices = {
     getAllPosts: (pageNumber) => axiosServices
         .get(urls.posts + `?pagination[page]=${pageNumber}&pagination[pageSize]=25&populate=%2A&sort=createdAt:DESC`)
         .then(value => value.data),
-    getPostById: (postId) => axiosServices.get(urls.posts + `/${postId}?populate=%2A`).then(value => value.data)
+    getPostById: (postId) => axiosServices.get(urls.posts + `/${postId}?populate=%2A`).then(value => value.data),
+    deletePost: (postId) => axiosServices.delete(`${urls.posts}/${postId}`).then(value => value.data),
 }
