@@ -1,0 +1,7 @@
+.post__details_main {
+    width: 35%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

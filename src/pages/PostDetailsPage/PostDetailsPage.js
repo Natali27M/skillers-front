@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 
 import {getPostById} from '../../store';
 import {PostDetails} from '../../components';
+import cssPosts from '../../components/ForCommunityPage/CommunityMain/Posts/Posts.module.css';
 
 const PostDetailsPage = () => {
     const {postById} = useSelector(state => state['postReducers']);
@@ -21,7 +22,7 @@ const PostDetailsPage = () => {
     },[isDeletedComment, status === 'fulfilled']);
 
     return (
-        <div>
+        <div className={cssPosts.posts__main_box}>
             {postById &&
                 <PostDetails key={postById.data.id} post={postById.data}/>
             }

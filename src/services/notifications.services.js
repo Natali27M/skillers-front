@@ -3,8 +3,8 @@ import {axiosServices} from './axios.services';
 import {urls} from '../config';
 
 export const notificationsServices = {
-    getAllNotifications: (userId) => axiosServices
-        .get(urls.notifications + `?filters[postAuthorId][$eq]=${userId}&sort=createdAt:DESC`)
+    getAllNotifications: (userId, pageNumber) => axiosServices
+        .get(urls.notifications + `?pagination[page]=${pageNumber}&pagination[pageSize]=50&filters[postAuthorId][$eq]=${userId}&sort=createdAt:DESC`)
         .then(value => value.data),
     getNoReadNotifications: (userId) => axiosServices
         .get(urls.notifications + `?filters[postAuthorId][$eq]=${userId}&filters[isReaded][$eq]=false&sort=createdAt:DESC`)

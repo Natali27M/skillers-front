@@ -4,9 +4,9 @@ import {notificationsServices} from '../../services';
 
 export const getAllNotifications = createAsyncThunk(
     'notificationSlice/getAllNotifications',
-    async ({userId},{rejectWithValue}) => {
+    async ({userId, pageNumber},{rejectWithValue}) => {
         try {
-            return await notificationsServices.getAllNotifications(userId);
+            return await notificationsServices.getAllNotifications(userId,pageNumber);
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -75,7 +75,7 @@ const notificationSlice = createSlice({
         updateError: null,
         error: null,
         status: null,
-        notifications: [],
+        notifications: {},
         noReadNotifications: [],
         noOpenNotifications: [],
         isDeletedNotification: false,
@@ -94,7 +94,7 @@ const notificationSlice = createSlice({
         },
         [getAllNotifications.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
-            state.notifications = action.payload.data;
+            state.notifications = action.payload;
         },
 
         [getNoReadNotifications.pending]: (state) => {

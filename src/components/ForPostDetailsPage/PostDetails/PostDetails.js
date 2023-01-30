@@ -2,13 +2,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import css from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
-// import questionColor from '../../../images/community/questionColor.svg';
+import css from './PostDetails.module.css';
+import cssPost from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
 import message from '../../../images/community/message.svg';
-// import results from '../../../images/community/results.svg';
-import results from '../../../images/community/winner.svg';
+import results from '../../../images/community/results.svg';
 import {
     createComment,
     createNotification, deleteComment, deleteNotification, deletePost,
@@ -18,11 +16,15 @@ import {CommentDetails} from '../CommentDetails/CommentDetails';
 import cssMainFirepadPage from '../../../pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from '../../../styles/root.module.css';
 import {notificationsServices} from '../../../services';
+import threePoint from '../../../images/community/three-point.svg';
+import avatar from '../../../images/avatar.jpg';
+import achievement from '../../../images/community/achievement.svg';
 
 const PostDetails = ({post}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {status} = useSelector(state => state['commentReducers']);
+    const {userRank} = useSelector(state => state['achievementsReducers']);
     const [sendComment, setSendComment] = useState(false);
     const [modal, setModal] = useState(false);
     const {handleSubmit, reset} = useForm();
@@ -115,7 +117,7 @@ const PostDetails = ({post}) => {
     }
 
     const deleteOk = async () => {
-        if(post.attributes.comments.data.length) {
+        if (post.attributes.comments.data.length) {
             for (const element of post.attributes.comments.data) {
                 const {data} = await notificationsServices.filterNotificationByCommentId(element.id);
                 dispatch(deleteNotification(data[0].id));
@@ -137,65 +139,77 @@ const PostDetails = ({post}) => {
     }
 
     return (
-        <div className={css.post__main}>
-            {post.attributes.post.type === 'achievement' &&
-                <div className={css.post__block}>
-                    {post.attributes.userId === user.id &&
-                        <div onClick={modalDelete}>close</div>
-                    }
+        <div className={css.post__details_main}>
+            <div className={cssPost.post__main}>
+                {post.attributes.userId === user.id &&
+                    <div className={cssPost.delete__btn} onClick={modalDelete}>
+                        <img src={threePoint} alt="delete"/>
+                    </div>
+                }
 
-                    {modal && <div className={cssMainFirepadPage.leave__main}>
-                        <div className={cssMainFirepadPage.leave__modal_block}>
-                            {EN ? 'Delete?' : 'Видалити?'}
+                {modal && <div className={cssMainFirepadPage.leave__main}>
+                    <div className={cssMainFirepadPage.leave__modal_block}>
+                        {EN ? 'Delete this post?' : 'Видалити цей пост?'}
 
-                            <div className={cssMainFirepadPage.modal__box_btn}>
-                                <button onClick={deleteOk} className={rootCSS.default__button}>
-                                    {EN ? 'Ok' : 'Так'}
-                                </button>
+                        <div className={cssMainFirepadPage.modal__box_btn}>
+                            <button onClick={deleteOk} className={rootCSS.default__button}>
+                                {EN ? 'Ok' : 'Так'}
+                            </button>
 
-                                <button onClick={deleteCansel} className={rootCSS.default__button}>
-                                    {EN ? 'Cancel' : 'Відмінити'}
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>}
-
-                    <div onClick={() => navigate(`/post/${postId}`)}>
-                        <div className={css.post__block_header}>
-                            <div className={css.post__username}>{post.attributes.post.username}</div>
-                            <div className={css.post__createdAt}>{createdAt[0]}</div>
+                            <button onClick={deleteCansel} className={rootCSS.default__button}>
+                                {EN ? 'Cancel' : 'Відмінити'}
+                            </button>
                         </div>
 
-                        <div className={css.post__tech}>{post.attributes.post.techName}</div>
+                    </div>
+                </div>}
 
-                        <div className={css.post__test}>"{post.attributes.post.testName}"</div>
+                <div className={cssPost.post__header}>
+                    <div className={cssPost.post__header_right}>
+                        <img src={avatar} alt="user" className={cssPost.post__user}/>
 
-                        <div className={css.post__difficult}>
-                            {EN ? 'Difficult' : 'Складність'}: {post.attributes.post.difficult}</div>
+                        <div className={cssPost.post__block_header}>
+                            <div className={cssPost.post__username}>{post.attributes.post.username}</div>
 
-                        <div className={css.post__correctAnswer}>
-                            {EN ? 'Сorrect answers' : 'Правильних відповідей'} {post.attributes.post.correctAnswer}
-                            {EN ? ' of' : ' з'} {post.attributes.post.allExercises}
-                        </div>
+                            <div className={cssPost.post__userRank}>{userRank}</div>
 
-                        <div className={css.post__img}>
-                            <img src={results} alt="results"/>
+                            <div className={cssPost.post__createdAt}>{createdAt[0]}</div>
                         </div>
                     </div>
 
-                    <div className={css.post__block_footer}>
-                        <div onClick={wantComment} className={css.post__message}>
-                            <div>
-                                {reverseComments.length} {EN ? 'Comments' : 'Коментарів'}
-                            </div>
-                            <img src={message} alt="comment"/>
-                        </div>
+                    <div className={cssPost.post__type}>
+                        <img src={achievement} alt="achievement"/>
+                    </div>
+                </div>
+
+                <div>
+                    <div className={cssPost.post__title}>
+                        I passed the test {post.attributes.post.testName} on
+                        technology {post.attributes.post.techName}
                     </div>
 
-                    {sendComment &&
+                    <div className={cssPost.post__description}>
+                        Test difficulty {post.attributes.post.difficult}.
+                        I gave {post.attributes.post.allExercises} correct answers
+                        of {post.attributes.post.allExercises}
+                    </div>
+                    <div className={cssPost.post__img_main}>
+                        <img src={results} alt="results"/>
+                    </div>
+                </div>
+
+                <div className={cssPost.post__block_footer}>
+                    <div onClick={wantComment} className={cssPost.post__message}>
                         <div>
-                            <form onSubmit={handleSubmit(makeComment)} className={css.post__createComment_form}>
+                            {reverseComments.length} {EN ? 'Comments' : 'Коментарів'}
+                        </div>
+                        <img src={message} alt="comment"/>
+                    </div>
+                </div>
+
+                {sendComment &&
+                    <div>
+                        <form onSubmit={handleSubmit(makeComment)} className={css.post__createComment_form}>
                         <textarea
                             className={css.post__createComment_input}
                             onChange={handleChange}
@@ -203,50 +217,17 @@ const PostDetails = ({post}) => {
                             rows={1}
                             value={value}
                         />
-                                <button className={css.post__createComment_send}></button>
-                            </form>
+                            <button className={css.post__createComment_send}></button>
+                        </form>
 
-                        </div>
-                    }
-
-                    {reverseComments.length > 0 &&
-                        <CommentDetails key={value.id} comments={reverseComments}/>
-                    }
-
-                </div>
-            }
-
-            {post.attributes.post.type === 'question' &&
-                <div className={css.post__block}>
-                    <div className={css.post__block_header}>
-                        <div className={css.post__block_header_left}>
-                            {/*<img src={questionColor} alt="question" className={css.post__question}/>*/}
-                            <div className={css.post__username}>{post.attributes.post.userName}</div>
-                        </div>
-                        <div className={css.post__createdAt}>{createdAt[0]}</div>
                     </div>
+                }
 
-                    <div className={css.question_title}>{post.attributes.post.title}</div>
+                {reverseComments.length > 0 &&
+                    <CommentDetails key={value.id} comments={reverseComments}/>
+                }
 
-                    <div>{post.attributes.post.description}</div>
-
-                    {post.attributes.post.details &&
-                        <SyntaxHighlighter className={css.comment__block_box}>
-                            {post.attributes.post.details}
-                        </SyntaxHighlighter>
-                    }
-
-                    <div>{post.attributes.post.expected_result}</div>
-
-                    <div className={css.post__block_footer}>
-                        <div onClick={() => navigate(`/community/question/${post.attributes.post.id}`)}
-                             className={css.post__message_question}>
-                            <div>{EN ? 'Go to discussion' : 'Перейти до обговорення'}</div>
-                        </div>
-                    </div>
-
-                </div>
-            }
+            </div>
         </div>
     );
 };
