@@ -62,7 +62,9 @@ const CreateVacancyPage = () => {
 
     useEffect(() => {
         if (status === 'fulfilled' && vacancy?.data?.id) {
-            setRedirectId(vacancy?.data?.id);
+            setTimeout(() => {
+                setRedirectId(vacancy?.data?.id);
+            }, 500);
         }
     }, [status, vacancy]);
 
@@ -132,7 +134,11 @@ const CreateVacancyPage = () => {
     const url = `https://skilliant.net/create-vacancy`;
 
     if (redirectId) {
-        return <Navigate to={`/vacancy/${redirectId}`} replace/>;
+        return <Navigate to={`/employer`} replace/>;
+    }
+
+    if (!user) {
+        return <Navigate to={'/login'} replace/>;
     }
 
     return (

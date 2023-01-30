@@ -8,9 +8,10 @@ import {useForm} from 'react-hook-form';
 import {Link} from 'react-router-dom';
 import {createVacancyResponse} from '../../../store/slices/vacancyResponses.slice';
 
-const ResponseModal = ({vacancy, setResponseTime, userId}) => {
+const ResponseModal = ({vacancy, setResponseTime, userId, setIsResponded}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
+    const {user} = useSelector(state => state['userReducers']);
 
     const dispatch = useDispatch();
 
@@ -19,12 +20,19 @@ const ResponseModal = ({vacancy, setResponseTime, userId}) => {
     } = useForm();
 
     const sendResponse = (obj) => {
+        const {linkedin, cv, github, email} = user;
+
         dispatch(createVacancyResponse({
             ...obj,
             vacancyId: vacancy?.id,
-            userId
+            userId,
+            userName: user?.username,
+            linkedin,
+            cv,
+            github, email
         }));
         setResponseTime(false);
+        setIsResponded(true);
         reset();
     };
 

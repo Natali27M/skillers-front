@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
 import css from './EmployerPage.module.css';
+import plus from '../../images/vacancy/plus.svg';
 
-import rootCss from '../../styles/root.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {getVacanciesByEmployer} from '../../store/slices/vacancy.slice';
+import {getVacanciesByEmployer} from '../../store';
 import {PaginationSmall, VacancyBlock} from '../../components';
 import {Helmet} from 'react-helmet-async';
+import {Link} from 'react-router-dom';
 
 const EmployerPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -14,10 +15,6 @@ const EmployerPage = () => {
     const {user} = useSelector(state => state['userReducers']);
 
     const {vacanciesByEmployerPage, status} = useSelector(state => state['vacancyReducers']);
-
-    useEffect(() => {
-        console.log(vacanciesByEmployerPage);
-    }, [vacanciesByEmployerPage]);
 
     const dispatch = useDispatch();
 
@@ -54,6 +51,10 @@ const EmployerPage = () => {
                             (EN ? 'Your vacancies' : 'Ваші вакансії')
                         }
                     </h2>
+                    <Link className={css.create__link} to={'/create-vacancy'}>
+                        <img src={plus} alt="plus"/>
+                        <div>{EN ? 'Create vacancy' : 'Створити вакансію'}</div>
+                    </Link>
                 </div>
                 {vacanciesByEmployerPage?.data?.map(vacancy =>
                     <VacancyBlock vacancy={vacancy.attributes} id={vacancy?.id}

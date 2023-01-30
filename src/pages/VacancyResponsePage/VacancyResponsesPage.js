@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
 import {useParams} from 'react-router-dom';
-import css from './VacancyResponsesPage.module.css';
 import employerCss from '../EmployerPage/EmployerPage.module.css';
 
-import {getOneVacancy} from '../../store/slices/vacancy.slice';
+import {getOneVacancy} from '../../store';
 import {useDispatch, useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet-async';
 import {getResponsesByVacancy} from '../../store/slices/vacancyResponses.slice';
@@ -53,12 +52,13 @@ const VacancyResponsesPage = () => {
                     <BackButton/>
                 </div>
                 {responsesPage?.data?.map(response => <ResponseBlock key={response?.id} response={response}/>)}
-                {!!responsesPage?.data?.length &&
+                {responsesPage?.data?.length ?
                     <PaginationSmall
                         pageNumber={pageNumber}
                         setPageNumber={setPageNumber}
                         pageCount={responsesPage?.meta?.pagination?.pageCount}
                     />
+                    : <div>{EN ? 'No responses to this vacancy' : 'Немає відгуків на цю вакансію'}</div>
                 }
             </div>
         </div>

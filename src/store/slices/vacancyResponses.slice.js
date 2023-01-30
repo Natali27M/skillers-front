@@ -1,11 +1,16 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {vacancyResponsesServices} from '../../services';
+import {vacancyResponsesServices, vacancyServices} from '../../services';
 
 export const createVacancyResponse = createAsyncThunk(
     'vacancyResponsesSlice/createVacancyResponse',
     async (data, {rejectWithValue}) => {
         try {
-            return await vacancyResponsesServices.createResponse(data);
+            const vacancy = await vacancyServices.getOneVacancy(data?.vacancyId);
+            const response = await vacancyResponsesServices.createResponse(data);
+            await vacancyServices.updateVacancy(data?.vacancyId,
+                {reviews: vacancy?.attributes?.reviews ? vacancy?.attributes?.reviews + 1 : 1}
+            );
+            return response;
         } catch (e) {
             rejectWithValue(e);
         }

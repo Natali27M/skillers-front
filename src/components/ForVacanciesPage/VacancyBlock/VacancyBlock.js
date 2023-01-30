@@ -21,7 +21,7 @@ const VacancyBlock = ({vacancy, id}) => {
 
     return (
         <div className={css.vacancy__block}>
-            {(user?.id === +vacancy?.employerId) &&
+            {(user?.id === +vacancy?.employerId && vacancy?.reviews > 0) &&
                 <Link to={`/vacancy-responses/${id}`} className={css.to__reviews}>
                     <h5>{EN ? 'To responses' : 'До відгуків'}</h5>
                     <img src={arrow} alt="arrow"/>

@@ -33,6 +33,8 @@ const VacancyPage = () => {
 
     const [responseTime, setResponseTime] = useState(false);
 
+    const [isResponded, setIsResponded] = useState(false)
+
     useEffect(() => {
         if (user) dispatch(getResponseOfUserByVacancy({userId: user?.id, vacancyId}));
     }, [vacancyId, user]);
@@ -63,7 +65,7 @@ const VacancyPage = () => {
                 <title>{title}</title>
                 <link rel="canonical" href={url}/>
             </Helmet>
-            {responseTime && <ResponseModal vacancy={vacancy} setResponseTime={setResponseTime} userId={user?.id}/>}
+            {responseTime && <ResponseModal setIsResponded={setIsResponded} vacancy={vacancy} setResponseTime={setResponseTime} userId={user?.id}/>}
             <div className={css.vacancy__wrap}>
                 <div className={css.vacancy__main}>
                     <div className={css.vacancy__header}>
@@ -111,10 +113,11 @@ const VacancyPage = () => {
                         <img src={people} alt="people"/>
                         <h6>{vacanciesReviewDisplay(vacancy?.attributes?.reviews, EN)}</h6>
                     </div>
-                    {userResponse?.data?.length ? (EN ? 'You have already responded to the vacancy' : 'Ви вже відповіли на вакансію') :
-                        <button onClick={() => setResponseTime(true)} className={rootCss.default__button}>
-                            {EN ? 'Reply to the vacancy' : 'Відповісти на вакансію'}
-                        </button>
+                    {userResponse?.data?.length || isResponded ? (EN ? 'You have already responded to the vacancy' : 'Ви вже відповіли на вакансію') :
+                        !user ? (EN ? 'Log in to respond to the vacancy' : 'Авторизуйтесь, щоб відповісти на вакансію') :
+                            <button onClick={() => setResponseTime(true)} className={rootCss.default__button}>
+                                {EN ? 'Reply to the vacancy' : 'Відповісти на вакансію'}
+                            </button>
                     }
                 </div>}
             </div>
