@@ -11,4 +11,8 @@ export const proxyUrls = {
     saveEmail: '/metaMaskAuth/saveEmail',
     usersPaginatedTen: '/users?pagination[pageSize]=10&pagination[page]=',
     // usersPaginatedTenByQuery: '/users?pagination[pageSize]=10&pagination[page]='
+    cascadeDelete: {
+        discussions: '/cascadeDelete/discussions',
+        answers: '/cascadeDelete/answers',
+    }
 };

@@ -42,6 +42,7 @@ const QuestionDetails = () => {
             question: oneQuestion?.id,
             userId: user?.id,
             userName: user?.username,
+            questionId: oneQuestion.id,
         }
         dispatch(createAnswer(myAnswer));
         reset();
@@ -54,6 +55,10 @@ const QuestionDetails = () => {
 
     const makeDeleteAnswer = (id) => {
         dispatch(deleteAnswer(id));
+    }
+
+    if (!user) {
+        return navigate('/login');
     }
 
     return (

@@ -45,6 +45,7 @@
     padding: 3px 10px;
     background: rgb(125, 186, 248);
     color: #1b1b1c;
+    margin: 4px;
 }
 
 
@@ -62,6 +63,7 @@
     color: #d5d4d4;
     font-weight: 500;
     border-radius: 12px;
+    margin: 4px;
 }
 
 .user {

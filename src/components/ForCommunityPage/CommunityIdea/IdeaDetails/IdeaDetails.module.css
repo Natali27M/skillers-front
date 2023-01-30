@@ -140,6 +140,7 @@
     padding: 3px 10px;
     background: rgb(125, 186, 248);
     color: #1b1b1c;
+    margin: 4px;
 }
 
 
@@ -159,6 +160,7 @@
     color: #d5d4d4;
     font-weight: 500;
     border-radius: 12px;
+    margin: 4px;
 }
 
 .discussions__block {
@@ -208,4 +210,48 @@
     background: black;
     color: #ffffff;
 
+}
+
+.opinion_block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.opinion_user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.comment {
+    width: 100%;
+    display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    line-height: 1.5;
+    flex-wrap: wrap;
+}
+
+.delete_my_opinion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.delete_my_opinion_button {
+    padding: 5px 10px;
+    border: none;
+    background: black;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.delete_my_opinion_button:hover {
+    box-shadow: 0 0 2px 1px #9f9e9e;
+    cursor: pointer;
 }

@@ -40,6 +40,10 @@ export const deleteMyIdea = createAsyncThunk(
     'ideasSlice/deleteMyIdea',
     async (id, {rejectWithValue}) => {
         try {
+            const {message, error} = await ideasServices.deleteAllConversations(id);
+            if (!message && error) {
+                return rejectWithValue(error);
+            }
             return ideasServices.deleteMyIdea(id);
         } catch (e) {
             rejectWithValue(e);

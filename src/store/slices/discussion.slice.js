@@ -14,6 +14,17 @@ export const createOpinion = createAsyncThunk(
     },
 );
 
+export const deleteOpinion = createAsyncThunk(
+    'discussionSlice/deleteOpinion',
+    async (id, {rejectWithValue}) => {
+        try {
+            return discussionServices.deleteOpinion(id);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
 export const discussionSlice = createSlice({
     name: "discussionSlice",
     initialState: {
@@ -31,6 +42,17 @@ export const discussionSlice = createSlice({
         },
         [createOpinion.fulfilled]: (state) => {
             state.status = 'fulfilled';
+        },
+        [deleteOpinion.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [deleteOpinion.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.errors = action.payload;
+        },
+        [deleteOpinion.fulfilled]: (state) => {
+            state.status = 'fulfilled';
+            state.isDeletedOpinion = !state.isDeletedOpinion;
         },
     },
 });

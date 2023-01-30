@@ -40,6 +40,11 @@ export const deleteQuestion = createAsyncThunk(
     'questionSlice/deleteQuestion',
     async (id, {rejectWithValue}) => {
         try {
+            const {message, error} = await questionServices.deleteAllAnswers(id);
+            console.log(message, error);
+            if (!message && error) {
+                return rejectWithValue(error);
+            }
             return questionServices.deleteQuestion(id);
         } catch (e) {
             rejectWithValue(e);

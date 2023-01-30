@@ -28,9 +28,6 @@ const Ideas = () => {
     const [categoryArray, setCategoryArray] = useState([]);
 
     useEffect(() => {
-        if (!user) {
-            return navigate('/login');
-        }
         let query = qs.stringify({
             filters: {
                 technologies: {
@@ -75,6 +72,11 @@ const Ideas = () => {
             const newArray = arr.filter(value => value !== event.target.value);
             return setCategoryArray(newArray);
         }
+    }
+
+
+    if (!user) {
+        return navigate('/login');
     }
 
     return (

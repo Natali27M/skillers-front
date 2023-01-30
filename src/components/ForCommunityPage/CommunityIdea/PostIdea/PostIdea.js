@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import Select from "react-select";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
@@ -10,6 +11,7 @@ import css from './PostIdea.module.css';
 
 import {createIdea, getAllCategories, getTechnologies} from "../../../../store";
 import {postsServices} from "../../../../services/posts.services";
+import {postIdeaValidator} from "../../../../validation/postIdea.validator";
 
 
 const PostIdea = () => {
@@ -20,15 +22,12 @@ const PostIdea = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {handleSubmit, register, reset, formState: {errors}} = useForm();
+    const {handleSubmit, register, reset, formState: {errors}} = useForm({resolver: joiResolver(postIdeaValidator)});
 
     const [technology, setTechnology] = useState([]);
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        if (!user) {
-            return navigate('/login');
-        }
         if (!categories?.data?.length) {
             dispatch(getAllCategories())
         }
@@ -89,6 +88,10 @@ const PostIdea = () => {
 
         reset();
         return navigate('/community/idea');
+    }
+
+    if (!user) {
+        return navigate('/login');
     }
 
     return (

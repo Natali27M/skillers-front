@@ -85,6 +85,7 @@
     display: flex;
     width: 100%;
     column-gap: 10px;
+    flex-wrap: wrap;
 }
 
 .technology {
@@ -93,6 +94,7 @@
     background: rgb(2, 2, 2);
     border-radius: 5px;
     color: #ffffff;
+    margin: 4px;
 }
 
 .question_description, .question_expected_result {

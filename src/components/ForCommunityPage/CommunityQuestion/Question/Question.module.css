@@ -46,6 +46,7 @@
     align-items: center;
     justify-content: flex-start;
     column-gap: 10px;
+    flex-wrap: wrap;
 }
 
 .technology {
@@ -53,4 +54,5 @@
     padding: 3px 10px;
     background: rgb(125, 186, 248);
     color: #1b1b1c;
+    margin: 4px;
 }

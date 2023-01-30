@@ -8,36 +8,36 @@ import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css
 import css from './IdeaDetails.module.css';
 import user_image from '../../../../images/user.svg';
 
-import {createOpinion, deleteMyIdea, getOneIdea} from "../../../../store";
+import {createOpinion, deleteMyIdea, deleteOpinion, getOneIdea} from "../../../../store";
 import {docco} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {ideaOpinionValidator} from "../../../../validation/ideaOpinion.validator";
 
 const IdeaDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {oneIdea} = useSelector(state => state['ideasReducers']);
-    const {status} = useSelector(state => state['discussionReducers']);
+    const {status, isDeletedOpinion} = useSelector(state => state['discussionReducers']);
 
     const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {handleSubmit, register, formState: {errors}, reset} = useForm();
+    const {handleSubmit, register, formState: {errors}, reset} = useForm({resolver: joiResolver(ideaOpinionValidator)});
 
     useEffect(() => {
-        if (!user) {
-            return navigate('/login');
-        }
         dispatch(getOneIdea(id));
-    }, [id, status === 'fulfilled'])
+    }, [id, status === 'fulfilled', isDeletedOpinion])
 
 
     const myOpinion = (formData) => {
         const myOpinion = {
-            ...formData,
+            comment: formData?.comment,
             userName: user?.username,
             userId: user?.id,
             idea: oneIdea?.id,
+            ideaId: oneIdea?.id,
             code: formData?.code !== '' ? formData.code : null,
         }
         dispatch(createOpinion(myOpinion));
@@ -48,6 +48,14 @@ const IdeaDetails = () => {
     const makeDeleteIdea = async () => {
         await dispatch(deleteMyIdea(oneIdea?.id))
         return navigate('/community/idea')
+    }
+
+    const makeDeleteOpinion = (id) => {
+        dispatch(deleteOpinion(id));
+    }
+
+    if (!user) {
+        return navigate('/login');
     }
 
     return (
@@ -77,15 +85,12 @@ const IdeaDetails = () => {
                         </div>
                         <div className={css.asked}>
                             <span>{EN ? "The number of responses to the idea: " : "Кількість відгуків на ідею: "}</span>
-                            <div>{oneIdea?.attributes?.discussions?.data?.length ? oneIdea?.attributes?.answers?.discussions?.length : 0}</div>
+                            <div>{oneIdea?.attributes?.discussions?.data?.length ? oneIdea?.attributes?.discussions?.data.length : 0}</div>
                         </div>
                     </div>
 
                     <div className={css.description__block}>
                         <div className={css.section}>
-                            {/*<span>*/}
-                            {/*    {EN ? "Brief description of the idea" : "Короткий опис ідеї"}*/}
-                            {/*</span>*/}
                             <div>
                                 {oneIdea?.attributes?.description}
                             </div>
@@ -101,7 +106,7 @@ const IdeaDetails = () => {
                             </div>
                         </div>
 
-                        {oneIdea?.attributes?.code &&
+                        {oneIdea?.attributes?.code ?
                             <div className={css.section}>
                                 <span>
                                     {EN ? "Program code" : "Програмний код"}
@@ -111,7 +116,7 @@ const IdeaDetails = () => {
                                         {oneIdea?.attributes?.code}
                                     </SyntaxHighlighter>
                                 </div>
-                            </div>
+                            </div> : <></>
                         }
 
                         <div className={css.section}>
@@ -125,7 +130,7 @@ const IdeaDetails = () => {
 
                         <div className={css.idea_technologies}>
                             {
-                                oneIdea?.attributes?.technologies?.data?.length && oneIdea?.attributes?.technologies?.data.map(value =>
+                                oneIdea?.attributes?.technologies?.data?.length > 0 && oneIdea?.attributes?.technologies?.data.map(value =>
                                     <div key={value.id} className={css.technology}>
                                         {value.attributes.value}
                                     </div>
@@ -135,7 +140,7 @@ const IdeaDetails = () => {
 
                         <div className={css.idea_categories}>
                             {
-                                oneIdea?.attributes?.categories?.data?.length && oneIdea?.attributes?.categories?.data.map(value =>
+                                oneIdea?.attributes?.categories?.data?.length > 0 && oneIdea?.attributes?.categories?.data.map(value =>
                                     <div key={value.id} className={css.category}>
                                         {value.attributes.value}
                                     </div>
@@ -161,9 +166,32 @@ const IdeaDetails = () => {
 
                             <>
                                 {
-                                    oneIdea?.attributes?.discussions?.length > 0 && oneIdea?.attributes?.discussions.map(value =>
-                                        <div>
-
+                                    oneIdea?.attributes?.discussions?.data?.length > 0 && oneIdea?.attributes?.discussions?.data.map(value =>
+                                        <div key={value.id} className={css.opinion_block}>
+                                            <div className={css.opinion_user}>
+                                                <div className={css.user}>
+                                                    <img src={user_image} alt="user"/>
+                                                    <div className={css.idea_user_name}>{value?.attributes?.userName}</div>
+                                                </div>
+                                            </div>
+                                            <div className={css.comment}>{value.attributes.comment}</div>
+                                            {
+                                                value.attributes.code && <div>
+                                                    <SyntaxHighlighter language="javascript" style={docco}
+                                                                       showLineNumbers={true}>
+                                                        {value?.attributes?.code}
+                                                    </SyntaxHighlighter>
+                                                </div>
+                                            }
+                                            {user?.id === value?.attributes?.userId &&
+                                                <div className={css.delete_my_opinion}>
+                                                    <button
+                                                        onClick={() => makeDeleteOpinion(value?.id)}
+                                                        className={css.delete_my_opinion_button}
+                                                    >
+                                                        {EN ? "Delete my opinion" : "Видалити мою думку"}
+                                                    </button>
+                                                </div>}
                                         </div>
                                     )
                                 }
@@ -180,7 +208,7 @@ const IdeaDetails = () => {
                                     </div>
                                     <textarea
                                         placeholder='Comment'
-                                        className={errors.details && css_post.errorFeld}
+                                        className={errors.comment && css_post.errorFeld}
                                         {...register('comment')}
                                     />
                                     {errors.comment &&

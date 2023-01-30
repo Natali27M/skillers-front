@@ -26,9 +26,6 @@ const Questions = () => {
 
 
     useEffect(() => {
-        if (!user) {
-            return navigate('/login');
-        }
         let query = qs.stringify({
             filters: {
                 technologies: {
@@ -55,6 +52,10 @@ const Questions = () => {
             const newArray = arr.filter(value => value !== event.target.value);
             return setTechnologyArray(newArray);
         }
+    }
+
+    if (!user) {
+        return navigate('/login');
     }
 
     return (
@@ -105,13 +106,14 @@ const Questions = () => {
                 <div>
                     <div className={css.questions__block}>
                         {questions?.data?.map(value => <Question key={value.id} question={value}/>)}
+                        <div>
+                            <PaginationSmall pageNumber={page}
+                                             setPageNumber={setPage}
+                                             pageCount={questions?.meta?.pagination?.pageCount}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <PaginationSmall pageNumber={page}
-                                         setPageNumber={setPage}
-                                         pageCount={questions?.meta?.pagination?.pageCount}
-                        />
-                    </div>
+
                 </div>
 
             </div>

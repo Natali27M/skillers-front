@@ -25,7 +25,7 @@ const OneIdea = ({idea}) => {
 
             <div className={css.idea_technologies}>
                 {
-                    idea?.attributes?.technologies?.data?.length && idea?.attributes.technologies?.data.map(value =>
+                    idea?.attributes?.technologies?.data?.length > 0 && idea?.attributes.technologies?.data.map(value =>
                         <div key={value.id} className={css.technology}>
                             {value.attributes.value}
                         </div>
@@ -35,7 +35,7 @@ const OneIdea = ({idea}) => {
 
             <div className={css.idea_categories}>
                 {
-                    idea?.attributes?.categories?.data?.length && idea?.attributes.categories?.data.map(value =>
+                    idea?.attributes?.categories?.data?.length > 0 && idea?.attributes.categories?.data.map(value =>
                         <div key={value.id} className={css.category}>
                             {value.attributes.value}
                         </div>
