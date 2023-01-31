@@ -25,9 +25,8 @@ const Header = () => {
 
     const {width} = useWindowDimensions();
 
-
     const [open, setOpen] = useState(false);
-
+    const [openInformation, setOpenInformation] = useState(false);
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -55,6 +54,7 @@ const Header = () => {
 
             <div className={css.header__left}>
 
+                <div onClick={setOpenInformation(!openInformation)}>{EN ? 'Info' : 'Інформація'}</div>
 
                 <Link className={css.header__link} to={'/for-users'}>
                     {EN ? 'For users' : 'Користувачам'}
