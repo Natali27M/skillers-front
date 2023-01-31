@@ -14,4 +14,6 @@ export const ideasServices = {
         .then(value => value.data),
     deleteMyIdea: (id) => axiosServices.delete(urls.ideas + `/${id}`)
         .then(value => value.data),
+    updateIdea: (ideaId, postId) => axiosServices.put(`${urls.ideas}/${ideaId}`, {data: {postId}})
+        .then(value => value.data),
 };

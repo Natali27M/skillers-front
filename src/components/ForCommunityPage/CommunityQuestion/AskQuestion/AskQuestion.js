@@ -8,7 +8,7 @@ import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import css_helper from "../Questions/Questions.module.css";
 import css from './AskQuestion.module.css';
 import {postsServices} from "../../../../services/posts.services";
-import {createQuestion, getTechnologies} from "../../../../store";
+import {createQuestion, getTechnologies, updateQuestion} from "../../../../store";
 import {createQuestionValidator} from "../../../../validation";
 
 const AskQuestion = () => {
@@ -56,7 +56,8 @@ const AskQuestion = () => {
                     id: question.id
                 }
             }
-            await postsServices.createPost({...post});
+            const {data} = await postsServices.createPost({...post});
+            dispatch(updateQuestion({id: question.id, postId: data?.id}))
         }
         return localStorage.removeItem('question');
     }

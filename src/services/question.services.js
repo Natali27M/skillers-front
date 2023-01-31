@@ -10,8 +10,10 @@ export const questionServices = {
         .then(value => value.data),
     getOneQuestion: (id) => axiosServices.get(urls.questions + `/${id}?populate=%2A`)
         .then(value => value.data),
-    deleteAllAnswers:(id)=> axiosProxyServices.post(proxyUrls.cascadeDelete.answers, {questionId: id})
+    deleteAllAnswers: (id) => axiosProxyServices.post(proxyUrls.cascadeDelete.answers, {questionId: id})
         .then(value => value.data),
     deleteQuestion: (id) => axiosServices.delete(urls.questions + `/${id}`)
+        .then(value => value.data),
+    updateQuestion: (id, postId) => axiosServices.put(urls.questions + `/${id}`, {data: {postId}})
         .then(value => value.data),
 }

@@ -9,7 +9,7 @@ import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
 import css from './PostIdea.module.css';
 
-import {createIdea, getAllCategories, getTechnologies} from "../../../../store";
+import {createIdea, getAllCategories, getTechnologies, updateIdea} from "../../../../store";
 import {postsServices} from "../../../../services/posts.services";
 import {postIdeaValidator} from "../../../../validation/postIdea.validator";
 
@@ -69,7 +69,8 @@ const PostIdea = () => {
                 }
 
             }
-            await postsServices.createPost({...post});
+            const {data} = await postsServices.createPost({...post});
+            dispatch(updateIdea({ideaId: idea.id, postId: data?.id}));
         }
         return localStorage.removeItem('idea');
     }

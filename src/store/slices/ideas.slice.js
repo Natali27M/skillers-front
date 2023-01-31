@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {ideasServices} from "../../services";
+import {postsServices} from "../../services/posts.services";
 
 
 export const createIdea = createAsyncThunk(
@@ -8,6 +9,17 @@ export const createIdea = createAsyncThunk(
     async (idea, {rejectWithValue}) => {
         try {
             return ideasServices.createIdea(idea);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
+export const updateIdea = createAsyncThunk(
+    'ideasSlice/updateIdea',
+    async ({ideaId, postId}, {rejectWithValue}) => {
+        try {
+            return ideasServices.updateIdea(ideaId, postId);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -38,13 +50,17 @@ export const getOneIdea = createAsyncThunk(
 
 export const deleteMyIdea = createAsyncThunk(
     'ideasSlice/deleteMyIdea',
-    async (id, {rejectWithValue}) => {
+    async ({id, postId}, {rejectWithValue}) => {
         try {
             const {message, error} = await ideasServices.deleteAllConversations(id);
             if (!message && error) {
                 return rejectWithValue(error);
             }
-            return ideasServices.deleteMyIdea(id);
+            const {data} = await postsServices.deletePost(postId);
+
+            if (data) {
+                return ideasServices.deleteMyIdea(id);
+            }
         } catch (e) {
             rejectWithValue(e);
         }
@@ -105,6 +121,17 @@ export const ideasSlice = createSlice({
         [deleteMyIdea.fulfilled]: (state) => {
             state.status = 'fulfilled';
             state.isDeletedIdea = !state.isDeletedIdea;
+        },
+        [updateIdea.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [updateIdea.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.errors = action.payload;
+        },
+        [updateIdea.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.oneIdea = action.payload;
         },
     },
 });

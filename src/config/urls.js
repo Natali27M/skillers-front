@@ -56,6 +56,8 @@ export const urls = {
     categories: '/api/categorie',
     ideas: '/api/idea',
     discussions: '/api/discussion',
+    notifications: '/api/notification',
+
 
     posts: '/api/post',
 };

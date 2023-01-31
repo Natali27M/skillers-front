@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {questionServices} from "../../services";
+import {postsServices} from "../../services/posts.services";
 
 
 export const createQuestion = createAsyncThunk(
@@ -8,6 +9,17 @@ export const createQuestion = createAsyncThunk(
     async (question, {rejectWithValue}) => {
         try {
             return questionServices.createQuestion(question);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
+export const updateQuestion = createAsyncThunk(
+    'questionSlice/updateQuestion',
+    async ({id, postId}, {rejectWithValue}) => {
+        try {
+            return questionServices.updateQuestion(id, postId);
         } catch (e) {
             rejectWithValue(e);
         }
@@ -38,14 +50,16 @@ export const getOneQuestion = createAsyncThunk(
 
 export const deleteQuestion = createAsyncThunk(
     'questionSlice/deleteQuestion',
-    async (id, {rejectWithValue}) => {
+    async ({id, postId}, {rejectWithValue}) => {
         try {
             const {message, error} = await questionServices.deleteAllAnswers(id);
-            console.log(message, error);
             if (!message && error) {
                 return rejectWithValue(error);
             }
-            return questionServices.deleteQuestion(id);
+            const {data} = await postsServices.deletePost(postId);
+            if (data) {
+                return questionServices.deleteQuestion(id);
+            }
         } catch (e) {
             rejectWithValue(e);
         }
@@ -108,6 +122,17 @@ export const questionSlice = createSlice({
         [deleteQuestion.fulfilled]: (state) => {
             state.status = 'fulfilled';
             state.isDeleteQuestion = !state.isDeleteQuestion;
+        },
+        [updateQuestion.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [updateQuestion.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [updateQuestion.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.oneQuestion = action.payload;
         },
     },
 });

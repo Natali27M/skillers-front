@@ -43,6 +43,7 @@ export const answersSlice = createSlice({
         },
         [createAnswer.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
+            localStorage.setItem('answer', JSON.stringify(action.payload.data))
             state.answer = action.payload;
         },
         [deleteAnswer.pending]: (state) => {

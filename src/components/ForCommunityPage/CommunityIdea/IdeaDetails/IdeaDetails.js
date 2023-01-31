@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import qs from "qs";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
@@ -11,8 +13,8 @@ import user_image from '../../../../images/user.svg';
 import {createOpinion, deleteMyIdea, deleteOpinion, getOneIdea} from "../../../../store";
 import {docco} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {ideaOpinionValidator} from "../../../../validation/ideaOpinion.validator";
+import {notificationService} from "../../../../services/notification.service";
 
 const IdeaDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -31,7 +33,26 @@ const IdeaDetails = () => {
     }, [id, status === 'fulfilled', isDeletedOpinion])
 
 
-    const myOpinion = (formData) => {
+    const createNotification = async () => {
+        const opinion = JSON.parse(localStorage.getItem('opinion'));
+        const notification = {
+            postId: oneIdea?.id,
+            commentId: null,
+            idComment: opinion.id,
+            postAuthorId: oneIdea.attributes.userId,
+            userId: opinion?.attributes?.userId,
+            username: opinion?.attributes?.userName,
+            isReaded: false,
+            isOpened: false,
+            url: 'community/idea',
+        }
+        const {data} = await notificationService.createNotification(notification);
+        if (data) {
+            return localStorage.removeItem('opinion');
+        }
+    }
+
+    const myOpinion = async (formData) => {
         const myOpinion = {
             comment: formData?.comment,
             userName: user?.username,
@@ -40,17 +61,28 @@ const IdeaDetails = () => {
             ideaId: oneIdea?.id,
             code: formData?.code !== '' ? formData.code : null,
         }
-        dispatch(createOpinion(myOpinion));
+        await dispatch(createOpinion(myOpinion));
+        await createNotification();
         reset();
     }
 
 
     const makeDeleteIdea = async () => {
-        await dispatch(deleteMyIdea(oneIdea?.id))
+        await dispatch(deleteMyIdea({id: oneIdea?.id, postId: oneIdea?.attributes?.postId}))
         return navigate('/community/idea')
     }
 
-    const makeDeleteOpinion = (id) => {
+    const makeDeleteOpinion = async (id) => {
+        let query = qs.stringify({
+            filters: {
+                idComment: {
+                    $eq: id,
+                }
+            }
+        }, {encodeValuesOnly: true});
+
+        const {data} = await notificationService.getOne(query);
+        await notificationService.deleteNotification(data[0].id);
         dispatch(deleteOpinion(id));
     }
 

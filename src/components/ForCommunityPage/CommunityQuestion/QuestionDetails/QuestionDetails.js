@@ -6,12 +6,14 @@ import {useForm} from "react-hook-form";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import qs from "qs";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './QuestionDetails.module.css';
 import {createAnswer, deleteAnswer, deleteQuestion, getOneQuestion} from "../../../../store";
 import user_image from '../../../../images/user.svg';
 import {answerQuestionValidator} from "../../../../validation";
+import {notificationService} from "../../../../services/notification.service";
 
 const QuestionDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -35,8 +37,27 @@ const QuestionDetails = () => {
         dispatch(getOneQuestion(Number(id)));
     }, [id, status === 'fulfilled', isDeletedAnswer]);
 
+    const createNotification = async () => {
+        const answer = JSON.parse(localStorage.getItem('answer'));
+        const notification = {
+            postId: oneQuestion?.id,
+            commentId: null,
+            idComment: answer.id,
+            postAuthorId: oneQuestion.attributes.userId,
+            userId: answer?.attributes?.userId,
+            username: answer?.attributes?.userName,
+            isReaded: false,
+            isOpened: false,
+            url: 'community/question',
+        }
+        const {data} = await notificationService.createNotification(notification);
+        if (data) {
+            return localStorage.removeItem('answer');
+        }
+    }
 
-    const createMyAnswer = (answer) => {
+
+    const createMyAnswer = async (answer) => {
         const myAnswer = {
             ...answer,
             question: oneQuestion?.id,
@@ -44,16 +65,27 @@ const QuestionDetails = () => {
             userName: user?.username,
             questionId: oneQuestion.id,
         }
-        dispatch(createAnswer(myAnswer));
+        await dispatch(createAnswer(myAnswer));
+        await createNotification();
         reset();
     }
 
     const makeDeleteQuestion = () => {
-        dispatch(deleteQuestion(oneQuestion?.id));
+        dispatch(deleteQuestion({id: oneQuestion?.id, postId: oneQuestion?.attributes?.postId}));
         navigate('/community/question');
     }
 
-    const makeDeleteAnswer = (id) => {
+    const makeDeleteAnswer = async (id) => {
+        let query = qs.stringify({
+            filters: {
+                idComment: {
+                    $eq: id,
+                }
+            }
+        }, {encodeValuesOnly: true});
+
+        const {data} = await notificationService.getOne(query);
+        await notificationService.deleteNotification(data[0].id);
         dispatch(deleteAnswer(id));
     }
 
@@ -96,11 +128,13 @@ const QuestionDetails = () => {
                             {oneQuestion?.attributes?.description}
                         </div>
 
-                        <div className={css.question_details}>
-                            <SyntaxHighlighter language="javascript" style={docco} showLineNumbers={true}>
-                                {oneQuestion?.attributes?.details}
-                            </SyntaxHighlighter>
-                        </div>
+                        {oneQuestion?.attributes?.details &&
+                            <div className={css.question_details}>
+                                <SyntaxHighlighter language="javascript" style={docco} showLineNumbers={true}>
+                                    {oneQuestion?.attributes?.details}
+                                </SyntaxHighlighter>
+                            </div>
+                        }
 
                         <div className={css.question_expected_result}>
                             {oneQuestion?.attributes?.expected_result}
@@ -137,7 +171,7 @@ const QuestionDetails = () => {
                                     <div>
                                         {
                                             oneQuestion?.attributes?.answers?.data?.map(value =>
-                                                <div className={css.answer__one__block} key={value.id}>
+                                                <div className={css.answer__one__block} key={value.id} id={value.id}>
                                                     <div className={css.user}>
                                                         <img src={user_image} alt="user"/>
                                                         <div

@@ -31,6 +31,7 @@ export const discussionSlice = createSlice({
         status: '',
         errors: null,
         isDeletedOpinion: false,
+        myOpinion: {}
     },
     extraReducers: {
         [createOpinion.pending]: (state) => {
@@ -40,8 +41,10 @@ export const discussionSlice = createSlice({
             state.status = 'rejected';
             state.errors = action.payload;
         },
-        [createOpinion.fulfilled]: (state) => {
+        [createOpinion.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
+            localStorage.setItem('opinion', JSON.stringify(action.payload.data));
+            state.myOpinion = action.payload;
         },
         [deleteOpinion.pending]: (state) => {
             state.status = 'pending';
