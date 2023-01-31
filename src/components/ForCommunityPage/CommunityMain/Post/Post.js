@@ -278,18 +278,16 @@ const Post = ({post, setDeleteFullPost}) => {
                     }
 
                     {post.attributes.post.type === 'question' &&
-                        <div onClick={() => navigate(`/community/idea/${post.attributes.post.id}`)}
+                        <div onClick={() => navigate(`/community/question/${post.attributes.post.id}`)}
                              className={css.post__message_question}>
-                            <div>{EN ? 'Go to discussion' : 'Перейти до обговорення'}</div>
+                            <div>{EN ? 'Answer' : 'Відповісти'}</div>
                         </div>
                     }
 
                     {post.attributes.post.type === 'idea' &&
-                        <div onClick={wantComment} className={css.post__message}>
-                            <div>
-                                {reverseComments.length} {EN ? 'Comments' : 'Коментарів'}
-                            </div>
-                            <img src={message} alt="comment"/>
+                        <div onClick={() => navigate(`/community/idea/${post.attributes.post.id}`)}
+                             className={css.post__message_question}>
+                            <div>{EN ? 'Go to discussion' : 'Перейти до обговорення'}</div>
                         </div>
                     }
                 </div>
