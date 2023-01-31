@@ -26,11 +26,16 @@ const Header = () => {
     const {width} = useWindowDimensions();
 
     const [open, setOpen] = useState(false);
-    const [openInformation, setOpenInformation] = useState(false);
+    const [openProducts, setOpenProducts] = useState(false);
+    const [openProgramming, setOpenProgramming] = useState(false);
+    const [openResources, setOpenResources] = useState(false);
 
     useEffect(() => {
         if (!isComponentVisible) {
             setOpen(false);
+            setOpenProducts(false);
+            setOpenProgramming(false);
+            setOpenResources(false);
             setIsComponentVisible(true);
         }
     }, [isComponentVisible]);
@@ -38,7 +43,6 @@ const Header = () => {
     useEffect(() => {
         setOpen(false);
     }, [width, pathname]);
-
 
     return (
         <div className={css.main__header}>
@@ -54,10 +58,12 @@ const Header = () => {
 
             <div className={css.header__left}>
 
-                <div className={css.header__link} onClick={() => setOpenInformation(!openInformation)}>
-                    {EN ? 'Info' : 'Інформація'}
+                <div className={css.header__link} onClick={() => {
+                    setOpenProducts(!openProducts)
+                }}>
+                    {EN ? 'Products' : 'Наш продукт'}
                 </div>
-                {openInformation &&
+                {openProducts &&
                     <div className={css.notification__main}>
                         <Link to={'/for-users'}>
                             {EN ? 'For users' : 'Користувачам'}
@@ -66,21 +72,59 @@ const Header = () => {
                         <Link to={'/mentors'}>
                             {EN ? 'Mentors' : 'Ментори'}
                         </Link>
+
+                        <Link to={'/vacancies'}>
+                            {EN ? 'Recruting' : 'Рекрутинг'}
+                        </Link>
+
+                        <Link to={'/rank'}>
+                            {EN ? 'Rank table' : 'Таблиця рангів'}
+                        </Link>
                     </div>
                 }
-                <Link className={css.header__link} to={'/compiler'}>
-                    {EN ? 'Compiler' : 'Компілятор'}
-                </Link>
-                <Link className={css.header__link} to={'/createTest'}>
-                    {EN ? 'Create quiz' : 'Створити тест'}
-                </Link>
 
-                <div className={css.link__wrap}>
-                    <Link className={css.header__link} to={'/team-coding'}>
-                        <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                    </Link>
+                <div className={css.header__link} onClick={() => {
+                    setOpenProgramming(!openProgramming)
+                }}>
+                    {EN ? 'Programming' : 'Програмування'}
                     <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
+                {openProgramming &&
+                    <div className={css.notification__main}>
+                        <Link to={'/compiler'}>
+                            {EN ? 'Compiler' : 'Компілятор'}
+                        </Link>
+
+                        <Link to={'/createTest'}>
+                            {EN ? 'Create quiz' : 'Створити тест'}
+                        </Link>
+
+                        <div className={css.link__wrap}>
+                            <Link to={'/team-coding'}>
+                                <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
+                            </Link>
+                            <img src={new_icon} alt="new" className={css.new__icon}/>
+                        </div>
+                    </div>
+                }
+
+                <div className={css.header__link} onClick={() => {
+                    setOpenResources(!openResources)
+                }}>
+                    {EN ? 'Resources' : 'Ресурси'}
+                    <img src={new_icon} alt="new" className={css.new__icon}/>
+                </div>
+                {openResources &&
+                    <div className={css.notification__main}>
+                        <Link to={'/learning-plan'}>
+                            {EN ? 'Learning plans' : 'Навчальні плани'}
+                            <img src={new_icon} alt="new" className={css.new__icon}/>
+                        </Link>
+                        <Link to={'/community'}>
+                            {EN ? 'Skilliant Community' : 'Skilliant Спільнота'}
+                        </Link>
+                    </div>
+                }
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
