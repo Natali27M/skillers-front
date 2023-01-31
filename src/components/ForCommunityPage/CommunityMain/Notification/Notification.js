@@ -14,16 +14,17 @@ const Notification = ({notification, setOpenNotification}) => {
     const postId = notification.attributes.postId;
     const commentId = notification.attributes.idComment;
     const createdAt = notification.attributes.createdAt.split('T');
+    const url = notification.attributes.url;
 
     const getPostDetails = () => {
         if (params.id && !postId) {
-            navigate(`/post/${params.id}`, {
+            navigate(`/${url}/${params.id}`, {
                 state: {
                     commentId: commentId
                 },
             });
         } else if (!params.id && postId) {
-            navigate(`/post/${postId}`, {
+            navigate(`/${url}/${postId}`, {
                 state: {
                     commentId: commentId
                 },

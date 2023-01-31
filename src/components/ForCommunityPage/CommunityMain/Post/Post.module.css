@@ -71,6 +71,7 @@
 
 .post__description {
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .post__img_main {

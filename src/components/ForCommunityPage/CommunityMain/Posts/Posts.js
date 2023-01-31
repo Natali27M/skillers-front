@@ -11,15 +11,18 @@ const Posts = () => {
     const {status} = useSelector(state => state['commentReducers']);
     const dispatch = useDispatch();
     const [pageNumber, setPageNumber] = useState(1);
+    const [deleteFullPost, setDeleteFullPost] = useState(false);
 
     useEffect(() => {
         dispatch(getAllPosts({pageNumber}));
-    }, [status === 'fulfilled', pageNumber]);
+        setDeleteFullPost(false);
+    }, [status === 'fulfilled', pageNumber, deleteFullPost === true]);
 
     return (
         <div className={css.posts__main_box}>
             <div className={css.posts__main}>
-                {posts?.data?.length ? posts?.data?.map(value => <Post key={value.id} post={value}/>)
+                {posts?.data?.length ? posts?.data?.map(value =>
+                        <Post key={value.id} post={value} setDeleteFullPost={setDeleteFullPost}/>)
                     :
                     <div className={css.loading__main_post}>
                         <div className={css.loading__header}>

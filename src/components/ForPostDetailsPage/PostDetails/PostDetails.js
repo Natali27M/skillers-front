@@ -9,13 +9,12 @@ import message from '../../../images/community/message.svg';
 import results from '../../../images/community/results.svg';
 import {
     createComment,
-    createNotification, deleteComment, deleteNotification, deletePost,
+    createNotification, deletePost, deletePostProxy,
     getPostById,
 } from '../../../store';
 import {CommentDetails} from '../CommentDetails/CommentDetails';
 import cssMainFirepadPage from '../../../pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from '../../../styles/root.module.css';
-import {notificationsServices} from '../../../services';
 import threePoint from '../../../images/community/three-point.svg';
 import avatar from '../../../images/avatar.jpg';
 import achievement from '../../../images/community/achievement.svg';
@@ -118,16 +117,11 @@ const PostDetails = ({post}) => {
 
     const deleteOk = async () => {
         if (post.attributes.comments.data.length) {
-            for (const element of post.attributes.comments.data) {
-                const {data} = await notificationsServices.filterNotificationByCommentId(element.id);
-                dispatch(deleteNotification(data[0].id));
-                dispatch(deleteComment(element.id));
-                dispatch(deletePost(post.id));
-                setModal(!modal);
-                navigate(`/community`);
-            }
+            await dispatch(deletePostProxy(post.id))
+            setModal(!modal);
+            navigate(`/community`);
         } else {
-            dispatch(deletePost(post.id));
+            await dispatch(deletePost(post.id));
             setModal(!modal);
             navigate(`/community`);
         }
@@ -209,15 +203,15 @@ const PostDetails = ({post}) => {
 
                 {sendComment &&
                     <div>
-                        <form onSubmit={handleSubmit(makeComment)} className={css.post__createComment_form}>
+                        <form onSubmit={handleSubmit(makeComment)} className={cssPost.post__createComment_form}>
                         <textarea
-                            className={css.post__createComment_input}
+                            className={cssPost.post__createComment_input}
                             onChange={handleChange}
                             ref={textAreaRef}
                             rows={1}
                             value={value}
                         />
-                            <button className={css.post__createComment_send}></button>
+                            <button className={cssPost.post__createComment_send}></button>
                         </form>
 
                     </div>

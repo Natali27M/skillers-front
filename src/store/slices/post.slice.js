@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {postsServices} from '../../services/posts.service';
+import {postsProxyServices} from '../../services/posts.proxy.services';
 
 export const createPost = createAsyncThunk(
     'postSlice/createPost',
@@ -31,6 +32,17 @@ export const getPostById = createAsyncThunk(
             return await postsServices.getPostById(postId);
         } catch (error) {
             return error.message;
+        }
+    }
+);
+
+export const deletePostProxy = createAsyncThunk(
+    'postSlice/deletePost',
+    async (postId, {rejectWithValue}) => {
+        try {
+            return await postsProxyServices.deletePost(postId);
+        } catch (e) {
+            rejectWithValue(e);
         }
     }
 );

@@ -6,7 +6,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import css from './Post.module.css';
 import {
     createComment,
-    createNotification, deleteComment, deleteNotification, deletePost,
+    createNotification, deletePost, deletePostProxy,
     getPostById
 } from '../../../../store';
 import {Comment} from '../Comment/Comment';
@@ -19,11 +19,10 @@ import message from '../../../../images/community/message.svg';
 import results from '../../../../images/community/results.svg';
 import threePoint from '../../../../images/community/three-point.svg';
 import avatar from '../../../../images/avatar.jpg';
-import {notificationsServices} from '../../../../services';
 import rootCSS from '../../../../styles/root.module.css';
 import cssMainFirepadPage from '../../../../pages/MainFirepadPage/MainFirepadPage.module.css';
 
-const Post = ({post}) => {
+const Post = ({post, setDeleteFullPost}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {userRank} = useSelector(state => state['achievementsReducers']);
@@ -99,7 +98,8 @@ const Post = ({post}) => {
                 userId: user.id,
                 username: user.username,
                 isReaded: false,
-                isOpened: false
+                isOpened: false,
+                url: 'post'
             };
             dispatch(createNotification(notification));
         }
@@ -115,16 +115,13 @@ const Post = ({post}) => {
 
     const deleteOk = async () => {
         if (post.attributes.comments.data.length) {
-            for (const element of post.attributes.comments.data) {
-                const {data} = await notificationsServices.filterNotificationByCommentId(element.id);
-                dispatch(deleteNotification(data[0].id));
-                dispatch(deleteComment(element.id));
-                dispatch(deletePost(post.id));
-                setModal(!modal);
-            }
-        } else {
-            dispatch(deletePost(post.id));
+            await dispatch(deletePostProxy(post.id))
             setModal(!modal);
+            setDeleteFullPost(true);
+        } else {
+            await dispatch(deletePost(post.id));
+            setModal(!modal);
+            setDeleteFullPost(true);
         }
     }
 
@@ -238,12 +235,13 @@ const Post = ({post}) => {
                     {post.attributes.post.type === 'question' &&
                         <div>
                             <div className={css.post__title}>{post.attributes.post.title}</div>
-                            {
-                                post.attributes.post.description.length > 140 ?
-                                    `${post.attributes.post.description.slice(0, 140)}` + '...'
-                                    :
-                                    post.attributes.post.description
-                            }
+                            <div className={css.post__description}>
+                                {
+                                    post.attributes.post.description.length > 140 ?
+                                        `${post.attributes.post.description.slice(0, 140)}`
+                                        + '...' : post.attributes.post.description
+                                }
+                            </div>
 
                             <div className={css.post__img_main}>
                                 <img src={questionImg} alt="results"/>
@@ -254,12 +252,13 @@ const Post = ({post}) => {
                     {post.attributes.post.type === 'idea' &&
                         <div>
                             <div className={css.post__title}>{post.attributes.post.title}</div>
-                            {
-                                post.attributes.post.description.length > 140 ?
-                                    `${post.attributes.post.description.slice(0, 140)}` + '...'
-                                    :
-                                    post.attributes.post.description
-                            }
+                            <div className={css.post__description}>
+                                {
+                                    post.attributes.post.description.length > 140 ?
+                                        `${post.attributes.post.description.slice(0, 140)}`
+                                        + '...' : post.attributes.post.description
+                                }
+                            </div>
 
                             <div className={css.post__img_main}>
                                 <img src={ideaImg} alt="results"/>
