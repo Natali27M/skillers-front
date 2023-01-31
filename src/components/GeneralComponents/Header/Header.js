@@ -57,27 +57,26 @@ const Header = () => {
 
 
             <div className={css.header__left}>
-
                 <div className={css.header__link} onClick={() => {
                     setOpenProducts(!openProducts)
                 }}>
                     {EN ? 'Products' : 'Наш продукт'}
                 </div>
                 {openProducts &&
-                    <div className={css.notification__main}>
-                        <Link to={'/for-users'}>
+                    <div className={css.link__main}>
+                        <Link className={css.link__box} to={'/for-users'}>
                             {EN ? 'For users' : 'Користувачам'}
                         </Link>
 
-                        <Link to={'/mentors'}>
+                        <Link className={css.link__box} to={'/mentors'}>
                             {EN ? 'Mentors' : 'Ментори'}
                         </Link>
 
-                        <Link to={'/vacancies'}>
+                        <Link className={css.link__box} to={'/vacancies'}>
                             {EN ? 'Recruting' : 'Рекрутинг'}
                         </Link>
 
-                        <Link to={'/rank'}>
+                        <Link className={css.link__box} to={'/rank'}>
                             {EN ? 'Rank table' : 'Таблиця рангів'}
                         </Link>
                     </div>
@@ -90,17 +89,17 @@ const Header = () => {
                     <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
                 {openProgramming &&
-                    <div className={css.notification__main}>
-                        <Link to={'/compiler'}>
+                    <div className={css.link__main}>
+                        <Link className={css.link__box} to={'/compiler'}>
                             {EN ? 'Compiler' : 'Компілятор'}
                         </Link>
 
-                        <Link to={'/createTest'}>
+                        <Link className={css.link__box} to={'/createTest'}>
                             {EN ? 'Create quiz' : 'Створити тест'}
                         </Link>
 
-                        <div className={css.link__wrap}>
-                            <Link to={'/team-coding'}>
+                        <div className={css.link__main_wrap}>
+                            <Link className={css.link__box} to={'/team-coding'}>
                                 <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
                             </Link>
                             <img src={new_icon} alt="new" className={css.new__icon}/>
@@ -115,12 +114,14 @@ const Header = () => {
                     <img src={new_icon} alt="new" className={css.new__icon}/>
                 </div>
                 {openResources &&
-                    <div className={css.notification__main}>
-                        <Link to={'/learning-plan'}>
-                            {EN ? 'Learning plans' : 'Навчальні плани'}
-                            <img src={new_icon} alt="new" className={css.new__icon}/>
-                        </Link>
-                        <Link to={'/community'}>
+                    <div className={css.link__main}>
+                        <div className={css.link__main_wrap}>
+                            <Link className={css.link__box} to={'/learning-plan'}>
+                                {EN ? 'Learning plans' : 'Навчальні плани'}
+                                <img src={new_icon} alt="new" className={css.new__icon}/>
+                            </Link>
+                        </div>
+                        <Link className={css.link__box} to={'/community'}>
                             {EN ? 'Skilliant Community' : 'Skilliant Спільнота'}
                         </Link>
                     </div>
