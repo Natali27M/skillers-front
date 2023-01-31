@@ -54,19 +54,25 @@ const Header = () => {
 
             <div className={css.header__left}>
 
-                <div onClick={setOpenInformation(!openInformation)}>{EN ? 'Info' : 'Інформація'}</div>
+                <div className={css.header__link} onClick={() => setOpenInformation(!openInformation)}>
+                    {EN ? 'Info' : 'Інформація'}
+                </div>
+                {openInformation &&
+                    <div className={css.notification__main}>
+                        <Link to={'/for-users'}>
+                            {EN ? 'For users' : 'Користувачам'}
+                        </Link>
 
-                <Link className={css.header__link} to={'/for-users'}>
-                    {EN ? 'For users' : 'Користувачам'}
-                </Link>
+                        <Link to={'/mentors'}>
+                            {EN ? 'Mentors' : 'Ментори'}
+                        </Link>
+                    </div>
+                }
                 <Link className={css.header__link} to={'/compiler'}>
                     {EN ? 'Compiler' : 'Компілятор'}
                 </Link>
                 <Link className={css.header__link} to={'/createTest'}>
                     {EN ? 'Create quiz' : 'Створити тест'}
-                </Link>
-                <Link className={css.header__link} to={'/mentors'}>
-                    {EN ? 'Mentors' : 'Ментори'}
                 </Link>
 
                 <div className={css.link__wrap}>
