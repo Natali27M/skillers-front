@@ -8,6 +8,7 @@
 .vacancies__wrap {
     display: flex;
     justify-content: space-between;
+    position: relative;
     width: 1200px;
     min-height: calc(100vh - 80px);
     background-color: #fff;
@@ -30,4 +31,80 @@
 
 .vacancies__filter {
     width: 210px;
+}
+
+.active__modal {
+    display: flex !important;
+}
+
+.filter__btn {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.filter__btn_close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    height: 20px;
+}
+
+@media (max-width: 1300px) {
+    .vacancies__wrap {
+        width: 90%;
+    }
+
+    .result__vacancies {
+        width: fit-content;
+        flex-grow: 1;
+    }
+}
+
+
+@media (max-width: 1100px) {
+    .vacancies__wrap {
+        padding: 20px 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .vacancies__filter {
+        position: absolute;
+        width: 90%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 10px;
+        display: none;
+    }
+
+    .filter__btn {
+        display: block;
+    }
+
+    .check__block_adaptive {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 600px) {
+    .check__block_adaptive {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .check__block_adaptive > div {
+        width: 45%;
+    }
+
+    .check__block_adaptive > div:first-child {
+        width: 100%;
+    }
 }

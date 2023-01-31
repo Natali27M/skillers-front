@@ -40,10 +40,6 @@ const VacancyPage = () => {
     }, [vacancyId, user]);
 
     useEffect(() => {
-        console.log(vacancy);
-    }, [vacancy]);
-
-    useEffect(() => {
         dispatch(getOneVacancy(vacancyId));
     }, [vacancyId]);
 

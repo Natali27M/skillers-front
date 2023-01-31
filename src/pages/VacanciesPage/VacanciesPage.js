@@ -4,13 +4,15 @@ import css from './VacanciesPage.module.css';
 import mentorsCss from '../../components/ForMentorsPage/ApprovedMentors/ApprovedMentors.module.css';
 import rootCss from '../../styles/root.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {getVacanciesPaginated} from '../../store/slices/vacancy.slice';
+import {getVacanciesPaginated} from '../../store';
 import {PaginationSmall, VacancyBlock} from '../../components';
 import {englishLevels, experiences} from './constants/vacancies__constants';
 import {Checkbox, FormControlLabel} from '@mui/material';
 import {getTechnologies} from '../../store';
 import qs from 'qs';
 import vacanciesExperienceDisplay from '../../RootFunctions/vacanciesExperienceDisplay';
+import cross from '../../images/cross.svg';
+import filter from '../../images/vacancy/filter.svg';
 
 const VacanciesPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -26,6 +28,8 @@ const VacanciesPage = () => {
     const [technologyArray, setTechnologyArray] = useState([]);
     const [experienceArray, setExperienceArray] = useState([]);
     const [englishArray, setEnglishArray] = useState([]);
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         dispatch(getTechnologies());
@@ -128,11 +132,14 @@ const VacanciesPage = () => {
                                          pageCount={vacanciesPage?.meta?.pagination?.pageCount}
                         />}
                 </div>
-                <div className={css.vacancies__filter}>
+                <img onClick={() => setModalOpen(!modalOpen)} className={css.filter__btn} src={filter} alt="filter"/>
+                <div className={`${css.vacancies__filter} ${modalOpen && css.active__modal}`}>
                     <h3 className={rootCss.default__title_24}>
                         {EN ? 'Filters' : 'Фільтри'}
                     </h3>
-                    <div className={mentorsCss.check__block}>
+                    <img onClick={() => setModalOpen(!modalOpen)} className={css.filter__btn_close} src={cross}
+                         alt="cross"/>
+                    <div className={`${mentorsCss.check__block} ${css.check__block_adaptive}`}>
                         <div className={mentorsCss.check__block__form}>
                             <span
                                 className={mentorsCss.check__block__span}>{EN ? 'Technology :' : 'Технологія :'}</span>
@@ -169,10 +176,7 @@ const VacanciesPage = () => {
                                                   label={<div className={mentorsCss.label}>{value.value}</div>}/>)
                             }
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
