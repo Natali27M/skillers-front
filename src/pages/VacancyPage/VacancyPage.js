@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 
-import {getOneVacancy} from '../../store/slices/vacancy.slice';
+import {getOneVacancy} from '../../store';
 import css from './VacancyPage.module.css';
 import {Helmet} from 'react-helmet-async';
 
@@ -33,11 +33,15 @@ const VacancyPage = () => {
 
     const [responseTime, setResponseTime] = useState(false);
 
-    const [isResponded, setIsResponded] = useState(false)
+    const [isResponded, setIsResponded] = useState(false);
 
     useEffect(() => {
         if (user) dispatch(getResponseOfUserByVacancy({userId: user?.id, vacancyId}));
     }, [vacancyId, user]);
+
+    useEffect(() => {
+        console.log(vacancy);
+    }, [vacancy]);
 
     useEffect(() => {
         dispatch(getOneVacancy(vacancyId));
@@ -65,7 +69,9 @@ const VacancyPage = () => {
                 <title>{title}</title>
                 <link rel="canonical" href={url}/>
             </Helmet>
-            {responseTime && <ResponseModal setIsResponded={setIsResponded} vacancy={vacancy} setResponseTime={setResponseTime} userId={user?.id}/>}
+            {responseTime &&
+                <ResponseModal setIsResponded={setIsResponded} vacancy={vacancy} setResponseTime={setResponseTime}
+                               userId={user?.id}/>}
             <div className={css.vacancy__wrap}>
                 <div className={css.vacancy__main}>
                     <div className={css.vacancy__header}>
@@ -95,7 +101,7 @@ const VacancyPage = () => {
                         </>
                     }
                 </div>
-                {!!vacancy && <div className={css.vacancy__info}>
+                {!!vacancy?.attributes && <div className={css.vacancy__info}>
                     <BackButton/>
                     <div className={css.vacancy__info_block}>
                         <img src={experience} alt="experience"/>

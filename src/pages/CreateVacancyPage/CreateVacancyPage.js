@@ -41,6 +41,10 @@ const CreateVacancyPage = () => {
 
     const [redirectId, setRedirectId] = useState(null);
 
+    const [wait, setWait] = useState(false);
+
+    const [creatingProcess, setCreatingProcess] = useState(false);
+
     const dispatch = useDispatch();
 
     const {handleSubmit, register, reset, formState: {errors}} = useForm({resolver: joiResolver(vacancyValidator)});
@@ -59,12 +63,9 @@ const CreateVacancyPage = () => {
         dispatch(clearBeforeCreate());
     }, []);
 
-
     useEffect(() => {
-        if (status === 'fulfilled' && vacancy?.data?.id) {
-            setTimeout(() => {
-                setRedirectId(vacancy?.data?.id);
-            }, 500);
+        if (status === 'fulfilled' && vacancy?.id && creatingProcess) {
+            setRedirectId(vacancy?.id);
         }
     }, [status, vacancy]);
 
@@ -80,6 +81,12 @@ const CreateVacancyPage = () => {
     };
 
     const sendVacancy = (obj) => {
+        setCreatingProcess(true);
+
+        if (wait) return;
+
+        setWait(true);
+
         let flag = 0;
 
         if (!experience) {
@@ -108,6 +115,7 @@ const CreateVacancyPage = () => {
         }
 
         if (flag === 1) {
+            setWait(false);
             return window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
@@ -127,6 +135,8 @@ const CreateVacancyPage = () => {
         setTechError(false);
         setEngError(false);
         setExpError(false);
+        setWait(false);
+        return window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     const title = 'Create vacancy';
@@ -134,7 +144,7 @@ const CreateVacancyPage = () => {
     const url = `https://skilliant.net/create-vacancy`;
 
     if (redirectId) {
-        return <Navigate to={`/employer`} replace/>;
+        return <Navigate to={`/vacancy/${redirectId}`} replace/>;
     }
 
     if (!user) {
@@ -288,7 +298,8 @@ const CreateVacancyPage = () => {
                             />
                         </div>
                     </div>
-                    <button className={rootCss.default__button}>{EN ? 'Create' : 'Створити'}</button>
+                    <button
+                        className={rootCss.default__button}>{wait ? (EN ? 'Wait' : 'Зачекайте') : (EN ? 'Create' : 'Створити')}</button>
                 </form>
             </div>
         </div>
