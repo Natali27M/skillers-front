@@ -45,7 +45,8 @@
     display: none;
 }
 
-.filter__btn_close{
+.filter__btn_close {
+    display: none;
     position: absolute;
     top: 20px;
     right: 20px;
@@ -85,7 +86,8 @@
         display: none;
     }
 
-    .filter__btn {
+    .filter__btn,
+    .filter__btn_close {
         display: block;
     }
 

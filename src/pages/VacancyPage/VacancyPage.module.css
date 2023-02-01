@@ -33,7 +33,7 @@
     border-left: 1px solid #DADADA;
 }
 
-.vacancy__info > button {
+.vacancy__info > button:last-child {
     margin-top: 20px;
 }
 
@@ -102,7 +102,7 @@
     }
 
     .vacancy__subtitle,
-    .vacancy__description{
+    .vacancy__description {
         width: 90%;
     }
 }
@@ -119,5 +119,92 @@
     .vacancy__info {
         min-width: 200px;
         padding: 60px 0 0 30px;
+    }
+
+    .vacancy__info > button:last-child {
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .vacancy__wrap {
+        flex-direction: column-reverse;
+    }
+
+    .vacancy__info {
+        height: fit-content;
+        padding: 30px 0 0 0;
+        border-left: none;
+        row-gap: 10px;
+    }
+
+
+    .vacancy__info > button:last-child {
+        margin: 0;
+    }
+
+    .vacancy__main,
+    .vacancy__subtitle,
+    .vacancy__description {
+        width: 100%;
+    }
+
+    .vacancy__main {
+        row-gap: 15px;
+    }
+
+    .vacancy__title {
+        font-size: 20px;
+    }
+
+    .vacancy__salary {
+        font-size: 18px;
+    }
+
+    .vacancy__subtitle {
+        font-size: 16px;
+    }
+
+    .vacancy__description {
+        font-size: 14px;
+    }
+
+    .website__title {
+        font-size: 16px;
+    }
+
+    .vacancy__website {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .vacancy__wrap {
+        padding: 0 20px;
+    }
+
+    .vacancy__title {
+        font-size: 18px;
+    }
+
+    .vacancy__salary {
+        font-size: 16px;
+    }
+
+    .vacancy__subtitle {
+        font-size: 14px;
+    }
+
+    .vacancy__description {
+        font-size: 12px;
+    }
+
+    .website__title {
+        font-size: 14px;
+    }
+
+    .vacancy__website {
+        font-size: 12px;
     }
 }
