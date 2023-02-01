@@ -80,3 +80,32 @@
 .user_name {
     font-size: 12px;
 }
+
+@media (max-width: 767px) {
+    .category, .technology {
+        font-size: 12px;
+    }
+
+    .idea_title {
+        font-size: 17px;
+    }
+
+    .idea_description {
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .category, .technology {
+        font-size: 10px;
+    }
+
+    .idea_title {
+        font-size: 16px;
+    }
+
+    .idea_description {
+        font-size: 14px;
+    }
+}

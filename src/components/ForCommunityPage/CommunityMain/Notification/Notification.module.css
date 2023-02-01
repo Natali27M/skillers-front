@@ -6,11 +6,13 @@
 .notification__readed {
     padding: 10px 20px;
     background-color: white;
+    margin-top: 10px;
 }
 
 .notification__noReaded {
     padding: 10px 20px;
     background-color: #E2F0FE;
+    margin-top: 10px;
 }
 
 .notification__box {

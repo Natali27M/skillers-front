@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import qs from "qs";
+import {Roller} from "react-awesome-spinners";
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
-import qs from "qs";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './QuestionDetails.module.css';
@@ -18,13 +19,23 @@ import {notificationService} from "../../../../services/notification.service";
 const QuestionDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
-    const {oneQuestion} = useSelector(state => state['questionsReducers']);
+    const {oneQuestion, isDeleteQuestion} = useSelector(state => state['questionsReducers']);
     const {status, isDeletedAnswer} = useSelector(state => state['answersReducers']);
 
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {id} = useParams();
+    const {state} = useLocation();
+
+    const [loading, setLoading] = useState(false);
+
+    const element = document.getElementById(`${state?.commentId}`);
+
+    if (element) {
+        element.scrollIntoView();
+    }
+
     const {
         handleSubmit,
         register,
@@ -34,16 +45,21 @@ const QuestionDetails = () => {
 
 
     useEffect(() => {
+        if (isDeleteQuestion) {
+            setLoading(!loading);
+            return navigate('/community/question');
+        }
+
         dispatch(getOneQuestion(Number(id)));
-    }, [id, status === 'fulfilled', isDeletedAnswer]);
+    }, [id, status === 'fulfilled', isDeletedAnswer, isDeleteQuestion]);
 
     const createNotification = async () => {
         const answer = JSON.parse(localStorage.getItem('answer'));
         const notification = {
             postId: oneQuestion?.id,
             commentId: null,
-            idComment: answer.id,
-            postAuthorId: oneQuestion.attributes.userId,
+            idComment: answer?.id,
+            postAuthorId: oneQuestion?.attributes?.userId,
             userId: answer?.attributes?.userId,
             username: answer?.attributes?.userName,
             isReaded: false,
@@ -63,7 +79,7 @@ const QuestionDetails = () => {
             question: oneQuestion?.id,
             userId: user?.id,
             userName: user?.username,
-            questionId: oneQuestion.id,
+            questionId: oneQuestion?.id,
         }
         await dispatch(createAnswer(myAnswer));
         await createNotification();
@@ -71,8 +87,8 @@ const QuestionDetails = () => {
     }
 
     const makeDeleteQuestion = () => {
+        setLoading(!loading);
         dispatch(deleteQuestion({id: oneQuestion?.id, postId: oneQuestion?.attributes?.postId}));
-        navigate('/community/question');
     }
 
     const makeDeleteAnswer = async (id) => {
@@ -90,7 +106,7 @@ const QuestionDetails = () => {
     }
 
     if (!user) {
-        return navigate('/login');
+        return <Navigate to={'/login'} replace/>;
     }
 
     return (
@@ -152,6 +168,9 @@ const QuestionDetails = () => {
 
                         {user?.id === oneQuestion?.attributes?.userId &&
                             <div className={css.delete_question_block}>
+                                <div>
+                                    {loading && <Roller/>}
+                                </div>
                                 <button
                                     onClick={() => makeDeleteQuestion()}
                                     className={css_helper.ask__button}
@@ -178,12 +197,14 @@ const QuestionDetails = () => {
                                                             className={css.question_user_name}>{value?.attributes?.userName} {EN ? " answered" : " відповів"}</div>
                                                     </div>
                                                     <div className={css.answer__text}>{value.attributes.answer}</div>
-                                                    <div className={css.answer__code}>
-                                                        <SyntaxHighlighter language="javascript" style={docco}
-                                                                           showLineNumbers={true}>
-                                                            {value?.attributes?.code}
-                                                        </SyntaxHighlighter>
-                                                    </div>
+                                                    {value?.attributes?.code &&
+                                                        <div className={css.answer__code}>
+                                                            <SyntaxHighlighter language="javascript" style={docco}
+                                                                               showLineNumbers={true}>
+                                                                {value?.attributes?.code}
+                                                            </SyntaxHighlighter>
+                                                        </div>
+                                                    }
 
                                                     {user?.id === value?.attributes?.userId &&
                                                         <div className={css.delete_question_block}>

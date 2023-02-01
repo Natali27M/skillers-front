@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import qs from "qs";
+import {Roller} from "react-awesome-spinners";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
@@ -19,18 +20,31 @@ import {notificationService} from "../../../../services/notification.service";
 const IdeaDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
-    const {oneIdea} = useSelector(state => state['ideasReducers']);
+    const {oneIdea, isDeletedIdea} = useSelector(state => state['ideasReducers']);
     const {status, isDeletedOpinion} = useSelector(state => state['discussionReducers']);
 
     const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {state} = useLocation();
+
+    const [loading, setLoading] = useState(false);
+
+    const element = document.getElementById(`${state?.commentId}`);
+
+    if (element) {
+        element.scrollIntoView();
+    }
 
     const {handleSubmit, register, formState: {errors}, reset} = useForm({resolver: joiResolver(ideaOpinionValidator)});
 
     useEffect(() => {
         dispatch(getOneIdea(id));
-    }, [id, status === 'fulfilled', isDeletedOpinion])
+        if (isDeletedIdea) {
+            setLoading(!loading);
+            return navigate('/community/idea');
+        }
+    }, [id, status === 'fulfilled', isDeletedOpinion, isDeletedIdea]);
 
 
     const createNotification = async () => {
@@ -67,9 +81,9 @@ const IdeaDetails = () => {
     }
 
 
-    const makeDeleteIdea = async () => {
-        await dispatch(deleteMyIdea({id: oneIdea?.id, postId: oneIdea?.attributes?.postId}))
-        return navigate('/community/idea')
+    const makeDeleteIdea = () => {
+        setLoading(!loading);
+        dispatch(deleteMyIdea({id: oneIdea?.id, postId: oneIdea?.attributes?.postId}));
     }
 
     const makeDeleteOpinion = async (id) => {
@@ -87,7 +101,7 @@ const IdeaDetails = () => {
     }
 
     if (!user) {
-        return navigate('/login');
+        return <Navigate to={'/login'} replace/>
     }
 
     return (
@@ -183,6 +197,9 @@ const IdeaDetails = () => {
 
                         {user?.id === oneIdea?.attributes?.userId &&
                             <div className={css.delete_idea_block}>
+                                <div>
+                                    {loading && <Roller/>}
+                                </div>
                                 <button
                                     onClick={() => makeDeleteIdea()}
                                     className={css_helper.ask__button}
@@ -199,7 +216,7 @@ const IdeaDetails = () => {
                             <>
                                 {
                                     oneIdea?.attributes?.discussions?.data?.length > 0 && oneIdea?.attributes?.discussions?.data.map(value =>
-                                        <div key={value.id} className={css.opinion_block}>
+                                        <div key={value.id} className={css.opinion_block} id={value.id}>
                                             <div className={css.opinion_user}>
                                                 <div className={css.user}>
                                                     <img src={user_image} alt="user"/>
@@ -208,7 +225,7 @@ const IdeaDetails = () => {
                                             </div>
                                             <div className={css.comment}>{value.attributes.comment}</div>
                                             {
-                                                value.attributes.code && <div>
+                                                value.attributes.code && <div className={css.opinion_code}>
                                                     <SyntaxHighlighter language="javascript" style={docco}
                                                                        showLineNumbers={true}>
                                                         {value?.attributes?.code}

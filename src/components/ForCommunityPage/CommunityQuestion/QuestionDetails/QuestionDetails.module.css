@@ -33,6 +33,8 @@
     width: 95%;
     padding: 20px 10px;
     column-gap: 30px;
+    flex-wrap: wrap;
+    row-gap: 20px;
 }
 
 .user {
@@ -98,6 +100,8 @@
 }
 
 .question_description, .question_expected_result {
+    width: 100%;
+    text-align: left;
     font-size: 18px;
     line-height: 1.5;
 }
@@ -218,6 +222,7 @@
     width: 100%;
     align-items: center;
     justify-content: flex-end;
+    column-gap: 20px;
 }
 
 .delete_question_button:hover {
@@ -230,7 +235,6 @@
     border: none;
     background: black;
     color: #ffffff;
-
 }
 
 .errors {
@@ -241,4 +245,211 @@
 .errorBorder {
     border-color: red;
     border-radius: 5px;
+}
+
+
+@media (max-width: 600px) {
+    .description__block {
+        margin-top: 10px;
+    }
+
+    .question_title {
+        width: 100%;
+        font-size: 19px;
+    }
+
+    .title__block {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        row-gap: 30px;
+    }
+
+    .question_description, .question_expected_result {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .question_details {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding: 2px;
+        font-size: 11px;
+    }
+
+    .technology {
+        font-size: 11px;
+    }
+
+    .answer__one__block {
+        row-gap: 16px;
+    }
+
+    .answer__text {
+        font-size: 14px;
+    }
+
+    .answer__code {
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .user {
+        column-gap: 2px;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 10px;
+        min-height: 150px;
+    }
+
+    .form_sub_block > h4 {
+        font-size: 15px;
+    }
+
+    .input_description {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 767px) {
+    .description__block {
+        margin-top: 10px;
+    }
+
+    .question_title {
+        width: 100%;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .title__block {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        row-gap: 30px;
+    }
+
+    .question_description, .question_expected_result {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .question_details {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding: 4px;
+        font-size: 12px;
+    }
+
+    .technology {
+        font-size: 12px;
+    }
+
+    .answer__one__block {
+        row-gap: 16px;
+    }
+
+    .answer__text {
+        font-size: 15px;
+    }
+
+    .answer__code {
+        padding: 0;
+        font-size: 11px;
+    }
+
+    .user {
+        column-gap: 2px;
+        padding: 7px 12px;
+        border-radius: 4px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 12px;
+        min-height: 170px;
+    }
+
+    .form_sub_block > h4 {
+        font-size: 16px;
+    }
+
+    .input_description {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .description__block {
+        margin-top: 5px;
+    }
+
+    .question_title {
+        width: 100%;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .title__block {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        row-gap: 30px;
+    }
+
+    .question_description, .question_expected_result {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .question_details {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .technology {
+        font-size: 10px;
+    }
+
+    .answer__one__block {
+        row-gap: 15px;
+    }
+
+    .answer__text {
+        font-size: 13px;
+    }
+
+    .answer__code {
+        padding: 0;
+        font-size: 9px;
+    }
+
+    .user {
+        column-gap: 2px;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 10px;
+        min-height: 150px;
+    }
+
+    .form_sub_block > h4 {
+        font-size: 14px;
+    }
+
+    .input_description {
+        font-size: 11px;
+    }
 }

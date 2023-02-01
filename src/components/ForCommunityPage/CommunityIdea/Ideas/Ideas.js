@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import qs from "qs";
 import {Checkbox, FormControlLabel} from "@mui/material";
 
@@ -76,7 +76,7 @@ const Ideas = () => {
 
 
     if (!user) {
-        return navigate('/login');
+        return <Navigate to={'/login'} replace/>
     }
 
     return (
@@ -124,10 +124,9 @@ const Ideas = () => {
                                 label={<div
                                     className={css.label}>{technology?.attributes?.value}</div>}/>)}
                         </div>
-
                         <span>
                         {EN ? "Filter by categories:" : "Фільтрація за категоріями:"}
-                    </span>
+                        </span>
                         <div>
                             {categories?.data?.map(category => <FormControlLabel
                                 onChange={setCategory}

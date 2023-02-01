@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {Checkbox, FormControlLabel} from "@mui/material";
 import qs from "qs";
 
@@ -55,7 +55,7 @@ const Questions = () => {
     }
 
     if (!user) {
-        return navigate('/login');
+        return  <Navigate to={'/login'} replace/>
     }
 
     return (

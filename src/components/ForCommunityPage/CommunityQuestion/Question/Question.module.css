@@ -56,3 +56,47 @@
     color: #1b1b1c;
     margin: 4px;
 }
+
+
+@media (max-width: 920px) {
+    .question_title {
+        font-size: 18px;
+    }
+
+    .question_description {
+        font-size: 16px;
+    }
+
+    .technology {
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .question_title {
+        font-size: 17px;
+    }
+
+    .question_description {
+        font-size: 15px;
+    }
+
+    .technology {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 500px) {
+    .question_title {
+        font-size: 16px;
+    }
+
+    .question_description {
+        font-size: 14px;
+    }
+
+    .technology {
+        font-size: 10px;
+    }
+}

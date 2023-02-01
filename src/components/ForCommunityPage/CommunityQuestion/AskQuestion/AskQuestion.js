@@ -97,7 +97,7 @@ const AskQuestion = () => {
                                 <li>{EN ? "Select technology - mark one about several technologies" : "Select technology - позначте одну обо декілька технологій "}</li>
                             </ul>
                         </div>
-                        <div>
+                        <div className={css.following}>
                             {EN ? "By following these simple steps, you can easily write an " +
                                 "informative question and as a result, it will be easier for " +
                                 "users to understand you and give useful advice." :

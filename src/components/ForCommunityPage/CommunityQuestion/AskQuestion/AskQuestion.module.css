@@ -105,3 +105,178 @@ ul > li {
     border-color: red;
     border-radius: 3px;
 }
+
+
+@media (max-width: 920px) {
+
+    .form_sub_block > input {
+        width: 85%;
+        padding: 15px;
+    }
+
+    .form_sub_block > textarea {
+        width: 95%;
+        padding: 15px;
+        min-height: 200px;
+    }
+
+    .input_description {
+        font-size: 14px;
+    }
+
+    .select__input {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    li {
+        font-size: 15px;
+    }
+
+    .following {
+        font-size: 16px;
+    }
+
+    .write_you_question {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .form_sub_block > input {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 10px;
+        min-height: 180px;
+    }
+
+    .input_description {
+        font-size: 12px;
+    }
+
+    .select__input {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    li {
+        font-size: 14px;
+    }
+
+    .following {
+        font-size: 15px;
+    }
+
+    .write_you_question {
+        font-size: 22px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .form_sub_block > input {
+        width: 100%;
+        padding: 7px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 7px;
+        min-height: 150px;
+    }
+
+    .input_description {
+        font-size: 11px;
+    }
+
+    .select__input {
+        width: 100%;
+        padding: 7px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    li {
+        font-size: 13px;
+    }
+
+    .following {
+        font-size: 14px;
+    }
+
+    .write_you_question {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .form_sub_block > input {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .form_sub_block > textarea {
+        width: 100%;
+        padding: 5px;
+        min-height: 150px;
+    }
+
+    .input_description {
+        font-size: 10px;
+    }
+
+    .select__input {
+        width: 100%;
+        padding: 5px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    h4 {
+        font-size: 13px;
+    }
+
+    li {
+        font-size: 12px;
+    }
+
+    .following {
+        font-size: 13px;
+    }
+
+    .write_you_question {
+        font-size: 18px;
+    }
+}
