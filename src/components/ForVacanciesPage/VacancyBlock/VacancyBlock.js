@@ -21,20 +21,29 @@ const VacancyBlock = ({vacancy, id}) => {
 
     return (
         <div className={css.vacancy__block}>
-            {(user?.id === +vacancy?.employerId && vacancy?.reviews > 0) &&
+      {/*      {(user?.id === +vacancy?.employerId && vacancy?.reviews > 0) &&
                 <Link to={`/vacancy-responses/${id}`} className={css.to__reviews}>
                     <h5>{EN ? 'To responses' : 'До відгуків'}</h5>
                     <img src={arrow} alt="arrow"/>
                 </Link>
-            }
+            }*/}
             <Link to={`/vacancy/${id}`} className={css.vacancy__wrap}>
                 <div className={css.vacancy__header}>
-                    <h4 className={css.vacancy__title}>
-                        {vacancy?.title}
-                    </h4>
-                    <h6 className={css.vacancy__salary}>
-                        {vacancy?.salary} $
-                    </h6>
+                    <div className={css.vacancy__info}>
+                        <h4 className={css.vacancy__title}>
+                            {vacancy?.title}
+                        </h4>
+                        <h6 className={css.vacancy__salary}>
+                            {vacancy?.salary} $
+                        </h6>
+                    </div>
+
+                    {(user?.id === +vacancy?.employerId && vacancy?.reviews > 0) &&
+                        <Link to={`/vacancy-responses/${id}`} className={css.to__reviews}>
+                            <h5>{EN ? 'To responses' : 'До відгуків'}</h5>
+                            <img src={arrow} alt="arrow"/>
+                        </Link>
+                    }
                 </div>
                 <p className={css.vacancy__description}>
                     {vacancy?.subtitle}

@@ -122,10 +122,11 @@ const VacanciesPage = () => {
                     <h3 className={rootCss.default__title_24}>
                         {EN ? 'Vacancies' : 'Вакансії'}
                     </h3>
-                    {vacanciesPage?.data?.map(vacancy =>
-                        <VacancyBlock vacancy={vacancy.attributes} id={vacancy?.id}
-                                      key={vacancy?.id}/>
-                    )}
+                    {vacanciesPage?.data?.length ? vacanciesPage?.data?.map(vacancy =>
+                            <VacancyBlock vacancy={vacancy.attributes} id={vacancy?.id}
+                                          key={vacancy?.id}/>
+                        ) :
+                        <div>{EN ? 'There are no vacancies with these criteria' : 'Немає вакансій з такими критеріями'}</div>}
                     {!!vacanciesPage?.data?.length &&
                         <PaginationSmall pageNumber={pageNumber}
                                          setPageNumber={setPageNumber}
