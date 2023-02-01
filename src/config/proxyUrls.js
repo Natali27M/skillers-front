@@ -12,4 +12,8 @@ export const proxyUrls = {
     usersPaginatedTen: '/users?pagination[pageSize]=10&pagination[page]=',
     post: '/post'
     // usersPaginatedTenByQuery: '/users?pagination[pageSize]=10&pagination[page]='
+    cascadeDelete: {
+        discussions: '/cascadeDelete/discussions',
+        answers: '/cascadeDelete/answers',
+    }
 };

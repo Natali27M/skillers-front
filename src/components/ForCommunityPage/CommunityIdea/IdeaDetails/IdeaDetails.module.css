@@ -1,0 +1,257 @@
+.idea_details_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title__block {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(91, 92, 93);
+}
+
+.idea_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 75%;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(43, 48, 53);
+    line-height: 1.5;
+}
+
+
+.info__block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95%;
+    padding: 20px 10px;
+    column-gap: 30px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #F1F1F1;
+}
+
+.user > img {
+    width: 15px;
+    height: 15px;
+}
+
+.idea_user_name {
+    font-size: 12px;
+}
+
+.asked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.asked > span {
+    font-size: 12px;
+    color: rgb(125, 131, 135);
+}
+
+.asked > div {
+    font-size: 12px;
+}
+
+.description__block {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+    row-gap: 50px;
+}
+
+.section {
+    width: 90%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.section > span {
+    width: 100%;
+    font-size: 26px;
+    padding: 0 0 10px 30px;
+    font-family: 'Georgia', sans-serif;
+    text-align: left;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+.section > div {
+    width: 100%;
+    padding-left: 10px;
+    line-height: 1.5;
+    font-size: 19px;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
+}
+
+.section > div.details {
+    width: 100%;
+    padding-left: 10px;
+    line-height: 1.5;
+    font-size: 19px;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: left;
+}
+
+.section > div.code {
+    width: 100%;
+    padding: 40px;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: left;
+}
+
+
+.idea_technologies {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.technology {
+    font-size: 12px;
+    padding: 3px 10px;
+    background: rgb(125, 186, 248);
+    color: #1b1b1c;
+    margin: 4px;
+}
+
+
+.idea_categories {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.category {
+    font-size: 13px;
+    padding: 4px 12px;
+    background: rgb(3, 3, 3);
+    color: #d5d4d4;
+    font-weight: 500;
+    border-radius: 12px;
+    margin: 4px;
+}
+
+.discussions__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px 20px;
+    border-top: 1px solid #cecdcd;
+    border-bottom: 1px solid #cecdcd;
+    row-gap: 20px;
+    flex-direction: column;
+}
+
+.discussions__block > h4 {
+    width: 100%;
+    padding: 20px;
+    text-align: right;
+    font-size: 20px;
+}
+
+
+.form__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px 20px;
+}
+
+
+.delete_idea_block {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.delete_idea_button:hover {
+    box-shadow: 0 0 2px 1px #9f9e9e;
+    cursor: pointer;
+}
+
+.delete_idea_button {
+    padding: 5px 10px;
+    border: none;
+    background: black;
+    color: #ffffff;
+
+}
+
+.opinion_block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.opinion_user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.comment {
+    width: 100%;
+    display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    line-height: 1.5;
+    flex-wrap: wrap;
+}
+
+.delete_my_opinion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.delete_my_opinion_button {
+    padding: 5px 10px;
+    border: none;
+    background: black;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.delete_my_opinion_button:hover {
+    box-shadow: 0 0 2px 1px #9f9e9e;
+    cursor: pointer;
+}

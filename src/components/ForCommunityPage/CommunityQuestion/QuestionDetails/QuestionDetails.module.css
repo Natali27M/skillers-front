@@ -1,0 +1,244 @@
+.question_details_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title__block {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(91, 92, 93);
+}
+
+.question_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 75%;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(43, 48, 53);
+    line-height: 1.5;
+}
+
+.info__block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95%;
+    padding: 20px 10px;
+    column-gap: 30px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #F1F1F1;
+}
+
+.user > img {
+    width: 15px;
+    height: 15px;
+}
+
+.question_user_name {
+    font-size: 12px;
+}
+
+.asked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.asked > span {
+    font-size: 12px;
+    color: rgb(125, 131, 135);
+}
+
+.asked > div {
+    font-size: 12px;
+}
+
+.description__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    flex-direction: column;
+    row-gap: 40px;
+    margin-top: 30px;
+    padding: 20px 10px;
+}
+
+.question_technologies {
+    display: flex;
+    width: 100%;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.technology {
+    font-size: 12px;
+    padding: 5px 10px;
+    background: rgb(2, 2, 2);
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 4px;
+}
+
+.question_description, .question_expected_result {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.question_details {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 0 0 40px;
+}
+
+.answers__block {
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    width: 95%;
+    flex-direction: column;
+    row-gap: 40px;
+    margin-top: 30px;
+    padding: 20px 10px;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
+    /*border-bottom: 1px solid red;*/
+}
+
+.answers > span {
+    width: 100%;
+    text-align: right;
+    font-size: 18px;
+    border-top: 1px solid rgb(125, 131, 135);
+    color: #1b1b1c;
+    padding: 20px;
+}
+
+.answer__one__block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: column;
+    row-gap: 30px;
+    padding: 50px 0;
+    border-bottom: 1px solid #b60101;
+}
+
+.answer__text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.answer__code {
+    width: 100%;
+}
+
+.form__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    width: 95%;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 90%;
+}
+
+.form_sub_block {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px 15px;
+    background: #F3F3F3;
+    border: 1px solid rgb(172, 177, 182);
+    border-radius: 5px;
+}
+
+.input_description {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+.form_sub_block > textarea {
+    width: 80%;
+    padding: 10px;
+    min-height: 250px;
+}
+
+.button_div {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.ask__button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    background: black;
+}
+
+.delete_question_block {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.delete_question_button:hover {
+    box-shadow: 0 0 2px 1px #9f9e9e;
+    cursor: pointer;
+}
+
+.delete_question_button {
+    padding: 5px 10px;
+    border: none;
+    background: black;
+    color: #ffffff;
+
+}
+
+.errors {
+    font-size: 10px;
+    color: #ab0101;
+}
+
+.errorBorder {
+    border-color: red;
+    border-radius: 5px;
+}

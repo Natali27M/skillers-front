@@ -11,3 +11,8 @@ export * from './codeTest.services';
 export * from './codeResults.services';
 export * from './paymentRequests.service';
 export * from './notifications.services';
+export * from './question.services';
+export * from './answers.services';
+export * from './categories.services';
+export * from './ideas.services';
+export * from './discussion.services';

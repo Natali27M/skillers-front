@@ -33,7 +33,17 @@ import {
     TestWithCodePage,
     UserPage
 } from './pages';
-import {CommunityIdea, Posts, CommunityQuestion, Layout} from './components';
+import {
+    AskQuestion,
+    CommunityMain,
+    IdeaDetails,
+    Ideas,
+    Layout,
+    PostIdea,
+    CommunityIdea, Posts, CommunityQuestion,
+    QuestionDetails,
+    Questions
+} from './components';
 import {
     clear,
     clearCreateTest,
@@ -52,6 +62,8 @@ import {DonationPage} from './pages/DonationPage/DonationPage';
 import {db} from './firebaseConfig';
 import css from './pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from './styles/root.module.css';
+
+// import {AskQuestion, QuestionDetails} from "./components";
 
 function App() {
     const {user} = useSelector(state => state['userReducers']);
@@ -215,9 +227,13 @@ function App() {
                         <Route path={'/community'} element={<CommunityPage/>}>
                             <Route index element={<Posts/>}/>
                             <Route path={'/community/home'} element={<Posts/>}/>
+                            <Route path={'/community/question/:id'} element={<QuestionDetails/>}/>
+                            <Route path={'/community/question/ask'} element={<AskQuestion/>}/>
                             <Route path={'/community/question'} element={<CommunityQuestion/>}/>
                             <Route path={'/community/idea'} element={<CommunityIdea/>}/>
                             <Route path={'/community/notification'} element={<NotificationPage/>}/>
+                            <Route path={'/community/idea/:id'} element={<IdeaDetails/>}/>
+                            <Route path={'/community/idea/post'} element={<PostIdea/>}/>
                         </Route>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>

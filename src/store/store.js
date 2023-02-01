@@ -18,6 +18,11 @@ import paymentRequestReducers from "./slices/paymentRequest.slice";
 import postReducers from './slices/post.slice';
 import commentReducers from './slices/comment.slice';
 import notificationReducers from './slices/notification.slice';
+import questionsReducers from "./slices/question.slice";
+import answersReducers from "./slices/answers.slice";
+import categoriesReducers from "./slices/categories.slice";
+import ideasReducers from "./slices/ideas.slice";
+import discussionReducers from "./slices/discussion.slice";
 
 
 const store = configureStore({
@@ -40,6 +45,11 @@ const store = configureStore({
         postReducers,
         commentReducers,
         notificationReducers,
+        questionsReducers,
+        answersReducers,
+        categoriesReducers,
+        ideasReducers,
+        discussionReducers,
     }
 });
 

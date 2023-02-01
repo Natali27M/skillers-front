@@ -1,0 +1,82 @@
+.idea_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 20px;
+    min-height: 100px;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    background: #F3F3F3;
+    row-gap: 20px;
+}
+
+.idea_container:hover {
+    cursor: pointer;
+    background: #eeeded;
+}
+
+.user, .idea_title, .idea_description, .idea_categories, .idea_technologies {
+    display: flex;
+    width: 100%;
+}
+
+.idea_title {
+    text-align: left;
+    font-size: 22px;
+    line-height: 1.5;
+    color: rgb(0, 103, 198);
+}
+
+.idea_description {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.idea_technologies {
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.technology {
+    font-size: 12px;
+    padding: 3px 10px;
+    background: rgb(125, 186, 248);
+    color: #1b1b1c;
+    margin: 4px;
+}
+
+
+.idea_categories {
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.category {
+    font-size: 13px;
+    padding: 4px 12px;
+    background: rgb(3, 3, 3);
+    color: #d5d4d4;
+    font-weight: 500;
+    border-radius: 12px;
+    margin: 4px;
+}
+
+.user {
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 6px;
+}
+
+.user > img {
+    width: 15px;
+    height: 15px;
+}
+
+.user_name {
+    font-size: 12px;
+}

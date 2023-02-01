@@ -14,3 +14,8 @@ export * from './slices/paymentRequest.slice';
 export * from './slices/post.slice';
 export * from './slices/comment.slice';
 export * from './slices/notification.slice';
+export * from './slices/question.slice';
+export * from './slices/answers.slice';
+export * from './slices/categories.slice';
+export * from './slices/ideas.slice';
+export * from './slices/discussion.slice';
