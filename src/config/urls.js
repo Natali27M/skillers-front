@@ -51,10 +51,7 @@ export const urls = {
 
     codeRates: '/api/code-rates',
 
-    posts: '/api/post',
     comments: '/api/comments',
-    notifications: '/api/notification'
-    codeRates: '/api/code-rates',
 
     questions: '/api/question',
     answers: '/api/answers-to-questions',
@@ -62,7 +59,6 @@ export const urls = {
     ideas: '/api/idea',
     discussions: '/api/discussion',
     notifications: '/api/notification',
-
 
     posts: '/api/post',
 };
