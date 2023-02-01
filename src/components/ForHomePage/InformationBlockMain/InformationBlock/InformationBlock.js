@@ -5,11 +5,11 @@ import {InformationTesting} from '../InformationTesting/InformationTesting';
 import {InformationCollaboration} from '../InformationCollaboration/InformationCollaboration';
 import {InformationTelegram} from '../InformationTelegram/InformationTelegram';
 
-const InformationBlock = () => {
+const InformationBlock = ({setGetLeaderBoard}) => {
     return (
         <div className={css.information__main}>
             <InformationTesting/>
-            <InformationCollaboration/>
+            <InformationCollaboration setGetLeaderBoard={setGetLeaderBoard}/>
             <InformationTelegram/>
         </div>
     );

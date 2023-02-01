@@ -10,7 +10,7 @@ const SklBanner = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={css.banner__box} onClick={() => navigate('/skl-token')}>
+        <div id='skl__banner' className={css.banner__box} onClick={() => navigate('/skl-token')}>
             <div className={css.banner__content}>
                 {EN ?
                     <div className={css.banner__text}>

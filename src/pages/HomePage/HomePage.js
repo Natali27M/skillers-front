@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet-async';
 import {useNavigate} from "react-router-dom";
@@ -19,6 +19,8 @@ const HomePage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
 
+    const [getLeaderBoard, setGetLeaderBoard] = useState(false)
+
     // const present = JSON.parse(localStorage.getItem('present'));
 
     const title = 'SKILLIANT - we help engineers to grow in IT';
@@ -26,7 +28,7 @@ const HomePage = () => {
     const url = 'https://skilliant.net';
 
     return (
-        <>
+        <div className={css.home__page}>
             <Helmet>
                 <meta charSet="utf-8"/>
                 <meta name="description" content={description}/>
@@ -137,12 +139,12 @@ const HomePage = () => {
                 </div>
             </div>
             <TechList/>
-            <InformationBlock/>
-            <LeaderBord/>
+            <InformationBlock setGetLeaderBoard={setGetLeaderBoard}/>
+            <LeaderBord getLeaderBoard={getLeaderBoard}/>
             <SklBanner/>
             <Feedbacks/>
             <YoutubeChannel/>
-        </>
+        </div>
     );
 };
 

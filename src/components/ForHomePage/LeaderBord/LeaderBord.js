@@ -8,7 +8,7 @@ import arrow from '../../../images/arrow.svg';
 import {getLeaderBord, getLeaderBordByQuery} from '../../../store';
 import {LeaderBlock, LeaderModal} from '../../../components';
 
-const LeaderBord = () => {
+const LeaderBord = ({getLeaderBoard}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {leaderBord} = useSelector(state => state['achievementsReducers']);
@@ -22,8 +22,10 @@ const LeaderBord = () => {
     const [isQuery, setIsQuery] = useState(false);
 
     useEffect(() => {
-        dispatch(getLeaderBord(pageNumber));
-    }, [pageNumber]);
+        if (getLeaderBoard) {
+            dispatch(getLeaderBord(pageNumber));
+        }
+    }, [pageNumber, getLeaderBoard]);
 
     const handleChange = (e) => {
         const data = e.target.value;

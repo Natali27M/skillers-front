@@ -7,7 +7,7 @@ import cssThis from './InformationCollaboration.module.css';
 import collaboration from '../../../../images/information/collaboration.svg';
 import longColorArrow from '../../../../images/information/longColorArrow.svg';
 
-const InformationCollaboration = () => {
+const InformationCollaboration = ({setGetLeaderBoard}) => {
     const navigate = useNavigate();
     const {EN} = useSelector(state => state['languageReducers']);
     const [scrollTop, setScrollTop] = useState(false);
@@ -24,6 +24,7 @@ const InformationCollaboration = () => {
 
                 if (position.top < window.innerHeight && position.bottom >= 0) {
                     setScrollTop(true);
+                    setGetLeaderBoard(true)
                 }
             });
         }
