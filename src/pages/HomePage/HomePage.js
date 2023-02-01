@@ -81,8 +81,8 @@ const HomePage = () => {
                                         <div className={css.slide__block}>
                                             <div
                                                 className={css.slide__description}>{
-                                                EN ? "140 tests and test code from 8 technologies" :
-                                                    "140 тестів і тестовий код з 8 технологій"}
+                                                EN ? "140 tests and code tests from 8 technologies" :
+                                                    "140 тестів і код тестів з 8 технологій"}
                                             </div>
                                             <div className={css.slide__img__block}>
                                                 <img src={testing} alt="testing" className={css.testing}/>
