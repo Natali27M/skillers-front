@@ -21,8 +21,6 @@ const HomePage = () => {
 
     const [getLeaderBoard, setGetLeaderBoard] = useState(false)
 
-    // const present = JSON.parse(localStorage.getItem('present'));
-
     const title = 'SKILLIANT - we help engineers to grow in IT';
     const description = 'Skilliant is a free online quiz platform that allows you to practice your skills and learn new ones';
     const url = 'https://skilliant.net';

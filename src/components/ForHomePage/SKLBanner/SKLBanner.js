@@ -29,7 +29,6 @@ const SklBanner = () => {
                 }
             </div>
             <img src={banner__angle} alt="banner__angle" className={css.banner__angle}/>
-            {/*<div className={css.banner__angle}></div>*/}
         </div>
 
     );
