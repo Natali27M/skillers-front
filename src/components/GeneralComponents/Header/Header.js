@@ -64,8 +64,13 @@ const Header = () => {
                 </div>
                 {openProducts &&
                     <div className={css.link__main}>
-                        <Link className={css.link__box} to={'/for-users'}>
-                            {EN ? 'For users' : 'Користувачам'}
+
+                        {/*<Link className={css.link__box} to={'/for-users'}>*/}
+                        {/*    {EN ? 'For users' : 'Користувачам'}*/}
+                        {/*</Link>*/}
+
+                        <Link className={css.link__box} to={'/mentors'}>
+                            {EN ? 'Mentors' : 'Ментори'}
                         </Link>
 
                         <Link className={css.link__box} to={'/mentors'}>
@@ -248,3 +253,5 @@ const Header = () => {
 };
 
 export {Header};
+
+
