@@ -7,11 +7,14 @@ import cv from '../../../images/vacancy/cv.svg';
 import css from './ResponseBlock.module.css';
 import vacancyTimeDisplay from '../../../RootFunctions/vacancyTimeDisplay';
 import {useSelector} from 'react-redux';
+import coverLetterDisplay from '../../../RootFunctions/coverLetterDisplay';
 
 const ResponseBlock = ({response}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const [emailCopyTime, setEmailCopyTime] = useState(false);
+
+    const [fullLetter, setFullLetter] = useState(false);
 
     const emailCopy = () => {
         setEmailCopyTime(true);
@@ -22,6 +25,8 @@ const ResponseBlock = ({response}) => {
 
     };
 
+    const coverLength = response?.attributes?.coverLetter.split(' ').length;
+
     return (
         <div className={css.response__block}>
             <h3 className={css.response__username}>
@@ -30,7 +35,17 @@ const ResponseBlock = ({response}) => {
             <h6 className={css.response__time}>{vacancyTimeDisplay(response?.attributes?.createdAt, EN)}</h6>
 
             <p className={css.cover__letter}>
-                {response?.attributes?.coverLetter}
+                {coverLength > 50
+                    ?
+                    coverLetterDisplay(response?.attributes?.coverLetter, fullLetter)
+                    :
+                    response?.attributes?.coverLetter
+                }
+                {coverLength > 50 &&
+                    <span className={css.show__letter} onClick={() => setFullLetter(!fullLetter)}>
+                        {fullLetter ? (EN ? 'Hide' : 'Сховати') : (EN ? 'Show more' : 'Показати більше')}
+                    </span>
+                }
             </p>
             <div className={css.data__links}>
 

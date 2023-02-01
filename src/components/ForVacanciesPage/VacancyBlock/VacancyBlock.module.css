@@ -1,17 +1,21 @@
 .vacancy__block {
     width: 100%;
     position: relative;
+    border-bottom: 1px solid #8d8d8d;
 }
 
 .vacancy__wrap {
     width: 100%;
-    border-bottom: 1px solid #8d8d8d;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     row-gap: 25px;
     color: black;
     text-decoration: none;
+}
+
+.vacancy__wrap > .vacancy__wrap {
+    padding: 0;
 }
 
 .to__reviews {
@@ -37,6 +41,8 @@
 }
 
 .vacancy__info {
+    text-decoration: none;
+    color: black;
     display: flex;
     align-items: flex-end;
     column-gap: 20px;

@@ -14,6 +14,7 @@
 
 .cover__letter {
     font-size: 16px;
+    white-space: pre-wrap;
 }
 
 .data__links {
@@ -32,4 +33,69 @@
     color: #646464;
     font-weight: 400;
     cursor: pointer;
+}
+
+.show__letter {
+    font-size: 14px;
+    cursor: pointer;
+    color: #0073B1;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+@media (max-width: 1000px) {
+    .response__username {
+        font-size: 18px;
+    }
+
+    .cover__letter {
+        font-size: 14px;
+    }
+
+    .response__time {
+        font-size: 14px;
+    }
+
+    .response__email {
+        font-size: 14px;
+    }
+
+    .data__links {
+        flex-wrap: wrap;
+    }
+
+    .data__links img {
+        height: 25px;
+    }
+
+    .show__letter {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .response__username {
+        font-size: 16px;
+    }
+
+    .cover__letter {
+        font-size: 12px;
+    }
+
+    .response__time {
+        font-size: 12px;
+    }
+
+    .response__email {
+        font-size: 12px;
+    }
+
+    .show__letter {
+        font-size: 10px;
+    }
+
+    .data__links img {
+        height: 20px;
+    }
 }
