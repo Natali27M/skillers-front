@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+
 import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
@@ -11,7 +12,9 @@ import {switchLanguage} from '../../../store';
 import {Turn as Hamburger} from 'hamburger-react';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
-
+import {ForHeaderProductsBlock} from './ForHeaderProductsBlock/ForHeaderProductsBlock';
+import {ForHeaderProgrammingBlock} from './ForHeaderProgrammingBlock/ForHeaderProgrammingBlock';
+import {ForHeaderResourcesBlock} from './ForHeaderResourcesBlock/ForHeaderResourcesBlock';
 
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
@@ -57,85 +60,15 @@ const Header = () => {
 
 
             <div className={css.header__left}>
-                <div className={css.header__link} onClick={() => {
-                    setOpenProducts(!openProducts)
-                }}>
-                    {EN ? 'Products' : 'Наш продукт'}
-                </div>
-                {openProducts &&
-                    <div className={css.link__main}>
-
-                        {/*<Link className={css.link__box} to={'/for-users'}>*/}
-                        {/*    {EN ? 'For users' : 'Користувачам'}*/}
-                        {/*</Link>*/}
-
-                        <Link className={css.link__box} to={'/mentors'}>
-                            {EN ? 'Mentors' : 'Ментори'}
-                        </Link>
-
-                        <Link className={css.link__box} to={'/mentors'}>
-                            {EN ? 'Mentors' : 'Ментори'}
-                        </Link>
-
-                        <Link className={css.link__box} to={'/vacancies'}>
-                            {EN ? 'Recruting' : 'Рекрутинг'}
-                        </Link>
-
-                        <Link className={css.link__box} to={'/rank'}>
-                            {EN ? 'Rank table' : 'Таблиця рангів'}
-                        </Link>
-                    </div>
-                }
-
-                <div className={css.header__link} onClick={() => {
-                    setOpenProgramming(!openProgramming)
-                }}>
-                    {EN ? 'Programming' : 'Програмування'}
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-                {openProgramming &&
-                    <div className={css.link__main}>
-                        <Link className={css.link__box} to={'/compiler'}>
-                            {EN ? 'Compiler' : 'Компілятор'}
-                        </Link>
-
-                        <Link className={css.link__box} to={'/createTest'}>
-                            {EN ? 'Create quiz' : 'Створити тест'}
-                        </Link>
-
-                        <div className={css.link__main_wrap}>
-                            <Link className={css.link__box} to={'/team-coding'}>
-                                <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                            </Link>
-                            <img src={new_icon} alt="new" className={css.new__icon}/>
-                        </div>
-                    </div>
-                }
-
-                <div className={css.header__link} onClick={() => {
-                    setOpenResources(!openResources)
-                }}>
-                    {EN ? 'Resources' : 'Ресурси'}
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-                {openResources &&
-                    <div className={css.link__main}>
-                        <div className={css.link__main_wrap}>
-                            <Link className={css.link__box} to={'/learning-plan'}>
-                                {EN ? 'Learning plans' : 'Навчальні плани'}
-                                <img src={new_icon} alt="new" className={css.new__icon}/>
-                            </Link>
-                        </div>
-                        <Link className={css.link__box} to={'/community'}>
-                            {EN ? 'Skilliant Community' : 'Skilliant Спільнота'}
-                        </Link>
-                    </div>
-                }
+                <ForHeaderProductsBlock setOpenProducts={setOpenProducts} openProducts={openProducts}/>
+                <ForHeaderProgrammingBlock setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}/>
+                <ForHeaderResourcesBlock setOpenResources={setOpenResources} openResources={openResources}/>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : EN ? 'Login' : 'Увійти'}
                 </Link>
+
                 <div>
                     <button onClick={() => dispatch(switchLanguage())}
                             className={EN ? css.switch_btn_en : css.switch_btn_uk}>
@@ -148,6 +81,8 @@ const Header = () => {
                     </button>
                 </div>
             </div>
+
+
             <div className={css.burger__btn} onClick={() => setOpen(!open)}>
                 <Hamburger toggled={open}/>
             </div>
