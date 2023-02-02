@@ -1,0 +1,103 @@
+.create__vacancy_page {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+}
+
+.create__vacancy_wrap {
+    width: 1100px;
+    min-height: calc(100vh - 80px);
+    padding: 60px 0;
+}
+
+.select__wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+}
+
+.select__wrap h4 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.create__vacancy_input,
+.create__vacancy_select {
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+    background: none;
+    height: 40px;
+    padding: 0 20px;
+}
+
+.create__vacancy_select {
+    padding: 0;
+    border: none;
+}
+
+.create__vacancy_form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.create__vacancy_editor {
+    height: 400px;
+}
+
+.select__title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.error {
+    font-size: 14px;
+    font-weight: 400;
+    color: crimson;
+}
+
+@media (max-width: 1180px) {
+    .create__vacancy_wrap {
+        width: 100%;
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .create__vacancy_wrap {
+        padding: 30px 20px;
+    }
+
+    .select__wrap {
+        row-gap: 5px;
+    }
+
+    .select__wrap h4 {
+        font-size: 14px;
+    }
+
+    .create__vacancy_input,
+    .create__vacancy_select,
+    .error {
+        font-size: 12px;
+    }
+
+    .create__vacancy_input,
+    .create__vacancy_select {
+        height: 30px;
+    }
+
+    .create__vacancy_input {
+        padding: 0 10px;
+    }
+}

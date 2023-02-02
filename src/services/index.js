@@ -10,3 +10,5 @@ export * from './user.services';
 export * from './codeTest.services';
 export * from './codeResults.services';
 export * from './paymentRequests.service';
+export * from './vacancy.services';
+export * from './vacancyResponses.services';

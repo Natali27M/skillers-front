@@ -8,7 +8,7 @@ import {
     AdminPage,
     CompilerPage,
     CreateCodeTestPage,
-    CreateTestPage,
+    CreateTestPage, CreateVacancyPage, EmployerPage,
     FeedbackFormPage,
     ForUserPage,
     GoogleRedirectPage,
@@ -28,7 +28,7 @@ import {
     TestListPage,
     TestPage,
     TestWithCodePage,
-    UserPage
+    UserPage, VacanciesPage, VacancyPage, VacancyResponsesPage
 } from './pages';
 import {Layout} from './components';
 import {
@@ -120,12 +120,12 @@ function App() {
         localStorage.removeItem('pathCoding');
         localStorage.removeItem('path');
         navigate(`${pathname}`);
-    }
+    };
 
     const changeLeaveCansel = () => {
         setModal('');
         navigate(`${pathCoding}`);
-    }
+    };
 
     useEffect(() => {
         if (teamCoding && pathname !== pathCoding) {
@@ -206,10 +206,17 @@ function App() {
                         <Route path={'/mentors'} element={<MentorsPage/>}/>
                         <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
                         <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
-                        <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
+                        <Route path={'/team-coding/:template/:id/:language/:idFirebase'}
+                               element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
+                        <Route path={'/vacancies'} element={<VacanciesPage/>}/>
+                        <Route path={'/vacancy/:vacancyId'} element={<VacancyPage/>}/>
+                        <Route path={'/employer'} element={<EmployerPage/>}/>
+                        <Route path={'/vacancy-responses/:vacancyId'} element={<VacancyResponsesPage/>}/>
+                        <Route path={'/create-vacancy'} element={<CreateVacancyPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
+
                 </Routes>
             </div>
         </HelmetProvider>

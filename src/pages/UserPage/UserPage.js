@@ -41,7 +41,7 @@ import {getTestsByUser, getTestsForApprove} from '../../store/slices/testPage.sl
 import coin from '../../images/coin.svg';
 import {RecruiterButton, UserBadges} from '../../components/ForUserPage';
 import {PaginationSmall} from '../../components';
-import {paymentRequestsService} from "../../services";
+import {paymentRequestsService} from '../../services';
 
 const UserPage = () => {
     const {register, handleSubmit} = useForm();
@@ -271,19 +271,19 @@ const UserPage = () => {
             return setModalTakeOfCoins(!modalTakeOfCoins);
         }
         return setCoinOpen(!coinOpen);
-    }
+    };
     const TakeOfCoins = async (obj) => {
         const paymentRequest = {
             userId: user?.id,
             userWallet: obj?.address ? obj?.address : user?.wallet,
             userCoinsAll: userAchievement?.attributes?.coins,
             withdraw: Number(obj?.coins),
-        }
+        };
 
         await dispatch(createPaymentRequest(paymentRequest));
         setModalTakeOfCoins(!modalTakeOfCoins);
-        setCoinOpen(!coinOpen)
-    }
+        setCoinOpen(!coinOpen);
+    };
 
     if (modal) {
         setTimeout(() => setModal(!modal), 4000);
@@ -377,19 +377,19 @@ const UserPage = () => {
                     <form className={css.update__username_form} onSubmit={handleSubmit(TakeOfCoins)}>
                         <input
                             type="number"
-                            min='1'
+                            min="1"
                             max={userAchievement?.attributes?.coins}
-                            placeholder={EN ? "Take out coins" : "Вивести монети"}
+                            placeholder={EN ? 'Take out coins' : 'Вивести монети'}
                             {...register('coins')}
                             autoComplete="off"
-                            defaultValue='1'
+                            defaultValue="1"
                             className={css.update__username__input}
                         />
                         {
                             !user.wallet && <input
                                 type="text"
-                                minLength='40'
-                                placeholder={EN ? "Input wallet address" : "Введіть адресу гаманця"}
+                                minLength="40"
+                                placeholder={EN ? 'Input wallet address' : 'Введіть адресу гаманця'}
                                 {...register('address')}
                                 autoComplete="off"
                                 className={css.update__username__input}
@@ -405,7 +405,7 @@ const UserPage = () => {
                 {
                     modalTakeOfCoins && <div className={css.modal__container}>
                         <div className={css.modal__block}>
-                            {EN ? "Your application for withdrawing coins has been processed!" : "Ваша заявка на зняття монет оформлена!"}
+                            {EN ? 'Your application for withdrawing coins has been processed!' : 'Ваша заявка на зняття монет оформлена!'}
                         </div>
                     </div>
                 }
@@ -768,11 +768,15 @@ const UserPage = () => {
                     <Link to={'/mentor'}
                           className={rootCSS.default__button}>{EN ? 'Become a mentor' : 'Стати ментором'}</Link>
 
+                    <Link to={'/employer'}
+                          className={rootCSS.default__button}>{EN ? 'Роботодавцю' : 'For employer'}
+                    </Link>
+
                     <RecruiterButton user={user} setModal={setModal} modal={modal}/>
                     {
                         modal && <div className={css.modal__container}>
                             <div className={css.modal__block}>
-                                {EN ? "Your recruitment application has been processed!" : "Ваша заявка на рекрутинг оформлена!"}
+                                {EN ? 'Your recruitment application has been processed!' : 'Ваша заявка на рекрутинг оформлена!'}
                             </div>
                         </div>
                     }
