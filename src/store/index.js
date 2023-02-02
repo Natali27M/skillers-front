@@ -20,3 +20,4 @@ export * from './slices/answers.slice';
 export * from './slices/categories.slice';
 export * from './slices/ideas.slice';
 export * from './slices/discussion.slice';
+export * from './slices/load.slice'
