@@ -206,7 +206,8 @@ function App() {
                         <Route path={'/mentors'} element={<MentorsPage/>}/>
                         <Route path={'/team-coding'} element={<HomeFirepadPage/>}/>
                         <Route path={'/learning-plan'} element={<LearningPlanPage/>}/>
-                        <Route path={'/team-coding/:template/:id/:language/:idFirebase'} element={<MainFirepadPage/>}/>
+                        <Route path={'/team-coding/:template/:id/:language/:idFirebase'}
+                               element={<MainFirepadPage/>}/>
                         <Route path={'/skl-token'} element={<SklPage/>}/>
                         <Route path={'/vacancies'} element={<VacanciesPage/>}/>
                         <Route path={'/vacancy/:vacancyId'} element={<VacancyPage/>}/>
@@ -215,6 +216,7 @@ function App() {
                         <Route path={'/create-vacancy'} element={<CreateVacancyPage/>}/>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
+
                 </Routes>
             </div>
         </HelmetProvider>
