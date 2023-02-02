@@ -9,7 +9,9 @@ import {PaginationSmall} from '../../../GeneralComponents';
 const Posts = () => {
     const {posts} = useSelector(state => state['postReducers']);
     const {status} = useSelector(state => state['commentReducers']);
+
     const dispatch = useDispatch();
+
     const [pageNumber, setPageNumber] = useState(1);
     const [deleteFullPost, setDeleteFullPost] = useState(false);
 

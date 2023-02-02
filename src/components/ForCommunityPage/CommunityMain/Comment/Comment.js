@@ -11,10 +11,15 @@ import avatar from '../../../../images/avatar.jpg';
 
 const Comment = ({comment, comments}) => {
     const {user} = useSelector(state => state['userReducers']);
+    const {EN} = useSelector(state => state['languageReducers']);
+
     const [moreComments, setMoreComments] = useState(false);
-    const createdAt = comment.attributes.createdAt.split('T');
+
     const dispatch = useDispatch();
+
+    const createdAt = comment.attributes.createdAt.split('T');
     const commentId = comment.id;
+
 
     const clickMoreComments = () => {
         if (!moreComments) {
@@ -53,7 +58,8 @@ const Comment = ({comment, comments}) => {
             </div>
 
             {comments.length > 1 &&
-                <div onClick={clickMoreComments} className={css.comment__block_more}>More comments</div>
+                <div onClick={clickMoreComments}
+                     className={css.comment__block_more}>{EN ? "More comments" : "Більше кометарів"}</div>
             }
 
             {moreComments && comments.slice(1).map(value => <MoreComment key={value.id} comment={value}/>)}

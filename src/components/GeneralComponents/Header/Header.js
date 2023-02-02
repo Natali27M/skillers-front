@@ -10,7 +10,7 @@ import new_icon from '../../../images/new_icon.svg';
 import bell from '../../../images/community/bell.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
-import {getNoOpenedNotifications, getNoReadNotifications, switchLanguage, updateNotification} from '../../../store';
+import {getNoOpenedNotifications, switchLanguage, updateNotification} from '../../../store';
 import useWindowDimensions from '../../../RootFunctions/WindowDimensions';
 import useComponentVisible from '../../../RootFunctions/useComponentVisible';
 
@@ -18,11 +18,14 @@ const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
     const {noOpenNotifications} = useSelector(state => state['notificationReducers']);
+
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
+
     const dispatch = useDispatch();
     const {pathname} = useLocation();
     const navigate = useNavigate();
     const {width} = useWindowDimensions();
+
     const [open, setOpen] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
     const userId = user?.id;
@@ -38,17 +41,12 @@ const Header = () => {
         if (userId) {
             dispatch(getNoOpenedNotifications({userId}));
         }
-    }, [pathname]);
+    }, [pathname, userId]);
 
     useEffect(() => {
         setOpen(false);
     }, [width, pathname]);
 
-    window.addEventListener('load', () => {
-        if (userId) {
-            dispatch(getNoOpenedNotifications({userId}));
-        }
-    });
 
     const commentingPosts = () => {
         if (!openNotifications) {
@@ -99,13 +97,13 @@ const Header = () => {
                 <div onClick={() => {
                     commentingPosts()
                 }} className={css.header__notification}>
-                        <div className={noOpenNotifications.length ? css.header__notification_length
-                            : css.header__notification_length_no}>
-                            {noOpenNotifications.length}
-                        </div>
-                        <div className={css.header__notification_img}>
+                    <div className={noOpenNotifications.length ? css.header__notification_length
+                        : css.header__notification_length_no}>
+                        {noOpenNotifications.length}
+                    </div>
+                    <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>
-                        </div>
+                    </div>
                 </div>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
@@ -126,10 +124,10 @@ const Header = () => {
             </div>
 
             <div className={css.burger__btn} onClick={() => setOpen(!open)}>
-                    <div className={noOpenNotifications.length && !open ? css.header__notification_length
-                        : css.header__notification_length_no}>
-                        {noOpenNotifications.length}
-                    </div>
+                <div className={noOpenNotifications.length && !open ? css.header__notification_length
+                    : css.header__notification_length_no}>
+                    {noOpenNotifications.length}
+                </div>
 
                 <Hamburger toggled={open}/>
             </div>
@@ -170,10 +168,10 @@ const Header = () => {
                     commentingPosts()
                 }} className={css.header__notification}>
                     {/*{!openNotifications &&*/}
-                        <div className={noOpenNotifications.length ? css.header__notification_length
-                            : css.header__notification_length_no}>
-                            {noOpenNotifications.length}
-                        </div>
+                    <div className={noOpenNotifications.length ? css.header__notification_length
+                        : css.header__notification_length_no}>
+                        {noOpenNotifications.length}
+                    </div>
                     {/*}*/}
                     <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>

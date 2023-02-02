@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 
@@ -9,8 +9,10 @@ import cssPosts from '../../components/ForCommunityPage/CommunityMain/Posts/Post
 const PostDetailsPage = () => {
     const {postById} = useSelector(state => state['postReducers']);
     const {isDeletedComment, status} = useSelector(state => state['commentReducers']);
+
     const dispatch = useDispatch();
     const params = useParams();
+
     const postId = params.id;
 
     window.addEventListener("load", () => {
@@ -19,7 +21,7 @@ const PostDetailsPage = () => {
 
     useEffect(() => {
         dispatch(getPostById({postId}));
-    },[isDeletedComment, status === 'fulfilled']);
+    }, [isDeletedComment, status === 'fulfilled']);
 
     return (
         <div className={cssPosts.posts__main_box}>

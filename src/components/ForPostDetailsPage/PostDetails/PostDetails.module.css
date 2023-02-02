@@ -5,3 +5,43 @@
     flex-direction: column;
     align-items: center;
 }
+
+
+@media (max-width: 1200px) {
+    .post__details_main {
+        width: 45%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .post__details_main {
+        width: 50%;
+    }
+}
+
+@media (max-width: 920px) {
+    .post__details_main {
+        width: 60%;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .post__details_main {
+        width: 65%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .post__details_main {
+        width: 70%;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .post__details_main {
+        width: 80%;
+    }
+}
