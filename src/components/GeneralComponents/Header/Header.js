@@ -60,9 +60,9 @@ const Header = () => {
 
 
             <div className={css.header__left}>
-                <ForHeaderProductsBlock setOpenProducts={setOpenProducts} openProducts={openProducts}/>
-                <ForHeaderProgrammingBlock setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}/>
-                <ForHeaderResourcesBlock setOpenResources={setOpenResources} openResources={openResources}/>
+                <ForHeaderProductsBlock open={open} setOpenProducts={setOpenProducts} openProducts={openProducts}/>
+                <ForHeaderProgrammingBlock open={open} setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}/>
+                <ForHeaderResourcesBlock open={open} setOpenResources={setOpenResources} openResources={openResources}/>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
@@ -175,6 +175,14 @@ const Header = () => {
                         </Link>
                     </div>
                 }
+
+
+                {/*<ForHeaderProductsBlock open={open} setOpenProducts={setOpenProducts} openProducts={openProducts}*/}
+                {/*                        setOpenProgramming={setOpenProgramming} setOpenResources={setOpenResources}/>*/}
+                {/*<ForHeaderProgrammingBlock open={open} setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}*/}
+                {/*                           setOpenProducts={setOpenProducts} setOpenResources={setOpenResources}/>*/}
+                {/*<ForHeaderResourcesBlock open={open} setOpenResources={setOpenResources} openResources={openResources}*/}
+                {/*                         setOpenProducts={setOpenProducts} setOpenProgramming={setOpenProgramming}/>*/}
 
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{

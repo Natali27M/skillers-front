@@ -1,6 +1,12 @@
 .header__link,
 .header__link_new,
-.header__link_new_active {
+.header__link_new_active,
+.header__link_new_active_open,
+.header__link_new_open,
+.header__link_new_open_res,
+.header__link_new_res,
+.header__link_new_open_prog,
+.header__link_new_prog {
     font-size: 18px;
     color: #FFFFFF;
     text-decoration: none;
@@ -13,7 +19,18 @@
     top: 15px;
 }
 
-.header__link_new_active {
+.header__link_new_open_prog img {
+    position: absolute;
+    top: 100px;
+}
+
+.header__link_new_open_res img {
+    position: absolute;
+    top: 130px;
+}
+
+.header__link_new_active,
+.header__link_new_active_open {
     border-bottom: 3px solid #FFF;
     margin-bottom: -3px;
 }
@@ -45,12 +62,6 @@
     padding-bottom: 20px;
 }
 
-/*.link__box:hover {*/
-/*    !*background-color: #f1f3fd;*!*/
-/*    background-color: black;*/
-/*    color: white;*/
-/*}*/
-
 .link__title:hover,
 .link__title_new:hover {
     background: #e5e3e3;
@@ -58,11 +69,14 @@
 
 .link__title {
     width: 40%;
-    /*color: black;*/
+    padding-top: 5px;
+    padding-left: 5px;
 }
 
 .link__title_new {
     width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
 }
 
 .link__box_p {

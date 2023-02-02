@@ -4,13 +4,19 @@ import {useSelector} from 'react-redux';
 
 import css from './ForHeaderProductsBlock.module.css';
 
-const ForHeaderProductsBlock = ({setOpenProducts, openProducts}) => {
+const ForHeaderProductsBlock = ({open, setOpenProducts, openProducts, setOpenProgramming, setOpenResources}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     return (
         <div>
             <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
-                setOpenProducts(!openProducts)
+                if (open) {
+                    setOpenProducts(!openProducts);
+                    setOpenProgramming(false);
+                    setOpenResources(false);
+                } else {
+                    setOpenProducts(!openProducts)
+                }
             }}>
                 {EN ? 'Products' : 'Наш продукт'}
             </div>

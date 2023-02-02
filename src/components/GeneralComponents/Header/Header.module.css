@@ -238,21 +238,20 @@
 
 
 @media (max-width: 1440px) {
-    .burger__btn {
-        display: block;
-    }
-
-
-    .header__left {
-        display: none;
-    }
-
     .save__life_link {
         height: 30px
     }
 }
 
 @media (max-width: 1000px) {
+    .burger__btn {
+        display: block;
+    }
+
+    .header__left {
+        display: none;
+    }
+
     .main__header {
         height: 70px;
     }
@@ -306,7 +305,6 @@
 
 
 @media (max-width: 767px) {
-
     .header__logo {
         height: 20px;
     }
@@ -326,7 +324,6 @@
     .main__header {
         padding: 0 20px;
     }
-
 
     .header__logo {
         height: 14px;
