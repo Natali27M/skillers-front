@@ -5,6 +5,7 @@ import css from './Posts.module.css';
 import {getAllPosts} from '../../../../store';
 import {Post} from '../Post/Post';
 import {PaginationSmall} from '../../../GeneralComponents';
+import {Helmet} from "react-helmet-async";
 
 const Posts = () => {
     const {posts} = useSelector(state => state['postReducers']);
@@ -20,8 +21,24 @@ const Posts = () => {
         setDeleteFullPost(false);
     }, [status === 'fulfilled', pageNumber, deleteFullPost === true]);
 
+    const title = 'Read community posts';
+    const description = 'Read community posts and leave a your comments';
+    const url = `https://skilliant.net/community/home`;
+
     return (
         <div className={css.posts__main_box}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css.posts__main}>
                 {posts?.data?.length ? posts?.data?.map(value =>
                         <Post key={value.id} post={value} setDeleteFullPost={setDeleteFullPost}/>)

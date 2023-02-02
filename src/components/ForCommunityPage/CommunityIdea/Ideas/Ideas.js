@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Navigate, useNavigate} from "react-router-dom";
 import qs from "qs";
 import {Checkbox, FormControlLabel} from "@mui/material";
+import {Helmet} from "react-helmet-async";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css from './Ideas.module.css';
@@ -79,8 +80,24 @@ const Ideas = () => {
         return <Navigate to={'/login'} replace/>
     }
 
+    const title = 'Read ideas';
+    const description = 'Have a list of ideas and read them';
+    const url = `https://skilliant.net/idea`;
+
     return (
         <div className={css_helper.container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css_helper.questions__container}>
                 <div className={css_helper.top_ack__block}>
                     <h4>{EN ? "All Ideas" : "Всі Ідеї"}</h4>

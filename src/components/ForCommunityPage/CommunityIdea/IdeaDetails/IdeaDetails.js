@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import qs from "qs";
 import {Roller} from "react-awesome-spinners";
+import {Helmet} from "react-helmet-async";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
@@ -104,8 +105,24 @@ const IdeaDetails = () => {
         return <Navigate to={'/login'} replace/>
     }
 
+    const title = 'Read idea details';
+    const description = 'Read idea details and leave you opinion';
+    const url = `https://skilliant.net/community/idea/${oneIdea?.id}`;
+
     return (
         <div className={css_helper.container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css_helper.questions__container}>
                 <div className={css.idea_details_container}>
 

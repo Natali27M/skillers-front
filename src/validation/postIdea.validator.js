@@ -8,10 +8,6 @@ export const postIdeaValidator = Joi.object({
         .min(40)
         .required(),
 
-    details: Joi.string()
-        .min(40)
-        .required(),
-
     code: Joi.optional(),
 
     conclusion: Joi.string()

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
+import {Helmet} from "react-helmet-async";
 
 import {getPostById} from '../../store';
 import {PostDetails} from '../../components';
@@ -23,8 +24,25 @@ const PostDetailsPage = () => {
         dispatch(getPostById({postId}));
     }, [isDeletedComment, status === 'fulfilled']);
 
+
+    const title = 'Read post';
+    const description = 'Read post details and leave a your comments';
+    const url = `https://skilliant.net/post/${postId}`;
+
     return (
         <div className={cssPosts.posts__main_box}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             {postById &&
                 <PostDetails key={postById.data.id} post={postById.data}/>
             }

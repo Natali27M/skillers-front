@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import qs from "qs";
 import {Roller} from "react-awesome-spinners";
+import {Helmet} from "react-helmet-async";
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -109,8 +110,24 @@ const QuestionDetails = () => {
         return <Navigate to={'/login'} replace/>;
     }
 
+    const title = 'Read question details';
+    const description = 'Read question details and leave you answer';
+    const url = `https://skilliant.net/community/question/${oneQuestion?.id}`;
+
     return (
         <div className={css_helper.container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css_helper.questions__container}>
                 <div className={css.question_details_block}>
                     <div className={css.title__block}>
