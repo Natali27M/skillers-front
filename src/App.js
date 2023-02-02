@@ -6,6 +6,7 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 import {
     AdminPage,
+    CommunityPage,
     CompilerPage,
     CreateCodeTestPage,
     CreateTestPage, CreateVacancyPage, EmployerPage,
@@ -20,7 +21,9 @@ import {
     MentorPage,
     MentorsPage,
     NotFoundPage,
+    NotificationPage,
     PolicyPage,
+    PostDetailsPage,
     RankPage,
     RecruiterPage,
     RegisterPage,
@@ -30,10 +33,12 @@ import {
     TestWithCodePage,
     UserPage, VacanciesPage, VacancyPage, VacancyResponsesPage
 } from './pages';
-import {Layout} from './components';
+
+import {AskQuestion, IdeaDetails, Ideas, Layout, PostIdea, Posts, QuestionDetails, Questions} from './components';
 import {
     clear,
     clearCreateTest,
+    getAllPosts,
     getLanguage,
     getUserAchievement,
     getUserBadges,
@@ -86,6 +91,7 @@ function App() {
         dispatch(getLanguage());
         dispatch(setUserFromLocalStorage());
         dispatch(setJwtFromLocalStorage());
+        dispatch(getAllPosts());
 
     }, []);
 
@@ -100,9 +106,7 @@ function App() {
     }, [user]);
 
     useEffect(() => {
-
         dispatch(setUserRank());
-
     }, [userAchievement]);
 
 
@@ -214,6 +218,18 @@ function App() {
                         <Route path={'/employer'} element={<EmployerPage/>}/>
                         <Route path={'/vacancy-responses/:vacancyId'} element={<VacancyResponsesPage/>}/>
                         <Route path={'/create-vacancy'} element={<CreateVacancyPage/>}/>
+                        <Route path={'post/:id'} element={<PostDetailsPage/>}/>
+                        <Route path={'/community'} element={<CommunityPage/>}>
+                            <Route index element={<Posts/>}/>
+                            <Route path={'/community/home'} element={<Posts/>}/>
+                            <Route path={'/community/question/:id'} element={<QuestionDetails/>}/>
+                            <Route path={'/community/question/ask'} element={<AskQuestion/>}/>
+                            <Route path={'/community/question'} element={<Questions/>}/>
+                            <Route path={'/community/idea'} element={<Ideas/>}/>
+                            <Route path={'/community/notification'} element={<NotificationPage/>}/>
+                            <Route path={'/community/idea/:id'} element={<IdeaDetails/>}/>
+                            <Route path={'/community/idea/post'} element={<PostIdea/>}/>
+                        </Route>
                         <Route path={'*'} element={<NotFoundPage/>}/>
                     </Route>
 

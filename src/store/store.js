@@ -17,6 +17,14 @@ import recruiterReducers from "./slices/recruiter.slice";
 import paymentRequestReducers from "./slices/paymentRequest.slice";
 import vacancyReducers from './slices/vacancy.slice';
 import vacancyResponseReducers from './slices/vacancyResponses.slice';
+import postReducers from './slices/post.slice';
+import commentReducers from './slices/comment.slice';
+import notificationReducers from './slices/notification.slice';
+import questionsReducers from "./slices/question.slice";
+import answersReducers from "./slices/answers.slice";
+import categoriesReducers from "./slices/categories.slice";
+import ideasReducers from "./slices/ideas.slice";
+import discussionReducers from "./slices/discussion.slice";
 
 
 const store = configureStore({
@@ -38,6 +46,14 @@ const store = configureStore({
         paymentRequestReducers,
         vacancyReducers,
         vacancyResponseReducers
+        postReducers,
+        commentReducers,
+        notificationReducers,
+        questionsReducers,
+        answersReducers,
+        categoriesReducers,
+        ideasReducers,
+        discussionReducers,
     }
 });
 

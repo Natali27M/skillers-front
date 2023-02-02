@@ -18,10 +18,10 @@ import {
 import {
     checkProxyResults,
     clear,
-    clearResults,
+    clearResults, createPost,
     createUserResult,
     getFullTestResult,
-    getProxyExercises, getUserBadges,
+    getProxyExercises, getTechnology, getUserBadges,
     getUserByTestResults,
     makeTimeToPush,
     setTestComplete
@@ -41,6 +41,8 @@ const TestPage = () => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {oneTest, userTestRate} = useSelector(state => state['testsReducers']);
+
+    const {technology} = useSelector(state => state['technologiesReducers']);
 
     const {
         exercises,
@@ -173,9 +175,10 @@ const TestPage = () => {
                 allExercises: result.allExercises
             };
 
-            dispatch(createUserResult(resultToPush));
+            // dispatch(createUserResult(resultToPush));
             badgesProcessing(user.id, resultToPush, userBadges?.id);
             dispatch(getUserBadges(user.id));
+            dispatch(getTechnology(oneTest?.attributes?.techId));
 
             setModalResult(true);
         } else if (result && !user) {
@@ -272,6 +275,25 @@ const TestPage = () => {
     const title = `${oneTest?.attributes ? oneTest.attributes.name : location.state}`;
     const description = 'All information about the test (title, description, rating, coin)  and multiple-choice test questions';
     const url = `https://skilliant.net/test/${oneTest?.id}`;
+
+    const sharePost = () => {
+        const postResult = {
+            type: 'achievement',
+            techName: technology?.data?.attributes.name,
+            testName: oneTest.attributes.name,
+            correctAnswer: result.correct,
+            allExercises: result.allExercises,
+            username: user.username,
+            difficult: oneTest.attributes.difficult
+        }
+
+        const newPost = {
+            userId: user.id,
+            post: postResult
+        }
+        dispatch(createPost(newPost));
+        navigate('/community');
+    }
 
     return (
         <div className={css.test__page}>
@@ -443,6 +465,10 @@ const TestPage = () => {
                             </form>
                         </div>*/}
 
+                        <div className={css.community__block}>
+                            <div>Share the result on the Skilliant platform</div>
+                            <button className={css.community__btn} onClick={() => sharePost()}>Send</button>
+                        </div>
 
                         <div>
                             <Link to={'/'} className={css.check__btn}>{EN ? 'TO MAIN' : 'НА ГОЛОВНУ'}</Link>

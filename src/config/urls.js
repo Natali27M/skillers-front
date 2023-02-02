@@ -54,4 +54,15 @@ export const urls = {
     vacancies: '/api/vacancies',
 
     vacancyResponse: '/api/vacancy-responses'
+
+    comments: '/api/comments',
+
+    questions: '/api/question',
+    answers: '/api/answers-to-questions',
+    categories: '/api/categorie',
+    ideas: '/api/idea',
+    discussions: '/api/discussion',
+    notifications: '/api/notification',
+
+    posts: '/api/post',
 };

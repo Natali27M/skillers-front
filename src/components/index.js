@@ -9,4 +9,5 @@ export * from './GeneralComponents';
 export * from './ForAdminPage';
 export * from './ForMentorsPage';
 export * from './ForTestWithCodePage';
-export * from './ForVacanciesPage';
+export * from './ForCommunityPage';
+export * from './ForPostDetailsPage';

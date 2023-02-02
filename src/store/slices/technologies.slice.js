@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {TechnologiesServices} from "../../services/technologies.services";
+import {techServices} from '../../services';
 
 export const getTechnologies = createAsyncThunk(
     'TechnologiesSlice/getTechnologies',
@@ -13,12 +14,24 @@ export const getTechnologies = createAsyncThunk(
     },
 );
 
+export const getTechnology = createAsyncThunk(
+    'TechnologiesSlice/getTechnology',
+    async (techId, {rejectWithValue}) => {
+        try {
+            return techServices.getTechnology(techId);
+        } catch (e) {
+            rejectWithValue(e);
+        }
+    },
+);
+
 export const TechnologiesSlice = createSlice({
     name: "TechnologiesSlice",
     initialState: {
         status: null,
         error: null,
         technologies: {},
+        technology: {}
     },
     extraReducers: {
         [getTechnologies.pending]: (state) => {
@@ -31,6 +44,18 @@ export const TechnologiesSlice = createSlice({
         [getTechnologies.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
             state.technologies = action.payload;
+        },
+
+        [getTechnology.pending]: (state) => {
+            state.status = 'pending';
+        },
+        [getTechnology.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [getTechnology.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.technology = action.payload;
         },
     },
 });

@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {achievementsServices, userServices} from '../../services';
-import {getLeaderBordByQueryTen, getLeaderBordTen} from './achievments.slice';
+import {userServices} from '../../services';
 import {usersProxyServices} from '../../services/users.proxy.services';
 
 export const registration = createAsyncThunk(

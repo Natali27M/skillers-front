@@ -1,0 +1,32 @@
+.notification__user {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+.notification__readed {
+    padding: 10px 20px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.notification__noReaded {
+    padding: 10px 20px;
+    background-color: #E2F0FE;
+    margin-top: 10px;
+}
+
+.notification__box {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.notification__created {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    color: #525151;
+}
+
+

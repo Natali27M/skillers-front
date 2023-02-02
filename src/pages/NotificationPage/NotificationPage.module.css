@@ -1,0 +1,12 @@
+.notifications__main {
+    width: 35%;
+}
+
+.notifications__main_box {
+    min-height: calc(100vh - 230px);
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid lightgrey;
+    margin-top: 20px;
+    overflow: hidden;
+}

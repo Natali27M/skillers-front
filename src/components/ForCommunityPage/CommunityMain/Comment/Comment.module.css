@@ -1,0 +1,52 @@
+.comment__block {
+    margin: 20px 0;
+    background-color: #FFFF;
+}
+
+.comment__main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment__user {
+    width: 40px;
+    height: 40px;
+}
+
+.comment__main_box {
+    width: 90%;
+    background-color: #F2F2F2;
+    border-radius: 0 10px 10px 10px;
+    padding: 10px;
+}
+
+.comment__username {
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+.comment__createdAt {
+    font-size: 12px;
+}
+
+.comment__block_box {
+    background: #F2F2F2 !important;
+    max-height: 150px;
+    font-size: 12px;
+}
+
+.comment__block_more {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-right: 20px;
+    font-size: 14px;
+}
+
+.basket {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}

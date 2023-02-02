@@ -27,3 +27,6 @@ export * from './SKLPage/SKLPage';
 export * from './VacanciesPage/VacanciesPage';
 export * from './VacancyPage/VacancyPage';
 export * from './VacancyResponsePage/VacancyResponsesPage';
+export * from './CommunityPage/CommunityPage';
+export * from './PostDetailsPage/PostDetailsPage';
+export * from './NotificationPage/NotificationPage';
