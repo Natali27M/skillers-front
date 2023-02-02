@@ -8,17 +8,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import {TechBlock} from "../TechBlock/TechBlock";
-import java from "../../../images/techList/java.svg";
-import python from "../../../images/techList/python.svg";
-import js from "../../../images/techList/javascript.svg";
-import csharp from "../../../images/techList/csharp.svg";
-import cplusplus from "../../../images/techList/cplusplus.svg";
-import html5 from "../../../images/techList/html5.svg";
-import other from "../../../images/techList/other.svg";
-import project_manager from "../../../images/techList/project-manager.svg";
+import {TechBlock} from '../TechBlock/TechBlock';
+import java from '../../../images/techList/java.svg';
+import python from '../../../images/techList/python.svg';
+import js from '../../../images/techList/javascript.svg';
+import csharp from '../../../images/techList/csharp.svg';
+import cplusplus from '../../../images/techList/cplusplus.svg';
+import html5 from '../../../images/techList/html5.svg';
+import other from '../../../images/techList/other.svg';
+import project_manager from '../../../images/techList/project-manager.svg';
 
-const SwiperComponent = () => {
+const SwiperComponent = ({techListLoad}) => {
     const prev = useRef(null);
     const next = useRef(null);
 
@@ -60,28 +60,28 @@ const SwiperComponent = () => {
             >
 
                 <SwiperSlide>
-                    <TechBlock img={java} name={"Java"} techId={3}/>
+                    <TechBlock img={java} name={'Java'} techId={3}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={python} name={"Python"} techId={4}/>
+                    <TechBlock img={python} name={'Python'} techId={4}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={js} name={"JavaScript"} techId={5}/>
+                    <TechBlock img={js} name={'JavaScript'} techId={5}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={csharp} name={"C#"} techId={6}/>
+                    <TechBlock img={csharp} name={'C#'} techId={6}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={cplusplus} name={"C++"} techId={7}/>
+                    <TechBlock techListLoad={techListLoad} img={cplusplus} name={'C++'} techId={7}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={html5} name={"HTML"} techId={8}/>
+                    <TechBlock techListLoad={techListLoad} img={html5} name={'HTML'} techId={8}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={other} name={"Other"} techId={9}/>
+                    <TechBlock techListLoad={techListLoad} img={other} name={'Other'} techId={9}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <TechBlock img={project_manager} name={"Management"} techId={10}/>
+                    <TechBlock techListLoad={techListLoad} img={project_manager} name={'Management'} techId={10}/>
                 </SwiperSlide>
             </Swiper>
             <div className={css.next} ref={next}>></div>

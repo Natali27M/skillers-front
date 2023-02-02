@@ -9,31 +9,30 @@ import star from '../../../images/star-rating.svg';
 import {codeTestServices, testsServices} from '../../../services';
 
 
-const TechBlock = ({img, name, techId}) => {
+const TechBlock = ({img, name, techId, techListLoad}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const [tests, setTests] = useState([]);
     const [numberTestsByCategory, setNumberTestsByCategory] = useState(null);
 
     useEffect(() => {
-        testsServices.getTopTestsByTech(techId).then(value => {
-            if (techId !== 8 && techId !== 9 && techId !== 10) {
-                codeTestServices.getTopTestsByTech(techId).then(codeValue => {
-                    // console.log(codeValue);
-                    setNumberTestsByCategory(codeValue?.meta?.pagination?.total + value?.meta?.pagination?.total);
-                    let resultTests = value.data;
-                    resultTests.pop();
-                    resultTests.push(codeValue.data[0]);
-                    // console.log(resultTests[resultTests.length - 1]);
-                    setTests(resultTests);
-                });
-            } else {
-                setTests(value.data);
-                setNumberTestsByCategory(value?.meta?.pagination?.total);
-            }
-        });
-
-    }, []);
+        if ((techId !== 7 && techId !== 8 && techId !== 9 && techId !== 10) || techListLoad) {
+            testsServices.getTopTestsByTech(techId).then(value => {
+                if (techId !== 8 && techId !== 9 && techId !== 10) {
+                    codeTestServices.getTopTestsByTech(techId).then(codeValue => {
+                        setNumberTestsByCategory(codeValue?.meta?.pagination?.total + value?.meta?.pagination?.total);
+                        let resultTests = value.data;
+                        resultTests.pop();
+                        resultTests.push(codeValue.data[0]);
+                        setTests(resultTests);
+                    });
+                } else {
+                    setTests(value.data);
+                    setNumberTestsByCategory(value?.meta?.pagination?.total);
+                }
+            });
+        }
+    }, [techListLoad]);
 
 
     return (

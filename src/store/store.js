@@ -25,6 +25,7 @@ import answersReducers from "./slices/answers.slice";
 import categoriesReducers from "./slices/categories.slice";
 import ideasReducers from "./slices/ideas.slice";
 import discussionReducers from "./slices/discussion.slice";
+import loadReducers from './slices/load.slice';
 
 
 const store = configureStore({
@@ -54,6 +55,7 @@ const store = configureStore({
         categoriesReducers,
         ideasReducers,
         discussionReducers,
+        loadReducers
     }
 });
 
