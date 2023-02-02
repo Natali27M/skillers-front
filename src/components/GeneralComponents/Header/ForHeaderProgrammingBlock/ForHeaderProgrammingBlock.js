@@ -5,25 +5,13 @@ import {useSelector} from 'react-redux';
 import css from '../ForHeaderProductsBlock/ForHeaderProductsBlock.module.css'
 import new_icon from '../../../../images/new_icon.svg';
 
-const ForHeaderProgrammingBlock = ({open, setOpenProgramming, openProgramming, setOpenProducts, setOpenResources}) => {
+const ForHeaderProgrammingBlock = ({setOpenProgramming, openProgramming}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     return (
         <div>
             <div className={openProgramming ? css.header__link_new_active : css.header__link_new} onClick={() => {
-                {/*<div className={openProgramming ? !open ? css.header__link_new_active : css.header__link_new_active_open :*/
-                }
-                {/*open ? css.header__link_new_open_prog : css.header__link_new_prog}*/
-                }
-                {/*onClick={() => {*/
-                }
-                if (open) {
                     setOpenProgramming(!openProgramming);
-                    setOpenProducts(false);
-                    setOpenResources(false);
-                } else {
-                    setOpenProgramming(!openProgramming)
-                }
             }}>
                 {EN ? 'Programming' : 'Програмування'}
                 {!openProgramming &&

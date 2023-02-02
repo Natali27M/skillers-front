@@ -5,23 +5,14 @@ import new_icon from '../../../../images/new_icon.svg';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
-const ForHeaderResourcesBlock = ({open, setOpenResources, openResources, setOpenProducts, setOpenProgramming}) => {
+const ForHeaderResourcesBlock = ({setOpenResources, openResources}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     return (
         <div>
-            {/*<div className={openResources ? css.header__link_new_active : css.header__link_new} onClick={() => {*/}
-            <div className={openResources ? !open ? css.header__link_new_active : css.header__link_new_active_open :
-                open ? css.header__link_new_open_res : css.header__link_new_res}
-                 onClick={() => {
-                     if (open) {
-                         setOpenResources(!openResources);
-                         setOpenProducts(false);
-                         setOpenProgramming(false);
-                     } else {
-                         setOpenResources(!openResources);
-                     }
-                 }}>
+            <div className={openResources ? css.header__link_new_active : css.header__link_new} onClick={() => {
+                setOpenResources(!openResources);
+            }}>
                 {EN ? 'Resources' : 'Ресурси'}
                 {!openResources &&
                     <img src={new_icon} alt="new" className={css.new__icon}/>

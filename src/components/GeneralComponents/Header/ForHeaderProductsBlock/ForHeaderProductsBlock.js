@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import css from './ForHeaderProductsBlock.module.css';
+import new_icon from '../../../../images/new_icon.svg';
 
 const ForHeaderProductsBlock = ({open, setOpenProducts, openProducts, setOpenProgramming, setOpenResources}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -10,13 +11,7 @@ const ForHeaderProductsBlock = ({open, setOpenProducts, openProducts, setOpenPro
     return (
         <div>
             <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
-                if (open) {
-                    setOpenProducts(!openProducts);
-                    setOpenProgramming(false);
-                    setOpenResources(false);
-                } else {
-                    setOpenProducts(!openProducts)
-                }
+                setOpenProducts(!openProducts);
             }}>
                 {EN ? 'Products' : 'Наш продукт'}
             </div>

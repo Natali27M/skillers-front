@@ -2,11 +2,7 @@
 .header__link_new,
 .header__link_new_active,
 .header__link_new_active_open,
-.header__link_new_open,
-.header__link_new_open_res,
-.header__link_new_res,
-.header__link_new_open_prog,
-.header__link_new_prog {
+.header__link_new_open {
     font-size: 18px;
     color: #FFFFFF;
     text-decoration: none;
@@ -17,16 +13,6 @@
 .header__link_new img {
     position: absolute;
     top: 15px;
-}
-
-.header__link_new_open_prog img {
-    position: absolute;
-    top: 100px;
-}
-
-.header__link_new_open_res img {
-    position: absolute;
-    top: 130px;
 }
 
 .header__link_new_active,

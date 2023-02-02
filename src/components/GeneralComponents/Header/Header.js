@@ -4,6 +4,7 @@ import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
 import new_icon from '../../../images/new_icon.svg';
+import arrow from '../../../images/arrow.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
 import {Link, useLocation} from 'react-router-dom';
@@ -60,9 +61,9 @@ const Header = () => {
 
 
             <div className={css.header__left}>
-                <ForHeaderProductsBlock open={open} setOpenProducts={setOpenProducts} openProducts={openProducts}/>
-                <ForHeaderProgrammingBlock open={open} setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}/>
-                <ForHeaderResourcesBlock open={open} setOpenResources={setOpenResources} openResources={openResources}/>
+                <ForHeaderProductsBlock setOpenProducts={setOpenProducts} openProducts={openProducts}/>
+                <ForHeaderProgrammingBlock setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}/>
+                <ForHeaderResourcesBlock setOpenResources={setOpenResources} openResources={openResources}/>
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
@@ -100,97 +101,88 @@ const Header = () => {
                     </button>
                 </div>
 
-                <div className={css.header__link} onClick={() => {
-                    setOpenProducts(!openProducts)
-                    setOpenProgramming(false);
-                    setOpenResources(false);
-                }}>
-                    {EN ? 'Products' : 'Наш продукт'}
-                </div>
-                {openProducts &&
-                    <div className={css.link__main}>
-                        <Link className={css.link__box} to={'/for-users'}>
-                            {EN ? 'For users' : 'Користувачам'}
-                        </Link>
+                {/*<div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {*/}
+                {/*    setOpenProducts(!openProducts)*/}
+                {/*    setOpenProgramming(false);*/}
+                {/*    setOpenResources(false);*/}
+                {/*}}>*/}
+                {/*    {EN ? 'Products' : 'Наш продукт'}*/}
+                {/*</div>*/}
+                {/*{openProducts &&*/}
+                {/*    <div className={css.link__main}>*/}
+                {/*        <Link className={css.link__box} to={'/for-users'}>*/}
+                {/*            {EN ? 'For users' : 'Користувачам'}*/}
+                {/*        </Link>*/}
 
-                        <Link className={css.link__box} to={'/mentors'}>
-                            {EN ? 'Mentors' : 'Ментори'}
-                        </Link>
+                {/*        <Link className={css.link__box} to={'/mentors'}>*/}
+                {/*            {EN ? 'Mentors' : 'Ментори'}*/}
+                {/*        </Link>*/}
 
-                        <Link className={css.link__box} to={'/vacancies'}>
-                            {EN ? 'Recruting' : 'Рекрутинг'}
-                        </Link>
+                {/*        <Link className={css.link__box} to={'/vacancies'}>*/}
+                {/*            {EN ? 'Recruting' : 'Рекрутинг'}*/}
+                {/*        </Link>*/}
 
-                        <Link className={css.link__box} to={'/rank'}>
-                            {EN ? 'Rank table' : 'Таблиця рангів'}
-                        </Link>
-                    </div>
-                }
+                {/*        <Link className={css.link__box} to={'/rank'}>*/}
+                {/*            {EN ? 'Rank table' : 'Таблиця рангів'}*/}
+                {/*        </Link>*/}
+                {/*    </div>*/}
+                {/*}*/}
 
-                <div className={css.header__link} onClick={() => {
-                    setOpenProgramming(!openProgramming)
-                    setOpenProducts(false);
-                    setOpenResources(false);
-                }}>
-                    {EN ? 'Programming' : 'Програмування'}
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-                {openProgramming &&
-                    <div className={css.link__main}>
-                        <Link className={css.link__box} to={'/compiler'}>
-                            {EN ? 'Compiler' : 'Компілятор'}
-                        </Link>
+                {/*<div className={openProgramming ? css.header__link_new_active : css.header__link_new} onClick={() => {*/}
+                {/*    setOpenProgramming(!openProgramming)*/}
+                {/*    setOpenProducts(false);*/}
+                {/*    setOpenResources(false);*/}
+                {/*}}>*/}
+                {/*    <img src={new_icon} alt="new" className={css.new__icon}/>*/}
+                {/*    {EN ? 'Programming' : 'Програмування'}*/}
+                {/*</div>*/}
+                {/*{openProgramming &&*/}
+                {/*    <div className={css.link__main}>*/}
+                {/*        <Link className={css.link__box} to={'/compiler'}>*/}
+                {/*            {EN ? 'Compiler' : 'Компілятор'}*/}
+                {/*        </Link>*/}
 
-                        <Link className={css.link__box} to={'/createTest'}>
-                            {EN ? 'Create quiz' : 'Створити тест'}
-                        </Link>
+                {/*        <Link className={css.link__box} to={'/createTest'}>*/}
+                {/*            {EN ? 'Create quiz' : 'Створити тест'}*/}
+                {/*        </Link>*/}
 
-                        <div className={css.link__main_wrap}>
-                            <Link className={css.link__box} to={'/team-coding'}>
-                                <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                            </Link>
-                            <img src={new_icon} alt="new" className={css.new__icon}/>
-                        </div>
-                    </div>
-                }
+                {/*        <div className={css.link__main_wrap}>*/}
+                {/*            <Link className={css.link__box} to={'/team-coding'}>*/}
+                {/*                <div>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>*/}
+                {/*            </Link>*/}
+                {/*            <img src={new_icon} alt="new" className={css.new__icon}/>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*}*/}
 
-                <div className={css.header__link} onClick={() => {
-                    setOpenResources(!openResources)
-                    setOpenProducts(false);
-                    setOpenProgramming(false);
-                }}>
-                    {EN ? 'Resources' : 'Ресурси'}
-                    <img src={new_icon} alt="new" className={css.new__icon}/>
-                </div>
-                {openResources &&
-                    <div className={css.link__main}>
-                        <div className={css.link__main_wrap}>
-                            <Link className={css.link__box} to={'/learning-plan'}>
-                                {EN ? 'Learning plans' : 'Навчальні плани'}
-                                <img src={new_icon} alt="new" className={css.new__icon}/>
-                            </Link>
-                        </div>
-                        <Link className={css.link__box} to={'/community'}>
-                            {EN ? 'Skilliant Community' : 'Skilliant Спільнота'}
-                        </Link>
-                    </div>
-                }
-
-
-                {/*<ForHeaderProductsBlock open={open} setOpenProducts={setOpenProducts} openProducts={openProducts}*/}
-                {/*                        setOpenProgramming={setOpenProgramming} setOpenResources={setOpenResources}/>*/}
-                {/*<ForHeaderProgrammingBlock open={open} setOpenProgramming={setOpenProgramming} openProgramming={openProgramming}*/}
-                {/*                           setOpenProducts={setOpenProducts} setOpenResources={setOpenResources}/>*/}
-                {/*<ForHeaderResourcesBlock open={open} setOpenResources={setOpenResources} openResources={openResources}*/}
-                {/*                         setOpenProducts={setOpenProducts} setOpenProgramming={setOpenProgramming}/>*/}
-
+                {/*<div className={openResources ? css.header__link_new_active : css.header__link_new} onClick={() => {*/}
+                {/*    setOpenResources(!openResources)*/}
+                {/*    setOpenProducts(false);*/}
+                {/*    setOpenProgramming(false);*/}
+                {/*}}>*/}
+                {/*    <img src={new_icon} alt="new" className={css.new__icon}/>*/}
+                {/*    {EN ? 'Resources' : 'Ресурси'}*/}
+                {/*</div>*/}
+                {/*{openResources &&*/}
+                {/*    <div className={css.link__main}>*/}
+                {/*        <div className={css.link__main_wrap}>*/}
+                {/*            <Link className={css.link__box} to={'/learning-plan'}>*/}
+                {/*                {EN ? 'Learning plans' : 'Навчальні плани'}*/}
+                {/*                <img src={new_icon} alt="new" className={css.new__icon}/>*/}
+                {/*            </Link>*/}
+                {/*        </div>*/}
+                {/*        <Link className={css.link__box} to={'/community'}>*/}
+                {/*            {EN ? 'Skilliant Community' : 'Skilliant Спільнота'}*/}
+                {/*        </Link>*/}
+                {/*    </div>*/}
+                {/*}*/}
 
                 <Link className={css.header__link} to={user ? '/user' : '/login'}>{
                     user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
                     </div> : (EN ? 'Login' : 'Увійти')}
                 </Link>
-
             </div>
+
         </div>
     );
 };
