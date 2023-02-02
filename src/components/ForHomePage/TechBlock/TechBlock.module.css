@@ -6,7 +6,8 @@
 }
 
 .tech__block_wrap {
-    background-color: #F1F1F1;
+    background-color: #FFFFFF;
+    /*background-color: #F1F1F1;*/
     box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     display: flex;
