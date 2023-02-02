@@ -5,13 +5,29 @@ import {useSelector} from 'react-redux';
 import css from '../ForHeaderProductsBlock/ForHeaderProductsBlock.module.css'
 import new_icon from '../../../../images/new_icon.svg';
 
-const ForHeaderProgrammingBlock = ({setOpenProgramming, openProgramming}) => {
+const ForHeaderProgrammingBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {
+        setOpenProducts,
+        openProgramming,
+        setOpenProgramming,
+        setOpenResources
+    } = valueBurger;
+
+    const handleClickOutside = () => {
+        if (openProgramming === true) {
+            setOpenProgramming(false);
+        }
+    };
+    document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>
             <div className={openProgramming ? css.header__link_new_active : css.header__link_new} onClick={() => {
-                    setOpenProgramming(!openProgramming);
+                setOpenProgramming(!openProgramming);
+                setOpenProducts(false);
+                setOpenResources(false);
             }}>
                 {EN ? 'Programming' : 'Програмування'}
                 {!openProgramming &&
@@ -45,9 +61,12 @@ const ForHeaderProgrammingBlock = ({setOpenProgramming, openProgramming}) => {
 
                     <div className={css.link__box}>
                         <Link className={css.link__box__mini} to={'/team-coding'}>
-                            <div
-                                className={css.link__title_new}>{EN ? 'Collaborative programming' : 'Спільне програмування'}</div>
-                            <img src={new_icon} alt="new" className={css.new__icon}/>
+                            <div className={css.link__click}>
+                                <div className={css.link__title_new}>
+                                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
+                                </div>
+                                <img src={new_icon} alt="new" className={css.new__icon}/>
+                            </div>
                         </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can write code in real time in a team while being far from each other.'

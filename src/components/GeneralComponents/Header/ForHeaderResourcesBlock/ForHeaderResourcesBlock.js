@@ -5,12 +5,28 @@ import new_icon from '../../../../images/new_icon.svg';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
-const ForHeaderResourcesBlock = ({setOpenResources, openResources}) => {
+const ForHeaderResourcesBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {
+        setOpenProducts,
+        setOpenProgramming,
+        openResources,
+        setOpenResources,
+    } = valueBurger;
+
+    const handleClickOutside = () => {
+        if (openResources === true) {
+            setOpenResources(false);
+        }
+    };
+    document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>
             <div className={openResources ? css.header__link_new_active : css.header__link_new} onClick={() => {
+                setOpenProducts(false);
+                setOpenProgramming(false);
                 setOpenResources(!openResources);
             }}>
                 {EN ? 'Resources' : 'Ресурси'}

@@ -3,16 +3,32 @@ import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import css from './ForHeaderProductsBlock.module.css';
-import new_icon from '../../../../images/new_icon.svg';
 
-const ForHeaderProductsBlock = ({open, setOpenProducts, openProducts, setOpenProgramming, setOpenResources}) => {
+const ForHeaderProductsBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
+    const {
+        openProducts,
+        setOpenProducts,
+        setOpenProgramming,
+        setOpenResources
+    } = valueBurger;
+
+    const handleClickOutside = () => {
+        if (openProducts === true) {
+            setOpenProducts(false);
+        }
+    };
+    document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>
-            <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
-                setOpenProducts(!openProducts);
-            }}>
+            <div id={'products'} className={openProducts ? css.header__link_new_active : css.header__link_new}
+                 onClick={() => {
+                     setOpenProducts(!openProducts);
+                     setOpenProgramming(false);
+                     setOpenResources(false);
+                 }}>
                 {EN ? 'Products' : 'Наш продукт'}
             </div>
 
@@ -25,8 +41,7 @@ const ForHeaderProductsBlock = ({open, setOpenProducts, openProducts, setOpenPro
                             {EN ? 'Here you will find information about various sites,\n' +
                                 'YouTube channels, courses that will help you increase your knowledge in IT' :
                                 'Тут ви знайдете інформацію про різні сайти,\n' +
-                                'YouTube канали, курси, які допоможуть підвищити знання в IT'
-                            }
+                                'YouTube канали, курси, які допоможуть підвищити знання в IT'}
                         </p>
                     </Link>
 
