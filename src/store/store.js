@@ -45,7 +45,7 @@ const store = configureStore({
         recruiterReducers,
         paymentRequestReducers,
         vacancyReducers,
-        vacancyResponseReducers
+        vacancyResponseReducers,
         postReducers,
         commentReducers,
         notificationReducers,

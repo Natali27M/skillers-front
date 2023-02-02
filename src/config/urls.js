@@ -53,7 +53,7 @@ export const urls = {
 
     vacancies: '/api/vacancies',
 
-    vacancyResponse: '/api/vacancy-responses'
+    vacancyResponse: '/api/vacancy-responses',
 
     comments: '/api/comments',
 
