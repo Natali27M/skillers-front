@@ -117,6 +117,7 @@
     font-size: 19px;
     font-family: 'Noto Sans', sans-serif;
     text-align: left;
+    white-space: pre-line;
 }
 
 .section > div.code {

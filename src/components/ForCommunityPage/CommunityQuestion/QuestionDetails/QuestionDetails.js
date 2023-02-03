@@ -16,6 +16,7 @@ import {createAnswer, deleteAnswer, deleteQuestion, getOneQuestion} from "../../
 import user_image from '../../../../images/user.svg';
 import {answerQuestionValidator} from "../../../../validation";
 import {notificationService} from "../../../../services/notification.service";
+import vacancyTimeDisplay from "../../../../RootFunctions/vacancyTimeDisplay";
 
 const QuestionDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -148,7 +149,8 @@ const QuestionDetails = () => {
                         </div>
                         <div className={css.asked}>
                             <span>{EN ? "Asked: " : "Запитано: "}</span>
-                            <div>{(oneQuestion?.attributes?.publishedAt)?.split('T')[0]}</div>
+                            <div>{oneQuestion?.attributes?.publishedAt && vacancyTimeDisplay(oneQuestion?.attributes?.publishedAt)}</div>
+                            {/*<div>{(oneQuestion?.attributes?.publishedAt)?.split('T')[0]}</div>*/}
                         </div>
                         <div className={css.asked}>
                             <span>{EN ? "Answers: " : "Відподі: "}</span>

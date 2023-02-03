@@ -43,25 +43,29 @@ const NotificationPage = () => {
                 <link rel="canonical" href={url}/>
             </Helmet>
 
-            {/*<Information/>*/}
             <div className={css.notifications__main}>
                 {notifications?.data?.length ?
                     <>
                         <div className={css.notifications__main_box}>
-                            {notifications?.data && notifications.data.map(value => <Notification key={value.id}
-                                                                                                  notification={value}/>)}
+                            <div>
+                                {notifications?.data && notifications.data.map(value => <Notification key={value.id}
+                                                                                                     notification={value}/>)}
+                            </div>
+
+
+                            <div>{!!notifications?.data?.length &&
+                                <PaginationSmall
+                                    pageNumber={notifications?.meta?.pagination.page}
+                                    setPageNumber={setPageNumber}
+                                    pageCount={notifications?.meta?.pagination.pageCount}
+                                />
+                            }</div>
                         </div>
                     </>
                     :
-                    <div
-                        className={css.no__notification}>{EN ? 'You have no notifications' : 'У вас немає сповіщень'}</div>
-                }
-                {!!notifications?.data?.length &&
-                    <PaginationSmall
-                        pageNumber={notifications?.meta?.pagination.page}
-                        setPageNumber={setPageNumber}
-                        pageCount={notifications?.meta?.pagination.pageCount}
-                    />
+                    <div className={css.no__notification}>
+                        {EN ? 'You have no notifications' : 'У вас немає сповіщень'}
+                    </div>
                 }
 
             </div>

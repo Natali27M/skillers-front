@@ -17,6 +17,8 @@ import {docco} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {ideaOpinionValidator} from "../../../../validation/ideaOpinion.validator";
 import {notificationService} from "../../../../services/notification.service";
+import vacancyTimeDisplay from "../../../../RootFunctions/vacancyTimeDisplay";
+import vacanciesReviewDisplay from "../../../../RootFunctions/vacanciesReviewDisplay";
 
 const IdeaDetails = () => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -144,11 +146,11 @@ const IdeaDetails = () => {
                         </div>
                         <div className={css.asked}>
                             <span>{EN ? "Common: " : "Поширена: "}</span>
-                            <div>{(oneIdea?.attributes?.publishedAt)?.split('T')[0]}</div>
+                            <div>{oneIdea?.attributes?.publishedAt && vacancyTimeDisplay(oneIdea?.attributes?.publishedAt)}</div>
                         </div>
                         <div className={css.asked}>
                             <span>{EN ? "The number of responses to the idea: " : "Кількість відгуків на ідею: "}</span>
-                            <div>{oneIdea?.attributes?.discussions?.data?.length ? oneIdea?.attributes?.discussions?.data.length : 0}</div>
+                            <div>{oneIdea?.attributes?.discussions?.data?.length && vacanciesReviewDisplay(oneIdea?.attributes?.discussions?.data?.length)}</div>
                         </div>
                     </div>
 
