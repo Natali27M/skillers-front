@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import Select from "react-select";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {Roller} from "react-awesome-spinners";
+import MDEditor from "@uiw/react-md-editor";
+import {Helmet} from "react-helmet-async";
 
 import css_helper from '../../CommunityQuestion/Questions/Questions.module.css';
 import css_post from '../../CommunityQuestion/AskQuestion/AskQuestion.module.css';
@@ -26,6 +29,9 @@ const PostIdea = () => {
 
     const [technology, setTechnology] = useState([]);
     const [category, setCategory] = useState([]);
+    const [ideaDescription, setIdeaDescription] = useState('');
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
         if (!categories?.data?.length) {
@@ -72,13 +78,16 @@ const PostIdea = () => {
             const {data} = await postsServices.createPost({...post});
             dispatch(updateIdea({ideaId: idea.id, postId: data?.id}));
         }
+        setLoading(!loading);
         return localStorage.removeItem('idea');
     }
 
 
     const postMyIdea = async (formData) => {
+        setLoading(!loading);
         const idea = {
             ...formData,
+            details: ideaDescription,
             userId: user?.id,
             userName: user?.username,
             technologies: technology,
@@ -92,11 +101,27 @@ const PostIdea = () => {
     }
 
     if (!user) {
-        return navigate('/login');
+        return <Navigate to={'/login'} replace/>;
     }
+
+    const title = 'Create idea';
+    const description = 'Create a idea and get opinions';
+    const url = `https://skilliant.net/community/idea/post`;
 
     return (
         <div className={css_helper.container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css_helper.questions__container}>
                 <div className={css.idea__sure__info__block__main}>
                     <div className={css.idea__sure__info__block}>
@@ -166,16 +191,12 @@ const PostIdea = () => {
                                 {EN ? "Details is a place where you can describe your idea in detail" :
                                     "Деталі місце де ви можете детально описати вашу ідею"}
                             </div>
-                            <textarea
-                                placeholder='Details'
-                                className={errors.details && css_post.errorFeld}
-                                {...register('details')}
+                            <MDEditor
+                                value={ideaDescription}
+                                onChange={setIdeaDescription}
+                                height={300}
+                                className={css.editor}
                             />
-                            {errors.details &&
-                                <div className={css_post.error}>
-                                    {EN ? "The minimum allowable number of characters is 40" : "Мінімальна допустима кількість символів – 40"}
-                                </div>
-                            }
                         </div>
 
                         <div className={css_post.form_sub_block}>
@@ -241,7 +262,12 @@ const PostIdea = () => {
 
                         <div className={css_post.button_div}>
                             <button
-                                className={css_helper.ask__button}>{EN ? "Share my idea" : "Поширити мою ідею"}</button>
+                                className={css_helper.ask__button}>{EN ? "Share my idea" : "Поширити мою ідею"}
+                            </button>
+
+                            <div>
+                                {loading && <Roller/>}
+                            </div>
                         </div>
                     </form>
                 </div>

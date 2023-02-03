@@ -7,11 +7,7 @@ import css from './PostDetails.module.css';
 import cssPost from '../../ForCommunityPage/CommunityMain/Post/Post.module.css';
 import message from '../../../images/community/message.svg';
 import results from '../../../images/community/results.svg';
-import {
-    createComment,
-    createNotification, deletePost, deletePostProxy,
-    getPostById,
-} from '../../../store';
+import {createComment, createNotification, deletePost, deletePostProxy, getPostById,} from '../../../store';
 import {CommentDetails} from '../CommentDetails/CommentDetails';
 import cssMainFirepadPage from '../../../pages/MainFirepadPage/MainFirepadPage.module.css';
 import rootCSS from '../../../styles/root.module.css';
@@ -24,14 +20,17 @@ const PostDetails = ({post}) => {
     const {user} = useSelector(state => state['userReducers']);
     const {status} = useSelector(state => state['commentReducers']);
     const {userRank} = useSelector(state => state['achievementsReducers']);
+
     const [sendComment, setSendComment] = useState(false);
     const [modal, setModal] = useState(false);
+
     const {handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
     const {pathname} = useLocation();
+    const navigate = useNavigate();
+
     const comments = post.attributes.comments.data;
     const createdAt = post.attributes.createdAt.split('T');
-    const navigate = useNavigate();
     const postId = post.id;
 
     const wantComment = () => {
@@ -210,6 +209,7 @@ const PostDetails = ({post}) => {
                             ref={textAreaRef}
                             rows={1}
                             value={value}
+                            required={true}
                         />
                             <button className={cssPost.post__createComment_send}></button>
                         </form>

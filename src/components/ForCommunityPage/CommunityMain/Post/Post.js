@@ -4,11 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
 
 import css from './Post.module.css';
-import {
-    createComment,
-    createNotification, deletePost, deletePostProxy,
-    getPostById
-} from '../../../../store';
+import {createComment, createNotification, deletePost, deletePostProxy, getPostById} from '../../../../store';
 import {Comment} from '../Comment/Comment';
 import achievement from '../../../../images/community/achievement.svg';
 import question from '../../../../images/community/questionGrey.svg';
@@ -26,16 +22,20 @@ const Post = ({post, setDeleteFullPost}) => {
     const {EN} = useSelector(state => state['languageReducers']);
     const {user} = useSelector(state => state['userReducers']);
     const {userRank} = useSelector(state => state['achievementsReducers']);
+
     const [sendComment, setSendComment] = useState(false);
     const [modal, setModal] = useState(false);
     const [value, setValue] = useState("");
+
     const {handleSubmit, reset} = useForm();
     const textAreaRef = useRef(null);
-    const comments = post.attributes.comments.data;
-    const createdAt = post.attributes.createdAt.split('T');
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {pathname} = useLocation();
+
+    const comments = post.attributes.comments.data;
+    const createdAt = post.attributes.createdAt.split('T');
     const postId = post.id;
 
     const wantComment = () => {
@@ -302,6 +302,7 @@ const Post = ({post, setDeleteFullPost}) => {
                             ref={textAreaRef}
                             rows={1}
                             value={value}
+                            required={true}
                         />
                             <button className={css.post__createComment_send}></button>
 

@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 import Select from "react-select";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {Roller} from "react-awesome-spinners";
+import {Helmet} from "react-helmet-async";
 
 import css_helper from "../Questions/Questions.module.css";
 import css from './AskQuestion.module.css';
@@ -26,6 +28,7 @@ const AskQuestion = () => {
     } = useForm({resolver: joiResolver(createQuestionValidator)});
 
     const [technology, setTechnology] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         dispatch(getTechnologies())
@@ -59,10 +62,12 @@ const AskQuestion = () => {
             const {data} = await postsServices.createPost({...post});
             dispatch(updateQuestion({id: question.id, postId: data?.id}))
         }
+        setLoading(!loading);
         return localStorage.removeItem('question');
     }
 
     const askQuestion = async (formData) => {
+        setLoading(!loading);
         const myQuestion = {
             ...formData,
             userId: user?.id,
@@ -77,9 +82,28 @@ const AskQuestion = () => {
         return navigate('/community/question');
     }
 
+    if (!user) {
+        return <Navigate to={'/login'} replace/>;
+    }
+
+    const title = 'Create question';
+    const description = 'Create question and get answers';
+    const url = `https://skilliant.net/community/question/ask`;
 
     return (
         <div className={css_helper.container}>
+            <Helmet>
+                <meta charSet="utf-8"/>
+                <meta name="description" content={description}/>
+                <meta property="og:url" content={url}/>
+                <meta property="og:title" content={title}/>
+                <meta property="og:description" content={description}/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:site_name" content="skilliant.net"/>
+                <title>{title}</title>
+                <link rel="canonical" href={url}/>
+            </Helmet>
+
             <div className={css_helper.questions__container}>
                 <div className={css.question__sure__info__block__main}>
                     <div className={css.question__sure__info__block}>
@@ -200,7 +224,12 @@ const AskQuestion = () => {
                         </div>
                         <div className={css.button_div}>
                             <button
-                                className={css_helper.ask__button}>{EN ? "Ask Question" : "Задати запитання"}</button>
+                                className={css_helper.ask__button}>{EN ? "Ask Question" : "Задати запитання"}
+                            </button>
+
+                            <div>
+                                {loading && <Roller/>}
+                            </div>
                         </div>
                     </form>
                 </div>

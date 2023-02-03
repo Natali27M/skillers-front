@@ -67,6 +67,7 @@
 .post__title {
     margin-top: 10px;
     margin-bottom: 20px;
+    color: #0073B1;
 }
 
 .post__description {
@@ -97,6 +98,7 @@
     padding-top: 20px;
     cursor: pointer;
     column-gap: 10px;
+    user-select: unset;
 }
 
 .post__message img {
@@ -165,5 +167,238 @@
     background: url("../../../../images/community/send.svg") no-repeat center / cover;
     border: none;
     cursor: pointer;
+}
+
+@media (max-width: 920px) {
+    .post__user {
+        width: 46px;
+        height: 46px;
+    }
+
+
+    .post__img_main img {
+        width: 180px;
+        height: 180px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .post__user {
+        width: 32px;
+        height: 32px;
+    }
+
+    .post__username {
+        font-size: 14px;
+    }
+
+    .post__userRank {
+        font-size: 9px;
+    }
+
+    .post__createdAt {
+        font-size: 7px;
+    }
+
+    .post__type img {
+        width: 17px;
+        height: 17px;
+    }
+
+    .post__title {
+        margin-top: 18px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .post__description {
+        font-size: 14px;
+    }
+
+    .post__img_main img {
+        width: 130px;
+        height: 130px;
+        margin-top: 10px;
+    }
+
+    .post__message img {
+        width: 16px;
+    }
+
+    .post__message > div {
+        font-size: 13px;
+    }
+
+
+    .post__message_question div {
+        padding: 7px;
+        font-size: 13px;
+    }
+
+    .post__createComment_send {
+        width: 24px;
+        height: 24px;
+    }
+
+    .post__createComment_input {
+        border-radius: 5px;
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    .post__createComment_input textarea {
+        font-size: 13px;
+        line-height: 1.3;
+        resize: none;
+        height: 24px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .post__user {
+        width: 28px;
+        height: 28px;
+    }
+
+    .post__username {
+        font-size: 13px;
+    }
+
+    .post__userRank {
+        font-size: 9px;
+    }
+
+    .post__createdAt {
+        font-size: 6px;
+    }
+
+    .post__type img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .post__title {
+        margin-top: 17px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #0073B1;
+    }
+
+    .post__description {
+        font-size: 13px;
+    }
+
+    .post__img_main img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .post__message img {
+        width: 16px;
+    }
+
+    .post__message > div {
+        font-size: 12px;
+    }
+
+
+    .post__message_question div {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .post__createComment_send {
+        width: 20px;
+        height: 20px;
+    }
+
+    .post__createComment_input {
+        border-radius: 3px;
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+
+    .post__createComment_input textarea {
+        font-size: 12px;
+        line-height: 1.2;
+        resize: none;
+        height: 22px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .post__user {
+        width: 25px;
+        height: 25px;
+    }
+
+    .post__username {
+        font-size: 11px;
+    }
+
+    .post__userRank {
+        font-size: 8px;
+    }
+
+    .post__createdAt {
+        font-size: 5px;
+        color: #525151;
+    }
+
+    .post__type img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .post__title {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #0073B1;
+    }
+
+    .post__description {
+        font-size: 12px;
+    }
+
+    .post__img_main img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .post__message img {
+        width: 15px;
+    }
+
+    .post__message > div {
+        font-size: 12px;
+    }
+
+
+    .post__message_question div {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .post__createComment_send {
+        width: 20px;
+        height: 20px;
+    }
+
+    .post__createComment_input {
+        border-radius: 3px;
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+
+    .post__createComment_input textarea {
+        font-size: 11px;
+        line-height: 1.1;
+        resize: none;
+        height: 20px;
+    }
 }
 

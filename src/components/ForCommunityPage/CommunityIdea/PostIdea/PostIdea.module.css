@@ -27,3 +27,7 @@ ul > li {
     margin-left: 30px;
     padding: 3px;
 }
+
+.editor {
+    width: 100%;
+}

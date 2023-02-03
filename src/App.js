@@ -218,7 +218,7 @@ function App() {
                         <Route path={'/employer'} element={<EmployerPage/>}/>
                         <Route path={'/vacancy-responses/:vacancyId'} element={<VacancyResponsesPage/>}/>
                         <Route path={'/create-vacancy'} element={<CreateVacancyPage/>}/>
-                        <Route path={'post/:id'} element={<PostDetailsPage/>}/>
+                        <Route path={'/post/:id'} element={<PostDetailsPage/>}/>
                         <Route path={'/community'} element={<CommunityPage/>}>
                             <Route index element={<Posts/>}/>
                             <Route path={'/community/home'} element={<Posts/>}/>

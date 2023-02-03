@@ -1,5 +1,10 @@
 .notifications__main {
     width: 35%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .notifications__main_box {
@@ -9,4 +14,9 @@
     border: 1px solid lightgrey;
     margin-top: 20px;
     overflow: hidden;
+}
+
+.no__notification{
+    font-size: 14px;
+    color: #2f2f2f;
 }
