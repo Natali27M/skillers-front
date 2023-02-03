@@ -6,7 +6,7 @@ import {Turn as Hamburger} from 'hamburger-react';
 import css from './Header.module.css';
 import logo from '../../../images/header/SKILLERS.svg';
 import userIcon from '../../../images/header/user.svg';
-import bell from '../../../images/community/bell.svg'
+import bell from '../../../images/community/bell.svg';
 import save_life_en from '../../../images/header/save-life-en.png';
 import save_life_ukr from '../../../images/header/save-life-ukr.png';
 import {getNoOpenedNotifications, switchLanguage, updateNotification} from '../../../store';
@@ -55,9 +55,9 @@ const Header = () => {
 
     useEffect(() => {
         if (open) {
-            document.body.style.overflowY = "hidden";
+            document.body.style.overflowY = 'hidden';
         } else {
-            document.body.style.overflowY = "scroll";
+            document.body.style.overflowY = 'scroll';
         }
     }, [open]);
 
@@ -69,7 +69,7 @@ const Header = () => {
         setOpenProgramming,
         openResources,
         setOpenResources
-    }
+    };
 
     useEffect(() => {
         if (userId) {
@@ -88,7 +88,7 @@ const Header = () => {
             setOpenNotifications(false);
             navigate('/community/notification');
         }
-    }
+    };
 
     return (
         <div className={css.main__header}>
@@ -113,7 +113,9 @@ const Header = () => {
                     </div> : EN ? 'Login' : 'Увійти'}
                 </Link>
 
-                <div onClick={() => {commentingPosts()}}>
+                <div style={{cursor: 'pointer'}} onClick={() => {
+                    commentingPosts();
+                }}>
                     <div className={css.notification__main}>
                         {noOpenNotifications.length > 0 &&
                             <div className={css.notification_length}>

@@ -68,8 +68,8 @@ const ForHeaderProductsBlock = ({valueBurger}) => {
                             <div className={css.link__title_new}>{EN ? 'Rank table' : 'Таблиця рангів'}</div>
                         </Link>
                         <p className={css.link__box_p}>
-                            {EN ? 'Here you can select the best job candidates.'
-                                : 'Тут ви можете обрати найкращих кандидатів на роботу.'}
+                            {EN ? 'Here you can see a list of the ranks you get for passing the tests.'
+                                : 'Тут ви можете переглянути список рангів, які ви отримуєте за проходження тестів.'}
                         </p>
                     </div>
                 </div>

@@ -145,6 +145,7 @@
 
 .notification__main {
     position: relative;
+    cursor: pointer;
 }
 
 .notification_length {
