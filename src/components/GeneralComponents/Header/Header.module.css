@@ -66,11 +66,13 @@
 }
 
 
-.header__left {
+.header__left,
+.header__left_group {
     display: flex;
     align-items: center;
     column-gap: 25px;
     padding-left: 20px;
+    height: 100%;
 }
 
 .header__link {
@@ -79,7 +81,6 @@
     text-decoration: none;
     cursor: pointer;
     font-weight: 500;
-    /*position: relative;*/
 }
 
 .link__wrap {
@@ -87,14 +88,17 @@
     transform: translateZ(2px);
 }
 
-.new__icon {
-    height: 18px;
-    width: 18px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
+.link__main_wrap {
+    position: relative;
 }
 
+.link__main_wrap img {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: -15px;
+    top: -6px;
+}
 
 .user__block {
     display: flex;
@@ -105,33 +109,46 @@
 .user__block img {
     height: 25px;
 }
+/*body {*/
+/*    overflow: hidden;*/
+/*}*/
+/*.burger__menu_open {*/
+/*    position: absolute;*/
+/*    right: 0;*/
+/*    top: 70px;*/
+/*    width: 30%;*/
+/*    min-height: calc(100vh - 70px);*/
+/*    background-color: #f1f1f1;*/
+/*    color: #000000;*/
+/*    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.25);*/
+/*    overflow: hidden;*/
+/*    !*border-top: 3px solid;*!*/
+/*    !*border-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);*!*/
+/*    !*border-image-slice: 1;*!*/
+/*    !*position: absolute;*!*/
+/*    !*width: 100%;*!*/
+/*    !*background-color: #000000;*!*/
+/*    !*min-height: 100px;*!*/
+/*    !*top: 60px;*!*/
+/*    !*left: 0;*!*/
+/*    !*display: flex;*!*/
+/*    !*flex-direction: column;*!*/
+/*    !*align-items: flex-end;*!*/
+/*    !*padding: 30px;*!*/
+/*    !*row-gap: 10px;*!*/
+/*    !*transition: all .2s linear;*!*/
+/*    !*transform-style: preserve-3d;*!*/
+/*    !*transform: translateZ(-1px);*!*/
 
-.burger__menu_open,
-.burger__menu_close {
-    border-top: 3px solid;
-    border-image: linear-gradient(40deg, #00DBDE 0%, #FC00FF 100%);
-    border-image-slice: 1;
-    position: absolute;
-    width: 100%;
-    background-color: #000000;
-    min-height: 100px;
-    top: 60px;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 30px;
-    row-gap: 10px;
-    transition: all .2s linear;
-    transform-style: preserve-3d;
-    transform: translateZ(-1px);
+/*}*/
 
-}
+/*!*.burger__menu_open::-webkit-scrollbar {*!*/
+/*!*    display: none;*!*/
+/*!*}*!*/
 
-.burger__menu_close {
-    top: -250px;
-    transition: all .2s linear;
-}
+/*.burger__menu_close {*/
+/*    display: none;*/
+/*}*/
 
 .burger__btn {
     display: none;
@@ -151,6 +168,16 @@
     height: 50px
 }
 
+.burger__menu_open {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 30%;
+    min-height: calc(100vh - 70px);
+    background-color: #f1f1f1;
+    color: #000000;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.25);
+}
 .notification__main {
     position: absolute;
     top: calc(100% + 2px);
@@ -197,17 +224,48 @@
         column-gap: 10px;
     }
 
+.burger__menu_close {
+    display: none;
+}
 
-    .header__left {
-        display: none;
-    }
-
+@media (max-width: 1440px) {
     .save__life_link {
         height: 30px
     }
 }
 
 @media (max-width: 1000px) {
+    .burger__btn {
+        display: block;
+    }
+
+    .header__left_group {
+        display: none;
+    }
+
+    .link__main,
+    .link__box {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+        row-gap: 5px;
+        /*background-color: #282828;*/
+    }
+
+    .link__main {
+        border-right: 1px solid white;
+        padding-right: 10px;
+        /*outline: 1px solid white;*/
+    }
+
+    /*.new__icon {*/
+    /*    height: 14px;*/
+    /*    width: 14px;*/
+    /*}*/
+
     .main__header {
         height: 70px;
     }
@@ -261,7 +319,6 @@
 
 
 @media (max-width: 767px) {
-
     .header__logo {
         height: 20px;
     }
@@ -281,7 +338,6 @@
     .main__header {
         padding: 0 20px;
     }
-
 
     .header__logo {
         height: 14px;
@@ -322,3 +378,5 @@
         transform: translate(28px);
     }
 }
+
+
