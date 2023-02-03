@@ -31,35 +31,37 @@ const ForHeaderProgrammingBlock = ({valueBurger}) => {
             {
                 openProgramming &&
                 <div className={css.link__main}>
-                    <Link className={css.link__box} to={'/compiler'}>
-                        <div className={css.link__title}>{EN ? 'Compiler' : 'Компілятор'}</div>
+                    <div className={css.link__box}>
+                        <Link className={css.link__box__mini} to={'/compiler'}>
+                            <div className={css.link__title_new}>{EN ? 'Compiler' : 'Компілятор'}</div>
+                        </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can convert (compile) source code written in a particular programming' +
                                 ' language to semantically equivalent code in another programming language.'
                                 :
-                                'Тут ви можете перетворити (компілювати) вихідний код, написаний певною мовою програмування,' +
-                                ' у семантично еквівалентний код іншою мовою програмування.'}
+                                'Тут ви можете перетворити (компілювати) вихідний код, написаний певною мовою ' +
+                                'програмування, у семантично еквівалентний код іншою мовою програмування.'}
                         </p>
-                    </Link>
+                    </div>
 
-                    <Link className={css.link__box} to={'/createTest'}>
-                        <div className={css.link__title}>{EN ? 'Create quiz' : 'Створити тест'}</div>
+                    <div className={css.link__box}>
+                        <Link className={css.link__box__mini} to={'/createTest'}>
+                            <div className={css.link__title_new}>{EN ? 'Create quiz' : 'Створити тест'}</div>
+                        </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can share your knowledge by creating a test that all users can see and take.'
                                 :
-                                'Тут ви можете поділитися своїми знаннями, створивши тест, який зможуть побачити та пройти' +
-                                ' всі користувачі.'}
+                                'Тут ви можете поділитися своїми знаннями, створивши тест, який зможуть побачити та ' +
+                                'пройти всі користувачі.'}
                         </p>
-                    </Link>
+                    </div>
 
                     <div className={css.link__box}>
                         <Link className={css.link__box__mini} to={'/team-coding'}>
-                            <div className={css.link__click}>
-                                <div className={css.link__title_new}>
-                                    {EN ? 'Collaborative programming' : 'Спільне програмування'}
-                                </div>
-                                <img src={new_icon} alt="new" className={css.new__icon}/>
+                            <div className={css.link__title_new}>
+                                {EN ? 'Collaborative programming' : 'Спільне програмування'}
                             </div>
+                            <img src={new_icon} alt="new" className={css.new__icon_middle}/>
                         </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can write code in real time in a team while being far from each other.'

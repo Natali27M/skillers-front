@@ -1,13 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import css from './ForHeaderBurgerBlock.module.css';
+import cssHeader from '../Header.module.css';
 import new_icon from '../../../../images/new_icon.svg';
 import arrowBlack from '../../../../images/arrowBlack.svg';
+import userIcon from '../../../../images/header/user.svg';
+import bell from '../../../../images/community/bell.svg';
+import {switchLanguage} from '../../../../store';
 
 const ForHeaderBurgerBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+    const {user} = useSelector(state => state['userReducers']);
+
+    const dispatch = useDispatch();
 
     const {
         openProducts,
@@ -20,6 +27,21 @@ const ForHeaderBurgerBlock = ({valueBurger}) => {
 
     return (
         <div>
+            <Link className={css.header__link} to={user ? '/user' : '/login'}>{
+                user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
+                </div> : EN ? 'Login' : 'Увійти'}
+            </Link>
+
+            <div>
+                <button onClick={() => dispatch(switchLanguage())}
+                        className={EN ? css.switch_btn_en : css.switch_btn_uk}>
+                    <div className={EN ? css.switch_btn_ball_en : css.switch_btn_ball_uk}>
+                    </div>
+                    <div className={EN ? css.switch_btn_name_en : css.switch_btn_name_uk}>
+                        {EN ? 'EN' : 'UK'}
+                    </div>
+                </button>
+            </div>
             <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
                 setOpenProducts(!openProducts)
                 setOpenProgramming(false);
