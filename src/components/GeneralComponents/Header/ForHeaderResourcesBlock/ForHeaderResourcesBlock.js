@@ -1,9 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 import css from '../ForHeaderProductsBlock/ForHeaderProductsBlock.module.css'
 import new_icon from '../../../../images/new_icon.svg';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 
 const ForHeaderResourcesBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
@@ -14,13 +14,6 @@ const ForHeaderResourcesBlock = ({valueBurger}) => {
         openResources,
         setOpenResources,
     } = valueBurger;
-
-    const handleClickOutside = () => {
-        if (openResources === true) {
-            setOpenResources(false);
-        }
-    };
-    // document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>

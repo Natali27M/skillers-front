@@ -15,13 +15,6 @@ const ForHeaderProgrammingBlock = ({valueBurger}) => {
         setOpenResources
     } = valueBurger;
 
-    const handleClickOutside = () => {
-        if (openProgramming === true) {
-            setOpenProgramming(false);
-        }
-    };
-    // document.addEventListener('click', handleClickOutside, true);
-
     return (
         <div>
             <div className={openProgramming ? css.header__link_new_active : css.header__link_new} onClick={() => {

@@ -14,13 +14,6 @@ const ForHeaderProductsBlock = ({valueBurger}) => {
         setOpenResources
     } = valueBurger;
 
-    const handleClickOutside = () => {
-        if (openProducts === true) {
-            setOpenProducts(false);
-        }
-    };
-    // document.addEventListener('click', handleClickOutside, true);
-
     return (
         <div>
             <div id={'products'} className={openProducts ? css.header__link_new_active : css.header__link_new}
