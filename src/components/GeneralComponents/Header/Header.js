@@ -97,20 +97,6 @@ const Header = () => {
         }
     }
 
-
-    const commentingPosts = () => {
-        if (!openNotifications) {
-            setOpenNotifications(true);
-            setOpen(!open);
-            navigate('/community/notification');
-            for (const elem of noOpenNotifications) {
-                dispatch(updateNotification({data: {isOpened: true}, notificationId: elem.id}));
-            }
-        } else {
-            setOpenNotifications(false);
-        }
-    }
-
     return (
         <div className={css.main__header}>
             <div className={css.header__right}>

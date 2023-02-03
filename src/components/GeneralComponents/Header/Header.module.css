@@ -109,6 +109,7 @@
 .user__block img {
     height: 25px;
 }
+
 /*body {*/
 /*    overflow: hidden;*/
 /*}*/
@@ -178,6 +179,7 @@
     color: #000000;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.25);
 }
+
 .notification__main {
     position: absolute;
     top: calc(100% + 2px);
@@ -224,8 +226,9 @@
         column-gap: 10px;
     }
 
-.burger__menu_close {
-    display: none;
+    .burger__menu_close {
+        display: none;
+    }
 }
 
 @media (max-width: 1440px) {
@@ -265,7 +268,6 @@
     /*    height: 14px;*/
     /*    width: 14px;*/
     /*}*/
-
     .main__header {
         height: 70px;
     }
@@ -378,5 +380,6 @@
         transform: translate(28px);
     }
 }
+
 
 
