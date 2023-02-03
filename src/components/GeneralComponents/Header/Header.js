@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Turn as Hamburger} from 'hamburger-react';
 
@@ -19,19 +19,22 @@ import {ForHeaderBurgerBlock} from './ForHeaderBurgerBlock/ForHeaderBurgerBlock'
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
     const {EN} = useSelector(state => state['languageReducers']);
+    // const {noOpenNotifications} = useSelector(state => state['notificationReducers']);
 
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const {pathname} = useLocation();
-
     const {width} = useWindowDimensions();
 
     const [open, setOpen] = useState(false);
     const [openProducts, setOpenProducts] = useState(false);
     const [openProgramming, setOpenProgramming] = useState(false);
     const [openResources, setOpenResources] = useState(false);
+    const [openNotifications, setOpenNotifications] = useState(false);
+
+    const userId = user?.id;
 
     useEffect(() => {
         if (!isComponentVisible) {
@@ -66,6 +69,26 @@ const Header = () => {
         setOpenResources
     }
 
+    useEffect(() => {
+        if (userId) {
+            // dispatch(getNoOpenedNotifications({userId}));
+        }
+    }, [pathname, userId]);
+
+    const commentingPosts = () => {
+        if (!openNotifications) {
+            setOpenNotifications(true);
+            setOpen(!open);
+            navigate('/community/notification');
+            // for (const elem of noOpenNotifications) {
+                // dispatch(updateNotification({data: {isOpened: true}, notificationId: elem.id}));
+            // }
+        } else {
+            setOpenNotifications(false);
+        }
+    }
+
+
     return (
         <div className={css.main__header}>
             <div className={css.header__right}>
@@ -89,6 +112,19 @@ const Header = () => {
                     </div> : EN ? 'Login' : 'Увійти'}
                 </Link>
 
+                {/*<div onClick={() => {*/}
+                {/*    commentingPosts()*/}
+                {/*}} className={css.header__notification}>*/}
+                {/*    <div className={noOpenNotifications.length ? css.header__notification_length*/}
+                {/*        : css.header__notification_length_no}>*/}
+                {/*        /!*{noOpenNotifications.length}*!/*/}
+                {/*    </div>*/}
+                {/*    <div className={css.header__notification_img}>*/}
+                {/*        <img src={bell} alt="notification"/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+
+
                 <div>
                     <button onClick={() => dispatch(switchLanguage())}
                             className={EN ? css.switch_btn_en : css.switch_btn_uk}>
@@ -107,7 +143,7 @@ const Header = () => {
             </div>
 
             <div ref={ref} className={open ? css.burger__menu_open : css.burger__menu_close}>
-                <ForHeaderBurgerBlock valueBurger={valueBurger} ref={ref}/>
+                <ForHeaderBurgerBlock valueBurger={valueBurger}/>
             </div>
         </div>
     );

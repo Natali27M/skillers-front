@@ -10,7 +10,6 @@ const ForHeaderBurgerBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
 
     const {
-        open,
         openProducts,
         setOpenProducts,
         openProgramming,
@@ -21,7 +20,6 @@ const ForHeaderBurgerBlock = ({valueBurger}) => {
 
     return (
         <div>
-        {/*<div className={open ? css.burger__menu_open : css.burger__menu_close}>*/}
             <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
                 setOpenProducts(!openProducts)
                 setOpenProgramming(false);
