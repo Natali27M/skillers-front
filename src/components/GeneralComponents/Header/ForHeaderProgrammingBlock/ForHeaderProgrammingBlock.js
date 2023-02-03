@@ -20,7 +20,7 @@ const ForHeaderProgrammingBlock = ({valueBurger}) => {
             setOpenProgramming(false);
         }
     };
-    document.addEventListener('click', handleClickOutside, true);
+    // document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>

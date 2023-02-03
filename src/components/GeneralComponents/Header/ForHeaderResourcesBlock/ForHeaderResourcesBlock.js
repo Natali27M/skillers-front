@@ -20,7 +20,7 @@ const ForHeaderResourcesBlock = ({valueBurger}) => {
             setOpenResources(false);
         }
     };
-    document.addEventListener('click', handleClickOutside, true);
+    // document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>

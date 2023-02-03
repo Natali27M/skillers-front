@@ -19,7 +19,7 @@ const ForHeaderProductsBlock = ({valueBurger}) => {
             setOpenProducts(false);
         }
     };
-    document.addEventListener('click', handleClickOutside, true);
+    // document.addEventListener('click', handleClickOutside, true);
 
     return (
         <div>
