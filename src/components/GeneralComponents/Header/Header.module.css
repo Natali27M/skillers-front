@@ -532,24 +532,24 @@
 /*    padding: 10px;*/
 /*}*/
 
-/*.header__notification {*/
-/*    display: flex;*/
-/*    !*height: 40px;*!*/
-/*}*/
+.header__notification {
+    display: flex;
+    /*height: 40px;*/
+}
 
-/*.header__notification_length {*/
-/*    display: flex;*/
-/*    align-items: flex-start;*/
-/*}*/
+.header__notification_length {
+    display: flex;
+    align-items: flex-start;
+}
 
-/*.header__notification_length_no {*/
-/*    display: none;*/
-/*}*/
+.header__notification_length_no {
+    display: none;
+}
 
-/*.header__notification_img {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
+.header__notification_img {
+    display: flex;
+    align-items: center;
+}
 
 /*.header__notification_img img {*/
 /*    !*height: 20px;*!*/

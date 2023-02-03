@@ -79,10 +79,10 @@ const Header = () => {
     const commentingPosts = () => {
         if (!openNotifications) {
             setOpenNotifications(true);
-            setOpen(!open);
+            // setOpen(!open);
             navigate('/community/notification');
             for (const elem of noOpenNotifications) {
-            dispatch(updateNotification({data: {isOpened: true}, notificationId: elem.id}));
+                dispatch(updateNotification({data: {isOpened: true}, notificationId: elem.id}));
             }
         } else {
             setOpenNotifications(false);
@@ -118,7 +118,7 @@ const Header = () => {
                 }} className={css.header__notification}>
                     <div className={noOpenNotifications.length ? css.header__notification_length
                         : css.header__notification_length_no}>
-                        {/*{noOpenNotifications.length}*/}
+                        {noOpenNotifications.length}
                     </div>
                     <div className={css.header__notification_img}>
                         <img src={bell} alt="notification"/>
@@ -131,8 +131,7 @@ const Header = () => {
                             className={EN ? css.switch_btn_en : css.switch_btn_uk}>
                         <div className={EN ? css.switch_btn_ball_en : css.switch_btn_ball_uk}>
                         </div>
-                        <div
-                            className={EN ? css.switch_btn_name_en : css.switch_btn_name_uk}>
+                        <div className={EN ? css.switch_btn_name_en : css.switch_btn_name_uk}>
                             {EN ? 'EN' : 'UK'}
                         </div>
                     </button>
