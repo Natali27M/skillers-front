@@ -5,12 +5,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import css from './Notification.module.css';
 import {updateNotification} from '../../../../store';
 import avatar from '../../../../images/avatar.jpg';
+import vacancyTimeDisplay from "../../../../RootFunctions/vacancyTimeDisplay";
 
 const Notification = ({notification, setOpenNotification}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
+
     const postId = notification.attributes.postId;
     const commentId = notification.attributes.idComment;
     const createdAt = notification.attributes.createdAt.split('T');
@@ -44,11 +47,15 @@ const Notification = ({notification, setOpenNotification}) => {
             }}
                  className={notification.attributes.isReaded === false ?
                      css.notification__noReaded : css.notification__readed}>
-                <div className={css.notification__created}>{createdAt[0]}</div>
+
+                <div className={css.notification__created}>{vacancyTimeDisplay(createdAt[0])}</div>
+
                 <div className={css.notification__box}>
                     <img src={avatar} alt="user" className={css.notification__user}/>
-                    {EN ? `${notification.attributes.username} leaves a comment on your post`
+
+                    <div>{EN ? `${notification.attributes.username} leaves a comment on your post`
                         : `${notification.attributes.username} залишає коментар до вашого посту`}
+                    </div>
                 </div>
             </div>
         </div>
