@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet-async';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {Checkbox, FormControlLabel} from '@mui/material';
+import qs from 'qs';
+
 import css from './VacanciesPage.module.css';
 import mentorsCss from '../../components/ForMentorsPage/ApprovedMentors/ApprovedMentors.module.css';
 import rootCss from '../../styles/root.module.css';
-import {useDispatch, useSelector} from 'react-redux';
 import {getVacanciesPaginated} from '../../store';
 import {PaginationSmall, VacancyBlock} from '../../components';
 import {englishLevels, experiences} from './constants/vacancies__constants';
-import {Checkbox, FormControlLabel} from '@mui/material';
 import {getTechnologies} from '../../store';
-import qs from 'qs';
 import vacanciesExperienceDisplay from '../../RootFunctions/vacanciesExperienceDisplay';
 import cross from '../../images/cross.svg';
 import filter from '../../images/vacancy/filter.svg';
@@ -24,6 +26,7 @@ const VacanciesPage = () => {
     const [pageNumber, setPageNumber] = useState(1);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [technologyArray, setTechnologyArray] = useState([]);
     const [experienceArray, setExperienceArray] = useState([]);
@@ -117,7 +120,14 @@ const VacanciesPage = () => {
                 <link rel="canonical" href={url}/>
             </Helmet>
             <div className={rootCss.root__background}></div>
-            <div className={css.vacancies__wrap}>
+            <div className={css.vacancies__main}>
+                <div className={css.create__vacancies}>
+                    <div className={css.create__vacancies_btn} onClick={() => navigate('/employer')}>
+                        {EN ? 'Create vacancies' : 'Створити вакансію'}
+                    </div>
+                </div>
+
+                <div className={css.vacancies__wrap}>
                 <div className={css.result__vacancies}>
                     <h3 className={rootCss.default__title_24}>
                         {EN ? 'Vacancies' : 'Вакансії'}
@@ -178,6 +188,8 @@ const VacanciesPage = () => {
                             }
                         </div>
                     </div>
+                </div>
+
                 </div>
             </div>
         </div>

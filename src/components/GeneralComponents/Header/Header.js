@@ -101,7 +101,6 @@ const Header = () => {
                 </a>
             </div>
 
-
             <div className={css.header__left}>
                 <div className={css.header__left_group}>
                     <ForHeaderProductsBlock valueBurger={valueBurger}/>

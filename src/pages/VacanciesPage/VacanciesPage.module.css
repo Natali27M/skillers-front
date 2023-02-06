@@ -5,9 +5,7 @@
     position: relative;
 }
 
-.vacancies__wrap {
-    display: flex;
-    justify-content: space-between;
+.vacancies__main {
     position: relative;
     width: 1200px;
     min-height: calc(100vh - 80px);
@@ -17,12 +15,43 @@
     column-gap: 30px;
 }
 
+.vacancies__wrap {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /*width: 1200px;*/
+    /*min-height: calc(100vh - 80px);*/
+    /*background-color: #fff;*/
+    /*box-shadow: 0 0 15px 3px #323232;*/
+    /*padding: 40px 80px;*/
+    /*column-gap: 30px;*/
+}
+
 .result__vacancies,
 .vacancies__filter {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
     align-items: center;
+}
+
+.create__vacancies {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.create__vacancies_btn {
+    width: fit-content;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    background: black;
+    border-radius: 10px;
 }
 
 .result__vacancies {
@@ -94,6 +123,10 @@
     .check__block_adaptive {
         flex-direction: row;
     }
+
+    .create__vacancies_btn {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -109,4 +142,9 @@
     .check__block_adaptive > div:first-child {
         width: 100%;
     }
+
+    .create__vacancies_btn {
+        font-size: 14px;
+    }
 }
+

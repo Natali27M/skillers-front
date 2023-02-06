@@ -53,12 +53,12 @@ const ForHeaderProductsBlock = ({valueBurger}) => {
 
                     <div className={css.link__box}>
                         <Link className={css.link__box__mini} to={'/vacancies'}>
-                            <div className={css.link__title_new}>{EN ? 'Recruting' : 'Рекрутинг'}</div>
+                            <div className={css.link__title_new}>{EN ? 'Vacancies' : 'Вакансії'}</div>
                         </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can submit a vacancy and respond to an interesting one for you.'
                                 :
-                                'Тут ви можете залишити вакансію та відповісти на цікаву для вас.'}
+                                'Тут ви можете залишити вакансію та відгукнутися на цікаву для вас.'}
                         </p>
                     </div>
 
