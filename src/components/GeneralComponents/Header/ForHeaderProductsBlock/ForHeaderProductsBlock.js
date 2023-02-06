@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 import css from './ForHeaderProductsBlock.module.css';
-import new_icon from '../../../../images/new_icon.svg';
 
 const ForHeaderProductsBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
