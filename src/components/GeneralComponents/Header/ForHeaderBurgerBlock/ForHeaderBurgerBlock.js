@@ -3,11 +3,9 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import css from './ForHeaderBurgerBlock.module.css';
-import cssHeader from '../Header.module.css';
 import new_icon from '../../../../images/new_icon.svg';
 import arrowBlack from '../../../../images/arrowBlack.svg';
-import userIcon from '../../../../images/header/user.svg';
-import bell from '../../../../images/community/bell.svg';
+import userIcon from '../../../../images/header/userBlack.svg';
 import {switchLanguage} from '../../../../store';
 
 const ForHeaderBurgerBlock = ({valueBurger}) => {
