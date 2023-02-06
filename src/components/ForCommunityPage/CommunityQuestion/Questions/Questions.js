@@ -88,8 +88,8 @@ const Questions = () => {
                 <div className={css.filters__block}>
                     <div className={css.nav}>
                         <div>
+                            <span>{EN ? "Number of questions: " : "Кількість запитань: "}</span>
                             <span>{questions?.data?.length}</span>
-                            <span>{EN ? "Questions" : "Запитань"}</span>
                         </div>
                         <button onClick={() => setFilters(!filters)}>
                             {EN ? "Filter" : " Фільтрувати"}

@@ -69,7 +69,7 @@
 .nav > div {
     display: flex;
     flex-direction: row;
-    column-gap: 10px;
+    column-gap: 5px;
 }
 
 .nav > button {
@@ -229,6 +229,10 @@
     }
 
     .nav > div > span {
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .nav > button {
+        font-size: 12px;
     }
 }

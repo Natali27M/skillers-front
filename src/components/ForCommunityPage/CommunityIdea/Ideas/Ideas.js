@@ -115,8 +115,8 @@ const Ideas = () => {
                 <div className={css.filter_container}>
                     <div className={css_helper.nav}>
                         <div>
+                            <span>{EN ? "Number of ideas: " : "Кількість ідей: "}</span>
                             <span>{ideas?.data?.length}</span>
-                            <span>{EN ? "Ideas" : "Ідей"}</span>
                         </div>
                         <button onClick={() => setFilters(!filters)}>
                             {EN ? "Filter" : " Фільтрувати"}
