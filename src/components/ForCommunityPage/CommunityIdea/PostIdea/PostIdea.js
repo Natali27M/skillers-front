@@ -151,7 +151,7 @@ const PostIdea = () => {
                     <form onSubmit={handleSubmit(postMyIdea)} className={css_post.form}>
                         <div className={css_post.form_sub_block}>
                             <h4>Title</h4>
-                            <div>
+                            <div className={css_post.input_description}>
                                 {EN ? "Summarize your idea" : "Узагальніть вашу ідею"}
                             </div>
                             <input
