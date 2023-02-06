@@ -1,17 +1,6 @@
-.burger__menu_open {
-    position: absolute;
-    right: 0;
-    top: 70px;
-    width: 30%;
-    min-height: calc(100vh - 70px);
-    background-color: #f1f1f1;
-    color: #000000;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.25);
-    /*padding: 20px;*/
-
-}
-
-.burger__menu_close {
+.header__link,
+.switch_btn_en,
+.switch_btn_uk {
     display: none;
 }
 
@@ -103,6 +92,10 @@
     width: 100%;
 }
 
+/*.link__main_wrap:hover {*/
+/*    transition: 1500ms;*/
+/*}*/
+
 .link__main_wrap:hover .link__description{
     display: flex;
     font-size: 14px;
@@ -117,29 +110,114 @@
     height: 10px;
 }
 
-/*.header__link_new_active,*/
-/*.header__link_new_active_open {*/
-/*    font-size: 16px;*/
-/*}*/
+@media (max-width: 767px) {
+    .header__link_new,
+    .header__link_new_active {
+        font-size: 16px;
+    }
 
-/*.header__link_new {*/
-/*    font-size: 16px;*/
-/*    !*color: #FFFFFF;*!*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*    font-weight: 500;*/
-/*    position: relative;*/
-/*}*/
+    .arrow {
+        width: 16px;
+    }
 
-/*.header__link_new_active img,*/
-/*.header__link_new_active_open img {*/
-/*    display: none;*/
-/*}*/
+    .link__box {
+        font-size: 15px;
+    }
+}
 
-/*.header__link_new .new__icon {*/
-/*    width: 13px;*/
-/*    height: 13px;*/
-/*    position: absolute;*/
-/*    left: -17px;*/
-/*    top: -6px;*/
-/*}*/
+@media (max-width: 550px) {
+    .header__link,
+    .switch_btn_en,
+    .switch_btn_uk {
+        display: flex;
+    }
+
+    .switch_btn_en,
+    .switch_btn_uk {
+        width: 80px;
+        height: 40px;
+        border-radius: 30px;
+        border: none;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 6px;
+        transition: 400ms ease-in-out;
+        background-color: lightgray;
+        margin: 10px;
+    }
+
+    .switch_btn_ball_en {
+        width: 23px;
+        height: 23px;
+        background-image: url("../../../../images/header/Flag_of_the_United_Kingdom.svg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        transform: translate(39px);
+        transition: all 400ms ease-in-out;
+    }
+
+    .switch_btn_ball_uk {
+        width: 23px;
+        height: 23px;
+        background-image: url("../../../../images/header/Flag_of_Ukraine.svg");
+        background-size: cover;
+        border-radius: 50%;
+        transition: all 400ms ease-in-out;
+    }
+
+    .switch_btn_name_en {
+        transform: translate(-13px);
+    }
+
+    .switch_btn_name_uk {
+        transform: translate(10px);
+    }
+
+    .switch_btn_name_en,
+    .switch_btn_name_uk {
+        transition: all 400ms ease-in-out;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .switch_btn_en,
+    .switch_btn_uk,
+    .switch_btn {
+        height: 30px;
+        width: 70px;
+        padding: 4px;
+    }
+
+    .switch_btn_name {
+        transform: translate(5px);
+        font-size: 8px;
+    }
+
+    .dark_switch_btn_name {
+        transform: translate(-14px);
+        font-size: 8px;
+    }
+
+    .user__block {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
+
+    .user__block img {
+        height: 18px;
+    }
+
+    .header__link {
+        font-size: 18px;
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+}

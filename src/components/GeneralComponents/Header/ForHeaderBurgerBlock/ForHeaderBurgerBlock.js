@@ -1,13 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import css from './ForHeaderBurgerBlock.module.css';
 import new_icon from '../../../../images/new_icon.svg';
 import arrowBlack from '../../../../images/arrowBlack.svg';
+import userIcon from '../../../../images/header/userBlack.svg';
+import {switchLanguage} from '../../../../store';
 
 const ForHeaderBurgerBlock = ({valueBurger}) => {
     const {EN} = useSelector(state => state['languageReducers']);
+    const {user} = useSelector(state => state['userReducers']);
+
+    const dispatch = useDispatch();
 
     const {
         openProducts,
@@ -20,6 +25,21 @@ const ForHeaderBurgerBlock = ({valueBurger}) => {
 
     return (
         <div>
+            <Link className={css.header__link} to={user ? '/user' : '/login'}>{
+                user ? <div className={css.user__block}><img src={userIcon} alt="user"/> {user.username}
+                </div> : EN ? 'Login' : 'Увійти'}
+            </Link>
+
+            <div>
+                <button onClick={() => dispatch(switchLanguage())}
+                        className={EN ? css.switch_btn_en : css.switch_btn_uk}>
+                    <div className={EN ? css.switch_btn_ball_en : css.switch_btn_ball_uk}>
+                    </div>
+                    <div className={EN ? css.switch_btn_name_en : css.switch_btn_name_uk}>
+                        {EN ? 'EN' : 'UK'}
+                    </div>
+                </button>
+            </div>
             <div className={openProducts ? css.header__link_new_active : css.header__link_new} onClick={() => {
                 setOpenProducts(!openProducts)
                 setOpenProgramming(false);
@@ -86,8 +106,8 @@ const ForHeaderBurgerBlock = ({valueBurger}) => {
                             <img src={arrowBlack} alt="arrow" className={css.arrow_mini}/>
                         </div>
                         <div className={css.link__description}>
-                            {EN ? 'Here you can select the best job candidates.'
-                                : 'Тут ви можете обрати найкращих кандидатів на роботу.'}
+                            {EN ? 'Here you can see a list of the ranks you get for passing the tests.'
+                                : 'Тут ви можете переглянути список рангів, які ви отримуєте за проходження тестів.'}
                         </div>
                     </div>
                 </div>

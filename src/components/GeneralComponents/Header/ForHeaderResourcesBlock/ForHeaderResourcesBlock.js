@@ -32,7 +32,7 @@ const ForHeaderResourcesBlock = ({valueBurger}) => {
                     <div className={css.link__box}>
                         <Link className={css.link__box__mini} to={'/learning-plan'}>
                             <div className={css.link__title_new}>{EN ? 'Learning plans' : 'Навчальні плани'}</div>
-                            <img src={new_icon} alt="new" className={css.new__icon}/>
+                            <img src={new_icon} alt="new" className={css.new__icon_middle}/>
                         </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'Here you can get advice on learning this or that technology.'
@@ -40,8 +40,12 @@ const ForHeaderResourcesBlock = ({valueBurger}) => {
                                 'Тут можна отримати консультацію щодо вивчення тієї чи іншої технології.'}
                         </p>
                     </div>
-                    <Link className={css.link__box} to={'/community'}>
-                        <div className={css.link__title}>{EN ? 'Skilliant Community' : 'Skilliant Спільнота'}</div>
+
+                    <div className={css.link__box}>
+                        <Link className={css.link__box__mini} to={'/community'}>
+                            <div className={css.link__title_new}>{EN ? 'Skilliant Community' : 'Skilliant Спільнота'}</div>
+                            <img src={new_icon} alt="new" className={css.new__icon_middle}/>
+                        </Link>
                         <p className={css.link__box_p}>
                             {EN ? 'It\'s a platform where you can share your achievements, ask questions and get' +
                                 ' answers, and share your ideas.'
@@ -49,7 +53,7 @@ const ForHeaderResourcesBlock = ({valueBurger}) => {
                                 'Це платформа, де ви можете ділитися своїми досягненнями, ставити запитання й отримувати' +
                                 ' відповіді, а також ділитися своїми ідеями.'}
                         </p>
-                    </Link>
+                    </div>
                 </div>
             }
         </div>
