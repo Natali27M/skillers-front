@@ -16,7 +16,6 @@ import {ForHeaderProductsBlock} from './ForHeaderProductsBlock/ForHeaderProducts
 import {ForHeaderProgrammingBlock} from './ForHeaderProgrammingBlock/ForHeaderProgrammingBlock';
 import {ForHeaderResourcesBlock} from './ForHeaderResourcesBlock/ForHeaderResourcesBlock';
 import {ForHeaderBurgerBlock} from './ForHeaderBurgerBlock/ForHeaderBurgerBlock';
-import new_icon from '../../../images/new_icon.svg';
 
 const Header = () => {
     const {user} = useSelector(state => state['userReducers']);
